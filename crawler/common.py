@@ -33,14 +33,33 @@ def find_date(text):
     m = DATE_PAT.search(text or "")
     return norm_date(m) if m else None
 
+# "2026. 7. 1.(화) ~ 7. 15.(화)" — 뒤 날짜에 연도가 생략되는 기간 표기
+RANGE_PAT = re.compile(
+    r"(20\d{2})\s*[.\-/년]\s*(\d{1,2})\s*[.\-/월]\s*(\d{1,2})[^~∼～]{0,30}[~∼～]\s*"
+    r"(?:(20\d{2})\s*[.\-/년]\s*)?(\d{1,2})\s*[.\-/월]\s*(\d{1,2})")
+
+def _valid(y, mo, d):
+    return 1 <= int(mo) <= 12 and 1 <= int(d) <= 31
+
 def extract_deadline(text):
-    """본문에서 접수 마감일 추출 — 접수/마감/기한 키워드 근처의 마지막 날짜"""
+    """본문에서 접수 마감일 추출 — 접수/마감 키워드 근처의 기간 종료일 우선"""
     if not text:
         return None
+    text = re.sub(r"\s+", " ", text)
     best = None
-    for kw in re.finditer(r"(접수|마감|기한|제출|응시원서|지원서)", text):
-        window = text[kw.start(): kw.start() + 220]
-        dates = [norm_date(m) for m in DATE_PAT.finditer(window)]
+    for kw in re.finditer(r"(접수|마감|기한|제출|응시원서|지원서|모집 ?기간)", text):
+        window = text[kw.start(): kw.start() + 300]
+        # 1순위: 기간 표기(~)의 종료일
+        for m in RANGE_PAT.finditer(window):
+            y = m.group(4) or m.group(1)
+            if _valid(y, m.group(5), m.group(6)):
+                cand = f"{y}-{int(m.group(5)):02d}-{int(m.group(6)):02d}"
+                if best is None or cand > best:
+                    best = cand
+        if best:
+            continue
+        # 2순위: 키워드 근처의 마지막 날짜
+        dates = [norm_date(m) for m in DATE_PAT.finditer(window) if _valid(m.group(1), m.group(2), m.group(3))]
         if dates:
             cand = max(dates)
             if best is None or cand > best:

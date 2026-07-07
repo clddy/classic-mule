@@ -12,10 +12,8 @@ BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # classic-mu
 OUT = os.path.join(BASE, "data", "official.json")
 LOG = os.path.join(BASE, "data", "crawl.log")
 
-MAX_DETAIL_PER_SOURCE = 5     # 마감일 보강용 상세 페이지 조회 상한
+MAX_DETAIL_PER_SOURCE = 10    # 마감일 보강용 상세 페이지 조회 상한
 RECENT_DAYS = 270             # 이보다 오래된 게시물은 버림 (마감 미래면 유지)
-
-ATTACH_PAT = re.compile(r'href="([^"]+\.(?:pdf|hwp|hwpx))"', re.I)
 
 def log(msg):
     line = f"[{datetime.now():%Y-%m-%d %H:%M:%S}] {msg}"
@@ -23,8 +21,26 @@ def log(msg):
     with open(LOG, "a", encoding="utf-8") as f:
         f.write(line + "\n")
 
+def find_attachments(soup, base_url):
+    """첨부파일 후보 URL — 확장자 링크뿐 아니라 download.do 류 CMS 다운로드 링크까지"""
+    from urllib.parse import urljoin
+    cands, seen = [], set()
+    for a in soup.find_all("a", href=True):
+        href = a["href"]
+        if href.startswith(("javascript", "#", "mailto")):
+            continue
+        text = a.get_text(" ", strip=True)
+        if (re.search(r"\.(pdf|hwpx?|zip)(\?|$)", href, re.I)
+                or re.search(r"\.(pdf|hwpx?|zip)\b", text, re.I)
+                or re.search(r"download|fileDown|file\.do|atchFile|attach|dwld|fileId|process\.file", href, re.I)):
+            full = urljoin(base_url, href)
+            if full not in seen:
+                seen.add(full)
+                cands.append((full, text))
+    return cands[:3]
+
 def enrich_deadline(s, item):
-    """상세 페이지 본문(+첫 첨부파일)에서 접수 마감일 추출"""
+    """상세 페이지 본문 → 없으면 첨부파일(PDF/HWP/HWPX/ZIP)에서 접수 마감일 추출"""
     try:
         r = get(s, item["url"])
         if r.status_code != 200:
@@ -32,25 +48,28 @@ def enrich_deadline(s, item):
         soup = BeautifulSoup(r.text, "lxml")
         for tag in soup(["script", "style", "header", "footer", "nav"]):
             tag.decompose()
-        text = soup.get_text(" ", strip=True)
-        dl = extract_deadline(text)
-        if not dl:
-            # 첨부파일 1개까지 시도
-            m = ATTACH_PAT.search(r.text)
-            if m:
-                from urllib.parse import urljoin
-                furl = urljoin(r.url, m.group(1))
-                try:
-                    fr = s.get(furl, timeout=25, verify=False)
-                    if fr.status_code == 200 and len(fr.content) < 15_000_000:
-                        ftext = attach.extract_any(furl, fr.content)
-                        dl = extract_deadline(ftext)
-                        if dl:
-                            item["deadlineFrom"] = "attachment"
-                except Exception:
-                    pass
+        dl = extract_deadline(soup.get_text(" ", strip=True))
         if dl:
-            item["deadline"] = item.get("deadline") or dl
+            item["deadline"] = dl
+            item["deadlineFrom"] = "page"
+            return
+        for furl, fname in find_attachments(soup, r.url):
+            try:
+                fr = s.get(furl, timeout=30, verify=False)
+                if fr.status_code != 200 or len(fr.content) > 20_000_000 or len(fr.content) < 200:
+                    continue
+                # Content-Disposition에서 실제 파일명 확보
+                cd = fr.headers.get("Content-Disposition", "")
+                m = re.search(r"filename\*?=(?:UTF-8'')?\"?([^\";]+)", cd)
+                name = m.group(1) if m else (fname or furl)
+                ftext = attach.extract_any(name, fr.content)
+                dl = extract_deadline(ftext)
+                if dl:
+                    item["deadline"] = dl
+                    item["deadlineFrom"] = "attachment"
+                    return
+            except Exception:
+                continue
     except Exception as e:
         log(f"  enrich 실패 {item['url'][:60]}: {type(e).__name__}")
 
@@ -91,6 +110,13 @@ def run():
                 if it["deadline"] and it["deadline"] < stale:
                     continue
                 kept.append(it)
+            # 지난 수집에서 알아낸 마감일은 승계 (매일 재추출 방지)
+            for it in kept:
+                old = prev.get(it["id"])
+                if old and not it["deadline"] and old.get("deadline"):
+                    it["deadline"] = old["deadline"]
+                    if old.get("deadlineFrom"):
+                        it["deadlineFrom"] = old["deadlineFrom"]
             # 마감일 없는 최신 글만 상세 보강
             need = [i for i in kept if not i["deadline"]][:MAX_DETAIL_PER_SOURCE]
             for it in need:
