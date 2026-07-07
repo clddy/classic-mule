@@ -1,0 +1,408 @@
+[
+ {
+  "id": "cfac",
+  "name": "천안문화재단",
+  "region": "충남",
+  "board_url": "https://www.cfac.or.kr/bbs/board.php?bo_table=job",
+  "board_label": "채용공고",
+  "needs_js": false,
+  "sample": [
+   {
+    "title": "[2026-110호] 2026년 제4차 천안문화재단 직원(기간제) 공개경쟁채용 서류전형 합격자 발표 및 면접…",
+    "url": "https://www.cfac.or.kr/bbs/board.php?bo_table=job&wr_id=242"
+   },
+   {
+    "title": "[2026 - 109호] 2026년 제3차 천안문화재단 직원 제한‧공개경쟁채용 필기전형 합격자 및 인성검사‧…",
+    "url": "https://www.cfac.or.kr/bbs/board.php?bo_table=job&wr_id=241"
+   },
+   {
+    "title": "[2026 - 102호] 2026년 제3차 천안문화재단 직원 제한‧공개경쟁채용 서류전형 합격자 발표 및 필기…",
+    "url": "https://www.cfac.or.kr/bbs/board.php?bo_table=job&wr_id=240"
+   },
+   {
+    "title": "[2026 - 92호] 천안문화재단 2026년 제1차 직원(기간제) 공개경쟁채용 추가 합격자 공고 및 등록 …",
+    "url": "https://www.cfac.or.kr/bbs/board.php?bo_table=job&wr_id=239"
+   },
+   {
+    "title": "[2026 - 88호] 천안문화재단 2026년 제4차 직원(기간제근로자) 채용 공고",
+    "url": "https://www.cfac.or.kr/bbs/board.php?bo_table=job&wr_id=238"
+   },
+   {
+    "title": "[2026 - 84호] 천안문화재단 2026년 제3차 직원 제한‧공개경쟁채용 공고",
+    "url": "https://www.cfac.or.kr/bbs/board.php?bo_table=job&wr_id=237"
+   }
+  ]
+ },
+ {
+  "id": "ansanart",
+  "name": "안산문화재단",
+  "region": "경기",
+  "board_url": "https://www.ansanart.com/lay1/bbs/S1T84C408/A/62/list.do",
+  "board_label": "채용안내",
+  "needs_js": false,
+  "sample": [
+   {
+    "title": "2026년 안산문화재단 기간제근로자 모집 공고(미화, 미술행정_육아휴직대체, 안산국제거리극축제 공연PD, 장르별 시장 거점화 지원사업 운영PD)",
+    "url": "https://www.ansanart.com/lay1/bbs/S1T84C408/A/62/view.do?article_seq=511&cpage=1&rows=10&condition=&keyword="
+   },
+   {
+    "title": "2026년 안산문화재단 기간제 및 단시간근로자 모집 최종합격자 공고 (단원미술제 코디네이터, 김홍도미술관 도슨트, 공연장안내원)",
+    "url": "https://www.ansanart.com/lay1/bbs/S1T84C408/A/62/view.do?article_seq=330&cpage=1&rows=10&condition=&keyword="
+   },
+   {
+    "title": "2026년 안산문화재단 기간제 및 단시간근로자 모집 면접대상자 공고 (단원미술제 코디네이터, 김홍도미술관 도슨트, 공연장안내원)",
+    "url": "https://www.ansanart.com/lay1/bbs/S1T84C408/A/62/view.do?article_seq=327&cpage=1&rows=10&condition=&keyword="
+   },
+   {
+    "title": "2026년 안산문화재단 기간제 및 단시간근로자 모집 공고(단원미술제 코디네이터, 김홍도미술관 도슨트, 공연장안내원)",
+    "url": "https://www.ansanart.com/lay1/bbs/S1T84C408/A/62/view.do?article_seq=308&cpage=1&rows=10&condition=&keyword="
+   },
+   {
+    "title": "2026년 안산문화재단 기간제 및 단시간근로자 모집 최종합격자 공고(미화, 문화행정, 공연장안내원)",
+    "url": "https://www.ansanart.com/lay1/bbs/S1T84C408/A/62/view.do?article_seq=262&cpage=1&rows=10&condition=&keyword="
+   },
+   {
+    "title": "2026년 안산시 공공기관 통합채용  상반기 정기채용 계획 공고(안산문화재단)",
+    "url": "https://www.ansanart.com/lay1/bbs/S1T84C408/A/62/view.do?article_seq=258&cpage=1&rows=10&condition=&keyword="
+   }
+  ]
+ },
+ {
+  "id": "ayac",
+  "name": "안양문화예술재단",
+  "region": "경기",
+  "board_url": "https://ayac.or.kr:443/base/menu/baseView?menuLevel=1&menuNo=6",
+  "board_label": "알림",
+  "needs_js": true,
+  "sample": [
+   {
+    "title": "2026년 하반기 안양문화예술재단 공연장 수시대관 공고",
+    "url": "https://ayac.or.kr:443/base/board/read?boardManagementNo=1&boardNo=6019&searchCategory=&page=1&searchType=&searchWord=&menuLevel=2&menuNo=19"
+   },
+   {
+    "title": "2026 안양춤축제 시민공연 및 안양골든댄스콘테스트 모집공고",
+    "url": "https://ayac.or.kr:443/base/board/read?boardManagementNo=1&boardNo=5996&searchCategory=&page=1&searchType=&searchWord=&menuLevel=2&menuNo=19"
+   },
+   {
+    "title": "2026 안양춤축제 부스참가단체 모집공고(전시, 체험, 홍보, 프리마켓)",
+    "url": "https://ayac.or.kr:443/base/board/read?boardManagementNo=1&boardNo=5990&searchCategory=&page=1&searchType=&searchWord=&menuLevel=2&menuNo=19"
+   },
+   {
+    "title": "2026년 제1회(공채31기) 직원 공개채용  필기시험 합격자 및 면접시험 실시 안내",
+    "url": "https://ayac.or.kr:443/base/board/read?boardManagementNo=1&boardNo=5982&searchCategory=&page=1&searchType=&searchWord=&menuLevel=2&menuNo=19"
+   },
+   {
+    "title": "2026년 제1회(공채31기) 직원 공개채용 공고",
+    "url": "https://ayac.or.kr:443/base/board/read?boardManagementNo=1&boardNo=5902&searchCategory=&page=1&searchType=&searchWord=&menuLevel=2&menuNo=19"
+   },
+   {
+    "title": "2026년 제5회 기간제근로자 공개채용 공고 N",
+    "url": "https://ayac.or.kr:443/base/board/read?boardManagementNo=1&boardNo=5994&searchCategory=&page=1&searchType=&searchWord=&menuLevel=2&menuNo=19"
+   }
+  ]
+ },
+ {
+  "id": "uac",
+  "name": "의정부예술의전당",
+  "region": "경기",
+  "board_url": "https://www.uac.or.kr/newuac/community/community_11.php",
+  "board_label": "공지사항",
+  "needs_js": true,
+  "sample": [
+   {
+    "title": "2026 문화공유공간 지원사업 <사이공간> 대관 지원사업 '공간드림' 공고",
+    "url": "https://www.uac.or.kr/newuac/community/community_11D.php?page=1&page_start=&NUMBER=1511"
+   },
+   {
+    "title": "2026 청년 K-컬처 글로벌 프런티어 참여자 모집 ..",
+    "url": "https://www.uac.or.kr/newuac/community/community_11D.php?page=1&page_start=&NUMBER=1509"
+   },
+   {
+    "title": "의정부문화역-이음 [창작 스튜디오] 레지던시 2기 모집 공고",
+    "url": "https://www.uac.or.kr/newuac/community/community_11D.php?page=1&page_start=&NUMBER=1507"
+   },
+   {
+    "title": "2026년 하반기 <의정부아트캠프> 수시대관 모집 공고",
+    "url": "https://www.uac.or.kr/newuac/community/community_11D.php?page=1&page_start=&NUMBER=1502"
+   },
+   {
+    "title": "2026년 하반기 <의정부문화역-이음> 수시대관 모집 공고",
+    "url": "https://www.uac.or.kr/newuac/community/community_11D.php?page=1&page_start=&NUMBER=1501"
+   },
+   {
+    "title": "2026년 어린이 오케스트라 신입단원 모집 공고",
+    "url": "https://www.uac.or.kr/newuac/community/community_11D.php?page=1&page_start=&NUMBER=1482"
+   }
+  ]
+ },
+ {
+  "id": "artgy",
+  "name": "고양문화재단",
+  "region": "경기",
+  "board_url": "https://www.artgy.or.kr/CU/CU0101M.aspx",
+  "board_label": "공지사항",
+  "needs_js": true,
+  "sample": [
+   {
+    "title": "고양문화재단(고양어울림누리) 공연장 안내원 모집 공고",
+    "url": "https://www.artgy.or.kr/CU/CU0101M.aspx?mode=V&boardid=cs_notice&code=3093&depth=a"
+   },
+   {
+    "title": "2026 고양문화재단 아람문예아카데미 단시간 근로자 채용 공고",
+    "url": "https://www.artgy.or.kr/CU/CU0101M.aspx?mode=V&boardid=cs_notice&code=3092&depth=a"
+   },
+   {
+    "title": "2026년 고양시립 아람미술관 전시해설사(도슨트) 채용공고",
+    "url": "https://www.artgy.or.kr/CU/CU0101M.aspx?mode=V&boardid=cs_notice&code=3091&depth=a"
+   },
+   {
+    "title": "고양문화재단(고양아람누리) 공연장 안내원 모집 공고",
+    "url": "https://www.artgy.or.kr/CU/CU0101M.aspx?mode=V&boardid=cs_notice&code=3088&depth=a"
+   },
+   {
+    "title": "<우리동네 작당모의> 생활문화기획자 입문과정 1기 모집 공고",
+    "url": "https://www.artgy.or.kr/CU/CU0101M.aspx?mode=V&boardid=cs_notice&code=3087&depth=a"
+   },
+   {
+    "title": "2026년 고양생활문화센터 초단시간 근로자 채용 공고",
+    "url": "https://www.artgy.or.kr/CU/CU0101M.aspx?mode=V&boardid=cs_notice&code=3086&depth=a"
+   }
+  ]
+ },
+ {
+  "id": "gfac",
+  "name": "강남문화재단(강남심포니)",
+  "region": "서울",
+  "board_url": "https://www.gfac.or.kr/site/main/recruit/accordionList",
+  "board_label": "채용정보",
+  "needs_js": false,
+  "sample": [
+   {
+    "title": "합격공고 2026년 2차 직원채용 최종 합격자 공고 2026-06-24 발표",
+    "url": "https://www.gfac.or.kr/site/main/recruit/958/view"
+   },
+   {
+    "title": "합격공고 2026년 2차 직원채용 서류심사 합격자 공고 2026-06-18 발표",
+    "url": "https://www.gfac.or.kr/site/main/recruit/957/view"
+   },
+   {
+    "title": "채용지원 2026년 2차 직원채용 계약직(사서) 지원페이지 2026-05-28 ~ 2026-06-05 마감",
+    "url": "https://www.gfac.or.kr/site/main/recruit/948/view"
+   },
+   {
+    "title": "채용지원 2026년 2차 직원채용 계약직(일반행정) 지원페이지 2026-05-28 ~ 2026-06-05 마감",
+    "url": "https://www.gfac.or.kr/site/main/recruit/949/view"
+   },
+   {
+    "title": "채용지원 2026년 2차 직원채용 휴직대체계약직 (8급 상당)_일반행정 지원페이지 2026-05-28 ~ 2026-06-05 마감",
+    "url": "https://www.gfac.or.kr/site/main/recruit/950/view"
+   },
+   {
+    "title": "채용지원 2026년 2차 직원채용 전문계약직 (7급 상당)_ 일반행정 지원페이지 2026-05-28 ~ 2026-06-05 마감",
+    "url": "https://www.gfac.or.kr/site/main/recruit/951/view"
+   }
+  ]
+ },
+ {
+  "id": "sjcf",
+  "name": "세종시문화재단",
+  "region": "기타",
+  "board_url": "https://www.sjcf.or.kr/empmn/list.do?key=2111060066",
+  "board_label": "채용공고",
+  "needs_js": true,
+  "sample": [
+   {
+    "title": "기부금품 모집 및 사용현황",
+    "url": "https://www.sjcf.or.kr/bbsctt/list.do?key=2111290027"
+   },
+   {
+    "title": "임직원 친인척 채용현황",
+    "url": "https://www.sjcf.or.kr/bbsctt/list.do?key=2111290028"
+   }
+  ]
+ },
+ {
+  "id": "dgopera",
+  "name": "대구오페라하우스",
+  "region": "대구",
+  "board_url": "https://www.daeguoperahouse.org/contents/community/page.html?mid=271272277&mode=view&no=94",
+  "board_label": "대구문화예술진흥원 원장 공개모집 공고",
+  "needs_js": false,
+  "sample": [
+   {
+    "title": "[붙임1] 공고문.pdf",
+    "url": "https://www.daeguoperahouse.org/board/download.php?board_id=board_hire&file=[붙임1] 공고문.pdf"
+   },
+   {
+    "title": "(재)대구오페라하우스 제2차 직원 채용 면접시험 합격자 공고",
+    "url": "https://www.daeguoperahouse.org/contents/community/page.html?mid=271272277&start=&category=&search_key=&keyword=&no=93&mode=view"
+   },
+   {
+    "title": "대구문화예술진흥원 원장 공개모집(재공고)",
+    "url": "https://www.daeguoperahouse.org/contents/community/page.html?mid=271272277&start=&category=&search_key=&keyword=&no=96&mode=view"
+   }
+  ]
+ },
+ {
+  "id": "knb",
+  "name": "국립발레단",
+  "region": "서울",
+  "board_url": "https://www.korean-national-ballet.kr/ko/news/notice/list",
+  "board_label": "공지사항",
+  "needs_js": false,
+  "sample": [
+   {
+    "title": "[새소식] 2026년도 2분기 친인척 신규채용 규모 공개",
+    "url": "https://www.korean-national-ballet.kr/ko/news/notice/view?id=3190"
+   },
+   {
+    "title": "[공지] 문화가 있는 날, 〈Ballet for Wednesday〉  「수요 발레 살롱」 *모집 종료",
+    "url": "https://www.korean-national-ballet.kr/ko/news/notice/view?id=3186"
+   }
+  ]
+ },
+ {
+  "id": "ubc",
+  "name": "유니버설발레단",
+  "region": "서울",
+  "board_url": "https://www.universalballet.com/kr/bbs/board.php?bo_table=notice",
+  "board_label": "공지사항",
+  "needs_js": false,
+  "sample": [
+   {
+    "title": "[모집] 유니버설발레단 경영지원팀 재정관리 직원 채용 공고",
+    "url": "https://www.universalballet.com/kr/bbs/board.php?bo_table=notice&wr_id=4605"
+   },
+   {
+    "title": "[발표] 유니버설발레단 무대기술팀 조명·음향파트 직원 서류전형 합격자 공고",
+    "url": "https://www.universalballet.com/kr/bbs/board.php?bo_table=notice&wr_id=4600"
+   },
+   {
+    "title": "[모집] 유니버설발레단 무대기술팀 조명·음향파트 직원 채용 공고",
+    "url": "https://www.universalballet.com/kr/bbs/board.php?bo_table=notice&wr_id=4597"
+   }
+  ]
+ },
+ {
+  "id": "jeongdong",
+  "name": "정동극장",
+  "region": "서울",
+  "board_url": "https://www.jeongdong.or.kr/portal/bbs/B0000240/list.do?menuNo=200005",
+  "board_label": "알림마당",
+  "needs_js": true,
+  "sample": [
+   {
+    "title": "2026년 제3차 국립정동극장 직원 채용 새글",
+    "url": "https://www.jeongdong.or.kr/portal/bbs/B0000240/view.do?nttId=11692&menuNo=200005&pageIndex=1"
+   },
+   {
+    "title": "2026년 2차 직원채용 최종합격자 공고",
+    "url": "https://www.jeongdong.or.kr/portal/bbs/B0000240/view.do?nttId=11619&menuNo=200005&pageIndex=1"
+   }
+  ]
+ },
+ {
+  "id": "timf",
+  "name": "통영국제음악재단",
+  "region": "경남",
+  "board_url": "https://www.timf.org/kr/sub/timf/notice.asp",
+  "board_label": "공지사항",
+  "needs_js": false,
+  "sample": [
+   {
+    "title": "(재)통영국제음악재단 2026년 제3차 기간제근로자 채용 공고",
+    "url": "https://www.timf.org/kr/sub/timf/notice.asp?mode=view&bid=1&s_type=&s_keyword=&s_cate=&idx=3774&page=1"
+   },
+   {
+    "title": "2026 TIMF아카데미 기악 분야 참가자 모집",
+    "url": "https://www.timf.org/kr/sub/timf/notice.asp?mode=view&bid=1&s_type=&s_keyword=&s_cate=&idx=3763&page=1"
+   },
+   {
+    "title": "TIMF행복학교 수강생 모집(신화로 듣는 클래식)",
+    "url": "https://www.timf.org/kr/sub/timf/notice.asp?mode=view&bid=1&s_type=&s_keyword=&s_cate=&idx=3751&page=1"
+   },
+   {
+    "title": "Sō Percussion과 함께하는 TIMF아카데미 - 타악기 참가자 모집",
+    "url": "https://www.timf.org/kr/sub/timf/notice.asp?mode=view&bid=1&s_type=&s_keyword=&s_cate=&idx=3730&page=1"
+   },
+   {
+    "title": "2026 통영시립소년소녀합창단 신규단원 모집",
+    "url": "https://www.timf.org/kr/sub/timf/notice.asp?mode=view&bid=1&s_type=&s_keyword=&s_cate=&idx=3754&page=1"
+   },
+   {
+    "title": "노부스 콰르텟과 함께하는 TIMF아카데미 - 현악사중주 참가자 모집",
+    "url": "https://www.timf.org/kr/sub/timf/notice.asp?mode=view&bid=1&s_type=&s_keyword=&s_cate=&idx=3749&page=1"
+   }
+  ]
+ },
+ {
+  "id": "hibrain",
+  "name": "하이브레인넷",
+  "region": "기타",
+  "board_url": "https://www.hibrain.net/recruitment",
+  "board_label": "채용정보",
+  "needs_js": false,
+  "sample": [
+   {
+    "title": "경희사이버대학교 2026학년도 전임교원 초빙 2026.06.26 ~ 2026.07.11",
+    "url": "https://www.hibrain.net/recruitment/recruits/3587561?listType=RECOMM&pagekey=3587561&adId=185290"
+   },
+   {
+    "title": "경북대학교 2026학년도 제2차 교수 초빙 2026.07.21 ~ 2026.07.31",
+    "url": "https://www.hibrain.net/recruitment/recruits/3571083?listType=RECOMM&pagekey=3571083&adId=179727"
+   },
+   {
+    "title": "충남테크노파크 원장 초빙 2026.07.20 ~ 2026.07.27",
+    "url": "https://www.hibrain.net/recruitment/recruits/3587519?listType=RECOMM&pagekey=3587519&adId=185280"
+   },
+   {
+    "title": "국가녹색기술연구소 정규직/별정직/박사후연구원 /석사후연구원/인턴 채용 2026.07.01 ~ 2026.07.24",
+    "url": "https://www.hibrain.net/recruitment/recruits/3587856?listType=RECOMM&pagekey=3587856&adId=185392"
+   },
+   {
+    "title": "우석대학교 2026학년도 2학기 제2차 전임교원 초빙 2026.07.06 ~ 2026.07.20",
+    "url": "https://www.hibrain.net/recruitment/recruits/3588855?listType=RECOMM&pagekey=3588855&adId=185758"
+   },
+   {
+    "title": "POSTECH 전임교원 초빙 접수기간 : 공고문 참조",
+    "url": "https://www.hibrain.net/recruitment/recruits/3566460?listType=RECOMM&pagekey=3566460&adId=184708"
+   }
+  ],
+  "music_only": true
+ },
+ {
+  "id": "onnuri",
+  "name": "온누리교회",
+  "region": "서울",
+  "board_url": "https://www.onnuri.org/notifications",
+  "board_label": "알림판 »",
+  "needs_js": false,
+  "sample": [
+   {
+    "title": "[두란노서원 채용 공고] 송도지점 북카페 근무자",
+    "url": "https://www.onnuri.org/notifications/%eb%91%90%eb%9e%80%eb%85%b8%ec%84%9c%ec%9b%90-%ec%b1%84%ec%9a%a9-%ea%b3%b5%ea%b3%a0-%ec%86%a1%eb%8f%84%ec%a7%80%ec%a0%90-%eb%b6%81%ec%b9%b4%ed%8e%98-%ea%b7%bc%eb%ac%b4%ec%9e%90/?back_url=%2Fnotifications%2F"
+   },
+   {
+    "title": "온누리교회 2000선교_제주Acts29훈련센터(JATC) 전임간사 모집",
+    "url": "https://www.onnuri.org/notifications/%ec%98%a8%eb%88%84%eb%a6%ac%ea%b5%90%ed%9a%8c-2000%ec%84%a0%ea%b5%90_%ec%a0%9c%ec%a3%bcacts29%ed%9b%88%eb%a0%a8%ec%84%bc%ed%84%b0jatc-%ec%a0%84%ec%9e%84%ea%b0%84%ec%82%ac-%eb%aa%a8%ec%a7%91/?back_url=%2Fnotifications%2F"
+   },
+   {
+    "title": "[더멋진세상] PMC사업 수행 / 후원관리 담당 채용공고",
+    "url": "https://www.onnuri.org/notifications/%eb%8d%94%eb%a9%8b%ec%a7%84%ec%84%b8%ec%83%81-pmc%ec%82%ac%ec%97%85-%ec%88%98%ed%96%89-%eb%b0%8f-%eb%aa%a8%eb%8b%88%ed%84%b0%eb%a7%81-%ec%84%b1%ea%b3%bc%ea%b4%80%eb%a6%ac-%eb%8b%b4%eb%8b%b9/?back_url=%2Fnotifications%2F"
+   },
+   {
+    "title": "온누리교회 선교재단 산하 킹스웨이 코리아 직원모집",
+    "url": "https://www.onnuri.org/notifications/%ec%98%a8%eb%88%84%eb%a6%ac%ea%b5%90%ed%9a%8c-%ec%84%a0%ea%b5%90%ec%9e%ac%eb%8b%a8-%ec%82%b0%ed%95%98-%ed%82%b9%ec%8a%a4%ec%9b%a8%ec%9d%b4-%ec%bd%94%eb%a6%ac%ec%95%84-%ec%a7%81%ec%9b%90%eb%aa%a8/?back_url=%2Fnotifications%2F"
+   },
+   {
+    "title": "온누리선교재단 인사/노무 담당 직원 모집 공고",
+    "url": "https://www.onnuri.org/notifications/%ec%98%a8%eb%88%84%eb%a6%ac%ec%84%a0%ea%b5%90%ec%9e%ac%eb%8b%a8-%ec%9d%b8%ec%82%ac%eb%85%b8%eb%ac%b4-%eb%8b%b4%eb%8b%b9-%ec%a7%81%ec%9b%90-%eb%aa%a8%ec%a7%91-%ea%b3%b5%ea%b3%a0/?back_url=%2Fnotifications%2F"
+   },
+   {
+    "title": "CCM 오디션 프로그램 <힐링보이스> 모집",
+    "url": "https://www.onnuri.org/notifications/ccm-%ec%98%a4%eb%94%94%ec%85%98-%ed%94%84%eb%a1%9c%ea%b7%b8%eb%9e%a8-%eb%aa%a8%ec%a7%91/?back_url=%2Fnotifications%2F"
+   }
+  ],
+  "music_only": true
+ }
+]

@@ -1,0 +1,90 @@
+{
+ "queue": [
+  {
+   "id": "ghcf",
+   "name": "김해문화재단",
+   "region": "경남",
+   "board_url": "https://www.ghcf.or.kr/board/board02",
+   "board_label": "채용공고",
+   "needs_js": false,
+   "sample": [
+    {
+     "title": "평가위원회 결과공고",
+     "url": "https://www.ghcf.or.kr/board/disclosure04_03?"
+    }
+   ]
+  }
+ ],
+ "failed": [
+  {
+   "id": "phcf",
+   "name": "포항문화재단",
+   "reason": "게시판 미발견/항목 없음"
+  },
+  {
+   "id": "cccf",
+   "name": "춘천문화재단",
+   "reason": "게시판 미발견/항목 없음"
+  },
+  {
+   "id": "wonjucf",
+   "name": "원주문화재단",
+   "reason": "홈페이지 접근 실패"
+  },
+  {
+   "id": "gumicf",
+   "name": "구미문화재단",
+   "reason": "홈페이지 접근 실패"
+  },
+  {
+   "id": "jfac",
+   "name": "제주문화예술재단",
+   "reason": "게시판 미발견/항목 없음"
+  },
+  {
+   "id": "sfac",
+   "name": "서울문화재단",
+   "reason": "게시판 미발견/항목 없음"
+  },
+  {
+   "id": "ifac",
+   "name": "인천문화재단",
+   "reason": "게시판 미발견/항목 없음"
+  },
+  {
+   "id": "bscf",
+   "name": "부산문화재단",
+   "reason": "게시판 미발견/항목 없음"
+  },
+  {
+   "id": "gjcf",
+   "name": "광주문화재단",
+   "reason": "홈페이지 접근 실패"
+  },
+  {
+   "id": "lottech",
+   "name": "롯데콘서트홀",
+   "reason": "게시판 미발견/항목 없음"
+  },
+  {
+   "id": "gmmfs",
+   "name": "평창대관령음악제",
+   "reason": "게시판 미발견/항목 없음"
+  },
+  {
+   "id": "arte",
+   "name": "아르떼(문화예술교육진흥원)",
+   "reason": "게시판 미발견/항목 없음"
+  },
+  {
+   "id": "sarang",
+   "name": "사랑의교회",
+   "reason": "게시판 미발견/항목 없음"
+  },
+  {
+   "id": "fgtv",
+   "name": "여의도순복음교회",
+   "reason": "게시판 미발견/항목 없음"
+  }
+ ]
+}

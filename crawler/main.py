@@ -4,7 +4,7 @@ from datetime import date, datetime, timedelta
 from bs4 import BeautifulSoup
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from common import new_session, get, relevant, extract_deadline
+from common import new_session, get, relevant, extract_deadline, deadline_from_title
 from sources import SOURCES
 from institutions import INSTITUTIONS
 import attach
@@ -102,7 +102,41 @@ def find_attachments(soup, base_url):
                 cands.append((full, text))
     return cands[:3]
 
-def enrich_deadline(s, item):
+EXT_VER = 3         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일 승계가 무효화됨
+RENDER_PER_SOURCE = 3   # 소스당 Playwright 렌더링 상한
+OCR_PER_SOURCE = 2      # 소스당 이미지 공고문 OCR 상한
+_renders_used = 0
+_ocr_used = 0
+
+IMG_SRC = re.compile(r'<img[^>]+src="((?:data:image/[^"]+|[^"]*(?:editor|upload|atch|cmmn|bbs)[^"]*\.(?:png|jpe?g)[^"]*))"', re.I)
+
+def _content_images(html, base_url):
+    """본문 영역의 공고문 이미지 후보 (base64 임베드 또는 업로드 경로)"""
+    import base64
+    from urllib.parse import urljoin
+    out = []
+    for m in IMG_SRC.finditer(html):
+        src = m.group(1)
+        if src.startswith("data:image"):
+            try:
+                b64 = src.split(",", 1)[1]
+                if len(b64) > 50_000:  # 아이콘 제외
+                    out.append(("__inline__", base64.b64decode(b64)))
+            except Exception:
+                pass
+        else:
+            out.append((urljoin(base_url, src), None))
+        if len(out) >= 2:
+            break
+    return out
+
+def _ref_year(item):
+    d = item.get("date") or ""
+    return int(d[:4]) if re.match(r"^20\d{2}", d) else None
+
+def enrich_deadline(s, item, allow_render=True):
+    global _renders_used
+    ry = _ref_year(item)
     try:
         r = get(s, item["url"])
         if r.status_code != 200:
@@ -110,7 +144,7 @@ def enrich_deadline(s, item):
         soup = BeautifulSoup(r.text, "lxml")
         for tag in soup(["script", "style", "header", "footer", "nav"]):
             tag.decompose()
-        dl = extract_deadline(soup.get_text(" ", strip=True))
+        dl = extract_deadline(soup.get_text(" ", strip=True), ref_year=ry)
         if dl:
             item["deadline"] = dl
             item["deadlineFrom"] = "page"
@@ -123,13 +157,45 @@ def enrich_deadline(s, item):
                 cd = fr.headers.get("Content-Disposition", "")
                 m = re.search(r"filename\*?=(?:UTF-8'')?\"?([^\";]+)", cd)
                 name = m.group(1) if m else (fname or furl)
-                dl = extract_deadline(attach.extract_any(name, fr.content))
+                dl = extract_deadline(attach.extract_any(name, fr.content), ref_year=ry)
                 if dl:
                     item["deadline"] = dl
                     item["deadlineFrom"] = "attachment"
                     return
             except Exception:
                 continue
+        # 공고문이 이미지로만 게시된 경우 — OCR 폴백
+        global _ocr_used
+        if allow_render and _ocr_used < OCR_PER_SOURCE:
+            for src_url, blob in _content_images(r.text, r.url):
+                try:
+                    _ocr_used += 1
+                    data = blob if blob else s.get(src_url, timeout=30, verify=False).content
+                    dl = extract_deadline(attach.ocr_image(data), ref_year=ry)
+                    if dl:
+                        item["deadline"] = dl
+                        item["deadlineFrom"] = "ocr"
+                        return
+                except Exception:
+                    continue
+                if _ocr_used >= OCR_PER_SOURCE:
+                    break
+        # 본문이 JS 렌더링인 페이지 — 헤드리스 크롬 폴백
+        global _renders_used
+        if allow_render and _renders_used < RENDER_PER_SOURCE:
+            try:
+                from jsfetch import render
+                _renders_used += 1
+                html = render(item["url"], wait_ms=2500)
+                jsoup = BeautifulSoup(html, "lxml")
+                for tag in jsoup(["script", "style", "header", "footer", "nav"]):
+                    tag.decompose()
+                dl = extract_deadline(jsoup.get_text(" ", strip=True), ref_year=ry)
+                if dl:
+                    item["deadline"] = dl
+                    item["deadlineFrom"] = "page-js"
+            except Exception:
+                pass
     except Exception:
         log(f"  enrich 실패 {item['url'][:60]}")
 
@@ -181,15 +247,40 @@ def run(force_all=False):
                 it["channel"] = src["id"]
                 it["layer"] = src["layer"]
                 kept.append(it)
-            # 지난 수집의 마감일 승계
+            global _renders_used, _ocr_used
+            _renders_used = 0
+            _ocr_used = 0
+            # 지난 수집의 마감일 승계(추출기 버전 일치 시) → 제목 → 상세/첨부/OCR/JS렌더
             for it in kept:
                 old = prev_by_id.get(it["id"])
-                if old and not it["deadline"] and old.get("deadline"):
+                if (old and not it["deadline"] and old.get("deadline")
+                        and old.get("extVer") == EXT_VER):
                     it["deadline"] = old["deadline"]
                     if old.get("deadlineFrom"):
                         it["deadlineFrom"] = old["deadlineFrom"]
+                if not it["deadline"]:
+                    tdl = deadline_from_title(it["title"], ref_year=_ref_year(it))
+                    if tdl:
+                        it["deadline"] = tdl
+                        it["deadlineFrom"] = "title"
+            # JS 렌더 폴백은 기관 게시판(B/D)에만 — 집계 노드에 예산 낭비 방지
             for it in [i for i in kept if not i["deadline"]][:MAX_DETAIL_PER_SOURCE]:
-                enrich_deadline(s, it)
+                enrich_deadline(s, it, allow_render=src["layer"] in ("B", "D"))
+            # 마감이 게시일보다 앞서면 공고문 연도 오타로 보고 +1년 보정
+            for it in kept:
+                if it["deadline"] and it["date"] and it["deadline"] < it["date"]:
+                    fixed = f"{int(it['deadline'][:4]) + 1}{it['deadline'][4:]}"
+                    if fixed <= f"{int(it['date'][:4]) + 1}-12-31":
+                        it["deadline"] = fixed
+                        it["deadlineFrom"] = (it.get("deadlineFrom") or "") + "+yearfix"
+            # 보강으로 알게 된 마감이 이미 한참 지난 공고는 제거 (작년 공고 등)
+            kept = [i for i in kept if not (i["deadline"] and i["deadline"] < stale)]
+            # 소스가 비정상적으로 0건 반환(서버 다운 등) 시 이전 수집분 승계
+            if not raw:
+                carried = [it for it in prev_items if it.get("channel") == src["id"]]
+                if carried:
+                    kept = carried
+                    log(f"WARN {src['name']}: 0건 반환 — 이전 {len(carried)}건 승계 (서버 장애 추정)")
             all_items.extend(kept)
             source_stats.append({**meta, "ok": True, "raw": len(raw), "kept": len(kept)})
             log(f"OK  {src['name']}: 원본 {len(raw)}건 → 수집 {len(kept)}건")
@@ -210,6 +301,7 @@ def run(force_all=False):
         old = prev_by_id.get(it["id"])
         it["firstSeen"] = old.get("firstSeen", today.isoformat()) if old else today.isoformat()
         it["isNew"] = it["firstSeen"] == today.isoformat()
+        it["extVer"] = EXT_VER
     final.sort(key=lambda x: (x.get("date") or x["firstSeen"]), reverse=True)
 
     payload = {

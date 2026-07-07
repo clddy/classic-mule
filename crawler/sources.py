@@ -1,6 +1,6 @@
 # 기관별 파서 — 각 함수는 make_item 리스트를 반환
-import re, json
-from urllib.parse import urljoin
+import os, re, json
+from urllib.parse import urljoin, urlparse
 from bs4 import BeautifulSoup
 from common import get, make_item, find_date, relevant, region_from
 
@@ -408,6 +408,47 @@ SOURCES = [
     S("jeonju",    "전주시(시립예술단)",     parse_jeonju,   "jeonju.go.kr",      "D", "weekly", (2,)),
     S("sac",       "예술의전당",             parse_sac,      "sac.or.kr",         "D", "weekly", (2,)),
 ]
+
+# ---------- 자동 발견 소스 (discovery.py 산출물) ----------
+_GENERIC_PAT = re.compile(r"모집|채용|공고|초빙|오디션|강사")
+# 자동 발견 소스는 음악 관련 글만 수집 (재단 사서·안내원·레지던시 등 잡음 차단)
+MUSIC_PAT = re.compile(
+    CLASSIC_PAT.pattern + r"|찬양대|성가대|음악|연주|악단|악장|수석|예술강사")
+
+def _make_generic_parser(entry):
+    def parse(s):
+        if entry.get("needs_js"):
+            from jsfetch import render
+            html = render(entry["board_url"], wait_ms=2500)
+        else:
+            html = get(s, entry["board_url"]).text
+        soup = BeautifulSoup(html, "lxml")
+        items, seen = [], set()
+        for a in soup.find_all("a", href=True):
+            t = a.get_text(" ", strip=True)
+            if not (10 <= len(t) <= 90) or t in seen or not _GENERIC_PAT.search(t):
+                continue
+            if not MUSIC_PAT.search(t):
+                continue
+            if a["href"].startswith(("javascript", "#", "mailto")):
+                continue
+            seen.add(t)
+            items.append(make_item(entry["name"], entry["region"],
+                                   urlparse(entry["board_url"]).netloc.removeprefix("www."),
+                                   t, urljoin(entry["board_url"], a["href"]), date=_row_date(a)))
+        return items
+    return parse
+
+_GS_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+                        "data", "generic_sources.json")
+if os.path.exists(_GS_PATH):
+    try:
+        with open(_GS_PATH, encoding="utf-8") as _f:
+            for _e in json.load(_f):
+                SOURCES.append(S("g_" + _e["id"], _e["name"], _make_generic_parser(_e),
+                                 urlparse(_e["board_url"]).netloc, "B", "weekly", (1, 4)))
+    except Exception:
+        pass
 
 # 하위 호환
 PARSERS = [(s["id"], s["name"], s["fn"]) for s in SOURCES]

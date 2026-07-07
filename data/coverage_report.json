@@ -1,8 +1,8 @@
 {
  "date": "2026-07-08",
  "total": 49,
- "covered": 17,
- "gapCount": 32,
+ "covered": 18,
+ "gapCount": 31,
  "gaps": [
   {
    "name": "서울시립교향악단",
@@ -138,11 +138,6 @@
    "name": "평창대관령음악제",
    "type": "축제",
    "region": "강원"
-  },
-  {
-   "name": "통영국제음악제",
-   "type": "축제",
-   "region": "경남"
   },
   {
    "name": "온누리교회",

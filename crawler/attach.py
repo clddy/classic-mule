@@ -1,5 +1,30 @@
-# 첨부파일(PDF/HWP/HWPX) 텍스트 추출
-import io, re, zipfile, zlib
+# 첨부파일(PDF/HWP/HWPX) 텍스트 추출 + 이미지 공고문 OCR
+import io, os, re, zipfile, zlib
+
+TESSERACT = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
+TESSDATA = os.path.join(os.path.dirname(os.path.abspath(__file__)), "tessdata")
+
+def ocr_image(data: bytes) -> str:
+    """공고문이 이미지로만 게시된 경우 (세종문화회관 등) — 한국어 OCR"""
+    try:
+        import pytesseract
+        from PIL import Image
+        pytesseract.pytesseract.tesseract_cmd = TESSERACT
+        os.environ["TESSDATA_PREFIX"] = TESSDATA
+        img = Image.open(io.BytesIO(data))
+        if img.width < 200 or img.height < 200:
+            return ""  # 아이콘/장식 이미지 제외
+        # 작은 포스터만 확대 (세로로 긴 공고문 원본은 그대로)
+        if img.width < 1200 and img.height < 15000:
+            img = img.resize((img.width * 2, img.height * 2), Image.LANCZOS)
+        text = pytesseract.image_to_string(img.convert("L"), lang="kor+eng")
+        # OCR 특유의 글자 간 공백 제거: "접 수 마 감" → "접수마감", "7 . 13" → "7.13"
+        text = re.sub(r"(?<=[가-힣])[ \t](?=[가-힣])", "", text)
+        text = re.sub(r"(?<=\d)[ \t]*\.[ \t]*(?=\d)", ".", text)
+        text = re.sub(r"(?<=\d)[ \t]*~[ \t]*", "~", text)
+        return text
+    except Exception:
+        return ""
 
 def extract_pdf(data: bytes) -> str:
     import pdfplumber

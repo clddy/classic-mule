@@ -37,34 +37,126 @@ def find_date(text):
 RANGE_PAT = re.compile(
     r"(20\d{2})\s*[.\-/년]\s*(\d{1,2})\s*[.\-/월]\s*(\d{1,2})[^~∼～]{0,30}[~∼～]\s*"
     r"(?:(20\d{2})\s*[.\-/년]\s*)?(\d{1,2})\s*[.\-/월]\s*(\d{1,2})")
+# "26. 7. 13" — 2자리 연도 (공문에서 흔함)
+YY_DATE = re.compile(r"(?<![\d.])(2[0-9])\s*[.년]\s*(\d{1,2})\s*[.월]\s*(\d{1,2})")
+# "25.6.11(목) ~ 6.25(목)" — 2자리 연도 기간 (종료일 연도 생략 포함)
+YY_RANGE = re.compile(
+    r"(?<![\d.])(2[0-9])\s*[.년]\s*(\d{1,2})\s*[.월]\s*(\d{1,2})[^~∼～\d]{0,20}[~∼～]\s*"
+    r"(?:(2[0-9])\s*[.년]\s*)?(\d{1,2})\s*[.월]\s*(\d{1,2})")
+# OCR이 점을 소실시킨 압축 표기: "2026.71.(수)~713.(월)" = 7.1~7.13
+OCR_RANGE = re.compile(
+    r"(20\d{2})\s*[.\-/]\s*(\d{2,4})\s*\.?\s*(?:\([^)]{1,3}\))?[^~∼～]{0,15}[~∼～]\s*"
+    r"(?:(20\d{2})\s*[.\-/]\s*)?(\d{2,4})")
+
+def _split_md(s):
+    """'71'→(7,1), '713'→(7,13) — 월 1자리 우선, 실패 시 2자리"""
+    for cut in (1, 2):
+        mo, d = s[:cut], s[cut:]
+        if mo and d and 1 <= int(mo) <= 12 and 1 <= int(d) <= 31:
+            return int(mo), int(d)
+    return None
+
+# "7. 2 ~ 7. 13" — 연도 전체 생략 기간
+NOYEAR_RANGE = re.compile(
+    r"(?<![\d.])(\d{1,2})\s*[./월]\s*(\d{1,2})[^~∼～\d]{0,20}[~∼～]\s*(\d{1,2})\s*[./월]\s*(\d{1,2})")
+# "7. 13.(월) 18:00까지" — 연도 생략 단일
+NOYEAR_KKAJI = re.compile(
+    r"(?<![\d.])(\d{1,2})\s*[./월]\s*(\d{1,2})\s*\.?\s*(?:\([^)]{1,4}\))?[^0-9가-힣]{0,12}(?:\d{1,2}:\d{2})?[^0-9]{0,6}까지")
 
 def _valid(y, mo, d):
     return 1 <= int(mo) <= 12 and 1 <= int(d) <= 31
 
-def extract_deadline(text):
-    """본문에서 접수 마감일 추출 — 접수/마감 키워드 근처의 기간 종료일 우선"""
+def _mk(y, mo, d):
+    return f"{int(y):04d}-{int(mo):02d}-{int(d):02d}" if _valid(y, mo, d) else None
+
+def _window_deadline(window, ref_year):
+    """한 키워드 윈도 안에서 마감일 후보 — 신뢰도 높은 패턴 순서로"""
+    # 1) 4자리 연도 기간 종료일
+    for m in RANGE_PAT.finditer(window):
+        c = _mk(m.group(4) or m.group(1), m.group(5), m.group(6))
+        if c:
+            return c
+    # 2) 2자리 연도 기간 ("25.6.11 ~ 6.25")
+    m = YY_RANGE.search(window)
+    if m:
+        y = 2000 + int(m.group(4) or m.group(1))
+        c = _mk(y, m.group(5), m.group(6))
+        if c:
+            return c
+    # 2.5) OCR 점 소실 압축 표기 ("2026.71~713")
+    m = OCR_RANGE.search(window)
+    if m and len(m.group(4)) >= 3:  # '713'처럼 3자리 이상만 (오탐 방지)
+        md = _split_md(m.group(4))
+        if md:
+            c = _mk(m.group(3) or m.group(1), md[0], md[1])
+            if c:
+                return c
+    # 3) 4자리 연도 단일 날짜(마지막)
+    dates = [norm_date(m) for m in DATE_PAT.finditer(window) if _valid(m.group(1), m.group(2), m.group(3))]
+    if dates:
+        return max(dates)
+    # 4) 2자리 연도 단일 ("26. 7. 13")
+    yy = [_mk(2000 + int(m.group(1)), m.group(2), m.group(3)) for m in YY_DATE.finditer(window)]
+    yy = [c for c in yy if c]
+    if yy:
+        return max(yy)
+    # 5) 연도 생략 기간 → ref_year로 보정
+    m = NOYEAR_RANGE.search(window)
+    if m:
+        c = _mk(ref_year, m.group(3), m.group(4))
+        if c:
+            return c
+    # 6) "M.D까지"
+    m = NOYEAR_KKAJI.search(window)
+    if m:
+        return _mk(ref_year, m.group(1), m.group(2))
+    return None
+
+# 우선 키워드(접수기간류)에서 찾으면 즉시 확정 — 활동기간·공연일 오인 방지
+_KW_PRIORITY = re.compile(r"원서 ?접수|접수 ?기간|접수 ?기한|서류 ?접수|지원 ?기간|응시원서")
+_KW_FALLBACK = re.compile(r"접수|마감|기한|제출|지원서|모집 ?기간")
+
+def extract_deadline(text, ref_year=None):
+    """본문에서 접수 마감일 추출 — '원서접수/접수기간' 윈도를 최우선으로"""
     if not text:
         return None
+    from datetime import date as _d
+    ref_year = ref_year or _d.today().year
     text = re.sub(r"\s+", " ", text)
-    best = None
-    for kw in re.finditer(r"(접수|마감|기한|제출|응시원서|지원서|모집 ?기간)", text):
-        window = text[kw.start(): kw.start() + 300]
-        # 1순위: 기간 표기(~)의 종료일
-        for m in RANGE_PAT.finditer(window):
-            y = m.group(4) or m.group(1)
-            if _valid(y, m.group(5), m.group(6)):
-                cand = f"{y}-{int(m.group(5)):02d}-{int(m.group(6)):02d}"
-                if best is None or cand > best:
-                    best = cand
-        if best:
+    def _is_filename(kw):
+        # "응시원서.hwp" 같은 첨부파일명 매칭은 제외
+        return bool(re.match(r"\s*[_\-]?\s*\.(hwpx?|pdf|docx?|xlsx?|zip)", text[kw.end():kw.end() + 8], re.I))
+
+    for kw in _KW_PRIORITY.finditer(text):
+        if _is_filename(kw):
             continue
-        # 2순위: 키워드 근처의 마지막 날짜
-        dates = [norm_date(m) for m in DATE_PAT.finditer(window) if _valid(m.group(1), m.group(2), m.group(3))]
-        if dates:
-            cand = max(dates)
-            if best is None or cand > best:
-                best = cand
+        c = _window_deadline(text[kw.start(): kw.start() + 300], ref_year)
+        if c:
+            return c
+    best = None
+    for kw in _KW_FALLBACK.finditer(text):
+        if _is_filename(kw):
+            continue
+        c = _window_deadline(text[kw.start(): kw.start() + 300], ref_year)
+        if c and (best is None or c > best):
+            best = c
     return best
+
+def deadline_from_title(title, ref_year=None):
+    """제목 안의 마감 표기: '(~7.7)', '~2026.7.13', '7.7까지', '마감 7/13'"""
+    from datetime import date as _d
+    ref_year = ref_year or _d.today().year
+    m = re.search(r"[~∼～]\s*(20\d{2})\s*[./년]\s*(\d{1,2})\s*[./월]?\s*(\d{1,2})", title)
+    if m:
+        return _mk(m.group(1), m.group(2), m.group(3))
+    m = re.search(r"[~∼～]\s*(\d{1,2})\s*[./]\s*(\d{1,2})", title)
+    if m:
+        return _mk(ref_year, m.group(1), m.group(2))
+    m = re.search(r"(?:마감|까지)[^\d]{0,4}(\d{1,2})\s*[./]\s*(\d{1,2})", title) \
+        or re.search(r"(\d{1,2})\s*[./]\s*(\d{1,2})\s*(?:까지|마감)", title)
+    if m:
+        return _mk(ref_year, m.group(1), m.group(2))
+    return None
 
 # 제외: 지원자에게만 해당하는 진행 공지 (심사일정·실기전형·악보·합격자 등)
 # — 우리는 "언제까지 / 누구를 / 몇 명 뽑는지"가 담긴 모집 공고 자체만 수집한다
@@ -73,7 +165,8 @@ EXCLUDE = re.compile(
     r"|심사|실기 ?전형|서류 ?전형|면접|오디션 ?안내|오디션 ?일정"
     r"|악보|과제곡|지정곡|전형 ?일정|일정 ?안내|세부 ?안내|응시표|수험표"
     r"|[1-3] ?차 ?(?:심사|전형|시험|발표|합격|서류|면접|실기|안내)"
-    r"|워크숍|워크샵|수강생 ?모집")
+    r"|워크숍|워크샵|수강생 ?모집"
+    r"|대관 ?(?:모집|공고|안내)|레지던시|자원봉사|서포터즈|기자단|친인척|입주 ?작가")
 # 수집 대상 (모집/채용 의도 — 교회 게시판식 "구합니다/모십니다" 포함)
 INCLUDE = re.compile(r"모집|채용|오디션|공개모집|공개채용|초빙|구합니다|구인|모십니다|찾습니다")
 
