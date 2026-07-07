@@ -296,6 +296,43 @@ def parse_gne(s):
                                title, GNE_URL, date=_row_date(a)))
     return items
 
+# ---------- 20. 아트모아 (문체부·예술경영지원센터 일자리 포털) ----------
+CLASSIC_PAT = re.compile(
+    r"오케스트라|교향악단|필하모닉|합창단|오페라|클래식|단원 ?모집|지휘자|반주자"
+    r"|콰르텟|앙상블|성악|바이올린|비올라|첼로|더블베이스|플루트|오보에|클라리넷"
+    r"|바순|호른|트럼펫|트롬본|튜바|팀파니|피아니스트")
+
+def parse_artmore(s):
+    r = get(s, "https://www.artmore.kr/sub/recruit/search_list.do")
+    items = []
+    for a in _soup(r).select("a.jobs_title"):
+        title = a.get_text(" ", strip=True)
+        state = a.select_one(".jobs_list_state")
+        if state and "진행중" not in state.get_text():
+            continue
+        title = re.sub(r"^진행중\s*", "", title)
+        if len(title) < 8 or not CLASSIC_PAT.search(title):
+            continue
+        items.append(make_item("아트모아(예술 일자리 포털)", "기타", "artmore.kr",
+                               title, urljoin("https://www.artmore.kr", a["href"]),
+                               date=_row_date(a)))
+    return items
+
+# ---------- 21. 울산문화예술회관(시립예술단) — JS 렌더링 ----------
+def parse_ulsan(s):
+    from jsfetch import render
+    html = render("https://ucac.ulsan.go.kr/page.do?mnu_code=mnu003001", selector="a")
+    soup = BeautifulSoup(html, "lxml")
+    items = []
+    for a in soup.select('a[href*="bod_sn"]'):
+        title = a.get_text(" ", strip=True)
+        if len(title) < 8:
+            continue
+        items.append(make_item("울산문화예술회관(시립예술단)", "기타", "ucac.ulsan.go.kr",
+                               title, urljoin("https://ucac.ulsan.go.kr/", a["href"]),
+                               date=_row_date(a)))
+    return items
+
 PARSERS = [
     ("seoulphil",   "서울시립교향악단",        parse_seoulphil),
     ("kbs",         "KBS교향악단",             parse_kbs),
@@ -316,4 +353,6 @@ PARSERS = [
     ("jeonju",      "전주시(시립예술단)",       parse_jeonju),
     ("sac",         "예술의전당",               parse_sac),
     ("gne",         "경남교육청 방과후강사",     parse_gne),
+    ("artmore",     "아트모아(일자리 포털)",     parse_artmore),
+    ("ulsan",       "울산문화예술회관",          parse_ulsan),
 ]

@@ -1,7 +1,7 @@
 {
- "collectedAt": "2026-07-07 22:01",
- "sourceCount": 19,
- "okCount": 19,
+ "collectedAt": "2026-07-08 00:20",
+ "sourceCount": 21,
+ "okCount": 21,
  "sources": [
   {
    "id": "seoulphil",
@@ -22,7 +22,7 @@
    "name": "국립심포니오케스트라",
    "ok": true,
    "raw": 15,
-   "kept": 2
+   "kept": 3
   },
   {
    "id": "ggac",
@@ -85,14 +85,14 @@
    "name": "성남문화재단",
    "ok": true,
    "raw": 10,
-   "kept": 4
+   "kept": 5
   },
   {
    "id": "natopera",
    "name": "국립오페라단",
    "ok": true,
    "raw": 11,
-   "kept": 1
+   "kept": 2
   },
   {
    "id": "natchorus",
@@ -135,6 +135,20 @@
    "ok": true,
    "raw": 15,
    "kept": 14
+  },
+  {
+   "id": "artmore",
+   "name": "아트모아(일자리 포털)",
+   "ok": true,
+   "raw": 2,
+   "kept": 2
+  },
+  {
+   "id": "ulsan",
+   "name": "울산문화예술회관",
+   "ok": true,
+   "raw": 10,
+   "kept": 2
   }
  ],
  "items": [
@@ -152,7 +166,7 @@
    "inst": "전체",
    "instDetails": [],
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "f0b2f11b48a3b0cd",
@@ -168,7 +182,7 @@
    "inst": "전체",
    "instDetails": [],
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "704803253e123736",
@@ -184,7 +198,7 @@
    "inst": "전체",
    "instDetails": [],
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "ca9438955c7e62e6",
@@ -200,7 +214,7 @@
    "inst": "전체",
    "instDetails": [],
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "0b2bcc0c1875def6",
@@ -216,7 +230,7 @@
    "inst": "전체",
    "instDetails": [],
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "206089b8baec5c43",
@@ -233,7 +247,7 @@
    "instDetails": [],
    "deadlineFrom": "attachment",
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "c0d0eddf4c4f2c64",
@@ -249,7 +263,7 @@
    "inst": "전체",
    "instDetails": [],
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "5dea30789a8d67d5",
@@ -265,6 +279,44 @@
    "inst": "전체",
    "instDetails": [],
    "firstSeen": "2026-07-07",
+   "isNew": false
+  },
+  {
+   "id": "c230ccc6106a039d",
+   "org": "아트모아(예술 일자리 포털)",
+   "region": "기타",
+   "source": "artmore.kr",
+   "title": "종로구립어르신합창단 지도단원(알토) 모집",
+   "url": "https://www.artmore.kr/sub/recruit/search_view.do?rec_idx=93955",
+   "date": "2026-07-07",
+   "deadline": "2026-07-20",
+   "kind": "단원",
+   "tier": "프로",
+   "inst": "성악",
+   "instDetails": [
+    "알토"
+   ],
+   "deadlineFrom": "page",
+   "firstSeen": "2026-07-08",
+   "isNew": true
+  },
+  {
+   "id": "6d6ab827280813d3",
+   "org": "아트모아(예술 일자리 포털)",
+   "region": "기타",
+   "source": "artmore.kr",
+   "title": "종로구립어르신합창단 지도단원(알토) 모집",
+   "url": "https://www.artmore.kr/sub/recruit/search_view.do?rec_idx=93954",
+   "date": "2026-07-07",
+   "deadline": "2026-07-20",
+   "kind": "단원",
+   "tier": "프로",
+   "inst": "성악",
+   "instDetails": [
+    "알토"
+   ],
+   "deadlineFrom": "page",
+   "firstSeen": "2026-07-08",
    "isNew": true
   },
   {
@@ -284,7 +336,7 @@
     "오보에"
    ],
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "dcbe43e5403bb847",
@@ -300,6 +352,22 @@
    "inst": "전체",
    "instDetails": [],
    "firstSeen": "2026-07-07",
+   "isNew": false
+  },
+  {
+   "id": "b7fe6b0ee72571cb",
+   "org": "성남문화재단(시립교향악단)",
+   "region": "경기",
+   "source": "snart.or.kr",
+   "title": "성남문화재단 예술본부장 공개채용 1차 필기전형 안내 새로운 글",
+   "url": "https://www.snart.or.kr/main/pst/view.do?pst_id=recruit&pst_sn=20791&search=MUUrL1N6RU9LOFJFOXNiZVNTMnZHUT09",
+   "date": "2026-07-01",
+   "deadline": null,
+   "kind": "직원",
+   "tier": "프로",
+   "inst": "전체",
+   "instDetails": [],
+   "firstSeen": "2026-07-08",
    "isNew": true
   },
   {
@@ -318,7 +386,7 @@
     "지휘"
    ],
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "7cf075d7e6dbdb02",
@@ -334,7 +402,7 @@
    "inst": "전체",
    "instDetails": [],
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "7a5bf6c368947e74",
@@ -350,7 +418,7 @@
    "inst": "전체",
    "instDetails": [],
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "d1f250ef1909e652",
@@ -367,7 +435,7 @@
    "instDetails": [],
    "deadlineFrom": "attachment",
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "9d56588068016342",
@@ -386,7 +454,7 @@
    ],
    "deadlineFrom": "page",
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "8cdc5b1b05d3cade",
@@ -402,6 +470,22 @@
    "inst": "전체",
    "instDetails": [],
    "firstSeen": "2026-07-07",
+   "isNew": false
+  },
+  {
+   "id": "5d5f6b7c5cfd119d",
+   "org": "국립심포니오케스트라",
+   "region": "서울",
+   "source": "knso.or.kr",
+   "title": "(재)국립심포니오케스트라 2026년 제2차 계약직 직원(본부장) 채용 공고",
+   "url": "https://www.knso.or.kr/front/M0000034/article/view.do?atcId=AT001222",
+   "date": "2026-06-23",
+   "deadline": null,
+   "kind": "직원",
+   "tier": "프로",
+   "inst": "전체",
+   "instDetails": [],
+   "firstSeen": "2026-07-08",
    "isNew": true
   },
   {
@@ -418,7 +502,7 @@
    "inst": "전체",
    "instDetails": [],
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "38bf5c08c2987fd5",
@@ -434,7 +518,7 @@
    "inst": "전체",
    "instDetails": [],
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "c98f372c720e6ef5",
@@ -451,7 +535,7 @@
    "instDetails": [],
    "deadlineFrom": "attachment",
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "8d00ba7dd81f36b2",
@@ -467,7 +551,7 @@
    "inst": "전체",
    "instDetails": [],
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "d37853ea84bc63de",
@@ -483,7 +567,7 @@
    "inst": "전체",
    "instDetails": [],
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "b03f4189bc64a413",
@@ -499,7 +583,7 @@
    "inst": "전체",
    "instDetails": [],
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "257435a7cf71568a",
@@ -515,7 +599,7 @@
    "inst": "전체",
    "instDetails": [],
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "4e49ec09fcc8abac",
@@ -532,7 +616,7 @@
    "instDetails": [],
    "deadlineFrom": "attachment",
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "0a41b6382b6ad0fc",
@@ -548,7 +632,7 @@
    "inst": "전체",
    "instDetails": [],
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "d88eeed5eccee6fd",
@@ -564,7 +648,7 @@
    "inst": "전체",
    "instDetails": [],
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "bc1d752d9459e3e6",
@@ -581,7 +665,7 @@
    "instDetails": [],
    "deadlineFrom": "attachment",
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "62549d92b1ac00a6",
@@ -598,7 +682,7 @@
    "instDetails": [],
    "deadlineFrom": "attachment",
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "ff408c64c900ea61",
@@ -615,7 +699,7 @@
    "instDetails": [],
    "deadlineFrom": "page",
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "3c148d4560a0a9a5",
@@ -632,7 +716,7 @@
    "instDetails": [],
    "deadlineFrom": "page",
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "7f62ca737e69c4ad",
@@ -648,7 +732,7 @@
    "inst": "성악",
    "instDetails": [],
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "80d14ca8d0c13b77",
@@ -665,7 +749,7 @@
    "instDetails": [],
    "deadlineFrom": "attachment",
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "a9f8c8d23e6abfe6",
@@ -681,7 +765,7 @@
    "inst": "성악",
    "instDetails": [],
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "a9442f42fbada0fa",
@@ -697,7 +781,7 @@
    "inst": "성악",
    "instDetails": [],
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "9ffa163ae0dd80e7",
@@ -713,6 +797,38 @@
    "inst": "전체",
    "instDetails": [],
    "firstSeen": "2026-07-07",
+   "isNew": false
+  },
+  {
+   "id": "58818be9fd61ba1c",
+   "org": "울산문화예술회관(시립예술단)",
+   "region": "기타",
+   "source": "ucac.ulsan.go.kr",
+   "title": "2026년도 상반기 2차 울산광역시립청소년교향악단 신규 단원 모집 공고",
+   "url": "https://ucac.ulsan.go.kr/page.do?mnu_code=mnu003001&bod_sn=186&cmd=2",
+   "date": "2026-05-26",
+   "deadline": null,
+   "kind": "단원",
+   "tier": "전공·입시",
+   "inst": "전체",
+   "instDetails": [],
+   "firstSeen": "2026-07-08",
+   "isNew": true
+  },
+  {
+   "id": "94505cc2af4362cc",
+   "org": "울산문화예술회관(시립예술단)",
+   "region": "기타",
+   "source": "ucac.ulsan.go.kr",
+   "title": "울산광역시립예술단 사무국 직원 모집 공고",
+   "url": "https://ucac.ulsan.go.kr/page.do?mnu_code=mnu003001&bod_sn=181&cmd=2",
+   "date": "2026-05-18",
+   "deadline": null,
+   "kind": "직원",
+   "tier": "프로",
+   "inst": "전체",
+   "instDetails": [],
+   "firstSeen": "2026-07-08",
    "isNew": true
   },
   {
@@ -730,7 +846,7 @@
    "instDetails": [],
    "deadlineFrom": "page",
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "039dc70e0475402b",
@@ -747,7 +863,7 @@
    "instDetails": [],
    "deadlineFrom": "page",
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "2ccde0ec653ad686",
@@ -763,7 +879,7 @@
    "inst": "전체",
    "instDetails": [],
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "6aa73ee840472269",
@@ -779,7 +895,7 @@
    "inst": "전체",
    "instDetails": [],
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "20355c912e7ef449",
@@ -796,7 +912,7 @@
    "instDetails": [],
    "deadlineFrom": "page",
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "27e5595c314b98c5",
@@ -812,7 +928,7 @@
    "inst": "성악",
    "instDetails": [],
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "6e3cea797d2b9f71",
@@ -828,7 +944,7 @@
    "inst": "전체",
    "instDetails": [],
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "568d27633d07614d",
@@ -844,7 +960,7 @@
    "inst": "전체",
    "instDetails": [],
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "a4898251c3619927",
@@ -861,7 +977,7 @@
    "instDetails": [],
    "deadlineFrom": "attachment",
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "501b31c68be683e6",
@@ -878,7 +994,7 @@
    "instDetails": [],
    "deadlineFrom": "page",
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "4ab6c3691ac8657a",
@@ -897,7 +1013,7 @@
    ],
    "deadlineFrom": "page",
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "4ad0b24774e31dbf",
@@ -916,7 +1032,7 @@
     "트럼펫"
    ],
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "468353f1d76ea048",
@@ -933,7 +1049,7 @@
    "instDetails": [],
    "deadlineFrom": "page",
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "04096b273859f4cb",
@@ -950,6 +1066,23 @@
    "instDetails": [],
    "deadlineFrom": "page",
    "firstSeen": "2026-07-07",
+   "isNew": false
+  },
+  {
+   "id": "f77020e7537dd5b4",
+   "org": "국립오페라단",
+   "region": "서울",
+   "source": "nationalopera.org",
+   "title": "2026년 제2차 국립오페라단 직원 채용 공고",
+   "url": "https://www.nationalopera.org/cpage/board/notice?boardSeq=16519",
+   "date": "2026-04-06",
+   "deadline": "2026-06-08",
+   "kind": "직원",
+   "tier": "프로",
+   "inst": "전체",
+   "instDetails": [],
+   "deadlineFrom": "page",
+   "firstSeen": "2026-07-08",
    "isNew": true
   },
   {
@@ -967,7 +1100,7 @@
    "instDetails": [],
    "deadlineFrom": "page",
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "6448364dc8eaf2c6",
@@ -984,7 +1117,7 @@
    "instDetails": [],
    "deadlineFrom": "page",
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "07f8b4dbceae9c07",
@@ -1001,7 +1134,7 @@
    "instDetails": [],
    "deadlineFrom": "page",
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "d75edd963908469f",
@@ -1011,13 +1144,14 @@
    "title": "2026. 오케스트라 파트별 지도강사 채용 공고(김해중앙여중)",
    "url": "https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_searchKey=1001&q_searchVal=%EC%98%A4%EC%BC%80%EC%8A%A4%ED%8A%B8%EB%9D%BC&q_rowPerPage=15&q_currPage=1",
    "date": "2026-04-02",
-   "deadline": null,
+   "deadline": "2026-07-13",
    "kind": "직원",
    "tier": "교육·취미",
    "inst": "전체",
    "instDetails": [],
+   "deadlineFrom": "page",
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "29565db5af81d74b",
@@ -1033,7 +1167,7 @@
    "inst": "성악",
    "instDetails": [],
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "b1bfeaf37030434f",
@@ -1043,13 +1177,14 @@
    "title": "2026학년도 학생 오케스트라 운영 외부강사 채용 공고",
    "url": "https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_searchKey=1001&q_searchVal=%EC%98%A4%EC%BC%80%EC%8A%A4%ED%8A%B8%EB%9D%BC&q_rowPerPage=15&q_currPage=1",
    "date": "2026-04-01",
-   "deadline": null,
+   "deadline": "2026-07-13",
    "kind": "직원",
    "tier": "교육·취미",
    "inst": "전체",
    "instDetails": [],
+   "deadlineFrom": "page",
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "827821597a0afc34",
@@ -1059,13 +1194,14 @@
    "title": "마산무학여중 방과후 오케스트라 파트별 보조강사 모집(수정)",
    "url": "https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_searchKey=1001&q_searchVal=%EC%98%A4%EC%BC%80%EC%8A%A4%ED%8A%B8%EB%9D%BC&q_rowPerPage=15&q_currPage=1",
    "date": "2026-03-30",
-   "deadline": null,
+   "deadline": "2026-07-13",
    "kind": "직원",
    "tier": "교육·취미",
    "inst": "전체",
    "instDetails": [],
+   "deadlineFrom": "page",
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "17604d16b2e449cb",
@@ -1075,13 +1211,14 @@
    "title": "2026. 철성중학교 윈드오케스트라 외부 강사 모집",
    "url": "https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_searchKey=1001&q_searchVal=%EC%98%A4%EC%BC%80%EC%8A%A4%ED%8A%B8%EB%9D%BC&q_rowPerPage=15&q_currPage=1",
    "date": "2026-03-30",
-   "deadline": null,
+   "deadline": "2026-07-13",
    "kind": "직원",
    "tier": "교육·취미",
    "inst": "전체",
    "instDetails": [],
+   "deadlineFrom": "page",
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "c5351ddc96753b0d",
@@ -1097,7 +1234,7 @@
    "inst": "전체",
    "instDetails": [],
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "04aa946db6feefa2",
@@ -1114,7 +1251,7 @@
    "instDetails": [],
    "deadlineFrom": "attachment",
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "b6f3db6d28e502b6",
@@ -1131,7 +1268,7 @@
    "instDetails": [],
    "deadlineFrom": "page",
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "9481452d25aee294",
@@ -1148,7 +1285,7 @@
    "instDetails": [],
    "deadlineFrom": "page",
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "f4ec2e0c98b6055d",
@@ -1164,7 +1301,7 @@
    "inst": "성악",
    "instDetails": [],
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "e212cc27be4f23df",
@@ -1180,7 +1317,7 @@
    "inst": "성악",
    "instDetails": [],
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "738f91f7172513b1",
@@ -1196,7 +1333,7 @@
    "inst": "성악",
    "instDetails": [],
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "7c8232bb8c2c7a58",
@@ -1212,7 +1349,7 @@
    "inst": "성악",
    "instDetails": [],
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "38ccf7896d8e3996",
@@ -1228,7 +1365,7 @@
    "inst": "전체",
    "instDetails": [],
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   },
   {
    "id": "61b92d44ab80971c",
@@ -1244,7 +1381,7 @@
    "inst": "전체",
    "instDetails": [],
    "firstSeen": "2026-07-07",
-   "isNew": true
+   "isNew": false
   }
  ]
 }
