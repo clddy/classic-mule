@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>연습실 — 포디움</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .spec-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(110px,1fr)); gap:6px 14px; margin-top:10px; font-size:0.8rem; color:var(--ink-soft); }
+    .spec-grid b { color:var(--ink); font-weight:600; }
+    .tag.ok { background:#e7f2ec; color:var(--green); }
+    .tag.warn { background:#fbe9e4; color:var(--red); }
+    .price-line { font-size:1.05rem; color:var(--gold); font-weight:700; }
+    .price-line .per { font-size:0.78rem; color:var(--ink-soft); font-weight:400; }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="logo">포디움<span class="accent">.</span><span class="beta">BETA</span></a>
+    <nav class="main-nav">
+      <a href="jobs.html">구인·구직</a>
+      <a href="official.html">채용공고</a>
+      <a href="practice.html" class="active">연습실</a>
+      <a href="lessons.html">과외</a>
+      <a href="market.html">중고거래</a>
+      <a href="#" onclick="alert('커뮤니티는 추후 오픈 예정입니다.'); return false;">커뮤니티 <span class="soon">예정</span></a>
+    </nav>
+    <div class="header-actions">
+      <button class="btn-ghost" onclick="alert('로그인은 프로토타입에서 제공되지 않습니다.')">로그인</button>
+    </div>
+  </div>
+</header>
+
+<div class="page-head">
+  <div class="container">
+    <h1>연습실 매칭</h1>
+    <p class="desc">방음·채광·통풍·시설·남은 자리까지 — 계약 전에 알아야 할 것들을 전부 공개합니다. (목데이터 프로토타입)</p>
+    <div class="tabs"><button class="tab active">연습실 찾기</button></div>
+  </div>
+</div>
+
+<div class="container board-layout">
+  <aside class="filters">
+    <div class="filter-group"><h4>지역</h4><div class="filter-options" id="f-region"></div></div>
+    <div class="filter-group"><h4>월 가격대</h4><div class="filter-options" id="f-price"></div></div>
+    <div class="filter-group"><h4>방음</h4><div class="filter-options" id="f-sound"></div></div>
+    <div class="filter-group"><h4>조건</h4><div class="filter-options" id="f-cond"></div></div>
+    <button class="filter-reset" id="filter-reset">필터 초기화</button>
+  </aside>
+  <main>
+    <div class="board-toolbar">
+      <div class="search-box">🔍 <input type="text" id="search-input" placeholder="동네, 연습실 이름으로 검색"></div>
+    </div>
+    <div class="result-count" id="result-count"></div>
+    <div class="job-list" id="room-list"></div>
+  </main>
+</div>
+
+<footer class="site-footer">
+  <div class="container"><span class="logo serif">포디움<span class="accent">.</span></span><br>클래식 음악인을 위한 플랫폼 · 프로토타입 v0.2</div>
+</footer>
+
+<a class="feedback-fab" href="mailto:ohmjin3141@naver.com?subject=%ED%8F%AC%EB%94%94%EC%9B%80%20%EC%97%B0%EC%8A%B5%EC%8B%A4%20%ED%94%BC%EB%93%9C%EB%B0%B1">💬 피드백 보내기</a>
+
+<script>
+const ROOMS = [
+  { name:"서초 뮤직스페이스 3호실", region:"서초", size:"5평(16.5㎡)", monthly:25, hourly:0.4, nego:true,
+    soundWall:true, windowLayer:"3중창", light:"남향 · 채광 좋음", vent:"전열교환 환기",
+    fac:["그랜드피아노","보면대","전신거울","에어컨","라커"], slots:2, brass:false,
+    note:"월 정기권 기준 자유 이용. 그랜드 야마하 C3. 성악 가능, 금관·타악 불가." },
+  { name:"방배 클랑스튜디오 B룸", region:"서초", size:"3평(9.9㎡)", monthly:18, hourly:0.3, nego:false,
+    soundWall:true, windowLayer:"2중창", light:"반지하 · 채광 보통", vent:"환풍기",
+    fac:["업라이트피아노","보면대","에어컨"], slots:1, brass:true,
+    note:"금관·타악 연습 가능한 몇 안 되는 방. 새벽 이용 가능(24시)." },
+  { name:"강남 아르페지오 연습실", region:"강남", size:"4평(13.2㎡)", monthly:30, hourly:0.5, nego:true,
+    soundWall:true, windowLayer:"3중창", light:"동향 · 오전 채광", vent:"중앙 환기 시스템",
+    fac:["그랜드피아노","보면대","거울","에어컨","정수기","대기실"], slots:3, brass:false,
+    note:"입시생 비중 높음. 레슨 대여(선생님 동반) 시간당 요금 별도." },
+  { name:"신촌 무지카홀 연습동 2층", region:"신촌·홍대", size:"6평(19.8㎡)", monthly:22, hourly:0.35, nego:true,
+    soundWall:true, windowLayer:"2중창", light:"남서향 · 채광 좋음", vent:"창문 환기",
+    fac:["업라이트피아노","보면대","거울","에어컨"], slots:4, brass:false,
+    note:"실내악 팀 연습 가능한 넓은 방. 주말 예약 경쟁 있음." },
+  { name:"일산 스테이지원 연습실", region:"일산·파주", size:"4평(13.2㎡)", monthly:15, hourly:0.25, nego:true,
+    soundWall:true, windowLayer:"2중창", light:"남향", vent:"환풍기",
+    fac:["업라이트피아노","보면대","에어컨","주차"], slots:5, brass:true,
+    note:"주차 무료. 금관 오후 10시까지 가능." },
+  { name:"분당 카덴차 스튜디오", region:"분당·판교", size:"5평(16.5㎡)", monthly:28, hourly:0.45, nego:false,
+    soundWall:true, windowLayer:"3중창", light:"남향 · 채광 매우 좋음", vent:"전열교환 환기",
+    fac:["그랜드피아노","보면대","거울","에어컨","라커","대기실"], slots:0, brass:false,
+    note:"현재 만실 — 대기 등록 가능. 매월 초 자리 갱신." },
+  { name:"노원 비바체 연습실", region:"노원·강북", size:"2.5평(8.3㎡)", monthly:12, hourly:0.2, nego:true,
+    soundWall:false, windowLayer:"2중창", light:"북향 · 채광 약함", vent:"창문 환기",
+    fac:["업라이트피아노","보면대"], slots:6, brass:false,
+    note:"가성비형. 방음벽 미시공(석고+흡음재)이라 심야 이용 제한." },
+  { name:"수원 인터메조 음악연습장", region:"수원·용인", size:"4평(13.2㎡)", monthly:16, hourly:0.28, nego:true,
+    soundWall:true, windowLayer:"2중창", light:"동향", vent:"환풍기",
+    fac:["업라이트피아노","보면대","거울","에어컨","주차"], slots:3, brass:true,
+    note:"타악(멀렛) 가능 방 1개 보유. 장기계약 시 협의." },
+];
+
+const REGIONS=["서초","강남","신촌·홍대","노원·강북","일산·파주","분당·판교","수원·용인"];
+const PRICES=["15만 이하","15~25만","25만 이상"];
+const SOUNDS=["방음벽 시공","3중창"];
+const CONDS=["금관·타악 가능","그랜드피아노","자리 있음","가격 조정 가능"];
+const st={region:new Set(),price:new Set(),sound:new Set(),cond:new Set(),q:""};
+const $=s=>document.querySelector(s);
+
+function chips(id,items,set){const el=$(id);el.innerHTML=items.map(v=>`<button class="chip${set.has(v)?" on":""}" data-v="${v}">${v}</button>`).join("");
+  el.querySelectorAll(".chip").forEach(c=>c.addEventListener("click",()=>{const v=c.dataset.v;set.has(v)?set.delete(v):set.add(v);render();}));}
+
+function pass(r){
+  if(st.region.size&&!st.region.has(r.region))return false;
+  if(st.price.size){const p=r.monthly;const m=[...st.price].some(v=>v==="15만 이하"&&p<=15||v==="15~25만"&&p>15&&p<=25||v==="25만 이상"&&p>25);if(!m)return false;}
+  if(st.sound.has("방음벽 시공")&&!r.soundWall)return false;
+  if(st.sound.has("3중창")&&r.windowLayer!=="3중창")return false;
+  if(st.cond.has("금관·타악 가능")&&!r.brass)return false;
+  if(st.cond.has("그랜드피아노")&&!r.fac.includes("그랜드피아노"))return false;
+  if(st.cond.has("자리 있음")&&r.slots===0)return false;
+  if(st.cond.has("가격 조정 가능")&&!r.nego)return false;
+  if(st.q&&!`${r.name} ${r.region} ${r.note}`.toLowerCase().includes(st.q.toLowerCase()))return false;
+  return true;
+}
+
+function render(){
+  chips("#f-region",REGIONS,st.region);chips("#f-price",PRICES,st.price);
+  chips("#f-sound",SOUNDS,st.sound);chips("#f-cond",CONDS,st.cond);
+  const list=ROOMS.filter(pass);
+  $("#result-count").innerHTML=`총 <strong>${list.length}</strong>곳`;
+  $("#room-list").innerHTML=list.length?list.map(r=>`
+    <article class="job-card">
+      <div class="top-row">
+        <span class="tag ${r.slots>0?"ok":"warn"}">${r.slots>0?`남은 자리 ${r.slots}`:"만실 (대기)"}</span>
+        <span class="tag cat">${r.region}</span>
+        ${r.soundWall?`<span class="tag inst">방음벽</span>`:""}
+        <span class="tag inst">${r.windowLayer}</span>
+        ${r.brass?`<span class="tag pos">금관·타악 OK</span>`:""}
+        ${r.nego?`<span class="tag ok">협의가능</span>`:""}
+      </div>
+      <h3>${r.name}</h3>
+      <div class="price-line">월 ${r.monthly}만원 <span class="per">· 시간 ${Math.round(r.hourly*10)/10*10}천원 · ${r.size}</span></div>
+      <div class="spec-grid">
+        <span>채광 <b>${r.light}</b></span>
+        <span>환기 <b>${r.vent}</b></span>
+        <span>시설 <b>${r.fac.join(", ")}</b></span>
+      </div>
+      <div class="source-line"><span>${r.note}</span></div>
+    </article>`).join(""):`<div class="empty">조건에 맞는 연습실이 없습니다.</div>`;
+}
+
+document.addEventListener("DOMContentLoaded",()=>{
+  render();
+  $("#search-input").addEventListener("input",e=>{st.q=e.target.value.trim();render();});
+  $("#filter-reset").addEventListener("click",()=>{st.region.clear();st.price.clear();st.sound.clear();st.cond.clear();st.q="";$("#search-input").value="";render();});
+});
+</script>
+</body>
+</html>

@@ -1,5 +1,5 @@
 {
- "collectedAt": "2026-07-07 18:40",
+ "collectedAt": "2026-07-07 19:40",
  "sourceCount": 18,
  "okCount": 18,
  "sources": [
@@ -22,7 +22,7 @@
    "name": "국립심포니오케스트라",
    "ok": true,
    "raw": 15,
-   "kept": 8
+   "kept": 2
   },
   {
    "id": "ggac",
@@ -43,14 +43,14 @@
    "name": "인천문화예술회관",
    "ok": true,
    "raw": 16,
-   "kept": 8
+   "kept": 5
   },
   {
    "id": "dpo",
    "name": "대전시립교향악단",
    "ok": true,
    "raw": 10,
-   "kept": 3
+   "kept": 1
   },
   {
    "id": "daegu",
@@ -78,28 +78,28 @@
    "name": "수원시립예술단",
    "ok": true,
    "raw": 21,
-   "kept": 8
+   "kept": 5
   },
   {
    "id": "snart",
    "name": "성남문화재단",
    "ok": true,
    "raw": 10,
-   "kept": 5
+   "kept": 4
   },
   {
    "id": "natopera",
    "name": "국립오페라단",
    "ok": true,
    "raw": 11,
-   "kept": 3
+   "kept": 1
   },
   {
    "id": "natchorus",
    "name": "국립합창단",
    "ok": true,
    "raw": 20,
-   "kept": 5
+   "kept": 4
   },
   {
    "id": "sejongpac",
@@ -155,34 +155,6 @@
    "date": null,
    "deadline": null,
    "kind": "기타",
-   "inst": "전체",
-   "firstSeen": "2026-07-07",
-   "isNew": true
-  },
-  {
-   "id": "84139666f24f52e5",
-   "org": "대전시립교향악단",
-   "region": "대전",
-   "source": "dpo.artdj.kr",
-   "title": "2026 대전시립교향악단 예능단원 공개채용 심사일정",
-   "url": "https://dpo.artdj.kr/dpo/?a_idx=06_01&kf=sub&kw=&bo=dpo_news&p=1&ku=7583&mo=view",
-   "date": null,
-   "deadline": null,
-   "kind": "단원",
-   "inst": "전체",
-   "firstSeen": "2026-07-07",
-   "isNew": true
-  },
-  {
-   "id": "78fed3e238fe05d9",
-   "org": "대전시립교향악단",
-   "region": "대전",
-   "source": "dpo.artdj.kr",
-   "title": "2026 대전시립교향악단 예능단원 공개채용 오디션 악보",
-   "url": "https://dpo.artdj.kr/dpo/?a_idx=06_01&kf=sub&kw=&bo=dpo_news&p=1&ku=7565&mo=view",
-   "date": null,
-   "deadline": null,
-   "kind": "단원",
    "inst": "전체",
    "firstSeen": "2026-07-07",
    "isNew": true
@@ -286,40 +258,12 @@
    "isNew": true
   },
   {
-   "id": "76bde1336c0012c2",
-   "org": "인천문화예술회관(시립예술단)",
-   "region": "인천",
-   "source": "incheon.go.kr",
-   "title": "2026 인천시립무용단 출연단원 공개모집 1차 실기전형 공고",
-   "url": "https://www.incheon.go.kr/art/ART040102/3079730",
-   "date": "2026-07-03",
-   "deadline": null,
-   "kind": "단원",
-   "inst": "전체",
-   "firstSeen": "2026-07-07",
-   "isNew": true
-  },
-  {
    "id": "dcbe43e5403bb847",
    "org": "성남문화재단(시립교향악단)",
    "region": "경기",
    "source": "snart.or.kr",
    "title": "2026년 성남문화재단 하반기 직원 공개채용(성남시통합채용) 공고 새로운 글",
    "url": "https://www.snart.or.kr/main/pst/view.do?pst_id=recruit&pst_sn=20793&search=MUUrL1N6RU9LOFJFOXNiZVNTMnZHUT09",
-   "date": "2026-07-01",
-   "deadline": null,
-   "kind": "직원",
-   "inst": "전체",
-   "firstSeen": "2026-07-07",
-   "isNew": true
-  },
-  {
-   "id": "b7fe6b0ee72571cb",
-   "org": "성남문화재단(시립교향악단)",
-   "region": "경기",
-   "source": "snart.or.kr",
-   "title": "성남문화재단 예술본부장 공개채용 1차 필기전형 안내 새로운 글",
-   "url": "https://www.snart.or.kr/main/pst/view.do?pst_id=recruit&pst_sn=20791&search=MUUrL1N6RU9LOFJFOXNiZVNTMnZHUT09",
    "date": "2026-07-01",
    "deadline": null,
    "kind": "직원",
@@ -392,20 +336,6 @@
    "url": "https://www.sejongpac.or.kr/portal/bbs/B0000065/view.do?nttId=50047&menuNo=200571&pageIndex=1",
    "date": "2026-06-24",
    "deadline": "2026-07-18",
-   "kind": "직원",
-   "inst": "전체",
-   "firstSeen": "2026-07-07",
-   "isNew": true
-  },
-  {
-   "id": "5d5f6b7c5cfd119d",
-   "org": "국립심포니오케스트라",
-   "region": "서울",
-   "source": "knso.or.kr",
-   "title": "(재)국립심포니오케스트라 2026년 제2차 계약직 직원(본부장) 채용 공고",
-   "url": "https://www.knso.or.kr/front/M0000034/article/view.do?atcId=AT001222",
-   "date": "2026-06-23",
-   "deadline": null,
    "kind": "직원",
    "inst": "전체",
    "firstSeen": "2026-07-07",
@@ -580,20 +510,6 @@
    "isNew": true
   },
   {
-   "id": "1e7fac491d01ba65",
-   "org": "인천문화예술회관(시립예술단)",
-   "region": "인천",
-   "source": "incheon.go.kr",
-   "title": "2026 인천시립청소년교향악단 및 시립교향악단 신규단원 공개모집 1차 결과 및 2차 안내 공고",
-   "url": "https://www.incheon.go.kr/art/ART040102/3075566",
-   "date": "2026-06-04",
-   "deadline": null,
-   "kind": "단원",
-   "inst": "전체",
-   "firstSeen": "2026-07-07",
-   "isNew": true
-  },
-  {
    "id": "ff408c64c900ea61",
    "org": "세종문화회관(서울시예술단)",
    "region": "서울",
@@ -632,20 +548,6 @@
    "deadline": null,
    "kind": "기타",
    "inst": "성악",
-   "firstSeen": "2026-07-07",
-   "isNew": true
-  },
-  {
-   "id": "cbb2592c7f7619b1",
-   "org": "인천문화예술회관(시립예술단)",
-   "region": "인천",
-   "source": "incheon.go.kr",
-   "title": "2026 인천시립교향악단 기간제 비상임단원 공개모집 1차 실기전형 공고",
-   "url": "https://www.incheon.go.kr/art/ART040102/3074044",
-   "date": "2026-05-28",
-   "deadline": "2026-04-10",
-   "kind": "단원",
-   "inst": "전체",
    "firstSeen": "2026-07-07",
    "isNew": true
   },
@@ -692,34 +594,6 @@
    "isNew": true
   },
   {
-   "id": "8f002da654824f35",
-   "org": "국립심포니오케스트라",
-   "region": "서울",
-   "source": "knso.or.kr",
-   "title": "2026 KNSO 지휘자 워크숍 참가자 모집",
-   "url": "https://www.knso.or.kr/front/M0000034/article/view.do?atcId=AT001212",
-   "date": "2026-05-18",
-   "deadline": null,
-   "kind": "단원",
-   "inst": "지휘",
-   "firstSeen": "2026-07-07",
-   "isNew": true
-  },
-  {
-   "id": "75d6bbabe5a063df",
-   "org": "국립심포니오케스트라",
-   "region": "서울",
-   "source": "knso.or.kr",
-   "title": "2026 KNCO 국립심포니콘서트오케스트라 - 단원 추가모집 실기심사 세부 안내",
-   "url": "https://www.knso.or.kr/front/M0000034/article/view.do?atcId=AT001209",
-   "date": "2026-05-14",
-   "deadline": null,
-   "kind": "단원",
-   "inst": "전체",
-   "firstSeen": "2026-07-07",
-   "isNew": true
-  },
-  {
    "id": "2ccde0ec653ad686",
    "org": "인천문화예술회관(시립예술단)",
    "region": "인천",
@@ -758,20 +632,6 @@
    "deadline": null,
    "kind": "직원",
    "inst": "전체",
-   "firstSeen": "2026-07-07",
-   "isNew": true
-  },
-  {
-   "id": "56ac0d98bad715be",
-   "org": "국립심포니오케스트라",
-   "region": "서울",
-   "source": "knso.or.kr",
-   "title": "2026 KNSO아카데미(청년 교육단원) 추가 모집(비올라, 트럼펫) 오디션 안내",
-   "url": "https://www.knso.or.kr/front/M0000034/article/view.do?atcId=AT001207",
-   "date": "2026-05-04",
-   "deadline": null,
-   "kind": "단원",
-   "inst": "현악",
    "firstSeen": "2026-07-07",
    "isNew": true
   },
@@ -846,20 +706,6 @@
    "isNew": true
   },
   {
-   "id": "f77020e7537dd5b4",
-   "org": "국립오페라단",
-   "region": "서울",
-   "source": "nationalopera.org",
-   "title": "2026년 제2차 국립오페라단 직원 채용 공고",
-   "url": "https://www.nationalopera.org/cpage/board/notice?boardSeq=16519",
-   "date": "2026-04-06",
-   "deadline": "2026-06-08",
-   "kind": "직원",
-   "inst": "전체",
-   "firstSeen": "2026-07-07",
-   "isNew": true
-  },
-  {
    "id": "e68d0401e7bbd7ef",
    "org": "세종문화회관(서울시예술단)",
    "region": "서울",
@@ -916,20 +762,6 @@
    "isNew": true
   },
   {
-   "id": "1259d0db13710712",
-   "org": "수원시립예술단",
-   "region": "경기",
-   "source": "artsuwon.or.kr",
-   "title": "[수원시립교향악단] 사무국 육아휴직(악보) 대체인력 채용 최..",
-   "url": "http://artsuwon.or.kr/?p=49&viewMode=view&reqIdx=202603131023063675",
-   "date": "2026-03-13",
-   "deadline": null,
-   "kind": "직원",
-   "inst": "전체",
-   "firstSeen": "2026-07-07",
-   "isNew": true
-  },
-  {
    "id": "b6f3db6d28e502b6",
    "org": "세종문화회관(서울시예술단)",
    "region": "서울",
@@ -944,20 +776,6 @@
    "isNew": true
   },
   {
-   "id": "8be2053d0c541394",
-   "org": "국립심포니오케스트라",
-   "region": "서울",
-   "source": "knso.or.kr",
-   "title": "2026 KNSO아카데미(청년 교육단원) 추가 모집 실기심사 안내",
-   "url": "https://www.knso.or.kr/front/M0000034/article/view.do?atcId=AT001187",
-   "date": "2026-03-12",
-   "deadline": null,
-   "kind": "단원",
-   "inst": "전체",
-   "firstSeen": "2026-07-07",
-   "isNew": true
-  },
-  {
    "id": "9481452d25aee294",
    "org": "세종문화회관(서울시예술단)",
    "region": "서울",
@@ -967,20 +785,6 @@
    "date": "2026-03-11",
    "deadline": null,
    "kind": "직원",
-   "inst": "전체",
-   "firstSeen": "2026-07-07",
-   "isNew": true
-  },
-  {
-   "id": "03b3f65cc3ffd913",
-   "org": "국립심포니오케스트라",
-   "region": "서울",
-   "source": "knso.or.kr",
-   "title": "2026 KNCO 국립심포니콘서트오케스트라 - 단원 추가모집 실기심사 세부 안내",
-   "url": "https://www.knso.or.kr/front/M0000034/article/view.do?atcId=AT001186",
-   "date": "2026-03-10",
-   "deadline": null,
-   "kind": "단원",
    "inst": "전체",
    "firstSeen": "2026-07-07",
    "isNew": true
@@ -1014,48 +818,6 @@
    "isNew": true
   },
   {
-   "id": "297a0c9e001bab11",
-   "org": "국립오페라단",
-   "region": "서울",
-   "source": "nationalopera.org",
-   "title": "2026 국립오페라스튜디오 청년교육단원 9기 오페라합창 추가선발 오디션 심사 공지",
-   "url": "https://www.nationalopera.org/cpage/board/notice?boardSeq=16509",
-   "date": "2026-02-26",
-   "deadline": "2026-06-08",
-   "kind": "단원",
-   "inst": "성악",
-   "firstSeen": "2026-07-07",
-   "isNew": true
-  },
-  {
-   "id": "bebc3baed75ba439",
-   "org": "국립합창단",
-   "region": "서울",
-   "source": "nationalchorus.or.kr",
-   "title": "[공지] 2026(상) 합창 아카데미 Voice Makers & Choral Lab 수강생 모집 공고",
-   "url": "http://nationalchorus.or.kr/notice-2/?vid=696",
-   "date": "2026-02-25",
-   "deadline": null,
-   "kind": "기타",
-   "inst": "성악",
-   "firstSeen": "2026-07-07",
-   "isNew": true
-  },
-  {
-   "id": "e2270f4966935eec",
-   "org": "수원시립예술단",
-   "region": "경기",
-   "source": "artsuwon.or.kr",
-   "title": "[수원시립합창단] 사무국 육아휴직 대체인력 채용 1차 서류전..",
-   "url": "http://artsuwon.or.kr/?p=49&viewMode=view&reqIdx=202602241253204142",
-   "date": "2026-02-24",
-   "deadline": null,
-   "kind": "직원",
-   "inst": "성악",
-   "firstSeen": "2026-07-07",
-   "isNew": true
-  },
-  {
    "id": "738f91f7172513b1",
    "org": "국립오페라단",
    "region": "서울",
@@ -1066,20 +828,6 @@
    "deadline": "2026-06-08",
    "kind": "단원",
    "inst": "성악",
-   "firstSeen": "2026-07-07",
-   "isNew": true
-  },
-  {
-   "id": "090595295fea9de2",
-   "org": "수원시립예술단",
-   "region": "경기",
-   "source": "artsuwon.or.kr",
-   "title": "[수원시립교향악단] 사무국 육아휴직 대체인력 채용 서류전형 ..",
-   "url": "http://artsuwon.or.kr/?p=49&viewMode=view&reqIdx=202602131210157359",
-   "date": "2026-02-13",
-   "deadline": null,
-   "kind": "직원",
-   "inst": "전체",
    "firstSeen": "2026-07-07",
    "isNew": true
   },
