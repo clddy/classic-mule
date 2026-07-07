@@ -2,7 +2,7 @@
 import re, json
 from urllib.parse import urljoin
 from bs4 import BeautifulSoup
-from common import get, make_item, find_date, relevant
+from common import get, make_item, find_date, relevant, region_from
 
 def _soup(r):
     return BeautifulSoup(r.text, "lxml")
@@ -318,6 +318,44 @@ def parse_artmore(s):
                                date=_row_date(a)))
     return items
 
+# ---------- 22. 아트인포코리아 (클래식 전문 채용 포털) ----------
+def parse_artinfo(s):
+    r = get(s, "https://www.artinfokorea.com/jobs")
+    items, seen = [], set()
+    for a in _soup(r).select('a[href^="/jobs/"]'):
+        href = a["href"]
+        if not re.match(r"^/jobs/\d+", href) or href in seen:
+            continue
+        seen.add(href)
+        text = a.get_text(" ", strip=True)
+        if len(text) < 10:
+            continue
+        title = text[:90]
+        items.append(make_item("아트인포(클래식 채용)", region_from(text), "artinfokorea.com",
+                               title, urljoin("https://www.artinfokorea.com", href),
+                               date=_row_date(a)))
+    return items
+
+# ---------- 23. 기독정보넷 (교회 반주자·연주자) ----------
+CJOB_INCLUDE = re.compile(r"피아노|오르간|반주|성악|솔리스트|바이올린|비올라|첼로|플루트|오케스트라|지휘|콰르텟|앙상블|소프라노|알토|테너|베이스")
+CJOB_EXCLUDE = re.compile(r"드럼|일렉|기타리스트|베이스 ?기타|신디|미디|보컬 ?트레이너")
+
+def parse_cjob(s):
+    r = get(s, "https://www.cjob.co.kr/offerIG?c_jikjong=2&page=1&device=pc")
+    items = []
+    for a in _soup(r).select('a[href*="bo_table=offerIG"]'):
+        if "wr_id=" not in a["href"]:
+            continue
+        title = a.get_text(" ", strip=True)
+        if len(title) < 8 or not CJOB_INCLUDE.search(title) or CJOB_EXCLUDE.search(title):
+            continue
+        m = re.search(r"([가-힣A-Za-z0-9]{2,15}(?:교회|성당|채플))", title)
+        org = m.group(1) if m else "교회(기독정보넷)"
+        items.append(make_item(org, region_from(title), "cjob.co.kr",
+                               title, urljoin("https://www.cjob.co.kr/", a["href"]),
+                               date=_row_date(a)))
+    return items
+
 # ---------- 21. 울산문화예술회관(시립예술단) — JS 렌더링 ----------
 def parse_ulsan(s):
     from jsfetch import render
@@ -333,26 +371,43 @@ def parse_ulsan(s):
                                date=_row_date(a)))
     return items
 
-PARSERS = [
-    ("seoulphil",   "서울시립교향악단",        parse_seoulphil),
-    ("kbs",         "KBS교향악단",             parse_kbs),
-    ("knso",        "국립심포니오케스트라",     parse_knso),
-    ("ggac",        "경기아트센터(경기필)",     parse_ggac),
-    ("bucheonphil", "부천필하모닉",            parse_bucheonphil),
-    ("incheon",     "인천문화예술회관",         parse_incheon),
-    ("dpo",         "대전시립교향악단",         parse_dpo),
-    ("daegu",       "대구문화예술회관(시향)",   parse_daegu),
-    ("gso",         "광주시립교향악단",         parse_gso),
-    ("bscc",        "부산문화회관(시립예술단)", parse_bscc),
-    ("artsuwon",    "수원시립예술단",           parse_artsuwon),
-    ("snart",       "성남문화재단",             parse_snart),
-    ("natopera",    "국립오페라단",             parse_natopera),
-    ("natchorus",   "국립합창단",               parse_natchorus),
-    ("sejongpac",   "세종문화회관(서울시예술단)", parse_sejongpac),
-    ("cwcf",        "창원문화재단",             parse_cwcf),
-    ("jeonju",      "전주시(시립예술단)",       parse_jeonju),
-    ("sac",         "예술의전당",               parse_sac),
-    ("gne",         "경남교육청 방과후강사",     parse_gne),
-    ("artmore",     "아트모아(일자리 포털)",     parse_artmore),
-    ("ulsan",       "울산문화예술회관",          parse_ulsan),
+# ---------- 소스 레지스트리 ----------
+# layer: A 전국집계 / B 지역슈퍼노드 / C 도메인집계 / D 원천
+# poll:  daily / weekly(days=요일 0=월) / seasonal(months=[..], 시즌엔 daily)
+def S(sid, name, fn, domain, layer, poll="weekly", days=(0, 2, 4), months=None):
+    return {"id": sid, "name": name, "fn": fn, "domain": domain,
+            "layer": layer, "poll": poll, "days": tuple(days),
+            "months": tuple(months) if months else None}
+
+SOURCES = [
+    # A. 전국 집계 노드 — 매일
+    S("artmore",   "아트모아(일자리 포털)",  parse_artmore,  "artmore.kr",        "A", "daily"),
+    S("artinfo",   "아트인포(클래식 채용)",  parse_artinfo,  "artinfokorea.com",  "A", "daily"),
+    # C. 도메인 집계 노드 — 매일
+    S("cjob",      "기독정보넷(교회 반주)",  parse_cjob,     "cjob.co.kr",        "C", "daily"),
+    S("gne",       "경남교육청 방과후강사",  parse_gne,      "gne.go.kr",         "C", "daily"),
+    # B. 지역 슈퍼노드 — 주 2~3회
+    S("ggac",      "경기아트센터(경기필)",   parse_ggac,     "ggac.or.kr",        "B", "weekly", (1, 4)),
+    S("incheon",   "인천문화예술회관",       parse_incheon,  "incheon.go.kr",     "B", "weekly", (0, 3)),
+    S("daegu",     "대구문화예술회관(시향)", parse_daegu,    "daeguartscenter.or.kr", "B", "weekly", (0, 3)),
+    S("bscc",      "부산문화회관(시립예술단)", parse_bscc,   "bscc.or.kr",        "B", "weekly", (0, 3)),
+    S("artsuwon",  "수원시립예술단",         parse_artsuwon, "artsuwon.or.kr",    "B", "weekly", (1, 4)),
+    S("snart",     "성남문화재단",           parse_snart,    "snart.or.kr",       "B", "weekly", (0, 3)),
+    S("sejongpac", "세종문화회관(서울시예술단)", parse_sejongpac, "sejongpac.or.kr", "B", "weekly", (1, 4)),
+    S("cwcf",      "창원문화재단",           parse_cwcf,     "cwcf.or.kr",        "B", "weekly", (0, 3)),
+    S("ulsan",     "울산문화예술회관",       parse_ulsan,    "ucac.ulsan.go.kr",  "B", "weekly", (1, 4)),
+    # D. 원천 — 주 2~3회
+    S("seoulphil", "서울시립교향악단",       parse_seoulphil, "seoulphil.or.kr",  "D", "weekly", (0, 2, 4)),
+    S("kbs",       "KBS교향악단",            parse_kbs,      "kbssymphony.org",   "D", "weekly", (0, 2, 4)),
+    S("knso",      "국립심포니오케스트라",    parse_knso,     "knso.or.kr",        "D", "weekly", (0, 2, 4)),
+    S("bucheonphil", "부천필하모닉",         parse_bucheonphil, "bucheonphil.or.kr", "D", "weekly", (1, 4)),
+    S("dpo",       "대전시립교향악단",       parse_dpo,      "dpo.artdj.kr",      "D", "weekly", (1, 4)),
+    S("gso",       "광주시립교향악단",       parse_gso,      "gjart.gwangju.go.kr", "D", "weekly", (1, 4)),
+    S("natopera",  "국립오페라단",           parse_natopera, "nationalopera.org", "D", "weekly", (1, 4)),
+    S("natchorus", "국립합창단",             parse_natchorus, "nationalchorus.or.kr", "D", "weekly", (0, 3)),
+    S("jeonju",    "전주시(시립예술단)",     parse_jeonju,   "jeonju.go.kr",      "D", "weekly", (2,)),
+    S("sac",       "예술의전당",             parse_sac,      "sac.or.kr",         "D", "weekly", (2,)),
 ]
+
+# 하위 호환
+PARSERS = [(s["id"], s["name"], s["fn"]) for s in SOURCES]

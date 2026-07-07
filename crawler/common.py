@@ -74,8 +74,8 @@ EXCLUDE = re.compile(
     r"|악보|과제곡|지정곡|전형 ?일정|일정 ?안내|세부 ?안내|응시표|수험표"
     r"|[1-3] ?차 ?(?:심사|전형|시험|발표|합격|서류|면접|실기|안내)"
     r"|워크숍|워크샵|수강생 ?모집")
-# 수집 대상 (모집/채용 의도)
-INCLUDE = re.compile(r"모집|채용|오디션|공개모집|공개채용|초빙")
+# 수집 대상 (모집/채용 의도 — 교회 게시판식 "구합니다/모십니다" 포함)
+INCLUDE = re.compile(r"모집|채용|오디션|공개모집|공개채용|초빙|구합니다|구인|모십니다|찾습니다")
 
 def relevant(title):
     return bool(INCLUDE.search(title)) and not EXCLUDE.search(title)
@@ -145,9 +145,24 @@ def classify_tier(title, org=""):
         return "교육·취미"
     if re.search(r"유스|청소년|소년소녀|교육단원|아카데미|영재|콩쿠르 ?준비", t):
         return "전공·입시"
-    if re.search(r"교회|성가대|웨딩|예식|축가|기업 ?행사|송년|찬양", t):
+    if re.search(r"교회|성당|성가대|웨딩|예식|축가|기업 ?행사|송년|찬양|주일|예배|전례", t):
         return "오브리"
     return "프로"
+
+# 텍스트에서 시도 단위 지역 추출 (집계 노드용)
+_REGION_TOKENS = [
+    ("서울", "서울"), ("경기", "경기"), ("인천", "인천"), ("대전", "대전"),
+    ("대구", "대구"), ("부산", "부산"),
+    ("김포", "경기"), ("성남", "경기"), ("수원", "경기"), ("고양", "경기"),
+    ("부천", "경기"), ("평택", "경기"), ("안양", "경기"), ("안산", "경기"),
+    ("용인", "경기"), ("의정부", "경기"),
+]
+
+def region_from(text, default="기타"):
+    for token, region in _REGION_TOKENS:
+        if token in text:
+            return region
+    return default
 
 def item_id(url, title):
     return hashlib.sha1(f"{url}|{title}".encode("utf-8")).hexdigest()[:16]

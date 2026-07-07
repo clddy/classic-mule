@@ -1,19 +1,22 @@
-# 메인: 전 기관 수집 → 필터 → 상세/첨부에서 마감일 보강 → data/official.json
+# 메인: 소스 레지스트리 기반 수집 → dedup(canonical) → 마감일 보강 → 커버리지 리포트
 import json, os, re, sys, time, traceback
 from datetime import date, datetime, timedelta
 from bs4 import BeautifulSoup
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import new_session, get, relevant, extract_deadline
-from sources import PARSERS
+from sources import SOURCES
+from institutions import INSTITUTIONS
 import attach
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # classic-mule/
 OUT = os.path.join(BASE, "data", "official.json")
 LOG = os.path.join(BASE, "data", "crawl.log")
+COVERAGE = os.path.join(BASE, "data", "coverage_report.json")
 
-MAX_DETAIL_PER_SOURCE = 10    # 마감일 보강용 상세 페이지 조회 상한
-RECENT_DAYS = 270             # 이보다 오래된 게시물은 버림 (마감 미래면 유지)
+MAX_DETAIL_PER_SOURCE = 10
+RECENT_DAYS = 270
+LAYER_RANK = {"D": 0, "C": 1, "B": 2, "A": 3}  # canonical 우선순위: 원천 > 도메인 > 지역 > 전국
 
 def log(msg):
     line = f"[{datetime.now():%Y-%m-%d %H:%M:%S}] {msg}"
@@ -21,8 +24,68 @@ def log(msg):
     with open(LOG, "a", encoding="utf-8") as f:
         f.write(line + "\n")
 
+def should_run(src, today, force_all=False):
+    """폴링 게이팅: daily는 항상, weekly는 지정 요일, seasonal은 시즌 내 daily"""
+    if force_all:
+        return True
+    if src["poll"] == "daily":
+        return True
+    if src["poll"] == "seasonal":
+        return src["months"] and today.month in src["months"]
+    return today.weekday() in src["days"]
+
+# ---------- dedup (canonical) ----------
+def norm_org(s):
+    s = re.sub(r"\(재\)|재단법인|사단법인|\s+", "", s or "")
+    return re.sub(r"[()\[\]·.]", "", s)
+
+def norm_title(s):
+    return re.sub(r"[\s\[\]()〈〉<>『』「」·.,\-~!?]", "", s or "")[:40]
+
+# 집계 채널의 일반(placeholder) org — 기관 특정이 안 되므로 병합 금지
+GENERIC_ORG = re.compile(r"기독정보넷|아트인포|아트모아|교육청 ?포털")
+
+def dedup_key(it):
+    if GENERIC_ORG.search(it.get("org", "")):
+        return it["id"]  # 병합하지 않음
+    if it.get("deadline"):
+        return f"{norm_org(it['org'])}|{'/'.join(sorted(it.get('instDetails') or []))}|{it['deadline']}"
+    return f"{norm_org(it['org'])}|{norm_title(it['title'])}"
+
+def dedup(items):
+    groups = {}
+    for it in items:
+        groups.setdefault(dedup_key(it), []).append(it)
+    out = []
+    for group in groups.values():
+        group.sort(key=lambda x: LAYER_RANK.get(x.get("layer", "A"), 9))
+        canon = group[0]
+        others = sorted({g["source"] for g in group[1:] if g["source"] != canon["source"]})
+        if others:
+            canon["alsoSeenOn"] = others
+        out.append(canon)
+    return out
+
+# ---------- 커버리지 대조 ----------
+def coverage_report(items, today):
+    haystack = " ".join(f"{i['org']} {i['title']}" for i in items)
+    covered, gaps = [], []
+    for inst in INSTITUTIONS:
+        if re.search(inst["match"], haystack):
+            covered.append(inst["name"])
+        else:
+            gaps.append({"name": inst["name"], "type": inst["type"], "region": inst["region"]})
+    report = {"date": today.isoformat(), "total": len(INSTITUTIONS),
+              "covered": len(covered), "gapCount": len(gaps), "gaps": gaps}
+    with open(COVERAGE, "w", encoding="utf-8") as f:
+        json.dump(report, f, ensure_ascii=False, indent=1)
+    log(f"커버리지: 명부 {len(INSTITUTIONS)}곳 중 {len(covered)}곳 공고 확인, 공백 {len(gaps)}곳 → coverage_report.json")
+    return report
+
+# ---------- 마감일 보강 ----------
+ATTACH_LINK = re.compile(r"download|fileDown|file\.do|atchFile|attach|dwld|fileId|process\.file", re.I)
+
 def find_attachments(soup, base_url):
-    """첨부파일 후보 URL — 확장자 링크뿐 아니라 download.do 류 CMS 다운로드 링크까지"""
     from urllib.parse import urljoin
     cands, seen = [], set()
     for a in soup.find_all("a", href=True):
@@ -32,7 +95,7 @@ def find_attachments(soup, base_url):
         text = a.get_text(" ", strip=True)
         if (re.search(r"\.(pdf|hwpx?|zip)(\?|$)", href, re.I)
                 or re.search(r"\.(pdf|hwpx?|zip)\b", text, re.I)
-                or re.search(r"download|fileDown|file\.do|atchFile|attach|dwld|fileId|process\.file", href, re.I)):
+                or ATTACH_LINK.search(href)):
             full = urljoin(base_url, href)
             if full not in seen:
                 seen.add(full)
@@ -40,7 +103,6 @@ def find_attachments(soup, base_url):
     return cands[:3]
 
 def enrich_deadline(s, item):
-    """상세 페이지 본문 → 없으면 첨부파일(PDF/HWP/HWPX/ZIP)에서 접수 마감일 추출"""
     try:
         r = get(s, item["url"])
         if r.status_code != 200:
@@ -56,111 +118,116 @@ def enrich_deadline(s, item):
         for furl, fname in find_attachments(soup, r.url):
             try:
                 fr = s.get(furl, timeout=30, verify=False)
-                if fr.status_code != 200 or len(fr.content) > 20_000_000 or len(fr.content) < 200:
+                if fr.status_code != 200 or not (200 < len(fr.content) < 20_000_000):
                     continue
-                # Content-Disposition에서 실제 파일명 확보
                 cd = fr.headers.get("Content-Disposition", "")
                 m = re.search(r"filename\*?=(?:UTF-8'')?\"?([^\";]+)", cd)
                 name = m.group(1) if m else (fname or furl)
-                ftext = attach.extract_any(name, fr.content)
-                dl = extract_deadline(ftext)
+                dl = extract_deadline(attach.extract_any(name, fr.content))
                 if dl:
                     item["deadline"] = dl
                     item["deadlineFrom"] = "attachment"
                     return
             except Exception:
                 continue
-    except Exception as e:
-        log(f"  enrich 실패 {item['url'][:60]}: {type(e).__name__}")
+    except Exception:
+        log(f"  enrich 실패 {item['url'][:60]}")
 
-def run():
+# ---------- 메인 ----------
+def run(force_all=False):
     today = date.today()
     cutoff = (today - timedelta(days=RECENT_DAYS)).isoformat()
+    stale = (today - timedelta(days=60)).isoformat()
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
 
-    # 이전 데이터 로드 (firstSeen 유지용)
-    prev = {}
+    prev_items, prev_by_id = [], {}
     if os.path.exists(OUT):
         try:
             with open(OUT, encoding="utf-8") as f:
-                for it in json.load(f).get("items", []):
-                    prev[it["id"]] = it
+                prev_items = json.load(f).get("items", [])
+                prev_by_id = {it["id"]: it for it in prev_items}
         except Exception:
             pass
 
     all_items, source_stats = [], []
-    for sid, name, fn in PARSERS:
+    for src in SOURCES:
+        meta = {"id": src["id"], "name": src["name"], "layer": src["layer"], "poll": src["poll"]}
+        if not should_run(src, today, force_all):
+            # 오늘 폴링 차례가 아님 → 이전 수집분 승계
+            carried = [it for it in prev_items if it.get("channel") == src["id"]
+                       or (not it.get("channel") and src["domain"] in it.get("source", ""))]
+            for it in carried:
+                it["channel"] = src["id"]
+                it["layer"] = src["layer"]
+            all_items.extend(carried)
+            source_stats.append({**meta, "ok": True, "skipped": True, "kept": len(carried)})
+            log(f"SKIP {src['name']} (폴링 주기 아님) — 이전 {len(carried)}건 승계")
+            continue
         s = new_session()
         try:
-            raw = fn(s)
+            raw = src["fn"](s)
             kept = []
             for it in raw:
                 if not relevant(it["title"]):
                     continue
                 future_dl = it["deadline"] and it["deadline"] >= today.isoformat()
-                # 오래된 글 컷 (마감이 미래면 유지)
                 if it["date"] and it["date"] < cutoff and not future_dl:
                     continue
-                # 제목 연도가 작년 이전이고 마감도 지났으면 컷
                 ym = re.search(r"20\d{2}", it["title"])
                 if ym and int(ym.group(0)) < today.year and not future_dl:
                     continue
-                # 마감 지난 지 60일 넘은 공고 컷
-                stale = (today - timedelta(days=60)).isoformat()
                 if it["deadline"] and it["deadline"] < stale:
                     continue
+                it["channel"] = src["id"]
+                it["layer"] = src["layer"]
                 kept.append(it)
-            # 지난 수집에서 알아낸 마감일은 승계 (매일 재추출 방지)
+            # 지난 수집의 마감일 승계
             for it in kept:
-                old = prev.get(it["id"])
+                old = prev_by_id.get(it["id"])
                 if old and not it["deadline"] and old.get("deadline"):
                     it["deadline"] = old["deadline"]
                     if old.get("deadlineFrom"):
                         it["deadlineFrom"] = old["deadlineFrom"]
-            # 마감일 없는 최신 글만 상세 보강
-            need = [i for i in kept if not i["deadline"]][:MAX_DETAIL_PER_SOURCE]
-            for it in need:
+            for it in [i for i in kept if not i["deadline"]][:MAX_DETAIL_PER_SOURCE]:
                 enrich_deadline(s, it)
             all_items.extend(kept)
-            source_stats.append({"id": sid, "name": name, "ok": True,
-                                 "raw": len(raw), "kept": len(kept)})
-            log(f"OK  {name}: 원본 {len(raw)}건 → 수집 {len(kept)}건")
+            source_stats.append({**meta, "ok": True, "raw": len(raw), "kept": len(kept)})
+            log(f"OK  {src['name']}: 원본 {len(raw)}건 → 수집 {len(kept)}건")
         except Exception as e:
-            source_stats.append({"id": sid, "name": name, "ok": False,
-                                 "error": f"{type(e).__name__}: {str(e)[:120]}"})
-            log(f"FAIL {name}: {type(e).__name__}: {str(e)[:120]}")
+            source_stats.append({**meta, "ok": False, "error": f"{type(e).__name__}: {str(e)[:120]}"})
+            log(f"FAIL {src['name']}: {type(e).__name__}: {str(e)[:120]}")
             traceback.print_exc()
 
-    # 중복 제거 + firstSeen/isNew
-    seen, final = set(), []
+    # id 중복 제거 → canonical dedup → firstSeen
+    seen, uniq = set(), []
     for it in all_items:
         if it["id"] in seen:
             continue
         seen.add(it["id"])
-        old = prev.get(it["id"])
+        uniq.append(it)
+    final = dedup(uniq)
+    for it in final:
+        old = prev_by_id.get(it["id"])
         it["firstSeen"] = old.get("firstSeen", today.isoformat()) if old else today.isoformat()
         it["isNew"] = it["firstSeen"] == today.isoformat()
-        final.append(it)
-
     final.sort(key=lambda x: (x.get("date") or x["firstSeen"]), reverse=True)
 
     payload = {
         "collectedAt": datetime.now().strftime("%Y-%m-%d %H:%M"),
-        "sourceCount": len(PARSERS),
+        "sourceCount": len(SOURCES),
         "okCount": sum(1 for x in source_stats if x["ok"]),
         "sources": source_stats,
         "items": final,
     }
     with open(OUT, "w", encoding="utf-8") as f:
         json.dump(payload, f, ensure_ascii=False, indent=1)
-
-    # 사이트에서 file:// 로도 열리도록 JS 파일로도 출력
     with open(os.path.join(BASE, "data", "official-data.js"), "w", encoding="utf-8") as f:
         f.write("window.CRAWLED = ")
         json.dump(payload, f, ensure_ascii=False)
         f.write(";\n")
 
-    log(f"완료: {len(final)}건 저장 → {OUT}")
+    coverage_report(final, today)
+    log(f"완료: {len(final)}건 저장 (dedup 전 {len(uniq)}건) → {OUT}")
 
 if __name__ == "__main__":
-    run()
+    run(force_all="--all" in sys.argv)
