@@ -1,5 +1,5 @@
 {
- "collectedAt": "2026-07-08 05:31",
+ "collectedAt": "2026-07-08 05:49",
  "sourceCount": 37,
  "okCount": 37,
  "sources": [
@@ -28,7 +28,7 @@
    "poll": "daily",
    "ok": true,
    "raw": 25,
-   "kept": 16
+   "kept": 14
   },
   {
    "id": "gne",
@@ -361,27 +361,6 @@
    "extVer": 4
   },
   {
-   "id": "42db74da2bf23ef9",
-   "org": "용호남교회",
-   "region": "기타",
-   "source": "cjob.co.kr",
-   "title": "용호남교회 피아노 반주자 모집",
-   "url": "https://www.cjob.co.kr/bbs/board.php?bo_table=offerIG&wr_id=7770&c_jikjong=2&page=1",
-   "date": null,
-   "deadline": null,
-   "kind": "반주",
-   "tier": "오브리",
-   "inst": "건반",
-   "instDetails": [
-    "피아노"
-   ],
-   "channel": "cjob",
-   "layer": "C",
-   "firstSeen": "2026-07-08",
-   "isNew": true,
-   "extVer": 4
-  },
-  {
    "id": "5fbc7e4eb4f8d92d",
    "org": "교회(기독정보넷)",
    "region": "기타",
@@ -399,69 +378,6 @@
    "channel": "cjob",
    "layer": "C",
    "deadlineFrom": "page",
-   "firstSeen": "2026-07-08",
-   "isNew": true,
-   "extVer": 4
-  },
-  {
-   "id": "c355fe34995919a9",
-   "org": "교회(기독정보넷)",
-   "region": "기타",
-   "source": "cjob.co.kr",
-   "title": "피아노 반주자를 모십니다.",
-   "url": "https://www.cjob.co.kr/bbs/board.php?bo_table=offerIG&wr_id=7754&c_jikjong=2&page=1",
-   "date": null,
-   "deadline": null,
-   "kind": "반주",
-   "tier": "오브리",
-   "inst": "건반",
-   "instDetails": [
-    "피아노"
-   ],
-   "channel": "cjob",
-   "layer": "C",
-   "firstSeen": "2026-07-08",
-   "isNew": true,
-   "extVer": 4
-  },
-  {
-   "id": "d43e73d204b36b0f",
-   "org": "교회(기독정보넷)",
-   "region": "기타",
-   "source": "cjob.co.kr",
-   "title": "반주자를 구합니다",
-   "url": "https://www.cjob.co.kr/bbs/board.php?bo_table=offerIG&wr_id=7748&c_jikjong=2&page=1",
-   "date": null,
-   "deadline": null,
-   "kind": "반주",
-   "tier": "오브리",
-   "inst": "건반",
-   "instDetails": [
-    "피아노"
-   ],
-   "channel": "cjob",
-   "layer": "C",
-   "firstSeen": "2026-07-08",
-   "isNew": true,
-   "extVer": 4
-  },
-  {
-   "id": "cff2801e45a9ec79",
-   "org": "교회(기독정보넷)",
-   "region": "기타",
-   "source": "cjob.co.kr",
-   "title": "기타/첼로/유치원교사 구합니다",
-   "url": "https://www.cjob.co.kr/bbs/board.php?bo_table=offerIG&wr_id=7742&c_jikjong=2&page=1",
-   "date": null,
-   "deadline": null,
-   "kind": "기타",
-   "tier": "오브리",
-   "inst": "현악",
-   "instDetails": [
-    "첼로"
-   ],
-   "channel": "cjob",
-   "layer": "C",
    "firstSeen": "2026-07-08",
    "isNew": true,
    "extVer": 4
@@ -506,90 +422,6 @@
    "channel": "cjob",
    "layer": "C",
    "deadlineFrom": "page",
-   "firstSeen": "2026-07-08",
-   "isNew": true,
-   "extVer": 4
-  },
-  {
-   "id": "be024e49936675f8",
-   "org": "교회(기독정보넷)",
-   "region": "기타",
-   "source": "cjob.co.kr",
-   "title": "피아노 반주자 구합니다.",
-   "url": "https://www.cjob.co.kr/bbs/board.php?bo_table=offerIG&wr_id=7706&c_jikjong=2&page=1",
-   "date": null,
-   "deadline": null,
-   "kind": "반주",
-   "tier": "오브리",
-   "inst": "건반",
-   "instDetails": [
-    "피아노"
-   ],
-   "channel": "cjob",
-   "layer": "C",
-   "firstSeen": "2026-07-08",
-   "isNew": true,
-   "extVer": 4
-  },
-  {
-   "id": "5662c679dbaca9e1",
-   "org": "안동개곡교회",
-   "region": "기타",
-   "source": "cjob.co.kr",
-   "title": "안동개곡교회 반주자 모십니다",
-   "url": "https://www.cjob.co.kr/bbs/board.php?bo_table=offerIG&wr_id=7691&c_jikjong=2&page=1",
-   "date": null,
-   "deadline": null,
-   "kind": "반주",
-   "tier": "오브리",
-   "inst": "건반",
-   "instDetails": [
-    "피아노"
-   ],
-   "channel": "cjob",
-   "layer": "C",
-   "firstSeen": "2026-07-08",
-   "isNew": true,
-   "extVer": 4
-  },
-  {
-   "id": "8b41facc1cb8a23f",
-   "org": "개척교회",
-   "region": "경기",
-   "source": "cjob.co.kr",
-   "title": "수원영통역 펠로쉽처치(개척교회) 피아노 반주자 모십니다.",
-   "url": "https://www.cjob.co.kr/bbs/board.php?bo_table=offerIG&wr_id=7688&c_jikjong=2&page=1",
-   "date": null,
-   "deadline": null,
-   "kind": "반주",
-   "tier": "오브리",
-   "inst": "건반",
-   "instDetails": [
-    "피아노"
-   ],
-   "channel": "cjob",
-   "layer": "C",
-   "firstSeen": "2026-07-08",
-   "isNew": true,
-   "extVer": 4
-  },
-  {
-   "id": "1c3843f4f68565f0",
-   "org": "교회(기독정보넷)",
-   "region": "기타",
-   "source": "cjob.co.kr",
-   "title": "건반 반주자를 모십니다(수요, 금요).",
-   "url": "https://www.cjob.co.kr/bbs/board.php?bo_table=offerIG&wr_id=7687&c_jikjong=2&page=1",
-   "date": null,
-   "deadline": null,
-   "kind": "반주",
-   "tier": "오브리",
-   "inst": "건반",
-   "instDetails": [
-    "피아노"
-   ],
-   "channel": "cjob",
-   "layer": "C",
    "firstSeen": "2026-07-08",
    "isNew": true,
    "extVer": 4
@@ -1275,6 +1107,28 @@
    "extVer": 4
   },
   {
+   "id": "42db74da2bf23ef9",
+   "org": "용호남교회",
+   "region": "기타",
+   "source": "cjob.co.kr",
+   "title": "용호남교회 피아노 반주자 모집",
+   "url": "https://www.cjob.co.kr/bbs/board.php?bo_table=offerIG&wr_id=7770&c_jikjong=2&page=1",
+   "date": "2026-05-29",
+   "deadline": null,
+   "kind": "반주",
+   "tier": "오브리",
+   "inst": "건반",
+   "instDetails": [
+    "피아노"
+   ],
+   "channel": "cjob",
+   "layer": "C",
+   "deadlineNote": "상시",
+   "firstSeen": "2026-07-08",
+   "isNew": true,
+   "extVer": 4
+  },
+  {
    "id": "90b6247b29765fe9",
    "org": "울산문화예술회관(시립예술단)",
    "region": "기타",
@@ -1680,6 +1534,50 @@
    "extVer": 4
   },
   {
+   "id": "c355fe34995919a9",
+   "org": "교회(기독정보넷)",
+   "region": "기타",
+   "source": "cjob.co.kr",
+   "title": "피아노 반주자를 모십니다.",
+   "url": "https://www.cjob.co.kr/bbs/board.php?bo_table=offerIG&wr_id=7754&c_jikjong=2&page=1",
+   "date": "2026-03-20",
+   "deadline": null,
+   "kind": "반주",
+   "tier": "오브리",
+   "inst": "건반",
+   "instDetails": [
+    "피아노"
+   ],
+   "channel": "cjob",
+   "layer": "C",
+   "deadlineNote": "상시",
+   "firstSeen": "2026-07-08",
+   "isNew": true,
+   "extVer": 4
+  },
+  {
+   "id": "d43e73d204b36b0f",
+   "org": "교회(기독정보넷)",
+   "region": "기타",
+   "source": "cjob.co.kr",
+   "title": "반주자를 구합니다",
+   "url": "https://www.cjob.co.kr/bbs/board.php?bo_table=offerIG&wr_id=7748&c_jikjong=2&page=1",
+   "date": "2026-02-25",
+   "deadline": null,
+   "kind": "반주",
+   "tier": "오브리",
+   "inst": "건반",
+   "instDetails": [
+    "피아노"
+   ],
+   "channel": "cjob",
+   "layer": "C",
+   "deadlineNote": "상시",
+   "firstSeen": "2026-07-08",
+   "isNew": true,
+   "extVer": 4
+  },
+  {
    "id": "738f91f7172513b1",
    "org": "국립오페라단",
    "region": "서울",
@@ -1695,6 +1593,72 @@
    "channel": "natopera",
    "layer": "D",
    "deadlineFrom": "page",
+   "firstSeen": "2026-07-08",
+   "isNew": true,
+   "extVer": 4
+  },
+  {
+   "id": "cff2801e45a9ec79",
+   "org": "교회(기독정보넷)",
+   "region": "기타",
+   "source": "cjob.co.kr",
+   "title": "기타/첼로/유치원교사 구합니다",
+   "url": "https://www.cjob.co.kr/bbs/board.php?bo_table=offerIG&wr_id=7742&c_jikjong=2&page=1",
+   "date": "2026-02-10",
+   "deadline": null,
+   "kind": "기타",
+   "tier": "오브리",
+   "inst": "현악",
+   "instDetails": [
+    "첼로"
+   ],
+   "channel": "cjob",
+   "layer": "C",
+   "deadlineNote": "상시",
+   "firstSeen": "2026-07-08",
+   "isNew": true,
+   "extVer": 4
+  },
+  {
+   "id": "062c1a7045023f76",
+   "org": "교회(기독정보넷)",
+   "region": "기타",
+   "source": "cjob.co.kr",
+   "title": "찬양대 반주자 구합니다.",
+   "url": "https://www.cjob.co.kr/bbs/board.php?bo_table=offerIG&wr_id=7712&c_jikjong=2&page=1",
+   "date": "2025-12-11",
+   "deadline": null,
+   "kind": "반주",
+   "tier": "오브리",
+   "inst": "건반",
+   "instDetails": [
+    "피아노"
+   ],
+   "channel": "cjob",
+   "layer": "C",
+   "deadlineNote": "상시",
+   "firstSeen": "2026-07-08",
+   "isNew": true,
+   "extVer": 4
+  },
+  {
+   "id": "5662c679dbaca9e1",
+   "org": "안동개곡교회",
+   "region": "기타",
+   "source": "cjob.co.kr",
+   "title": "안동개곡교회 반주자 모십니다",
+   "url": "https://www.cjob.co.kr/bbs/board.php?bo_table=offerIG&wr_id=7691&c_jikjong=2&page=1",
+   "date": "2025-09-21",
+   "deadline": null,
+   "kind": "반주",
+   "tier": "오브리",
+   "inst": "건반",
+   "instDetails": [
+    "피아노"
+   ],
+   "channel": "cjob",
+   "layer": "C",
+   "deadlineNote": "상시",
    "firstSeen": "2026-07-08",
    "isNew": true,
    "extVer": 4

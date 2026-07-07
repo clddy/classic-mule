@@ -14,7 +14,7 @@ OUT = os.path.join(BASE, "data", "official.json")
 LOG = os.path.join(BASE, "data", "crawl.log")
 COVERAGE = os.path.join(BASE, "data", "coverage_report.json")
 
-MAX_DETAIL_PER_SOURCE = 10
+MAX_DETAIL_PER_SOURCE = 14
 RECENT_DAYS = 270
 LAYER_RANK = {"D": 0, "C": 1, "B": 2, "A": 3}  # canonical 우선순위: 원천 > 도메인 > 지역 > 전국
 
@@ -148,7 +148,17 @@ def enrich_deadline(s, item, allow_render=True):
         soup = BeautifulSoup(r.text, "lxml")
         for tag in soup(["script", "style", "header", "footer", "nav"]):
             tag.decompose()
-        dl = extract_deadline(soup.get_text(" ", strip=True), ref_year=ry)
+        page_text = soup.get_text(" ", strip=True)
+        # 게시일이 없으면 상세의 등록일로 보충 (연령 정리·연도 보정에 사용)
+        if not item.get("date"):
+            m = re.search(r"등록일\s*:?\s*(20\d{2}-\d{2}-\d{2})", page_text)
+            if m:
+                item["date"] = m.group(1)
+        # 상시모집 감지: 기독정보넷의 '남은기간 0000-00-00', 통상 표현들
+        if re.search(r"남은기간\s*0000-00-00|상시 ?모집|상시 ?채용|채용 ?시 ?(?:까지|마감)|충원 ?시 ?마감", page_text):
+            item["deadlineNote"] = "상시"
+            return
+        dl = extract_deadline(page_text, ref_year=ry)
         if dl:
             item["deadline"] = dl
             item["deadlineFrom"] = "page"
@@ -265,6 +275,11 @@ def run(force_all=False):
                     it["deadline"] = old["deadline"]
                     if old.get("deadlineFrom"):
                         it["deadlineFrom"] = old["deadlineFrom"]
+                if old and old.get("extVer") == EXT_VER:
+                    if old.get("deadlineNote") and not it.get("deadlineNote"):
+                        it["deadlineNote"] = old["deadlineNote"]
+                    if old.get("date") and not it.get("date"):
+                        it["date"] = old["date"]
                 if not it["deadline"]:
                     tdl = deadline_from_title(it["title"], ref_year=_ref_year(it))
                     if tdl:
@@ -282,9 +297,10 @@ def run(force_all=False):
                         it["deadlineFrom"] = (it.get("deadlineFrom") or "") + "+yearfix"
             # 보강으로 알게 된 마감이 이미 한참 지난 공고는 제거 (작년 공고 등)
             kept = [i for i in kept if not (i["deadline"] and i["deadline"] < stale)]
-            # 마감을 못 찾았고 게시된 지 120일 넘은 공고도 정리 (사실상 종료)
+            # 마감을 못 찾았고 게시된 지 120일 넘은 공고도 정리 (상시모집은 예외)
             old_cut = (today - timedelta(days=120)).isoformat()
-            kept = [i for i in kept if i["deadline"] or not i["date"] or i["date"] >= old_cut]
+            kept = [i for i in kept if i["deadline"] or i.get("deadlineNote") == "상시"
+                    or not i["date"] or i["date"] >= old_cut]
             # 소스가 비정상적으로 0건 반환(서버 다운 등) 시 이전 수집분 승계
             if not raw:
                 carried = [it for it in prev_items if it.get("channel") == src["id"]]

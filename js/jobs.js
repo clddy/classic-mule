@@ -14,7 +14,7 @@ const OFFICIAL_ITEMS = ((window.CRAWLED && window.CRAWLED.items) || []).map(j =>
   band: KIND2BAND[j.kind] || "기타",
   insts: j.instDetails || [], group: j.inst,
   region: j.region, title: j.title, org: j.org,
-  deadline: j.deadline, date: j.date || j.firstSeen,
+  deadline: j.deadline, deadlineText: j.deadlineNote, date: j.date || j.firstSeen,
   url: j.url, isNew: j.isNew, source: j.source
 }));
 
