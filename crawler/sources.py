@@ -277,6 +277,25 @@ def parse_sac(s):
                                title, urljoin(r.url, href), date=_row_date(a)))
     return items
 
+# ---------- 19. 경남교육청 구인구직포털 (방과후 오케스트라 강사) ----------
+GNE_URL = ("https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do"
+           "?q_searchKey=1001&q_searchVal=%EC%98%A4%EC%BC%80%EC%8A%A4%ED%8A%B8%EB%9D%BC"
+           "&q_rowPerPage=15&q_currPage=1")
+
+def parse_gne(s):
+    r = get(s, GNE_URL)
+    items, seen = [], set()
+    for a in _soup(r).select("a"):
+        title = a.get_text(" ", strip=True)
+        if (len(title) < 10 or title in seen
+                or not re.search(r"오케스트라|관현악", title)
+                or not re.search(r"모집|채용|초빙|공고", title)):
+            continue
+        seen.add(title)
+        items.append(make_item("경남 학교 방과후(교육청 포털)", "기타", "gne.go.kr",
+                               title, GNE_URL, date=_row_date(a)))
+    return items
+
 PARSERS = [
     ("seoulphil",   "서울시립교향악단",        parse_seoulphil),
     ("kbs",         "KBS교향악단",             parse_kbs),
@@ -296,4 +315,5 @@ PARSERS = [
     ("cwcf",        "창원문화재단",             parse_cwcf),
     ("jeonju",      "전주시(시립예술단)",       parse_jeonju),
     ("sac",         "예술의전당",               parse_sac),
+    ("gne",         "경남교육청 방과후강사",     parse_gne),
 ]

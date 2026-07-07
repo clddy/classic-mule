@@ -232,7 +232,32 @@ button { font-family: inherit; cursor: pointer; }
   padding: 20px 18px;
   position: sticky;
   top: 76px;
+  max-height: calc(100vh - 96px);
+  overflow-y: auto;
 }
+.filter-reset-top {
+  width: 100%;
+  text-align: right;
+  margin: 0 0 12px;
+  background: none;
+  border: none;
+  color: var(--ink-soft);
+  font-size: 0.8rem;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.filter-summary {
+  cursor: pointer;
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 10px;
+  list-style: none;
+}
+.filter-summary::-webkit-details-marker { display: none; }
+.filter-summary::after { content: " ▾"; }
+details[open] > .filter-summary::after { content: " ▴"; }
 .filter-group { margin-bottom: 20px; }
 .filter-group:last-child { margin-bottom: 0; }
 .filter-group h4 {

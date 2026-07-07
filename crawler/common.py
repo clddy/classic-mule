@@ -99,7 +99,7 @@ INST_DETAILS = [
     ("바이올린", "현악", r"바이올린"),
     ("비올라", "현악", r"비올라"),
     ("첼로", "현악", r"첼로"),
-    ("하프", "현악", r"하프"),
+    ("하프", "기타", r"하프"),
     ("플루트", "목관", r"플루트|피콜로"),
     ("오보에", "목관", r"오보에"),
     ("클라리넷", "목관", r"클라리넷"),
@@ -137,6 +137,17 @@ def classify_insts(title):
         return "전체", []
     return groups[0], details
 
+def classify_tier(title, org=""):
+    """프로(국공립·직업) / 전공·입시 / 교육·취미 / 오브리(행사·교회)"""
+    t = f"{title} {org}"
+    if re.search(r"방과후|초등학교|중학교|고등학교|취미|시민|문화센터|동아리", t):
+        return "교육·취미"
+    if re.search(r"유스|청소년|소년소녀|교육단원|아카데미|영재|콩쿠르 ?준비", t):
+        return "전공·입시"
+    if re.search(r"교회|성가대|웨딩|예식|축가|기업 ?행사|송년|찬양", t):
+        return "오브리"
+    return "프로"
+
 def item_id(url, title):
     return hashlib.sha1(f"{url}|{title}".encode("utf-8")).hexdigest()[:16]
 
@@ -150,6 +161,7 @@ def make_item(org, region, source, title, url, date=None, deadline=None):
         "date": date,          # 게시일 (모르면 None)
         "deadline": deadline,  # 접수 마감 (모르면 None)
         "kind": classify_kind(title),
+        "tier": classify_tier(title, org),
         "inst": group,
         "instDetails": details,  # 세부 악기 (복수 가능: "비올라, 오보에")
     }

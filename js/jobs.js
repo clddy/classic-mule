@@ -10,6 +10,7 @@ const KIND2BAND = { "단원": "단원", "객원·대체": "객원·대체", "반
 
 const OFFICIAL_ITEMS = ((window.CRAWLED && window.CRAWLED.items) || []).map(j => ({
   key: "o" + j.id, src: "공식", type: "구인",
+  tier: j.tier || "프로",
   band: KIND2BAND[j.kind] || "기타",
   insts: j.instDetails || [], group: j.inst,
   region: j.region, title: j.title, org: j.org,
@@ -19,27 +20,31 @@ const OFFICIAL_ITEMS = ((window.CRAWLED && window.CRAWLED.items) || []).map(j =>
 
 let COMMUNITY_ITEMS = JOBS.map(j => ({
   key: "c" + j.id, src: "소규모", type: j.type === "offer" ? "구인" : "구직",
+  tier: j.tier || "프로",
   band: CAT2BAND[j.cat] || "기타",
-  insts: [j.instDetail], group: j.inst,
+  insts: j.instDetails || [j.instDetail], group: j.inst,
   region: j.region, title: j.title, org: j.org, pay: j.pay,
+  when: j.when, program: j.program,
   deadline: /^\d{4}/.test(j.deadline) ? j.deadline : null, deadlineText: j.deadline,
   date: j.date, body: j.body, urgent: j.urgent, cid: j.id
 }));
 
 // ---------- 필터 정의 ----------
-const SRCS = ["공식", "소규모"];
+// 구분: 프로(국공립·직업) / 전공·입시(유스·입시레슨) / 교육·취미(방과후·취미레슨) / 오브리(교회·웨딩·행사)
+const TIERS = ["프로", "전공·입시", "교육·취미", "오브리"];
+const TIER_CLS = { "프로": "src-official", "전공·입시": "pos", "교육·취미": "dd-open", "오브리": "inst" };
 const BANDS = ["단원", "객원·대체", "반주", "행사연주", "강사·레슨", "지휘", "직원·스태프", "기타"];
 const INST_GROUPS = [
-  ["현악", ["바이올린", "비올라", "첼로", "더블베이스", "하프"]],
+  ["현악", ["바이올린", "비올라", "첼로", "더블베이스"]],
   ["목관", ["플루트", "오보에", "클라리넷", "바순"]],
   ["금관", ["호른", "트럼펫", "트롬본", "튜바"]],
-  ["기타", ["타악", "피아노", "지휘"]],
+  ["기타", ["타악", "피아노", "하프", "지휘"]],
   ["성악", ["소프라노", "메조소프라노", "알토", "테너", "바리톤", "베이스(성악)"]],
 ];
 const REGION_LIST = ["서울", "경기", "인천", "대전", "대구", "부산", "기타"];
 const STATUSES = ["접수중", "마감임박", "확인필요", "마감"];
 
-const state = { tab: "전체", srcs: new Set(), bands: new Set(), insts: new Set(), regions: new Set(), status: new Set(), query: "" };
+const state = { tab: "전체", tiers: new Set(), bands: new Set(), insts: new Set(), regions: new Set(), status: new Set(), query: "" };
 const $ = (s) => document.querySelector(s);
 
 function statusOf(j) {
@@ -82,7 +87,7 @@ function filtered() {
   const all = [...OFFICIAL_ITEMS, ...COMMUNITY_ITEMS];
   return all.filter(j => {
     if (state.tab !== "전체" && j.type !== state.tab) return false;
-    if (state.srcs.size && !state.srcs.has(j.src)) return false;
+    if (state.tiers.size && !state.tiers.has(j.tier)) return false;
     if (state.bands.size && !state.bands.has(j.band)) return false;
     if (state.insts.size) {
       if (!j.insts.length || ![...state.insts].some(v => j.insts.includes(v))) return false;
@@ -104,7 +109,7 @@ function filtered() {
 function cardHTML(j) {
   const st = statusOf(j);
   const tags = `
-    <span class="tag ${j.src === "공식" ? "src-official" : "src-community"}">${j.src}</span>
+    <span class="tag ${TIER_CLS[j.tier] || "cat"}">${j.tier}</span>
     ${j.type === "구직" ? `<span class="tag type-seek">구직</span>` : ""}
     <span class="tag cat">${j.band}</span>
     ${j.insts.map(i => `<span class="tag inst">${i}</span>`).join("")}
@@ -114,6 +119,7 @@ function cardHTML(j) {
   const meta = `
     <span>${j.org}</span>
     <span>📍 ${j.region}</span>
+    ${j.when ? `<span>🗓 ${j.when}</span>` : ""}
     ${j.pay ? `<span class="pay">${j.pay}</span>` : ""}
     ${j.deadline ? `<span>마감 ${j.deadline}</span>` : ""}`;
   if (j.src === "공식") {
@@ -160,7 +166,7 @@ function renderTabs() {
 
 function renderAll() {
   renderTabs();
-  renderChips("#filter-src", SRCS, state.srcs);
+  renderChips("#filter-tier", TIERS, state.tiers);
   renderChips("#filter-band", BANDS, state.bands);
   renderInstChips();
   renderChips("#filter-region", REGION_LIST, state.regions);
@@ -173,7 +179,7 @@ function openDetail(cid) {
   const j = COMMUNITY_ITEMS.find(x => x.cid === cid);
   if (!j) return;
   $("#detail-tags").innerHTML = `
-    <span class="tag src-community">소규모</span>
+    <span class="tag ${TIER_CLS[j.tier] || "cat"}">${j.tier}</span>
     <span class="tag ${j.type === "구인" ? "type-offer" : "type-seek"}">${j.type}</span>
     <span class="tag cat">${j.band}</span>
     ${j.insts.map(i => `<span class="tag inst">${i}</span>`).join("")}
@@ -182,6 +188,8 @@ function openDetail(cid) {
   $("#detail-meta").innerHTML = `
     <dt>${j.type === "구인" ? "기관/팀" : "이름"}</dt><dd>${j.org}</dd>
     <dt>지역</dt><dd>${j.region}</dd>
+    ${j.when ? `<dt>일시</dt><dd>${j.when}</dd>` : ""}
+    ${j.program ? `<dt>프로그램</dt><dd>${j.program}</dd>` : ""}
     <dt>보수</dt><dd>${j.pay || "협의"}</dd>
     <dt>마감</dt><dd>${j.deadlineText || j.deadline || "상시"}</dd>
     <dt>등록일</dt><dd>${j.date}</dd>`;
@@ -198,8 +206,11 @@ function submitWrite(e) {
   const item = {
     key: "c" + cid, cid, src: "소규모",
     type: f.elements["w-type"].value === "offer" ? "구인" : "구직",
+    tier: f.elements["w-tier"].value,
     band: CAT2BAND[f.elements["w-cat"].value] || "기타",
     insts: [inst], group: f.elements["w-inst"].value,
+    when: f.elements["w-when"].value || null,
+    program: f.elements["w-program"].value || null,
     region: f.elements["w-region"].value,
     title: f.elements["w-title"].value,
     org: f.elements["w-org"].value,
@@ -225,7 +236,7 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   $("#search-input").addEventListener("input", (e) => { state.query = e.target.value.trim(); renderList(); });
   $("#filter-reset").addEventListener("click", () => {
-    state.srcs.clear(); state.bands.clear(); state.insts.clear(); state.regions.clear(); state.status.clear();
+    state.tiers.clear(); state.bands.clear(); state.insts.clear(); state.regions.clear(); state.status.clear();
     state.query = ""; $("#search-input").value = "";
     renderAll();
   });

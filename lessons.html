@@ -46,15 +46,25 @@
 
 <div class="container board-layout">
   <aside class="filters">
-    <div class="filter-group"><h4>악기군</h4><div class="filter-options" id="f-inst"></div></div>
+    <button class="filter-reset filter-reset-top" id="filter-reset">필터 초기화 ↺</button>
+    <div class="filter-group">
+      <details open>
+        <summary class="filter-summary">악기 (접기/펼치기)</summary>
+        <div id="f-inst"></div>
+      </details>
+    </div>
     <div class="filter-group"><h4>대상</h4><div class="filter-options" id="f-level"></div></div>
     <div class="filter-group"><h4>방식</h4><div class="filter-options" id="f-mode"></div></div>
     <div class="filter-group"><h4>조건</h4><div class="filter-options" id="f-cond"></div></div>
-    <button class="filter-reset" id="filter-reset">필터 초기화</button>
   </aside>
   <main>
     <div class="board-toolbar">
       <div class="search-box">🔍 <input type="text" id="search-input" placeholder="악기, 학교, 지역으로 검색"></div>
+      <select id="sort-sel" style="border:1px solid var(--line);border-radius:8px;padding:9px 12px;font-size:0.88rem;background:var(--paper);font-family:inherit">
+        <option value="default">최근 등록순</option>
+        <option value="priceAsc">가격 낮은순</option>
+        <option value="priceDesc">가격 높은순</option>
+      </select>
     </div>
     <div class="result-count" id="result-count"></div>
     <div class="job-list" id="list"></div>
@@ -69,30 +79,39 @@
 
 <script>
 // 리서치 반영: 사사·합격실적이 핵심 신뢰 정보, 성악은 반주자 비용 별도, 시범레슨 문화
+// 학력·입상 경력은 필수 표기, 사사는 표기하지 않음 (피드백 반영)
 const TEACHERS = [
-  { inst:"현악", detail:"바이올린", name:"김○○", edu:"서울대 음대 졸 · 독일 뮌헨 국립음대 석사", saso:"○○○ 교수 사사",
-    record:"예원 2명 · 서울예고 3명 · 음대 합격 7명", target:["입시","전공심화"], price:"회당 15만원(90분)",
-    region:"서초·강남", mode:["스튜디오","출강"], trial:true, note:"입시 전문. 콩쿠르(이화경향 등) 지도 경력 10년." },
-  { inst:"현악", detail:"첼로", name:"박○○", edu:"한예종 졸", saso:"○○○ 사사",
-    record:"취미 성인 지도 5년", target:["취미","입시"], price:"회당 7만원(60분)",
+  { inst:"현악", detail:"바이올린", name:"김○○", edu:"서울대 음대 졸 · 독일 뮌헨 국립음대 석사",
+    prize:"이화경향 콩쿠르 입상", record:"예원 2명 · 서울예고 3명 · 음대 합격 7명",
+    target:["입시","전공심화"], price:"회당 15만원(90분)", priceNum:15,
+    region:"서초·강남", mode:["스튜디오","출강"], trial:true, note:"입시 전문. 콩쿠르 지도 경력 10년." },
+  { inst:"현악", detail:"첼로", name:"박○○", edu:"한예종 졸",
+    prize:"", record:"취미 성인 지도 5년",
+    target:["취미","입시"], price:"회당 7만원(60분)", priceNum:7,
     region:"신촌·마포", mode:["스튜디오","온라인"], trial:true, note:"성인 취미 환영. 자세 교정 중심 커리큘럼." },
-  { inst:"건반", detail:"피아노", name:"이○○", edu:"연세대 음대 졸 · 미국 이스트만 석사", saso:"○○○ 교수 사사",
-    record:"음대 합격 12명 · 콩쿠르 입상 다수", target:["입시","전공심화"], price:"회당 12만원(60분)",
+  { inst:"건반", detail:"피아노", name:"이○○", edu:"연세대 음대 졸 · 미국 이스트만 석사",
+    prize:"전국 콩쿠르 입상 다수", record:"음대 합격 12명",
+    target:["입시","전공심화"], price:"회당 12만원(60분)", priceNum:12,
     region:"분당·판교", mode:["스튜디오"], trial:false, note:"입시 시즌(9~12월) 대기 있음. 신규는 5월 이전 문의 권장." },
   { inst:"성악", detail:"소프라노", name:"최○○", edu:"서울대 음대 졸 · 이탈리아 밀라노 베르디 국립음악원",
-    saso:"○○○ 사사", record:"음대 합격 4명", target:["입시","취미"], price:"회당 10만원(60분) + 반주자 별도 3만원",
+    prize:"이탈리아 국제 콩쿠르 파이널리스트", record:"음대 합격 4명",
+    target:["입시","취미"], price:"회당 10만원(60분) + 반주자 별도 3만원", priceNum:10,
     region:"강남·송파", mode:["스튜디오"], trial:true, note:"입시 반주자 상주 스튜디오. 딕션(이탈리아어·독일어) 지도 포함." },
-  { inst:"목관", detail:"플루트", name:"정○○", edu:"한양대 음대 졸", saso:"○○○ 사사",
-    record:"예고 합격 2명", target:["취미","입시"], price:"회당 6만원(60분)",
+  { inst:"목관", detail:"플루트", name:"정○○", edu:"한양대 음대 졸",
+    prize:"", record:"예고 합격 2명",
+    target:["취미","입시"], price:"회당 6만원(60분)", priceNum:6,
     region:"노원·강북", mode:["출강","스튜디오"], trial:true, note:"학생 악기 상태 점검·구입 상담도 도와드립니다." },
-  { inst:"금관", detail:"호른", name:"강○○", edu:"서울대 음대 졸 · 군악대 전역", saso:"○○○ 사사",
-    record:"음대 합격 3명", target:["입시","전공심화"], price:"회당 8만원(60분)",
-    region:"수원·용인", mode:["출강"], trial:true, note:"관악 콩쿠르 지도. 앙부슈어 교정 전문." },
-  { inst:"현악", detail:"비올라", name:"윤○○", edu:"독일 쾰른 국립음대 디플롬", saso:"○○○ 교수 사사",
-    record:"유학 준비 지도 6명(독일 4·오스트리아 2)", target:["전공심화","유학준비"], price:"회당 13만원(90분)",
+  { inst:"금관", detail:"호른", name:"강○○", edu:"서울대 음대 졸 · 군악대 전역",
+    prize:"전국 관악 콩쿠르 입상", record:"음대 합격 3명",
+    target:["입시","전공심화"], price:"회당 8만원(60분)", priceNum:8,
+    region:"수원·용인", mode:["출강"], trial:true, note:"앙부슈어 교정 전문." },
+  { inst:"현악", detail:"비올라", name:"윤○○", edu:"독일 쾰른 국립음대 디플롬",
+    prize:"독일 실내악 콩쿠르 입상", record:"유학 준비 지도 6명(독일 4·오스트리아 2)",
+    target:["전공심화","유학준비"], price:"회당 13만원(90분)", priceNum:13,
     region:"서초", mode:["스튜디오","온라인"], trial:false, note:"독일 음대 입시(Aufnahmeprüfung) 레퍼토리·비자 상담 포함." },
-  { inst:"건반", detail:"피아노(반주)", name:"한○○", edu:"이화여대 음대 졸", saso:"",
-    record:"입시 반주 경력 5년", target:["취미"], price:"회당 5만원(60분)",
+  { inst:"건반", detail:"피아노(반주)", name:"한○○", edu:"이화여대 음대 졸",
+    prize:"", record:"입시 반주 경력 5년",
+    target:["취미"], price:"회당 5만원(60분)", priceNum:5,
     region:"온라인", mode:["온라인"], trial:true, note:"성인 취미·유튜브 촬영용 코칭. 비대면 전문." },
 ];
 const REQUESTS = [
@@ -113,7 +132,7 @@ const INST_GROUPS=[
 const LEVELS=["취미","입시","전공심화","유학준비"];
 const MODES=["스튜디오","출강","온라인"];
 const CONDS=["시범레슨 가능"];
-const st={tab:"teacher",inst:new Set(),level:new Set(),mode:new Set(),cond:new Set(),q:""};
+const st={tab:"teacher",inst:new Set(),level:new Set(),mode:new Set(),cond:new Set(),q:"",sort:"default"};
 const $=s=>document.querySelector(s);
 
 function chips(id,items,set){const el=$(id);el.innerHTML=items.map(v=>`<button class="chip${set.has(v)?" on":""}" data-v="${v}">${v}</button>`).join("");
@@ -145,7 +164,9 @@ function render(){
       if(q&&!`${t.detail} ${t.edu} ${t.region} ${t.note}`.toLowerCase().includes(q))return false;
       return true;
     });
-    $("#result-count").innerHTML=`선생님 <strong>${list.length}</strong>명`;
+    if(st.sort==="priceAsc")list.sort((a,b)=>a.priceNum-b.priceNum);
+    else if(st.sort==="priceDesc")list.sort((a,b)=>b.priceNum-a.priceNum);
+    $("#result-count").innerHTML=`선생님 <strong>${list.length}</strong>명 · ${{default:"최근 등록순",priceAsc:"가격 낮은순",priceDesc:"가격 높은순"}[st.sort]}`;
     html=list.map(t=>`
       <article class="job-card">
         <div class="top-row">
@@ -155,7 +176,7 @@ function render(){
           ${t.mode.map(m=>`<span class="tag pos">${m}</span>`).join("")}
         </div>
         <h3>${t.detail} · ${t.name} 선생님 <span style="font-weight:400;font-size:0.85rem;color:var(--ink-soft)">📍 ${t.region}</span></h3>
-        <div class="cred"><b>${t.edu}</b>${t.saso?` · ${t.saso}`:""}<br>실적: ${t.record}</div>
+        <div class="cred"><b>${t.edu}</b>${t.prize?`<br>🏆 ${t.prize}`:""}<br><span style="font-size:0.76rem;opacity:0.85">지도 실적: ${t.record}</span></div>
         <div class="price-line">${t.price}</div>
         <div class="source-line"><span>${t.note}</span></div>
       </article>`).join("");
@@ -182,7 +203,8 @@ document.addEventListener("DOMContentLoaded",()=>{
   $("#tab-teacher").addEventListener("click",()=>{st.tab="teacher";render();});
   $("#tab-request").addEventListener("click",()=>{st.tab="request";render();});
   $("#search-input").addEventListener("input",e=>{st.q=e.target.value.trim();render();});
-  $("#filter-reset").addEventListener("click",()=>{st.inst.clear();st.level.clear();st.mode.clear();st.cond.clear();st.q="";$("#search-input").value="";render();});
+  $("#sort-sel").addEventListener("change",e=>{st.sort=e.target.value;render();});
+  $("#filter-reset").addEventListener("click",()=>{st.inst.clear();st.level.clear();st.mode.clear();st.cond.clear();st.q="";st.sort="default";$("#sort-sel").value="default";$("#search-input").value="";render();});
 });
 </script>
 </body>

@@ -40,17 +40,20 @@
 
 <div class="container board-layout">
   <aside class="filters">
+    <button class="filter-reset filter-reset-top" id="filter-reset">필터 초기화 ↺</button>
     <div class="filter-group">
-      <h4>출처</h4>
-      <div class="filter-options" id="filter-src"></div>
+      <h4>구분</h4>
+      <div class="filter-options" id="filter-tier"></div>
     </div>
     <div class="filter-group">
       <h4>유형</h4>
       <div class="filter-options" id="filter-band"></div>
     </div>
     <div class="filter-group">
-      <h4>악기</h4>
-      <div id="filter-inst"></div>
+      <details open>
+        <summary class="filter-summary">악기 (접기/펼치기)</summary>
+        <div id="filter-inst"></div>
+      </details>
     </div>
     <div class="filter-group">
       <h4>지역</h4>
@@ -60,7 +63,6 @@
       <h4>상태</h4>
       <div class="filter-options" id="filter-status"></div>
     </div>
-    <button class="filter-reset" id="filter-reset">필터 초기화</button>
   </aside>
 
   <main>
@@ -105,6 +107,21 @@
         <div class="radio-row">
           <label><input type="radio" name="w-type" value="offer" checked> 구인 (사람을 찾습니다)</label>
           <label><input type="radio" name="w-type" value="seek"> 구직 (자리를 찾습니다)</label>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-field">
+          <label>구분</label>
+          <select name="w-tier" required>
+            <option value="프로">프로 (직업 악단·공연)</option>
+            <option value="전공·입시">전공·입시 (유스·입시레슨)</option>
+            <option value="교육·취미">교육·취미 (방과후·취미레슨)</option>
+            <option value="오브리">오브리 (교회·웨딩·행사)</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label>일시 (연주·근무일)</label>
+          <input type="text" name="w-when" placeholder="예: 7/21~23 리허설, 7/24 공연">
         </div>
       </div>
       <div class="form-row">
@@ -176,8 +193,12 @@
         </div>
       </div>
       <div class="form-field">
+        <label>프로그램 <span style="font-weight:400;color:var(--ink-soft)">(객원 모집 시 기재 권장)</span></label>
+        <input type="text" name="w-program" placeholder="예: 브람스 교향곡 4번, 시벨리우스 협주곡">
+      </div>
+      <div class="form-field">
         <label>상세 내용</label>
-        <textarea name="w-body" required placeholder="일정, 프로그램, 자격 요건, 연락 방법 등을 적어주세요."></textarea>
+        <textarea name="w-body" required placeholder="일정, 연습 횟수, 자격 요건, 연락 방법 등을 적어주세요."></textarea>
       </div>
       <div class="modal-actions">
         <button type="button" class="btn-outline" onclick="document.getElementById('write-modal').classList.remove('open')">취소</button>
