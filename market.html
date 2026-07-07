@@ -47,6 +47,8 @@
     <div class="filter-group"><h4>지역</h4><div class="filter-options" id="f-region"></div></div>
     <div class="filter-group"><h4>거래 방식</h4><div class="filter-options" id="f-deal"></div></div>
     <div class="filter-group"><h4>가격대</h4><div class="filter-options" id="f-price"></div></div>
+    <div class="filter-group"><h4>상태 등급</h4><div class="filter-options" id="f-grade"></div></div>
+    <div class="filter-group"><h4>판매자</h4><div class="filter-options" id="f-seller"></div></div>
     <div class="filter-group"><h4>신뢰 조건</h4><div class="filter-options" id="f-trust"></div></div>
   </aside>
   <main>
@@ -61,6 +63,27 @@
   </main>
 </div>
 
+<!-- 매물 상세 모달 (뮬/Reverb 벤치마킹: 등급 기준·구성품·판매자 신뢰) -->
+<div class="modal-backdrop" id="market-modal">
+  <div class="modal">
+    <button class="modal-close">✕</button>
+    <div class="top-row" id="mk-tags"></div>
+    <h2 id="mk-title"></h2>
+    <div style="height:140px;border-radius:8px;margin-bottom:12px;background:linear-gradient(135deg,#efe9db,#e2d8c2);display:flex;align-items:center;justify-content:center;font-size:2rem">🎻</div>
+    <div class="price-line" id="mk-price" style="margin-bottom:10px"></div>
+    <dl class="detail-meta" id="mk-meta"></dl>
+    <h3 style="font-size:0.95rem;color:var(--navy);margin:14px 0 6px">판매자 설명</h3>
+    <div class="body-text" id="mk-note" style="margin-bottom:14px"></div>
+    <div style="font-size:0.76rem;color:var(--ink-soft);background:var(--ivory);border-radius:8px;padding:10px 14px;margin-bottom:16px">
+      등급 기준 — <b>S급</b> 신품급·풀구성 / <b>A급</b> 생활 기스·기능 완전 / <b>B급</b> 사용감·수리 이력. 등급은 판매자 신고 기준이며, 고가 악기는 반드시 시연·동반 감정 후 결정하세요.
+    </div>
+    <div class="modal-actions">
+      <button class="btn-outline" onclick="alert('프로토타입: 찜 기능은 실서비스에서 제공됩니다.')">♥ 찜하기</button>
+      <button class="btn-primary" onclick="alert('프로토타입: 문의는 실서비스에서 공개 댓글/채팅으로 제공됩니다.')">문의하기</button>
+    </div>
+  </div>
+</div>
+
 <footer class="site-footer">
   <div class="container"><span class="logo serif">포디엄<span class="accent">.</span></span><br>클래식 음악인을 위한 플랫폼 · 프로토타입 v0.2</div>
 </footer>
@@ -68,30 +91,39 @@
 <a class="feedback-fab" href="mailto:ohmjin3141@naver.com?subject=%ED%8F%AC%EB%94%94%EC%97%84%20%EC%A4%91%EA%B3%A0%EA%B1%B0%EB%9E%98%20%ED%94%BC%EB%93%9C%EB%B0%B1">💬 피드백 보내기</a>
 
 <script>
-// 리서치 반영: 감정서 유무·시연 가능·위탁/직거래·수리이력·샘플사운드가 핵심 신뢰 정보
+// 벤치마킹 반영: 상태등급(Reverb식 표준)·판매상태(뮬의 수동 관행 정식화)·판매자 신뢰·가격제안
+// 등급 기준 — S급: 신품급·풀구성 / A급: 생활기스·기능 완전 / B급: 사용감·수리이력 있음
 const ITEMS = [
   { cat:"악기", title:"독일 공방 바이올린 (Ernst Heinrich Roth, 1978)", price:1450, region:"서초·남부터미널",
+    status:"판매중", grade:"A", includes:"BAM 케이스", offer:true, seller:{type:"개인", trades:7}, wish:24, views:412,
     cert:"에프홀 감정서", demo:"남부터미널 악기상 시연실", deal:"위탁(악기상 경유) · 직거래 병행", repair:"지판 교체(2024), 균열 없음",
     sound:true, note:"유학 시절부터 15년 사용. 케이스(BAM) 포함. 활 별도 문의. 동반 감정 환영." },
   { cat:"악기", title:"프랑스 첼로 (Mirecourt, c.1920)", price:3800, region:"강남",
+    status:"예약중", grade:"B", includes:"소프트 케이스", offer:true, seller:{type:"개인", trades:3}, wish:31, views:689,
     cert:"감정서 없음(구매 시 동행 감정 협조)", demo:"악기상 시연실 예약제", deal:"위탁(악기상 경유)", repair:"버즈 수리 이력(2022)",
     sound:true, note:"음대 졸업 후 유학으로 정리합니다. 네고 소폭 가능." },
   { cat:"악기", title:"야마하 플루트 YFL-677H (은제)", price:290, region:"일산·파주",
+    status:"판매중", grade:"S", includes:"정품 케이스·클리닝로드", offer:false, seller:{type:"개인", trades:12}, wish:18, views:305,
     cert:"정품 보증서", demo:"직거래 시연 환영", deal:"직거래", repair:"패드 전체 교체(2025.11)",
     sound:false, note:"입시 끝나서 판매. 오버홀 직후라 상태 최상." },
   { cat:"활", title:"프랑스 바이올린 활 (J.J. Millant 공방)", price:850, region:"서초·남부터미널",
+    status:"판매중", grade:"A", includes:"보우 케이스", offer:true, seller:{type:"악기상·공방", trades:128}, wish:15, views:233,
     cert:"에프홀 감정서", demo:"시연 가능(본인 악기 지참)", deal:"위탁(악기상 경유)", repair:"모발 교체 최근",
     sound:false, note:"밸런스 좋은 연주용 활. 무게 60.2g." },
   { cat:"악기", title:"셀머 클라리넷 시그니처 (그레나딜라)", price:420, region:"수원·용인",
+    status:"판매중", grade:"A", includes:"배럴 2개·정품 케이스", offer:true, seller:{type:"개인", trades:5}, wish:9, views:187,
     cert:"정품 보증서", demo:"직거래 시연 가능", deal:"직거래 · 안전결제 가능", repair:"탬포 교체(2026.3)",
     sound:true, note:"부주로 쓰던 악기. 배럴 2개 포함." },
   { cat:"케이스", title:"BAM 하이테크 바이올린 케이스 (블랙)", price:55, region:"신촌·마포",
+    status:"판매완료", grade:"B", includes:"습도계", offer:false, seller:{type:"개인", trades:9}, wish:6, views:142,
     cert:"", demo:"", deal:"직거래 · 택배 가능", repair:"외관 사용감 있음, 잠금 정상",
     sound:false, note:"케이스 교체로 판매. 습도계 정상 작동." },
   { cat:"악보·기타", title:"헨레 원전판 베토벤 소나타 전집 (신품급)", price:12, region:"온라인·택배",
+    status:"판매중", grade:"S", includes:"전 5권", offer:false, seller:{type:"개인", trades:22}, wish:3, views:88,
     cert:"", demo:"", deal:"택배 · 안전결제", repair:"필기 없음",
     sound:false, note:"1권 표지 모서리 눌림 외 새 책입니다." },
   { cat:"악기", title:"업라이트 피아노 야마하 U3 (연습실 방출)", price:280, region:"노원·강북",
+    status:"판매중", grade:"B", includes:"의자·커버", offer:true, seller:{type:"악기상·공방", trades:34}, wish:11, views:264,
     cert:"", demo:"현장 시연 가능", deal:"직거래(운송비 구매자 부담)", repair:"조율 2026.5, 해머 정상",
     sound:true, note:"연습실 정리로 3대 일괄 방출. 대당 가격." },
 ];
@@ -100,8 +132,10 @@ const CATS=["악기","활","케이스","악보·기타"];
 const REGIONS=["서초·남부터미널","강남","신촌·마포","노원·강북","일산·파주","수원·용인","온라인·택배"];
 const DEALS=["대면 직거래","위탁(악기상)","택배 가능"];
 const PRICES=["100만 이하","100~1000만","1000만 이상"];
-const TRUSTS=["감정서·보증서","시연 가능","안전결제"];
-const st={cat:new Set(),region:new Set(),deal:new Set(),price:new Set(),trust:new Set(),q:""};
+const GRADES=["S급","A급","B급"];
+const SELLERS=["개인","악기상·공방"];
+const TRUSTS=["감정서·보증서","시연 가능","안전결제","가격제안 가능","판매중만"];
+const st={cat:new Set(),region:new Set(),deal:new Set(),price:new Set(),grade:new Set(),seller:new Set(),trust:new Set(),q:""};
 const $=s=>document.querySelector(s);
 
 function chips(id,items,set){const el=$(id);el.innerHTML=items.map(v=>`<button class="chip${set.has(v)?" on":""}" data-v="${v}">${v}</button>`).join("");
@@ -114,11 +148,16 @@ function fmtPrice(p){
 
 function render(){
   chips("#f-cat",CATS,st.cat);chips("#f-region",REGIONS,st.region);chips("#f-deal",DEALS,st.deal);
-  chips("#f-price",PRICES,st.price);chips("#f-trust",TRUSTS,st.trust);
+  chips("#f-price",PRICES,st.price);chips("#f-grade",GRADES,st.grade);chips("#f-seller",SELLERS,st.seller);
+  chips("#f-trust",TRUSTS,st.trust);
   const q=st.q.toLowerCase();
   const list=ITEMS.filter(i=>{
     if(st.cat.size&&!st.cat.has(i.cat))return false;
     if(st.region.size&&!st.region.has(i.region))return false;
+    if(st.grade.size&&!st.grade.has(i.grade+"급"))return false;
+    if(st.seller.size&&!st.seller.has(i.seller.type))return false;
+    if(st.trust.has("판매중만")&&i.status!=="판매중")return false;
+    if(st.trust.has("가격제안 가능")&&!i.offer)return false;
     if(st.deal.size){
       const m=[...st.deal].some(v=>
         v==="대면 직거래"&&i.deal.includes("직거래")||
@@ -134,27 +173,60 @@ function render(){
     return true;
   });
   $("#result-count").innerHTML=`총 <strong>${list.length}</strong>건`;
-  $("#list").innerHTML=list.length?list.map(i=>`
-    <article class="job-card">
+  $("#list").innerHTML=list.length?list.map((i,idx)=>`
+    <article class="job-card${i.status==="판매완료"?" closed":""}" data-i="${idx}">
       <div class="top-row">
+        <span class="tag ${i.status==="판매중"?"ok":i.status==="예약중"?"warn":"dd-closed"}">${i.status}</span>
+        <span class="tag pos">${i.grade}급</span>
         <span class="tag cat">${i.cat}</span>
         ${i.cert?`<span class="tag ok">📜 ${i.cert}</span>`:`<span class="tag warn">감정서 없음</span>`}
         ${i.demo?`<span class="tag inst">시연 가능</span>`:""}
+        ${i.offer?`<span class="tag inst">가격제안</span>`:""}
         ${i.sound?`<span class="tag pos">🔊 샘플사운드</span>`:""}
       </div>
       <h3>${i.title}</h3>
       <div class="price-line">${fmtPrice(i.price)}</div>
       <div class="meta">
-        <span>📍 ${i.region}</span><span>${i.deal}</span>${i.repair?`<span>수리이력: ${i.repair}</span>`:""}
+        <span>📍 ${i.region}</span><span>${i.deal}</span>
+        <span>${i.seller.type} · 거래 ${i.seller.trades}회</span>
       </div>
-      <div class="source-line"><span>${i.note}</span></div>
+      <div class="source-line"><span>${i.note}</span><span>♥ ${i.wish} · 조회 ${i.views}</span></div>
     </article>`).join(""):`<div class="empty">조건에 맞는 매물이 없습니다.</div>`;
+  document.querySelectorAll("#list .job-card").forEach(card=>{
+    card.addEventListener("click",()=>openItem(list[+card.dataset.i]));
+  });
+}
+
+const GRADE_DESC={S:"신품급 · 풀구성 · 결점 없음",A:"생활 기스 · 기능 완전",B:"사용감 · 수리 이력 있음"};
+function openItem(i){
+  $("#mk-tags").innerHTML=`
+    <span class="tag ${i.status==="판매중"?"ok":i.status==="예약중"?"warn":"dd-closed"}">${i.status}</span>
+    <span class="tag pos">${i.grade}급</span>
+    <span class="tag cat">${i.cat}</span>
+    ${i.cert?`<span class="tag ok">📜 ${i.cert}</span>`:`<span class="tag warn">감정서 없음</span>`}
+    ${i.sound?`<span class="tag pos">🔊 샘플사운드</span>`:""}`;
+  $("#mk-title").textContent=i.title;
+  $("#mk-price").innerHTML=`${fmtPrice(i.price)} <span class="per">${i.offer?"· 가격제안 가능":"· 정가"}</span>`;
+  $("#mk-meta").innerHTML=`
+    <dt>상태 등급</dt><dd><b>${i.grade}급</b> — ${GRADE_DESC[i.grade]}</dd>
+    <dt>구성품</dt><dd>${i.includes||"-"}</dd>
+    <dt>수리 이력</dt><dd>${i.repair||"없음"}</dd>
+    <dt>시연</dt><dd>${i.demo||"협의"}</dd>
+    <dt>거래 방식</dt><dd>${i.deal}</dd>
+    <dt>지역</dt><dd>${i.region}</dd>
+    <dt>판매자</dt><dd>${i.seller.type} · 거래 ${i.seller.trades}회</dd>
+    <dt>관심</dt><dd>♥ ${i.wish} · 조회 ${i.views}</dd>`;
+  $("#mk-note").textContent=i.note;
+  $("#market-modal").classList.add("open");
 }
 
 document.addEventListener("DOMContentLoaded",()=>{
   render();
   $("#search-input").addEventListener("input",e=>{st.q=e.target.value.trim();render();});
-  $("#filter-reset").addEventListener("click",()=>{st.cat.clear();st.price.clear();st.trust.clear();st.q="";$("#search-input").value="";render();});
+  $("#filter-reset").addEventListener("click",()=>{st.cat.clear();st.region.clear();st.deal.clear();st.price.clear();st.grade.clear();st.seller.clear();st.trust.clear();st.q="";$("#search-input").value="";render();});
+  const mk=$("#market-modal");
+  mk.addEventListener("click",e=>{if(e.target===mk)mk.classList.remove("open");});
+  mk.querySelector(".modal-close").addEventListener("click",()=>mk.classList.remove("open"));
 });
 </script>
 </body>
