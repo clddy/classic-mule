@@ -20,8 +20,7 @@
   <div class="container">
     <a href="index.html" class="logo">포디움<span class="accent">.</span><span class="beta">BETA</span></a>
     <nav class="main-nav">
-      <a href="jobs.html">구인·구직</a>
-      <a href="official.html">채용공고</a>
+      <a href="jobs.html">구인구직</a>
       <a href="practice.html">연습실</a>
       <a href="lessons.html">과외</a>
       <a href="market.html" class="active">중고거래</a>
@@ -44,13 +43,15 @@
 <div class="container board-layout">
   <aside class="filters">
     <div class="filter-group"><h4>분류</h4><div class="filter-options" id="f-cat"></div></div>
+    <div class="filter-group"><h4>지역</h4><div class="filter-options" id="f-region"></div></div>
+    <div class="filter-group"><h4>거래 방식</h4><div class="filter-options" id="f-deal"></div></div>
     <div class="filter-group"><h4>가격대</h4><div class="filter-options" id="f-price"></div></div>
     <div class="filter-group"><h4>신뢰 조건</h4><div class="filter-options" id="f-trust"></div></div>
     <button class="filter-reset" id="filter-reset">필터 초기화</button>
   </aside>
   <main>
     <div class="safety-note">
-      🛡️ <b>안전거래 안내</b> — 고가 악기는 반드시 <b>시연 후 결정</b>하세요(본인 활 지참 권장). 감정서 없는 억대 악기, 선입금 유도, "투자용 악기" 권유는 사기 신고가 잦은 유형입니다. 위탁(악기상 경유) 거래는 수수료가 있지만 분쟁 시 안전합니다.
+      🛡️ <b>안전거래 안내</b> — 악기는 택배보다 <b>대면 거래가 기본</b>입니다. 반드시 시연 후 결정하세요(본인 활 지참 권장). 서초·남부터미널 일대 악기상 밀집 권역에서는 <b>위탁·동반 감정</b>이 활발합니다. 감정서 없는 억대 악기, 선입금 유도, "투자용 악기" 권유는 사기 신고가 잦은 유형입니다.
     </div>
     <div class="board-toolbar">
       <div class="search-box">🔍 <input type="text" id="search-input" placeholder="악기, 제작자, 지역으로 검색"></div>
@@ -69,36 +70,38 @@
 <script>
 // 리서치 반영: 감정서 유무·시연 가능·위탁/직거래·수리이력·샘플사운드가 핵심 신뢰 정보
 const ITEMS = [
-  { cat:"악기", title:"독일 공방 바이올린 (Ernst Heinrich Roth, 1978)", price:1450, region:"서초",
-    cert:"에프홀 감정서", demo:"서초 스튜디오 시연 가능", deal:"위탁(악기상 경유)", repair:"지판 교체(2024), 균열 없음",
-    sound:true, note:"유학 시절부터 15년 사용. 케이스(BAM) 포함. 활 별도 문의." },
+  { cat:"악기", title:"독일 공방 바이올린 (Ernst Heinrich Roth, 1978)", price:1450, region:"서초·남부터미널",
+    cert:"에프홀 감정서", demo:"남부터미널 악기상 시연실", deal:"위탁(악기상 경유) · 직거래 병행", repair:"지판 교체(2024), 균열 없음",
+    sound:true, note:"유학 시절부터 15년 사용. 케이스(BAM) 포함. 활 별도 문의. 동반 감정 환영." },
   { cat:"악기", title:"프랑스 첼로 (Mirecourt, c.1920)", price:3800, region:"강남",
     cert:"감정서 없음(구매 시 동행 감정 협조)", demo:"악기상 시연실 예약제", deal:"위탁(악기상 경유)", repair:"버즈 수리 이력(2022)",
     sound:true, note:"음대 졸업 후 유학으로 정리합니다. 네고 소폭 가능." },
-  { cat:"악기", title:"야마하 플루트 YFL-677H (은제)", price:290, region:"일산",
+  { cat:"악기", title:"야마하 플루트 YFL-677H (은제)", price:290, region:"일산·파주",
     cert:"정품 보증서", demo:"직거래 시연 환영", deal:"직거래", repair:"패드 전체 교체(2025.11)",
     sound:false, note:"입시 끝나서 판매. 오버홀 직후라 상태 최상." },
-  { cat:"활", title:"프랑스 바이올린 활 (J.J. Millant 공방)", price:850, region:"서초",
+  { cat:"활", title:"프랑스 바이올린 활 (J.J. Millant 공방)", price:850, region:"서초·남부터미널",
     cert:"에프홀 감정서", demo:"시연 가능(본인 악기 지참)", deal:"위탁(악기상 경유)", repair:"모발 교체 최근",
     sound:false, note:"밸런스 좋은 연주용 활. 무게 60.2g." },
-  { cat:"악기", title:"셀머 클라리넷 시그니처 (그레나딜라)", price:420, region:"수원",
+  { cat:"악기", title:"셀머 클라리넷 시그니처 (그레나딜라)", price:420, region:"수원·용인",
     cert:"정품 보증서", demo:"직거래 시연 가능", deal:"직거래 · 안전결제 가능", repair:"탬포 교체(2026.3)",
     sound:true, note:"부주로 쓰던 악기. 배럴 2개 포함." },
-  { cat:"케이스", title:"BAM 하이테크 바이올린 케이스 (블랙)", price:55, region:"신촌",
+  { cat:"케이스", title:"BAM 하이테크 바이올린 케이스 (블랙)", price:55, region:"신촌·마포",
     cert:"", demo:"", deal:"직거래 · 택배 가능", repair:"외관 사용감 있음, 잠금 정상",
     sound:false, note:"케이스 교체로 판매. 습도계 정상 작동." },
-  { cat:"악보·기타", title:"헨레 원전판 베토벤 소나타 전집 (신품급)", price:12, region:"온라인",
+  { cat:"악보·기타", title:"헨레 원전판 베토벤 소나타 전집 (신품급)", price:12, region:"온라인·택배",
     cert:"", demo:"", deal:"택배 · 안전결제", repair:"필기 없음",
     sound:false, note:"1권 표지 모서리 눌림 외 새 책입니다." },
-  { cat:"악기", title:"업라이트 피아노 야마하 U3 (연습실 방출)", price:280, region:"노원",
+  { cat:"악기", title:"업라이트 피아노 야마하 U3 (연습실 방출)", price:280, region:"노원·강북",
     cert:"", demo:"현장 시연 가능", deal:"직거래(운송비 구매자 부담)", repair:"조율 2026.5, 해머 정상",
     sound:true, note:"연습실 정리로 3대 일괄 방출. 대당 가격." },
 ];
 
 const CATS=["악기","활","케이스","악보·기타"];
+const REGIONS=["서초·남부터미널","강남","신촌·마포","노원·강북","일산·파주","수원·용인","온라인·택배"];
+const DEALS=["대면 직거래","위탁(악기상)","택배 가능"];
 const PRICES=["100만 이하","100~1000만","1000만 이상"];
-const TRUSTS=["감정서·보증서","시연 가능","위탁 거래","안전결제"];
-const st={cat:new Set(),price:new Set(),trust:new Set(),q:""};
+const TRUSTS=["감정서·보증서","시연 가능","안전결제"];
+const st={cat:new Set(),region:new Set(),deal:new Set(),price:new Set(),trust:new Set(),q:""};
 const $=s=>document.querySelector(s);
 
 function chips(id,items,set){const el=$(id);el.innerHTML=items.map(v=>`<button class="chip${set.has(v)?" on":""}" data-v="${v}">${v}</button>`).join("");
@@ -110,14 +113,22 @@ function fmtPrice(p){
 }
 
 function render(){
-  chips("#f-cat",CATS,st.cat);chips("#f-price",PRICES,st.price);chips("#f-trust",TRUSTS,st.trust);
+  chips("#f-cat",CATS,st.cat);chips("#f-region",REGIONS,st.region);chips("#f-deal",DEALS,st.deal);
+  chips("#f-price",PRICES,st.price);chips("#f-trust",TRUSTS,st.trust);
   const q=st.q.toLowerCase();
   const list=ITEMS.filter(i=>{
     if(st.cat.size&&!st.cat.has(i.cat))return false;
+    if(st.region.size&&!st.region.has(i.region))return false;
+    if(st.deal.size){
+      const m=[...st.deal].some(v=>
+        v==="대면 직거래"&&i.deal.includes("직거래")||
+        v==="위탁(악기상)"&&i.deal.includes("위탁")||
+        v==="택배 가능"&&i.deal.includes("택배"));
+      if(!m)return false;
+    }
     if(st.price.size){const m=[...st.price].some(v=>v==="100만 이하"&&i.price<=100||v==="100~1000만"&&i.price>100&&i.price<=1000||v==="1000만 이상"&&i.price>1000);if(!m)return false;}
     if(st.trust.has("감정서·보증서")&&!i.cert)return false;
     if(st.trust.has("시연 가능")&&!i.demo)return false;
-    if(st.trust.has("위탁 거래")&&!i.deal.includes("위탁"))return false;
     if(st.trust.has("안전결제")&&!i.deal.includes("안전결제"))return false;
     if(q&&!`${i.title} ${i.region} ${i.note}`.toLowerCase().includes(q))return false;
     return true;

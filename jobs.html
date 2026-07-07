@@ -14,8 +14,7 @@
   <div class="container">
     <a href="index.html" class="logo">포디움<span class="accent">.</span><span class="beta">BETA</span></a>
     <nav class="main-nav">
-      <a href="jobs.html" class="active">구인·구직</a>
-      <a href="official.html">채용공고</a>
+      <a href="jobs.html" class="active">구인구직</a>
       <a href="practice.html">연습실</a>
       <a href="lessons.html">과외</a>
       <a href="market.html">중고거래</a>
@@ -29,11 +28,12 @@
 
 <div class="page-head">
   <div class="container">
-    <h1>구인·구직</h1>
-    <p class="desc">객원·대타, 반주, 행사 연주, 강사 — 개인·팀이 직접 올리는 급한 자리. (기관 공식 공고는 <a href="official.html" style="color:var(--gold-light);text-decoration:underline">채용공고</a>에서)</p>
+    <h1>구인구직</h1>
+    <p class="desc">시향·국공립 <b>공식 채용공고</b>(매일 자동 수집)와 개인·팀의 <b>소규모 구인·구직</b>을 한곳에서. 출처 태그로 구분됩니다.</p>
     <div class="tabs">
-      <button class="tab active" id="tab-offer">구인</button>
-      <button class="tab" id="tab-seek">구직</button>
+      <button class="tab active" id="tab-전체">전체</button>
+      <button class="tab" id="tab-구인">구인</button>
+      <button class="tab" id="tab-구직">구직</button>
     </div>
   </div>
 </div>
@@ -41,33 +41,45 @@
 <div class="container board-layout">
   <aside class="filters">
     <div class="filter-group">
-      <h4>분야</h4>
-      <div class="filter-options" id="filter-cat"></div>
+      <h4>출처</h4>
+      <div class="filter-options" id="filter-src"></div>
     </div>
     <div class="filter-group">
-      <h4>악기군</h4>
-      <div class="filter-options" id="filter-inst"></div>
+      <h4>유형</h4>
+      <div class="filter-options" id="filter-band"></div>
+    </div>
+    <div class="filter-group">
+      <h4>악기</h4>
+      <div id="filter-inst"></div>
     </div>
     <div class="filter-group">
       <h4>지역</h4>
       <div class="filter-options" id="filter-region"></div>
     </div>
+    <div class="filter-group">
+      <h4>상태</h4>
+      <div class="filter-options" id="filter-status"></div>
+    </div>
     <button class="filter-reset" id="filter-reset">필터 초기화</button>
   </aside>
 
   <main>
+    <div class="crawl-note">
+      <span class="dot"></span>
+      <span id="crawl-meta"></span>
+    </div>
     <div class="board-toolbar">
       <div class="search-box">
         🔍 <input type="text" id="search-input" placeholder="제목, 악기, 기관명으로 검색">
       </div>
-      <button class="btn-primary" id="btn-write">＋ 공고 올리기</button>
+      <button class="btn-primary" id="btn-write">＋ 글 올리기</button>
     </div>
     <div class="result-count" id="result-count"></div>
     <div class="job-list" id="job-list"></div>
   </main>
 </div>
 
-<!-- 상세 모달 -->
+<!-- 소규모 글 상세 모달 -->
 <div class="modal-backdrop" id="detail-modal">
   <div class="modal">
     <button class="modal-close">✕</button>
@@ -86,7 +98,7 @@
 <div class="modal-backdrop" id="write-modal">
   <div class="modal">
     <button class="modal-close">✕</button>
-    <h2>공고 올리기</h2>
+    <h2>글 올리기 <span style="font-size:0.75rem;color:var(--ink-soft);font-weight:400">(소규모 구인·구직)</span></h2>
     <form class="form-grid" id="write-form">
       <div class="form-field">
         <label>구분</label>
@@ -145,7 +157,7 @@
       <div class="form-row">
         <div class="form-field">
           <label>기관/팀명 또는 이름</label>
-          <input type="text" name="w-org" required placeholder="○○오케스트라">
+          <input type="text" name="w-org" required placeholder="○○앙상블">
         </div>
         <div class="form-field">
           <label>보수</label>
@@ -178,12 +190,26 @@
 <footer class="site-footer">
   <div class="container">
     <span class="logo serif">포디움<span class="accent">.</span></span><br>
-    클래식 음악인을 위한 플랫폼 · 프로토타입 v0.1
+    클래식 음악인을 위한 플랫폼 · 프로토타입 v0.3
   </div>
 </footer>
 
+<a class="feedback-fab" href="mailto:ohmjin3141@naver.com?subject=%ED%8F%AC%EB%94%94%EC%9B%80%20%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85%20%ED%94%BC%EB%93%9C%EB%B0%B1">💬 피드백 보내기</a>
+
+<script src="data/official-data.js"></script>
 <script src="js/data.js"></script>
 <script src="js/jobs.js"></script>
-<a class="feedback-fab" href="mailto:ohmjin3141@naver.com?subject=%ED%8F%AC%EB%94%94%EC%9B%80%20%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85%20%ED%94%BC%EB%93%9C%EB%B0%B1">💬 피드백 보내기</a>
+<script>
+  // 수집 현황 배너
+  (function () {
+    const D = window.CRAWLED;
+    const el = document.getElementById("crawl-meta");
+    if (D) {
+      el.innerHTML = `공식 공고 마지막 수집: <strong>${D.collectedAt}</strong> · 기관 ${D.okCount}/${D.sourceCount} 응답 · 매일 18시 자동 수집`;
+    } else {
+      el.textContent = "공식 공고 데이터를 불러오지 못했습니다.";
+    }
+  })();
+</script>
 </body>
 </html>

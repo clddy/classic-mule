@@ -80,30 +80,68 @@ def relevant(title):
     return bool(INCLUDE.search(title)) and not EXCLUDE.search(title)
 
 def classify_kind(title):
-    if re.search(r"단원|악장|수석|부수석|차석|연주자|오디션|지휘자|지휘|반주|성악가|협연", title):
-        if re.search(r"사무단원|기획운영단원|사무국", title):
-            return "직원"
+    """단원(상임) / 객원·대체(비상임·기간제) / 반주 / 직원 / 기타"""
+    if re.search(r"사무단원|기획운영단원|사무국|행정|안내원|매니저|팀장|본부장|시설|미화|보안", title):
+        return "직원"
+    if re.search(r"객원|비상임|대체(?:근로|인력|연주)?|기간제.*단원|단원.*기간제", title):
+        return "객원·대체"
+    if re.search(r"반주자|반주 ?단원", title):
+        return "반주"
+    if re.search(r"단원|악장|수석|부수석|차석|연주자|오디션|지휘자|성악가", title):
         return "단원"
-    if re.search(r"직원|사무|행정|인턴|근로자|안내원|매니저|팀장|본부장|교육생|강사", title):
+    if re.search(r"직원|인턴|근로자|교육생|강사", title):
         return "직원"
     return "기타"
 
-def classify_inst(title):
-    t = title
-    if re.search(r"더블 ?베이스|콘트라베이스", t): return "현악"
-    if re.search(r"바이올린|비올라|첼로|하프|현악", t): return "현악"
-    if re.search(r"플루트|오보에|클라리넷|바순|파곳|목관|피콜로", t): return "목관"
-    if re.search(r"호른|트럼펫|트롬본|튜바|금관", t): return "금관"
-    if re.search(r"타악|팀파니|퍼커션", t): return "타악"
-    if re.search(r"피아노|오르간|건반|반주", t): return "건반"
-    if re.search(r"소프라노|알토|테너|베이스(?!기타)|바리톤|성악|합창", t): return "성악"
-    if re.search(r"지휘", t): return "지휘"
-    return "전체"
+# (세부악기, 악기군) — 순서 중요: 더블베이스가 성악 베이스보다 먼저
+INST_DETAILS = [
+    ("더블베이스", "현악", r"더블 ?베이스|콘트라베이스"),
+    ("바이올린", "현악", r"바이올린"),
+    ("비올라", "현악", r"비올라"),
+    ("첼로", "현악", r"첼로"),
+    ("하프", "현악", r"하프"),
+    ("플루트", "목관", r"플루트|피콜로"),
+    ("오보에", "목관", r"오보에"),
+    ("클라리넷", "목관", r"클라리넷"),
+    ("바순", "목관", r"바순|파곳"),
+    ("호른", "금관", r"호른"),
+    ("트럼펫", "금관", r"트럼펫"),
+    ("트롬본", "금관", r"트롬본"),
+    ("튜바", "금관", r"튜바"),
+    ("타악", "타악", r"타악|팀파니|퍼커션"),
+    ("피아노", "건반", r"피아노|오르간|건반|반주"),
+    ("소프라노", "성악", r"소프라노"),
+    ("메조소프라노", "성악", r"메조"),
+    ("알토", "성악", r"알토"),
+    ("테너", "성악", r"테너"),
+    ("바리톤", "성악", r"바리톤"),
+    ("베이스(성악)", "성악", r"베이스(?!기타)"),
+    ("지휘", "지휘", r"지휘"),
+]
+
+def classify_insts(title):
+    """제목에서 세부 악기 전부 추출 → (악기군, [세부악기...])"""
+    t = re.sub(r"더블 ?베이스|콘트라베이스", "◆DBASS◆", title)
+    details, groups = [], []
+    for name, group, pat in INST_DETAILS:
+        target = title if name == "더블베이스" else t
+        if re.search(pat, target):
+            details.append(name)
+            if group not in groups:
+                groups.append(group)
+    if not details:
+        if re.search(r"현악", title): return "현악", []
+        if re.search(r"목관|관악", title): return "목관", []
+        if re.search(r"금관", title): return "금관", []
+        if re.search(r"성악|합창", title): return "성악", []
+        return "전체", []
+    return groups[0], details
 
 def item_id(url, title):
     return hashlib.sha1(f"{url}|{title}".encode("utf-8")).hexdigest()[:16]
 
 def make_item(org, region, source, title, url, date=None, deadline=None):
+    group, details = classify_insts(title)
     return {
         "id": item_id(url, title),
         "org": org, "region": region, "source": source,
@@ -112,5 +150,6 @@ def make_item(org, region, source, title, url, date=None, deadline=None):
         "date": date,          # 게시일 (모르면 None)
         "deadline": deadline,  # 접수 마감 (모르면 None)
         "kind": classify_kind(title),
-        "inst": classify_inst(title),
+        "inst": group,
+        "instDetails": details,  # 세부 악기 (복수 가능: "비올라, 오보에")
     }

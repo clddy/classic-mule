@@ -21,8 +21,7 @@
   <div class="container">
     <a href="index.html" class="logo">포디움<span class="accent">.</span><span class="beta">BETA</span></a>
     <nav class="main-nav">
-      <a href="jobs.html">구인·구직</a>
-      <a href="official.html">채용공고</a>
+      <a href="jobs.html">구인구직</a>
       <a href="practice.html">연습실</a>
       <a href="lessons.html" class="active">과외</a>
       <a href="market.html">중고거래</a>
@@ -103,7 +102,14 @@ const REQUESTS = [
   { inst:"건반", detail:"피아노", title:"초5 콩쿠르 준비 레슨", region:"강남", budget:"회당 8~12만", mode:"스튜디오", note:"체르니 40 진행 중. 금호영재 목표." },
 ];
 
-const INSTS=["현악","목관","금관","건반","성악"];
+// 악기는 세부 단위로 — 바이올린 선생님이 비올라를 가르칠 수는 없으니까
+const INST_GROUPS=[
+  ["현악",["바이올린","비올라","첼로","더블베이스","하프"]],
+  ["목관",["플루트","오보에","클라리넷","바순"]],
+  ["금관",["호른","트럼펫","트롬본","튜바"]],
+  ["기타",["타악","피아노"]],
+  ["성악",["소프라노","메조소프라노","알토","테너","바리톤","베이스"]],
+];
 const LEVELS=["취미","입시","전공심화","유학준비"];
 const MODES=["스튜디오","출강","온라인"];
 const CONDS=["시범레슨 가능"];
@@ -113,15 +119,26 @@ const $=s=>document.querySelector(s);
 function chips(id,items,set){const el=$(id);el.innerHTML=items.map(v=>`<button class="chip${set.has(v)?" on":""}" data-v="${v}">${v}</button>`).join("");
   el.querySelectorAll(".chip").forEach(c=>c.addEventListener("click",()=>{const v=c.dataset.v;set.has(v)?set.delete(v):set.add(v);render();}));}
 
+function instChips(){
+  const el=$("#f-inst");
+  el.innerHTML=INST_GROUPS.map(([g,list])=>`
+    <div class="inst-group"><span class="inst-group-label">${g}</span>
+      ${list.map(v=>`<button class="chip${st.inst.has(v)?" on":""}" data-v="${v}">${v}</button>`).join("")}
+    </div>`).join("");
+  el.querySelectorAll(".chip").forEach(c=>c.addEventListener("click",()=>{const v=c.dataset.v;st.inst.has(v)?st.inst.delete(v):st.inst.add(v);render();}));
+}
+// 세부 악기 매칭: "피아노(반주)"는 "피아노" 칩에 매칭
+const instMatch=(detail,set)=>[...set].some(v=>detail.startsWith(v)||detail===v);
+
 function render(){
-  chips("#f-inst",INSTS,st.inst);chips("#f-level",LEVELS,st.level);chips("#f-mode",MODES,st.mode);chips("#f-cond",CONDS,st.cond);
+  instChips();chips("#f-level",LEVELS,st.level);chips("#f-mode",MODES,st.mode);chips("#f-cond",CONDS,st.cond);
   $("#tab-teacher").classList.toggle("active",st.tab==="teacher");
   $("#tab-request").classList.toggle("active",st.tab==="request");
   const q=st.q.toLowerCase();
   let html="";
   if(st.tab==="teacher"){
     const list=TEACHERS.filter(t=>{
-      if(st.inst.size&&!st.inst.has(t.inst))return false;
+      if(st.inst.size&&!instMatch(t.detail,st.inst))return false;
       if(st.level.size&&![...st.level].some(l=>t.target.includes(l)))return false;
       if(st.mode.size&&![...st.mode].some(m=>t.mode.includes(m)))return false;
       if(st.cond.has("시범레슨 가능")&&!t.trial)return false;
@@ -144,7 +161,7 @@ function render(){
       </article>`).join("");
   } else {
     const list=REQUESTS.filter(r=>{
-      if(st.inst.size&&!st.inst.has(r.inst))return false;
+      if(st.inst.size&&!instMatch(r.detail,st.inst))return false;
       if(q&&!`${r.detail} ${r.title} ${r.region}`.toLowerCase().includes(q))return false;
       return true;
     });

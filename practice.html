@@ -22,8 +22,7 @@
   <div class="container">
     <a href="index.html" class="logo">포디움<span class="accent">.</span><span class="beta">BETA</span></a>
     <nav class="main-nav">
-      <a href="jobs.html">구인·구직</a>
-      <a href="official.html">채용공고</a>
+      <a href="jobs.html">구인구직</a>
       <a href="practice.html" class="active">연습실</a>
       <a href="lessons.html">과외</a>
       <a href="market.html">중고거래</a>
@@ -70,42 +69,50 @@
 const ROOMS = [
   { name:"서초 뮤직스페이스 3호실", region:"서초", size:"5평(16.5㎡)", monthly:25, hourly:0.4, nego:true,
     soundWall:true, windowLayer:"3중창", light:"남향 · 채광 좋음", vent:"전열교환 환기",
+    humid:true, h24:false, ens:false,
     fac:["그랜드피아노","보면대","전신거울","에어컨","라커"], slots:2, brass:false,
-    note:"월 정기권 기준 자유 이용. 그랜드 야마하 C3. 성악 가능, 금관·타악 불가." },
+    note:"월 정기권 기준 자유 이용. 그랜드 야마하 C3. 항온항습기 상시 가동. 성악 가능, 금관·타악 불가." },
   { name:"방배 클랑스튜디오 B룸", region:"서초", size:"3평(9.9㎡)", monthly:18, hourly:0.3, nego:false,
     soundWall:true, windowLayer:"2중창", light:"반지하 · 채광 보통", vent:"환풍기",
+    humid:false, h24:true, ens:false,
     fac:["업라이트피아노","보면대","에어컨"], slots:1, brass:true,
-    note:"금관·타악 연습 가능한 몇 안 되는 방. 새벽 이용 가능(24시)." },
+    note:"금관·타악 연습 가능한 몇 안 되는 방. 24시간 출입(지문인식)." },
   { name:"강남 아르페지오 연습실", region:"강남", size:"4평(13.2㎡)", monthly:30, hourly:0.5, nego:true,
     soundWall:true, windowLayer:"3중창", light:"동향 · 오전 채광", vent:"중앙 환기 시스템",
+    humid:true, h24:false, ens:false,
     fac:["그랜드피아노","보면대","거울","에어컨","정수기","대기실"], slots:3, brass:false,
-    note:"입시생 비중 높음. 레슨 대여(선생님 동반) 시간당 요금 별도." },
+    note:"입시생 비중 높음. 가습·제습 자동 관리. 레슨 대여(선생님 동반) 시간당 요금 별도." },
   { name:"신촌 무지카홀 연습동 2층", region:"신촌·홍대", size:"6평(19.8㎡)", monthly:22, hourly:0.35, nego:true,
     soundWall:true, windowLayer:"2중창", light:"남서향 · 채광 좋음", vent:"창문 환기",
+    humid:false, h24:false, ens:true,
     fac:["업라이트피아노","보면대","거울","에어컨"], slots:4, brass:false,
-    note:"실내악 팀 연습 가능한 넓은 방. 주말 예약 경쟁 있음." },
+    note:"실내악(콰르텟까지) 팀 연습 가능한 넓은 방. 주말 예약 경쟁 있음." },
   { name:"일산 스테이지원 연습실", region:"일산·파주", size:"4평(13.2㎡)", monthly:15, hourly:0.25, nego:true,
     soundWall:true, windowLayer:"2중창", light:"남향", vent:"환풍기",
+    humid:false, h24:false, ens:false,
     fac:["업라이트피아노","보면대","에어컨","주차"], slots:5, brass:true,
     note:"주차 무료. 금관 오후 10시까지 가능." },
   { name:"분당 카덴차 스튜디오", region:"분당·판교", size:"5평(16.5㎡)", monthly:28, hourly:0.45, nego:false,
     soundWall:true, windowLayer:"3중창", light:"남향 · 채광 매우 좋음", vent:"전열교환 환기",
+    humid:true, h24:true, ens:false,
     fac:["그랜드피아노","보면대","거울","에어컨","라커","대기실"], slots:0, brass:false,
-    note:"현재 만실 — 대기 등록 가능. 매월 초 자리 갱신." },
+    note:"현재 만실 — 대기 등록 가능. 매월 초 자리 갱신. 항온항습 + 24시간." },
   { name:"노원 비바체 연습실", region:"노원·강북", size:"2.5평(8.3㎡)", monthly:12, hourly:0.2, nego:true,
     soundWall:false, windowLayer:"2중창", light:"북향 · 채광 약함", vent:"창문 환기",
+    humid:false, h24:false, ens:false,
     fac:["업라이트피아노","보면대"], slots:6, brass:false,
     note:"가성비형. 방음벽 미시공(석고+흡음재)이라 심야 이용 제한." },
   { name:"수원 인터메조 음악연습장", region:"수원·용인", size:"4평(13.2㎡)", monthly:16, hourly:0.28, nego:true,
     soundWall:true, windowLayer:"2중창", light:"동향", vent:"환풍기",
+    humid:false, h24:false, ens:true,
     fac:["업라이트피아노","보면대","거울","에어컨","주차"], slots:3, brass:true,
-    note:"타악(멀렛) 가능 방 1개 보유. 장기계약 시 협의." },
+    note:"타악(멀렛) 가능 방 1개 보유. 넓은 방은 듀오·트리오 합주 가능. 장기계약 시 협의." },
 ];
 
 const REGIONS=["서초","강남","신촌·홍대","노원·강북","일산·파주","분당·판교","수원·용인"];
 const PRICES=["15만 이하","15~25만","25만 이상"];
 const SOUNDS=["방음벽 시공","3중창"];
-const CONDS=["금관·타악 가능","그랜드피아노","자리 있음","가격 조정 가능"];
+const CONDS=["금관·타악 가능","그랜드피아노","자리 있음","가격 조정 가능","습도관리","24시간","앙상블 가능","주차"];
 const st={region:new Set(),price:new Set(),sound:new Set(),cond:new Set(),q:""};
 const $=s=>document.querySelector(s);
 
@@ -121,6 +128,10 @@ function pass(r){
   if(st.cond.has("그랜드피아노")&&!r.fac.includes("그랜드피아노"))return false;
   if(st.cond.has("자리 있음")&&r.slots===0)return false;
   if(st.cond.has("가격 조정 가능")&&!r.nego)return false;
+  if(st.cond.has("습도관리")&&!r.humid)return false;
+  if(st.cond.has("24시간")&&!r.h24)return false;
+  if(st.cond.has("앙상블 가능")&&!r.ens)return false;
+  if(st.cond.has("주차")&&!r.fac.includes("주차"))return false;
   if(st.q&&!`${r.name} ${r.region} ${r.note}`.toLowerCase().includes(st.q.toLowerCase()))return false;
   return true;
 }
@@ -138,6 +149,9 @@ function render(){
         ${r.soundWall?`<span class="tag inst">방음벽</span>`:""}
         <span class="tag inst">${r.windowLayer}</span>
         ${r.brass?`<span class="tag pos">금관·타악 OK</span>`:""}
+        ${r.humid?`<span class="tag inst">💧 습도관리</span>`:""}
+        ${r.h24?`<span class="tag cat">24시간</span>`:""}
+        ${r.ens?`<span class="tag cat">앙상블</span>`:""}
         ${r.nego?`<span class="tag ok">협의가능</span>`:""}
       </div>
       <h3>${r.name}</h3>

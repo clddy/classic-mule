@@ -1,5 +1,5 @@
 {
- "collectedAt": "2026-07-07 20:12",
+ "collectedAt": "2026-07-07 20:33",
  "sourceCount": 18,
  "okCount": 18,
  "sources": [
@@ -142,6 +142,7 @@
    "deadline": null,
    "kind": "기타",
    "inst": "전체",
+   "instDetails": [],
    "firstSeen": "2026-07-07",
    "isNew": true
   },
@@ -156,6 +157,7 @@
    "deadline": null,
    "kind": "기타",
    "inst": "전체",
+   "instDetails": [],
    "firstSeen": "2026-07-07",
    "isNew": true
   },
@@ -170,6 +172,7 @@
    "deadline": null,
    "kind": "단원",
    "inst": "전체",
+   "instDetails": [],
    "firstSeen": "2026-07-07",
    "isNew": true
   },
@@ -182,8 +185,9 @@
    "url": "https://gjart.gwangju.go.kr/gso/cmd.do?opencode=pg_0501&boper=view&bnum=9981&&pnum=&ffield=&fval=",
    "date": null,
    "deadline": "2026-06-16",
-   "kind": "단원",
+   "kind": "객원·대체",
    "inst": "전체",
+   "instDetails": [],
    "firstSeen": "2026-07-07",
    "isNew": true
   },
@@ -198,6 +202,7 @@
    "deadline": "2026-01-29",
    "kind": "단원",
    "inst": "전체",
+   "instDetails": [],
    "firstSeen": "2026-07-07",
    "isNew": true
   },
@@ -212,6 +217,7 @@
    "deadline": "2026-12-03",
    "kind": "기타",
    "inst": "전체",
+   "instDetails": [],
    "deadlineFrom": "attachment",
    "firstSeen": "2026-07-07",
    "isNew": true
@@ -227,6 +233,7 @@
    "deadline": "2026-03-15",
    "kind": "기타",
    "inst": "전체",
+   "instDetails": [],
    "firstSeen": "2026-07-07",
    "isNew": true
   },
@@ -241,6 +248,7 @@
    "deadline": null,
    "kind": "기타",
    "inst": "전체",
+   "instDetails": [],
    "firstSeen": "2026-07-07",
    "isNew": true
   },
@@ -255,6 +263,10 @@
    "deadline": "2026-08-23",
    "kind": "단원",
    "inst": "현악",
+   "instDetails": [
+    "비올라",
+    "오보에"
+   ],
    "firstSeen": "2026-07-07",
    "isNew": true
   },
@@ -269,6 +281,7 @@
    "deadline": null,
    "kind": "직원",
    "inst": "전체",
+   "instDetails": [],
    "firstSeen": "2026-07-07",
    "isNew": true
   },
@@ -282,7 +295,10 @@
    "date": "2026-07-01",
    "deadline": null,
    "kind": "단원",
-   "inst": "성악",
+   "inst": "지휘",
+   "instDetails": [
+    "지휘"
+   ],
    "firstSeen": "2026-07-07",
    "isNew": true
   },
@@ -297,6 +313,7 @@
    "deadline": null,
    "kind": "기타",
    "inst": "전체",
+   "instDetails": [],
    "firstSeen": "2026-07-07",
    "isNew": true
   },
@@ -311,6 +328,7 @@
    "deadline": null,
    "kind": "기타",
    "inst": "전체",
+   "instDetails": [],
    "firstSeen": "2026-07-07",
    "isNew": true
   },
@@ -323,8 +341,9 @@
    "url": "https://www.bscc.or.kr/05_community/?mcode=0405010000&mode=2&no=15822&page=1",
    "date": "2026-06-30",
    "deadline": "2026-08-14",
-   "kind": "단원",
+   "kind": "기타",
    "inst": "현악",
+   "instDetails": [],
    "deadlineFrom": "attachment",
    "firstSeen": "2026-07-07",
    "isNew": true
@@ -340,6 +359,7 @@
    "deadline": "2026-07-18",
    "kind": "직원",
    "inst": "전체",
+   "instDetails": [],
    "firstSeen": "2026-07-07",
    "isNew": true
   },
@@ -354,6 +374,7 @@
    "deadline": null,
    "kind": "직원",
    "inst": "전체",
+   "instDetails": [],
    "firstSeen": "2026-07-07",
    "isNew": true
   },
@@ -368,6 +389,7 @@
    "deadline": "2026-04-10",
    "kind": "직원",
    "inst": "전체",
+   "instDetails": [],
    "firstSeen": "2026-07-07",
    "isNew": true
   },
@@ -382,6 +404,7 @@
    "deadline": "2026-07-03",
    "kind": "직원",
    "inst": "전체",
+   "instDetails": [],
    "deadlineFrom": "attachment",
    "firstSeen": "2026-07-07",
    "isNew": true
@@ -397,6 +420,7 @@
    "deadline": null,
    "kind": "직원",
    "inst": "전체",
+   "instDetails": [],
    "firstSeen": "2026-07-07",
    "isNew": true
   },
@@ -411,6 +435,7 @@
    "deadline": "2026-07-28",
    "kind": "직원",
    "inst": "전체",
+   "instDetails": [],
    "firstSeen": "2026-07-07",
    "isNew": true
   },
@@ -425,6 +450,7 @@
    "deadline": "2026-07-06",
    "kind": "직원",
    "inst": "전체",
+   "instDetails": [],
    "firstSeen": "2026-07-07",
    "isNew": true
   },
@@ -439,6 +465,7 @@
    "deadline": null,
    "kind": "직원",
    "inst": "전체",
+   "instDetails": [],
    "firstSeen": "2026-07-07",
    "isNew": true
   },
@@ -453,6 +480,7 @@
    "deadline": "2026-06-21",
    "kind": "기타",
    "inst": "전체",
+   "instDetails": [],
    "deadlineFrom": "attachment",
    "firstSeen": "2026-07-07",
    "isNew": true
@@ -468,6 +496,7 @@
    "deadline": null,
    "kind": "단원",
    "inst": "전체",
+   "instDetails": [],
    "firstSeen": "2026-07-07",
    "isNew": true
   },
@@ -482,6 +511,7 @@
    "deadline": "2026-07-09",
    "kind": "직원",
    "inst": "전체",
+   "instDetails": [],
    "firstSeen": "2026-07-07",
    "isNew": true
   },
@@ -496,6 +526,7 @@
    "deadline": "2026-06-16",
    "kind": "기타",
    "inst": "전체",
+   "instDetails": [],
    "deadlineFrom": "attachment",
    "firstSeen": "2026-07-07",
    "isNew": true
@@ -511,6 +542,7 @@
    "deadline": "2026-06-29",
    "kind": "단원",
    "inst": "전체",
+   "instDetails": [],
    "deadlineFrom": "attachment",
    "firstSeen": "2026-07-07",
    "isNew": true
@@ -526,6 +558,7 @@
    "deadline": "2026-06-30",
    "kind": "직원",
    "inst": "전체",
+   "instDetails": [],
    "deadlineFrom": "page",
    "firstSeen": "2026-07-07",
    "isNew": true
@@ -541,6 +574,7 @@
    "deadline": null,
    "kind": "단원",
    "inst": "성악",
+   "instDetails": [],
    "firstSeen": "2026-07-07",
    "isNew": true
   },
@@ -555,6 +589,7 @@
    "deadline": "2026-06-25",
    "kind": "기타",
    "inst": "성악",
+   "instDetails": [],
    "deadlineFrom": "attachment",
    "firstSeen": "2026-07-07",
    "isNew": true
@@ -570,6 +605,7 @@
    "deadline": "2026-06-18",
    "kind": "직원",
    "inst": "성악",
+   "instDetails": [],
    "firstSeen": "2026-07-07",
    "isNew": true
   },
@@ -584,6 +620,7 @@
    "deadline": null,
    "kind": "단원",
    "inst": "성악",
+   "instDetails": [],
    "firstSeen": "2026-07-07",
    "isNew": true
   },
@@ -598,6 +635,7 @@
    "deadline": null,
    "kind": "직원",
    "inst": "전체",
+   "instDetails": [],
    "firstSeen": "2026-07-07",
    "isNew": true
   },
@@ -612,6 +650,7 @@
    "deadline": null,
    "kind": "직원",
    "inst": "전체",
+   "instDetails": [],
    "firstSeen": "2026-07-07",
    "isNew": true
   },
@@ -626,6 +665,7 @@
    "deadline": null,
    "kind": "직원",
    "inst": "전체",
+   "instDetails": [],
    "firstSeen": "2026-07-07",
    "isNew": true
   },
@@ -640,6 +680,7 @@
    "deadline": "2027-05-03",
    "kind": "직원",
    "inst": "전체",
+   "instDetails": [],
    "deadlineFrom": "page",
    "firstSeen": "2026-07-07",
    "isNew": true
@@ -655,6 +696,7 @@
    "deadline": "2026-05-12",
    "kind": "직원",
    "inst": "성악",
+   "instDetails": [],
    "firstSeen": "2026-07-07",
    "isNew": true
   },
@@ -669,6 +711,7 @@
    "deadline": null,
    "kind": "단원",
    "inst": "전체",
+   "instDetails": [],
    "firstSeen": "2026-07-07",
    "isNew": true
   },
@@ -683,6 +726,7 @@
    "deadline": null,
    "kind": "직원",
    "inst": "전체",
+   "instDetails": [],
    "firstSeen": "2026-07-07",
    "isNew": true
   },
@@ -697,6 +741,7 @@
    "deadline": "2026-05-12",
    "kind": "기타",
    "inst": "전체",
+   "instDetails": [],
    "deadlineFrom": "attachment",
    "firstSeen": "2026-07-07",
    "isNew": true
@@ -712,6 +757,10 @@
    "deadline": null,
    "kind": "단원",
    "inst": "현악",
+   "instDetails": [
+    "비올라",
+    "트럼펫"
+   ],
    "firstSeen": "2026-07-07",
    "isNew": true
   },
@@ -724,8 +773,9 @@
    "url": "https://www.sejongpac.or.kr/portal/bbs/B0000065/view.do?nttId=49954&menuNo=200571&pageIndex=1",
    "date": "2026-04-03",
    "deadline": "2026-05-08",
-   "kind": "단원",
+   "kind": "객원·대체",
    "inst": "전체",
+   "instDetails": [],
    "deadlineFrom": "page",
    "firstSeen": "2026-07-07",
    "isNew": true
@@ -741,6 +791,7 @@
    "deadline": "2026-05-11",
    "kind": "기타",
    "inst": "성악",
+   "instDetails": [],
    "firstSeen": "2026-07-07",
    "isNew": true
   },
@@ -755,6 +806,7 @@
    "deadline": "2026-04-27",
    "kind": "직원",
    "inst": "전체",
+   "instDetails": [],
    "firstSeen": "2026-07-07",
    "isNew": true
   },
@@ -769,6 +821,7 @@
    "deadline": "2026-10-11",
    "kind": "기타",
    "inst": "전체",
+   "instDetails": [],
    "deadlineFrom": "attachment",
    "firstSeen": "2026-07-07",
    "isNew": true
@@ -784,6 +837,7 @@
    "deadline": "2026-04-20",
    "kind": "직원",
    "inst": "전체",
+   "instDetails": [],
    "deadlineFrom": "page",
    "firstSeen": "2026-07-07",
    "isNew": true
@@ -799,6 +853,7 @@
    "deadline": "2026-04-09",
    "kind": "직원",
    "inst": "전체",
+   "instDetails": [],
    "deadlineFrom": "page",
    "firstSeen": "2026-07-07",
    "isNew": true
@@ -814,6 +869,7 @@
    "deadline": null,
    "kind": "직원",
    "inst": "성악",
+   "instDetails": [],
    "firstSeen": "2026-07-07",
    "isNew": true
   },
@@ -828,6 +884,7 @@
    "deadline": null,
    "kind": "기타",
    "inst": "성악",
+   "instDetails": [],
    "firstSeen": "2026-07-07",
    "isNew": true
   },
@@ -842,6 +899,7 @@
    "deadline": "2026-06-08",
    "kind": "단원",
    "inst": "성악",
+   "instDetails": [],
    "firstSeen": "2026-07-07",
    "isNew": true
   },
@@ -856,6 +914,7 @@
    "deadline": null,
    "kind": "직원",
    "inst": "성악",
+   "instDetails": [],
    "firstSeen": "2026-07-07",
    "isNew": true
   },
@@ -870,6 +929,7 @@
    "deadline": "2026-03-01",
    "kind": "단원",
    "inst": "전체",
+   "instDetails": [],
    "firstSeen": "2026-07-07",
    "isNew": true
   },
@@ -884,6 +944,7 @@
    "deadline": "2025-11-21",
    "kind": "직원",
    "inst": "전체",
+   "instDetails": [],
    "firstSeen": "2026-07-07",
    "isNew": true
   }

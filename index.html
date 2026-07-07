@@ -14,8 +14,7 @@
   <div class="container">
     <a href="index.html" class="logo">포디움<span class="accent">.</span><span class="beta">BETA</span></a>
     <nav class="main-nav">
-      <a href="jobs.html">구인·구직</a>
-      <a href="official.html">채용공고</a>
+      <a href="jobs.html">구인구직</a>
       <a href="practice.html">연습실</a>
       <a href="lessons.html">과외</a>
       <a href="market.html">중고거래</a>
@@ -47,8 +46,8 @@
       <a href="jobs.html" class="service-card">
         <span class="badge-live">운영중</span>
         <span class="icon">🎼</span>
-        <h3>구인·구직</h3>
-        <p>오케스트라 객원, 단원 오디션, 반주자, 행사 연주, 강사 자리를 찾고 올리세요.</p>
+        <h3>구인구직</h3>
+        <p>시향 공식 채용공고(자동 수집)부터 객원·반주·행사 소규모 구인까지 한곳에서.</p>
       </a>
       <a href="practice.html" class="service-card">
         <span class="badge-live">베타</span>
@@ -69,10 +68,10 @@
         <p>감정서·시연·위탁 — 신뢰 장치를 갖춘 악기 거래.</p>
       </a>
     </div>
-    <a href="official.html" class="crawl-banner">
+    <a href="jobs.html" class="crawl-banner">
       <div>
-        <h3>🏛️ 공식 채용공고 모음</h3>
-        <p>전국 교향악단·합창단 홈페이지의 단원 모집 공고를 매일 자동 수집해 정리합니다. 흩어진 공고를 돌아다닐 필요 없어요.</p>
+        <h3>🏛️ 공식 채용공고 자동 수집</h3>
+        <p>전국 교향악단·합창단·오페라단 20개 기관 홈페이지의 모집 공고를 매일 18시에 자동 수집해 구인구직 게시판에 [공식] 태그로 정리합니다.</p>
       </div>
       <button class="btn-outline">공고 보러가기 →</button>
     </a>
@@ -97,10 +96,20 @@
   </div>
 </footer>
 
+<script src="data/official-data.js"></script>
 <script src="js/data.js"></script>
 <script>
-  // 홈: 최신 공고 4건 프리뷰
-  const recent = [...JOBS].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 4);
+  // 홈: 마감 임박 공식 공고 2건 + 최신 소규모 글 2건 프리뷰
+  const _today = new Date().toISOString().slice(0, 10);
+  const _official = ((window.CRAWLED && window.CRAWLED.items) || [])
+    .filter(j => j.deadline && j.deadline >= _today)
+    .sort((a, b) => a.deadline.localeCompare(b.deadline))
+    .slice(0, 2)
+    .map(j => ({
+      type: "offer", cat: "공식 채용", instDetail: (j.instDetails && j.instDetails[0]) || j.inst,
+      urgent: false, title: j.title, org: j.org, region: j.region, pay: `마감 ${j.deadline}`
+    }));
+  const recent = [..._official, ...[...JOBS].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 4 - _official.length)];
   document.getElementById("recent-list").innerHTML = recent.map(j => `
     <a href="jobs.html" class="job-card" style="display:block">
       <div class="top-row">

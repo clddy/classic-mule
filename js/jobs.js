@@ -1,172 +1,237 @@
-// 구인구직 보드 로직
-const state = {
-  type: "offer",      // offer(구인) | seek(구직)
-  cats: new Set(),
-  insts: new Set(),
-  regions: new Set(),
-  query: ""
+// 통합 구인구직 보드 — 공식(크롤링) + 소규모(개인·팀 게시글)
+const TODAY = new Date().toISOString().slice(0, 10);
+
+// ---------- 데이터 병합 ----------
+const CAT2BAND = {
+  "객원/대타": "객원·대체", "단원모집": "단원", "반주": "반주",
+  "행사연주": "행사연주", "강사/레슨": "강사·레슨", "지휘/음악감독": "지휘"
 };
+const KIND2BAND = { "단원": "단원", "객원·대체": "객원·대체", "반주": "반주", "직원": "직원·스태프", "기타": "기타" };
 
-let jobs = [...JOBS];
+const OFFICIAL_ITEMS = ((window.CRAWLED && window.CRAWLED.items) || []).map(j => ({
+  key: "o" + j.id, src: "공식", type: "구인",
+  band: KIND2BAND[j.kind] || "기타",
+  insts: j.instDetails || [], group: j.inst,
+  region: j.region, title: j.title, org: j.org,
+  deadline: j.deadline, date: j.date || j.firstSeen,
+  url: j.url, isNew: j.isNew, source: j.source
+}));
 
-const $ = (sel) => document.querySelector(sel);
-const $$ = (sel) => document.querySelectorAll(sel);
+let COMMUNITY_ITEMS = JOBS.map(j => ({
+  key: "c" + j.id, src: "소규모", type: j.type === "offer" ? "구인" : "구직",
+  band: CAT2BAND[j.cat] || "기타",
+  insts: [j.instDetail], group: j.inst,
+  region: j.region, title: j.title, org: j.org, pay: j.pay,
+  deadline: /^\d{4}/.test(j.deadline) ? j.deadline : null, deadlineText: j.deadline,
+  date: j.date, body: j.body, urgent: j.urgent, cid: j.id
+}));
 
-// ---------- 필터 칩 렌더 ----------
-function renderChips(containerId, items, set) {
-  const el = $(containerId);
-  el.innerHTML = items.map(v =>
-    `<button class="chip${set.has(v) ? " on" : ""}" data-v="${v}">${v}</button>`
-  ).join("");
-  el.querySelectorAll(".chip").forEach(chip => {
-    chip.addEventListener("click", () => {
-      const v = chip.dataset.v;
-      set.has(v) ? set.delete(v) : set.add(v);
-      renderAll();
-    });
+// ---------- 필터 정의 ----------
+const SRCS = ["공식", "소규모"];
+const BANDS = ["단원", "객원·대체", "반주", "행사연주", "강사·레슨", "지휘", "직원·스태프", "기타"];
+const INST_GROUPS = [
+  ["현악", ["바이올린", "비올라", "첼로", "더블베이스", "하프"]],
+  ["목관", ["플루트", "오보에", "클라리넷", "바순"]],
+  ["금관", ["호른", "트럼펫", "트롬본", "튜바"]],
+  ["기타", ["타악", "피아노", "지휘"]],
+  ["성악", ["소프라노", "메조소프라노", "알토", "테너", "바리톤", "베이스(성악)"]],
+];
+const REGION_LIST = ["서울", "경기", "인천", "대전", "대구", "부산", "기타"];
+const STATUSES = ["접수중", "마감임박", "확인필요", "마감"];
+
+const state = { tab: "전체", srcs: new Set(), bands: new Set(), insts: new Set(), regions: new Set(), status: new Set(), query: "" };
+const $ = (s) => document.querySelector(s);
+
+function statusOf(j) {
+  if (!j.deadline) {
+    if (j.deadlineText === "상시") return { key: "접수중", label: "상시", cls: "dd-open", dday: 9000 };
+    return { key: "확인필요", label: "기한 확인필요", cls: "dd-always", dday: 9998 };
+  }
+  const diff = Math.round((new Date(j.deadline) - new Date(TODAY)) / 86400000);
+  if (diff < 0) return { key: "마감", label: "마감", cls: "dd-closed", dday: 9999 };
+  if (diff <= 7) return { key: "마감임박", label: `마감임박 D-${diff}`, cls: "dd-soon", dday: diff };
+  return { key: "접수중", label: `접수중 D-${diff}`, cls: "dd-open", dday: diff };
+}
+
+// ---------- 칩 렌더 ----------
+function renderChips(sel, items, set) {
+  const el = $(sel);
+  el.innerHTML = items.map(v => `<button class="chip${set.has(v) ? " on" : ""}" data-v="${v}">${v}</button>`).join("");
+  el.querySelectorAll(".chip").forEach(c => c.addEventListener("click", () => {
+    const v = c.dataset.v;
+    set.has(v) ? set.delete(v) : set.add(v);
+    renderAll();
+  }));
+}
+
+function renderInstChips() {
+  const el = $("#filter-inst");
+  el.innerHTML = INST_GROUPS.map(([g, list]) => `
+    <div class="inst-group"><span class="inst-group-label">${g}</span>
+      ${list.map(v => `<button class="chip${state.insts.has(v) ? " on" : ""}" data-v="${v}">${v}</button>`).join("")}
+    </div>`).join("");
+  el.querySelectorAll(".chip").forEach(c => c.addEventListener("click", () => {
+    const v = c.dataset.v;
+    state.insts.has(v) ? state.insts.delete(v) : state.insts.add(v);
+    renderAll();
+  }));
+}
+
+// ---------- 필터링 ----------
+function filtered() {
+  const all = [...OFFICIAL_ITEMS, ...COMMUNITY_ITEMS];
+  return all.filter(j => {
+    if (state.tab !== "전체" && j.type !== state.tab) return false;
+    if (state.srcs.size && !state.srcs.has(j.src)) return false;
+    if (state.bands.size && !state.bands.has(j.band)) return false;
+    if (state.insts.size) {
+      if (!j.insts.length || ![...state.insts].some(v => j.insts.includes(v))) return false;
+    }
+    if (state.regions.size && !state.regions.has(j.region)) return false;
+    if (state.status.size && !state.status.has(statusOf(j).key)) return false;
+    if (state.query) {
+      const q = state.query.toLowerCase();
+      if (!`${j.title} ${j.org} ${j.insts.join(" ")} ${j.body || ""}`.toLowerCase().includes(q)) return false;
+    }
+    return true;
+  }).sort((a, b) => {
+    const sa = statusOf(a), sb = statusOf(b);
+    if (sa.dday !== sb.dday) return sa.dday - sb.dday;
+    return (b.date || "").localeCompare(a.date || "");
   });
 }
 
-// ---------- 목록 렌더 ----------
-function filtered() {
-  return jobs.filter(j => {
-    if (j.type !== state.type) return false;
-    if (state.cats.size && !state.cats.has(j.cat)) return false;
-    if (state.insts.size && !state.insts.has(j.inst)) return false;
-    if (state.regions.size && !state.regions.has(j.region)) return false;
-    if (state.query) {
-      const q = state.query.toLowerCase();
-      const hay = `${j.title} ${j.org} ${j.instDetail} ${j.body}`.toLowerCase();
-      if (!hay.includes(q)) return false;
-    }
-    return true;
-  }).sort((a, b) => b.date.localeCompare(a.date));
-}
-
-function jobCardHTML(j) {
-  return `
-    <article class="job-card" data-id="${j.id}">
-      <div class="top-row">
-        <span class="tag ${j.type === "offer" ? "type-offer" : "type-seek"}">${j.type === "offer" ? "구인" : "구직"}</span>
-        <span class="tag cat">${j.cat}</span>
-        <span class="tag inst">${j.instDetail}</span>
-        ${j.urgent ? `<span class="tag urgent">급구</span>` : ""}
-      </div>
+function cardHTML(j) {
+  const st = statusOf(j);
+  const tags = `
+    <span class="tag ${j.src === "공식" ? "src-official" : "src-community"}">${j.src}</span>
+    ${j.type === "구직" ? `<span class="tag type-seek">구직</span>` : ""}
+    <span class="tag cat">${j.band}</span>
+    ${j.insts.map(i => `<span class="tag inst">${i}</span>`).join("")}
+    <span class="tag ${st.cls}">${st.label}</span>
+    ${j.urgent ? `<span class="tag urgent">급구</span>` : ""}
+    ${j.isNew ? `<span class="tag urgent">NEW</span>` : ""}`;
+  const meta = `
+    <span>${j.org}</span>
+    <span>📍 ${j.region}</span>
+    ${j.pay ? `<span class="pay">${j.pay}</span>` : ""}
+    ${j.deadline ? `<span>마감 ${j.deadline}</span>` : ""}`;
+  if (j.src === "공식") {
+    return `
+    <a class="job-card${st.key === "마감" ? " closed" : ""}" href="${j.url}" target="_blank" rel="noopener" style="display:block">
+      <div class="top-row">${tags}</div>
       <h3>${j.title}</h3>
-      <div class="meta">
-        <span>${j.org}</span>
-        <span>📍 ${j.region}</span>
-        <span class="pay">${j.pay}</span>
-        <span>마감 ${j.deadline}</span>
-      </div>
+      <div class="meta">${meta}</div>
+      <div class="source-line"><span>출처 <span class="src">${j.source}</span></span><span>원문 보기 ↗</span></div>
+    </a>`;
+  }
+  return `
+    <article class="job-card${st.key === "마감" ? " closed" : ""}" data-cid="${j.cid}">
+      <div class="top-row">${tags}</div>
+      <h3>${j.title}</h3>
+      <div class="meta">${meta}</div>
     </article>`;
 }
 
 function renderList() {
   const list = filtered();
-  $("#result-count").innerHTML = `총 <strong>${list.length}</strong>건`;
-  const listEl = $("#job-list");
+  const oc = list.filter(x => x.src === "공식").length;
+  $("#result-count").innerHTML = `총 <strong>${list.length}</strong>건 (공식 ${oc} · 소규모 ${list.length - oc}) — 공식 공고는 클릭 시 기관 원문으로 이동`;
+  const el = $("#job-list");
   if (!list.length) {
-    listEl.innerHTML = `<div class="empty">조건에 맞는 공고가 없습니다.<br>필터를 조정해 보세요.</div>`;
+    el.innerHTML = `<div class="empty">조건에 맞는 공고가 없습니다.<br>필터를 조정해 보세요.</div>`;
     return;
   }
-  listEl.innerHTML = list.map(jobCardHTML).join("");
-  listEl.querySelectorAll(".job-card").forEach(card => {
-    card.addEventListener("click", () => openDetail(+card.dataset.id));
+  el.innerHTML = list.map(cardHTML).join("");
+  el.querySelectorAll(".job-card[data-cid]").forEach(card => {
+    card.addEventListener("click", () => openDetail(+card.dataset.cid));
   });
 }
 
 function renderTabs() {
-  const offerCount = jobs.filter(j => j.type === "offer").length;
-  const seekCount = jobs.filter(j => j.type === "seek").length;
-  $("#tab-offer").innerHTML = `구인 <span class="count">${offerCount}</span>`;
-  $("#tab-seek").innerHTML = `구직 <span class="count">${seekCount}</span>`;
-  $("#tab-offer").classList.toggle("active", state.type === "offer");
-  $("#tab-seek").classList.toggle("active", state.type === "seek");
+  ["전체", "구인", "구직"].forEach(t => {
+    $(`#tab-${t}`).classList.toggle("active", state.tab === t);
+  });
+  const all = [...OFFICIAL_ITEMS, ...COMMUNITY_ITEMS];
+  $("#tab-전체").innerHTML = `전체 <span class="count">${all.length}</span>`;
+  $("#tab-구인").innerHTML = `구인 <span class="count">${all.filter(x => x.type === "구인").length}</span>`;
+  $("#tab-구직").innerHTML = `구직 <span class="count">${all.filter(x => x.type === "구직").length}</span>`;
 }
 
 function renderAll() {
   renderTabs();
-  renderChips("#filter-cat", CATS, state.cats);
-  renderChips("#filter-inst", INSTS, state.insts);
-  renderChips("#filter-region", REGIONS, state.regions);
+  renderChips("#filter-src", SRCS, state.srcs);
+  renderChips("#filter-band", BANDS, state.bands);
+  renderInstChips();
+  renderChips("#filter-region", REGION_LIST, state.regions);
+  renderChips("#filter-status", STATUSES, state.status);
   renderList();
 }
 
-// ---------- 상세 모달 ----------
-function openDetail(id) {
-  const j = jobs.find(x => x.id === id);
+// ---------- 소규모 글 상세 모달 ----------
+function openDetail(cid) {
+  const j = COMMUNITY_ITEMS.find(x => x.cid === cid);
   if (!j) return;
   $("#detail-tags").innerHTML = `
-    <span class="tag ${j.type === "offer" ? "type-offer" : "type-seek"}">${j.type === "offer" ? "구인" : "구직"}</span>
-    <span class="tag cat">${j.cat}</span>
-    <span class="tag inst">${j.instDetail}</span>
+    <span class="tag src-community">소규모</span>
+    <span class="tag ${j.type === "구인" ? "type-offer" : "type-seek"}">${j.type}</span>
+    <span class="tag cat">${j.band}</span>
+    ${j.insts.map(i => `<span class="tag inst">${i}</span>`).join("")}
     ${j.urgent ? `<span class="tag urgent">급구</span>` : ""}`;
   $("#detail-title").textContent = j.title;
   $("#detail-meta").innerHTML = `
-    <dt>${j.type === "offer" ? "기관/팀" : "이름"}</dt><dd>${j.org}</dd>
+    <dt>${j.type === "구인" ? "기관/팀" : "이름"}</dt><dd>${j.org}</dd>
     <dt>지역</dt><dd>${j.region}</dd>
-    <dt>보수</dt><dd>${j.pay}</dd>
-    <dt>마감</dt><dd>${j.deadline}</dd>
+    <dt>보수</dt><dd>${j.pay || "협의"}</dd>
+    <dt>마감</dt><dd>${j.deadlineText || j.deadline || "상시"}</dd>
     <dt>등록일</dt><dd>${j.date}</dd>`;
-  $("#detail-body").textContent = j.body;
+  $("#detail-body").textContent = j.body || "";
   $("#detail-modal").classList.add("open");
 }
 
-// ---------- 글쓰기 모달 ----------
-function openWrite() {
-  $("#write-modal").classList.add("open");
-}
-
+// ---------- 글쓰기 ----------
 function submitWrite(e) {
   e.preventDefault();
   const f = e.target;
-  const newJob = {
-    id: Math.max(...jobs.map(j => j.id)) + 1,
-    type: f.elements["w-type"].value,
-    cat: f.elements["w-cat"].value,
-    inst: f.elements["w-inst"].value,
-    instDetail: f.elements["w-instDetail"].value || f.elements["w-inst"].value,
+  const cid = Math.max(0, ...COMMUNITY_ITEMS.map(j => j.cid)) + 1;
+  const inst = f.elements["w-instDetail"].value.trim() || f.elements["w-inst"].value;
+  const item = {
+    key: "c" + cid, cid, src: "소규모",
+    type: f.elements["w-type"].value === "offer" ? "구인" : "구직",
+    band: CAT2BAND[f.elements["w-cat"].value] || "기타",
+    insts: [inst], group: f.elements["w-inst"].value,
+    region: f.elements["w-region"].value,
     title: f.elements["w-title"].value,
     org: f.elements["w-org"].value,
-    region: f.elements["w-region"].value,
     pay: f.elements["w-pay"].value || "협의",
-    date: "2026-07-07",
-    deadline: f.elements["w-deadline"].value || "상시",
-    urgent: f.elements["w-urgent"].checked,
-    body: f.elements["w-body"].value
+    deadline: f.elements["w-deadline"].value || null,
+    deadlineText: f.elements["w-deadline"].value || "상시",
+    date: TODAY, body: f.elements["w-body"].value,
+    urgent: f.elements["w-urgent"].checked
   };
-  jobs.unshift(newJob);
-  state.type = newJob.type;
+  COMMUNITY_ITEMS.unshift(item);
   f.reset();
   $("#write-modal").classList.remove("open");
+  state.tab = item.type;
   renderAll();
-  openDetail(newJob.id);
+  openDetail(cid);
 }
 
 // ---------- 초기화 ----------
 document.addEventListener("DOMContentLoaded", () => {
   renderAll();
-
-  $("#tab-offer").addEventListener("click", () => { state.type = "offer"; renderAll(); });
-  $("#tab-seek").addEventListener("click", () => { state.type = "seek"; renderAll(); });
-
-  $("#search-input").addEventListener("input", (e) => {
-    state.query = e.target.value.trim();
-    renderList();
+  ["전체", "구인", "구직"].forEach(t => {
+    $(`#tab-${t}`).addEventListener("click", () => { state.tab = t; renderAll(); });
   });
-
+  $("#search-input").addEventListener("input", (e) => { state.query = e.target.value.trim(); renderList(); });
   $("#filter-reset").addEventListener("click", () => {
-    state.cats.clear(); state.insts.clear(); state.regions.clear();
-    state.query = "";
-    $("#search-input").value = "";
+    state.srcs.clear(); state.bands.clear(); state.insts.clear(); state.regions.clear(); state.status.clear();
+    state.query = ""; $("#search-input").value = "";
     renderAll();
   });
-
-  $("#btn-write").addEventListener("click", openWrite);
+  $("#btn-write").addEventListener("click", () => $("#write-modal").classList.add("open"));
   $("#write-form").addEventListener("submit", submitWrite);
-
-  $$(".modal-backdrop").forEach(bd => {
+  document.querySelectorAll(".modal-backdrop").forEach(bd => {
     bd.addEventListener("click", (e) => { if (e.target === bd) bd.classList.remove("open"); });
     bd.querySelector(".modal-close").addEventListener("click", () => bd.classList.remove("open"));
   });

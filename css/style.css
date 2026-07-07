@@ -443,6 +443,16 @@ button { font-family: inherit; cursor: pointer; }
 .tag.dd-closed { background: #ececec; color: #8a8a8a; }
 .tag.dd-always { background: #efe9db; color: #6b5c3e; }
 .tag.pos { background: #ede7f5; color: #6a4a9e; }
+.tag.src-official { background: var(--navy); color: #fff; }
+.tag.src-community { background: #fff; color: var(--navy); border: 1px solid var(--navy); }
+.inst-group { margin-bottom: 8px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
+.inst-group-label {
+  font-size: 0.7rem;
+  color: var(--ink-soft);
+  width: 100%;
+  margin-bottom: 2px;
+  letter-spacing: 0.05em;
+}
 .job-card.closed { opacity: 0.55; }
 .job-card .source-line {
   margin-top: 8px;
