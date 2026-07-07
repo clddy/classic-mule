@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>공식 채용공고 — 포디움</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="logo">포디움<span class="accent">.</span><span class="beta">BETA</span></a>
+    <nav class="main-nav">
+      <a href="jobs.html">구인구직</a>
+      <a href="official.html" class="active">채용공고</a>
+      <a href="#" onclick="alert('연습실 매칭은 준비 중입니다.'); return false;">연습실 <span class="soon">준비중</span></a>
+      <a href="#" onclick="alert('과외 매칭은 준비 중입니다.'); return false;">과외 <span class="soon">준비중</span></a>
+      <a href="#" onclick="alert('중고거래는 준비 중입니다.'); return false;">중고거래 <span class="soon">준비중</span></a>
+      <a href="#" onclick="alert('커뮤니티는 추후 오픈 예정입니다.'); return false;">커뮤니티 <span class="soon">예정</span></a>
+    </nav>
+    <div class="header-actions">
+      <button class="btn-ghost" onclick="alert('로그인은 프로토타입에서 제공되지 않습니다.')">로그인</button>
+    </div>
+  </div>
+</header>
+
+<div class="page-head">
+  <div class="container">
+    <h1>공식 채용공고 모음</h1>
+    <p class="desc">전국 교향악단·합창단·오페라단 홈페이지의 단원 모집 공고를 자동으로 수집해 한곳에 정리합니다.</p>
+    <div class="tabs">
+      <button class="tab active">전체 공고</button>
+    </div>
+  </div>
+</div>
+
+<div class="container board-layout">
+  <aside class="filters">
+    <div class="filter-group">
+      <h4>악기군</h4>
+      <div class="filter-options" id="filter-inst"></div>
+    </div>
+    <div class="filter-group">
+      <h4>지역</h4>
+      <div class="filter-options" id="filter-region"></div>
+    </div>
+    <div class="filter-group">
+      <h4>구분</h4>
+      <div class="filter-options" id="filter-kind"></div>
+    </div>
+    <div class="filter-group">
+      <h4>상태</h4>
+      <div class="filter-options" id="filter-status"></div>
+    </div>
+    <button class="filter-reset" id="filter-reset">필터 초기화</button>
+  </aside>
+
+  <main>
+    <div class="crawl-note">
+      <span class="dot"></span>
+      <span id="crawl-meta">데이터 로딩 중…</span>
+    </div>
+    <div class="board-toolbar">
+      <div class="search-box">
+        🔍 <input type="text" id="search-input" placeholder="악단명, 악기로 검색">
+      </div>
+    </div>
+    <div class="result-count" id="result-count"></div>
+    <div class="job-list" id="job-list"></div>
+  </main>
+</div>
+
+<footer class="site-footer">
+  <div class="container">
+    <span class="logo serif">포디움<span class="accent">.</span></span><br>
+    클래식 음악인을 위한 플랫폼 · 프로토타입 v0.1
+  </div>
+</footer>
+
+<script src="data/official-data.js"></script>
+<script src="js/official.js"></script>
+<a class="feedback-fab" href="mailto:ohmjin3141@naver.com?subject=%ED%8F%AC%EB%94%94%EC%9B%80%20%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85%20%ED%94%BC%EB%93%9C%EB%B0%B1">💬 피드백 보내기</a>
+</body>
+</html>
