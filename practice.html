@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>연습실 — 포디움</title>
+  <title>연습실 — 포디엄</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
@@ -31,7 +31,7 @@
 
 <header class="site-header">
   <div class="container">
-    <a href="index.html" class="logo">포디움<span class="accent">.</span><span class="beta">BETA</span></a>
+    <a href="index.html" class="logo">포디엄<span class="accent">.</span><span class="beta">BETA</span></a>
     <nav class="main-nav">
       <a href="jobs.html">구인구직</a>
       <a href="practice.html" class="active">연습실</a>
@@ -71,11 +71,44 @@
   </main>
 </div>
 
+<!-- 연습실 상세 모달 (스페이스클라우드 벤치마킹: 소개→이용안내→유의사항→환불규정) -->
+<div class="modal-backdrop" id="room-modal">
+  <div class="modal">
+    <button class="modal-close">✕</button>
+    <div class="top-row" id="rm-tags"></div>
+    <h2 id="rm-title"></h2>
+    <div class="room-photo" style="height:150px" id="rm-photo">🎹</div>
+    <div class="price-line" id="rm-price"></div>
+    <dl class="detail-meta" id="rm-meta"></dl>
+    <h3 style="font-size:0.95rem;color:var(--navy);margin:14px 0 6px">공간 소개</h3>
+    <div class="body-text" id="rm-intro" style="margin-bottom:12px"></div>
+    <h3 style="font-size:0.95rem;color:var(--navy);margin:14px 0 6px">예약 시 유의사항</h3>
+    <div class="body-text" style="font-size:0.85rem;margin-bottom:12px">
+      · 최소 이용시간 미만 예약은 불가합니다.<br>
+      · 퇴실 시 보면대·의자 원위치, 냉난방·조명 소등을 확인해주세요.<br>
+      · 소음 민원 방지를 위해 방음문은 반드시 닫고 연주해주세요.<br>
+      · 금관·타악은 "금관·타악 OK" 표기 연습실에서만 가능합니다.
+    </div>
+    <h3 style="font-size:0.95rem;color:var(--navy);margin:14px 0 6px">환불 규정 (표준)</h3>
+    <dl class="detail-meta" style="margin-bottom:16px">
+      <dt>7일 전까지</dt><dd>100% 환불</dd>
+      <dt>3일 전까지</dt><dd>70% 환불</dd>
+      <dt>전날</dt><dd>50% 환불</dd>
+      <dt>이용 당일</dt><dd>환불 불가</dd>
+      <dt>결제 후 2시간 내</dt><dd>100% 환불 (이용 전에 한함)</dd>
+    </dl>
+    <div class="modal-actions">
+      <button class="btn-outline" onclick="alert('프로토타입: 전화 연결은 제공되지 않습니다.')">📞 전화 문의</button>
+      <button class="btn-primary" id="rm-reserve">예약 신청하기</button>
+    </div>
+  </div>
+</div>
+
 <footer class="site-footer">
-  <div class="container"><span class="logo serif">포디움<span class="accent">.</span></span><br>클래식 음악인을 위한 플랫폼 · 프로토타입 v0.2</div>
+  <div class="container"><span class="logo serif">포디엄<span class="accent">.</span></span><br>클래식 음악인을 위한 플랫폼 · 프로토타입 v0.2</div>
 </footer>
 
-<a class="feedback-fab" href="mailto:ohmjin3141@naver.com?subject=%ED%8F%AC%EB%94%94%EC%9B%80%20%EC%97%B0%EC%8A%B5%EC%8B%A4%20%ED%94%BC%EB%93%9C%EB%B0%B1">💬 피드백 보내기</a>
+<a class="feedback-fab" href="mailto:ohmjin3141@naver.com?subject=%ED%8F%AC%EB%94%94%EC%97%84%20%EC%97%B0%EC%8A%B5%EC%8B%A4%20%ED%94%BC%EB%93%9C%EB%B0%B1">💬 피드백 보내기</a>
 
 <script>
 const ROOMS = [
@@ -175,8 +208,8 @@ function render(){
   chips("#f-sound",SOUNDS,st.sound);chips("#f-cond",CONDS,st.cond);
   const list=ROOMS.filter(pass);
   $("#result-count").innerHTML=`총 <strong>${list.length}</strong>곳`;
-  $("#room-list").innerHTML=list.length?list.map(r=>`
-    <article class="job-card">
+  $("#room-list").innerHTML=list.length?list.map((r,i)=>`
+    <article class="job-card" data-i="${i}">
       <div class="room-photo">🎹<span class="photo-count">📷 사진 ${r.photos}장</span></div>
       <div class="top-row">
         <span class="tag ${r.instant?"ok":"cat"}">${r.instant?"⚡ 바로예약":"승인 후 예약"}</span>
@@ -201,10 +234,41 @@ function render(){
       </div>
       <div class="source-line"><span>${r.note}</span></div>
     </article>`).join(""):`<div class="empty">조건에 맞는 연습실이 없습니다.</div>`;
+  document.querySelectorAll("#room-list .job-card").forEach(card=>{
+    card.addEventListener("click",()=>openRoom(list[+card.dataset.i]));
+  });
+}
+
+function openRoom(r){
+  $("#rm-tags").innerHTML=`
+    <span class="tag ${r.instant?"ok":"cat"}">${r.instant?"⚡ 바로예약":"승인 후 예약"}</span>
+    <span class="tag cat">${r.region}</span>
+    ${r.modes.map(m=>`<span class="tag pos">${m}</span>`).join("")}
+    ${r.brass?`<span class="tag pos">금관·타악 OK</span>`:""}
+    ${r.humid?`<span class="tag inst">💧 습도관리</span>`:""}
+    ${r.h24?`<span class="tag cat">24시간</span>`:""}`;
+  $("#rm-title").textContent=r.name;
+  $("#rm-photo").innerHTML=`🎹<span class="photo-count">📷 사진 ${r.photos}장</span>`;
+  $("#rm-price").innerHTML=`월 ${r.monthly}만원 <span class="per">· 시간 ${Math.round(r.hourly*10)/10*10}천원 (최소 ${r.minHours}시간)${r.nego?" · 협의가능":""}</span>`;
+  $("#rm-meta").innerHTML=`
+    <dt>위치</dt><dd>🚇 ${r.station} · ${r.floor} ${r.elev?"(엘리베이터)":"(계단만)"}</dd>
+    <dt>면적</dt><dd>${r.size}</dd>
+    <dt>방음</dt><dd>${r.soundWall?"방음벽 시공":"방음벽 미시공"} · ${r.windowLayer}</dd>
+    <dt>채광/환기</dt><dd>${r.light} · ${r.vent}</dd>
+    <dt>영업시간</dt><dd>${r.h24?"24시간 (무인 출입)":"09:00 ~ 22:00"}</dd>
+    <dt>시설</dt><dd>${r.fac.join(", ")}</dd>
+    <dt>남은 자리</dt><dd>${r.slots>0?`${r.slots}자리`:"만실 (대기 등록 가능)"}</dd>
+    <dt>후기</dt><dd>⭐ ${r.reviews}개 · ♥ ${r.likes}</dd>`;
+  $("#rm-intro").textContent=r.note;
+  $("#room-modal").classList.add("open");
 }
 
 document.addEventListener("DOMContentLoaded",()=>{
   render();
+  const bd=$("#room-modal");
+  bd.addEventListener("click",e=>{if(e.target===bd)bd.classList.remove("open");});
+  bd.querySelector(".modal-close").addEventListener("click",()=>bd.classList.remove("open"));
+  $("#rm-reserve").addEventListener("click",()=>alert("프로토타입: 예약 기능은 실서비스에서 제공됩니다."));
   $("#search-input").addEventListener("input",e=>{st.q=e.target.value.trim();render();});
   $("#filter-reset").addEventListener("click",()=>{st.region.clear();st.mode.clear();st.price.clear();st.sound.clear();st.cond.clear();st.q="";$("#search-input").value="";render();});
 });

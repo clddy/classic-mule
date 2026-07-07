@@ -6,7 +6,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from sources import SOURCES
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-VAULT_NOTE = r"C:\ohai\vault\포디움 크롤링 소스.md"
+VAULT_NOTE = r"C:\ohai\vault\포디엄 크롤링 소스.md"
 
 LAYER_DESC = {"A": "전국 집계", "B": "지역 재단·회관", "C": "도메인 포털", "D": "기관 원천"}
 POLL_DESC = {"daily": "매일", "weekly": "주 2~3회", "seasonal": "시즌"}
@@ -40,11 +40,11 @@ def main():
 
     lines = [
         "---",
-        "tags: [포디움, 크롤링]",
+        "tags: [포디엄, 크롤링]",
         f"updated: {datetime.now():%Y-%m-%d %H:%M}",
         "---",
         "",
-        "# 포디움 크롤링 소스 현황",
+        "# 포디엄 크롤링 소스 현황",
         "",
         f"- 수집 시각: **{data.get('collectedAt', '-')}** · 소스 **{data.get('okCount', 0)}/{data.get('sourceCount', 0)}** 응답 · 공고 **{len(items)}건**",
         f"- 마감 확보: **{sum(1 for i in items if i.get('deadline'))}건** · 상시 **{sum(1 for i in items if i.get('deadlineNote') == '상시')}건**",
