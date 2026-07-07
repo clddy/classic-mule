@@ -1,5 +1,6 @@
 // 통합 구인구직 보드 — 공식(크롤링) + 소규모(개인·팀 게시글)
-const TODAY = new Date().toISOString().slice(0, 10);
+// 날짜는 한국시간(KST) 기준 — toISOString은 UTC라 자정~오전9시에 하루 밀리는 문제 방지
+const TODAY = new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 10);
 
 // ---------- 데이터 병합 ----------
 const CAT2BAND = {

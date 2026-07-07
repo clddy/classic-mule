@@ -100,7 +100,7 @@
 <script src="js/data.js"></script>
 <script>
   // 홈: 마감 임박 공식 공고 2건 + 최신 소규모 글 2건 프리뷰
-  const _today = new Date().toISOString().slice(0, 10);
+  const _today = new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 10); // KST
   const _official = ((window.CRAWLED && window.CRAWLED.items) || [])
     .filter(j => j.deadline && j.deadline >= _today)
     .sort((a, b) => a.deadline.localeCompare(b.deadline))
