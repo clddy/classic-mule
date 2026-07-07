@@ -366,9 +366,13 @@ def parse_ulsan(s):
         title = a.get_text(" ", strip=True)
         if len(title) < 8:
             continue
+        m = re.search(r"bod_sn=(\d+)", a["href"])
+        if not m:
+            continue
+        # SPA 특성상 상세는 www.ulsan.go.kr/ucac/art 경로로만 열림 (클릭 추적으로 확인)
+        url = f"https://www.ulsan.go.kr/ucac/art/page.do?mnu_code=mnu003001&bod_sn={m.group(1)}&cmd=2"
         items.append(make_item("울산문화예술회관(시립예술단)", "기타", "ucac.ulsan.go.kr",
-                               title, urljoin("https://ucac.ulsan.go.kr/", a["href"]),
-                               date=_row_date(a)))
+                               title, url, date=_row_date(a)))
     return items
 
 # ---------- 소스 레지스트리 ----------

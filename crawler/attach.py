@@ -131,8 +131,8 @@ def extract_hwpx(data: bytes) -> str:
             out.append(re.sub(r"<[^>]+>", " ", xml))
     return "\n".join(out)
 
-def extract_any(filename: str, data: bytes) -> str:
-    """확장자보다 매직바이트 우선 판별. zip이면 내부의 hwp/pdf까지 재귀 추출."""
+def extract_any(filename: str, data: bytes, depth: int = 0) -> str:
+    """확장자보다 매직바이트 우선 판별. zip이면 내부 문서(중첩 zip 포함)까지 재귀 추출."""
     fn = (filename or "").lower()
     try:
         if data[:5] == b"%PDF-" or fn.endswith(".pdf"):
@@ -144,11 +144,17 @@ def extract_any(filename: str, data: bytes) -> str:
                 names = z.namelist()
                 if any(n.startswith("Contents/section") or n == "Preview/PrvText.txt" for n in names):
                     return extract_hwpx(data)
-                # 일반 zip — 내부 문서들 재귀 추출 (성남 등 첨부 일괄 zip 대응)
+                # 일반 zip — 공고문류 우선, 악보 zip은 뒤로. 중첩 zip은 depth 2까지
+                names.sort(key=lambda n: ("악보" in n, z.getinfo(n).file_size))
                 out = []
                 for n in names[:10]:
-                    if n.lower().endswith((".hwp", ".hwpx", ".pdf")):
-                        out.append(extract_any(n, z.read(n)))
+                    low = n.lower()
+                    if low.endswith((".hwp", ".hwpx", ".pdf")):
+                        out.append(extract_any(n, z.read(n), depth + 1))
+                    elif low.endswith(".zip") and depth < 2:
+                        out.append(extract_any(n, z.read(n), depth + 1))
+                    if sum(len(t) for t in out) > 3000:
+                        break
                 return "\n".join(out)
     except Exception as e:
         return f"[추출실패 {type(e).__name__}: {e}]"

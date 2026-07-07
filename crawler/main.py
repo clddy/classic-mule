@@ -151,7 +151,8 @@ def enrich_deadline(s, item, allow_render=True):
             return
         for furl, fname in find_attachments(soup, r.url):
             try:
-                fr = s.get(furl, timeout=30, verify=False)
+                # 일부 CMS(부천 등)는 Referer 없으면 다운로드 거부
+                fr = s.get(furl, timeout=30, verify=False, headers={"Referer": item["url"]})
                 if fr.status_code != 200 or not (200 < len(fr.content) < 20_000_000):
                     continue
                 cd = fr.headers.get("Content-Disposition", "")
