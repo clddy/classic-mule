@@ -113,7 +113,8 @@ def _window_deadline(window, ref_year):
     return None
 
 # 우선 키워드(접수기간류)에서 찾으면 즉시 확정 — 활동기간·공연일 오인 방지
-_KW_PRIORITY = re.compile(r"원서 ?접수|접수 ?기간|접수 ?기한|서류 ?접수|지원 ?기간|응시원서")
+# 남은기간: 기독정보넷 상세의 "남은기간 2026-05-31 23:59:59 까지" 대응
+_KW_PRIORITY = re.compile(r"원서 ?접수|접수 ?기간|접수 ?기한|접수 ?마감|서류 ?접수|지원 ?기간|응시원서|남은 ?기간")
 _KW_FALLBACK = re.compile(r"접수|마감|기한|제출|지원서|모집 ?기간")
 
 def extract_deadline(text, ref_year=None):
@@ -163,7 +164,7 @@ def deadline_from_title(title, ref_year=None):
 EXCLUDE = re.compile(
     r"합격자|합격 ?자|결과|최종 ?발표|선정|취소 ?공고|발표 및"
     r"|심사|실기 ?전형|서류 ?전형|면접|오디션 ?안내|오디션 ?일정"
-    r"|악보|과제곡|지정곡|전형 ?일정|일정 ?안내|세부 ?안내|응시표|수험표"
+    r"|악보|과제곡|지정곡|전형 ?일정|일정 ?안내|세부 ?안내|세부사항|응시표|수험표|대기실"
     r"|[1-3] ?차 ?(?:심사|전형|시험|발표|합격|서류|면접|실기|안내)"
     r"|워크숍|워크샵|수강생 ?모집"
     r"|대관 ?(?:모집|공고|안내)|레지던시|자원봉사|서포터즈|기자단|친인척|입주 ?작가")
@@ -174,18 +175,43 @@ def relevant(title):
     return bool(INCLUDE.search(title)) and not EXCLUDE.search(title)
 
 def classify_kind(title):
-    """단원(상임) / 객원·대체(비상임·기간제) / 반주 / 직원 / 기타"""
-    if re.search(r"사무단원|기획운영단원|사무국|행정|안내원|매니저|팀장|본부장|시설|미화|보안", title):
-        return "직원"
+    """단원(상임) / 객원·대체(비상임·기간제) / 반주 / 강사 / 직원 / 기타
+    — 연주자 모집이 행정직과 한 공고에 섞이면 연주자 쪽으로 분류"""
     if re.search(r"객원|비상임|대체(?:근로|인력|연주)?|기간제.*단원|단원.*기간제", title):
         return "객원·대체"
+    if re.search(r"사무단원|기획운영단원|사무국|행정|안내원|매니저|팀장|본부장|시설|미화|보안", title):
+        return "직원"
     if re.search(r"반주자|반주 ?단원", title):
         return "반주"
+    if re.search(r"강사|교습|레슨|트레이너|지도자", title):
+        return "강사"
     if re.search(r"단원|악장|수석|부수석|차석|연주자|오디션|지휘자|성악가", title):
         return "단원"
-    if re.search(r"직원|인턴|근로자|교육생|강사", title):
+    if re.search(r"직원|인턴|근로자|교육생", title):
         return "직원"
     return "기타"
+
+# ---------- 음악인 대상 여부 (행정·홍보·시설 등 비음악 직군 차단) ----------
+STAFF_EXCLUDE = re.compile(
+    r"통합채용|본부장|사무국|사무직|사무단원|행정|홍보|안내원|매표|하우스|시설|미화|경비"
+    r"|사서|무대 ?기술|조명|음향(?! ?감독)|공무직|기간제 ?근로자|경영지원|회계|전산|주차|보안|기획팀|마케팅")
+_MUSIC_KEEP = re.compile(r"악기|악보|조율|지휘|반주|연주|성악|합창|오케스트라|(?<![사무])단원|수석|악장|강사")
+
+def musician_relevant(title, kind, org=""):
+    """음악인(연주·지휘·반주·강사)이 대상인 공고인지 — 행정직·스태프는 제외.
+    기관명 속 '오케스트라/합창단'이 음악 키워드로 오인되지 않도록 기관명을 제거 후 판정."""
+    t = re.sub(r"사무 ?단원|기획운영단원|연수 ?단원", "", title)
+    # 제목 속 단체명(국립·시립 ○○단, [괄호 접두어])은 음악 키워드 판정에서 제외
+    t = re.sub(r"\[[^\]]{2,25}\]|[가-힣A-Za-z()]{0,12}(?:국립|시립|구립|도립)[가-힣]{0,8}단", "", t)
+    if org:
+        for token in re.split(r"[()\s·]", org):
+            if len(token) >= 3:
+                t = t.replace(token, "")
+    if STAFF_EXCLUDE.search(title) and not _MUSIC_KEEP.search(t):
+        return False
+    if kind == "직원" and not _MUSIC_KEEP.search(t):
+        return False
+    return True
 
 # (세부악기, 악기군) — 순서 중요: 더블베이스가 성악 베이스보다 먼저
 INST_DETAILS = [

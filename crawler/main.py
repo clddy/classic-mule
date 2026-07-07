@@ -4,7 +4,7 @@ from datetime import date, datetime, timedelta
 from bs4 import BeautifulSoup
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from common import new_session, get, relevant, extract_deadline, deadline_from_title
+from common import new_session, get, relevant, extract_deadline, deadline_from_title, musician_relevant
 from sources import SOURCES
 from institutions import INSTITUTIONS
 import attach
@@ -102,9 +102,9 @@ def find_attachments(soup, base_url):
                 cands.append((full, text))
     return cands[:3]
 
-EXT_VER = 3         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일 승계가 무효화됨
+EXT_VER = 4         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일 승계가 무효화됨
 RENDER_PER_SOURCE = 3   # 소스당 Playwright 렌더링 상한
-OCR_PER_SOURCE = 2      # 소스당 이미지 공고문 OCR 상한
+OCR_PER_SOURCE = 3      # 소스당 이미지 공고문 OCR 상한
 _renders_used = 0
 _ocr_used = 0
 
@@ -236,6 +236,8 @@ def run(force_all=False):
             for it in raw:
                 if not relevant(it["title"]):
                     continue
+                if not musician_relevant(it["title"], it["kind"], it.get("org", "")):
+                    continue
                 future_dl = it["deadline"] and it["deadline"] >= today.isoformat()
                 if it["date"] and it["date"] < cutoff and not future_dl:
                     continue
@@ -297,6 +299,8 @@ def run(force_all=False):
         seen.add(it["id"])
         uniq.append(it)
     final = dedup(uniq)
+    # 승계 경로로 들어온 항목까지 포함해 음악인 대상 필터를 최종 일괄 적용
+    final = [i for i in final if musician_relevant(i["title"], i.get("kind", ""), i.get("org", ""))]
     for it in final:
         old = prev_by_id.get(it["id"])
         it["firstSeen"] = old.get("firstSeen", today.isoformat()) if old else today.isoformat()

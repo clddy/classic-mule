@@ -32,29 +32,90 @@ def extract_pdf(data: bytes) -> str:
     with pdfplumber.open(io.BytesIO(data)) as pdf:
         for page in pdf.pages[:10]:
             out.append(page.extract_text() or "")
+    text = "\n".join(out)
+    # 텍스트가 빈약하면 스캔 PDF — 페이지를 래스터화해 OCR
+    if len(re.sub(r"\s", "", text)) < 1500:
+        try:
+            import pypdfium2 as pdfium
+            doc = pdfium.PdfDocument(io.BytesIO(data))
+            for i in range(min(len(doc), 4)):
+                pil = doc[i].render(scale=2.2).to_pil()
+                buf = io.BytesIO()
+                pil.save(buf, format="PNG")
+                ocr = ocr_image(buf.getvalue())
+                if ocr:
+                    text += "\n" + ocr
+            doc.close()
+        except Exception:
+            pass
+    return text
+
+def _hwp_bodytext(ole) -> str:
+    """BodyText 섹션의 HWPTAG_PARA_TEXT(67) 레코드에서 본문 전체 추출.
+    PrvText는 1페이지 미리보기뿐이라 뒤쪽 표(접수기간 등)가 잘린다."""
+    out = []
+    for entry in ole.listdir():
+        if entry[0] != "BodyText":
+            continue
+        raw = ole.openstream(entry).read()
+        try:
+            raw = zlib.decompress(raw, -15)
+        except zlib.error:
+            pass
+        i = 0
+        n = len(raw)
+        while i + 4 <= n:
+            hdr = int.from_bytes(raw[i:i + 4], "little")
+            tag = hdr & 0x3FF
+            size = (hdr >> 20) & 0xFFF
+            i += 4
+            if size == 0xFFF:
+                if i + 4 > n:
+                    break
+                size = int.from_bytes(raw[i:i + 4], "little")
+                i += 4
+            if size < 0 or i + size > n:
+                break
+            if tag == 67:  # HWPTAG_PARA_TEXT
+                t = raw[i:i + size].decode("utf-16-le", errors="ignore")
+                out.append(re.sub(r"[\x00-\x1f]", " ", t))
+            i += size
     return "\n".join(out)
 
+def _hwp_bindata_images(ole, limit=2):
+    """HWP 안에 삽입된 이미지(BinData) 추출 — 스캔 공고문 대응"""
+    out = []
+    for entry in ole.listdir():
+        if entry[0] != "BinData" or len(out) >= limit:
+            continue
+        raw = ole.openstream(entry).read()
+        try:
+            raw = zlib.decompress(raw, -15)
+        except zlib.error:
+            pass
+        if raw[:2] == b"\xff\xd8" or raw[:4] == b"\x89PNG" or raw[:2] == b"BM":
+            if len(raw) > 30_000:  # 로고 등 소형 제외
+                out.append(raw)
+    return out
+
 def extract_hwp(data: bytes) -> str:
-    """구형 HWP(OLE): PrvText 스트림(UTF-16 미리보기)이 가장 안정적"""
+    """구형 HWP(OLE): PrvText + BodyText 전체. 텍스트가 빈약하면(스캔 공고문) 내부 이미지 OCR."""
     import olefile
     ole = olefile.OleFileIO(io.BytesIO(data))
     try:
+        parts = []
         if ole.exists("PrvText"):
-            raw = ole.openstream("PrvText").read()
-            return raw.decode("utf-16-le", errors="ignore")
-        # PrvText가 없으면 BodyText 섹션 압축 해제 (best effort)
-        out = []
-        for entry in ole.listdir():
-            if entry[0] == "BodyText":
-                raw = ole.openstream(entry).read()
-                try:
-                    raw = zlib.decompress(raw, -15)
-                except zlib.error:
-                    pass
-                # HWP 레코드에서 한글 텍스트만 대충 건짐
-                text = raw.decode("utf-16-le", errors="ignore")
-                out.append(re.sub(r"[^가-힣㄰-㆏\w\s.,()~\-:/·]", " ", text))
-        return "\n".join(out)
+            parts.append(ole.openstream("PrvText").read().decode("utf-16-le", errors="ignore"))
+        body = _hwp_bodytext(ole)
+        if body:
+            parts.append(body)
+        text = "\n".join(parts)
+        if len(re.sub(r"\s", "", text)) < 1500:
+            for img in _hwp_bindata_images(ole):
+                ocr = ocr_image(img)
+                if ocr:
+                    text += "\n" + ocr
+        return text
     finally:
         ole.close()
 

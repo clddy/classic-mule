@@ -1,5 +1,5 @@
 {
- "collectedAt": "2026-07-08 02:13",
+ "collectedAt": "2026-07-08 03:00",
  "sourceCount": 37,
  "okCount": 37,
  "sources": [
@@ -28,7 +28,7 @@
    "poll": "daily",
    "ok": true,
    "raw": 25,
-   "kept": 21
+   "kept": 16
   },
   {
    "id": "gne",
@@ -55,7 +55,7 @@
    "poll": "weekly",
    "ok": true,
    "raw": 16,
-   "kept": 5
+   "kept": 3
   },
   {
    "id": "daegu",
@@ -73,7 +73,7 @@
    "poll": "weekly",
    "ok": true,
    "raw": 15,
-   "kept": 4
+   "kept": 3
   },
   {
    "id": "artsuwon",
@@ -82,7 +82,7 @@
    "poll": "weekly",
    "ok": true,
    "raw": 21,
-   "kept": 5
+   "kept": 0
   },
   {
    "id": "snart",
@@ -91,7 +91,7 @@
    "poll": "weekly",
    "ok": true,
    "raw": 10,
-   "kept": 5
+   "kept": 0
   },
   {
    "id": "sejongpac",
@@ -100,7 +100,7 @@
    "poll": "weekly",
    "ok": true,
    "raw": 10,
-   "kept": 7
+   "kept": 3
   },
   {
    "id": "cwcf",
@@ -109,7 +109,7 @@
    "poll": "weekly",
    "ok": true,
    "raw": 26,
-   "kept": 6
+   "kept": 4
   },
   {
    "id": "ulsan",
@@ -118,7 +118,7 @@
    "poll": "weekly",
    "ok": true,
    "raw": 10,
-   "kept": 2
+   "kept": 1
   },
   {
    "id": "seoulphil",
@@ -145,7 +145,7 @@
    "poll": "weekly",
    "ok": true,
    "raw": 15,
-   "kept": 3
+   "kept": 2
   },
   {
    "id": "bucheonphil",
@@ -181,7 +181,7 @@
    "poll": "weekly",
    "ok": true,
    "raw": 11,
-   "kept": 2
+   "kept": 1
   },
   {
    "id": "natchorus",
@@ -190,7 +190,7 @@
    "poll": "weekly",
    "ok": true,
    "raw": 20,
-   "kept": 3
+   "kept": 1
   },
   {
    "id": "jeonju",
@@ -316,7 +316,7 @@
    "poll": "weekly",
    "ok": true,
    "raw": 4,
-   "kept": 3
+   "kept": 2
   },
   {
    "id": "g_hibrain",
@@ -346,7 +346,7 @@
    "title": "반주자와 농촌지역에서 전도해 주실분 모십니다.",
    "url": "https://www.cjob.co.kr/bbs/board.php?bo_table=offerIG&wr_id=7773&c_jikjong=2&page=1",
    "date": null,
-   "deadline": null,
+   "deadline": "2026-12-31",
    "kind": "반주",
    "tier": "오브리",
    "inst": "건반",
@@ -355,9 +355,10 @@
    ],
    "channel": "cjob",
    "layer": "C",
+   "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "42db74da2bf23ef9",
@@ -378,7 +379,7 @@
    "layer": "C",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "5fbc7e4eb4f8d92d",
@@ -388,7 +389,7 @@
    "title": "주일 피아노 반주자 모십니다.",
    "url": "https://www.cjob.co.kr/bbs/board.php?bo_table=offerIG&wr_id=7766&c_jikjong=2&page=1",
    "date": null,
-   "deadline": null,
+   "deadline": "2026-12-31",
    "kind": "반주",
    "tier": "오브리",
    "inst": "건반",
@@ -397,9 +398,10 @@
    ],
    "channel": "cjob",
    "layer": "C",
+   "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "c355fe34995919a9",
@@ -420,7 +422,7 @@
    "layer": "C",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "d43e73d204b36b0f",
@@ -441,7 +443,7 @@
    "layer": "C",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "cff2801e45a9ec79",
@@ -462,7 +464,7 @@
    "layer": "C",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "44b5ab53b042583a",
@@ -472,7 +474,7 @@
    "title": "반주자를 모십니다",
    "url": "https://www.cjob.co.kr/bbs/board.php?bo_table=offerIG&wr_id=7741&c_jikjong=2&page=1",
    "date": null,
-   "deadline": null,
+   "deadline": "2026-05-31",
    "kind": "반주",
    "tier": "오브리",
    "inst": "건반",
@@ -481,9 +483,10 @@
    ],
    "channel": "cjob",
    "layer": "C",
+   "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "b4b9d9aaa209b9a4",
@@ -493,7 +496,7 @@
    "title": "반주자및전도사님 초빙",
    "url": "https://www.cjob.co.kr/bbs/board.php?bo_table=offerIG&wr_id=7737&c_jikjong=2&page=1",
    "date": null,
-   "deadline": null,
+   "deadline": "2026-06-30",
    "kind": "반주",
    "tier": "오브리",
    "inst": "건반",
@@ -502,114 +505,10 @@
    ],
    "channel": "cjob",
    "layer": "C",
+   "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 3
-  },
-  {
-   "id": "20ce209a31fbfa1b",
-   "org": "교회(기독정보넷)",
-   "region": "기타",
-   "source": "cjob.co.kr",
-   "title": "성가대 반주자님을 모십니다.",
-   "url": "https://www.cjob.co.kr/bbs/board.php?bo_table=offerIG&wr_id=7721&c_jikjong=2&page=1",
-   "date": null,
-   "deadline": null,
-   "kind": "반주",
-   "tier": "오브리",
-   "inst": "건반",
-   "instDetails": [
-    "피아노"
-   ],
-   "channel": "cjob",
-   "layer": "C",
-   "firstSeen": "2026-07-08",
-   "isNew": true,
-   "extVer": 3
-  },
-  {
-   "id": "503b19be97bccd6c",
-   "org": "교회(기독정보넷)",
-   "region": "기타",
-   "source": "cjob.co.kr",
-   "title": "주일 예배 반주자를 모십니다",
-   "url": "https://www.cjob.co.kr/bbs/board.php?bo_table=offerIG&wr_id=7719&c_jikjong=2&page=1",
-   "date": null,
-   "deadline": null,
-   "kind": "반주",
-   "tier": "오브리",
-   "inst": "건반",
-   "instDetails": [
-    "피아노"
-   ],
-   "channel": "cjob",
-   "layer": "C",
-   "firstSeen": "2026-07-08",
-   "isNew": true,
-   "extVer": 3
-  },
-  {
-   "id": "32fd7325de7bb136",
-   "org": "교회(기독정보넷)",
-   "region": "기타",
-   "source": "cjob.co.kr",
-   "title": "성가대 반주자 구합니다",
-   "url": "https://www.cjob.co.kr/bbs/board.php?bo_table=offerIG&wr_id=7714&c_jikjong=2&page=1",
-   "date": null,
-   "deadline": null,
-   "kind": "반주",
-   "tier": "오브리",
-   "inst": "건반",
-   "instDetails": [
-    "피아노"
-   ],
-   "channel": "cjob",
-   "layer": "C",
-   "firstSeen": "2026-07-08",
-   "isNew": true,
-   "extVer": 3
-  },
-  {
-   "id": "062c1a7045023f76",
-   "org": "교회(기독정보넷)",
-   "region": "기타",
-   "source": "cjob.co.kr",
-   "title": "찬양대 반주자 구합니다.",
-   "url": "https://www.cjob.co.kr/bbs/board.php?bo_table=offerIG&wr_id=7712&c_jikjong=2&page=1",
-   "date": null,
-   "deadline": null,
-   "kind": "반주",
-   "tier": "오브리",
-   "inst": "건반",
-   "instDetails": [
-    "피아노"
-   ],
-   "channel": "cjob",
-   "layer": "C",
-   "firstSeen": "2026-07-08",
-   "isNew": true,
-   "extVer": 3
-  },
-  {
-   "id": "f89c876b3bdf302c",
-   "org": "취토향교회",
-   "region": "기타",
-   "source": "cjob.co.kr",
-   "title": "취토향교회 부흥회 첫날 (12/8 월) 반주자를 급히 구합니다. /저녁 7시40분~ 9시 40분. /",
-   "url": "https://www.cjob.co.kr/bbs/board.php?bo_table=offerIG&wr_id=7711&c_jikjong=2&page=1",
-   "date": null,
-   "deadline": null,
-   "kind": "반주",
-   "tier": "오브리",
-   "inst": "건반",
-   "instDetails": [
-    "피아노"
-   ],
-   "channel": "cjob",
-   "layer": "C",
-   "firstSeen": "2026-07-08",
-   "isNew": true,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "be024e49936675f8",
@@ -630,7 +529,7 @@
    "layer": "C",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "5662c679dbaca9e1",
@@ -651,7 +550,7 @@
    "layer": "C",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "8b41facc1cb8a23f",
@@ -672,7 +571,7 @@
    "layer": "C",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "1c3843f4f68565f0",
@@ -693,7 +592,7 @@
    "layer": "C",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "fb6fc208fe67e728",
@@ -714,7 +613,7 @@
    "layer": "C",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "a6a9815fd2c3e78c",
@@ -735,7 +634,7 @@
    "layer": "C",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "a0d7387acd73ce8e",
@@ -756,7 +655,7 @@
    "layer": "C",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "8b341be8f55a19d1",
@@ -777,7 +676,7 @@
    "layer": "C",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "c230ccc6106a039d",
@@ -799,7 +698,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "6d6ab827280813d3",
@@ -821,7 +720,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "f7b1c263744b9ece",
@@ -841,7 +740,7 @@
    "deadlineFrom": "title",
    "firstSeen": "2026-07-07",
    "isNew": false,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "f0b2f11b48a3b0cd",
@@ -861,7 +760,7 @@
    "deadlineFrom": "title",
    "firstSeen": "2026-07-07",
    "isNew": false,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "206089b8baec5c43",
@@ -881,27 +780,7 @@
    "deadlineFrom": "attachment",
    "firstSeen": "2026-07-07",
    "isNew": false,
-   "extVer": 3
-  },
-  {
-   "id": "5dea30789a8d67d5",
-   "org": "창원문화재단(시립예술단)",
-   "region": "기타",
-   "source": "cwcf.or.kr",
-   "title": "(재)창원문화재단 진해아트홀 무대조명 LED 무빙라이트 구입 규격평가위원 모집 공고",
-   "url": "https://www.cwcf.or.kr/commu/notice_view.asp?skey=&sword=&BCATE=BD00001&BSUBCATE=&place_idx=&page=1&idx=21992&bidx=2024",
-   "date": null,
-   "deadline": "2026-06-15",
-   "kind": "기타",
-   "tier": "프로",
-   "inst": "전체",
-   "instDetails": [],
-   "channel": "cwcf",
-   "layer": "B",
-   "deadlineFrom": "ocr",
-   "firstSeen": "2026-07-07",
-   "isNew": false,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "704803253e123736",
@@ -911,16 +790,17 @@
    "title": "2026 대전시립교향악단 예능단원 공개채용",
    "url": "https://dpo.artdj.kr/dpo/?a_idx=06_01&kf=sub&kw=&bo=dpo_news&p=1&ku=7564&mo=view",
    "date": null,
-   "deadline": null,
+   "deadline": "2026-07-01",
    "kind": "단원",
    "tier": "프로",
    "inst": "전체",
    "instDetails": [],
    "channel": "dpo",
    "layer": "D",
+   "deadlineFrom": "attachment",
    "firstSeen": "2026-07-07",
    "isNew": false,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "ca9438955c7e62e6",
@@ -940,27 +820,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-07",
    "isNew": false,
-   "extVer": 3
-  },
-  {
-   "id": "e1537e11f55940fb",
-   "org": "통영국제음악재단",
-   "region": "경남",
-   "source": "timf.org",
-   "title": "(재)통영국제음악재단 2026년 제3차 기간제근로자 채용 공고",
-   "url": "https://www.timf.org/kr/sub/timf/notice.asp?mode=view&bid=1&s_type=&s_keyword=&s_cate=&idx=3774&page=1",
-   "date": "2026-07-07",
-   "deadline": "2026-07-16",
-   "kind": "직원",
-   "tier": "프로",
-   "inst": "전체",
-   "instDetails": [],
-   "channel": "g_timf",
-   "layer": "B",
-   "deadlineFrom": "attachment",
-   "firstSeen": "2026-07-08",
-   "isNew": true,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "340d217c42aab8e1",
@@ -983,45 +843,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 3
-  },
-  {
-   "id": "dcbe43e5403bb847",
-   "org": "성남문화재단(시립교향악단)",
-   "region": "경기",
-   "source": "snart.or.kr",
-   "title": "2026년 성남문화재단 하반기 직원 공개채용(성남시통합채용) 공고 새로운 글",
-   "url": "https://www.snart.or.kr/main/pst/view.do?pst_id=recruit&pst_sn=20793&search=MUUrL1N6RU9LOFJFOXNiZVNTMnZHUT09",
-   "date": "2026-07-01",
-   "deadline": null,
-   "kind": "직원",
-   "tier": "프로",
-   "inst": "전체",
-   "instDetails": [],
-   "channel": "snart",
-   "layer": "B",
-   "firstSeen": "2026-07-07",
-   "isNew": false,
-   "extVer": 3
-  },
-  {
-   "id": "b7fe6b0ee72571cb",
-   "org": "성남문화재단(시립교향악단)",
-   "region": "경기",
-   "source": "snart.or.kr",
-   "title": "성남문화재단 예술본부장 공개채용 1차 필기전형 안내 새로운 글",
-   "url": "https://www.snart.or.kr/main/pst/view.do?pst_id=recruit&pst_sn=20791&search=MUUrL1N6RU9LOFJFOXNiZVNTMnZHUT09",
-   "date": "2026-07-01",
-   "deadline": null,
-   "kind": "직원",
-   "tier": "프로",
-   "inst": "전체",
-   "instDetails": [],
-   "channel": "snart",
-   "layer": "B",
-   "firstSeen": "2026-07-08",
-   "isNew": true,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "5dece78df88ec9d5",
@@ -1043,7 +865,7 @@
    "deadlineFrom": "ocr",
    "firstSeen": "2026-07-07",
    "isNew": false,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "7cf075d7e6dbdb02",
@@ -1063,7 +885,7 @@
    "deadlineFrom": "ocr",
    "firstSeen": "2026-07-07",
    "isNew": false,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "7a5bf6c368947e74",
@@ -1080,10 +902,10 @@
    "instDetails": [],
    "channel": "cwcf",
    "layer": "B",
-   "deadlineFrom": "ocr",
+   "deadlineFrom": "attachment",
    "firstSeen": "2026-07-07",
    "isNew": false,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "d1f250ef1909e652",
@@ -1103,7 +925,7 @@
    "deadlineFrom": "attachment",
    "firstSeen": "2026-07-07",
    "isNew": false,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "9d56588068016342",
@@ -1114,7 +936,7 @@
    "url": "https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_searchKey=1001&q_searchVal=%EC%98%A4%EC%BC%80%EC%8A%A4%ED%8A%B8%EB%9D%BC&q_rowPerPage=15&q_currPage=1",
    "date": "2026-06-26",
    "deadline": "2026-07-13",
-   "kind": "직원",
+   "kind": "강사",
    "tier": "교육·취미",
    "inst": "타악",
    "instDetails": [
@@ -1125,125 +947,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-07",
    "isNew": false,
-   "extVer": 3
-  },
-  {
-   "id": "8cdc5b1b05d3cade",
-   "org": "세종문화회관(서울시예술단)",
-   "region": "서울",
-   "source": "sejongpac.or.kr",
-   "title": "2026년 직원 공개채용 공고(정규직 )",
-   "url": "https://www.sejongpac.or.kr/portal/bbs/B0000065/view.do?nttId=50047&menuNo=200571&pageIndex=1",
-   "date": "2026-06-24",
-   "deadline": "2026-07-06",
-   "kind": "직원",
-   "tier": "프로",
-   "inst": "전체",
-   "instDetails": [],
-   "channel": "sejongpac",
-   "layer": "B",
-   "deadlineFrom": "page",
-   "firstSeen": "2026-07-07",
-   "isNew": false,
-   "extVer": 3
-  },
-  {
-   "id": "c9e7c2b62ef0460b",
-   "org": "수원시립예술단",
-   "region": "경기",
-   "source": "artsuwon.or.kr",
-   "title": "[수원시립공연단] 2026년 수원시립예술단 사무단원(홍보) 채용..",
-   "url": "http://artsuwon.or.kr/?p=49&viewMode=view&reqIdx=202606231401066669",
-   "date": "2026-06-23",
-   "deadline": null,
-   "kind": "직원",
-   "tier": "프로",
-   "inst": "전체",
-   "instDetails": [],
-   "channel": "artsuwon",
-   "layer": "B",
-   "firstSeen": "2026-07-07",
-   "isNew": false,
-   "extVer": 3
-  },
-  {
-   "id": "5d5f6b7c5cfd119d",
-   "org": "국립심포니오케스트라",
-   "region": "서울",
-   "source": "knso.or.kr",
-   "title": "(재)국립심포니오케스트라 2026년 제2차 계약직 직원(본부장) 채용 공고",
-   "url": "https://www.knso.or.kr/front/M0000034/article/view.do?atcId=AT001222",
-   "date": "2026-06-23",
-   "deadline": "2026-08-03",
-   "kind": "직원",
-   "tier": "프로",
-   "inst": "전체",
-   "instDetails": [],
-   "channel": "knso",
-   "layer": "D",
-   "deadlineFrom": "ocr",
-   "firstSeen": "2026-07-08",
-   "isNew": true,
-   "extVer": 3
-  },
-  {
-   "id": "38bf5c08c2987fd5",
-   "org": "인천문화예술회관(시립예술단)",
-   "region": "인천",
-   "source": "incheon.go.kr",
-   "title": "2026년 인천문화예술회관 기간제근로자(하우스부매니저) 채용 공고",
-   "url": "https://www.incheon.go.kr/art/ART040102/3077767",
-   "date": "2026-06-22",
-   "deadline": "2027-04-10",
-   "kind": "직원",
-   "tier": "프로",
-   "inst": "전체",
-   "instDetails": [],
-   "channel": "incheon",
-   "layer": "B",
-   "deadlineFrom": "page+yearfix",
-   "firstSeen": "2026-07-08",
-   "isNew": true,
-   "extVer": 3
-  },
-  {
-   "id": "c98f372c720e6ef5",
-   "org": "성남문화재단(시립교향악단)",
-   "region": "경기",
-   "source": "snart.or.kr",
-   "title": "2026년 성남큐브미술관 하반기 전시안내원(기간제근로자) 모집공고",
-   "url": "https://www.snart.or.kr/main/pst/view.do?pst_id=recruit&pst_sn=20747&search=MUUrL1N6RU9LOFJFOXNiZVNTMnZHUT09",
-   "date": "2026-06-19",
-   "deadline": "2026-07-03",
-   "kind": "직원",
-   "tier": "프로",
-   "inst": "전체",
-   "instDetails": [],
-   "channel": "snart",
-   "layer": "B",
-   "deadlineFrom": "attachment",
-   "firstSeen": "2026-07-07",
-   "isNew": false,
-   "extVer": 3
-  },
-  {
-   "id": "8d00ba7dd81f36b2",
-   "org": "성남문화재단(시립교향악단)",
-   "region": "경기",
-   "source": "snart.or.kr",
-   "title": "성남문화재단 예술본부장 채용 재공고",
-   "url": "https://www.snart.or.kr/main/pst/view.do?pst_id=recruit&pst_sn=20741&search=MUUrL1N6RU9LOFJFOXNiZVNTMnZHUT09",
-   "date": "2026-06-18",
-   "deadline": null,
-   "kind": "직원",
-   "tier": "프로",
-   "inst": "전체",
-   "instDetails": [],
-   "channel": "snart",
-   "layer": "B",
-   "firstSeen": "2026-07-07",
-   "isNew": false,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "39e76524e7d8b820",
@@ -1263,7 +967,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "ee3c2beac170a133",
@@ -1288,7 +992,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "c3a6d6c8c219d94e",
@@ -1312,7 +1016,7 @@
    "deadlineFrom": "page+yearfix",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "da06b8ae997fd398",
@@ -1334,7 +1038,7 @@
    "layer": "A",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "fd8dd89d180c8773",
@@ -1345,7 +1049,7 @@
    "url": "https://www.artinfokorea.com/jobs/466",
    "date": "2026-06-17",
    "deadline": null,
-   "kind": "직원",
+   "kind": "강사",
    "tier": "전공·입시",
    "inst": "성악",
    "instDetails": [
@@ -1355,7 +1059,7 @@
    "layer": "A",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "66564a9a98fa61d9",
@@ -1376,7 +1080,7 @@
    "layer": "A",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "0585ebf76b60fcd5",
@@ -1400,7 +1104,7 @@
    "deadlineFrom": "title",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "680ee74408ece69f",
@@ -1424,7 +1128,7 @@
    "deadlineFrom": "title+yearfix",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "aed11ebb1cc504af",
@@ -1445,7 +1149,7 @@
    "layer": "A",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "d37853ea84bc63de",
@@ -1465,27 +1169,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 3
-  },
-  {
-   "id": "b03f4189bc64a413",
-   "org": "부산문화회관(시립예술단)",
-   "region": "부산",
-   "source": "bscc.or.kr",
-   "title": "(재)부산문화회관 공연장 전문인력 교육생 모집 공고",
-   "url": "https://www.bscc.or.kr/05_community/?mcode=0405010000&mode=2&no=15768&page=1",
-   "date": "2026-06-15",
-   "deadline": "2026-07-12",
-   "kind": "직원",
-   "tier": "프로",
-   "inst": "전체",
-   "instDetails": [],
-   "channel": "bscc",
-   "layer": "B",
-   "deadlineFrom": "page",
-   "firstSeen": "2026-07-07",
-   "isNew": false,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "4e49ec09fcc8abac",
@@ -1505,7 +1189,7 @@
    "deadlineFrom": "attachment",
    "firstSeen": "2026-07-07",
    "isNew": false,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "0a41b6382b6ad0fc",
@@ -1525,47 +1209,7 @@
    "deadlineFrom": "page+yearfix",
    "firstSeen": "2026-07-07",
    "isNew": false,
-   "extVer": 3
-  },
-  {
-   "id": "d88eeed5eccee6fd",
-   "org": "세종문화회관(서울시예술단)",
-   "region": "서울",
-   "source": "sejongpac.or.kr",
-   "title": "(재)세종문화회관 계약직 직원(보건관리자, 컴퍼니매니저, 하우스부매니저) 채용 공고",
-   "url": "https://www.sejongpac.or.kr/portal/bbs/B0000065/view.do?nttId=50031&menuNo=200571&pageIndex=1",
-   "date": "2026-06-09",
-   "deadline": "2026-06-19",
-   "kind": "직원",
-   "tier": "프로",
-   "inst": "전체",
-   "instDetails": [],
-   "channel": "sejongpac",
-   "layer": "B",
-   "deadlineFrom": "page",
-   "firstSeen": "2026-07-07",
-   "isNew": false,
-   "extVer": 3
-  },
-  {
-   "id": "bc1d752d9459e3e6",
-   "org": "창원문화재단(시립예술단)",
-   "region": "기타",
-   "source": "cwcf.or.kr",
-   "title": "「2026 창원조각비엔날레 홍보대행 용역」 제안서 평가위원(후보자) 공개모집 ..",
-   "url": "https://www.cwcf.or.kr/commu/notice_view.asp?skey=&sword=&BCATE=BD00001&BSUBCATE=&place_idx=&page=1&idx=22043&bidx=2030",
-   "date": "2026-06-08",
-   "deadline": "2026-06-16",
-   "kind": "기타",
-   "tier": "프로",
-   "inst": "전체",
-   "instDetails": [],
-   "channel": "cwcf",
-   "layer": "B",
-   "deadlineFrom": "attachment",
-   "firstSeen": "2026-07-07",
-   "isNew": false,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "62549d92b1ac00a6",
@@ -1585,7 +1229,7 @@
    "deadlineFrom": "attachment",
    "firstSeen": "2026-07-07",
    "isNew": false,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "3c148d4560a0a9a5",
@@ -1596,7 +1240,7 @@
    "url": "https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_searchKey=1001&q_searchVal=%EC%98%A4%EC%BC%80%EC%8A%A4%ED%8A%B8%EB%9D%BC&q_rowPerPage=15&q_currPage=1",
    "date": "2026-06-02",
    "deadline": "2026-07-13",
-   "kind": "직원",
+   "kind": "강사",
    "tier": "교육·취미",
    "inst": "전체",
    "instDetails": [],
@@ -1605,27 +1249,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-07",
    "isNew": false,
-   "extVer": 3
-  },
-  {
-   "id": "ff408c64c900ea61",
-   "org": "세종문화회관(서울시예술단)",
-   "region": "서울",
-   "source": "sejongpac.or.kr",
-   "title": "(재)세종문화회관 시설서비스직(기계·보안·미화) 직원 공개채용 공고",
-   "url": "https://www.sejongpac.or.kr/portal/bbs/B0000065/view.do?nttId=50030&menuNo=200571&pageIndex=1",
-   "date": "2026-06-02",
-   "deadline": "2026-06-12",
-   "kind": "직원",
-   "tier": "프로",
-   "inst": "전체",
-   "instDetails": [],
-   "channel": "sejongpac",
-   "layer": "B",
-   "deadlineFrom": "page",
-   "firstSeen": "2026-07-07",
-   "isNew": false,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "80d14ca8d0c13b77",
@@ -1645,7 +1269,7 @@
    "deadlineFrom": "attachment",
    "firstSeen": "2026-07-07",
    "isNew": false,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "7f62ca737e69c4ad",
@@ -1664,7 +1288,7 @@
    "layer": "D",
    "firstSeen": "2026-07-07",
    "isNew": false,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "132afea811223f4c",
@@ -1684,46 +1308,7 @@
    "deadlineFrom": "ocr",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 3
-  },
-  {
-   "id": "a9f8c8d23e6abfe6",
-   "org": "국립합창단",
-   "region": "서울",
-   "source": "nationalchorus.or.kr",
-   "title": "[공지] 국립합창단 직원 채용 공고",
-   "url": "http://nationalchorus.or.kr/notice-2/?vid=711",
-   "date": "2026-05-28",
-   "deadline": "2026-06-18",
-   "kind": "직원",
-   "tier": "프로",
-   "inst": "성악",
-   "instDetails": [],
-   "channel": "natchorus",
-   "layer": "D",
-   "deadlineFrom": "page",
-   "firstSeen": "2026-07-07",
-   "isNew": false,
-   "extVer": 3
-  },
-  {
-   "id": "a9442f42fbada0fa",
-   "org": "인천문화예술회관(시립예술단)",
-   "region": "인천",
-   "source": "incheon.go.kr",
-   "title": "2026 인천시립소년소녀합창단 교육반 신규단원 공개모집 세부사항 공고",
-   "url": "https://www.incheon.go.kr/art/ART040102/3073382",
-   "date": "2026-05-27",
-   "deadline": null,
-   "kind": "단원",
-   "tier": "전공·입시",
-   "inst": "성악",
-   "instDetails": [],
-   "channel": "incheon",
-   "layer": "B",
-   "firstSeen": "2026-07-07",
-   "isNew": false,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "58818be9fd61ba1c",
@@ -1742,7 +1327,7 @@
    "layer": "B",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "7468553439d534a9",
@@ -1761,26 +1346,7 @@
    "layer": "B",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 3
-  },
-  {
-   "id": "94505cc2af4362cc",
-   "org": "울산문화예술회관(시립예술단)",
-   "region": "기타",
-   "source": "ucac.ulsan.go.kr",
-   "title": "울산광역시립예술단 사무국 직원 모집 공고",
-   "url": "https://ucac.ulsan.go.kr/page.do?mnu_code=mnu003001&bod_sn=181&cmd=2",
-   "date": "2026-05-18",
-   "deadline": null,
-   "kind": "직원",
-   "tier": "프로",
-   "inst": "전체",
-   "instDetails": [],
-   "channel": "ulsan",
-   "layer": "B",
-   "firstSeen": "2026-07-08",
-   "isNew": true,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "fba03fc78f0081fa",
@@ -1791,7 +1357,7 @@
    "url": "https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_searchKey=1001&q_searchVal=%EC%98%A4%EC%BC%80%EC%8A%A4%ED%8A%B8%EB%9D%BC&q_rowPerPage=15&q_currPage=1",
    "date": "2026-05-15",
    "deadline": "2026-07-13",
-   "kind": "직원",
+   "kind": "강사",
    "tier": "교육·취미",
    "inst": "전체",
    "instDetails": [],
@@ -1800,7 +1366,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "039dc70e0475402b",
@@ -1811,7 +1377,7 @@
    "url": "https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_searchKey=1001&q_searchVal=%EC%98%A4%EC%BC%80%EC%8A%A4%ED%8A%B8%EB%9D%BC&q_rowPerPage=15&q_currPage=1",
    "date": "2026-05-11",
    "deadline": "2026-07-13",
-   "kind": "직원",
+   "kind": "강사",
    "tier": "교육·취미",
    "inst": "목관",
    "instDetails": [],
@@ -1820,7 +1386,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "2ccde0ec653ad686",
@@ -1830,76 +1396,17 @@
    "title": "[변경 공고] 인천시립청소년교향악단 기획운영단원 및 교향악단 기간제 비상임단원 공개모집 공고",
    "url": "https://www.incheon.go.kr/art/ART040102/3070441",
    "date": "2026-05-08",
-   "deadline": null,
-   "kind": "직원",
+   "deadline": "2027-04-27",
+   "kind": "객원·대체",
    "tier": "전공·입시",
    "inst": "전체",
    "instDetails": [],
    "channel": "incheon",
    "layer": "B",
+   "deadlineFrom": "attachment+yearfix",
    "firstSeen": "2026-07-07",
    "isNew": false,
-   "extVer": 3
-  },
-  {
-   "id": "6aa73ee840472269",
-   "org": "성남문화재단(시립교향악단)",
-   "region": "경기",
-   "source": "snart.or.kr",
-   "title": "2026 성남아트리움 공연장 안내원 모집공고(~5/17)",
-   "url": "https://www.snart.or.kr/main/pst/view.do?pst_id=recruit&pst_sn=20565&search=MUUrL1N6RU9LOFJFOXNiZVNTMnZHUT09",
-   "date": "2026-05-07",
-   "deadline": "2026-05-17",
-   "kind": "직원",
-   "tier": "프로",
-   "inst": "전체",
-   "instDetails": [],
-   "channel": "snart",
-   "layer": "B",
-   "deadlineFrom": "title",
-   "firstSeen": "2026-07-07",
-   "isNew": false,
-   "extVer": 3
-  },
-  {
-   "id": "20355c912e7ef449",
-   "org": "세종문화회관(서울시예술단)",
-   "region": "서울",
-   "source": "sejongpac.or.kr",
-   "title": "세종문화회관 ‘공연장 안내원 49기’ 모집 공고문",
-   "url": "https://www.sejongpac.or.kr/portal/bbs/B0000065/view.do?nttId=50006&menuNo=200571&pageIndex=1",
-   "date": "2026-05-06",
-   "deadline": "2026-05-27",
-   "kind": "직원",
-   "tier": "프로",
-   "inst": "전체",
-   "instDetails": [],
-   "channel": "sejongpac",
-   "layer": "B",
-   "deadlineFrom": "page",
-   "firstSeen": "2026-07-07",
-   "isNew": false,
-   "extVer": 3
-  },
-  {
-   "id": "27e5595c314b98c5",
-   "org": "국립합창단",
-   "region": "서울",
-   "source": "nationalchorus.or.kr",
-   "title": "[공지] 국립합창단 직원 채용 공고",
-   "url": "http://nationalchorus.or.kr/notice-2/?vid=706",
-   "date": "2026-04-28",
-   "deadline": "2026-05-12",
-   "kind": "직원",
-   "tier": "프로",
-   "inst": "성악",
-   "instDetails": [],
-   "channel": "natchorus",
-   "layer": "D",
-   "deadlineFrom": "page",
-   "firstSeen": "2026-07-07",
-   "isNew": false,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "568d27633d07614d",
@@ -1909,16 +1416,17 @@
    "title": "인천시립청소년교향악단 기획운영단원 및 교향악단 기간제 비상임단원 공개모집 공고",
    "url": "https://www.incheon.go.kr/art/ART040102/3069382",
    "date": "2026-04-27",
-   "deadline": null,
-   "kind": "직원",
+   "deadline": "2026-05-22",
+   "kind": "객원·대체",
    "tier": "전공·입시",
    "inst": "전체",
    "instDetails": [],
    "channel": "incheon",
    "layer": "B",
+   "deadlineFrom": "attachment",
    "firstSeen": "2026-07-07",
    "isNew": false,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "6e3cea797d2b9f71",
@@ -1938,7 +1446,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-07",
    "isNew": false,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "a4898251c3619927",
@@ -1958,7 +1466,7 @@
    "deadlineFrom": "attachment",
    "firstSeen": "2026-07-07",
    "isNew": false,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "501b31c68be683e6",
@@ -1969,7 +1477,7 @@
    "url": "https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_searchKey=1001&q_searchVal=%EC%98%A4%EC%BC%80%EC%8A%A4%ED%8A%B8%EB%9D%BC&q_rowPerPage=15&q_currPage=1",
    "date": "2026-04-20",
    "deadline": "2026-07-13",
-   "kind": "직원",
+   "kind": "강사",
    "tier": "교육·취미",
    "inst": "목관",
    "instDetails": [],
@@ -1978,7 +1486,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "4ab6c3691ac8657a",
@@ -1989,7 +1497,7 @@
    "url": "https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_searchKey=1001&q_searchVal=%EC%98%A4%EC%BC%80%EC%8A%A4%ED%8A%B8%EB%9D%BC&q_rowPerPage=15&q_currPage=1",
    "date": "2026-04-17",
    "deadline": "2026-07-13",
-   "kind": "직원",
+   "kind": "강사",
    "tier": "교육·취미",
    "inst": "타악",
    "instDetails": [
@@ -2000,7 +1508,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "4ad0b24774e31dbf",
@@ -2023,7 +1531,7 @@
    "deadlineFrom": "ocr",
    "firstSeen": "2026-07-07",
    "isNew": false,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "468353f1d76ea048",
@@ -2034,7 +1542,7 @@
    "url": "https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_searchKey=1001&q_searchVal=%EC%98%A4%EC%BC%80%EC%8A%A4%ED%8A%B8%EB%9D%BC&q_rowPerPage=15&q_currPage=1",
    "date": "2026-04-15",
    "deadline": "2026-07-13",
-   "kind": "직원",
+   "kind": "강사",
    "tier": "교육·취미",
    "inst": "전체",
    "instDetails": [],
@@ -2043,7 +1551,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "04096b273859f4cb",
@@ -2054,7 +1562,7 @@
    "url": "https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_searchKey=1001&q_searchVal=%EC%98%A4%EC%BC%80%EC%8A%A4%ED%8A%B8%EB%9D%BC&q_rowPerPage=15&q_currPage=1",
    "date": "2026-04-14",
    "deadline": "2026-07-13",
-   "kind": "직원",
+   "kind": "강사",
    "tier": "교육·취미",
    "inst": "전체",
    "instDetails": [],
@@ -2063,27 +1571,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 3
-  },
-  {
-   "id": "f77020e7537dd5b4",
-   "org": "국립오페라단",
-   "region": "서울",
-   "source": "nationalopera.org",
-   "title": "2026년 제2차 국립오페라단 직원 채용 공고",
-   "url": "https://www.nationalopera.org/cpage/board/notice?boardSeq=16519",
-   "date": "2026-04-06",
-   "deadline": "2026-06-08",
-   "kind": "직원",
-   "tier": "프로",
-   "inst": "전체",
-   "instDetails": [],
-   "channel": "natopera",
-   "layer": "D",
-   "deadlineFrom": "page",
-   "firstSeen": "2026-07-08",
-   "isNew": true,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "6448364dc8eaf2c6",
@@ -2094,7 +1582,7 @@
    "url": "https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_searchKey=1001&q_searchVal=%EC%98%A4%EC%BC%80%EC%8A%A4%ED%8A%B8%EB%9D%BC&q_rowPerPage=15&q_currPage=1",
    "date": "2026-04-03",
    "deadline": "2026-07-13",
-   "kind": "직원",
+   "kind": "강사",
    "tier": "교육·취미",
    "inst": "전체",
    "instDetails": [],
@@ -2103,7 +1591,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "07f8b4dbceae9c07",
@@ -2114,7 +1602,7 @@
    "url": "https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_searchKey=1001&q_searchVal=%EC%98%A4%EC%BC%80%EC%8A%A4%ED%8A%B8%EB%9D%BC&q_rowPerPage=15&q_currPage=1",
    "date": "2026-04-03",
    "deadline": "2026-07-13",
-   "kind": "직원",
+   "kind": "강사",
    "tier": "교육·취미",
    "inst": "전체",
    "instDetails": [],
@@ -2123,7 +1611,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "d75edd963908469f",
@@ -2134,7 +1622,7 @@
    "url": "https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_searchKey=1001&q_searchVal=%EC%98%A4%EC%BC%80%EC%8A%A4%ED%8A%B8%EB%9D%BC&q_rowPerPage=15&q_currPage=1",
    "date": "2026-04-02",
    "deadline": "2026-07-13",
-   "kind": "직원",
+   "kind": "강사",
    "tier": "교육·취미",
    "inst": "전체",
    "instDetails": [],
@@ -2143,7 +1631,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "b1bfeaf37030434f",
@@ -2154,7 +1642,7 @@
    "url": "https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_searchKey=1001&q_searchVal=%EC%98%A4%EC%BC%80%EC%8A%A4%ED%8A%B8%EB%9D%BC&q_rowPerPage=15&q_currPage=1",
    "date": "2026-04-01",
    "deadline": "2026-07-13",
-   "kind": "직원",
+   "kind": "강사",
    "tier": "교육·취미",
    "inst": "전체",
    "instDetails": [],
@@ -2163,7 +1651,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "29565db5af81d74b",
@@ -2183,7 +1671,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-07",
    "isNew": false,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "827821597a0afc34",
@@ -2194,7 +1682,7 @@
    "url": "https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_searchKey=1001&q_searchVal=%EC%98%A4%EC%BC%80%EC%8A%A4%ED%8A%B8%EB%9D%BC&q_rowPerPage=15&q_currPage=1",
    "date": "2026-03-30",
    "deadline": "2026-07-13",
-   "kind": "직원",
+   "kind": "강사",
    "tier": "교육·취미",
    "inst": "전체",
    "instDetails": [],
@@ -2203,7 +1691,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "17604d16b2e449cb",
@@ -2214,7 +1702,7 @@
    "url": "https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_searchKey=1001&q_searchVal=%EC%98%A4%EC%BC%80%EC%8A%A4%ED%8A%B8%EB%9D%BC&q_rowPerPage=15&q_currPage=1",
    "date": "2026-03-30",
    "deadline": "2026-07-13",
-   "kind": "직원",
+   "kind": "강사",
    "tier": "교육·취미",
    "inst": "전체",
    "instDetails": [],
@@ -2223,7 +1711,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 3
+   "extVer": 4
   },
   {
    "id": "04aa946db6feefa2",
@@ -2243,45 +1731,27 @@
    "deadlineFrom": "attachment",
    "firstSeen": "2026-07-07",
    "isNew": false,
-   "extVer": 3
+   "extVer": 4
   },
   {
-   "id": "f4ec2e0c98b6055d",
-   "org": "수원시립예술단",
-   "region": "경기",
-   "source": "artsuwon.or.kr",
-   "title": "2026년도 수원시립합창단 사무국 연수단원 채용 공고",
-   "url": "http://artsuwon.or.kr/?p=49&viewMode=view&reqIdx=202603041720578902",
-   "date": "2026-03-04",
-   "deadline": null,
-   "kind": "직원",
-   "tier": "프로",
+   "id": "738f91f7172513b1",
+   "org": "국립오페라단",
+   "region": "서울",
+   "source": "nationalopera.org",
+   "title": "2026 국립오페라스튜디오 청년교육단원 9기 오페라합창 추가선발 오디션",
+   "url": "https://www.nationalopera.org/cpage/board/notice?boardSeq=16507",
+   "date": "2026-02-23",
+   "deadline": "2026-06-08",
+   "kind": "단원",
+   "tier": "전공·입시",
    "inst": "성악",
    "instDetails": [],
-   "channel": "artsuwon",
-   "layer": "B",
-   "firstSeen": "2026-07-07",
-   "isNew": false,
-   "extVer": 3
-  },
-  {
-   "id": "7c8232bb8c2c7a58",
-   "org": "수원시립예술단",
-   "region": "경기",
-   "source": "artsuwon.or.kr",
-   "title": "[수원시립합창단] 사무국 육아휴직 대체인력 채용 재공고",
-   "url": "http://artsuwon.or.kr/?p=49&viewMode=view&reqIdx=202602101702078338",
-   "date": "2026-02-10",
-   "deadline": null,
-   "kind": "직원",
-   "tier": "프로",
-   "inst": "성악",
-   "instDetails": [],
-   "channel": "artsuwon",
-   "layer": "B",
-   "firstSeen": "2026-07-07",
-   "isNew": false,
-   "extVer": 3
+   "channel": "natopera",
+   "layer": "D",
+   "deadlineFrom": "page",
+   "firstSeen": "2026-07-08",
+   "isNew": true,
+   "extVer": 4
   },
   {
    "id": "c1020acd39ba3049",
@@ -2300,7 +1770,7 @@
    "layer": "B",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 3
+   "extVer": 4
   }
  ]
 }
