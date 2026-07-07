@@ -1,5 +1,5 @@
 {
- "collectedAt": "2026-07-08 03:31",
+ "collectedAt": "2026-07-08 05:31",
  "sourceCount": 37,
  "okCount": 37,
  "sources": [
@@ -55,7 +55,7 @@
    "poll": "weekly",
    "ok": true,
    "raw": 16,
-   "kept": 3
+   "kept": 2
   },
   {
    "id": "daegu",
@@ -109,7 +109,7 @@
    "poll": "weekly",
    "ok": true,
    "raw": 26,
-   "kept": 4
+   "kept": 3
   },
   {
    "id": "ulsan",
@@ -117,7 +117,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 10,
+   "raw": 17,
    "kept": 1
   },
   {
@@ -244,7 +244,7 @@
    "poll": "weekly",
    "ok": true,
    "raw": 1,
-   "kept": 1
+   "kept": 0
   },
   {
    "id": "g_artgy",
@@ -950,11 +950,11 @@
    "extVer": 4
   },
   {
-   "id": "39e76524e7d8b820",
+   "id": "1c2b1191adccd831",
    "org": "아트인포(클래식 채용)",
    "region": "경기",
    "source": "artinfokorea.com",
-   "title": "세종국악관현악단, 2026년 문화예술 연수단원 추가모집 공고(창작실연 / 모집 기간 연장) 경기 장구 대금 해금 장구 외 2 세종국악관현악단 2026.06.17",
+   "title": "세종국악관현악단, 2026년 문화예술 연수단원 추가모집 공고(창작실연 / 모집 기간 연장)",
    "url": "https://www.artinfokorea.com/jobs/470",
    "date": "2026-06-17",
    "deadline": "2026-07-08",
@@ -970,21 +970,18 @@
    "extVer": 4
   },
   {
-   "id": "ee3c2beac170a133",
+   "id": "a680faac61c874bf",
    "org": "아트인포(클래식 채용)",
    "region": "대구",
    "source": "artinfokorea.com",
-   "title": "경상북도 도립예술단 지휘자, 예능단원, 사무원 모집공고 대구 호른 첼로 바이올린 외 4 호른 외 6 경상북도 도립예술단 2026.06.04",
+   "title": "경상북도 도립예술단 지휘자, 예능단원, 사무원 모집공고",
    "url": "https://www.artinfokorea.com/jobs/469",
    "date": "2026-06-17",
    "deadline": "2026-06-17",
    "kind": "단원",
    "tier": "프로",
-   "inst": "현악",
+   "inst": "지휘",
    "instDetails": [
-    "바이올린",
-    "첼로",
-    "호른",
     "지휘"
    ],
    "channel": "artinfo",
@@ -995,22 +992,18 @@
    "extVer": 4
   },
   {
-   "id": "c3a6d6c8c219d94e",
+   "id": "589603f9a406569d",
    "org": "아트인포(클래식 채용)",
    "region": "기타",
    "source": "artinfokorea.com",
-   "title": "2026년 군산시립합창단 기간제 비상임단원 공개모집 전북 소프라노 테너 피아노 소프라노 외 2 군산시립합창단 2026.05.28",
+   "title": "2026년 군산시립합창단 기간제 비상임단원 공개모집",
    "url": "https://www.artinfokorea.com/jobs/468",
    "date": "2026-06-17",
    "deadline": "2027-06-11",
    "kind": "객원·대체",
    "tier": "프로",
-   "inst": "건반",
-   "instDetails": [
-    "피아노",
-    "소프라노",
-    "테너"
-   ],
+   "inst": "성악",
+   "instDetails": [],
    "channel": "artinfo",
    "layer": "A",
    "deadlineFrom": "page+yearfix",
@@ -1041,20 +1034,18 @@
    "extVer": 4
   },
   {
-   "id": "fd8dd89d180c8773",
+   "id": "b45188e68777edf5",
    "org": "아트인포(클래식 채용)",
    "region": "경기",
    "source": "artinfokorea.com",
-   "title": "더솔아르떼 성악아카데미 평택점과 함께할 전문 강사님을 모십니다 경기 소프라노 소프라노 더솔아르떼 성악아카데미 평택점 2026.05.14",
+   "title": "더솔아르떼 성악아카데미 평택점과 함께할 전문 강사님을 모십니다",
    "url": "https://www.artinfokorea.com/jobs/466",
    "date": "2026-06-17",
    "deadline": null,
    "kind": "강사",
    "tier": "전공·입시",
    "inst": "성악",
-   "instDetails": [
-    "소프라노"
-   ],
+   "instDetails": [],
    "channel": "artinfo",
    "layer": "A",
    "firstSeen": "2026-07-08",
@@ -1083,22 +1074,18 @@
    "extVer": 4
   },
   {
-   "id": "0585ebf76b60fcd5",
+   "id": "9620ade24d0b0c0c",
    "org": "아트인포(클래식 채용)",
    "region": "서울",
    "source": "artinfokorea.com",
-   "title": "[서울 아도로 앙상블] 유급단원 모집 안내 (~6/30) 서울 베이스 소프라노 테너 외 3 베이스 외 5 Adoro Ensemble 2026.05.11",
+   "title": "[서울 아도로 앙상블] 유급단원 모집 안내 (~6/30)",
    "url": "https://www.artinfokorea.com/jobs/464",
    "date": "2026-06-17",
    "deadline": "2026-06-30",
    "kind": "단원",
    "tier": "프로",
-   "inst": "성악",
-   "instDetails": [
-    "소프라노",
-    "테너",
-    "베이스(성악)"
-   ],
+   "inst": "전체",
+   "instDetails": [],
    "channel": "artinfo",
    "layer": "A",
    "deadlineFrom": "title",
@@ -1107,22 +1094,18 @@
    "extVer": 4
   },
   {
-   "id": "680ee74408ece69f",
+   "id": "08866dcb8f1878e8",
    "org": "아트인포(클래식 채용)",
    "region": "서울",
    "source": "artinfokorea.com",
-   "title": "[한국문화예술위원회 지원사업] 현악 전공 인재 모집 (~6.1) 서울 바이올린 더블베이스 첼로 외 1 바이올린 외 3 스테이지원 2026.05.10",
+   "title": "[한국문화예술위원회 지원사업] 현악 전공 인재 모집 (~6.1)",
    "url": "https://www.artinfokorea.com/jobs/463",
    "date": "2026-06-17",
    "deadline": "2027-06-01",
    "kind": "기타",
    "tier": "프로",
    "inst": "현악",
-   "instDetails": [
-    "더블베이스",
-    "바이올린",
-    "첼로"
-   ],
+   "instDetails": [],
    "channel": "artinfo",
    "layer": "A",
    "deadlineFrom": "title+yearfix",
@@ -1131,11 +1114,11 @@
    "extVer": 4
   },
   {
-   "id": "aed11ebb1cc504af",
+   "id": "4da5ac93aea9485d",
    "org": "아트인포(클래식 채용)",
    "region": "서울",
    "source": "artinfokorea.com",
-   "title": "[모집공고] 강동구립여성합창단 신임 지휘자 모집 서울 지휘 지휘 강동구립여성합창단 2026.04.29",
+   "title": "[모집공고] 강동구립여성합창단 신임 지휘자 모집",
    "url": "https://www.artinfokorea.com/jobs/462",
    "date": "2026-06-17",
    "deadline": null,
@@ -1207,26 +1190,6 @@
    "channel": "sejongpac",
    "layer": "B",
    "deadlineFrom": "page+yearfix",
-   "firstSeen": "2026-07-07",
-   "isNew": false,
-   "extVer": 4
-  },
-  {
-   "id": "62549d92b1ac00a6",
-   "org": "인천문화예술회관(시립예술단)",
-   "region": "인천",
-   "source": "incheon.go.kr",
-   "title": "2026 인천시립무용단 출연단원 공개모집 공고",
-   "url": "https://www.incheon.go.kr/art/ART040102/3075680",
-   "date": "2026-06-05",
-   "deadline": "2026-06-29",
-   "kind": "단원",
-   "tier": "프로",
-   "inst": "전체",
-   "instDetails": [],
-   "channel": "incheon",
-   "layer": "B",
-   "deadlineFrom": "attachment",
    "firstSeen": "2026-07-07",
    "isNew": false,
    "extVer": 4
@@ -1315,7 +1278,7 @@
    "id": "90b6247b29765fe9",
    "org": "울산문화예술회관(시립예술단)",
    "region": "기타",
-   "source": "ucac.ulsan.go.kr",
+   "source": "ulsan.go.kr",
    "title": "2026년도 상반기 2차 울산광역시립청소년교향악단 신규 단원 모집 공고",
    "url": "https://www.ulsan.go.kr/ucac/art/page.do?mnu_code=mnu003001&bod_sn=186&cmd=2",
    "date": "2026-05-26",
@@ -1717,26 +1680,6 @@
    "extVer": 4
   },
   {
-   "id": "04aa946db6feefa2",
-   "org": "창원문화재단(시립예술단)",
-   "region": "기타",
-   "source": "cwcf.or.kr",
-   "title": "2026년 3.15아트홀 기획전시 진행요원 채용공고",
-   "url": "https://www.cwcf.or.kr/commu/notice_view.asp?skey=&sword=&BCATE=BD00001&BSUBCATE=&place_idx=&page=1&idx=21993&bidx=2025",
-   "date": "2026-03-15",
-   "deadline": "2026-06-11",
-   "kind": "기타",
-   "tier": "프로",
-   "inst": "전체",
-   "instDetails": [],
-   "channel": "cwcf",
-   "layer": "B",
-   "deadlineFrom": "attachment",
-   "firstSeen": "2026-07-07",
-   "isNew": false,
-   "extVer": 4
-  },
-  {
    "id": "738f91f7172513b1",
    "org": "국립오페라단",
    "region": "서울",
@@ -1752,25 +1695,6 @@
    "channel": "natopera",
    "layer": "D",
    "deadlineFrom": "page",
-   "firstSeen": "2026-07-08",
-   "isNew": true,
-   "extVer": 4
-  },
-  {
-   "id": "c1020acd39ba3049",
-   "org": "의정부예술의전당",
-   "region": "경기",
-   "source": "uac.or.kr",
-   "title": "2026년 어린이 오케스트라 신입단원 모집 공고",
-   "url": "https://www.uac.or.kr/newuac/community/community_11D.php?page=1&page_start=&NUMBER=1482",
-   "date": "2026-02-07",
-   "deadline": null,
-   "kind": "단원",
-   "tier": "프로",
-   "inst": "전체",
-   "instDetails": [],
-   "channel": "g_uac",
-   "layer": "B",
    "firstSeen": "2026-07-08",
    "isNew": true,
    "extVer": 4

@@ -40,7 +40,9 @@ def norm_org(s):
     return re.sub(r"[()\[\]·.]", "", s)
 
 def norm_title(s):
-    return re.sub(r"[\s\[\]()〈〉<>『』「」·.,\-~!?]", "", s or "")[:40]
+    # 변경공고/재공고는 원공고와 같은 건으로 취급 (dedup 시 최신 것이 canonical)
+    s = re.sub(r"변경 ?공고|재공고|수정 ?공고", "", s or "")
+    return re.sub(r"[\s\[\]()〈〉<>『』「」·.,\-~!?]", "", s)[:40]
 
 # 집계 채널의 일반(placeholder) org — 기관 특정이 안 되므로 병합 금지
 GENERIC_ORG = re.compile(r"기독정보넷|아트인포|아트모아|교육청 ?포털")
@@ -58,6 +60,8 @@ def dedup(items):
         groups.setdefault(dedup_key(it), []).append(it)
     out = []
     for group in groups.values():
+        # 같은 층위면 최신 게시(변경공고)를 canonical로
+        group.sort(key=lambda x: x.get("date") or "", reverse=True)
         group.sort(key=lambda x: LAYER_RANK.get(x.get("layer", "A"), 9))
         canon = group[0]
         others = sorted({g["source"] for g in group[1:] if g["source"] != canon["source"]})
@@ -104,7 +108,7 @@ def find_attachments(soup, base_url):
 
 EXT_VER = 4         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일 승계가 무효화됨
 RENDER_PER_SOURCE = 3   # 소스당 Playwright 렌더링 상한
-OCR_PER_SOURCE = 3      # 소스당 이미지 공고문 OCR 상한
+OCR_PER_SOURCE = 6      # 소스당 이미지 공고문 OCR 상한 (항목당 최대 2장)
 _renders_used = 0
 _ocr_used = 0
 
@@ -278,6 +282,9 @@ def run(force_all=False):
                         it["deadlineFrom"] = (it.get("deadlineFrom") or "") + "+yearfix"
             # 보강으로 알게 된 마감이 이미 한참 지난 공고는 제거 (작년 공고 등)
             kept = [i for i in kept if not (i["deadline"] and i["deadline"] < stale)]
+            # 마감을 못 찾았고 게시된 지 120일 넘은 공고도 정리 (사실상 종료)
+            old_cut = (today - timedelta(days=120)).isoformat()
+            kept = [i for i in kept if i["deadline"] or not i["date"] or i["date"] >= old_cut]
             # 소스가 비정상적으로 0건 반환(서버 다운 등) 시 이전 수집분 승계
             if not raw:
                 carried = [it for it in prev_items if it.get("channel") == src["id"]]

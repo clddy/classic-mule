@@ -327,12 +327,14 @@ def parse_artinfo(s):
         if not re.match(r"^/jobs/\d+", href) or href in seen:
             continue
         seen.add(href)
-        text = a.get_text(" ", strip=True)
-        if len(text) < 10:
+        full = a.get_text(" ", strip=True)
+        if len(full) < 10:
             continue
-        title = text[:90]
-        items.append(make_item("아트인포(클래식 채용)", region_from(text), "artinfokorea.com",
-                               title, urljoin("https://www.artinfokorea.com", href),
+        # 카드 앵커가 제목+지역+악기+기관명을 통째로 담고 있어 첫 텍스트 노드만 제목으로
+        first = next((t.strip() for t in a.stripped_strings), "")
+        title = first if len(first) >= 10 else full[:90]
+        items.append(make_item("아트인포(클래식 채용)", region_from(full), "artinfokorea.com",
+                               title[:90], urljoin("https://www.artinfokorea.com", href),
                                date=_row_date(a)))
     return items
 
@@ -356,22 +358,20 @@ def parse_cjob(s):
                                date=_row_date(a)))
     return items
 
-# ---------- 21. 울산문화예술회관(시립예술단) — JS 렌더링 ----------
+# ---------- 21. 울산문화예술회관(시립예술단) ----------
+# ucac.ulsan.go.kr은 JS 스텁 — www.ulsan.go.kr/ucac/art 경로가 SSR이고 링크도 이쪽만 정상 (클릭 추적으로 확인)
 def parse_ulsan(s):
-    from jsfetch import render
-    html = render("https://ucac.ulsan.go.kr/page.do?mnu_code=mnu003001", selector="a")
-    soup = BeautifulSoup(html, "lxml")
+    r = get(s, "https://www.ulsan.go.kr/ucac/art/page.do?mnu_code=mnu003001")
     items = []
-    for a in soup.select('a[href*="bod_sn"]'):
+    for a in _soup(r).select('a[href*="bod_sn"]'):
         title = a.get_text(" ", strip=True)
         if len(title) < 8:
             continue
         m = re.search(r"bod_sn=(\d+)", a["href"])
         if not m:
             continue
-        # SPA 특성상 상세는 www.ulsan.go.kr/ucac/art 경로로만 열림 (클릭 추적으로 확인)
         url = f"https://www.ulsan.go.kr/ucac/art/page.do?mnu_code=mnu003001&bod_sn={m.group(1)}&cmd=2"
-        items.append(make_item("울산문화예술회관(시립예술단)", "기타", "ucac.ulsan.go.kr",
+        items.append(make_item("울산문화예술회관(시립예술단)", "기타", "ulsan.go.kr",
                                title, url, date=_row_date(a)))
     return items
 
