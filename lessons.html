@@ -5,8 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>과외 — 포디엄</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Song+Myung&family=Cormorant:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+  <link rel="stylesheet" href="css/style.css?v=2">
   <style>
     .cred { font-size:0.82rem; color:var(--ink-soft); margin-top:6px; line-height:1.55; }
     .cred b { color:var(--ink); }
@@ -59,7 +61,7 @@
   </aside>
   <main>
     <div class="board-toolbar">
-      <div class="search-box">🔍 <input type="text" id="search-input" placeholder="악기, 학교, 지역으로 검색"></div>
+      <div class="search-box"><input type="text" id="search-input" placeholder="악기, 학교, 지역으로 검색"></div>
       <select id="sort-sel" style="border:1px solid var(--line);border-radius:8px;padding:9px 12px;font-size:0.88rem;background:var(--paper);font-family:inherit">
         <option value="default">최근 등록순</option>
         <option value="reviews">리뷰 많은 순</option>
@@ -144,10 +146,10 @@
 </div>
 
 <footer class="site-footer">
-  <div class="container"><span class="logo serif">포디엄<span class="accent">.</span></span><br>클래식 음악인을 위한 플랫폼 · 프로토타입 v0.2</div>
+  <div class="container"><span class="logo serif">포디엄<span class="accent">.</span></span><br>클래식 음악인을 위한 플랫폼 · 프로토타입 v0.15</div>
 </footer>
 
-<a class="feedback-fab" href="mailto:ohmjin3141@naver.com?subject=%ED%8F%AC%EB%94%94%EC%97%84%20%EA%B3%BC%EC%99%B8%20%ED%94%BC%EB%93%9C%EB%B0%B1">💬 피드백 보내기</a>
+<a class="feedback-fab" href="mailto:ohmjin3141@naver.com?subject=%ED%8F%AC%EB%94%94%EC%97%84%20%EA%B3%BC%EC%99%B8%20%ED%94%BC%EB%93%9C%EB%B0%B1">피드백 보내기</a>
 
 <script>
 // 리서치 반영: 사사·합격실적이 핵심 신뢰 정보, 성악은 반주자 비용 별도, 시범레슨 문화
@@ -259,7 +261,7 @@ function render(){
           ${t.verified?`<span class="tag inst">🎓 학력인증</span>`:""}
           ${t.mode.map(m=>`<span class="tag pos">${m}</span>`).join("")}
         </div>
-        <h3>${t.detail} · ${t.name} 선생님 <span style="font-weight:400;font-size:0.85rem;color:var(--ink-soft)">📍 ${t.region}</span></h3>
+        <h3>${t.detail} · ${t.name} 선생님 <span style="font-weight:400;font-size:0.85rem;color:var(--ink-soft)">${t.region}</span></h3>
         <div style="font-size:0.82rem;color:var(--ink);margin-top:2px">⭐ <b>${t.rating}</b> (리뷰 ${t.rcount}) · 매칭 <b>${t.matches}회</b> · 경력 ${t.years}년</div>
         <div class="cred"><b>${t.edu}</b>${t.prize?`<br>🏆 ${t.prize}`:""}<br><span style="font-size:0.76rem;opacity:0.85">지도 실적: ${t.record}</span></div>
         <div class="price-line">${t.price}</div>
@@ -276,7 +278,7 @@ function render(){
       <article class="job-card">
         <div class="top-row"><span class="tag inst">${r.detail}</span><span class="tag cat">학생 요청</span></div>
         <h3>${r.title}</h3>
-        <div class="meta"><span>📍 ${r.region}</span><span class="pay">${r.budget}</span><span>${r.mode}</span></div>
+        <div class="meta"><span>${r.region}</span><span class="pay">${r.budget}</span><span>${r.mode}</span></div>
         <div class="source-line"><span>${r.note}</span></div>
       </article>`).join("");
   }

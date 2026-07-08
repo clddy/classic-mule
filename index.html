@@ -5,8 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>포디엄 — 클래식 음악인의 무대와 일자리</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Song+Myung&family=Cormorant:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+  <link rel="stylesheet" href="css/style.css?v=2">
 </head>
 <body>
 
@@ -28,7 +30,8 @@
 
 <section class="hero">
   <div class="container">
-    <h1 class="serif">클래식 음악인의<br>다음 <span class="accent">무대</span>를 찾아드립니다</h1>
+    <p class="eyebrow">클래식 음악인을 위한 플랫폼</p>
+    <h1 class="serif">흩어진 무대를<br>한 <span class="accent">포디엄</span> 위에</h1>
     <p>오케스트라 객원부터 입시 반주, 행사 연주, 레슨까지 —
        단톡방과 지인 소개로만 돌던 기회를 한곳에 모았습니다.</p>
     <div class="hero-cta">
@@ -45,32 +48,32 @@
     <div class="card-grid">
       <a href="jobs.html" class="service-card">
         <span class="badge-live">운영중</span>
-        <span class="icon">🎼</span>
+        <span class="icon">01</span>
         <h3>구인구직</h3>
         <p>시향 공식 채용공고(자동 수집)부터 객원·반주·행사 소규모 구인까지 한곳에서.</p>
       </a>
       <a href="practice.html" class="service-card">
         <span class="badge-live">베타</span>
-        <span class="icon">🎹</span>
+        <span class="icon">02</span>
         <h3>연습실 매칭</h3>
         <p>방음·채광·시설·남은 자리·월세까지 비교하고 고릅니다.</p>
       </a>
       <a href="lessons.html" class="service-card">
         <span class="badge-live">베타</span>
-        <span class="icon">🎻</span>
+        <span class="icon">03</span>
         <h3>과외 매칭</h3>
         <p>사사 라인과 합격 실적으로 찾는 선생님, 조건으로 올리는 레슨 요청.</p>
       </a>
       <a href="market.html" class="service-card">
         <span class="badge-live">베타</span>
-        <span class="icon">🎺</span>
+        <span class="icon">04</span>
         <h3>중고거래</h3>
         <p>감정서·시연·위탁 — 신뢰 장치를 갖춘 악기 거래.</p>
       </a>
     </div>
     <a href="jobs.html" class="crawl-banner">
       <div>
-        <h3>🏛️ 공식 채용공고 자동 수집</h3>
+        <h3>공식 채용공고 자동 수집</h3>
         <p>전국 교향악단·합창단·오페라단 20개 기관 홈페이지의 모집 공고를 매일 18시에 자동 수집해 구인구직 게시판에 [공식] 태그로 정리합니다.</p>
       </div>
       <button class="btn-outline">공고 보러가기 →</button>
@@ -92,7 +95,7 @@
 <footer class="site-footer">
   <div class="container">
     <span class="logo serif">포디엄<span class="accent">.</span></span><br>
-    클래식 음악인을 위한 플랫폼 · 프로토타입 v0.1
+    클래식 음악인을 위한 플랫폼 · 프로토타입 v0.15
   </div>
 </footer>
 
@@ -121,11 +124,11 @@
       <h3>${j.title}</h3>
       <div class="meta">
         <span>${j.org}</span>
-        <span>📍 ${j.region}</span>
+        <span>${j.region}</span>
         <span class="pay">${j.pay}</span>
       </div>
     </a>`).join("");
 </script>
-<a class="feedback-fab" href="mailto:ohmjin3141@naver.com?subject=%ED%8F%AC%EB%94%94%EC%97%84%20%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85%20%ED%94%BC%EB%93%9C%EB%B0%B1">💬 피드백 보내기</a>
+<a class="feedback-fab" href="mailto:ohmjin3141@naver.com?subject=%ED%8F%AC%EB%94%94%EC%97%84%20%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85%20%ED%94%BC%EB%93%9C%EB%B0%B1">피드백 보내기</a>
 </body>
 </html>

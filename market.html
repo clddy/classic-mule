@@ -5,8 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>중고거래 — 포디엄</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Song+Myung&family=Cormorant:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+  <link rel="stylesheet" href="css/style.css?v=2">
   <style>
     .tag.ok { background:#e7f2ec; color:var(--green); }
     .tag.warn { background:#fbe9e4; color:var(--red); }
@@ -53,10 +55,10 @@
   </aside>
   <main>
     <div class="safety-note">
-      🛡️ <b>안전거래 안내</b> — 악기는 택배보다 <b>대면 거래가 기본</b>입니다. 반드시 시연 후 결정하세요(본인 활 지참 권장). 서초·남부터미널 일대 악기상 밀집 권역에서는 <b>위탁·동반 감정</b>이 활발합니다. 감정서 없는 억대 악기, 선입금 유도, "투자용 악기" 권유는 사기 신고가 잦은 유형입니다.
+      <b>안전거래 안내</b> — 악기는 택배보다 <b>대면 거래가 기본</b>입니다. 반드시 시연 후 결정하세요(본인 활 지참 권장). 서초·남부터미널 일대 악기상 밀집 권역에서는 <b>위탁·동반 감정</b>이 활발합니다. 감정서 없는 억대 악기, 선입금 유도, "투자용 악기" 권유는 사기 신고가 잦은 유형입니다.
     </div>
     <div class="board-toolbar">
-      <div class="search-box">🔍 <input type="text" id="search-input" placeholder="악기, 제작자, 지역으로 검색"></div>
+      <div class="search-box"><input type="text" id="search-input" placeholder="악기, 제작자, 지역으로 검색"></div>
     </div>
     <div class="result-count" id="result-count"></div>
     <div class="job-list" id="list"></div>
@@ -69,7 +71,7 @@
     <button class="modal-close">✕</button>
     <div class="top-row" id="mk-tags"></div>
     <h2 id="mk-title"></h2>
-    <div style="height:140px;border-radius:8px;margin-bottom:12px;background:linear-gradient(135deg,#efe9db,#e2d8c2);display:flex;align-items:center;justify-content:center;font-size:2rem">🎻</div>
+    <div style="height:140px;border-radius:8px;margin-bottom:12px;background:var(--wash);display:flex;align-items:center;justify-content:center;font-size:2rem"></div>
     <div class="price-line" id="mk-price" style="margin-bottom:10px"></div>
     <dl class="detail-meta" id="mk-meta"></dl>
     <h3 style="font-size:0.95rem;color:var(--navy);margin:14px 0 6px">판매자 설명</h3>
@@ -85,10 +87,10 @@
 </div>
 
 <footer class="site-footer">
-  <div class="container"><span class="logo serif">포디엄<span class="accent">.</span></span><br>클래식 음악인을 위한 플랫폼 · 프로토타입 v0.2</div>
+  <div class="container"><span class="logo serif">포디엄<span class="accent">.</span></span><br>클래식 음악인을 위한 플랫폼 · 프로토타입 v0.15</div>
 </footer>
 
-<a class="feedback-fab" href="mailto:ohmjin3141@naver.com?subject=%ED%8F%AC%EB%94%94%EC%97%84%20%EC%A4%91%EA%B3%A0%EA%B1%B0%EB%9E%98%20%ED%94%BC%EB%93%9C%EB%B0%B1">💬 피드백 보내기</a>
+<a class="feedback-fab" href="mailto:ohmjin3141@naver.com?subject=%ED%8F%AC%EB%94%94%EC%97%84%20%EC%A4%91%EA%B3%A0%EA%B1%B0%EB%9E%98%20%ED%94%BC%EB%93%9C%EB%B0%B1">피드백 보내기</a>
 
 <script>
 // 벤치마킹 반영: 상태등급(Reverb식 표준)·판매상태(뮬의 수동 관행 정식화)·판매자 신뢰·가격제안
@@ -187,7 +189,7 @@ function render(){
       <h3>${i.title}</h3>
       <div class="price-line">${fmtPrice(i.price)}</div>
       <div class="meta">
-        <span>📍 ${i.region}</span><span>${i.deal}</span>
+        <span>${i.region}</span><span>${i.deal}</span>
         <span>${i.seller.type} · 거래 ${i.seller.trades}회</span>
       </div>
       <div class="source-line"><span>${i.note}</span><span>♥ ${i.wish} · 조회 ${i.views}</span></div>

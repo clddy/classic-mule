@@ -119,15 +119,19 @@ function cardHTML(j) {
     ${j.isNew ? `<span class="tag urgent">NEW</span>` : ""}`;
   const meta = `
     <span>${j.org}</span>
-    <span>📍 ${j.region}</span>
-    ${j.when ? `<span>🗓 ${j.when}</span>` : ""}
+    <span>${j.region}</span>
+    ${j.when ? `<span>${j.when}</span>` : ""}
     ${j.pay ? `<span class="pay">${j.pay}</span>` : ""}
     ${j.deadline ? `<span>마감 ${j.deadline}</span>` : ""}`;
+  // 객원·대체는 프로그램(연주곡)을 카드에 노출 (동생 피드백)
+  const program = j.program
+    ? `<div class="program-line"><b>연주곡</b>${j.program}</div>` : "";
   if (j.src === "공식") {
     return `
     <article class="job-card${st.key === "마감" ? " closed" : ""}" data-okey="${j.key}">
       <div class="top-row">${tags}</div>
       <h3>${j.title}</h3>
+      ${program}
       <div class="meta">${meta}</div>
       <div class="source-line"><span>출처 <span class="src">${j.source}</span></span><span>눌러서 상세 · 원문 보기</span></div>
     </article>`;
@@ -136,6 +140,7 @@ function cardHTML(j) {
     <article class="job-card${st.key === "마감" ? " closed" : ""}" data-cid="${j.cid}">
       <div class="top-row">${tags}</div>
       <h3>${j.title}</h3>
+      ${program}
       <div class="meta">${meta}</div>
     </article>`;
 }
