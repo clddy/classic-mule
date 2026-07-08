@@ -4,7 +4,8 @@ from datetime import date, datetime, timedelta
 from bs4 import BeautifulSoup
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from common import new_session, get, relevant, extract_deadline, deadline_from_title, musician_relevant
+from common import (new_session, get, relevant, extract_deadline, deadline_from_title,
+                    musician_relevant, parse_recruit_table, summarize_recruit, find_position)
 from sources import SOURCES
 from institutions import INSTITUTIONS
 import attach
@@ -138,6 +139,48 @@ def _ref_year(item):
     d = item.get("date") or ""
     return int(d[:4]) if re.match(r"^20\d{2}", d) else None
 
+def _find_audition(text):
+    """실기전형/오디션 키워드 근처 날짜 → 'M/D' (첫 1~2개)"""
+    for kw in re.finditer(r"실기 ?전형|오디션|실기 ?심사|실기 ?시험|실기 ?일정", text):
+        w = text[kw.start(): kw.start() + 160]
+        ds = re.findall(r"20\d{2}\s*[.\-]\s*(\d{1,2})\s*[.\-]\s*(\d{1,2})", w)
+        if ds:
+            segs = [f"{int(mo)}/{int(d)}" for mo, d in ds[:2]]
+            return " · ".join(segs)
+    return None
+
+def _find_contract(text):
+    m = re.search(r"(계약 ?기간|위촉 ?기간)\s*:?\s*([^\n·|]{4,40})", text)
+    if m:
+        return re.sub(r"\s+", " ", m.group(2)).strip(" .:")
+    m = re.search(r"(1년 ?계약직?|기간제|시즌 ?단원|비상임|상임)", text)
+    return m.group(1) if m else None
+
+def _extract_body_details(soup, page_text, item, ry):
+    """본문에서 채용부문/직책/인원 표 + 직책 + 오디션 + 계약기간 추출"""
+    if not item.get("recruitParts"):
+        parts = parse_recruit_table(soup)
+        if parts:
+            item["recruitParts"] = parts
+            summ, positions, total = summarize_recruit(parts)
+            item["recruitSummary"] = summ
+            if positions:
+                item["positions"] = positions
+            if summ:
+                item["personnel"] = summ  # 표 요약을 모집인원 표기로 승격
+    if not item.get("positions"):
+        pos = find_position(item.get("title", "")) or find_position(page_text[:500])
+        if pos:
+            item["positions"] = [pos]
+    if not item.get("auditionDate"):
+        a = _find_audition(page_text)
+        if a:
+            item["auditionDate"] = a
+    if not item.get("contract") and item.get("kind") == "단원":
+        c = _find_contract(page_text)
+        if c:
+            item["contract"] = c
+
 def enrich_deadline(s, item, allow_render=True):
     global _renders_used
     ry = _ref_year(item)
@@ -149,6 +192,8 @@ def enrich_deadline(s, item, allow_render=True):
         for tag in soup(["script", "style", "header", "footer", "nav"]):
             tag.decompose()
         page_text = soup.get_text(" ", strip=True)
+        # 채용부문/직책/인원 표 등 본문 상세 (마감 유무와 무관하게 항상)
+        _extract_body_details(soup, page_text, item, ry)
         # 게시일이 없으면 상세의 등록일로 보충 (연령 정리·연도 보정에 사용)
         if not item.get("date"):
             m = re.search(r"등록일\s*:?\s*(20\d{2}-\d{2}-\d{2})", page_text)
@@ -280,13 +325,22 @@ def run(force_all=False):
                         it["deadlineNote"] = old["deadlineNote"]
                     if old.get("date") and not it.get("date"):
                         it["date"] = old["date"]
+                    # 본문 파싱 결과(직책·인원·오디션·계약) 승계 — 재파싱 방지
+                    for f_ in ("recruitParts", "recruitSummary", "positions",
+                               "personnel", "auditionDate", "contract"):
+                        if old.get(f_) and not it.get(f_):
+                            it[f_] = old[f_]
                 if not it["deadline"]:
                     tdl = deadline_from_title(it["title"], ref_year=_ref_year(it))
                     if tdl:
                         it["deadline"] = tdl
                         it["deadlineFrom"] = "title"
-            # JS 렌더 폴백은 기관 게시판(B/D)에만 — 집계 노드에 예산 낭비 방지
-            for it in [i for i in kept if not i["deadline"]][:MAX_DETAIL_PER_SOURCE]:
+            # 상세 파싱 대상: 마감 미확인 + (단원·객원인데 직책/인원 아직 없음)
+            need = [i for i in kept if not i["deadline"]]
+            recruit_need = [i for i in kept
+                            if i.get("kind") in ("단원", "객원·대체")
+                            and not i.get("recruitParts") and i not in need]
+            for it in (need + recruit_need)[:MAX_DETAIL_PER_SOURCE]:
                 enrich_deadline(s, it, allow_render=src["layer"] in ("B", "D"))
             # 마감이 게시일보다 앞서면 공고문 연도 오타로 보고 +1년 보정
             for it in kept:

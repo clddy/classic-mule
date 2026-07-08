@@ -306,6 +306,81 @@ def extract_personnel(title):
     prefix = (m.group(1) or "").strip()
     return f"{prefix} {m.group(2)}명" if prefix else f"{m.group(2)}명"
 
+# ---------- 직책(포지션) 체계 ----------
+# 우선순위 높은 것부터 (긴 것 먼저 매칭)
+POSITION_LIST = ["종신수석", "부악장", "악장", "수석대우", "부수석", "차석", "수석",
+                 "상임지휘자", "부지휘자", "지휘자", "악장대우", "반주자", "단원", "튜티"]
+POSITION_PAT = re.compile("|".join(POSITION_LIST))
+
+def find_position(text):
+    m = POSITION_PAT.search(text or "")
+    return m.group(0) if m else None
+
+# ---------- 채용부문/직책/인원 표 파싱 ----------
+_HDR_PART = ["채용부문", "모집부문", "모집분야", "선발부문", "모집파트", "부문", "파트"]
+_HDR_POS = ["직책", "직급", "구분", "포지션"]
+_HDR_NUM = ["인원", "명"]
+
+def _hcol(headers, names):
+    for idx, h in enumerate(headers):
+        if any(n in h for n in names):
+            return idx
+    return None
+
+def parse_recruit_table(soup):
+    """채용부문/직책/인원 HTML 표 → [{part, position, count}] (없으면 None)"""
+    for table in soup.find_all("table"):
+        rows = table.find_all("tr")
+        if len(rows) < 2:
+            continue
+        headers = [c.get_text(" ", strip=True) for c in rows[0].find_all(["th", "td"])]
+        htxt = " ".join(headers)
+        if not any(k in htxt for k in _HDR_PART):
+            continue
+        ci_part = _hcol(headers, _HDR_PART)
+        ci_pos = _hcol(headers, _HDR_POS)
+        ci_num = _hcol(headers, _HDR_NUM)
+        if ci_part is None:
+            continue
+        out = []
+        for tr in rows[1:]:
+            cells = [re.sub(r"\s+", " ", c.get_text(" ", strip=True)) for c in tr.find_all(["th", "td"])]
+            if len(cells) <= ci_part:
+                continue
+            part = cells[ci_part].strip()
+            if not part or len(part) > 24 or any(k in part for k in _HDR_PART):
+                continue
+            pos = cells[ci_pos].strip() if ci_pos is not None and ci_pos < len(cells) else ""
+            # 직책 칸에 값이 없으면 부문 칸에서 직책 단어 탐색
+            if not pos or not POSITION_PAT.search(pos):
+                pos = find_position(pos) or find_position(part) or pos
+            num = cells[ci_num] if ci_num is not None and ci_num < len(cells) else ""
+            nm = re.search(r"\d+", num)
+            out.append({"part": part, "position": pos or "", "count": nm.group(0) if nm else ""})
+        if out:
+            return out
+    return None
+
+def summarize_recruit(parts):
+    """recruitParts → (요약문자열, 직책set, 총인원). 예: '비올라 부수석 1 · 타악기 수석 1'"""
+    if not parts:
+        return None, None, None
+    segs, positions, total = [], [], 0
+    for p in parts:
+        seg = p["part"]
+        if p.get("position"):
+            seg += f" {p['position']}"
+            positions.append(p["position"])
+        if p.get("count"):
+            seg += f" {p['count']}명"
+            try:
+                total += int(p["count"])
+            except ValueError:
+                pass
+        segs.append(seg)
+    uniq_pos = list(dict.fromkeys(positions))
+    return " · ".join(segs), uniq_pos, (total or None)
+
 def make_item(org, region, source, title, url, date=None, deadline=None):
     group, details = classify_insts(title)
     clean = re.sub(r"\s+", " ", title).strip()

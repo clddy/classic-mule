@@ -313,9 +313,13 @@ def parse_artmore(s):
         title = re.sub(r"^진행중\s*", "", title)
         if len(title) < 8 or not CLASSIC_PAT.search(title):
             continue
-        items.append(make_item("아트모아(예술 일자리 포털)", "기타", "artmore.kr",
-                               title, urljoin("https://www.artmore.kr", a["href"]),
-                               date=_row_date(a)))
+        it = make_item("아트모아(예술 일자리 포털)", "기타", "artmore.kr",
+                       title, urljoin("https://www.artmore.kr", a["href"]),
+                       date=_row_date(a))
+        origin = _resolve_origin(s, it["url"], "artmore.kr")
+        if origin:
+            it["officialUrl"] = origin
+        items.append(it)
     return items
 
 # ---------- 22. 아트인포코리아 (클래식 전문 채용 포털) ----------

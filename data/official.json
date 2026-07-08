@@ -1,5 +1,5 @@
 {
- "collectedAt": "2026-07-08 19:32",
+ "collectedAt": "2026-07-08 19:56",
  "sourceCount": 37,
  "okCount": 37,
  "sources": [
@@ -356,9 +356,13 @@
     "타악"
    ],
    "personnel": null,
+   "officialUrl": "https://www.kbssymphony.org/ko/info/notice.php?board_code=view&number=29498&page=1",
    "channel": "artmore",
    "layer": "A",
    "deadlineNote": "상시",
+   "positions": [
+    "단원"
+   ],
    "firstSeen": "2026-07-08",
    "isNew": true,
    "extVer": 4
@@ -559,7 +563,8 @@
    "personnel": null,
    "channel": "sejongpac",
    "layer": "B",
-   "deadlineFrom": "page-js",
+   "deadlineFrom": "page",
+   "auditionDate": "7/7",
    "firstSeen": "2026-07-08",
    "isNew": true,
    "extVer": 4
@@ -581,10 +586,33 @@
     "오보에",
     "타악"
    ],
-   "personnel": null,
+   "personnel": "비올라 부수석 1명 · 오보에 부수석 1명 · 타악기 수석 1명",
    "channel": "kbs",
    "layer": "D",
    "deadlineFrom": "page",
+   "recruitParts": [
+    {
+     "part": "비올라",
+     "position": "부수석",
+     "count": "1"
+    },
+    {
+     "part": "오보에",
+     "position": "부수석",
+     "count": "1"
+    },
+    {
+     "part": "타악기",
+     "position": "수석",
+     "count": "1"
+    }
+   ],
+   "recruitSummary": "비올라 부수석 1명 · 오보에 부수석 1명 · 타악기 수석 1명",
+   "positions": [
+    "부수석",
+    "수석"
+   ],
+   "auditionDate": "8/17 · 8/23",
    "firstSeen": "2026-07-08",
    "isNew": true,
    "extVer": 4
@@ -690,6 +718,10 @@
    "channel": "dpo",
    "layer": "D",
    "deadlineFrom": "attachment",
+   "positions": [
+    "단원"
+   ],
+   "contract": "상임",
    "firstSeen": "2026-07-07",
    "isNew": false,
    "extVer": 4
@@ -711,6 +743,9 @@
    "channel": "gso",
    "layer": "D",
    "deadlineFrom": "page",
+   "positions": [
+    "단원"
+   ],
    "firstSeen": "2026-07-07",
    "isNew": false,
    "extVer": 4
@@ -731,10 +766,27 @@
     "비올라",
     "오보에"
    ],
-   "personnel": null,
+   "personnel": "비올라 부수석 1명 · 오보에 부수석 1명",
    "channel": "kbs",
    "layer": "D",
    "deadlineFrom": "page",
+   "recruitParts": [
+    {
+     "part": "비올라",
+     "position": "부수석",
+     "count": "1"
+    },
+    {
+     "part": "오보에",
+     "position": "부수석",
+     "count": "1"
+    }
+   ],
+   "recruitSummary": "비올라 부수석 1명 · 오보에 부수석 1명",
+   "positions": [
+    "부수석"
+   ],
+   "auditionDate": "8/17 · 8/23",
    "firstSeen": "2026-07-08",
    "isNew": true,
    "extVer": 4
@@ -758,6 +810,9 @@
    "channel": "sejongpac",
    "layer": "B",
    "deadlineFrom": "ocr",
+   "positions": [
+    "단원"
+   ],
    "firstSeen": "2026-07-07",
    "isNew": false,
    "extVer": 4
@@ -865,6 +920,10 @@
    "channel": "artsuwon",
    "layer": "B",
    "deadlineFrom": "ocr",
+   "positions": [
+    "단원"
+   ],
+   "contract": "상임",
    "firstSeen": "2026-07-08",
    "isNew": true,
    "extVer": 4
@@ -887,6 +946,9 @@
    "channel": "artinfo",
    "layer": "A",
    "deadlineFrom": "page",
+   "positions": [
+    "단원"
+   ],
    "firstSeen": "2026-07-08",
    "isNew": true,
    "extVer": 4
@@ -911,6 +973,9 @@
    "channel": "artinfo",
    "layer": "A",
    "deadlineFrom": "page",
+   "positions": [
+    "지휘자"
+   ],
    "firstSeen": "2026-07-08",
    "isNew": true,
    "extVer": 4
@@ -933,6 +998,9 @@
    "channel": "artinfo",
    "layer": "A",
    "deadlineFrom": "page+yearfix",
+   "positions": [
+    "단원"
+   ],
    "firstSeen": "2026-07-08",
    "isNew": true,
    "extVer": 4
@@ -999,6 +1067,9 @@
    "personnel": null,
    "channel": "artinfo",
    "layer": "A",
+   "positions": [
+    "반주자"
+   ],
    "firstSeen": "2026-07-08",
    "isNew": true,
    "extVer": 4
@@ -1021,6 +1092,9 @@
    "channel": "artinfo",
    "layer": "A",
    "deadlineFrom": "title",
+   "positions": [
+    "단원"
+   ],
    "firstSeen": "2026-07-08",
    "isNew": true,
    "extVer": 4
@@ -1066,6 +1140,9 @@
    "officialUrl": "https://www.gangdong.go.kr/web/newportal/notice/01/57324",
    "channel": "artinfo",
    "layer": "A",
+   "positions": [
+    "지휘자"
+   ],
    "firstSeen": "2026-07-08",
    "isNew": true,
    "extVer": 4
@@ -1129,6 +1206,9 @@
    "channel": "sejongpac",
    "layer": "B",
    "deadlineFrom": "page+yearfix",
+   "positions": [
+    "단원"
+   ],
    "firstSeen": "2026-07-07",
    "isNew": false,
    "extVer": 4
@@ -1192,6 +1272,10 @@
    "channel": "bucheonphil",
    "layer": "D",
    "deadlineFrom": "attachment",
+   "positions": [
+    "단원"
+   ],
+   "contract": "상임",
    "firstSeen": "2026-07-07",
    "isNew": false,
    "extVer": 4
@@ -1213,6 +1297,9 @@
    "channel": "g_timf",
    "layer": "B",
    "deadlineFrom": "ocr",
+   "positions": [
+    "단원"
+   ],
    "firstSeen": "2026-07-08",
    "isNew": true,
    "extVer": 4
@@ -1236,6 +1323,9 @@
    "channel": "cjob",
    "layer": "C",
    "deadlineNote": "상시",
+   "positions": [
+    "반주자"
+   ],
    "firstSeen": "2026-07-08",
    "isNew": true,
    "extVer": 4
@@ -1257,6 +1347,9 @@
    "channel": "ulsan",
    "layer": "B",
    "deadlineFrom": "attachment",
+   "positions": [
+    "단원"
+   ],
    "firstSeen": "2026-07-08",
    "isNew": true,
    "extVer": 4
@@ -1341,6 +1434,9 @@
    "channel": "incheon",
    "layer": "B",
    "deadlineFrom": "attachment+yearfix",
+   "positions": [
+    "단원"
+   ],
    "firstSeen": "2026-07-07",
    "isNew": false,
    "extVer": 4
@@ -1362,6 +1458,9 @@
    "channel": "incheon",
    "layer": "B",
    "deadlineFrom": "attachment",
+   "positions": [
+    "단원"
+   ],
    "firstSeen": "2026-07-07",
    "isNew": false,
    "extVer": 4
@@ -1374,7 +1473,7 @@
    "title": "2026 KNCO 국립심포니콘서트오케스트라 - 단원 추가 모집 공고",
    "url": "https://www.knso.or.kr/front/M0000034/article/view.do?atcId=AT001206",
    "date": "2026-04-27",
-   "deadline": "2026-05-13",
+   "deadline": "2026-05-29",
    "kind": "단원",
    "tier": "프로",
    "inst": "전체",
@@ -1382,7 +1481,10 @@
    "personnel": null,
    "channel": "knso",
    "layer": "D",
-   "deadlineFrom": "page",
+   "deadlineFrom": "ocr",
+   "positions": [
+    "단원"
+   ],
    "firstSeen": "2026-07-07",
    "isNew": false,
    "extVer": 4
@@ -1472,6 +1574,9 @@
    "channel": "knso",
    "layer": "D",
    "deadlineFrom": "ocr",
+   "positions": [
+    "단원"
+   ],
    "firstSeen": "2026-07-07",
    "isNew": false,
    "extVer": 4
@@ -1684,6 +1789,9 @@
    "channel": "cjob",
    "layer": "C",
    "deadlineNote": "상시",
+   "positions": [
+    "반주자"
+   ],
    "firstSeen": "2026-07-08",
    "isNew": true,
    "extVer": 4
@@ -1707,6 +1815,9 @@
    "channel": "cjob",
    "layer": "C",
    "deadlineNote": "상시",
+   "positions": [
+    "반주자"
+   ],
    "firstSeen": "2026-07-08",
    "isNew": true,
    "extVer": 4
@@ -1728,6 +1839,10 @@
    "channel": "natopera",
    "layer": "D",
    "deadlineFrom": "page",
+   "positions": [
+    "단원"
+   ],
+   "auditionDate": "3/4 · 2/26",
    "firstSeen": "2026-07-08",
    "isNew": true,
    "extVer": 4
@@ -1751,6 +1866,9 @@
    "channel": "cjob",
    "layer": "C",
    "deadlineNote": "상시",
+   "positions": [
+    "반주자"
+   ],
    "firstSeen": "2026-07-08",
    "isNew": true,
    "extVer": 4
@@ -1774,6 +1892,9 @@
    "channel": "cjob",
    "layer": "C",
    "deadlineNote": "상시",
+   "positions": [
+    "반주자"
+   ],
    "firstSeen": "2026-07-08",
    "isNew": true,
    "extVer": 4
@@ -1797,6 +1918,9 @@
    "channel": "cjob",
    "layer": "C",
    "deadlineNote": "상시",
+   "positions": [
+    "반주자"
+   ],
    "firstSeen": "2026-07-08",
    "isNew": true,
    "extVer": 4

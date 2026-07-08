@@ -367,6 +367,17 @@ details[open] > .filter-summary::after { content: " −"; }
   font-family: inherit;
   color: var(--ink);
 }
+.sort-sel {
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 9px 12px;
+  font-size: 0.88rem;
+  font-family: inherit;
+  background: var(--paper);
+  color: var(--ink);
+  cursor: pointer;
+}
+.sort-sel:hover { border-color: var(--ink); }
 .result-count { font-size: 0.84rem; color: var(--ink-soft); margin-bottom: 12px; }
 .result-count strong { color: var(--ink); font-variant-numeric: tabular-nums; }
 

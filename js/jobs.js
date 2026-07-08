@@ -18,6 +18,7 @@ const OFFICIAL_ITEMS = ((window.CRAWLED && window.CRAWLED.items) || []).map(j =>
   deadline: j.deadline, deadlineText: j.deadlineNote, date: j.date || j.firstSeen,
   personnel: j.personnel, qualification: j.qualification, contract: j.contract,
   auditionDate: j.auditionDate, rehearsal: j.rehearsal, concertDate: j.concertDate, program: j.program,
+  positions: j.positions, recruitSummary: j.recruitSummary,
   url: j.url, officialUrl: j.officialUrl, isNew: j.isNew, source: j.source
 }));
 
@@ -30,6 +31,7 @@ let COMMUNITY_ITEMS = JOBS.map(j => ({
   when: j.when, program: j.program,
   personnel: j.personnel, qualification: j.qualification, contract: j.contract,
   auditionDate: j.auditionDate, rehearsal: j.rehearsal, concertDate: j.concertDate,
+  positions: j.positions, recruitSummary: j.recruitSummary,
   deadline: /^\d{4}/.test(j.deadline) ? j.deadline : null, deadlineText: j.deadline,
   date: j.date, body: j.body, urgent: j.urgent, cid: j.id
 }));
@@ -49,7 +51,7 @@ const INST_GROUPS = [
 const REGION_LIST = ["서울", "경기", "인천", "대전", "대구", "부산", "기타"];
 const STATUSES = ["접수중", "마감임박", "확인필요", "마감"];
 
-const state = { tab: "전체", tiers: new Set(), bands: new Set(), insts: new Set(), regions: new Set(), status: new Set(), query: "" };
+const state = { tab: "전체", tiers: new Set(), bands: new Set(), insts: new Set(), regions: new Set(), status: new Set(), query: "", sort: "deadline" };
 const $ = (s) => document.querySelector(s);
 
 function statusOf(j) {
@@ -104,12 +106,32 @@ function filtered() {
       if (!`${j.title} ${j.org} ${j.insts.join(" ")} ${j.body || ""}`.toLowerCase().includes(q)) return false;
     }
     return true;
-  }).sort((a, b) => {
-    const sa = statusOf(a), sb = statusOf(b);
-    if (sa.dday !== sb.dday) return sa.dday - sb.dday;
-    return (b.date || "").localeCompare(a.date || "");
-  });
+  }).sort(sortFns[state.sort] || sortFns.deadline);
 }
+
+// ---------- 정렬 ----------
+function payNum(j) {
+  const nums = [...String(j.pay || "").matchAll(/(\d[\d,]*)\s*만/g)].map(m => +m[1].replace(/,/g, ""));
+  return nums.length ? Math.max(...nums) : -1;
+}
+function concertNum(j) {
+  const s = j.concertDate || j.when || "";
+  let m = s.match(/(20\d{2})[.\-/]\s*(\d{1,2})[.\-/]\s*(\d{1,2})/);
+  if (m) return (+m[1]) * 10000 + (+m[2]) * 100 + (+m[3]);
+  m = s.match(/(\d{1,2})\s*[/.]\s*(\d{1,2})/);
+  if (m) return 20260000 + (+m[1]) * 100 + (+m[2]);
+  return Infinity;
+}
+const byDeadline = (a, b) => {
+  const sa = statusOf(a), sb = statusOf(b);
+  if (sa.dday !== sb.dday) return sa.dday - sb.dday;
+  return (b.date || "").localeCompare(a.date || "");
+};
+const sortFns = {
+  deadline: byDeadline,
+  pay: (a, b) => (payNum(b) - payNum(a)) || byDeadline(a, b),
+  concert: (a, b) => (concertNum(a) - concertNum(b)) || byDeadline(a, b),
+};
 
 function cardHTML(j) {
   const st = statusOf(j);
@@ -118,6 +140,7 @@ function cardHTML(j) {
     ${j.type === "구직" ? `<span class="tag type-seek">구직</span>` : ""}
     <span class="tag cat">${j.band}</span>
     ${j.insts.map(i => `<span class="tag inst">${i}</span>`).join("")}
+    ${(j.positions || []).map(p => `<span class="tag pos">${p}</span>`).join("")}
     <span class="tag ${st.cls}">${st.label}</span>
     ${j.urgent ? `<span class="tag urgent">급구</span>` : ""}
     ${j.isNew ? `<span class="tag urgent">NEW</span>` : ""}`;
@@ -199,7 +222,13 @@ function metaRows(j) {
     ? `${j.deadline} <span style="color:var(--ink-soft)">(${st.label})</span>`
     : (j.deadlineText === "상시" ? "상시 모집" : (j.src === "공식" ? "원문에서 확인" : (j.deadlineText || "협의")));
   rows.push(["마감", dl]);
-  if (j.personnel) rows.push(["모집 인원", j.personnel]);
+  // 모집 인원 (표 요약이 있으면 직책·인원이 함께 담김)
+  if (j.recruitSummary) rows.push(["모집 인원", j.recruitSummary]);
+  else if (j.personnel) rows.push(["모집 인원", j.personnel]);
+  // 직책 (표 요약에 이미 들어있지 않은 경우만 별도 표기)
+  if (j.positions && j.positions.length && !j.recruitSummary) {
+    rows.push(["직책", j.positions.join(" · ")]);
+  }
   if (j.qualification) rows.push(["자격", j.qualification]);
   if (j.band === "객원·대체") {
     if (j.rehearsal || j.when) rows.push(["리허설", j.rehearsal || j.when]);
@@ -227,18 +256,28 @@ function openOfficial(key) {
     <span class="tag ${TIER_CLS[j.tier] || "cat"}">${j.tier}</span>
     <span class="tag cat">${j.band}</span>
     ${j.insts.map(i => `<span class="tag inst">${i}</span>`).join("")}
+    ${(j.positions || []).map(p => `<span class="tag pos">${p}</span>`).join("")}
     <span class="tag ${st.cls}">${st.label}</span>
     ${j.isNew ? `<span class="tag urgent">NEW</span>` : ""}`;
   $("#detail-title").textContent = j.title;
-  const target = j.officialUrl || j.url;
+  // 포털(아트모아·아트인포) 항목은 원문(officialUrl)으로만 연결 — 포털로는 절대 링크하지 않음
+  const isPortal = /artmore\.kr|artinfokorea\.com/.test(j.source || "");
+  const target = j.officialUrl || (isPortal ? null : j.url);
   let host = "";
-  try { host = new URL(target).hostname.replace(/^www\./, ""); } catch (e) {}
+  try { if (target) host = new URL(target).hostname.replace(/^www\./, ""); } catch (e) {}
   $("#detail-meta").innerHTML = metaRows(j) +
     `<dt>수집 출처</dt><dd>${j.source}${j.officialUrl ? ` → 원문: <b>${host}</b>` : ""}</dd>`;
   $("#detail-body").textContent = "그 밖의 상세 요강은 기관 공식 공고에서 확인하세요. 아래 버튼으로 이동합니다.";
   const act = $("#detail-action");
-  act.textContent = j.officialUrl ? "공식 공고 페이지 바로가기 ↗" : "공고 원문 바로가기 ↗";
-  act.onclick = () => window.open(target, "_blank", "noopener");
+  if (target) {
+    act.textContent = j.officialUrl ? "공식 공고 페이지 바로가기 ↗" : "공고 원문 바로가기 ↗";
+    act.onclick = () => window.open(target, "_blank", "noopener");
+    act.style.display = "";
+  } else {
+    // 포털 항목인데 원문 링크를 못 찾음 → 포털로 보내지 않음
+    act.style.display = "none";
+    $("#detail-body").textContent = "이 공고는 포털에서 수집됐고 원문 링크를 확인 중입니다. 기관명으로 검색해 공식 공고를 확인해 주세요.";
+  }
   $("#detail-modal").classList.add("open");
 }
 
@@ -256,6 +295,7 @@ function openDetail(cid) {
   $("#detail-meta").innerHTML = metaRows(j) + `<dt>등록일</dt><dd>${j.date}</dd>`;
   $("#detail-body").textContent = j.body || "";
   const act = $("#detail-action");
+  act.style.display = "";
   act.textContent = "지원하기 / 연락하기";
   act.onclick = () => alert("지원/연락 기능은 프로토타입에서 제공되지 않습니다.");
   $("#detail-modal").classList.add("open");
@@ -301,6 +341,7 @@ document.addEventListener("DOMContentLoaded", () => {
     $(`#tab-${t}`).addEventListener("click", () => { state.tab = t; renderAll(); });
   });
   $("#search-input").addEventListener("input", (e) => { state.query = e.target.value.trim(); renderList(); });
+  $("#sort-sel").addEventListener("change", (e) => { state.sort = e.target.value; renderList(); });
   $("#filter-reset").addEventListener("click", () => {
     state.tiers.clear(); state.bands.clear(); state.insts.clear(); state.regions.clear(); state.status.clear();
     state.query = ""; $("#search-input").value = "";

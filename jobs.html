@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Song+Myung&family=Cormorant:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-  <link rel="stylesheet" href="css/style.css?v=4">
+  <link rel="stylesheet" href="css/style.css?v=5">
 </head>
 <body>
 
@@ -76,6 +76,11 @@
       <div class="search-box">
         <input type="text" id="search-input" placeholder="제목, 악기, 기관명으로 검색">
       </div>
+      <select id="sort-sel" class="sort-sel">
+        <option value="deadline">모집 마감순</option>
+        <option value="concert">연주 날짜순</option>
+        <option value="pay">페이순</option>
+      </select>
       <button class="btn-primary" id="btn-write">＋ 글 올리기</button>
     </div>
     <div class="result-count" id="result-count"></div>
@@ -229,7 +234,7 @@
 
 <a class="feedback-fab" href="mailto:ohmjin3141@naver.com?subject=%ED%8F%AC%EB%94%94%EC%97%84%20%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85%20%ED%94%BC%EB%93%9C%EB%B0%B1">피드백 보내기</a>
 
-<script src="data/official-data.js"></script>
+<script>document.write('<scr'+'ipt src="data/official-data.js?t='+Math.floor(Date.now()/600000)+'"></scr'+'ipt>');</script>
 <script src="js/data.js"></script>
 <script src="js/jobs.js"></script>
 <script>
