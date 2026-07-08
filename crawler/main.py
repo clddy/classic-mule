@@ -637,6 +637,7 @@ def run(force_all=False):
         "collectedAt": datetime.now().strftime("%Y-%m-%d %H:%M"),
         "sourceCount": len(SOURCES),
         "okCount": sum(1 for x in source_stats if x["ok"]),
+        "instTotal": len(INSTITUTIONS),   # 대조 기관 명부 규모
         "sources": source_stats,
         "items": final,
     }

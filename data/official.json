@@ -1,7 +1,8 @@
 {
- "collectedAt": "2026-07-09 04:24",
+ "collectedAt": "2026-07-09 04:49",
  "sourceCount": 37,
- "okCount": 37,
+ "okCount": 36,
+ "instTotal": 75,
  "sources": [
   {
    "id": "artmore",
@@ -107,9 +108,8 @@
    "name": "창원문화재단",
    "layer": "B",
    "poll": "weekly",
-   "ok": true,
-   "raw": 27,
-   "kept": 0
+   "ok": false,
+   "error": "ReadTimeout: HTTPSConnectionPool(host='www.cwcf.or.kr', port=443): Read timed out. (read timeout=20)"
   },
   {
    "id": "ulsan",

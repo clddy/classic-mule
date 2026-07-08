@@ -243,7 +243,7 @@
     const D = window.CRAWLED;
     const el = document.getElementById("crawl-meta");
     if (D) {
-      el.innerHTML = `공식 공고 마지막 수집: <strong>${D.collectedAt}</strong> · 기관 ${D.okCount}/${D.sourceCount} 응답 · 매일 18시 자동 수집`;
+      el.innerHTML = `공식 공고 마지막 수집: <strong>${D.collectedAt}</strong> · 직접 수집처 ${D.okCount}/${D.sourceCount}곳${D.instTotal ? ` · 기관 명부 ${D.instTotal}곳 대조` : ""} · 아트인포·아트모아 통합으로 전국 기관 공고 집계 · 매일 18시 자동 수집`;
     } else {
       el.textContent = "공식 공고 데이터를 불러오지 못했습니다.";
     }
