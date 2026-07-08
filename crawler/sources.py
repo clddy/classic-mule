@@ -319,6 +319,23 @@ def parse_artmore(s):
     return items
 
 # ---------- 22. 아트인포코리아 (클래식 전문 채용 포털) ----------
+# 집계 사이트라 상세 페이지의 "채용 사이트 바로가기" 링크로 원본 기관 공고를 해석
+_ORIGIN_TXT = re.compile(r"채용 ?사이트|바로가기|홈페이지|공식")
+
+def _resolve_origin(s, detail_url, skip_host):
+    """집계 상세 페이지에서 원본 기관 공고 URL 추출 (없으면 None)"""
+    try:
+        dr = get(s, detail_url)
+        for a in _soup(dr).find_all("a", href=True):
+            h = a["href"]
+            if h.startswith("http") and skip_host not in h \
+                    and not re.search(r"facebook|instagram|youtube|kakao|blog\.naver", h) \
+                    and _ORIGIN_TXT.search(a.get_text(" ", strip=True)):
+                return h
+    except Exception:
+        pass
+    return None
+
 def parse_artinfo(s):
     r = get(s, "https://www.artinfokorea.com/jobs")
     items, seen = [], set()
@@ -333,9 +350,13 @@ def parse_artinfo(s):
         # 카드 앵커가 제목+지역+악기+기관명을 통째로 담고 있어 첫 텍스트 노드만 제목으로
         first = next((t.strip() for t in a.stripped_strings), "")
         title = first if len(first) >= 10 else full[:90]
-        items.append(make_item("아트인포(클래식 채용)", region_from(full), "artinfokorea.com",
-                               title[:90], urljoin("https://www.artinfokorea.com", href),
-                               date=_row_date(a)))
+        it = make_item("아트인포(클래식 채용)", region_from(full), "artinfokorea.com",
+                       title[:90], urljoin("https://www.artinfokorea.com", href),
+                       date=_row_date(a))
+        origin = _resolve_origin(s, it["url"], "artinfokorea.com")
+        if origin:
+            it["officialUrl"] = origin
+        items.append(it)
     return items
 
 # ---------- 23. 기독정보넷 (교회 반주자·연주자) ----------

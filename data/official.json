@@ -1,5 +1,5 @@
 {
- "collectedAt": "2026-07-08 05:49",
+ "collectedAt": "2026-07-08 12:58",
  "sourceCount": 37,
  "okCount": 37,
  "sources": [
@@ -9,7 +9,7 @@
    "layer": "A",
    "poll": "daily",
    "ok": true,
-   "raw": 2,
+   "raw": 0,
    "kept": 2
   },
   {
@@ -81,8 +81,8 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 21,
-   "kept": 0
+   "raw": 23,
+   "kept": 1
   },
   {
    "id": "snart",
@@ -100,7 +100,7 @@
    "poll": "weekly",
    "ok": true,
    "raw": 10,
-   "kept": 3
+   "kept": 4
   },
   {
    "id": "cwcf",
@@ -136,7 +136,7 @@
    "poll": "weekly",
    "ok": true,
    "raw": 10,
-   "kept": 2
+   "kept": 3
   },
   {
    "id": "knso",
@@ -511,6 +511,50 @@
    "extVer": 4
   },
   {
+   "id": "cb8ea69bdefb0aa8",
+   "org": "세종문화회관(서울시예술단)",
+   "region": "서울",
+   "source": "sejongpac.or.kr",
+   "title": "2026 서울시뮤지컬단 뮤지컬 <크리스마스 캐럴> 아역 오디션 공고",
+   "url": "https://www.sejongpac.or.kr/portal/bbs/B0000065/view.do?nttId=50066&menuNo=200571&pageIndex=1",
+   "date": "2026-07-08",
+   "deadline": "2026-07-21",
+   "kind": "단원",
+   "tier": "프로",
+   "inst": "전체",
+   "instDetails": [],
+   "channel": "sejongpac",
+   "layer": "B",
+   "deadlineFrom": "page-js",
+   "firstSeen": "2026-07-08",
+   "isNew": true,
+   "extVer": 4
+  },
+  {
+   "id": "c80e362afc57cd51",
+   "org": "KBS교향악단",
+   "region": "서울",
+   "source": "kbssymphony.org",
+   "title": "2026년 KBS교향악단 신규단원 채용(비올라, 오보에, 타악기) - 2026. 7. 8. 자 타악기 부문 추가",
+   "url": "https://www.kbssymphony.org/ko/info/recruit.php?board_code=view&number=29501&page=1",
+   "date": "2026-07-08",
+   "deadline": "2026-08-02",
+   "kind": "단원",
+   "tier": "프로",
+   "inst": "현악",
+   "instDetails": [
+    "비올라",
+    "오보에",
+    "타악"
+   ],
+   "channel": "kbs",
+   "layer": "D",
+   "deadlineFrom": "page",
+   "firstSeen": "2026-07-08",
+   "isNew": true,
+   "extVer": 4
+  },
+  {
    "id": "c230ccc6106a039d",
    "org": "아트모아(예술 일자리 포털)",
    "region": "기타",
@@ -782,6 +826,26 @@
    "extVer": 4
   },
   {
+   "id": "e922691feb25fcfe",
+   "org": "수원시립예술단",
+   "region": "경기",
+   "source": "artsuwon.or.kr",
+   "title": "수원 E:음 공유학교와 함께하는 수원시립합창단 주니어콰이어 2기 단원 모집 ..",
+   "url": "http://artsuwon.or.kr/?p=49&viewMode=view&reqIdx=202606221107336273",
+   "date": "2026-06-22",
+   "deadline": "2026-07-18",
+   "kind": "단원",
+   "tier": "프로",
+   "inst": "성악",
+   "instDetails": [],
+   "channel": "artsuwon",
+   "layer": "B",
+   "deadlineFrom": "ocr",
+   "firstSeen": "2026-07-08",
+   "isNew": true,
+   "extVer": 4
+  },
+  {
    "id": "1c2b1191adccd831",
    "org": "아트인포(클래식 채용)",
    "region": "경기",
@@ -794,6 +858,7 @@
    "tier": "프로",
    "inst": "현악",
    "instDetails": [],
+   "officialUrl": "http://www.sejonggugak.com",
    "channel": "artinfo",
    "layer": "A",
    "deadlineFrom": "page",
@@ -816,6 +881,7 @@
    "instDetails": [
     "지휘"
    ],
+   "officialUrl": "https://www.gb.go.kr/Main/culture/page.do?mnu_uid=15644&BD_CODE=bbs_gongji&cmd=2&B_NUM=508130101&B_STEP=508130100&V_NUM=",
    "channel": "artinfo",
    "layer": "A",
    "deadlineFrom": "page",
@@ -836,6 +902,7 @@
    "tier": "프로",
    "inst": "성악",
    "instDetails": [],
+   "officialUrl": "https://www.gunsan.go.kr/gsart/m1949/view/9830028?",
    "channel": "artinfo",
    "layer": "A",
    "deadlineFrom": "page+yearfix",
@@ -878,6 +945,7 @@
    "tier": "전공·입시",
    "inst": "성악",
    "instDetails": [],
+   "officialUrl": "https://www.thesolarteacademy.com/",
    "channel": "artinfo",
    "layer": "A",
    "firstSeen": "2026-07-08",
@@ -918,6 +986,7 @@
    "tier": "프로",
    "inst": "전체",
    "instDetails": [],
+   "officialUrl": "http://adoroensemble.com/",
    "channel": "artinfo",
    "layer": "A",
    "deadlineFrom": "title",
@@ -938,6 +1007,7 @@
    "tier": "프로",
    "inst": "현악",
    "instDetails": [],
+   "officialUrl": "https://naver.me/xQJxuWql",
    "channel": "artinfo",
    "layer": "A",
    "deadlineFrom": "title+yearfix",
@@ -960,6 +1030,7 @@
    "instDetails": [
     "지휘"
    ],
+   "officialUrl": "https://www.gangdong.go.kr/web/newportal/notice/01/57324",
    "channel": "artinfo",
    "layer": "A",
    "firstSeen": "2026-07-08",

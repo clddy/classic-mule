@@ -16,7 +16,7 @@ const OFFICIAL_ITEMS = ((window.CRAWLED && window.CRAWLED.items) || []).map(j =>
   insts: j.instDetails || [], group: j.inst,
   region: j.region, title: j.title, org: j.org,
   deadline: j.deadline, deadlineText: j.deadlineNote, date: j.date || j.firstSeen,
-  url: j.url, isNew: j.isNew, source: j.source
+  url: j.url, officialUrl: j.officialUrl, isNew: j.isNew, source: j.source
 }));
 
 let COMMUNITY_ITEMS = JOBS.map(j => ({
@@ -125,12 +125,12 @@ function cardHTML(j) {
     ${j.deadline ? `<span>마감 ${j.deadline}</span>` : ""}`;
   if (j.src === "공식") {
     return `
-    <a class="job-card${st.key === "마감" ? " closed" : ""}" href="${j.url}" target="_blank" rel="noopener" style="display:block">
+    <article class="job-card${st.key === "마감" ? " closed" : ""}" data-okey="${j.key}">
       <div class="top-row">${tags}</div>
       <h3>${j.title}</h3>
       <div class="meta">${meta}</div>
-      <div class="source-line"><span>출처 <span class="src">${j.source}</span></span><span>원문 보기 ↗</span></div>
-    </a>`;
+      <div class="source-line"><span>출처 <span class="src">${j.source}</span></span><span>눌러서 상세 · 원문 보기</span></div>
+    </article>`;
   }
   return `
     <article class="job-card${st.key === "마감" ? " closed" : ""}" data-cid="${j.cid}">
@@ -143,7 +143,7 @@ function cardHTML(j) {
 function renderList() {
   const list = filtered();
   const oc = list.filter(x => x.src === "공식").length;
-  $("#result-count").innerHTML = `총 <strong>${list.length}</strong>건 (공식 ${oc} · 소규모 ${list.length - oc}) — 공식 공고는 클릭 시 기관 원문으로 이동`;
+  $("#result-count").innerHTML = `총 <strong>${list.length}</strong>건 (공식 ${oc} · 소규모 ${list.length - oc}) — 카드를 누르면 요약과 원문 링크가 열립니다`;
   const el = $("#job-list");
   if (!list.length) {
     el.innerHTML = `<div class="empty">조건에 맞는 공고가 없습니다.<br>필터를 조정해 보세요.</div>`;
@@ -152,6 +152,9 @@ function renderList() {
   el.innerHTML = list.map(cardHTML).join("");
   el.querySelectorAll(".job-card[data-cid]").forEach(card => {
     card.addEventListener("click", () => openDetail(+card.dataset.cid));
+  });
+  el.querySelectorAll(".job-card[data-okey]").forEach(card => {
+    card.addEventListener("click", () => openOfficial(card.dataset.okey));
   });
 }
 
@@ -175,6 +178,36 @@ function renderAll() {
   renderList();
 }
 
+// ---------- 공식 공고 상세 모달 (요약 + 원문 바로가기) ----------
+function openOfficial(key) {
+  const j = OFFICIAL_ITEMS.find(x => x.key === key);
+  if (!j) return;
+  const st = statusOf(j);
+  $("#detail-tags").innerHTML = `
+    <span class="tag ${TIER_CLS[j.tier] || "cat"}">${j.tier}</span>
+    <span class="tag cat">${j.band}</span>
+    ${j.insts.map(i => `<span class="tag inst">${i}</span>`).join("")}
+    <span class="tag ${st.cls}">${st.label}</span>
+    ${j.isNew ? `<span class="tag urgent">NEW</span>` : ""}`;
+  $("#detail-title").textContent = j.title;
+  const target = j.officialUrl || j.url;
+  let host = "";
+  try { host = new URL(target).hostname.replace(/^www\./, ""); } catch (e) {}
+  const deadlineText = j.deadline
+    ? `${j.deadline} (${st.label})`
+    : (j.deadlineText === "상시" ? "상시 모집" : "원문에서 확인");
+  $("#detail-meta").innerHTML = `
+    <dt>기관</dt><dd>${j.org}</dd>
+    <dt>지역</dt><dd>${j.region}</dd>
+    <dt>마감</dt><dd>${deadlineText}</dd>
+    <dt>수집 출처</dt><dd>${j.source}${j.officialUrl ? ` → 원문: <b>${host}</b>` : ""}</dd>`;
+  $("#detail-body").textContent = "모집 인원·자격·과제곡 등 상세 요강은 기관 공식 공고에서 확인하세요. 아래 버튼으로 이동합니다.";
+  const act = $("#detail-action");
+  act.textContent = j.officialUrl ? "공식 공고 페이지 바로가기 ↗" : "공고 원문 바로가기 ↗";
+  act.onclick = () => window.open(target, "_blank", "noopener");
+  $("#detail-modal").classList.add("open");
+}
+
 // ---------- 소규모 글 상세 모달 ----------
 function openDetail(cid) {
   const j = COMMUNITY_ITEMS.find(x => x.cid === cid);
@@ -195,6 +228,9 @@ function openDetail(cid) {
     <dt>마감</dt><dd>${j.deadlineText || j.deadline || "상시"}</dd>
     <dt>등록일</dt><dd>${j.date}</dd>`;
   $("#detail-body").textContent = j.body || "";
+  const act = $("#detail-action");
+  act.textContent = "지원하기 / 연락하기";
+  act.onclick = () => alert("지원/연락 기능은 프로토타입에서 제공되지 않습니다.");
   $("#detail-modal").classList.add("open");
 }
 
