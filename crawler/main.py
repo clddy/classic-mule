@@ -5,7 +5,8 @@ from bs4 import BeautifulSoup
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import (new_session, get, relevant, extract_deadline, deadline_from_title,
-                    musician_relevant, parse_recruit_table, summarize_recruit, find_position)
+                    musician_relevant, parse_recruit_table, summarize_recruit, find_position,
+                    classify_insts)
 from sources import SOURCES
 from institutions import INSTITUTIONS
 import attach
@@ -107,7 +108,7 @@ def find_attachments(soup, base_url):
                 cands.append((full, text))
     return cands[:3]
 
-EXT_VER = 12         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일 승계가 무효화됨
+EXT_VER = 13         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일 승계가 무효화됨
 RENDER_PER_SOURCE = 3   # 소스당 Playwright 렌더링 상한
 OCR_PER_SOURCE = 6      # 소스당 이미지 공고문 OCR 상한 (항목당 최대 2장)
 _renders_used = 0
@@ -306,6 +307,13 @@ def _extract_body_details(soup, page_text, item, ry):
         ex = _body_excerpt(soup)
         if ex:
             item["bodyExcerpt"] = ex
+    # 제목에 악기가 없으면 본문에서 악기 탐지 (오케스트라 강사 등 파트별 모집)
+    if not item.get("instDetails"):
+        grp, dets = classify_insts(page_text[:3000])
+        if dets:
+            item["instDetails"] = dets
+            if item.get("inst") in (None, "", "전체", "기타"):
+                item["inst"] = grp
 
 def _body_from_attachments(s, soup, r, item):
     """첨부 공고문(HWP/PDF)에서 본문 상세(자격·인원·요약) 보강 — 마감일 로직과 무관.
@@ -527,7 +535,7 @@ def run(force_all=False):
                     for f_ in ("recruitParts", "recruitSummary", "positions",
                                "personnel", "auditionDate", "contract",
                                "qualification", "rehearsal", "concertDate",
-                               "pay", "program", "bodyExcerpt"):
+                               "pay", "program", "bodyExcerpt", "instDetails"):
                         if old.get(f_) and not it.get(f_):
                             it[f_] = old[f_]
                 if not it["deadline"]:
