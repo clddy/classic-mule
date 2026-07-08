@@ -462,6 +462,12 @@ details[open] > .filter-summary::after { content: " −"; }
 .tag.type-seek { background: transparent; color: var(--ink-soft); border: 1px solid var(--line); }
 .tag.src-official { background: var(--ink); color: var(--ivory); }
 .tag.src-community { background: transparent; color: var(--ink); border: 1px solid var(--ink); }
+/* 예시(목데이터) — 노란 경고색으로 실데이터와 확실히 구분 */
+.tag.sample { background: #f6e58d; color: #6b5900; font-weight: 700; }
+/* 샘플 데이터 안내 배너 (연습실·과외·중고거래 등 목데이터 페이지) */
+.sample-banner { background: #fff6d6; border: 1px solid #e6cf6a; color: #6b5900;
+  border-radius: 8px; padding: 10px 16px; margin: 14px 0; font-size: 0.86rem; line-height: 1.5; }
+.sample-banner b { color: #6b5900; }
 
 .inst-group { margin-bottom: 9px; display: flex; flex-wrap: wrap; gap: 6px; align-items: center; }
 .inst-group-label {
