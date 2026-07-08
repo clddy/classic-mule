@@ -213,16 +213,6 @@ function renderAll() {
 // ---------- 유형별 요약 필드 (단원 vs 객원 구분) ----------
 // 단원(정규): 모집인원·자격·계약기간·오디션 (프로그램 없음)
 // 객원·대체: 모집인원·자격·리허설·연주일·페이·프로그램
-// 상단 메타 = 사실만(기관·지역·마감). 공고 내용은 아래 composeBody가 담당.
-function metaRows(j) {
-  const st = statusOf(j);
-  const dl = j.deadline
-    ? `${j.deadline} <span style="color:var(--ink-soft)">(${st.label})</span>`
-    : (j.deadlineText === "상시" ? "상시 모집" : (j.src === "공식" ? "원문에서 확인" : (j.deadlineText || "협의")));
-  const rows = [["기관", j.org], ["지역", j.region], ["마감", dl]];
-  return rows.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("");
-}
-
 // 필드 값 정제: OCR 띄어쓰기·공유버튼 꼬리·잡음 제거
 function cleanVal(v) {
   return String(v || "").replace(/\s+/g, " ")
@@ -234,24 +224,39 @@ function cleanVal(v) {
 }
 function okPay(v) { return v && /원|만|협의|규정|시급|일당|사례/.test(v) && !/보내기|스북|URL|복사|인쇄/.test(v); }
 
-// 공고 내용을 '· 라벨: 값' 불릿으로 매번 동일한 순서·형식으로 조립 (자유서술·잡음 없이 통일)
-function composeBody(j) {
+// 상단 메타 = 사실(기관·지역·마감) + 구조화 필드(형태·모집·자격·일정 …)
+function metaRows(j) {
+  const st = statusOf(j);
+  const dl = j.deadline
+    ? `${j.deadline} <span style="color:var(--ink-soft)">(${st.label})</span>`
+    : (j.deadlineText === "상시" ? "상시 모집" : (j.src === "공식" ? "원문에서 확인" : (j.deadlineText || "협의")));
+  const rows = [["기관", j.org], ["지역", j.region], ["마감", dl]];
   const insts = (j.insts || []).join("·");
   const senior = (j.positions || []).filter(p => /수석|악장|차석/.test(p)).join("·");
-  const B = [];
-  if (j.band && j.band !== "기타") B.push(["형태", j.band]);
-  if (j.recruitSummary) B.push(["모집", cleanVal(j.recruitSummary)]);
-  else if (j.personnel) B.push(["모집", cleanVal((insts ? insts + " " : "") + j.personnel)]);
-  else if (insts) B.push(["모집", insts + (senior ? " " + senior : "")]);
+  if (j.band && j.band !== "기타") rows.push(["형태", j.band]);
+  if (j.recruitSummary) rows.push(["모집", cleanVal(j.recruitSummary)]);
+  else if (j.personnel) rows.push(["모집", cleanVal((insts ? insts + " " : "") + j.personnel)]);
+  else if (insts) rows.push(["모집", insts + (senior ? " " + senior : "")]);
   const q = cleanVal(j.qualification);
-  if (q && q.length >= 4) B.push(["자격", q]);
-  if (j.rehearsal || j.when) B.push(["리허설", cleanVal(j.rehearsal || j.when)]);
-  if (j.concertDate) B.push(["연주일", cleanVal(j.concertDate)]);
-  if (j.auditionDate) B.push(["오디션", cleanVal(j.auditionDate)]);
-  if (j.contract) B.push(["계약", cleanVal(j.contract)]);
-  if ((j.band === "객원·대체" || j.src !== "공식") && okPay(j.pay)) B.push(["페이", cleanVal(j.pay)]);
-  if (j.program) B.push(["프로그램", cleanVal(j.program)]);
-  return B.map(([k, v]) => `· ${k}: ${v}`).filter(l => l.length > 5).join("\n");
+  if (q && q.length >= 4) rows.push(["자격", q]);
+  if (j.rehearsal || j.when) rows.push(["리허설", cleanVal(j.rehearsal || j.when)]);
+  if (j.concertDate) rows.push(["연주일", cleanVal(j.concertDate)]);
+  if (j.auditionDate) rows.push(["오디션", cleanVal(j.auditionDate)]);
+  if (j.contract) rows.push(["계약", cleanVal(j.contract)]);
+  if ((j.band === "객원·대체" || j.src !== "공식") && okPay(j.pay)) rows.push(["페이", cleanVal(j.pay)]);
+  if (j.program) rows.push(["프로그램", cleanVal(j.program)]);
+  return rows.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("");
+}
+
+// 하단 간단 요약: 자유서술 발췌에서 잡음 제거 후 최대 3줄
+const EXCERPT_NOISE = /채용 ?비리|비리 ?신고|신고 ?센터|공공기관 채용|청탁|개인정보|저작권|이용약관|고객센터|자주 ?묻는|FAQ|바로가기|로그인|회원가입|단장 ?공개|용역|평가위원|입찰|\.(?:pdf|hwpx?|jpe?g|png|zip)/i;
+function shortSummary(j) {
+  const tp = (j.title || "").replace(/\s+/g, "").slice(0, 14);
+  const segs = (j.bodyExcerpt || "").split(/\s*·\s*/)
+    .map(s => cleanVal(s))
+    .filter(s => s && s.length >= 6 && !EXCERPT_NOISE.test(s)
+      && s.replace(/\s+/g, "").slice(0, 14) !== tp);   // 제목 반복 줄 제거
+  return segs.slice(0, 3).join("\n");
 }
 
 // ---------- 공식 공고 상세 모달 (요약 + 원문 바로가기) ----------
@@ -270,13 +275,10 @@ function openOfficial(key) {
   // 포털(아트모아·아트인포) 항목은 원문(officialUrl)으로만 연결 — 포털로는 절대 링크하지 않음
   const isPortal = /artmore\.kr|artinfokorea\.com/.test(j.source || "");
   const target = j.officialUrl || (isPortal ? null : j.url);
-  let host = "";
-  try { if (target) host = new URL(target).hostname.replace(/^www\./, ""); } catch (e) {}
-  $("#detail-meta").innerHTML = metaRows(j) +
-    `<dt>수집 출처</dt><dd>${j.source}${j.officialUrl ? ` → 원문: <b>${host}</b>` : ""}</dd>`;
-  // 본문 요약 (잡음 제거 후) + 항상 동일한 안내 문구로 통일
-  const content = composeBody(j);
-  $("#detail-body").textContent = (content ? content + "\n\n" : "")
+  $("#detail-meta").innerHTML = metaRows(j);
+  // 하단: 간단한 요약(최대 3줄) + 동일한 안내 문구
+  const sum = shortSummary(j);
+  $("#detail-body").textContent = (sum ? sum + "\n\n" : "")
     + "상세 요강은 원문에서 확인하세요.";
   const act = $("#detail-action");
   if (target) {
@@ -303,7 +305,7 @@ function openDetail(cid) {
     ${j.urgent ? `<span class="tag urgent">급구</span>` : ""}`;
   $("#detail-title").textContent = j.title;
   $("#detail-meta").innerHTML = metaRows(j) + `<dt>등록일</dt><dd>${j.date}</dd>`;
-  $("#detail-body").textContent = j.body || composeBody(j) || "";
+  $("#detail-body").textContent = j.body || shortSummary(j) || "";
   const act = $("#detail-action");
   act.style.display = "";
   act.textContent = "지원하기 / 연락하기";
