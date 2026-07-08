@@ -107,7 +107,7 @@ def find_attachments(soup, base_url):
                 cands.append((full, text))
     return cands[:3]
 
-EXT_VER = 6         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일 승계가 무효화됨
+EXT_VER = 7         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일 승계가 무효화됨
 RENDER_PER_SOURCE = 3   # 소스당 Playwright 렌더링 상한
 OCR_PER_SOURCE = 6      # 소스당 이미지 공고문 OCR 상한 (항목당 최대 2장)
 _renders_used = 0
@@ -218,9 +218,9 @@ _EXCERPT_SKIP = re.compile(
     r"|리스트|검색|더보기|메뉴|카테고리|사이트맵|저작권|Copyright|배너|공유|인쇄|스크랩|조회수"
     r"|첨부 ?파일|>|메일|주소복사|프린트|top|TOP|서포터즈|소식|공지사항|보도자료|서식")
 
-def _body_excerpt(soup):
+def _body_excerpt_text(text):
     keep = []
-    for raw in soup.get_text("\n", strip=True).split("\n"):
+    for raw in (text or "").split("\n"):
         ln = re.sub(r"\s+", " ", raw).strip(" ·-•▷▶◦□■●○△*|:")
         if not (8 <= len(ln) <= 90) or ln in keep:
             continue
@@ -235,6 +235,33 @@ def _body_excerpt(soup):
         if len(keep) >= 4:
             break
     return " · ".join(keep)[:240] if keep else None
+
+def _body_excerpt(soup):
+    return _body_excerpt_text(soup.get_text("\n", strip=True))
+
+def _apply_details_from_text(text, item):
+    """평문 본문(페이지/첨부/OCR)에서 자격·인원·객원필드·요약을 채운다 (없는 것만)"""
+    if not text:
+        return
+    if not item.get("qualification"):
+        q = _find_qualification(text)
+        if q:
+            item["qualification"] = q
+    if not item.get("personnel") and not item.get("recruitSummary"):
+        p = _find_personnel_body(text)
+        if p:
+            item["personnel"] = p
+    if item.get("kind") == "객원·대체":
+        for fld, fn in (("rehearsal", _find_rehearsal), ("concertDate", _find_concert),
+                        ("pay", _find_pay), ("program", _find_program)):
+            if not item.get(fld):
+                v = fn(text)
+                if v:
+                    item[fld] = v
+    if not item.get("bodyExcerpt"):
+        ex = _body_excerpt_text(text)
+        if ex:
+            item["bodyExcerpt"] = ex
 
 def _extract_body_details(soup, page_text, item, ry):
     """본문에서 채용부문/직책/인원 표 + 직책 + 오디션 + 계약기간 추출"""
@@ -260,24 +287,9 @@ def _extract_body_details(soup, page_text, item, ry):
         c = _find_contract(page_text)
         if c:
             item["contract"] = c
-    # 자격·모집인원은 유형 불문 기본으로 시도
-    if not item.get("qualification"):
-        q = _find_qualification(page_text)
-        if q:
-            item["qualification"] = q
-    if not item.get("personnel") and not item.get("recruitSummary"):
-        p = _find_personnel_body(page_text)
-        if p:
-            item["personnel"] = p
-    # 객원·대체: 리허설·연주일·페이·프로그램
-    if item.get("kind") == "객원·대체":
-        for fld, fn in (("rehearsal", _find_rehearsal), ("concertDate", _find_concert),
-                        ("pay", _find_pay), ("program", _find_program)):
-            if not item.get(fld):
-                v = fn(page_text)
-                if v:
-                    item[fld] = v
-    # 세부창 본문 요약 발췌 (원문 참조 문구 대신 핵심 정보 노출)
+    # 자격·모집인원·객원필드·본문요약 (평문 본문에서, 없는 것만)
+    _apply_details_from_text(page_text, item)
+    # 요약은 줄 구조가 살아있는 soup 기준이 더 정확 — 아직 없으면 보강
     if not item.get("bodyExcerpt"):
         ex = _body_excerpt(soup)
         if ex:
@@ -322,7 +334,9 @@ def enrich_deadline(s, item, allow_render=True, details_only=False):
                 cd = fr.headers.get("Content-Disposition", "")
                 m = re.search(r"filename\*?=(?:UTF-8'')?\"?([^\";]+)", cd)
                 name = m.group(1) if m else (fname or furl)
-                dl = extract_deadline(attach.extract_any(name, fr.content), ref_year=ry)
+                atext = attach.extract_any(name, fr.content)
+                _apply_details_from_text(atext, item)  # 첨부 공고문에서 자격·인원·요약
+                dl = extract_deadline(atext, ref_year=ry)
                 if dl:
                     item["deadline"] = dl
                     item["deadlineFrom"] = "attachment"
@@ -336,7 +350,9 @@ def enrich_deadline(s, item, allow_render=True, details_only=False):
                 try:
                     _ocr_used += 1
                     data = blob if blob else s.get(src_url, timeout=30, verify=False).content
-                    dl = extract_deadline(attach.ocr_image(data), ref_year=ry)
+                    otext = attach.ocr_image(data)
+                    _apply_details_from_text(otext, item)  # 이미지 공고문에서 자격·인원·요약
+                    dl = extract_deadline(otext, ref_year=ry)
                     if dl:
                         item["deadline"] = dl
                         item["deadlineFrom"] = "ocr"

@@ -247,6 +247,14 @@ function metaRows(j) {
   return rows.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("");
 }
 
+// 요약 발췌를 '리드 문장 + · 불릿' 형태로 정리 (줄줄이 나열 방지)
+function fmtExcerpt(ex) {
+  const segs = (ex || "").split(/\s*·\s*/).map(s => s.trim()).filter(Boolean);
+  if (segs.length <= 1) return ex || "";
+  const [lead, ...rest] = segs;
+  return lead + "\n\n" + rest.map(s => "· " + s).join("\n");
+}
+
 // ---------- 공식 공고 상세 모달 (요약 + 원문 바로가기) ----------
 function openOfficial(key) {
   const j = OFFICIAL_ITEMS.find(x => x.key === key);
@@ -269,7 +277,7 @@ function openOfficial(key) {
     `<dt>수집 출처</dt><dd>${j.source}${j.officialUrl ? ` → 원문: <b>${host}</b>` : ""}</dd>`;
   // 본문 요약 발췌가 있으면 노출, 없으면 원문 참조 안내
   $("#detail-body").textContent = j.bodyExcerpt
-    ? j.bodyExcerpt + "\n\n— 상세 요강은 원문에서 확인하세요."
+    ? fmtExcerpt(j.bodyExcerpt) + "\n\n— 상세 요강은 원문에서 확인하세요."
     : "그 밖의 상세 요강은 기관 공식 공고에서 확인하세요. 아래 버튼으로 이동합니다.";
   const act = $("#detail-action");
   if (target) {
