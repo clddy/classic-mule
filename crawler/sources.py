@@ -256,7 +256,7 @@ def parse_jeonju(s):
     items = []
     for a in _soup(r).select('a[href*="planweb/board/view.9is"]'):
         title = a.get_text(" ", strip=True)
-        if len(title) < 6 or not re.search(r"교향악단|합창단|예술단|국악단|연주단", title):
+        if len(title) < 6 or not re.search(r"교향악단|합창단|예술단|연주단", title):
             continue
         items.append(make_item("전주시(시립예술단)", "기타", "jeonju.go.kr",
                                title, urljoin(r.url, a["href"]), date=_row_date(a)))
@@ -282,18 +282,22 @@ GNE_URL = ("https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do"
            "?q_searchKey=1001&q_searchVal=%EC%98%A4%EC%BC%80%EC%8A%A4%ED%8A%B8%EB%9D%BC"
            "&q_rowPerPage=15&q_currPage=1")
 
+GNE_DETAIL = "https://www.gne.go.kr/works/user/recruitment/BD_recruitmentDetail.do?regSn="
+
 def parse_gne(s):
     r = get(s, GNE_URL)
     items, seen = [], set()
-    for a in _soup(r).select("a"):
+    for a in _soup(r).select("a[onclick*=openDetail]"):
         title = a.get_text(" ", strip=True)
-        if (len(title) < 10 or title in seen
+        m = re.search(r"openDetail\(\s*['\"]?(\d+)", a.get("onclick", ""))
+        if (not m or len(title) < 10 or title in seen
                 or not re.search(r"오케스트라|관현악", title)
                 or not re.search(r"모집|채용|초빙|공고", title)):
             continue
         seen.add(title)
+        # 개별 공고 상세 URL(regSn) — 포털 검색목록이 아니라 원문으로 링크
         items.append(make_item("경남 학교 방과후(교육청 포털)", "기타", "gne.go.kr",
-                               title, GNE_URL, date=_row_date(a)))
+                               title, GNE_DETAIL + m.group(1), date=_row_date(a)))
     return items
 
 # ---------- 20. 아트모아 (문체부·예술경영지원센터 일자리 포털) ----------

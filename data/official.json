@@ -1,5 +1,5 @@
 {
- "collectedAt": "2026-07-08 19:56",
+ "collectedAt": "2026-07-08 20:46",
  "sourceCount": 37,
  "okCount": 37,
  "sources": [
@@ -19,7 +19,7 @@
    "poll": "daily",
    "ok": true,
    "raw": 10,
-   "kept": 9
+   "kept": 8
   },
   {
    "id": "cjob",
@@ -37,7 +37,7 @@
    "poll": "daily",
    "ok": true,
    "raw": 15,
-   "kept": 14
+   "kept": 9
   },
   {
    "id": "ggac",
@@ -45,7 +45,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 2,
+   "skipped": true,
    "kept": 2
   },
   {
@@ -54,7 +54,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 16,
+   "skipped": true,
    "kept": 2
   },
   {
@@ -63,7 +63,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 2,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -72,7 +72,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 15,
+   "skipped": true,
    "kept": 3
   },
   {
@@ -81,7 +81,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 23,
+   "skipped": true,
    "kept": 1
   },
   {
@@ -90,7 +90,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 10,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -99,7 +99,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 10,
+   "skipped": true,
    "kept": 4
   },
   {
@@ -108,7 +108,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 27,
+   "skipped": true,
    "kept": 3
   },
   {
@@ -117,7 +117,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 17,
+   "skipped": true,
    "kept": 1
   },
   {
@@ -153,7 +153,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 6,
+   "skipped": true,
    "kept": 1
   },
   {
@@ -162,7 +162,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 10,
+   "skipped": true,
    "kept": 1
   },
   {
@@ -171,7 +171,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 10,
+   "skipped": true,
    "kept": 1
   },
   {
@@ -180,7 +180,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 11,
+   "skipped": true,
    "kept": 1
   },
   {
@@ -189,7 +189,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 20,
+   "skipped": true,
    "kept": 1
   },
   {
@@ -216,7 +216,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -225,7 +225,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -234,7 +234,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -243,7 +243,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 1,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -252,7 +252,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -261,7 +261,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -270,7 +270,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -279,7 +279,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 1,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -288,7 +288,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -297,7 +297,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -306,7 +306,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -315,7 +315,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 4,
+   "skipped": true,
    "kept": 2
   },
   {
@@ -324,7 +324,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 1,
+   "skipped": true,
    "kept": 1
   },
   {
@@ -333,7 +333,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   }
  ],
@@ -860,35 +860,14 @@
    "extVer": 4
   },
   {
-   "id": "d1f250ef1909e652",
-   "org": "부산문화회관(시립예술단)",
-   "region": "부산",
-   "source": "bscc.or.kr",
-   "title": "부산시립국악관현악단 『제51회 청소년 협연의 밤』 협연자 모집 공고",
-   "url": "https://www.bscc.or.kr/05_community/?mcode=0405010000&mode=2&no=15822&page=1",
-   "date": "2026-06-30",
-   "deadline": "2026-08-14",
-   "kind": "기타",
-   "tier": "전공·입시",
-   "inst": "현악",
-   "instDetails": [],
-   "personnel": null,
-   "channel": "bscc",
-   "layer": "B",
-   "deadlineFrom": "attachment",
-   "firstSeen": "2026-07-07",
-   "isNew": false,
-   "extVer": 4
-  },
-  {
-   "id": "9d56588068016342",
+   "id": "ce53a1fb33bdf3b8",
    "org": "경남 학교 방과후(교육청 포털)",
    "region": "기타",
    "source": "gne.go.kr",
    "title": "진영대창초등학교 방과후학교 오케스트라 타악기 강사 모집공고",
-   "url": "https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_searchKey=1001&q_searchVal=%EC%98%A4%EC%BC%80%EC%8A%A4%ED%8A%B8%EB%9D%BC&q_rowPerPage=15&q_currPage=1",
+   "url": "https://www.gne.go.kr/works/user/recruitment/BD_recruitmentDetail.do?regSn=1811061",
    "date": "2026-06-26",
-   "deadline": "2026-07-13",
+   "deadline": "2026-06-30",
    "kind": "강사",
    "tier": "교육·취미",
    "inst": "타악",
@@ -899,8 +878,8 @@
    "channel": "gne",
    "layer": "C",
    "deadlineFrom": "page",
-   "firstSeen": "2026-07-07",
-   "isNew": false,
+   "firstSeen": "2026-07-08",
+   "isNew": true,
    "extVer": 4
   },
   {
@@ -924,31 +903,6 @@
     "단원"
    ],
    "contract": "상임",
-   "firstSeen": "2026-07-08",
-   "isNew": true,
-   "extVer": 4
-  },
-  {
-   "id": "1c2b1191adccd831",
-   "org": "아트인포(클래식 채용)",
-   "region": "경기",
-   "source": "artinfokorea.com",
-   "title": "세종국악관현악단, 2026년 문화예술 연수단원 추가모집 공고(창작실연 / 모집 기간 연장)",
-   "url": "https://www.artinfokorea.com/jobs/470",
-   "date": "2026-06-17",
-   "deadline": "2026-07-08",
-   "kind": "단원",
-   "tier": "프로",
-   "inst": "현악",
-   "instDetails": [],
-   "personnel": null,
-   "officialUrl": "http://www.sejonggugak.com",
-   "channel": "artinfo",
-   "layer": "A",
-   "deadlineFrom": "page",
-   "positions": [
-    "단원"
-   ],
    "firstSeen": "2026-07-08",
    "isNew": true,
    "extVer": 4
@@ -1190,38 +1144,14 @@
    "extVer": 4
   },
   {
-   "id": "0a41b6382b6ad0fc",
-   "org": "세종문화회관(서울시예술단)",
-   "region": "서울",
-   "source": "sejongpac.or.kr",
-   "title": "2026년도 서울시청소년국악단 프로젝트 단원 모집",
-   "url": "https://www.sejongpac.or.kr/portal/bbs/B0000065/view.do?nttId=50037&menuNo=200571&pageIndex=1",
-   "date": "2026-06-11",
-   "deadline": "2026-06-25",
-   "kind": "단원",
-   "tier": "전공·입시",
-   "inst": "전체",
-   "instDetails": [],
-   "personnel": null,
-   "channel": "sejongpac",
-   "layer": "B",
-   "deadlineFrom": "page+yearfix",
-   "positions": [
-    "단원"
-   ],
-   "firstSeen": "2026-07-07",
-   "isNew": false,
-   "extVer": 4
-  },
-  {
-   "id": "3c148d4560a0a9a5",
+   "id": "ab76a676120cd5fc",
    "org": "경남 학교 방과후(교육청 포털)",
    "region": "기타",
    "source": "gne.go.kr",
    "title": "2026학년도 경남관광고등학교 방과후학교 오케스트라부 외부 강사 모집 공고",
-   "url": "https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_searchKey=1001&q_searchVal=%EC%98%A4%EC%BC%80%EC%8A%A4%ED%8A%B8%EB%9D%BC&q_rowPerPage=15&q_currPage=1",
+   "url": "https://www.gne.go.kr/works/user/recruitment/BD_recruitmentDetail.do?regSn=1809584",
    "date": "2026-06-02",
-   "deadline": "2026-07-13",
+   "deadline": "2026-12-28",
    "kind": "강사",
    "tier": "교육·취미",
    "inst": "전체",
@@ -1230,8 +1160,8 @@
    "channel": "gne",
    "layer": "C",
    "deadlineFrom": "page",
-   "firstSeen": "2026-07-07",
-   "isNew": false,
+   "firstSeen": "2026-07-08",
+   "isNew": true,
    "extVer": 4
   },
   {
@@ -1376,14 +1306,14 @@
    "extVer": 4
   },
   {
-   "id": "fba03fc78f0081fa",
+   "id": "56c36e75098701e9",
    "org": "경남 학교 방과후(교육청 포털)",
    "region": "기타",
    "source": "gne.go.kr",
    "title": "2026학년도 개운중학교 학생 오케스트라 동아리 주말 강사 채용 공고",
-   "url": "https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_searchKey=1001&q_searchVal=%EC%98%A4%EC%BC%80%EC%8A%A4%ED%8A%B8%EB%9D%BC&q_rowPerPage=15&q_currPage=1",
+   "url": "https://www.gne.go.kr/works/user/recruitment/BD_recruitmentDetail.do?regSn=1809129",
    "date": "2026-05-15",
-   "deadline": "2026-07-13",
+   "deadline": "2026-05-19",
    "kind": "강사",
    "tier": "교육·취미",
    "inst": "전체",
@@ -1397,14 +1327,14 @@
    "extVer": 4
   },
   {
-   "id": "039dc70e0475402b",
+   "id": "ac7d08c3a9acc618",
    "org": "경남 학교 방과후(교육청 포털)",
    "region": "기타",
    "source": "gne.go.kr",
    "title": "2026년 함양제일고등학교 학생 오케스트라 관악부 강사 채용 재공고",
-   "url": "https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_searchKey=1001&q_searchVal=%EC%98%A4%EC%BC%80%EC%8A%A4%ED%8A%B8%EB%9D%BC&q_rowPerPage=15&q_currPage=1",
+   "url": "https://www.gne.go.kr/works/user/recruitment/BD_recruitmentDetail.do?regSn=1808997",
    "date": "2026-05-11",
-   "deadline": "2026-07-13",
+   "deadline": "2026-05-15",
    "kind": "강사",
    "tier": "교육·취미",
    "inst": "목관",
@@ -1412,7 +1342,7 @@
    "personnel": null,
    "channel": "gne",
    "layer": "C",
-   "deadlineFrom": "page",
+   "deadlineFrom": "page+yearfix",
    "firstSeen": "2026-07-08",
    "isNew": true,
    "extVer": 4
@@ -1511,35 +1441,14 @@
    "extVer": 4
   },
   {
-   "id": "501b31c68be683e6",
-   "org": "경남 학교 방과후(교육청 포털)",
-   "region": "기타",
-   "source": "gne.go.kr",
-   "title": "2026년 함양제일고등학교 학생 오케스트라 관악부 강사 채용 공고",
-   "url": "https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_searchKey=1001&q_searchVal=%EC%98%A4%EC%BC%80%EC%8A%A4%ED%8A%B8%EB%9D%BC&q_rowPerPage=15&q_currPage=1",
-   "date": "2026-04-20",
-   "deadline": "2026-07-13",
-   "kind": "강사",
-   "tier": "교육·취미",
-   "inst": "목관",
-   "instDetails": [],
-   "personnel": null,
-   "channel": "gne",
-   "layer": "C",
-   "deadlineFrom": "page",
-   "firstSeen": "2026-07-08",
-   "isNew": true,
-   "extVer": 4
-  },
-  {
-   "id": "4ab6c3691ac8657a",
+   "id": "d97f80f35d35a9c2",
    "org": "경남 학교 방과후(교육청 포털)",
    "region": "기타",
    "source": "gne.go.kr",
    "title": "2026학년도 진주 거점 오케스트라 타악기 외부강사 모집 공고",
-   "url": "https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_searchKey=1001&q_searchVal=%EC%98%A4%EC%BC%80%EC%8A%A4%ED%8A%B8%EB%9D%BC&q_rowPerPage=15&q_currPage=1",
+   "url": "https://www.gne.go.kr/works/user/recruitment/BD_recruitmentDetail.do?regSn=1808444",
    "date": "2026-04-17",
-   "deadline": "2026-07-13",
+   "deadline": null,
    "kind": "강사",
    "tier": "교육·취미",
    "inst": "타악",
@@ -1549,7 +1458,6 @@
    "personnel": null,
    "channel": "gne",
    "layer": "C",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": true,
    "extVer": 4
@@ -1582,14 +1490,14 @@
    "extVer": 4
   },
   {
-   "id": "468353f1d76ea048",
+   "id": "f2a396a8f91564fd",
    "org": "경남 학교 방과후(교육청 포털)",
    "region": "기타",
    "source": "gne.go.kr",
    "title": "방과후학교(오케스트라) 강사 모집",
-   "url": "https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_searchKey=1001&q_searchVal=%EC%98%A4%EC%BC%80%EC%8A%A4%ED%8A%B8%EB%9D%BC&q_rowPerPage=15&q_currPage=1",
+   "url": "https://www.gne.go.kr/works/user/recruitment/BD_recruitmentDetail.do?regSn=1808375",
    "date": "2026-04-15",
-   "deadline": "2026-07-13",
+   "deadline": null,
    "kind": "강사",
    "tier": "교육·취미",
    "inst": "전체",
@@ -1597,62 +1505,19 @@
    "personnel": null,
    "channel": "gne",
    "layer": "C",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": true,
    "extVer": 4
   },
   {
-   "id": "04096b273859f4cb",
-   "org": "경남 학교 방과후(교육청 포털)",
-   "region": "기타",
-   "source": "gne.go.kr",
-   "title": "2026.오케스트라파트(플룻)지도강사초빙공고",
-   "url": "https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_searchKey=1001&q_searchVal=%EC%98%A4%EC%BC%80%EC%8A%A4%ED%8A%B8%EB%9D%BC&q_rowPerPage=15&q_currPage=1",
-   "date": "2026-04-14",
-   "deadline": "2026-07-13",
-   "kind": "강사",
-   "tier": "교육·취미",
-   "inst": "전체",
-   "instDetails": [],
-   "personnel": null,
-   "channel": "gne",
-   "layer": "C",
-   "deadlineFrom": "page",
-   "firstSeen": "2026-07-08",
-   "isNew": true,
-   "extVer": 4
-  },
-  {
-   "id": "6448364dc8eaf2c6",
-   "org": "경남 학교 방과후(교육청 포털)",
-   "region": "기타",
-   "source": "gne.go.kr",
-   "title": "2026. 칠원중학교 함안 거점 오케스트라 외부강사 모집 공고",
-   "url": "https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_searchKey=1001&q_searchVal=%EC%98%A4%EC%BC%80%EC%8A%A4%ED%8A%B8%EB%9D%BC&q_rowPerPage=15&q_currPage=1",
-   "date": "2026-04-03",
-   "deadline": "2026-07-13",
-   "kind": "강사",
-   "tier": "교육·취미",
-   "inst": "전체",
-   "instDetails": [],
-   "personnel": null,
-   "channel": "gne",
-   "layer": "C",
-   "deadlineFrom": "page",
-   "firstSeen": "2026-07-08",
-   "isNew": true,
-   "extVer": 4
-  },
-  {
-   "id": "07f8b4dbceae9c07",
+   "id": "d7ac0c524227339b",
    "org": "경남 학교 방과후(교육청 포털)",
    "region": "기타",
    "source": "gne.go.kr",
    "title": "2026. 남지고 오케스트라 방과후학교 외부강사 모집",
-   "url": "https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_searchKey=1001&q_searchVal=%EC%98%A4%EC%BC%80%EC%8A%A4%ED%8A%B8%EB%9D%BC&q_rowPerPage=15&q_currPage=1",
+   "url": "https://www.gne.go.kr/works/user/recruitment/BD_recruitmentDetail.do?regSn=1807955",
    "date": "2026-04-03",
-   "deadline": "2026-07-13",
+   "deadline": "2026-12-31",
    "kind": "강사",
    "tier": "교육·취미",
    "inst": "전체",
@@ -1666,35 +1531,14 @@
    "extVer": 4
   },
   {
-   "id": "d75edd963908469f",
-   "org": "경남 학교 방과후(교육청 포털)",
-   "region": "기타",
-   "source": "gne.go.kr",
-   "title": "2026. 오케스트라 파트별 지도강사 채용 공고(김해중앙여중)",
-   "url": "https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_searchKey=1001&q_searchVal=%EC%98%A4%EC%BC%80%EC%8A%A4%ED%8A%B8%EB%9D%BC&q_rowPerPage=15&q_currPage=1",
-   "date": "2026-04-02",
-   "deadline": "2026-07-13",
-   "kind": "강사",
-   "tier": "교육·취미",
-   "inst": "전체",
-   "instDetails": [],
-   "personnel": null,
-   "channel": "gne",
-   "layer": "C",
-   "deadlineFrom": "page",
-   "firstSeen": "2026-07-08",
-   "isNew": true,
-   "extVer": 4
-  },
-  {
-   "id": "b1bfeaf37030434f",
+   "id": "018058c620a0c35f",
    "org": "경남 학교 방과후(교육청 포털)",
    "region": "기타",
    "source": "gne.go.kr",
    "title": "2026학년도 학생 오케스트라 운영 외부강사 채용 공고",
-   "url": "https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_searchKey=1001&q_searchVal=%EC%98%A4%EC%BC%80%EC%8A%A4%ED%8A%B8%EB%9D%BC&q_rowPerPage=15&q_currPage=1",
+   "url": "https://www.gne.go.kr/works/user/recruitment/BD_recruitmentDetail.do?regSn=1807928",
    "date": "2026-04-01",
-   "deadline": "2026-07-13",
+   "deadline": "2026-12-31",
    "kind": "강사",
    "tier": "교육·취미",
    "inst": "전체",
@@ -1729,14 +1573,14 @@
    "extVer": 4
   },
   {
-   "id": "827821597a0afc34",
+   "id": "44caf41e6415c319",
    "org": "경남 학교 방과후(교육청 포털)",
    "region": "기타",
    "source": "gne.go.kr",
    "title": "마산무학여중 방과후 오케스트라 파트별 보조강사 모집(수정)",
-   "url": "https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_searchKey=1001&q_searchVal=%EC%98%A4%EC%BC%80%EC%8A%A4%ED%8A%B8%EB%9D%BC&q_rowPerPage=15&q_currPage=1",
+   "url": "https://www.gne.go.kr/works/user/recruitment/BD_recruitmentDetail.do?regSn=1807772",
    "date": "2026-03-30",
-   "deadline": "2026-07-13",
+   "deadline": null,
    "kind": "강사",
    "tier": "교육·취미",
    "inst": "전체",
@@ -1744,28 +1588,6 @@
    "personnel": null,
    "channel": "gne",
    "layer": "C",
-   "deadlineFrom": "page",
-   "firstSeen": "2026-07-08",
-   "isNew": true,
-   "extVer": 4
-  },
-  {
-   "id": "17604d16b2e449cb",
-   "org": "경남 학교 방과후(교육청 포털)",
-   "region": "기타",
-   "source": "gne.go.kr",
-   "title": "2026. 철성중학교 윈드오케스트라 외부 강사 모집",
-   "url": "https://www.gne.go.kr/works/user/recruitment/BD_recruitmentList.do?q_searchKey=1001&q_searchVal=%EC%98%A4%EC%BC%80%EC%8A%A4%ED%8A%B8%EB%9D%BC&q_rowPerPage=15&q_currPage=1",
-   "date": "2026-03-30",
-   "deadline": "2026-07-13",
-   "kind": "강사",
-   "tier": "교육·취미",
-   "inst": "전체",
-   "instDetails": [],
-   "personnel": null,
-   "channel": "gne",
-   "layer": "C",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": true,
    "extVer": 4
