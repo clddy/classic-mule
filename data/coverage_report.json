@@ -1,8 +1,8 @@
 {
  "date": "2026-07-08",
  "total": 49,
- "covered": 17,
- "gapCount": 32,
+ "covered": 16,
+ "gapCount": 33,
  "gaps": [
   {
    "name": "서울시립교향악단",
@@ -18,6 +18,11 @@
    "name": "성남시립교향악단",
    "type": "교향악단",
    "region": "경기"
+  },
+  {
+   "name": "창원시립교향악단",
+   "type": "교향악단",
+   "region": "경남"
   },
   {
    "name": "전주시립예술단",

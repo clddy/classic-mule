@@ -107,7 +107,7 @@ def find_attachments(soup, base_url):
                 cands.append((full, text))
     return cands[:3]
 
-EXT_VER = 7         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일 승계가 무효화됨
+EXT_VER = 10         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일 승계가 무효화됨
 RENDER_PER_SOURCE = 3   # 소스당 Playwright 렌더링 상한
 OCR_PER_SOURCE = 6      # 소스당 이미지 공고문 OCR 상한 (항목당 최대 2장)
 _renders_used = 0
@@ -212,11 +212,13 @@ def _find_concert(text):
 _EXCERPT_KW = re.compile(
     r"모집|채용|선발|자격|대상|리허설|연습|공연|연주|일시|장소|기간|인원|오디션"
     r"|전형|접수|급여|보수|페이|출연|곡목|프로그램|\d명")
-# 집계·게시판 페이지의 내비게이션·관련목록 잡음 배제
+# 집계·게시판 페이지의 내비게이션·관련목록·결과공고 잡음 배제
 _EXCERPT_SKIP = re.compile(
     r"메인 ?페이지|바로가기|로그인|회원가입|비슷한|관련\s*(모집|공고|정보)|목록|이전\s*글|다음\s*글"
     r"|리스트|검색|더보기|메뉴|카테고리|사이트맵|저작권|Copyright|배너|공유|인쇄|스크랩|조회수"
-    r"|첨부 ?파일|>|메일|주소복사|프린트|top|TOP|서포터즈|소식|공지사항|보도자료|서식")
+    r"|첨부 ?파일|>|메일|주소복사|프린트|top|TOP|서포터즈|소식|공지사항|보도자료|서식"
+    r"|최종 ?합격|합격자|불합격|합격 ?발표|채용 ?결과|선정 ?결과|낙찰|입찰 ?결과|계약 ?체결|티켓|추가 ?오픈"
+    r"|\[채용공고\]|\[공지\]|\[입찰\]|\[결과\]|\[알림\]")
 
 def _body_excerpt_text(text):
     keep = []
@@ -226,10 +228,15 @@ def _body_excerpt_text(text):
             continue
         if ln.count("|") >= 2:      # 브레드크럼(메뉴 경로) 배제
             continue
+        if re.search(r"\.(pdf|hwpx?|zip|docx?|xlsx?)(\b|$)", ln, re.I):  # 첨부 파일명 줄 배제
+            continue
         if _EXCERPT_SKIP.search(ln) or not _EXCERPT_KW.search(ln):
             continue
         # 라벨(콜론)·날짜·인원·금액 등 '실제 공고 내용' 신호가 있는 줄만
         if not re.search(r"[:：]|20\d\d|\d\s*명|\d\s*월|원\b|졸업|자격|모집|채용|리허설|오디션", ln):
+            continue
+        # 이미 담은 줄과 앞부분이 겹치면(제목 반복 등) 건너뛰기
+        if any(k[:16] == ln[:16] for k in keep):
             continue
         keep.append(ln)
         if len(keep) >= 4:
@@ -239,7 +246,7 @@ def _body_excerpt_text(text):
 def _body_excerpt(soup):
     return _body_excerpt_text(soup.get_text("\n", strip=True))
 
-def _apply_details_from_text(text, item):
+def _apply_details_from_text(text, item, want_excerpt=True):
     """평문 본문(페이지/첨부/OCR)에서 자격·인원·객원필드·요약을 채운다 (없는 것만)"""
     if not text:
         return
@@ -258,7 +265,7 @@ def _apply_details_from_text(text, item):
                 v = fn(text)
                 if v:
                     item[fld] = v
-    if not item.get("bodyExcerpt"):
+    if want_excerpt and not item.get("bodyExcerpt"):
         ex = _body_excerpt_text(text)
         if ex:
             item["bodyExcerpt"] = ex
@@ -287,13 +294,31 @@ def _extract_body_details(soup, page_text, item, ry):
         c = _find_contract(page_text)
         if c:
             item["contract"] = c
-    # 자격·모집인원·객원필드·본문요약 (평문 본문에서, 없는 것만)
-    _apply_details_from_text(page_text, item)
-    # 요약은 줄 구조가 살아있는 soup 기준이 더 정확 — 아직 없으면 보강
+    # 자격·모집인원·객원필드 (평문 본문에서, 없는 것만) — 요약은 아래서 별도 처리
+    _apply_details_from_text(page_text, item, want_excerpt=False)
+    # 본문 요약: 줄 구조가 살아있는 soup 기준(품질 필터가 집계·게시판 잡음 제거).
+    # 얇은 페이지에서 못 뽑으면 이후 첨부 단계에서 채워진다.
     if not item.get("bodyExcerpt"):
         ex = _body_excerpt(soup)
         if ex:
             item["bodyExcerpt"] = ex
+
+def _body_from_attachments(s, soup, r, item):
+    """첨부 공고문(HWP/PDF)에서 본문 상세(자격·인원·요약) 보강 — 마감일 로직과 무관.
+    본문이 첨부에만 있는 집계·게시판(cwcf·bscc 등) 대응."""
+    for furl, fname in find_attachments(soup, r.url):
+        if item.get("bodyExcerpt"):
+            break
+        try:
+            fr = s.get(furl, timeout=30, verify=False, headers={"Referer": item["url"]})
+            if fr.status_code != 200 or not (200 < len(fr.content) < 20_000_000):
+                continue
+            cd = fr.headers.get("Content-Disposition", "")
+            m = re.search(r"filename\*?=(?:UTF-8'')?\"?([^\";]+)", cd)
+            name = m.group(1) if m else (fname or furl)
+            _apply_details_from_text(attach.extract_any(name, fr.content), item)
+        except Exception:
+            continue
 
 def enrich_deadline(s, item, allow_render=True, details_only=False):
     global _renders_used
@@ -308,8 +333,11 @@ def enrich_deadline(s, item, allow_render=True, details_only=False):
         page_text = soup.get_text(" ", strip=True)
         # 채용부문/직책/인원 표 등 본문 상세 (마감 유무와 무관하게 항상)
         _extract_body_details(soup, page_text, item, ry)
-        # 마감일은 이미 확정 — 본문 요약만 필요한 경우 여기서 종료 (첨부·OCR·렌더 생략)
+        # 마감일은 이미 확정 — 본문 요약만 필요한 경우
         if details_only:
+            # 본문이 얇은 집계·게시판이면 첨부 공고문에서 요약 보강 (cwcf·bscc 등)
+            if not item.get("bodyExcerpt") and len(page_text) < 800:
+                _body_from_attachments(s, soup, r, item)
             return
         # 게시일이 없으면 상세의 등록일로 보충 (연령 정리·연도 보정에 사용)
         if not item.get("date"):
@@ -400,9 +428,12 @@ def run(force_all=False):
     for src in SOURCES:
         meta = {"id": src["id"], "name": src["name"], "layer": src["layer"], "poll": src["poll"]}
         if not should_run(src, today, force_all):
-            # 오늘 폴링 차례가 아님 → 이전 수집분 승계
-            carried = [it for it in prev_items if it.get("channel") == src["id"]
-                       or (not it.get("channel") and src["domain"] in it.get("source", ""))]
+            # 오늘 폴링 차례가 아님 → 이전 수집분 승계 (필터는 최신 기준으로 재적용)
+            carried = [it for it in prev_items
+                       if (it.get("channel") == src["id"]
+                           or (not it.get("channel") and src["domain"] in it.get("source", "")))
+                       and relevant(it["title"])
+                       and musician_relevant(it["title"], it.get("kind", "기타"), it.get("org", ""))]
             for it in carried:
                 it["channel"] = src["id"]
                 it["layer"] = src["layer"]

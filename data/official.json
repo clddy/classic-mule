@@ -1,5 +1,5 @@
 {
- "collectedAt": "2026-07-08 22:31",
+ "collectedAt": "2026-07-08 23:24",
  "sourceCount": 37,
  "okCount": 37,
  "sources": [
@@ -45,7 +45,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 2,
    "kept": 2
   },
   {
@@ -54,7 +54,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 16,
    "kept": 2
   },
   {
@@ -63,7 +63,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 2,
    "kept": 0
   },
   {
@@ -72,7 +72,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 15,
    "kept": 2
   },
   {
@@ -81,7 +81,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 23,
    "kept": 1
   },
   {
@@ -90,7 +90,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 10,
    "kept": 0
   },
   {
@@ -99,8 +99,8 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
-   "kept": 3
+   "raw": 10,
+   "kept": 2
   },
   {
    "id": "cwcf",
@@ -108,8 +108,8 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
-   "kept": 3
+   "raw": 27,
+   "kept": 0
   },
   {
    "id": "ulsan",
@@ -117,7 +117,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 17,
    "kept": 1
   },
   {
@@ -153,7 +153,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 6,
    "kept": 1
   },
   {
@@ -162,7 +162,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 10,
    "kept": 1
   },
   {
@@ -171,7 +171,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 10,
    "kept": 1
   },
   {
@@ -180,7 +180,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 11,
    "kept": 1
   },
   {
@@ -189,7 +189,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 20,
    "kept": 1
   },
   {
@@ -216,7 +216,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 0,
    "kept": 0
   },
   {
@@ -225,7 +225,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 0,
    "kept": 0
   },
   {
@@ -234,7 +234,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 0,
    "kept": 0
   },
   {
@@ -243,7 +243,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 1,
    "kept": 0
   },
   {
@@ -252,7 +252,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 0,
    "kept": 0
   },
   {
@@ -261,7 +261,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 0,
    "kept": 0
   },
   {
@@ -270,7 +270,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 0,
    "kept": 0
   },
   {
@@ -279,7 +279,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 1,
    "kept": 0
   },
   {
@@ -288,7 +288,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 0,
    "kept": 0
   },
   {
@@ -297,7 +297,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 0,
    "kept": 0
   },
   {
@@ -306,7 +306,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 0,
    "kept": 0
   },
   {
@@ -315,7 +315,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 4,
    "kept": 2
   },
   {
@@ -324,7 +324,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 1,
    "kept": 1
   },
   {
@@ -333,7 +333,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 0,
    "kept": 0
   }
  ],
@@ -367,7 +367,7 @@
    "deadlineNote": "상시",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "be024e49936675f8",
@@ -389,7 +389,7 @@
    "layer": "C",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "5662c679dbaca9e1",
@@ -411,7 +411,7 @@
    "layer": "C",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "8b41facc1cb8a23f",
@@ -433,7 +433,7 @@
    "layer": "C",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "1c3843f4f68565f0",
@@ -455,7 +455,7 @@
    "layer": "C",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "fb6fc208fe67e728",
@@ -477,7 +477,7 @@
    "layer": "C",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "a6a9815fd2c3e78c",
@@ -499,7 +499,7 @@
    "layer": "C",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "a0d7387acd73ce8e",
@@ -521,7 +521,7 @@
    "layer": "C",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "8b341be8f55a19d1",
@@ -543,7 +543,7 @@
    "layer": "C",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "cb8ea69bdefb0aa8",
@@ -558,14 +558,15 @@
    "tier": "프로",
    "inst": "전체",
    "instDetails": [],
-   "personnel": null,
+   "personnel": "2019 년생 ~ 2014 년생 남녀 아역배",
    "channel": "sejongpac",
    "layer": "B",
-   "deadlineFrom": "page",
    "auditionDate": "7/7",
+   "bodyExcerpt": "아역 오디션 공고 · 서울시뮤지컬단과 함께 작품을 빛내 주실 아역배우를 선발하기 위한 오디션을 · 슈즈 등 오디션에 필요한 개인 준비물 등 · 개인적 사정에 의한 오디션 시간 변경은 불가합니다",
+   "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "c80e362afc57cd51",
@@ -614,7 +615,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "0f1655bb56ef77bf",
@@ -632,10 +633,12 @@
    "personnel": null,
    "channel": "g_hibrain",
    "layer": "B",
+   "qualification": "학사이상 관련 홈",
+   "pay": "스북으로 보내기 URL 복사 인쇄 관심기관등",
    "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "f7b1c263744b9ece",
@@ -654,9 +657,10 @@
    "channel": "ggac",
    "layer": "B",
    "deadlineFrom": "title",
+   "bodyExcerpt": "3. (필수) 지원 분야와 관련 연주 영상 링크 또는 파일을 첨부하여 주세요.",
    "firstSeen": "2026-07-07",
    "isNew": false,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "f0b2f11b48a3b0cd",
@@ -675,30 +679,10 @@
    "channel": "ggac",
    "layer": "B",
    "deadlineFrom": "title",
+   "bodyExcerpt": "2026년 경기예술성장학교 영재선발 공개 모집",
    "firstSeen": "2026-07-07",
    "isNew": false,
-   "extVer": 7
-  },
-  {
-   "id": "206089b8baec5c43",
-   "org": "창원문화재단(시립예술단)",
-   "region": "기타",
-   "source": "cwcf.or.kr",
-   "title": "창원문화재단 성산아트홀본부 사업 업무직 채용 공고",
-   "url": "https://www.cwcf.or.kr/commu/notice_view.asp?skey=&sword=&BCATE=BD00001&BSUBCATE=&place_idx=&page=1&idx=22079&bidx=2034",
-   "date": null,
-   "deadline": "2026-06-28",
-   "kind": "기타",
-   "tier": "프로",
-   "inst": "전체",
-   "instDetails": [],
-   "personnel": null,
-   "channel": "cwcf",
-   "layer": "B",
-   "deadlineFrom": "attachment",
-   "firstSeen": "2026-07-07",
-   "isNew": false,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "704803253e123736",
@@ -716,14 +700,15 @@
    "personnel": null,
    "channel": "dpo",
    "layer": "D",
-   "deadlineFrom": "attachment",
    "positions": [
     "단원"
    ],
    "contract": "상임",
+   "bodyExcerpt": "2026 대전시립교향악단 예능단원 공개채용 · 2025 시립예술단 상임단원(사무) 공개채용 공고",
+   "deadlineFrom": "attachment",
    "firstSeen": "2026-07-07",
    "isNew": false,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "ca9438955c7e62e6",
@@ -738,16 +723,17 @@
    "tier": "프로",
    "inst": "전체",
    "instDetails": [],
-   "personnel": null,
+   "personnel": "7명(제2바이올린 2명, 비올라 2명, 첼로",
    "channel": "gso",
    "layer": "D",
-   "deadlineFrom": "page",
    "positions": [
     "단원"
    ],
+   "bodyExcerpt": "2026년도 광주광역시립교향악단 비상임단원 공개모집 공고 · 1. 모집인원 : 7명(제2바이올린 2명, 비올라 2명, 첼로 1명, 바순 1명, 호른 1명) · 2. 응시자격 : 붙임 공고문 참고 · 3. 접수기간 : 2026.6.16.(화)~6.18.(목)/09:00~18:00(12:00~13:00 점심시간 제외)",
+   "deadlineFrom": "page",
    "firstSeen": "2026-07-07",
    "isNew": false,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "b2e199e32140e0ed",
@@ -774,7 +760,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "340d217c42aab8e1",
@@ -816,7 +802,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "5dece78df88ec9d5",
@@ -836,55 +822,14 @@
    "personnel": null,
    "channel": "sejongpac",
    "layer": "B",
-   "deadlineFrom": "ocr",
    "positions": [
     "단원"
    ],
-   "firstSeen": "2026-07-07",
-   "isNew": false,
-   "extVer": 7
-  },
-  {
-   "id": "7cf075d7e6dbdb02",
-   "org": "세종문화회관(서울시예술단)",
-   "region": "서울",
-   "source": "sejongpac.or.kr",
-   "title": "서울시오페라단장 공개채용 공고",
-   "url": "https://www.sejongpac.or.kr/portal/bbs/B0000065/view.do?nttId=50057&menuNo=200571&pageIndex=1",
-   "date": "2026-07-01",
-   "deadline": "2026-07-13",
-   "kind": "기타",
-   "tier": "프로",
-   "inst": "전체",
-   "instDetails": [],
-   "personnel": null,
-   "channel": "sejongpac",
-   "layer": "B",
+   "bodyExcerpt": "세종문화회관 예술단 직책단원(소년소녀합창 지휘자) 공개채용 공고 · 서울시오페라단장 공개채용 공고 · 공공기관 채용비리신고",
    "deadlineFrom": "ocr",
    "firstSeen": "2026-07-07",
    "isNew": false,
-   "extVer": 7
-  },
-  {
-   "id": "7a5bf6c368947e74",
-   "org": "창원문화재단(시립예술단)",
-   "region": "기타",
-   "source": "cwcf.or.kr",
-   "title": "2026 창원조각비엔날레 통합운송 용역 평가위원 공개모집 공고",
-   "url": "https://www.cwcf.or.kr/commu/notice_view.asp?skey=&sword=&BCATE=BD00001&BSUBCATE=&place_idx=&page=1&idx=22453&bidx=2046",
-   "date": "2026-07-01",
-   "deadline": "2026-07-22",
-   "kind": "기타",
-   "tier": "프로",
-   "inst": "전체",
-   "instDetails": [],
-   "personnel": null,
-   "channel": "cwcf",
-   "layer": "B",
-   "deadlineFrom": "attachment",
-   "firstSeen": "2026-07-07",
-   "isNew": false,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "ce53a1fb33bdf3b8",
@@ -904,11 +849,11 @@
    "personnel": null,
    "channel": "gne",
    "layer": "C",
-   "bodyExcerpt": "진영대창초등학교 방과후학교 오케스트라 타악기 강사 모집공고 · 2026. 진영대창초 방과후학교 개인위탁 외부강사 모집 계획(오케스트라-타악기)탑재용.hwp · 진영대창초등학교에서 방과후학교 오케스트라 타악기 외부 강사를 다음과 같이 모집 공고합니다. · 1. 모집분야: 방과후학교 오케스트라 타악기 ( 1명 )",
+   "bodyExcerpt": "진영대창초등학교 방과후학교 오케스트라 타악기 강사 모집공고 · 진영대창초등학교에서 방과후학교 오케스트라 타악기 외부 강사를 다음과 같이 모집 공고합니다. · 1. 모집분야: 방과후학교 오케스트라 타악기 ( 1명 ) · 2. 서류 접수: 2026년 6월 26일(금) 9시 ∼ 2026년 6월 30일(화) 16시까지",
    "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "e922691feb25fcfe",
@@ -923,17 +868,19 @@
    "tier": "프로",
    "inst": "성악",
    "instDetails": [],
-   "personnel": null,
+   "personnel": "최대 30 명 (2 기에한하여기존 1 기단원",
    "channel": "artsuwon",
    "layer": "B",
-   "deadlineFrom": "ocr",
    "positions": [
     "단원"
    ],
    "contract": "상임",
+   "bodyExcerpt": "주니어콰이어 2기 단원모집 공고문.jpg",
+   "qualification": "2011 년부터 2016 년사이출생자 ( 수원관내초등학교 4 학년 ~ 중학교",
+   "deadlineFrom": "ocr",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "a680faac61c874bf",
@@ -961,7 +908,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "589603f9a406569d",
@@ -989,7 +936,7 @@
    "deadlineFrom": "page+yearfix",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "da06b8ae997fd398",
@@ -1013,7 +960,7 @@
    "bodyExcerpt": "모집파트: 테너 또는 베이스",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "b45188e68777edf5",
@@ -1036,7 +983,7 @@
    "bodyExcerpt": "채용 | 더솔아르떼 성악아카데미 평택점과 함께할 전문 강사님을 모십니다 · 성악 전문 강사님을 모집합니다. · ✨️ 모집 분야 · 우대: 교육 및 연주 경력자 환영,",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "66564a9a98fa61d9",
@@ -1062,7 +1009,7 @@
    "bodyExcerpt": "채용 | [부산] 푸른초장교회 반주자를 모십니다.",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "9620ade24d0b0c0c",
@@ -1086,10 +1033,10 @@
     "단원"
    ],
    "qualification": "클래식 성악 전공자 또는 이에 준하는 실력을 갖춘 성악가 전문 앙상블 및 합창 경험자 영어",
-   "bodyExcerpt": "채용 | [서울 아도로 앙상블] 유급단원 모집 안내 (~6/30) · [서울 아도로 앙상블] 유급단원 모집 안내 (~6/30) · [서울 아도로 앙상블] 유급단원 모집 안내 · 은 이러한 비전과 예술철학을 함께 나눌 유급 단원(Professional Ensemble Artists)을 모집합니다.",
+   "bodyExcerpt": "채용 | [서울 아도로 앙상블] 유급단원 모집 안내 (~6/30) · [서울 아도로 앙상블] 유급단원 모집 안내 (~6/30) · 은 이러한 비전과 예술철학을 함께 나눌 유급 단원(Professional Ensemble Artists)을 모집합니다. · 이번 단원 모집은",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "08866dcb8f1878e8",
@@ -1112,7 +1059,7 @@
    "bodyExcerpt": "채용 | [한국문화예술위원회 지원사업] 현악 전공 인재 모집 (~6.1) · [한국문화예술위원회 지원사업] 현악 전공 인재 모집 (~6.1)",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "4da5ac93aea9485d",
@@ -1139,7 +1086,7 @@
    "bodyExcerpt": "채용 | [모집공고] 강동구립여성합창단 신임 지휘자 모집 · [모집공고] 강동구립여성합창단 신임 지휘자 모집",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "d37853ea84bc63de",
@@ -1161,28 +1108,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 7
-  },
-  {
-   "id": "4e49ec09fcc8abac",
-   "org": "창원문화재단(시립예술단)",
-   "region": "기타",
-   "source": "cwcf.or.kr",
-   "title": "창원문화재단 중장기 발전계획(2027~2031) 수립_제안서 평가위원(후보자) 모집..",
-   "url": "https://www.cwcf.or.kr/commu/notice_view.asp?skey=&sword=&BCATE=BD00001&BSUBCATE=&place_idx=&page=1&idx=22074&bidx=2033",
-   "date": "2026-06-12",
-   "deadline": "2026-06-21",
-   "kind": "기타",
-   "tier": "프로",
-   "inst": "전체",
-   "instDetails": [],
-   "personnel": null,
-   "channel": "cwcf",
-   "layer": "B",
-   "deadlineFrom": "attachment",
-   "firstSeen": "2026-07-07",
-   "isNew": false,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "ab76a676120cd5fc",
@@ -1200,11 +1126,11 @@
    "personnel": "오케스트라 1명 2",
    "channel": "gne",
    "layer": "C",
-   "bodyExcerpt": "2026학년도 경남관광고등학교 방과후학교 오케스트라부 외부 강사 모집 공고 · 2026학년도 경남관광고등학교 방과후학교 오케스트라부 외부 강사 모집 공고.hwp · 1. 모집인원: 오케스트라 1명 · 2. 계약기간: 2026.6.15(월) ~ 2026.12.28(월) 총25회기",
+   "bodyExcerpt": "2026학년도 경남관광고등학교 방과후학교 오케스트라부 외부 강사 모집 공고 · 1. 모집인원: 오케스트라 1명 · 2. 계약기간: 2026.6.15(월) ~ 2026.12.28(월) 총25회기 · 3. 접수기간: 2026.6.2(화) ~ 2026.6.8(월) 09:00 ~ 16:30",
    "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "80d14ca8d0c13b77",
@@ -1222,10 +1148,11 @@
    "personnel": null,
    "channel": "bscc",
    "layer": "B",
+   "bodyExcerpt": "고교 청소년 합창단을 아래와 같이 모집합니다",
    "deadlineFrom": "attachment",
    "firstSeen": "2026-07-07",
    "isNew": false,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "7f62ca737e69c4ad",
@@ -1243,14 +1170,16 @@
    "personnel": null,
    "channel": "bucheonphil",
    "layer": "D",
-   "deadlineFrom": "attachment",
    "positions": [
     "단원"
    ],
    "contract": "상임",
+   "bodyExcerpt": "[공고] 부천시립합창단 상임단원 채용 공고",
+   "qualification": "❍ 18세 이상 만 60세 미만으로 해당분야의 전문지식과 경험을 갖춘사람",
+   "deadlineFrom": "attachment",
    "firstSeen": "2026-07-07",
    "isNew": false,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "132afea811223f4c",
@@ -1268,13 +1197,14 @@
    "personnel": null,
    "channel": "g_timf",
    "layer": "B",
-   "deadlineFrom": "ocr",
    "positions": [
     "단원"
    ],
+   "bodyExcerpt": "2026 통영시립소년소녀합창단 신규단원 모집",
+   "deadlineFrom": "ocr",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "42db74da2bf23ef9",
@@ -1301,7 +1231,7 @@
    "deadlineNote": "상시",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "90b6247b29765fe9",
@@ -1319,13 +1249,14 @@
    "personnel": null,
    "channel": "ulsan",
    "layer": "B",
-   "deadlineFrom": "attachment",
    "positions": [
     "단원"
    ],
+   "bodyExcerpt": "2026년도 상반기 2차 울산광역시립청소년교향악단 신규 단원 모집 공고 · 울산광역시립예술단 사무국 직원 모집 공고",
+   "deadlineFrom": "attachment",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "5fbc7e4eb4f8d92d",
@@ -1352,7 +1283,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "7468553439d534a9",
@@ -1370,10 +1301,12 @@
    "personnel": null,
    "channel": "g_timf",
    "layer": "B",
+   "bodyExcerpt": "노부스 콰르텟과 함께하는 TIMF아카데미 - 현악사중주 참가자 모집",
+   "qualification": "대한민국국적의만 30 세이하전공자로구성된",
    "deadlineFrom": "ocr",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "56c36e75098701e9",
@@ -1391,11 +1324,11 @@
    "personnel": "가야금(1), 거문고(1), 아쟁(1), 해",
    "channel": "gne",
    "layer": "C",
-   "bodyExcerpt": "2026학년도 개운중학교 학생 오케스트라 동아리 주말 강사 채용 공고 · 2026학년도 개운중학교 학생 오케스트라 동아리 주말 강사 채용 공고.hwp · 2026학년도 개운중학교 국악 관현악단 동아리 지도 강사를 다음과 같이 채용 공고합니다. · 1. 모집 인원: 가야금(1), 거문고(1), 아쟁(1), 해금(1), 대금ㆍ소금(1), 피리ㆍ태평소(1), 타악(1) 총 7명",
+   "bodyExcerpt": "2026학년도 개운중학교 학생 오케스트라 동아리 주말 강사 채용 공고 · 2026학년도 개운중학교 국악 관현악단 동아리 지도 강사를 다음과 같이 채용 공고합니다. · 1. 모집 인원: 가야금(1), 거문고(1), 아쟁(1), 해금(1), 대금ㆍ소금(1), 피리ㆍ태평소(1), 타악(1) 총 7명 · 2. 계약 기간: 2026. 6.~ 2027. 02. (학기 중 토요일 11:00~13:00)",
    "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "ac7d08c3a9acc618",
@@ -1413,11 +1346,11 @@
    "personnel": "지도강사 3명 클라리넷/색소폰(1명), 금관",
    "channel": "gne",
    "layer": "C",
-   "bodyExcerpt": "2026년 함양제일고등학교 학생 오케스트라 관악부 강사 채용 재공고 · 클라리넷/색소폰(1명), 금관악기(1명), 타악기(1명) · 2026학년도 강사모집 재공고문(관악부).hwp · 2026학년도 함양제일고등학교 학생 오케스트라 관악부 강사를 다음과 같이 채용 공고합니다.",
+   "bodyExcerpt": "2026년 함양제일고등학교 학생 오케스트라 관악부 강사 채용 재공고 · 클라리넷/색소폰(1명), 금관악기(1명), 타악기(1명) · 2026학년도 함양제일고등학교 학생 오케스트라 관악부 강사를 다음과 같이 채용 공고합니다. · 1. 채용프로그램명 및 채용인원: 지도강사 3명",
    "deadlineFrom": "page+yearfix",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "2ccde0ec653ad686",
@@ -1432,16 +1365,21 @@
    "tier": "전공·입시",
    "inst": "전체",
    "instDetails": [],
-   "personnel": null,
+   "personnel": "><1명><1명>",
    "channel": "incheon",
    "layer": "B",
-   "deadlineFrom": "attachment+yearfix",
    "positions": [
     "단원"
    ],
+   "pay": "스북 X 네이버블로그 카카오스토리 주소복사 ",
+   "bodyExcerpt": "[변경 공고] 인천시립청소년교향악단 기획운영단원 및 교향악단 기간제 비상임단원 공개모집 공고 · 1. 변경사유 : 휴직단원 복직에 따른 결원 인원 변동 · 2. 변경사항 : 교향악단 기간제 비상임단원 모집인원 2명 → 1명",
+   "rehearsal": "․",
+   "concertDate": "무대 관련 업무 전반 /",
+   "program": "(자유)을 사용하여 제한시간 내",
+   "deadlineFrom": "attachment+yearfix",
    "firstSeen": "2026-07-07",
    "isNew": false,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "568d27633d07614d",
@@ -1456,16 +1394,21 @@
    "tier": "전공·입시",
    "inst": "전체",
    "instDetails": [],
-   "personnel": null,
+   "personnel": "><1명><2명>",
    "channel": "incheon",
    "layer": "B",
-   "deadlineFrom": "attachment",
    "positions": [
     "단원"
    ],
+   "pay": "스북 X 네이버블로그 카카오스토리 주소복사 ",
+   "bodyExcerpt": "인천시립청소년교향악단 기획운영단원 및 교향악단 기간제 비상임단원 공개모집 공고 · 변경 공고(모집인원) 확인하러 가기 ☞ https://www.incheon.go.kr/art/ART040102/3070441",
+   "rehearsal": "․",
+   "concertDate": "무대 관련 업무 전반 /",
+   "program": "(자유)을 사용하여 제한시간 내",
+   "deadlineFrom": "attachment",
    "firstSeen": "2026-07-07",
    "isNew": false,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "6e3cea797d2b9f71",
@@ -1486,11 +1429,11 @@
    "positions": [
     "단원"
    ],
-   "bodyExcerpt": "2026 KNCO 국립심포니콘서트오케스트라 - 단원 추가 모집 공고 · 지원서 접수 (4/30 11:00 ~ 5/13 15:00까지) · 공식 채용 홈페이지 · 2026 KNCO 단원 추가모집(2차) 레퍼토리.pdf",
+   "bodyExcerpt": "2026 KNCO 국립심포니콘서트오케스트라 - 단원 추가 모집 공고 · 지원서 접수 (4/30 11:00 ~ 5/13 15:00까지) · 공식 채용 홈페이지 · 2026 KNSO아카데미(청년 교육단원) 추가 모집 공고 (비올라, 트럼펫)",
    "deadlineFrom": "ocr",
    "firstSeen": "2026-07-07",
    "isNew": false,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "a4898251c3619927",
@@ -1508,10 +1451,11 @@
    "personnel": null,
    "channel": "bscc",
    "layer": "B",
+   "bodyExcerpt": "‘오페라 속 편지 이야기’ 주역 모집 공고 · 다음과 같이 모집합니다. · 작품명 모집배역 · ※ 배역별 중복 지원 가능, 지원시 배역과 해당 응시곡목 기재",
    "deadlineFrom": "attachment",
    "firstSeen": "2026-07-07",
    "isNew": false,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "d97f80f35d35a9c2",
@@ -1531,10 +1475,10 @@
    "personnel": null,
    "channel": "gne",
    "layer": "C",
-   "bodyExcerpt": "2026학년도 진주 거점 오케스트라 타악기 외부강사 모집 공고 · 2026. 진주 거점 오케스트라 타악기 외부강사 모집 공고 계획.hwp · 진주초등학교에서는 진주 거점 오케스트라 운영과 관련하여 아래와 같이 파트 강사를 모집하오니, 관심 있는 분들의 많은 지원 바랍니다",
+   "bodyExcerpt": "2026학년도 진주 거점 오케스트라 타악기 외부강사 모집 공고 · 진주초등학교에서는 진주 거점 오케스트라 운영과 관련하여 아래와 같이 파트 강사를 모집하오니, 관심 있는 분들의 많은 지원 바랍니다",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "4ad0b24774e31dbf",
@@ -1558,11 +1502,11 @@
    "positions": [
     "단원"
    ],
-   "bodyExcerpt": "2026 KNSO아카데미(청년 교육단원) 추가 모집 공고 (비올라, 트럼펫) · ※ 채용 사이트(지원서 접수)는 서류접수 일정(4/20 9am) 에 맞추어 활성화 됩니다. · 2026 KNSO아카데미(청년 교육단원) 추가 모집(2차) 지정곡.pdf · 2026 KNSO아카데미(청년 교육단원) 추가 모집(2차) 지정곡 악보_비올라.pdf",
+   "bodyExcerpt": "2026 KNSO아카데미(청년 교육단원) 추가 모집 공고 (비올라, 트럼펫) · ※ 채용 사이트(지원서 접수)는 서류접수 일정(4/20 9am) 에 맞추어 활성화 됩니다. · 2026 KNCO 국립심포니콘서트오케스트라 - 단원 추가 모집 공고",
    "deadlineFrom": "ocr",
    "firstSeen": "2026-07-07",
    "isNew": false,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "f2a396a8f91564fd",
@@ -1580,10 +1524,10 @@
    "personnel": null,
    "channel": "gne",
    "layer": "C",
-   "bodyExcerpt": "방과후학교(오케스트라) 강사 모집 · 바이올린+비올라(1명), 첼로+콘트라베이스(1명), 색소폰(1명), 클라리넷(1명) 트럼펫+트럼본(1명), 타악기(1명) · 2026. 방과후학교 강사 채용.hwpx · 밀성고등학교 오케스트라 운영을 위한 방과후학교 프로그램 강사 분을 모집합니다.",
+   "bodyExcerpt": "방과후학교(오케스트라) 강사 모집 · 바이올린+비올라(1명), 첼로+콘트라베이스(1명), 색소폰(1명), 클라리넷(1명) 트럼펫+트럼본(1명), 타악기(1명) · 밀성고등학교 오케스트라 운영을 위한 방과후학교 프로그램 강사 분을 모집합니다.",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "d7ac0c524227339b",
@@ -1601,11 +1545,11 @@
    "personnel": null,
    "channel": "gne",
    "layer": "C",
-   "bodyExcerpt": "2026. 남지고 오케스트라 방과후학교 외부강사 모집 · 2026년 오케스트라 방과후학교 외부강사 모집 공고.hwp · 남지고등학교에서는 오케스트라 방과후학교 외부강사를 다음과 같이 모집 공고합니다. · 1. 모집 분야 및 인원 (총 6명): 색소폰, 클라리넷, 플룻, 트럼펫, 트롬본, 타악기",
+   "bodyExcerpt": "2026. 남지고 오케스트라 방과후학교 외부강사 모집 · 남지고등학교에서는 오케스트라 방과후학교 외부강사를 다음과 같이 모집 공고합니다. · 1. 모집 분야 및 인원 (총 6명): 색소폰, 클라리넷, 플룻, 트럼펫, 트롬본, 타악기 · 2. 채용기간: 2026년 5월 2일 ~ 12월 31일(방학 및 공휴일 제외)",
    "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "018058c620a0c35f",
@@ -1623,11 +1567,11 @@
    "personnel": null,
    "channel": "gne",
    "layer": "C",
-   "bodyExcerpt": "2026학년도 학생 오케스트라 운영 외부강사 채용 공고 · [공고문] 2026학년도 학생오케스트라 동아리 운영 외부강사 채용 공고.hwp · 2026학년도 학생 오케스트라 운영 외부강사 채용을 아래와 같이 공고합니다. · 1. 채용분야 및 모집 인원",
+   "bodyExcerpt": "2026학년도 학생 오케스트라 운영 외부강사 채용 공고 · 1. 채용분야 및 모집 인원 · 가. 채용분야 및 모집인원 · 채용분야 : 클라리넷(색소폰 지도 가능자 우대)/ 트럼펫 / 유포늄",
    "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "29565db5af81d74b",
@@ -1645,10 +1589,14 @@
    "personnel": null,
    "channel": "natchorus",
    "layer": "D",
+   "positions": [
+    "부지휘자"
+   ],
+   "bodyExcerpt": "제13회 골든에이지(어르신)합창경연대회 모집요강 공고 · 2026(상) 합창 아카데미 Voice Makers & Choral Lab 수강생 모집 공고",
    "deadlineFrom": "page",
    "firstSeen": "2026-07-07",
    "isNew": false,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "44caf41e6415c319",
@@ -1669,7 +1617,7 @@
    "bodyExcerpt": "마산무학여중 방과후 오케스트라 파트별 보조강사 모집(수정)",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "c355fe34995919a9",
@@ -1696,7 +1644,7 @@
    "deadlineNote": "상시",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "d43e73d204b36b0f",
@@ -1723,7 +1671,7 @@
    "deadlineNote": "상시",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "738f91f7172513b1",
@@ -1741,14 +1689,15 @@
    "personnel": null,
    "channel": "natopera",
    "layer": "D",
-   "deadlineFrom": "page",
    "positions": [
     "단원"
    ],
    "auditionDate": "3/4 · 2/26",
+   "bodyExcerpt": "2026 제25회 국립오페라단 성악콩쿠르 개최 (접수: 7.20.~7.31.) · 2026년 제2차 국립오페라단 직원 채용 공고 · 2026 국립오페라스튜디오 청년교육단원 9기 오페라합창 추가선발 오디션 심사 공지",
+   "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "cff2801e45a9ec79",
@@ -1775,7 +1724,7 @@
    "deadlineNote": "상시",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "44b5ab53b042583a",
@@ -1802,7 +1751,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "b4b9d9aaa209b9a4",
@@ -1829,7 +1778,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 7
+   "extVer": 10
   },
   {
    "id": "062c1a7045023f76",
@@ -1856,7 +1805,7 @@
    "deadlineNote": "상시",
    "firstSeen": "2026-07-08",
    "isNew": true,
-   "extVer": 7
+   "extVer": 10
   }
  ]
 }
