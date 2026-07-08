@@ -16,6 +16,8 @@ const OFFICIAL_ITEMS = ((window.CRAWLED && window.CRAWLED.items) || []).map(j =>
   insts: j.instDetails || [], group: j.inst,
   region: j.region, title: j.title, org: j.org,
   deadline: j.deadline, deadlineText: j.deadlineNote, date: j.date || j.firstSeen,
+  personnel: j.personnel, qualification: j.qualification, contract: j.contract,
+  auditionDate: j.auditionDate, rehearsal: j.rehearsal, concertDate: j.concertDate, program: j.program,
   url: j.url, officialUrl: j.officialUrl, isNew: j.isNew, source: j.source
 }));
 
@@ -26,6 +28,8 @@ let COMMUNITY_ITEMS = JOBS.map(j => ({
   insts: j.instDetails || [j.instDetail], group: j.inst,
   region: j.region, title: j.title, org: j.org, pay: j.pay,
   when: j.when, program: j.program,
+  personnel: j.personnel, qualification: j.qualification, contract: j.contract,
+  auditionDate: j.auditionDate, rehearsal: j.rehearsal, concertDate: j.concertDate,
   deadline: /^\d{4}/.test(j.deadline) ? j.deadline : null, deadlineText: j.deadline,
   date: j.date, body: j.body, urgent: j.urgent, cid: j.id
 }));
@@ -183,6 +187,37 @@ function renderAll() {
   renderList();
 }
 
+// ---------- 유형별 요약 필드 (단원 vs 객원 구분) ----------
+// 단원(정규): 모집인원·자격·계약기간·오디션 (프로그램 없음)
+// 객원·대체: 모집인원·자격·리허설·연주일·페이·프로그램
+function metaRows(j) {
+  const st = statusOf(j);
+  const rows = [];
+  rows.push(["기관", j.org]);
+  rows.push(["지역", j.region]);
+  const dl = j.deadline
+    ? `${j.deadline} <span style="color:var(--ink-soft)">(${st.label})</span>`
+    : (j.deadlineText === "상시" ? "상시 모집" : (j.src === "공식" ? "원문에서 확인" : (j.deadlineText || "협의")));
+  rows.push(["마감", dl]);
+  if (j.personnel) rows.push(["모집 인원", j.personnel]);
+  if (j.qualification) rows.push(["자격", j.qualification]);
+  if (j.band === "객원·대체") {
+    if (j.rehearsal || j.when) rows.push(["리허설", j.rehearsal || j.when]);
+    if (j.concertDate) rows.push(["연주일", j.concertDate]);
+    if (j.pay) rows.push(["페이", j.pay]);
+    if (j.program) rows.push(["프로그램", j.program]);
+  } else if (j.band === "단원") {
+    if (j.contract) rows.push(["계약기간", j.contract]);
+    if (j.auditionDate) rows.push(["오디션", j.auditionDate]);
+    if (j.pay && j.src !== "공식") rows.push(["보수", j.pay]);
+  } else {
+    if (j.when) rows.push(["일시", j.when]);
+    if (j.pay) rows.push(["보수", j.pay]);
+    if (j.program) rows.push(["프로그램", j.program]);
+  }
+  return rows.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("");
+}
+
 // ---------- 공식 공고 상세 모달 (요약 + 원문 바로가기) ----------
 function openOfficial(key) {
   const j = OFFICIAL_ITEMS.find(x => x.key === key);
@@ -198,15 +233,9 @@ function openOfficial(key) {
   const target = j.officialUrl || j.url;
   let host = "";
   try { host = new URL(target).hostname.replace(/^www\./, ""); } catch (e) {}
-  const deadlineText = j.deadline
-    ? `${j.deadline} (${st.label})`
-    : (j.deadlineText === "상시" ? "상시 모집" : "원문에서 확인");
-  $("#detail-meta").innerHTML = `
-    <dt>기관</dt><dd>${j.org}</dd>
-    <dt>지역</dt><dd>${j.region}</dd>
-    <dt>마감</dt><dd>${deadlineText}</dd>
-    <dt>수집 출처</dt><dd>${j.source}${j.officialUrl ? ` → 원문: <b>${host}</b>` : ""}</dd>`;
-  $("#detail-body").textContent = "모집 인원·자격·과제곡 등 상세 요강은 기관 공식 공고에서 확인하세요. 아래 버튼으로 이동합니다.";
+  $("#detail-meta").innerHTML = metaRows(j) +
+    `<dt>수집 출처</dt><dd>${j.source}${j.officialUrl ? ` → 원문: <b>${host}</b>` : ""}</dd>`;
+  $("#detail-body").textContent = "그 밖의 상세 요강은 기관 공식 공고에서 확인하세요. 아래 버튼으로 이동합니다.";
   const act = $("#detail-action");
   act.textContent = j.officialUrl ? "공식 공고 페이지 바로가기 ↗" : "공고 원문 바로가기 ↗";
   act.onclick = () => window.open(target, "_blank", "noopener");
@@ -224,14 +253,7 @@ function openDetail(cid) {
     ${j.insts.map(i => `<span class="tag inst">${i}</span>`).join("")}
     ${j.urgent ? `<span class="tag urgent">급구</span>` : ""}`;
   $("#detail-title").textContent = j.title;
-  $("#detail-meta").innerHTML = `
-    <dt>${j.type === "구인" ? "기관/팀" : "이름"}</dt><dd>${j.org}</dd>
-    <dt>지역</dt><dd>${j.region}</dd>
-    ${j.when ? `<dt>일시</dt><dd>${j.when}</dd>` : ""}
-    ${j.program ? `<dt>프로그램</dt><dd>${j.program}</dd>` : ""}
-    <dt>보수</dt><dd>${j.pay || "협의"}</dd>
-    <dt>마감</dt><dd>${j.deadlineText || j.deadline || "상시"}</dd>
-    <dt>등록일</dt><dd>${j.date}</dd>`;
+  $("#detail-meta").innerHTML = metaRows(j) + `<dt>등록일</dt><dd>${j.date}</dd>`;
   $("#detail-body").textContent = j.body || "";
   const act = $("#detail-action");
   act.textContent = "지원하기 / 연락하기";
@@ -253,6 +275,8 @@ function submitWrite(e) {
     insts: [inst], group: f.elements["w-inst"].value,
     when: f.elements["w-when"].value || null,
     program: f.elements["w-program"].value || null,
+    personnel: f.elements["w-personnel"].value || null,
+    qualification: f.elements["w-qual"].value || null,
     region: f.elements["w-region"].value,
     title: f.elements["w-title"].value,
     org: f.elements["w-org"].value,

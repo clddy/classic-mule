@@ -49,7 +49,8 @@ body {
 }
 
 .serif { font-family: var(--serif); }
-:is(h1,h2,h3) { text-wrap: balance; }
+/* 한국어 줄바꿈: 음절 중간이 아니라 어절(띄어쓰기) 단위로 */
+:is(h1,h2,h3) { text-wrap: balance; word-break: keep-all; overflow-wrap: anywhere; }
 
 a { color: inherit; text-decoration: none; }
 button { font-family: inherit; cursor: pointer; }
@@ -509,11 +510,12 @@ details[open] > .filter-summary::after { content: " −"; }
 .modal-close:hover { color: var(--ink); }
 .modal .top-row { display: flex; gap: 6px; margin-bottom: 14px; flex-wrap: wrap; }
 .modal h2 {
-  font-family: var(--serif);
-  font-size: 1.5rem;
-  font-weight: 400;
+  font-family: var(--sans);
+  font-size: 1.3rem;
+  font-weight: 700;
   color: var(--ink);
-  line-height: 1.35;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
   margin-bottom: 18px;
 }
 .modal .detail-meta {

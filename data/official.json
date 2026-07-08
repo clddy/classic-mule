@@ -1,5 +1,5 @@
 {
- "collectedAt": "2026-07-08 12:58",
+ "collectedAt": "2026-07-08 19:32",
  "sourceCount": 37,
  "okCount": 37,
  "sources": [
@@ -9,8 +9,8 @@
    "layer": "A",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
-   "kept": 2
+   "raw": 1,
+   "kept": 1
   },
   {
    "id": "artinfo",
@@ -108,7 +108,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 26,
+   "raw": 27,
    "kept": 3
   },
   {
@@ -324,8 +324,8 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
-   "kept": 0
+   "raw": 1,
+   "kept": 1
   },
   {
    "id": "g_onnuri",
@@ -338,6 +338,31 @@
   }
  ],
  "items": [
+  {
+   "id": "2ecb8e1e63234520",
+   "org": "아트모아(예술 일자리 포털)",
+   "region": "기타",
+   "source": "artmore.kr",
+   "title": "2026년 KBS교향악단 신규단원 채용(비올라, 오보에, 타악기) - 2026. 7. 8. 자 타악기 부문 추가!!",
+   "url": "https://www.artmore.kr/sub/recruit/search_view.do?rec_idx=93986",
+   "date": "2026-07-08",
+   "deadline": null,
+   "kind": "단원",
+   "tier": "프로",
+   "inst": "현악",
+   "instDetails": [
+    "비올라",
+    "오보에",
+    "타악"
+   ],
+   "personnel": null,
+   "channel": "artmore",
+   "layer": "A",
+   "deadlineNote": "상시",
+   "firstSeen": "2026-07-08",
+   "isNew": true,
+   "extVer": 4
+  },
   {
    "id": "b2e199e32140e0ed",
    "org": "교회(기독정보넷)",
@@ -353,6 +378,7 @@
    "instDetails": [
     "피아노"
    ],
+   "personnel": null,
    "channel": "cjob",
    "layer": "C",
    "deadlineFrom": "page",
@@ -375,6 +401,7 @@
    "instDetails": [
     "피아노"
    ],
+   "personnel": null,
    "channel": "cjob",
    "layer": "C",
    "deadlineFrom": "page",
@@ -397,6 +424,7 @@
    "instDetails": [
     "피아노"
    ],
+   "personnel": null,
    "channel": "cjob",
    "layer": "C",
    "deadlineFrom": "page",
@@ -419,6 +447,7 @@
    "instDetails": [
     "피아노"
    ],
+   "personnel": null,
    "channel": "cjob",
    "layer": "C",
    "deadlineFrom": "page",
@@ -441,6 +470,7 @@
    "instDetails": [
     "피아노"
    ],
+   "personnel": null,
    "channel": "cjob",
    "layer": "C",
    "firstSeen": "2026-07-08",
@@ -462,6 +492,7 @@
    "instDetails": [
     "피아노"
    ],
+   "personnel": null,
    "channel": "cjob",
    "layer": "C",
    "firstSeen": "2026-07-08",
@@ -483,6 +514,7 @@
    "instDetails": [
     "피아노"
    ],
+   "personnel": null,
    "channel": "cjob",
    "layer": "C",
    "firstSeen": "2026-07-08",
@@ -504,6 +536,7 @@
    "instDetails": [
     "피아노"
    ],
+   "personnel": null,
    "channel": "cjob",
    "layer": "C",
    "firstSeen": "2026-07-08",
@@ -523,6 +556,7 @@
    "tier": "프로",
    "inst": "전체",
    "instDetails": [],
+   "personnel": null,
    "channel": "sejongpac",
    "layer": "B",
    "deadlineFrom": "page-js",
@@ -547,6 +581,7 @@
     "오보에",
     "타악"
    ],
+   "personnel": null,
    "channel": "kbs",
    "layer": "D",
    "deadlineFrom": "page",
@@ -555,44 +590,21 @@
    "extVer": 4
   },
   {
-   "id": "c230ccc6106a039d",
-   "org": "아트모아(예술 일자리 포털)",
+   "id": "0f1655bb56ef77bf",
+   "org": "하이브레인넷",
    "region": "기타",
-   "source": "artmore.kr",
-   "title": "종로구립어르신합창단 지도단원(알토) 모집",
-   "url": "https://www.artmore.kr/sub/recruit/search_view.do?rec_idx=93955",
-   "date": "2026-07-07",
-   "deadline": "2026-07-20",
-   "kind": "단원",
-   "tier": "프로",
-   "inst": "성악",
-   "instDetails": [
-    "알토"
-   ],
-   "channel": "artmore",
-   "layer": "A",
-   "deadlineFrom": "page",
-   "firstSeen": "2026-07-08",
-   "isNew": true,
-   "extVer": 4
-  },
-  {
-   "id": "6d6ab827280813d3",
-   "org": "아트모아(예술 일자리 포털)",
-   "region": "기타",
-   "source": "artmore.kr",
-   "title": "종로구립어르신합창단 지도단원(알토) 모집",
-   "url": "https://www.artmore.kr/sub/recruit/search_view.do?rec_idx=93954",
-   "date": "2026-07-07",
-   "deadline": "2026-07-20",
-   "kind": "단원",
-   "tier": "프로",
-   "inst": "성악",
-   "instDetails": [
-    "알토"
-   ],
-   "channel": "artmore",
-   "layer": "A",
+   "source": "hibrain.net",
+   "title": "호남신학대학교 교회음악학과 객원교원 초빙 (재공고) ~26.07.12",
+   "url": "https://www.hibrain.net/recruitment/recruits/3589236?pagekey=3589236&listType=D3NEW&pagesize=25&sortType=SORTDTM&limit=25&displayType=SUBMAIN&siteid=1&page=1",
+   "date": null,
+   "deadline": "2026-07-12",
+   "kind": "객원·대체",
+   "tier": "오브리",
+   "inst": "전체",
+   "instDetails": [],
+   "personnel": null,
+   "channel": "g_hibrain",
+   "layer": "B",
    "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": true,
@@ -611,6 +623,7 @@
    "tier": "전공·입시",
    "inst": "전체",
    "instDetails": [],
+   "personnel": null,
    "channel": "ggac",
    "layer": "B",
    "deadlineFrom": "title",
@@ -631,6 +644,7 @@
    "tier": "프로",
    "inst": "전체",
    "instDetails": [],
+   "personnel": null,
    "channel": "ggac",
    "layer": "B",
    "deadlineFrom": "title",
@@ -651,6 +665,7 @@
    "tier": "프로",
    "inst": "전체",
    "instDetails": [],
+   "personnel": null,
    "channel": "cwcf",
    "layer": "B",
    "deadlineFrom": "attachment",
@@ -671,6 +686,7 @@
    "tier": "프로",
    "inst": "전체",
    "instDetails": [],
+   "personnel": null,
    "channel": "dpo",
    "layer": "D",
    "deadlineFrom": "attachment",
@@ -691,6 +707,7 @@
    "tier": "프로",
    "inst": "전체",
    "instDetails": [],
+   "personnel": null,
    "channel": "gso",
    "layer": "D",
    "deadlineFrom": "page",
@@ -714,6 +731,7 @@
     "비올라",
     "오보에"
    ],
+   "personnel": null,
    "channel": "kbs",
    "layer": "D",
    "deadlineFrom": "page",
@@ -736,6 +754,7 @@
    "instDetails": [
     "지휘"
    ],
+   "personnel": null,
    "channel": "sejongpac",
    "layer": "B",
    "deadlineFrom": "ocr",
@@ -756,6 +775,7 @@
    "tier": "프로",
    "inst": "전체",
    "instDetails": [],
+   "personnel": null,
    "channel": "sejongpac",
    "layer": "B",
    "deadlineFrom": "ocr",
@@ -776,6 +796,7 @@
    "tier": "프로",
    "inst": "전체",
    "instDetails": [],
+   "personnel": null,
    "channel": "cwcf",
    "layer": "B",
    "deadlineFrom": "attachment",
@@ -796,6 +817,7 @@
    "tier": "전공·입시",
    "inst": "현악",
    "instDetails": [],
+   "personnel": null,
    "channel": "bscc",
    "layer": "B",
    "deadlineFrom": "attachment",
@@ -818,6 +840,7 @@
    "instDetails": [
     "타악"
    ],
+   "personnel": null,
    "channel": "gne",
    "layer": "C",
    "deadlineFrom": "page",
@@ -838,6 +861,7 @@
    "tier": "프로",
    "inst": "성악",
    "instDetails": [],
+   "personnel": null,
    "channel": "artsuwon",
    "layer": "B",
    "deadlineFrom": "ocr",
@@ -858,6 +882,7 @@
    "tier": "프로",
    "inst": "현악",
    "instDetails": [],
+   "personnel": null,
    "officialUrl": "http://www.sejonggugak.com",
    "channel": "artinfo",
    "layer": "A",
@@ -881,6 +906,7 @@
    "instDetails": [
     "지휘"
    ],
+   "personnel": null,
    "officialUrl": "https://www.gb.go.kr/Main/culture/page.do?mnu_uid=15644&BD_CODE=bbs_gongji&cmd=2&B_NUM=508130101&B_STEP=508130100&V_NUM=",
    "channel": "artinfo",
    "layer": "A",
@@ -902,6 +928,7 @@
    "tier": "프로",
    "inst": "성악",
    "instDetails": [],
+   "personnel": null,
    "officialUrl": "https://www.gunsan.go.kr/gsart/m1949/view/9830028?",
    "channel": "artinfo",
    "layer": "A",
@@ -926,6 +953,7 @@
     "테너",
     "베이스(성악)"
    ],
+   "personnel": null,
    "channel": "artinfo",
    "layer": "A",
    "firstSeen": "2026-07-08",
@@ -945,6 +973,7 @@
    "tier": "전공·입시",
    "inst": "성악",
    "instDetails": [],
+   "personnel": null,
    "officialUrl": "https://www.thesolarteacademy.com/",
    "channel": "artinfo",
    "layer": "A",
@@ -967,6 +996,7 @@
    "instDetails": [
     "피아노"
    ],
+   "personnel": null,
    "channel": "artinfo",
    "layer": "A",
    "firstSeen": "2026-07-08",
@@ -986,6 +1016,7 @@
    "tier": "프로",
    "inst": "전체",
    "instDetails": [],
+   "personnel": null,
    "officialUrl": "http://adoroensemble.com/",
    "channel": "artinfo",
    "layer": "A",
@@ -1007,6 +1038,7 @@
    "tier": "프로",
    "inst": "현악",
    "instDetails": [],
+   "personnel": null,
    "officialUrl": "https://naver.me/xQJxuWql",
    "channel": "artinfo",
    "layer": "A",
@@ -1030,6 +1062,7 @@
    "instDetails": [
     "지휘"
    ],
+   "personnel": null,
    "officialUrl": "https://www.gangdong.go.kr/web/newportal/notice/01/57324",
    "channel": "artinfo",
    "layer": "A",
@@ -1050,6 +1083,7 @@
    "tier": "프로",
    "inst": "전체",
    "instDetails": [],
+   "personnel": null,
    "channel": "kbs",
    "layer": "D",
    "deadlineFrom": "page",
@@ -1070,6 +1104,7 @@
    "tier": "프로",
    "inst": "전체",
    "instDetails": [],
+   "personnel": null,
    "channel": "cwcf",
    "layer": "B",
    "deadlineFrom": "attachment",
@@ -1090,6 +1125,7 @@
    "tier": "전공·입시",
    "inst": "전체",
    "instDetails": [],
+   "personnel": null,
    "channel": "sejongpac",
    "layer": "B",
    "deadlineFrom": "page+yearfix",
@@ -1110,6 +1146,7 @@
    "tier": "교육·취미",
    "inst": "전체",
    "instDetails": [],
+   "personnel": null,
    "channel": "gne",
    "layer": "C",
    "deadlineFrom": "page",
@@ -1130,6 +1167,7 @@
    "tier": "전공·입시",
    "inst": "성악",
    "instDetails": [],
+   "personnel": null,
    "channel": "bscc",
    "layer": "B",
    "deadlineFrom": "attachment",
@@ -1150,6 +1188,7 @@
    "tier": "프로",
    "inst": "성악",
    "instDetails": [],
+   "personnel": null,
    "channel": "bucheonphil",
    "layer": "D",
    "deadlineFrom": "attachment",
@@ -1170,6 +1209,7 @@
    "tier": "전공·입시",
    "inst": "성악",
    "instDetails": [],
+   "personnel": null,
    "channel": "g_timf",
    "layer": "B",
    "deadlineFrom": "ocr",
@@ -1192,6 +1232,7 @@
    "instDetails": [
     "피아노"
    ],
+   "personnel": null,
    "channel": "cjob",
    "layer": "C",
    "deadlineNote": "상시",
@@ -1212,6 +1253,7 @@
    "tier": "전공·입시",
    "inst": "전체",
    "instDetails": [],
+   "personnel": null,
    "channel": "ulsan",
    "layer": "B",
    "deadlineFrom": "attachment",
@@ -1232,6 +1274,7 @@
    "tier": "전공·입시",
    "inst": "현악",
    "instDetails": [],
+   "personnel": null,
    "channel": "g_timf",
    "layer": "B",
    "deadlineFrom": "ocr",
@@ -1252,6 +1295,7 @@
    "tier": "교육·취미",
    "inst": "전체",
    "instDetails": [],
+   "personnel": null,
    "channel": "gne",
    "layer": "C",
    "deadlineFrom": "page",
@@ -1272,6 +1316,7 @@
    "tier": "교육·취미",
    "inst": "목관",
    "instDetails": [],
+   "personnel": null,
    "channel": "gne",
    "layer": "C",
    "deadlineFrom": "page",
@@ -1292,6 +1337,7 @@
    "tier": "전공·입시",
    "inst": "전체",
    "instDetails": [],
+   "personnel": null,
    "channel": "incheon",
    "layer": "B",
    "deadlineFrom": "attachment+yearfix",
@@ -1312,6 +1358,7 @@
    "tier": "전공·입시",
    "inst": "전체",
    "instDetails": [],
+   "personnel": null,
    "channel": "incheon",
    "layer": "B",
    "deadlineFrom": "attachment",
@@ -1332,6 +1379,7 @@
    "tier": "프로",
    "inst": "전체",
    "instDetails": [],
+   "personnel": null,
    "channel": "knso",
    "layer": "D",
    "deadlineFrom": "page",
@@ -1352,6 +1400,7 @@
    "tier": "프로",
    "inst": "전체",
    "instDetails": [],
+   "personnel": null,
    "channel": "bscc",
    "layer": "B",
    "deadlineFrom": "attachment",
@@ -1372,6 +1421,7 @@
    "tier": "교육·취미",
    "inst": "목관",
    "instDetails": [],
+   "personnel": null,
    "channel": "gne",
    "layer": "C",
    "deadlineFrom": "page",
@@ -1394,6 +1444,7 @@
    "instDetails": [
     "타악"
    ],
+   "personnel": null,
    "channel": "gne",
    "layer": "C",
    "deadlineFrom": "page",
@@ -1417,6 +1468,7 @@
     "비올라",
     "트럼펫"
    ],
+   "personnel": null,
    "channel": "knso",
    "layer": "D",
    "deadlineFrom": "ocr",
@@ -1437,6 +1489,7 @@
    "tier": "교육·취미",
    "inst": "전체",
    "instDetails": [],
+   "personnel": null,
    "channel": "gne",
    "layer": "C",
    "deadlineFrom": "page",
@@ -1457,6 +1510,7 @@
    "tier": "교육·취미",
    "inst": "전체",
    "instDetails": [],
+   "personnel": null,
    "channel": "gne",
    "layer": "C",
    "deadlineFrom": "page",
@@ -1477,6 +1531,7 @@
    "tier": "교육·취미",
    "inst": "전체",
    "instDetails": [],
+   "personnel": null,
    "channel": "gne",
    "layer": "C",
    "deadlineFrom": "page",
@@ -1497,6 +1552,7 @@
    "tier": "교육·취미",
    "inst": "전체",
    "instDetails": [],
+   "personnel": null,
    "channel": "gne",
    "layer": "C",
    "deadlineFrom": "page",
@@ -1517,6 +1573,7 @@
    "tier": "교육·취미",
    "inst": "전체",
    "instDetails": [],
+   "personnel": null,
    "channel": "gne",
    "layer": "C",
    "deadlineFrom": "page",
@@ -1537,6 +1594,7 @@
    "tier": "교육·취미",
    "inst": "전체",
    "instDetails": [],
+   "personnel": null,
    "channel": "gne",
    "layer": "C",
    "deadlineFrom": "page",
@@ -1557,6 +1615,7 @@
    "tier": "프로",
    "inst": "성악",
    "instDetails": [],
+   "personnel": null,
    "channel": "natchorus",
    "layer": "D",
    "deadlineFrom": "page",
@@ -1577,6 +1636,7 @@
    "tier": "교육·취미",
    "inst": "전체",
    "instDetails": [],
+   "personnel": null,
    "channel": "gne",
    "layer": "C",
    "deadlineFrom": "page",
@@ -1597,6 +1657,7 @@
    "tier": "교육·취미",
    "inst": "전체",
    "instDetails": [],
+   "personnel": null,
    "channel": "gne",
    "layer": "C",
    "deadlineFrom": "page",
@@ -1619,6 +1680,7 @@
    "instDetails": [
     "피아노"
    ],
+   "personnel": null,
    "channel": "cjob",
    "layer": "C",
    "deadlineNote": "상시",
@@ -1641,6 +1703,7 @@
    "instDetails": [
     "피아노"
    ],
+   "personnel": null,
    "channel": "cjob",
    "layer": "C",
    "deadlineNote": "상시",
@@ -1661,6 +1724,7 @@
    "tier": "전공·입시",
    "inst": "성악",
    "instDetails": [],
+   "personnel": null,
    "channel": "natopera",
    "layer": "D",
    "deadlineFrom": "page",
@@ -1683,6 +1747,7 @@
    "instDetails": [
     "첼로"
    ],
+   "personnel": null,
    "channel": "cjob",
    "layer": "C",
    "deadlineNote": "상시",
@@ -1705,6 +1770,7 @@
    "instDetails": [
     "피아노"
    ],
+   "personnel": null,
    "channel": "cjob",
    "layer": "C",
    "deadlineNote": "상시",
@@ -1727,6 +1793,7 @@
    "instDetails": [
     "피아노"
    ],
+   "personnel": null,
    "channel": "cjob",
    "layer": "C",
    "deadlineNote": "상시",

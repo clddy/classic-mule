@@ -296,12 +296,23 @@ def region_from(text, default="기타"):
 def item_id(url, title):
     return hashlib.sha1(f"{url}|{title}".encode("utf-8")).hexdigest()[:16]
 
+# 제목에서 모집 인원 추출 ("바이올린 객원 2명" → "객원 2명", "단원 1명" → "단원 1명")
+PERSONNEL_PAT = re.compile(r"(?:([가-힣A-Za-z]{1,10})\s*)?(\d+)\s*명")
+
+def extract_personnel(title):
+    m = PERSONNEL_PAT.search(title)
+    if not m:
+        return None
+    prefix = (m.group(1) or "").strip()
+    return f"{prefix} {m.group(2)}명" if prefix else f"{m.group(2)}명"
+
 def make_item(org, region, source, title, url, date=None, deadline=None):
     group, details = classify_insts(title)
+    clean = re.sub(r"\s+", " ", title).strip()
     return {
         "id": item_id(url, title),
         "org": org, "region": region, "source": source,
-        "title": re.sub(r"\s+", " ", title).strip(),
+        "title": clean,
         "url": url,
         "date": date,          # 게시일 (모르면 None)
         "deadline": deadline,  # 접수 마감 (모르면 None)
@@ -309,4 +320,5 @@ def make_item(org, region, source, title, url, date=None, deadline=None):
         "tier": classify_tier(title, org),
         "inst": group,
         "instDetails": details,  # 세부 악기 (복수 가능: "비올라, 오보에")
+        "personnel": extract_personnel(clean),  # 모집 인원 (제목에서, 없으면 None)
     }
