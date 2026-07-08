@@ -1,5 +1,5 @@
 {
- "collectedAt": "2026-07-09 02:31",
+ "collectedAt": "2026-07-09 04:08",
  "sourceCount": 37,
  "okCount": 37,
  "sources": [
@@ -339,37 +339,6 @@
  ],
  "items": [
   {
-   "id": "2ecb8e1e63234520",
-   "org": "KBS교향악단",
-   "region": "기타",
-   "source": "artmore.kr",
-   "title": "2026년 KBS교향악단 신규단원 채용(비올라, 오보에, 타악기) - 2026. 7. 8. 자 타악기 부문 추가!!",
-   "url": "https://www.artmore.kr/sub/recruit/search_view.do?rec_idx=93986",
-   "date": "2026-07-08",
-   "deadline": null,
-   "kind": "단원",
-   "tier": "프로",
-   "inst": "현악",
-   "instDetails": [
-    "비올라",
-    "오보에",
-    "타악"
-   ],
-   "personnel": null,
-   "officialUrl": "https://www.kbssymphony.org/ko/info/notice.php?board_code=view&number=29498&page=1",
-   "channel": "artmore",
-   "layer": "A",
-   "deadlineNote": "상시",
-   "positions": [
-    "단원"
-   ],
-   "qualification": "경력 경력무관 학력 대학교(4년)",
-   "bodyExcerpt": "2026년 KBS교향악단 신규단원 채용(비올라, 오보에, 타악기) - 2026. 7. 8. 자 타악기 부문 추가!! · 재단법인 KBS교향악단에서 실력있고 열정넘치는 전문연주자를 공개 모집합니다. · 비올라 부수석 1명 / Viola Assistant Prinicpal (1) · 오보에 부수석 1명 / Oboe Assistant Principal (1)",
-   "firstSeen": "2026-07-08",
-   "isNew": false,
-   "extVer": 15
-  },
-  {
    "id": "c80e362afc57cd51",
    "org": "KBS교향악단",
    "region": "서울",
@@ -389,7 +358,6 @@
    "personnel": "비올라 부수석 1명 · 오보에 부수석 1명 · 타악기 수석 1명",
    "channel": "kbs",
    "layer": "D",
-   "deadlineFrom": "page",
    "recruitParts": [
     {
      "part": "비올라",
@@ -414,9 +382,13 @@
    ],
    "auditionDate": "8/17 · 8/23",
    "bodyExcerpt": "2026년 KBS교향악단 신규단원 채용(비올라, 오보에, 타악기) - 2026. 7. 8. 자 타악기 부문 추가 · 교향악단 신규단원 채용 · 교향악단에서 실력있고 열정 넘치는 전문 연주자를 공개 모집합니다 · 자로 모집부문에 타악기가 추가되었습니다",
+   "deadlineFrom": "page",
+   "alsoSeenOn": [
+    "artmore.kr"
+   ],
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 15
+   "extVer": 16
   },
   {
    "id": "0f1655bb56ef77bf",
@@ -434,12 +406,12 @@
    "personnel": null,
    "channel": "g_hibrain",
    "layer": "B",
-   "deadlineFrom": "page",
    "qualification": "학사이상 관련 홈",
    "pay": "스북으로 보내기 URL 복사 인쇄 관심기관등",
+   "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 15
+   "extVer": 16
   },
   {
    "id": "b2e199e32140e0ed",
@@ -461,9 +433,11 @@
    "layer": "C",
    "deadlineFrom": "cjob-남은기간",
    "pay": "20만원",
+   "denomination": "예장 합동",
+   "documents": "이력서",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 15
+   "extVer": 16
   },
   {
    "id": "340d217c42aab8e1",
@@ -484,7 +458,6 @@
    "personnel": "비올라 부수석 1명 · 오보에 부수석 1명",
    "channel": "kbs",
    "layer": "D",
-   "deadlineFrom": "page",
    "recruitParts": [
     {
      "part": "비올라",
@@ -503,9 +476,10 @@
    ],
    "auditionDate": "8/17 · 8/23",
    "bodyExcerpt": "2026년 KBS교향악단 신규단원 채용(비올라, 오보에) · 교향악단 신규단원 채용 · 교향악단에서 실력있고 열정 넘치는 전문 연주자를 공개 모집합니다 · 모집부문별 채용 예정인원",
+   "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 15
+   "extVer": 16
   },
   {
    "id": "5dece78df88ec9d5",
@@ -525,14 +499,14 @@
    "personnel": null,
    "channel": "sejongpac",
    "layer": "B",
-   "deadlineFrom": "ocr",
    "positions": [
     "단원"
    ],
    "bodyExcerpt": "세종문화회관 예술단 직책단원(소년소녀합창 지휘자) 공개채용 공고",
+   "deadlineFrom": "ocr",
    "firstSeen": "2026-07-07",
    "isNew": false,
-   "extVer": 15
+   "extVer": 16
   },
   {
    "id": "e922691feb25fcfe",
@@ -552,16 +526,16 @@
    "personnel": "최대 30 명 (2 기에한하여기존 1 기단원",
    "channel": "artsuwon",
    "layer": "B",
-   "deadlineFrom": "ocr",
    "positions": [
     "단원"
    ],
    "contract": "상임",
-   "qualification": "2011 년부터 2016 년사이출생자 ( 수원관내초등학교 4 학년 ~ 중학교",
    "bodyExcerpt": "주니어콰이어 2기 단원모집 공고문.jpg",
+   "qualification": "2011 년부터 2016 년사이출생자 ( 수원관내초등학교 4 학년 ~ 중학교",
+   "deadlineFrom": "ocr",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 15
+   "extVer": 16
   },
   {
    "id": "da06b8ae997fd398",
@@ -586,7 +560,7 @@
    "deadlineNote": "상시",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 15
+   "extVer": 16
   },
   {
    "id": "b45188e68777edf5",
@@ -613,7 +587,7 @@
    "deadlineNote": "상시",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 15
+   "extVer": 16
   },
   {
    "id": "66564a9a98fa61d9",
@@ -640,7 +614,7 @@
    "deadlineNote": "상시",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 15
+   "extVer": 16
   },
   {
    "id": "4da5ac93aea9485d",
@@ -668,12 +642,12 @@
    "deadlineNote": "상시",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 15
+   "extVer": 16
   },
   {
    "id": "5fbc7e4eb4f8d92d",
-   "org": "교회(기독정보넷)",
-   "region": "기타",
+   "org": "의왕소만교회",
+   "region": "경기",
    "source": "cjob.co.kr",
    "title": "주일 피아노 반주자 모십니다.",
    "url": "https://www.cjob.co.kr/bbs/board.php?bo_table=offerIG&wr_id=7766&c_jikjong=2&page=1",
@@ -690,9 +664,11 @@
    "layer": "C",
    "deadlineFrom": "cjob-남은기간",
    "pay": "협의",
+   "denomination": "순복음",
+   "documents": "간단한 이력서",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 15
+   "extVer": 16
   }
  ]
 }

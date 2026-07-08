@@ -52,8 +52,13 @@ GENERIC_ORG = re.compile(r"기독정보넷|아트인포|아트모아|교육청 ?
 def dedup_key(it):
     if GENERIC_ORG.search(it.get("org", "")):
         return it["id"]  # 병합하지 않음
+    insts = it.get("instDetails") or []
+    # 악기가 특정되면 마감일 유무와 무관하게 org|악기로 병합
+    # (집계 포털판이 마감을 못 얻어도 원천 공고와 합쳐지도록 — KBS artmore vs kbssymphony)
+    if insts:
+        return f"{norm_org(it['org'])}|{'/'.join(sorted(insts))}"
     if it.get("deadline"):
-        return f"{norm_org(it['org'])}|{'/'.join(sorted(it.get('instDetails') or []))}|{it['deadline']}"
+        return f"{norm_org(it['org'])}|{it['deadline']}"
     return f"{norm_org(it['org'])}|{norm_title(it['title'])}"
 
 def dedup(items):
@@ -108,7 +113,7 @@ def find_attachments(soup, base_url):
                 cands.append((full, text))
     return cands[:3]
 
-EXT_VER = 15         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일 승계가 무효화됨
+EXT_VER = 16         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일 승계가 무효화됨
 RENDER_PER_SOURCE = 3   # 소스당 Playwright 렌더링 상한
 OCR_PER_SOURCE = 6      # 소스당 이미지 공고문 OCR 상한 (항목당 최대 2장)
 _renders_used = 0
@@ -368,9 +373,16 @@ def _cjob_detail(text, item):
     pay = grab(r"사례비\s*:?\s*([^:]{1,24}?)\s*(?:주소|연락처|제출|사진|상세|근무|문의|매주|주일|$)")
     if pay and len(pay) >= 2 and "이곳" not in pay:
         item["pay"] = pay
-    m = re.search(r"제출 ?서류[^:]*:\s*\S+\s+(.{15,180})", t)
+    denom = grab(r"교회명\(교단\)\s*:?\s*([^:]{1,14}?)\s*(?:제출|주소|사례비|담당|연락처|사진|상세|$)")
+    if denom and 1 <= len(denom) <= 14:
+        item["denomination"] = denom
+    docs = grab(r"제출 ?서류\s*:?\s*([^:]{1,24}?)\s*(?:사례비|주소|연락처|담당|사진|상세|근무|$)")
+    if docs and 2 <= len(docs) <= 24:
+        item["documents"] = docs
+    # 상세 설명: 사례비/제출서류 뒤의 자유서술
+    m = re.search(r"(?:사례비\s*:[^:]*|제출 ?서류\s*:[^:]*)\s+([가-힣][^:]{15,180})", t)
     if m:
-        body = re.sub(r"\s*(?:주소|연락처|사례비)\s*:.*$", "", m.group(1)).strip()
+        body = re.sub(r"\s*(?:주소|연락처|사례비|담당)\s*:.*$", "", m.group(1)).strip()
         if len(body) >= 12:
             item["bodyExcerpt"] = body[:180]
 
@@ -560,8 +572,9 @@ def run(force_all=False):
                         it["deadlineFrom"] = "title"
             # 상세 파싱 대상: (1) 마감 미확인 → 전체 보강, (2) 마감은 있으나
             # 본문 요약(자격·인원·일정)이 없는 항목 → 본문만 가볍게 보강
-            need = [i for i in kept if not i["deadline"]]
-            # 기독정보넷은 상세가 가벼운 표 파싱 → 상한 없이 전량 보강(마감·기관 누락 방지)
+            # 기독정보넷은 상세가 가벼운 표 파싱 → 마감 유무와 무관하게 매 실행 전량 재추출
+            # (마감 승계로 enrich를 건너뛰면 org가 폴백으로 되돌아가는 문제 방지)
+            need = kept if src["id"] == "cjob" else [i for i in kept if not i["deadline"]]
             cap = len(need) if src["id"] == "cjob" else MAX_DETAIL_PER_SOURCE
             for it in need[:cap]:
                 enrich_deadline(s, it, allow_render=src["layer"] in ("B", "D"))

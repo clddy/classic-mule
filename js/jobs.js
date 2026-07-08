@@ -19,6 +19,7 @@ const OFFICIAL_ITEMS = ((window.CRAWLED && window.CRAWLED.items) || []).map(j =>
   personnel: j.personnel, qualification: j.qualification, contract: j.contract, pay: j.pay,
   auditionDate: j.auditionDate, rehearsal: j.rehearsal, concertDate: j.concertDate, program: j.program,
   positions: j.positions, recruitSummary: j.recruitSummary, bodyExcerpt: j.bodyExcerpt,
+  denomination: j.denomination, documents: j.documents,
   url: j.url, officialUrl: j.officialUrl, isNew: j.isNew, source: j.source
 }));
 
@@ -248,6 +249,8 @@ function metaRows(j) {
   if (j.auditionDate) rows.push(["오디션", cleanVal(j.auditionDate)]);
   if (j.contract) rows.push(["계약", cleanVal(j.contract)]);
   if (okPay(j.pay)) rows.push(["페이", cleanVal(j.pay)]);
+  if (j.denomination) rows.push(["교단", cleanVal(j.denomination)]);
+  if (j.documents) rows.push(["제출 서류", cleanVal(j.documents)]);
   if (j.program) rows.push(["프로그램", cleanVal(j.program)]);
   return rows.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("");
 }
