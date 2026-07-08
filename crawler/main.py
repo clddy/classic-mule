@@ -108,7 +108,7 @@ def find_attachments(soup, base_url):
                 cands.append((full, text))
     return cands[:3]
 
-EXT_VER = 13         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일 승계가 무효화됨
+EXT_VER = 15         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일 승계가 무효화됨
 RENDER_PER_SOURCE = 3   # 소스당 Playwright 렌더링 상한
 OCR_PER_SOURCE = 6      # 소스당 이미지 공고문 OCR 상한 (항목당 최대 2장)
 _renders_used = 0
@@ -356,8 +356,12 @@ def _cjob_detail(text, item):
     if d:
         item["date"] = d
     rem = grab(r"남은기간\s*(20\d\d-\d\d-\d\d|0000-00-00)")
-    if not rem or rem == "0000-00-00":
+    if re.search(r"상시 ?모집|상시 ?채용|충원 ?시 ?마감", t):
         item["deadlineNote"] = "상시"
+    elif not rem or rem == "0000-00-00":
+        # 남은기간 0000-00-00은 사이트에서 '마감'으로 렌더 → 만료 처리(과거 sentinel로 제거)
+        item["deadline"] = "2000-01-01"
+        item["deadlineFrom"] = "cjob-마감(0000)"
     else:
         item["deadline"] = rem
         item["deadlineFrom"] = "cjob-남은기간"
@@ -387,17 +391,23 @@ def enrich_deadline(s, item, allow_render=True, details_only=False):
             return
         # 채용부문/직책/인원 표 등 본문 상세 (마감 유무와 무관하게 항상)
         _extract_body_details(soup, page_text, item, ry)
+        # 명시적 채용/모집 상태가 '마감/종료'면 만료 처리 (엉뚱한 날짜 추출 방지)
+        # — gne 등은 접수기간이 첨부에만 있고 페이지엔 '채용상태 마감'만 명시됨
+        if re.search(r"(?:채용|모집|진행)\s*상태\s*[:：]?\s*(?:마감|종료)|마감\s*되었습니다", page_text):
+            item["deadline"] = "2000-01-01"
+            item["deadlineFrom"] = "상태:마감"
+            return
         # 마감일은 이미 확정 — 본문 요약만 필요한 경우
         if details_only:
             # 본문이 얇은 집계·게시판이면 첨부 공고문에서 요약 보강 (cwcf·bscc 등)
             if not item.get("bodyExcerpt") and len(page_text) < 800:
                 _body_from_attachments(s, soup, r, item)
             return
-        # 게시일이 없으면 상세의 등록일로 보충 (연령 정리·연도 보정에 사용)
+        # 게시일이 없으면 상세의 등록일/작성일에서 보충
         if not item.get("date"):
-            m = re.search(r"등록일\s*:?\s*(20\d{2}-\d{2}-\d{2})", page_text)
+            m = re.search(r"(?:등록일|작성일|게시일|등록 ?일자)\s*[:：]?\s*(20\d{2})[.\-](\d{1,2})[.\-](\d{1,2})", page_text)
             if m:
-                item["date"] = m.group(1)
+                item["date"] = f"{m.group(1)}-{int(m.group(2)):02d}-{int(m.group(3)):02d}"
         # 상시모집 감지: 기독정보넷의 '남은기간 0000-00-00', 통상 표현들
         if re.search(r"남은기간\s*0000-00-00|상시 ?모집|상시 ?채용|채용 ?시 ?(?:까지|마감)|충원 ?시 ?마감", page_text):
             item["deadlineNote"] = "상시"
@@ -459,6 +469,11 @@ def enrich_deadline(s, item, allow_render=True, details_only=False):
                     item["deadlineFrom"] = "page-js"
             except Exception:
                 pass
+        # 집계 포털(아트인포·아트모아)의 무마감 비공식 공고(교회·학원·개인)는
+        # 마감이 명시되지 않아 상시로 간주 → '기한 확인 필요' 노출 방지
+        if (not item.get("deadline") and not item.get("deadlineNote")
+                and item.get("source") in ("artinfokorea.com", "artmore.kr")):
+            item["deadlineNote"] = "상시"
     except Exception:
         log(f"  enrich 실패 {item['url'][:60]}")
 
@@ -569,7 +584,8 @@ def run(force_all=False):
                             it["deadlineFrom"] = (it.get("deadlineFrom") or "") + "+yearfix"
             # 마감이 이미 지난 공고는 제거 (오늘 이전) — 만료 공고 노출 방지
             kept = [i for i in kept if not (i["deadline"] and i["deadline"] < today.isoformat())]
-            # 마감을 못 찾았고 게시된 지 120일 넘은 공고도 정리 (상시모집은 예외)
+            # 마감을 못 찾았고 게시된 지 120일 넘은 공고는 정리 (사실상 만료 — 상시모집은 예외)
+            # 무마감 공고를 '기한 확인 필요'로 오래 노출하지 않기 위함
             old_cut = (today - timedelta(days=120)).isoformat()
             kept = [i for i in kept if i["deadline"] or i.get("deadlineNote") == "상시"
                     or not i["date"] or i["date"] >= old_cut]
