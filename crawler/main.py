@@ -15,7 +15,7 @@ OUT = os.path.join(BASE, "data", "official.json")
 LOG = os.path.join(BASE, "data", "crawl.log")
 COVERAGE = os.path.join(BASE, "data", "coverage_report.json")
 
-MAX_DETAIL_PER_SOURCE = 14
+MAX_DETAIL_PER_SOURCE = 20
 RECENT_DAYS = 270
 LAYER_RANK = {"D": 0, "C": 1, "B": 2, "A": 3}  # canonical 우선순위: 원천 > 도메인 > 지역 > 전국
 
@@ -107,7 +107,7 @@ def find_attachments(soup, base_url):
                 cands.append((full, text))
     return cands[:3]
 
-EXT_VER = 11         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일 승계가 무효화됨
+EXT_VER = 12         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일 승계가 무효화됨
 RENDER_PER_SOURCE = 3   # 소스당 Playwright 렌더링 상한
 OCR_PER_SOURCE = 6      # 소스당 이미지 공고문 OCR 상한 (항목당 최대 2장)
 _renders_used = 0
@@ -324,6 +324,44 @@ def _body_from_attachments(s, soup, r, item):
         except Exception:
             continue
 
+_CJOB_REGIONS = {"서울", "경기", "인천", "대전", "대구", "부산", "광주", "울산", "세종", "강원", "충북", "충남", "전북", "전남", "경북", "경남", "제주"}
+
+def _cjob_detail(text, item):
+    """기독정보넷 상세: 단체명·모시는분·지역·등록일·남은기간·사례비·본문 표 파싱"""
+    t = re.sub(r"\s+", " ", text)
+    def grab(p):
+        m = re.search(p, t)
+        if not m:
+            return None
+        g = next((x for x in m.groups() if x), "")
+        return re.sub(r"\s+", " ", g).strip(" :·-")
+    org = grab(r"단체\(회사\)이름\s*(.+?)\s*-\s*주소")
+    if org and 2 <= len(org) <= 30 and org != "미정":
+        item["org"] = org
+    role = grab(r"모시는분\s*(.+?)\s*-\s*지역")
+    if role and len(role) <= 20:
+        item["personnel"] = role
+    reg = grab(r"지역\s*(.+?)\s*-\s*등록일")
+    if reg in _CJOB_REGIONS:
+        item["region"] = reg if reg in ("서울", "경기", "인천", "대전", "대구", "부산") else "기타"
+    d = grab(r"등록일\s*(20\d\d-\d\d-\d\d)")
+    if d:
+        item["date"] = d
+    rem = grab(r"남은기간\s*(20\d\d-\d\d-\d\d|0000-00-00)")
+    if not rem or rem == "0000-00-00":
+        item["deadlineNote"] = "상시"
+    else:
+        item["deadline"] = rem
+        item["deadlineFrom"] = "cjob-남은기간"
+    pay = grab(r"사례비\s*:?\s*([^:]{1,24}?)\s*(?:주소|연락처|제출|사진|상세|근무|문의|매주|주일|$)")
+    if pay and len(pay) >= 2 and "이곳" not in pay:
+        item["pay"] = pay
+    m = re.search(r"제출 ?서류[^:]*:\s*\S+\s+(.{15,180})", t)
+    if m:
+        body = re.sub(r"\s*(?:주소|연락처|사례비)\s*:.*$", "", m.group(1)).strip()
+        if len(body) >= 12:
+            item["bodyExcerpt"] = body[:180]
+
 def enrich_deadline(s, item, allow_render=True, details_only=False):
     global _renders_used
     ry = _ref_year(item)
@@ -335,6 +373,10 @@ def enrich_deadline(s, item, allow_render=True, details_only=False):
         for tag in soup(["script", "style", "header", "footer", "nav"]):
             tag.decompose()
         page_text = soup.get_text(" ", strip=True)
+        # 기독정보넷은 전용 표 구조 — 별도 파서로 처리
+        if item.get("source") == "cjob.co.kr":
+            _cjob_detail(page_text, item)
+            return
         # 채용부문/직책/인원 표 등 본문 상세 (마감 유무와 무관하게 항상)
         _extract_body_details(soup, page_text, item, ry)
         # 마감일은 이미 확정 — 본문 요약만 필요한 경우
@@ -496,7 +538,9 @@ def run(force_all=False):
             # 상세 파싱 대상: (1) 마감 미확인 → 전체 보강, (2) 마감은 있으나
             # 본문 요약(자격·인원·일정)이 없는 항목 → 본문만 가볍게 보강
             need = [i for i in kept if not i["deadline"]]
-            for it in need[:MAX_DETAIL_PER_SOURCE]:
+            # 기독정보넷은 상세가 가벼운 표 파싱 → 상한 없이 전량 보강(마감·기관 누락 방지)
+            cap = len(need) if src["id"] == "cjob" else MAX_DETAIL_PER_SOURCE
+            for it in need[:cap]:
                 enrich_deadline(s, it, allow_render=src["layer"] in ("B", "D"))
             budget = MAX_DETAIL_PER_SOURCE - min(len(need), MAX_DETAIL_PER_SOURCE)
             detail_need = [i for i in kept if i["deadline"] and not i.get("bodyExcerpt")]

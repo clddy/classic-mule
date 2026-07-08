@@ -1,5 +1,5 @@
 {
- "collectedAt": "2026-07-09 01:02",
+ "collectedAt": "2026-07-09 01:31",
  "sourceCount": 37,
  "okCount": 37,
  "sources": [
@@ -28,7 +28,7 @@
    "poll": "daily",
    "ok": true,
    "raw": 25,
-   "kept": 15
+   "kept": 7
   },
   {
    "id": "gne",
@@ -359,191 +359,15 @@
    "officialUrl": "https://www.kbssymphony.org/ko/info/notice.php?board_code=view&number=29498&page=1",
    "channel": "artmore",
    "layer": "A",
+   "deadlineNote": "상시",
    "positions": [
     "단원"
    ],
    "qualification": "경력 경력무관 학력 대학교(4년)",
    "bodyExcerpt": "2026년 KBS교향악단 신규단원 채용(비올라, 오보에, 타악기) - 2026. 7. 8. 자 타악기 부문 추가!! · 재단법인 KBS교향악단에서 실력있고 열정넘치는 전문연주자를 공개 모집합니다. · 비올라 부수석 1명 / Viola Assistant Prinicpal (1) · 오보에 부수석 1명 / Oboe Assistant Principal (1)",
-   "deadlineNote": "상시",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 11
-  },
-  {
-   "id": "be024e49936675f8",
-   "org": "교회(기독정보넷)",
-   "region": "기타",
-   "source": "cjob.co.kr",
-   "title": "피아노 반주자 구합니다.",
-   "url": "https://www.cjob.co.kr/bbs/board.php?bo_table=offerIG&wr_id=7706&c_jikjong=2&page=1",
-   "date": null,
-   "deadline": null,
-   "kind": "반주",
-   "tier": "오브리",
-   "inst": "건반",
-   "instDetails": [
-    "피아노"
-   ],
-   "personnel": null,
-   "channel": "cjob",
-   "layer": "C",
-   "firstSeen": "2026-07-08",
-   "isNew": false,
-   "extVer": 11
-  },
-  {
-   "id": "5662c679dbaca9e1",
-   "org": "안동개곡교회",
-   "region": "기타",
-   "source": "cjob.co.kr",
-   "title": "안동개곡교회 반주자 모십니다",
-   "url": "https://www.cjob.co.kr/bbs/board.php?bo_table=offerIG&wr_id=7691&c_jikjong=2&page=1",
-   "date": null,
-   "deadline": null,
-   "kind": "반주",
-   "tier": "오브리",
-   "inst": "건반",
-   "instDetails": [
-    "피아노"
-   ],
-   "personnel": null,
-   "channel": "cjob",
-   "layer": "C",
-   "firstSeen": "2026-07-08",
-   "isNew": false,
-   "extVer": 11
-  },
-  {
-   "id": "8b41facc1cb8a23f",
-   "org": "개척교회",
-   "region": "경기",
-   "source": "cjob.co.kr",
-   "title": "수원영통역 펠로쉽처치(개척교회) 피아노 반주자 모십니다.",
-   "url": "https://www.cjob.co.kr/bbs/board.php?bo_table=offerIG&wr_id=7688&c_jikjong=2&page=1",
-   "date": null,
-   "deadline": null,
-   "kind": "반주",
-   "tier": "오브리",
-   "inst": "건반",
-   "instDetails": [
-    "피아노"
-   ],
-   "personnel": null,
-   "channel": "cjob",
-   "layer": "C",
-   "firstSeen": "2026-07-08",
-   "isNew": false,
-   "extVer": 11
-  },
-  {
-   "id": "1c3843f4f68565f0",
-   "org": "교회(기독정보넷)",
-   "region": "기타",
-   "source": "cjob.co.kr",
-   "title": "건반 반주자를 모십니다(수요, 금요).",
-   "url": "https://www.cjob.co.kr/bbs/board.php?bo_table=offerIG&wr_id=7687&c_jikjong=2&page=1",
-   "date": null,
-   "deadline": null,
-   "kind": "반주",
-   "tier": "오브리",
-   "inst": "건반",
-   "instDetails": [
-    "피아노"
-   ],
-   "personnel": null,
-   "channel": "cjob",
-   "layer": "C",
-   "firstSeen": "2026-07-08",
-   "isNew": false,
-   "extVer": 11
-  },
-  {
-   "id": "fb6fc208fe67e728",
-   "org": "교회(기독정보넷)",
-   "region": "기타",
-   "source": "cjob.co.kr",
-   "title": "주일예배 반주자 구합니다.",
-   "url": "https://www.cjob.co.kr/bbs/board.php?bo_table=offerIG&wr_id=7683&c_jikjong=2&page=1",
-   "date": null,
-   "deadline": null,
-   "kind": "반주",
-   "tier": "오브리",
-   "inst": "건반",
-   "instDetails": [
-    "피아노"
-   ],
-   "personnel": null,
-   "channel": "cjob",
-   "layer": "C",
-   "firstSeen": "2026-07-08",
-   "isNew": false,
-   "extVer": 11
-  },
-  {
-   "id": "a6a9815fd2c3e78c",
-   "org": "화목교회",
-   "region": "기타",
-   "source": "cjob.co.kr",
-   "title": "개봉동 화목교회에서 반주자를 모십니다.",
-   "url": "https://www.cjob.co.kr/bbs/board.php?bo_table=offerIG&wr_id=7675&c_jikjong=2&page=1",
-   "date": null,
-   "deadline": null,
-   "kind": "반주",
-   "tier": "오브리",
-   "inst": "건반",
-   "instDetails": [
-    "피아노"
-   ],
-   "personnel": null,
-   "channel": "cjob",
-   "layer": "C",
-   "firstSeen": "2026-07-08",
-   "isNew": false,
-   "extVer": 11
-  },
-  {
-   "id": "a0d7387acd73ce8e",
-   "org": "교회(기독정보넷)",
-   "region": "기타",
-   "source": "cjob.co.kr",
-   "title": "반주자 모십니다.",
-   "url": "https://www.cjob.co.kr/bbs/board.php?bo_table=offerIG&wr_id=7673&c_jikjong=2&page=1",
-   "date": null,
-   "deadline": null,
-   "kind": "반주",
-   "tier": "오브리",
-   "inst": "건반",
-   "instDetails": [
-    "피아노"
-   ],
-   "personnel": null,
-   "channel": "cjob",
-   "layer": "C",
-   "firstSeen": "2026-07-08",
-   "isNew": false,
-   "extVer": 11
-  },
-  {
-   "id": "8b341be8f55a19d1",
-   "org": "교회(기독정보넷)",
-   "region": "기타",
-   "source": "cjob.co.kr",
-   "title": "반주자 모십니다",
-   "url": "https://www.cjob.co.kr/bbs/board.php?bo_table=offerIG&wr_id=7672&c_jikjong=2&page=1",
-   "date": null,
-   "deadline": null,
-   "kind": "반주",
-   "tier": "오브리",
-   "inst": "건반",
-   "instDetails": [
-    "피아노"
-   ],
-   "personnel": null,
-   "channel": "cjob",
-   "layer": "C",
-   "firstSeen": "2026-07-08",
-   "isNew": false,
-   "extVer": 11
+   "extVer": 12
   },
   {
    "id": "c80e362afc57cd51",
@@ -565,6 +389,7 @@
    "personnel": "비올라 부수석 1명 · 오보에 부수석 1명 · 타악기 수석 1명",
    "channel": "kbs",
    "layer": "D",
+   "deadlineFrom": "page",
    "recruitParts": [
     {
      "part": "비올라",
@@ -589,10 +414,9 @@
    ],
    "auditionDate": "8/17 · 8/23",
    "bodyExcerpt": "2026년 KBS교향악단 신규단원 채용(비올라, 오보에, 타악기) - 2026. 7. 8. 자 타악기 부문 추가 · 교향악단 신규단원 채용 · 교향악단에서 실력있고 열정 넘치는 전문 연주자를 공개 모집합니다 · 자로 모집부문에 타악기가 추가되었습니다",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 11
+   "extVer": 12
   },
   {
    "id": "0f1655bb56ef77bf",
@@ -610,12 +434,12 @@
    "personnel": null,
    "channel": "g_hibrain",
    "layer": "B",
+   "deadlineFrom": "page",
    "qualification": "학사이상 관련 홈",
    "pay": "스북으로 보내기 URL 복사 인쇄 관심기관등",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 11
+   "extVer": 12
   },
   {
    "id": "b2e199e32140e0ed",
@@ -632,17 +456,14 @@
    "instDetails": [
     "피아노"
    ],
-   "personnel": null,
+   "personnel": "반주자",
    "channel": "cjob",
    "layer": "C",
-   "positions": [
-    "반주자"
-   ],
-   "bodyExcerpt": "주일 본예배 반주자 1명 (치유하는 교회 / 김포시 사우동 위치 · 탑동감리교회 드럼반주자&레슨강사 모집합니다. · 용호남교회 피아노 반주자 모집 · 인천 동구청 학교 매주일 오후4시 찬양 연주 세션 모집",
-   "deadlineFrom": "page",
+   "deadlineFrom": "cjob-남은기간",
+   "pay": "20만원",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 11
+   "extVer": 12
   },
   {
    "id": "340d217c42aab8e1",
@@ -663,6 +484,7 @@
    "personnel": "비올라 부수석 1명 · 오보에 부수석 1명",
    "channel": "kbs",
    "layer": "D",
+   "deadlineFrom": "page",
    "recruitParts": [
     {
      "part": "비올라",
@@ -681,10 +503,9 @@
    ],
    "auditionDate": "8/17 · 8/23",
    "bodyExcerpt": "2026년 KBS교향악단 신규단원 채용(비올라, 오보에) · 교향악단 신규단원 채용 · 교향악단에서 실력있고 열정 넘치는 전문 연주자를 공개 모집합니다 · 모집부문별 채용 예정인원",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 11
+   "extVer": 12
   },
   {
    "id": "5dece78df88ec9d5",
@@ -704,14 +525,14 @@
    "personnel": null,
    "channel": "sejongpac",
    "layer": "B",
+   "deadlineFrom": "ocr",
    "positions": [
     "단원"
    ],
    "bodyExcerpt": "세종문화회관 예술단 직책단원(소년소녀합창 지휘자) 공개채용 공고",
-   "deadlineFrom": "ocr",
    "firstSeen": "2026-07-07",
    "isNew": false,
-   "extVer": 11
+   "extVer": 12
   },
   {
    "id": "e922691feb25fcfe",
@@ -729,16 +550,16 @@
    "personnel": "최대 30 명 (2 기에한하여기존 1 기단원",
    "channel": "artsuwon",
    "layer": "B",
+   "deadlineFrom": "ocr",
    "positions": [
     "단원"
    ],
    "contract": "상임",
-   "bodyExcerpt": "주니어콰이어 2기 단원모집 공고문.jpg",
    "qualification": "2011 년부터 2016 년사이출생자 ( 수원관내초등학교 4 학년 ~ 중학교",
-   "deadlineFrom": "ocr",
+   "bodyExcerpt": "주니어콰이어 2기 단원모집 공고문.jpg",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 11
+   "extVer": 12
   },
   {
    "id": "da06b8ae997fd398",
@@ -762,7 +583,7 @@
    "bodyExcerpt": "모집파트: 테너 또는 베이스",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 11
+   "extVer": 12
   },
   {
    "id": "b45188e68777edf5",
@@ -785,7 +606,7 @@
    "bodyExcerpt": "채용 | 더솔아르떼 성악아카데미 평택점과 함께할 전문 강사님을 모십니다 · 성악 전문 강사님을 모집합니다. · ✨️ 모집 분야 · 우대: 교육 및 연주 경력자 환영,",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 11
+   "extVer": 12
   },
   {
    "id": "66564a9a98fa61d9",
@@ -811,7 +632,7 @@
    "bodyExcerpt": "채용 | [부산] 푸른초장교회 반주자를 모십니다.",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 11
+   "extVer": 12
   },
   {
    "id": "4da5ac93aea9485d",
@@ -838,7 +659,7 @@
    "bodyExcerpt": "채용 | [모집공고] 강동구립여성합창단 신임 지휘자 모집 · [모집공고] 강동구립여성합창단 신임 지휘자 모집",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 11
+   "extVer": 12
   },
   {
    "id": "ab76a676120cd5fc",
@@ -856,16 +677,16 @@
    "personnel": "오케스트라 1명 2",
    "channel": "gne",
    "layer": "C",
-   "bodyExcerpt": "2026학년도 경남관광고등학교 방과후학교 오케스트라부 외부 강사 모집 공고 · 1. 모집인원: 오케스트라 1명 · 2. 계약기간: 2026.6.15(월) ~ 2026.12.28(월) 총25회기 · 3. 접수기간: 2026.6.2(화) ~ 2026.6.8(월) 09:00 ~ 16:30",
    "deadlineFrom": "page",
+   "bodyExcerpt": "2026학년도 경남관광고등학교 방과후학교 오케스트라부 외부 강사 모집 공고 · 1. 모집인원: 오케스트라 1명 · 2. 계약기간: 2026.6.15(월) ~ 2026.12.28(월) 총25회기 · 3. 접수기간: 2026.6.2(화) ~ 2026.6.8(월) 09:00 ~ 16:30",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 11
+   "extVer": 12
   },
   {
    "id": "42db74da2bf23ef9",
    "org": "용호남교회",
-   "region": "기타",
+   "region": "부산",
    "source": "cjob.co.kr",
    "title": "용호남교회 피아노 반주자 모집",
    "url": "https://www.cjob.co.kr/bbs/board.php?bo_table=offerIG&wr_id=7770&c_jikjong=2&page=1",
@@ -877,17 +698,15 @@
    "instDetails": [
     "피아노"
    ],
-   "personnel": null,
+   "personnel": "반주자",
    "channel": "cjob",
    "layer": "C",
-   "positions": [
-    "반주자"
-   ],
-   "bodyExcerpt": "용호남교회 피아노 반주자 모집 · 주일 본예배 반주자 1명 (치유하는 교회 / 김포시 사우동 위치 · 탑동감리교회 드럼반주자&레슨강사 모집합니다. · 인천 동구청 학교 매주일 오후4시 찬양 연주 세션 모집",
    "deadlineNote": "상시",
+   "bodyExcerpt": "이력서 내용: 1)매주 2부(오전11:00) 예배 봉사시간/ 오전9:30~오후12:30 2) 금요반주 월 1회~2회(옵션)",
+   "pay": "40만원 (금요반주 가능시 사례 조정)",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 11
+   "extVer": 12
   },
   {
    "id": "5fbc7e4eb4f8d92d",
@@ -904,17 +723,14 @@
    "instDetails": [
     "피아노"
    ],
-   "personnel": null,
+   "personnel": "반주자",
    "channel": "cjob",
    "layer": "C",
-   "positions": [
-    "반주자"
-   ],
-   "bodyExcerpt": "주일 본예배 반주자 1명 (치유하는 교회 / 김포시 사우동 위치 · 탑동감리교회 드럼반주자&레슨강사 모집합니다. · 용호남교회 피아노 반주자 모집 · 인천 동구청 학교 매주일 오후4시 찬양 연주 세션 모집",
-   "deadlineFrom": "page",
+   "deadlineFrom": "cjob-남은기간",
+   "pay": "협의",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 11
+   "extVer": 12
   },
   {
    "id": "d97f80f35d35a9c2",
@@ -937,7 +753,7 @@
    "bodyExcerpt": "2026학년도 진주 거점 오케스트라 타악기 외부강사 모집 공고 · 진주초등학교에서는 진주 거점 오케스트라 운영과 관련하여 아래와 같이 파트 강사를 모집하오니, 관심 있는 분들의 많은 지원 바랍니다",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 11
+   "extVer": 12
   },
   {
    "id": "f2a396a8f91564fd",
@@ -958,7 +774,7 @@
    "bodyExcerpt": "방과후학교(오케스트라) 강사 모집 · 바이올린+비올라(1명), 첼로+콘트라베이스(1명), 색소폰(1명), 클라리넷(1명) 트럼펫+트럼본(1명), 타악기(1명) · 밀성고등학교 오케스트라 운영을 위한 방과후학교 프로그램 강사 분을 모집합니다.",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 11
+   "extVer": 12
   },
   {
    "id": "d7ac0c524227339b",
@@ -976,11 +792,11 @@
    "personnel": null,
    "channel": "gne",
    "layer": "C",
-   "bodyExcerpt": "2026. 남지고 오케스트라 방과후학교 외부강사 모집 · 남지고등학교에서는 오케스트라 방과후학교 외부강사를 다음과 같이 모집 공고합니다. · 1. 모집 분야 및 인원 (총 6명): 색소폰, 클라리넷, 플룻, 트럼펫, 트롬본, 타악기 · 2. 채용기간: 2026년 5월 2일 ~ 12월 31일(방학 및 공휴일 제외)",
    "deadlineFrom": "page",
+   "bodyExcerpt": "2026. 남지고 오케스트라 방과후학교 외부강사 모집 · 남지고등학교에서는 오케스트라 방과후학교 외부강사를 다음과 같이 모집 공고합니다. · 1. 모집 분야 및 인원 (총 6명): 색소폰, 클라리넷, 플룻, 트럼펫, 트롬본, 타악기 · 2. 채용기간: 2026년 5월 2일 ~ 12월 31일(방학 및 공휴일 제외)",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 11
+   "extVer": 12
   },
   {
    "id": "018058c620a0c35f",
@@ -998,11 +814,11 @@
    "personnel": null,
    "channel": "gne",
    "layer": "C",
-   "bodyExcerpt": "2026학년도 학생 오케스트라 운영 외부강사 채용 공고 · 1. 채용분야 및 모집 인원 · 가. 채용분야 및 모집인원 · 채용분야 : 클라리넷(색소폰 지도 가능자 우대)/ 트럼펫 / 유포늄",
    "deadlineFrom": "page",
+   "bodyExcerpt": "2026학년도 학생 오케스트라 운영 외부강사 채용 공고 · 1. 채용분야 및 모집 인원 · 가. 채용분야 및 모집인원 · 채용분야 : 클라리넷(색소폰 지도 가능자 우대)/ 트럼펫 / 유포늄",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 11
+   "extVer": 12
   },
   {
    "id": "44caf41e6415c319",
@@ -1023,7 +839,7 @@
    "bodyExcerpt": "마산무학여중 방과후 오케스트라 파트별 보조강사 모집(수정)",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 11
+   "extVer": 12
   },
   {
    "id": "c355fe34995919a9",
@@ -1040,22 +856,18 @@
    "instDetails": [
     "피아노"
    ],
-   "personnel": null,
+   "personnel": "반주자",
    "channel": "cjob",
    "layer": "C",
-   "positions": [
-    "반주자"
-   ],
-   "bodyExcerpt": "주일 본예배 반주자 1명 (치유하는 교회 / 김포시 사우동 위치 · 탑동감리교회 드럼반주자&레슨강사 모집합니다. · 용호남교회 피아노 반주자 모집 · 인천 동구청 학교 매주일 오후4시 찬양 연주 세션 모집",
    "deadlineNote": "상시",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 11
+   "extVer": 12
   },
   {
    "id": "d43e73d204b36b0f",
-   "org": "교회(기독정보넷)",
-   "region": "기타",
+   "org": "진접열린교회",
+   "region": "경기",
    "source": "cjob.co.kr",
    "title": "반주자를 구합니다",
    "url": "https://www.cjob.co.kr/bbs/board.php?bo_table=offerIG&wr_id=7748&c_jikjong=2&page=1",
@@ -1067,22 +879,19 @@
    "instDetails": [
     "피아노"
    ],
-   "personnel": null,
+   "personnel": "반주자",
    "channel": "cjob",
    "layer": "C",
-   "positions": [
-    "반주자"
-   ],
-   "bodyExcerpt": "1.모집내용: 2부 성가대 반주자 · 2.연습시간: 예배전: 오전 9시20분~10시20분 · 3.자격: 세례교인.피아노 전공 · 5.접수마감: 완료시까지",
    "deadlineNote": "상시",
+   "pay": "월40만원",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 11
+   "extVer": 12
   },
   {
    "id": "cff2801e45a9ec79",
    "org": "교회(기독정보넷)",
-   "region": "기타",
+   "region": "경기",
    "source": "cjob.co.kr",
    "title": "기타/첼로/유치원교사 구합니다",
    "url": "https://www.cjob.co.kr/bbs/board.php?bo_table=offerIG&wr_id=7742&c_jikjong=2&page=1",
@@ -1094,26 +903,22 @@
    "instDetails": [
     "첼로"
    ],
-   "personnel": null,
+   "personnel": "반주자",
    "channel": "cjob",
    "layer": "C",
-   "positions": [
-    "반주자"
-   ],
-   "bodyExcerpt": "1, 기타연주자구합니다( 13:30-14:30) 찬양라이브방송 합니다 · 주일 본예배 반주자 1명 (치유하는 교회 / 김포시 사우동 위치 · 탑동감리교회 드럼반주자&레슨강사 모집합니다. · 용호남교회 피아노 반주자 모집",
    "deadlineNote": "상시",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 11
+   "extVer": 12
   },
   {
-   "id": "062c1a7045023f76",
-   "org": "교회(기독정보넷)",
+   "id": "5662c679dbaca9e1",
+   "org": "개곡교회",
    "region": "기타",
    "source": "cjob.co.kr",
-   "title": "찬양대 반주자 구합니다.",
-   "url": "https://www.cjob.co.kr/bbs/board.php?bo_table=offerIG&wr_id=7712&c_jikjong=2&page=1",
-   "date": "2025-12-11",
+   "title": "안동개곡교회 반주자 모십니다",
+   "url": "https://www.cjob.co.kr/bbs/board.php?bo_table=offerIG&wr_id=7691&c_jikjong=2&page=1",
+   "date": "2025-09-21",
    "deadline": null,
    "kind": "반주",
    "tier": "오브리",
@@ -1121,17 +926,14 @@
    "instDetails": [
     "피아노"
    ],
-   "personnel": null,
+   "personnel": "반주자",
    "channel": "cjob",
    "layer": "C",
-   "positions": [
-    "반주자"
-   ],
-   "bodyExcerpt": "모집마감: 채용시까지 · 주일 본예배 반주자 1명 (치유하는 교회 / 김포시 사우동 위치 · 탑동감리교회 드럼반주자&레슨강사 모집합니다. · 용호남교회 피아노 반주자 모집",
    "deadlineNote": "상시",
+   "pay": "40만원에서 50만원",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 11
+   "extVer": 12
   }
  ]
 }
