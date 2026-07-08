@@ -306,6 +306,19 @@ CLASSIC_PAT = re.compile(
     r"|콰르텟|앙상블|성악|바이올린|비올라|첼로|더블베이스|플루트|오보에|클라리넷"
     r"|바순|호른|트럼펫|트롬본|튜바|팀파니|피아니스트")
 
+# 집계 포털 제목에서 실제 기관명 추출 (아트인포·아트모아는 org이 없어 포털명 대신 씀)
+_ORGWORD = (r"교향악단|합창단|국악관현악단|관현악단|필하모닉|예술단|오케스트라|윈드오케스트라"
+            r"|앙상블|콰르텟|사중주단|중창단|합주단|아카데미|음악단|뮤지컬단|무용단|극단|문화재단|교회|성당")
+
+def org_from_title(title, fallback):
+    for m in re.finditer(r"([가-힣A-Za-z0-9][가-힣A-Za-z0-9·\s]{1,18}?(?:" + _ORGWORD + r"))", title):
+        cand = re.sub(r"^.*?[\]\)]\s*", "", m.group(1))
+        cand = re.sub(r"^\s*(?:20\d\d\s*년?도?|20\d\d학년도|상반기|하반기|\d+차|신규|공개|모집|채용|지원사업)\s*", "", cand)
+        cand = cand.strip(" []()")
+        if 3 <= len(cand) <= 22:
+            return cand
+    return fallback
+
 def parse_artmore(s):
     r = get(s, "https://www.artmore.kr/sub/recruit/search_list.do")
     items = []
@@ -317,7 +330,7 @@ def parse_artmore(s):
         title = re.sub(r"^진행중\s*", "", title)
         if len(title) < 8 or not CLASSIC_PAT.search(title):
             continue
-        it = make_item("아트모아(예술 일자리 포털)", "기타", "artmore.kr",
+        it = make_item(org_from_title(title, "아트모아(예술 일자리 포털)"), "기타", "artmore.kr",
                        title, urljoin("https://www.artmore.kr", a["href"]),
                        date=_row_date(a))
         origin = _resolve_origin(s, it["url"], "artmore.kr")
@@ -358,7 +371,7 @@ def parse_artinfo(s):
         # 카드 앵커가 제목+지역+악기+기관명을 통째로 담고 있어 첫 텍스트 노드만 제목으로
         first = next((t.strip() for t in a.stripped_strings), "")
         title = first if len(first) >= 10 else full[:90]
-        it = make_item("아트인포(클래식 채용)", region_from(full), "artinfokorea.com",
+        it = make_item(org_from_title(title, "아트인포(클래식 채용)"), region_from(full), "artinfokorea.com",
                        title[:90], urljoin("https://www.artinfokorea.com", href),
                        date=_row_date(a))
         origin = _resolve_origin(s, it["url"], "artinfokorea.com")

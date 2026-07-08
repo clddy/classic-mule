@@ -107,7 +107,7 @@ def find_attachments(soup, base_url):
                 cands.append((full, text))
     return cands[:3]
 
-EXT_VER = 10         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일 승계가 무효화됨
+EXT_VER = 11         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일 승계가 무효화됨
 RENDER_PER_SOURCE = 3   # 소스당 Playwright 렌더링 상한
 OCR_PER_SOURCE = 6      # 소스당 이미지 공고문 OCR 상한 (항목당 최대 2장)
 _renders_used = 0
@@ -203,10 +203,12 @@ def _find_program(text):
     return _seg_after(text, r"프로그램|연주 ?곡목?|곡\s*목|레퍼토리|연주곡", 80)
 
 def _find_rehearsal(text):
-    return _seg_after(text, r"리허설|연습 ?일정|연습", 50)
+    v = _seg_after(text, r"리허설|연습 ?일정|연습", 50)
+    return v if v and re.search(r"\d", v) else None      # 날짜 숫자 없으면 버림
 
 def _find_concert(text):
-    return _seg_after(text, r"공연 ?일시|연주 ?일시|공연일|연주일|공연 ?날짜|공연", 50)
+    v = _seg_after(text, r"공연 ?일시|연주 ?일시|공연일|연주일|공연 ?날짜|공연", 50)
+    return v if v and re.search(r"\d", v) else None      # '장 [' 등 파편 배제
 
 # 본문 요약: 모집·자격·일정 관련 핵심 줄만 골라 세부창에 노출
 _EXCERPT_KW = re.compile(
@@ -500,15 +502,21 @@ def run(force_all=False):
             detail_need = [i for i in kept if i["deadline"] and not i.get("bodyExcerpt")]
             for it in detail_need[:budget]:
                 enrich_deadline(s, it, allow_render=False, details_only=True)
-            # 마감이 게시일보다 앞서면 공고문 연도 오타로 보고 +1년 보정
+            # 마감이 게시일보다 '한참'(>180일) 앞서면 연말→연초 연도 오타로 보고 +1년 보정
+            # (며칠 앞선 건 그냥 지난 공고 — 잘못 미래로 밀어올리지 않음)
             for it in kept:
                 if it["deadline"] and it["date"] and it["deadline"] < it["date"]:
-                    fixed = f"{int(it['deadline'][:4]) + 1}{it['deadline'][4:]}"
-                    if fixed <= f"{int(it['date'][:4]) + 1}-12-31":
-                        it["deadline"] = fixed
-                        it["deadlineFrom"] = (it.get("deadlineFrom") or "") + "+yearfix"
-            # 보강으로 알게 된 마감이 이미 한참 지난 공고는 제거 (작년 공고 등)
-            kept = [i for i in kept if not (i["deadline"] and i["deadline"] < stale)]
+                    try:
+                        gap = (date.fromisoformat(it["date"]) - date.fromisoformat(it["deadline"])).days
+                    except ValueError:
+                        gap = 0
+                    if gap > 180:
+                        fixed = f"{int(it['deadline'][:4]) + 1}{it['deadline'][4:]}"
+                        if fixed <= f"{int(it['date'][:4]) + 1}-12-31":
+                            it["deadline"] = fixed
+                            it["deadlineFrom"] = (it.get("deadlineFrom") or "") + "+yearfix"
+            # 마감이 이미 지난 공고는 제거 (오늘 이전) — 만료 공고 노출 방지
+            kept = [i for i in kept if not (i["deadline"] and i["deadline"] < today.isoformat())]
             # 마감을 못 찾았고 게시된 지 120일 넘은 공고도 정리 (상시모집은 예외)
             old_cut = (today - timedelta(days=120)).isoformat()
             kept = [i for i in kept if i["deadline"] or i.get("deadlineNote") == "상시"

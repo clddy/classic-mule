@@ -239,8 +239,10 @@ function metaRows(j) {
   else if (insts) rows.push(["모집", insts + (senior ? " " + senior : "")]);
   const q = cleanVal(j.qualification);
   if (q && q.length >= 4) rows.push(["자격", q]);
-  if (j.rehearsal || j.when) rows.push(["리허설", cleanVal(j.rehearsal || j.when)]);
-  if (j.concertDate) rows.push(["연주일", cleanVal(j.concertDate)]);
+  const reh = cleanVal(j.rehearsal || j.when);
+  if (reh && /\d/.test(reh)) rows.push(["리허설", reh]);
+  const con = cleanVal(j.concertDate);
+  if (con && /\d/.test(con)) rows.push(["연주일", con]);
   if (j.auditionDate) rows.push(["오디션", cleanVal(j.auditionDate)]);
   if (j.contract) rows.push(["계약", cleanVal(j.contract)]);
   if ((j.band === "객원·대체" || j.src !== "공식") && okPay(j.pay)) rows.push(["페이", cleanVal(j.pay)]);
@@ -272,24 +274,15 @@ function openOfficial(key) {
     <span class="tag ${st.cls}">${st.label}</span>
     ${j.isNew ? `<span class="tag urgent">NEW</span>` : ""}`;
   $("#detail-title").textContent = j.title;
-  // 포털(아트모아·아트인포) 항목은 원문(officialUrl)으로만 연결 — 포털로는 절대 링크하지 않음
-  const isPortal = /artmore\.kr|artinfokorea\.com/.test(j.source || "");
-  const target = j.officialUrl || (isPortal ? null : j.url);
+  // 원문(officialUrl) 우선, 없으면 수집 URL로 연결 — 항상 이동 가능한 버튼 유지
+  const target = j.officialUrl || j.url;
   $("#detail-meta").innerHTML = metaRows(j);
-  // 하단: 간단한 요약(최대 3줄) + 동일한 안내 문구
-  const sum = shortSummary(j);
-  $("#detail-body").textContent = (sum ? sum + "\n\n" : "")
-    + "상세 요강은 원문에서 확인하세요.";
+  // 하단: 간단한 요약(최대 3줄) — 없으면 비움
+  $("#detail-body").textContent = shortSummary(j);
   const act = $("#detail-action");
-  if (target) {
-    act.textContent = j.officialUrl ? "공식 공고 페이지 바로가기 ↗" : "공고 원문 바로가기 ↗";
-    act.onclick = () => window.open(target, "_blank", "noopener");
-    act.style.display = "";
-  } else {
-    // 포털 항목인데 원문 링크를 못 찾음 → 포털로 보내지 않음
-    act.style.display = "none";
-    $("#detail-body").textContent = "이 공고는 포털에서 수집됐고 원문 링크를 확인 중입니다. 기관명으로 검색해 공식 공고를 확인해 주세요.";
-  }
+  act.textContent = j.officialUrl ? "공식 공고 페이지 바로가기 ↗" : "공고 보러가기 ↗";
+  act.onclick = () => window.open(target, "_blank", "noopener");
+  act.style.display = "";
   $("#detail-modal").classList.add("open");
 }
 
