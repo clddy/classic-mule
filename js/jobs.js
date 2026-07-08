@@ -245,7 +245,7 @@ function metaRows(j) {
   if (con && /\d/.test(con)) rows.push(["연주일", con]);
   if (j.auditionDate) rows.push(["오디션", cleanVal(j.auditionDate)]);
   if (j.contract) rows.push(["계약", cleanVal(j.contract)]);
-  if ((j.band === "객원·대체" || j.src !== "공식") && okPay(j.pay)) rows.push(["페이", cleanVal(j.pay)]);
+  if (okPay(j.pay)) rows.push(["페이", cleanVal(j.pay)]);
   if (j.program) rows.push(["프로그램", cleanVal(j.program)]);
   return rows.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("");
 }
