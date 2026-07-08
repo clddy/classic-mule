@@ -220,7 +220,7 @@ button { font-family: inherit; cursor: pointer; }
   margin-bottom: 14px;
   font-variant-numeric: tabular-nums;
 }
-.service-card h3 { font-family: var(--serif); font-size: 1.12rem; font-weight: 400; color: var(--ink); margin-bottom: 7px; }
+.service-card h3 { font-family: var(--sans); font-size: 1.08rem; font-weight: 600; color: var(--ink); margin-bottom: 7px; }
 .service-card p { font-size: 0.84rem; color: var(--ink-soft); line-height: 1.55; }
 .service-card.disabled { opacity: 0.5; }
 .badge-soon, .badge-live {
@@ -389,11 +389,12 @@ details[open] > .filter-summary::after { content: " −"; }
   flex-wrap: wrap;
 }
 .job-card h3 {
-  font-family: var(--serif);
-  font-size: 1.1rem;
-  font-weight: 400;
+  font-family: var(--sans);
+  font-size: 1.04rem;
+  font-weight: 600;
   color: var(--ink);
-  line-height: 1.4;
+  line-height: 1.45;
+  letter-spacing: -0.01em;
   margin-bottom: 6px;
   transition: color 0.15s;
 }
@@ -603,7 +604,7 @@ details[open] > .filter-summary::after { content: " −"; }
   transition: border-color 0.15s;
 }
 .crawl-banner:hover { border-color: var(--claret); }
-.crawl-banner h3 { font-family: var(--serif); font-size: 1.12rem; font-weight: 400; color: var(--ink); margin-bottom: 4px; }
+.crawl-banner h3 { font-family: var(--sans); font-size: 1.08rem; font-weight: 700; color: var(--ink); margin-bottom: 4px; }
 .crawl-banner p { font-size: 0.85rem; color: var(--ink-soft); max-width: 640px; }
 
 /* ---------- 푸터 ---------- */
