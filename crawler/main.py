@@ -348,13 +348,13 @@ def _cjob_detail(text, item):
             return None
         g = next((x for x in m.groups() if x), "")
         return re.sub(r"\s+", " ", g).strip(" :·-")
-    org = grab(r"단체\(회사\)이름\s*(.+?)\s*-\s*주소")
+    org = grab(r"단체\(회사\)이름\s*(.+?)\s*-\s*(?:주소|연락처|담당자|담당|모시는분)")
     if org and 2 <= len(org) <= 30 and org != "미정":
         item["org"] = org
-    role = grab(r"모시는분\s*(.+?)\s*-\s*지역")
+    role = grab(r"모시는분\s*(.+?)\s*-\s*(?:지역|등록일|남은기간)")
     if role and len(role) <= 20:
         item["personnel"] = role
-    reg = grab(r"지역\s*(.+?)\s*-\s*등록일")
+    reg = grab(r"지역\s*(.+?)\s*-\s*(?:등록일|남은기간)")
     if reg in _CJOB_REGIONS:
         item["region"] = reg if reg in ("서울", "경기", "인천", "대전", "대구", "부산") else "기타"
     d = grab(r"등록일\s*(20\d\d-\d\d-\d\d)")

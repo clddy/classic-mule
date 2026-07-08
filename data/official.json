@@ -1,5 +1,5 @@
 {
- "collectedAt": "2026-07-09 04:08",
+ "collectedAt": "2026-07-09 04:24",
  "sourceCount": 37,
  "okCount": 37,
  "sources": [
@@ -358,6 +358,7 @@
    "personnel": "비올라 부수석 1명 · 오보에 부수석 1명 · 타악기 수석 1명",
    "channel": "kbs",
    "layer": "D",
+   "deadlineFrom": "page",
    "recruitParts": [
     {
      "part": "비올라",
@@ -382,7 +383,6 @@
    ],
    "auditionDate": "8/17 · 8/23",
    "bodyExcerpt": "2026년 KBS교향악단 신규단원 채용(비올라, 오보에, 타악기) - 2026. 7. 8. 자 타악기 부문 추가 · 교향악단 신규단원 채용 · 교향악단에서 실력있고 열정 넘치는 전문 연주자를 공개 모집합니다 · 자로 모집부문에 타악기가 추가되었습니다",
-   "deadlineFrom": "page",
    "alsoSeenOn": [
     "artmore.kr"
    ],
@@ -406,16 +406,16 @@
    "personnel": null,
    "channel": "g_hibrain",
    "layer": "B",
+   "deadlineFrom": "page",
    "qualification": "학사이상 관련 홈",
    "pay": "스북으로 보내기 URL 복사 인쇄 관심기관등",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": false,
    "extVer": 16
   },
   {
    "id": "b2e199e32140e0ed",
-   "org": "교회(기독정보넷)",
+   "org": "남양교회",
    "region": "기타",
    "source": "cjob.co.kr",
    "title": "반주자와 농촌지역에서 전도해 주실분 모십니다.",
@@ -458,6 +458,7 @@
    "personnel": "비올라 부수석 1명 · 오보에 부수석 1명",
    "channel": "kbs",
    "layer": "D",
+   "deadlineFrom": "page",
    "recruitParts": [
     {
      "part": "비올라",
@@ -476,7 +477,6 @@
    ],
    "auditionDate": "8/17 · 8/23",
    "bodyExcerpt": "2026년 KBS교향악단 신규단원 채용(비올라, 오보에) · 교향악단 신규단원 채용 · 교향악단에서 실력있고 열정 넘치는 전문 연주자를 공개 모집합니다 · 모집부문별 채용 예정인원",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": false,
    "extVer": 16
@@ -499,11 +499,11 @@
    "personnel": null,
    "channel": "sejongpac",
    "layer": "B",
+   "deadlineFrom": "ocr",
    "positions": [
     "단원"
    ],
    "bodyExcerpt": "세종문화회관 예술단 직책단원(소년소녀합창 지휘자) 공개채용 공고",
-   "deadlineFrom": "ocr",
    "firstSeen": "2026-07-07",
    "isNew": false,
    "extVer": 16
@@ -526,13 +526,13 @@
    "personnel": "최대 30 명 (2 기에한하여기존 1 기단원",
    "channel": "artsuwon",
    "layer": "B",
+   "deadlineFrom": "ocr",
    "positions": [
     "단원"
    ],
    "contract": "상임",
-   "bodyExcerpt": "주니어콰이어 2기 단원모집 공고문.jpg",
    "qualification": "2011 년부터 2016 년사이출생자 ( 수원관내초등학교 4 학년 ~ 중학교",
-   "deadlineFrom": "ocr",
+   "bodyExcerpt": "주니어콰이어 2기 단원모집 공고문.jpg",
    "firstSeen": "2026-07-08",
    "isNew": false,
    "extVer": 16
@@ -556,8 +556,8 @@
    "personnel": null,
    "channel": "artinfo",
    "layer": "A",
-   "bodyExcerpt": "모집파트: 테너 또는 베이스",
    "deadlineNote": "상시",
+   "bodyExcerpt": "모집파트: 테너 또는 베이스",
    "firstSeen": "2026-07-08",
    "isNew": false,
    "extVer": 16
@@ -582,9 +582,9 @@
    "officialUrl": "https://www.thesolarteacademy.com/",
    "channel": "artinfo",
    "layer": "A",
+   "deadlineNote": "상시",
    "qualification": "연령: 35세 ~ 50세 학력: 성악 전공 석사 졸업 이상",
    "bodyExcerpt": "채용 | 더솔아르떼 성악아카데미 평택점과 함께할 전문 강사님을 모십니다 · 성악 전문 강사님을 모집합니다. · ✨️ 모집 분야 · 우대: 교육 및 연주 경력자 환영,",
-   "deadlineNote": "상시",
    "firstSeen": "2026-07-08",
    "isNew": false,
    "extVer": 16
@@ -607,11 +607,11 @@
    "personnel": null,
    "channel": "artinfo",
    "layer": "A",
+   "deadlineNote": "상시",
    "positions": [
     "반주자"
    ],
    "bodyExcerpt": "채용 | [부산] 푸른초장교회 반주자를 모십니다.",
-   "deadlineNote": "상시",
    "firstSeen": "2026-07-08",
    "isNew": false,
    "extVer": 16
@@ -635,11 +635,11 @@
    "officialUrl": "https://www.gangdong.go.kr/web/newportal/notice/01/57324",
    "channel": "artinfo",
    "layer": "A",
+   "deadlineNote": "상시",
    "positions": [
     "지휘자"
    ],
    "bodyExcerpt": "채용 | [모집공고] 강동구립여성합창단 신임 지휘자 모집 · [모집공고] 강동구립여성합창단 신임 지휘자 모집",
-   "deadlineNote": "상시",
    "firstSeen": "2026-07-08",
    "isNew": false,
    "extVer": 16
