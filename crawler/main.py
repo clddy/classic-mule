@@ -107,7 +107,7 @@ def find_attachments(soup, base_url):
                 cands.append((full, text))
     return cands[:3]
 
-EXT_VER = 4         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일 승계가 무효화됨
+EXT_VER = 6         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일 승계가 무효화됨
 RENDER_PER_SOURCE = 3   # 소스당 Playwright 렌더링 상한
 OCR_PER_SOURCE = 6      # 소스당 이미지 공고문 OCR 상한 (항목당 최대 2장)
 _renders_used = 0
@@ -156,6 +156,86 @@ def _find_contract(text):
     m = re.search(r"(1년 ?계약직?|기간제|시즌 ?단원|비상임|상임)", text)
     return m.group(1) if m else None
 
+def _clip(s, n=60):
+    return re.sub(r"\s+", " ", s or "").strip(" .:·|,-") [:n] or None
+
+# 본문 라벨 목록 — 필드 값을 다음 라벨/문장부호 직전에서 잘라내기 위한 경계
+_LABELS = (r"지원자격|응시자격|자격요건|참가자격|모집대상|지원대상|모집인원|채용인원|선발인원|모집정원"
+           r"|접수기간|접수일정|접수방법|접수처|리허설|연습일정|연습|공연일시|공연일|연주일시|연주일|공연날짜"
+           r"|장소|일시|기간|페이|출연료|사례비|보수|급여|수당|강사료|연주비|프로그램|연주곡목|곡목|레퍼토리"
+           r"|문의|담당|기타|비고|제출|전형|합격|발표|우대|근무|공연|자격|대상|인원|정원")
+_LBL_RE = re.compile(_LABELS)
+
+def _seg_after(text, label_pat, n=60):
+    """라벨 뒤 값을 다음 라벨/문장부호 전까지 잘라 반환 (공백평탄 본문 대응)"""
+    m = re.search(r"(?:" + label_pat + r")\s*[:：]?\s*", text)
+    if not m:
+        return None
+    rest = text[m.end(): m.end() + 130]
+    nxt = _LBL_RE.search(rest)
+    seg = rest[:nxt.start()] if nxt else rest
+    seg = re.split(r"[.\n]|\s{2,}", seg)[0]
+    return _clip(seg, n)
+
+_QUAL_OK = re.compile(r"졸업|학위|학력|경력|이상|전공|재학|대학|연령|만 ?\d|세 |세$|자 |전공자|무관")
+
+def _find_qualification(text):
+    q = _seg_after(text, r"지원 ?자격|응시 ?자격|자격 ?요건|참가 ?자격|모집 ?대상|지원 ?대상") \
+        or _seg_after(text, r"자격(?!증)")
+    # 실제 자격 표현이 담긴 경우만 채택 (○실기·전형 조기절단 파편 배제)
+    return q if q and len(q) >= 5 and _QUAL_OK.search(q) else None
+
+def _find_personnel_body(text):
+    """모집인원(표 없이 본문에만 있을 때) — 라벨 우선, 없으면 '○○ N명 모집'"""
+    seg = _seg_after(text, r"모집 ?인원|채용 ?인원|선발 ?인원|모집 ?정원|T\.?O\.?", 24)
+    if seg and re.search(r"\d", seg):
+        return seg
+    m = re.search(r"([가-힣A-Za-z·/]{2,16})\s*(?:각\s*)?(\d+)\s*명\s*(?:모집|선발|채용|충원)", text)
+    return f"{m.group(1).strip()} {m.group(2)}명" if m else None
+
+def _find_pay(text):
+    m = re.search(r"(회당|1회당|건당|시간당|일당|공연당|월)\s*([\d,]+\s*만?\s*원)", text)
+    if m:
+        return (m.group(1) + " " + m.group(2)).replace(" ", "")
+    return _seg_after(text, r"연주비|출연료|사례비|페이|보수|급여|수당|강사료", 24)
+
+def _find_program(text):
+    return _seg_after(text, r"프로그램|연주 ?곡목?|곡\s*목|레퍼토리|연주곡", 80)
+
+def _find_rehearsal(text):
+    return _seg_after(text, r"리허설|연습 ?일정|연습", 50)
+
+def _find_concert(text):
+    return _seg_after(text, r"공연 ?일시|연주 ?일시|공연일|연주일|공연 ?날짜|공연", 50)
+
+# 본문 요약: 모집·자격·일정 관련 핵심 줄만 골라 세부창에 노출
+_EXCERPT_KW = re.compile(
+    r"모집|채용|선발|자격|대상|리허설|연습|공연|연주|일시|장소|기간|인원|오디션"
+    r"|전형|접수|급여|보수|페이|출연|곡목|프로그램|\d명")
+# 집계·게시판 페이지의 내비게이션·관련목록 잡음 배제
+_EXCERPT_SKIP = re.compile(
+    r"메인 ?페이지|바로가기|로그인|회원가입|비슷한|관련\s*(모집|공고|정보)|목록|이전\s*글|다음\s*글"
+    r"|리스트|검색|더보기|메뉴|카테고리|사이트맵|저작권|Copyright|배너|공유|인쇄|스크랩|조회수"
+    r"|첨부 ?파일|>|메일|주소복사|프린트|top|TOP|서포터즈|소식|공지사항|보도자료|서식")
+
+def _body_excerpt(soup):
+    keep = []
+    for raw in soup.get_text("\n", strip=True).split("\n"):
+        ln = re.sub(r"\s+", " ", raw).strip(" ·-•▷▶◦□■●○△*|:")
+        if not (8 <= len(ln) <= 90) or ln in keep:
+            continue
+        if ln.count("|") >= 2:      # 브레드크럼(메뉴 경로) 배제
+            continue
+        if _EXCERPT_SKIP.search(ln) or not _EXCERPT_KW.search(ln):
+            continue
+        # 라벨(콜론)·날짜·인원·금액 등 '실제 공고 내용' 신호가 있는 줄만
+        if not re.search(r"[:：]|20\d\d|\d\s*명|\d\s*월|원\b|졸업|자격|모집|채용|리허설|오디션", ln):
+            continue
+        keep.append(ln)
+        if len(keep) >= 4:
+            break
+    return " · ".join(keep)[:240] if keep else None
+
 def _extract_body_details(soup, page_text, item, ry):
     """본문에서 채용부문/직책/인원 표 + 직책 + 오디션 + 계약기간 추출"""
     if not item.get("recruitParts"):
@@ -180,8 +260,30 @@ def _extract_body_details(soup, page_text, item, ry):
         c = _find_contract(page_text)
         if c:
             item["contract"] = c
+    # 자격·모집인원은 유형 불문 기본으로 시도
+    if not item.get("qualification"):
+        q = _find_qualification(page_text)
+        if q:
+            item["qualification"] = q
+    if not item.get("personnel") and not item.get("recruitSummary"):
+        p = _find_personnel_body(page_text)
+        if p:
+            item["personnel"] = p
+    # 객원·대체: 리허설·연주일·페이·프로그램
+    if item.get("kind") == "객원·대체":
+        for fld, fn in (("rehearsal", _find_rehearsal), ("concertDate", _find_concert),
+                        ("pay", _find_pay), ("program", _find_program)):
+            if not item.get(fld):
+                v = fn(page_text)
+                if v:
+                    item[fld] = v
+    # 세부창 본문 요약 발췌 (원문 참조 문구 대신 핵심 정보 노출)
+    if not item.get("bodyExcerpt"):
+        ex = _body_excerpt(soup)
+        if ex:
+            item["bodyExcerpt"] = ex
 
-def enrich_deadline(s, item, allow_render=True):
+def enrich_deadline(s, item, allow_render=True, details_only=False):
     global _renders_used
     ry = _ref_year(item)
     try:
@@ -194,6 +296,9 @@ def enrich_deadline(s, item, allow_render=True):
         page_text = soup.get_text(" ", strip=True)
         # 채용부문/직책/인원 표 등 본문 상세 (마감 유무와 무관하게 항상)
         _extract_body_details(soup, page_text, item, ry)
+        # 마감일은 이미 확정 — 본문 요약만 필요한 경우 여기서 종료 (첨부·OCR·렌더 생략)
+        if details_only:
+            return
         # 게시일이 없으면 상세의 등록일로 보충 (연령 정리·연도 보정에 사용)
         if not item.get("date"):
             m = re.search(r"등록일\s*:?\s*(20\d{2}-\d{2}-\d{2})", page_text)
@@ -325,9 +430,11 @@ def run(force_all=False):
                         it["deadlineNote"] = old["deadlineNote"]
                     if old.get("date") and not it.get("date"):
                         it["date"] = old["date"]
-                    # 본문 파싱 결과(직책·인원·오디션·계약) 승계 — 재파싱 방지
+                    # 본문 파싱 결과 승계 — 재파싱 방지
                     for f_ in ("recruitParts", "recruitSummary", "positions",
-                               "personnel", "auditionDate", "contract"):
+                               "personnel", "auditionDate", "contract",
+                               "qualification", "rehearsal", "concertDate",
+                               "pay", "program", "bodyExcerpt"):
                         if old.get(f_) and not it.get(f_):
                             it[f_] = old[f_]
                 if not it["deadline"]:
@@ -335,13 +442,15 @@ def run(force_all=False):
                     if tdl:
                         it["deadline"] = tdl
                         it["deadlineFrom"] = "title"
-            # 상세 파싱 대상: 마감 미확인 + (단원·객원인데 직책/인원 아직 없음)
+            # 상세 파싱 대상: (1) 마감 미확인 → 전체 보강, (2) 마감은 있으나
+            # 본문 요약(자격·인원·일정)이 없는 항목 → 본문만 가볍게 보강
             need = [i for i in kept if not i["deadline"]]
-            recruit_need = [i for i in kept
-                            if i.get("kind") in ("단원", "객원·대체")
-                            and not i.get("recruitParts") and i not in need]
-            for it in (need + recruit_need)[:MAX_DETAIL_PER_SOURCE]:
+            for it in need[:MAX_DETAIL_PER_SOURCE]:
                 enrich_deadline(s, it, allow_render=src["layer"] in ("B", "D"))
+            budget = MAX_DETAIL_PER_SOURCE - min(len(need), MAX_DETAIL_PER_SOURCE)
+            detail_need = [i for i in kept if i["deadline"] and not i.get("bodyExcerpt")]
+            for it in detail_need[:budget]:
+                enrich_deadline(s, it, allow_render=False, details_only=True)
             # 마감이 게시일보다 앞서면 공고문 연도 오타로 보고 +1년 보정
             for it in kept:
                 if it["deadline"] and it["date"] and it["deadline"] < it["date"]:

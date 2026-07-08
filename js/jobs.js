@@ -16,9 +16,9 @@ const OFFICIAL_ITEMS = ((window.CRAWLED && window.CRAWLED.items) || []).map(j =>
   insts: j.instDetails || [], group: j.inst,
   region: j.region, title: j.title, org: j.org,
   deadline: j.deadline, deadlineText: j.deadlineNote, date: j.date || j.firstSeen,
-  personnel: j.personnel, qualification: j.qualification, contract: j.contract,
+  personnel: j.personnel, qualification: j.qualification, contract: j.contract, pay: j.pay,
   auditionDate: j.auditionDate, rehearsal: j.rehearsal, concertDate: j.concertDate, program: j.program,
-  positions: j.positions, recruitSummary: j.recruitSummary,
+  positions: j.positions, recruitSummary: j.recruitSummary, bodyExcerpt: j.bodyExcerpt,
   url: j.url, officialUrl: j.officialUrl, isNew: j.isNew, source: j.source
 }));
 
@@ -267,7 +267,10 @@ function openOfficial(key) {
   try { if (target) host = new URL(target).hostname.replace(/^www\./, ""); } catch (e) {}
   $("#detail-meta").innerHTML = metaRows(j) +
     `<dt>수집 출처</dt><dd>${j.source}${j.officialUrl ? ` → 원문: <b>${host}</b>` : ""}</dd>`;
-  $("#detail-body").textContent = "그 밖의 상세 요강은 기관 공식 공고에서 확인하세요. 아래 버튼으로 이동합니다.";
+  // 본문 요약 발췌가 있으면 노출, 없으면 원문 참조 안내
+  $("#detail-body").textContent = j.bodyExcerpt
+    ? j.bodyExcerpt + "\n\n— 상세 요강은 원문에서 확인하세요."
+    : "그 밖의 상세 요강은 기관 공식 공고에서 확인하세요. 아래 버튼으로 이동합니다.";
   const act = $("#detail-action");
   if (target) {
     act.textContent = j.officialUrl ? "공식 공고 페이지 바로가기 ↗" : "공고 원문 바로가기 ↗";
