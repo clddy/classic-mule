@@ -11,7 +11,7 @@ from sources import SOURCES
 from institutions import INSTITUTIONS
 import attach
 
-BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # classic-mule/
+BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # podium/
 OUT = os.path.join(BASE, "data", "official.json")
 LOG = os.path.join(BASE, "data", "crawl.log")
 COVERAGE = os.path.join(BASE, "data", "coverage_report.json")

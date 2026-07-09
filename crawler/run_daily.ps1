@@ -1,6 +1,6 @@
 # Daily: crawl -> commit data -> push (updates live GitHub Pages site)
 $env:PYTHONIOENCODING = 'utf-8'
-Set-Location C:\ohai\classic-mule
+Set-Location C:\ohai\podium
 & python crawler\main.py
 & python crawler\export_sources_md.py
 git add data/

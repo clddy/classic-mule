@@ -1,6 +1,6 @@
 # JS 렌더링 필요 사이트 probe (Playwright)
 import re, sys
-sys.path.insert(0, r"C:\ohai\classic-mule\crawler")
+sys.path.insert(0, r"C:\ohai\podium\crawler")
 from jsfetch import render
 from bs4 import BeautifulSoup
 from urllib.parse import urljoin
