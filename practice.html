@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Song+Myung&family=Cormorant:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-  <link rel="stylesheet" href="css/style.css?v=6">
+  <link rel="stylesheet" href="css/style.css?v=7">
   <style>
     .room-photo {
       height:120px; border-radius:8px; margin-bottom:12px;
@@ -50,13 +50,13 @@
 <div class="page-head">
   <div class="container">
     <h1>연습실 매칭</h1>
-    <p class="desc">방음·채광·통풍·시설·남은 자리까지 — 계약 전에 알아야 할 것들을 전부 공개합니다. (목데이터 프로토타입)</p>
+    <p class="desc">방음·채광·통풍·시설·남은 자리까지 — 계약 전에 알아야 할 것들을 전부 공개합니다. <span style="color:var(--ink-soft)">(등록 예시 · 실데이터 준비 중)</span></p>
     <div class="tabs"><button class="tab active">연습실 찾기</button></div>
   </div>
 </div>
 
 <div class="container">
-  <div class="sample-banner">⚠ 이 페이지는 <b>샘플(예시) 데이터</b>입니다 — 화면 구성 확인용 프로토타입이며, 실제 서비스에서는 실제 등록 데이터로 대체됩니다.</div>
+  <div class="sample-banner">아직 등록된 연습실이 없어요. 아래 옅게 표시된 카드는 <b>등록 예시</b>입니다 — 실제 등록 시 이렇게 노출됩니다.</div>
 </div>
 
 <div class="container board-layout">
@@ -117,6 +117,8 @@
 <a class="feedback-fab" href="mailto:ohmjin3141@naver.com?subject=%ED%8F%AC%EB%94%94%EC%97%84%20%EC%97%B0%EC%8A%B5%EC%8B%A4%20%ED%94%BC%EB%93%9C%EB%B0%B1">피드백 보내기</a>
 
 <script>
+// 등록 예시 1건만 유지 — 처음 연습실을 등록하는 사람이 어떤 정보를 채우면 되는지 참고용.
+// sample:true → 카드가 옅게(예시) 표시됨. 실제 등록분이 생기면 이 예시는 내려감.
 const ROOMS = [
   { name:"서초 뮤직스페이스 3호실", region:"서초구", station:"교대역 도보 4분", floor:"지상 3층", photos:4,
     reviews:41, likes:230, instant:true, minHours:1, elev:true,
@@ -124,56 +126,7 @@ const ROOMS = [
     soundWall:true, windowLayer:"3중창", light:"남향 · 채광 좋음", vent:"전열교환 환기",
     humid:true, h24:false, ens:false,
     fac:["그랜드피아노","보면대","전신거울","에어컨","라커"], slots:2, brass:false,
-    note:"월 정기권 기준 자유 이용. 그랜드 야마하 C3. 항온항습기 상시 가동. 성악 가능, 금관·타악 불가." },
-  { name:"방배 클랑스튜디오 B룸", region:"서초구", station:"방배역 도보 6분", floor:"지하 1층", photos:3,
-    reviews:12, likes:85, instant:false, minHours:2, elev:false,
-    size:"3평(9.9㎡)", monthly:18, hourly:0.3, nego:false, modes:["시간제"],
-    soundWall:true, windowLayer:"2중창", light:"반지하 · 채광 보통", vent:"환풍기",
-    humid:false, h24:true, ens:false,
-    fac:["업라이트피아노","보면대","에어컨"], slots:1, brass:true,
-    note:"금관·타악 연습 가능한 몇 안 되는 방. 24시간 출입(지문인식)." },
-  { name:"강남 아르페지오 연습실", region:"강남구", station:"선릉역 도보 3분", floor:"지상 5층", photos:6,
-    reviews:67, likes:512, instant:true, minHours:1, elev:true,
-    size:"4평(13.2㎡)", monthly:30, hourly:0.5, nego:true, modes:["월 고정","시간제"],
-    soundWall:true, windowLayer:"3중창", light:"동향 · 오전 채광", vent:"중앙 환기 시스템",
-    humid:true, h24:false, ens:false,
-    fac:["그랜드피아노","보면대","거울","에어컨","정수기","대기실"], slots:3, brass:false,
-    note:"입시생 비중 높음. 가습·제습 자동 관리. 레슨 대여(선생님 동반) 시간당 요금 별도." },
-  { name:"신촌 무지카홀 연습동 2층", region:"마포구", station:"신촌역 도보 5분", floor:"지상 2층", photos:3,
-    reviews:23, likes:190, instant:true, minHours:2, elev:false,
-    size:"6평(19.8㎡)", monthly:22, hourly:0.35, nego:true, modes:["월 고정","시간제"],
-    soundWall:true, windowLayer:"2중창", light:"남서향 · 채광 좋음", vent:"창문 환기",
-    humid:false, h24:false, ens:true,
-    fac:["업라이트피아노","보면대","거울","에어컨"], slots:4, brass:false,
-    note:"실내악(콰르텟까지) 팀 연습 가능한 넓은 방. 주말 예약 경쟁 있음." },
-  { name:"일산 스테이지원 연습실", region:"고양시", station:"정발산역 버스 10분", floor:"지상 1층", photos:2,
-    reviews:8, likes:42, instant:false, minHours:1, elev:true,
-    size:"4평(13.2㎡)", monthly:15, hourly:0.25, nego:true, modes:["월 고정"],
-    soundWall:true, windowLayer:"2중창", light:"남향", vent:"환풍기",
-    humid:false, h24:false, ens:false,
-    fac:["업라이트피아노","보면대","에어컨","주차"], slots:5, brass:true,
-    note:"주차 무료. 금관 오후 10시까지 가능." },
-  { name:"분당 카덴차 스튜디오", region:"성남시", station:"판교역 도보 7분", floor:"지상 4층", photos:6,
-    reviews:55, likes:388, instant:false, minHours:1, elev:true,
-    size:"5평(16.5㎡)", monthly:28, hourly:0.45, nego:false, modes:["월 고정"],
-    soundWall:true, windowLayer:"3중창", light:"남향 · 채광 매우 좋음", vent:"전열교환 환기",
-    humid:true, h24:true, ens:false,
-    fac:["그랜드피아노","보면대","거울","에어컨","라커","대기실"], slots:0, brass:false,
-    note:"현재 만실 — 대기 등록 가능. 매월 초 자리 갱신. 항온항습 + 24시간." },
-  { name:"노원 비바체 연습실", region:"노원구", station:"노원역 도보 8분", floor:"지하 1층", photos:2,
-    reviews:5, likes:28, instant:true, minHours:1, elev:false,
-    size:"2.5평(8.3㎡)", monthly:12, hourly:0.2, nego:true, modes:["시간제"],
-    soundWall:false, windowLayer:"2중창", light:"북향 · 채광 약함", vent:"창문 환기",
-    humid:false, h24:false, ens:false,
-    fac:["업라이트피아노","보면대"], slots:6, brass:false,
-    note:"가성비형. 방음벽 미시공(석고+흡음재)이라 심야 이용 제한." },
-  { name:"수원 인터메조 음악연습장", region:"수원시", station:"수원시청역 도보 5분", floor:"지상 3층", photos:3,
-    reviews:19, likes:97, instant:true, minHours:2, elev:true,
-    size:"4평(13.2㎡)", monthly:16, hourly:0.28, nego:true, modes:["월 고정","시간제"],
-    soundWall:true, windowLayer:"2중창", light:"동향", vent:"환풍기",
-    humid:false, h24:false, ens:true,
-    fac:["업라이트피아노","보면대","거울","에어컨","주차"], slots:3, brass:true,
-    note:"타악(멀렛) 가능 방 1개 보유. 넓은 방은 듀오·트리오 합주 가능. 장기계약 시 협의." },
+    note:"월 정기권 기준 자유 이용. 그랜드 야마하 C3. 항온항습기 상시 가동. 성악 가능, 금관·타악 불가.", sample:true },
 ];
 
 // 서울은 구 단위, 경기는 시 단위
@@ -215,9 +168,10 @@ function render(){
   const list=ROOMS.filter(pass);
   $("#result-count").innerHTML=`총 <strong>${list.length}</strong>곳`;
   $("#room-list").innerHTML=list.length?list.map((r,i)=>`
-    <article class="job-card" data-i="${i}">
+    <article class="job-card${r.sample?" is-sample":""}" data-i="${i}">
       <div class="room-photo"><span class="photo-count">사진 ${r.photos}장</span></div>
       <div class="top-row">
+        ${r.sample?`<span class="tag sample">예시</span>`:""}
         <span class="tag ${r.instant?"ok":"cat"}">${r.instant?"⚡ 바로예약":"승인 후 예약"}</span>
         <span class="tag ${r.slots>0?"ok":"warn"}">${r.slots>0?`남은 자리 ${r.slots}`:"만실 (대기)"}</span>
         <span class="tag cat">${r.region}</span>

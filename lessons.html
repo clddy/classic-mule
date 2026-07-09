@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Song+Myung&family=Cormorant:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-  <link rel="stylesheet" href="css/style.css?v=6">
+  <link rel="stylesheet" href="css/style.css?v=7">
   <style>
     .cred { font-size:0.82rem; color:var(--ink-soft); margin-top:6px; line-height:1.55; }
     .cred b { color:var(--ink); }
@@ -38,7 +38,7 @@
 <div class="page-head">
   <div class="container">
     <h1>과외 매칭</h1>
-    <p class="desc">사사 라인, 입시 합격 실적, 시범레슨 여부까지 — 레슨 결정에 진짜 필요한 정보로 찾습니다. (목데이터 프로토타입)</p>
+    <p class="desc">사사 라인, 입시 합격 실적, 시범레슨 여부까지 — 레슨 결정에 진짜 필요한 정보로 찾습니다. <span style="color:var(--ink-soft)">(등록 예시 · 실데이터 준비 중)</span></p>
     <div class="tabs">
       <button class="tab active" id="tab-teacher">선생님 찾기</button>
       <button class="tab" id="tab-request">학생 레슨 요청</button>
@@ -47,7 +47,7 @@
 </div>
 
 <div class="container">
-  <div class="sample-banner">⚠ 이 페이지는 <b>샘플(예시) 데이터</b>입니다 — 화면 구성 확인용 프로토타입이며, 실제 서비스에서는 실제 등록 데이터로 대체됩니다.</div>
+  <div class="sample-banner">아직 등록된 선생님·요청이 없어요. 아래 옅게 표시된 카드는 <b>작성 예시</b>입니다 — 실제 등록 시 이렇게 노출됩니다.</div>
 </div>
 
 <div class="container board-layout">
@@ -158,53 +158,17 @@
 <script>
 // 리서치 반영: 사사·합격실적이 핵심 신뢰 정보, 성악은 반주자 비용 별도, 시범레슨 문화
 // 학력·입상 경력은 필수 표기, 사사는 표기하지 않음 (피드백 반영)
+// 등록 예시 각 1건만 유지 — 처음 등록하는 선생님/학생이 어떤 정보를 채우면 되는지 참고용.
+// sample:true → 카드가 옅게(예시) 표시됨. 실제 등록분이 생기면 예시는 내려감.
 const TEACHERS = [
   { inst:"현악", detail:"바이올린", name:"김○○", edu:"서울대 음대 졸 · 독일 뮌헨 국립음대 석사",
     rating:4.9, rcount:38, matches:61, years:12, fastReply:true, verified:true,
     prize:"이화경향 콩쿠르 입상", record:"예원 2명 · 서울예고 3명 · 음대 합격 7명",
     target:["입시","전공심화"], price:"회당 15만원(90분)", priceNum:15,
-    region:"서초·강남", mode:["스튜디오","출강"], trial:true, note:"입시 전문. 콩쿠르 지도 경력 10년." },
-  { inst:"현악", detail:"첼로", name:"박○○", edu:"한예종 졸",
-    rating:4.8, rcount:21, matches:34, years:6, fastReply:true, verified:true,
-    prize:"", record:"취미 성인 지도 5년",
-    target:["취미","입시"], price:"회당 7만원(60분)", priceNum:7,
-    region:"신촌·마포", mode:["스튜디오","온라인"], trial:true, note:"성인 취미 환영. 자세 교정 중심 커리큘럼." },
-  { inst:"건반", detail:"피아노", name:"이○○", edu:"연세대 음대 졸 · 미국 이스트만 석사",
-    rating:5.0, rcount:52, matches:89, years:15, fastReply:false, verified:true,
-    prize:"전국 콩쿠르 입상 다수", record:"음대 합격 12명",
-    target:["입시","전공심화"], price:"회당 12만원(60분)", priceNum:12,
-    region:"분당·판교", mode:["스튜디오"], trial:false, note:"입시 시즌(9~12월) 대기 있음. 신규는 5월 이전 문의 권장." },
-  { inst:"성악", detail:"소프라노", name:"최○○", edu:"서울대 음대 졸 · 이탈리아 밀라노 베르디 국립음악원",
-    rating:4.9, rcount:17, matches:25, years:9, fastReply:true, verified:true,
-    prize:"이탈리아 국제 콩쿠르 파이널리스트", record:"음대 합격 4명",
-    target:["입시","취미"], price:"회당 10만원(60분) + 반주자 별도 3만원", priceNum:10,
-    region:"강남·송파", mode:["스튜디오"], trial:true, note:"입시 반주자 상주 스튜디오. 딕션(이탈리아어·독일어) 지도 포함." },
-  { inst:"목관", detail:"플루트", name:"정○○", edu:"한양대 음대 졸",
-    rating:4.7, rcount:9, matches:14, years:4, fastReply:true, verified:false,
-    prize:"", record:"예고 합격 2명",
-    target:["취미","입시"], price:"회당 6만원(60분)", priceNum:6,
-    region:"노원·강북", mode:["출강","스튜디오"], trial:true, note:"학생 악기 상태 점검·구입 상담도 도와드립니다." },
-  { inst:"금관", detail:"호른", name:"강○○", edu:"서울대 음대 졸 · 군악대 전역",
-    rating:4.9, rcount:12, matches:19, years:7, fastReply:false, verified:true,
-    prize:"전국 관악 콩쿠르 입상", record:"음대 합격 3명",
-    target:["입시","전공심화"], price:"회당 8만원(60분)", priceNum:8,
-    region:"수원·용인", mode:["출강"], trial:true, note:"앙부슈어 교정 전문." },
-  { inst:"현악", detail:"비올라", name:"윤○○", edu:"독일 쾰른 국립음대 디플롬",
-    rating:5.0, rcount:11, matches:16, years:8, fastReply:true, verified:true,
-    prize:"독일 실내악 콩쿠르 입상", record:"유학 준비 지도 6명(독일 4·오스트리아 2)",
-    target:["전공심화","유학준비"], price:"회당 13만원(90분)", priceNum:13,
-    region:"서초", mode:["스튜디오","온라인"], trial:false, note:"독일 음대 입시(Aufnahmeprüfung) 레퍼토리·비자 상담 포함." },
-  { inst:"건반", detail:"피아노(반주)", name:"한○○", edu:"이화여대 음대 졸",
-    rating:4.8, rcount:26, matches:47, years:5, fastReply:true, verified:false,
-    prize:"", record:"입시 반주 경력 5년",
-    target:["취미"], price:"회당 5만원(60분)", priceNum:5,
-    region:"온라인", mode:["온라인"], trial:true, note:"성인 취미·유튜브 촬영용 코칭. 비대면 전문." },
+    region:"서초·강남", mode:["스튜디오","출강"], trial:true, note:"입시 전문. 콩쿠르 지도 경력 10년.", sample:true },
 ];
 const REQUESTS = [
-  { inst:"현악", detail:"바이올린", title:"예고 입시 준비 중3, 주 2회 레슨 선생님 찾습니다", region:"분당", budget:"회당 10~15만", mode:"스튜디오 방문 가능", note:"현재 스즈키 10권 수준. 11월 콩쿠르 목표." },
-  { inst:"성악", detail:"테너", title:"음대 편입 준비 성악 레슨 (반주자 포함 희망)", region:"서울 전역", budget:"회당 12만 이하", mode:"출강 희망", note:"직장인이라 평일 저녁·주말만 가능합니다." },
-  { inst:"목관", detail:"클라리넷", title:"성인 취미 클라리넷 기초부터", region:"일산", budget:"회당 5~6만", mode:"출강/스튜디오 무관", note:"악기 구입 전이라 상담부터 부탁드려요." },
-  { inst:"건반", detail:"피아노", title:"초5 콩쿠르 준비 레슨", region:"강남", budget:"회당 8~12만", mode:"스튜디오", note:"체르니 40 진행 중. 금호영재 목표." },
+  { inst:"현악", detail:"바이올린", title:"예고 입시 준비 중3, 주 2회 레슨 선생님 찾습니다", region:"분당", budget:"회당 10~15만", mode:"스튜디오 방문 가능", note:"현재 스즈키 10권 수준. 11월 콩쿠르 목표.", sample:true },
 ];
 
 // 악기는 세부 단위로 — 바이올린 선생님이 비올라를 가르칠 수는 없으니까
@@ -256,8 +220,9 @@ function render(){
     else if(st.sort==="matches")list.sort((a,b)=>b.matches-a.matches);
     $("#result-count").innerHTML=`선생님 <strong>${list.length}</strong>명 · ${{default:"최근 등록순",priceAsc:"가격 낮은순",priceDesc:"가격 높은순"}[st.sort]}`;
     html=list.map(t=>`
-      <article class="job-card">
+      <article class="job-card${t.sample?" is-sample":""}">
         <div class="top-row">
+          ${t.sample?`<span class="tag sample">예시</span>`:""}
           <span class="tag inst">${t.detail}</span>
           ${t.target.map(x=>`<span class="tag cat">${x}</span>`).join("")}
           ${t.trial?`<span class="tag ok">시범레슨</span>`:""}
@@ -279,8 +244,8 @@ function render(){
     });
     $("#result-count").innerHTML=`레슨 요청 <strong>${list.length}</strong>건`;
     html=list.map(r=>`
-      <article class="job-card">
-        <div class="top-row"><span class="tag inst">${r.detail}</span><span class="tag cat">학생 요청</span></div>
+      <article class="job-card${r.sample?" is-sample":""}">
+        <div class="top-row">${r.sample?`<span class="tag sample">예시</span>`:""}<span class="tag inst">${r.detail}</span><span class="tag cat">학생 요청</span></div>
         <h3>${r.title}</h3>
         <div class="meta"><span>${r.region}</span><span class="pay">${r.budget}</span><span>${r.mode}</span></div>
         <div class="source-line"><span>${r.note}</span></div>

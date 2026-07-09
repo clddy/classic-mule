@@ -5,7 +5,7 @@
 const JOBS = [
   {
     id: 1, type: "offer", cat: "객원/대타", tier: "프로", inst: "현악", instDetail: "바이올린",
-    title: "시립교향악단 정기연주회 바이올린 객원 2명 급구",
+    title: "시립교향악단 정기연주회 제2바이올린 객원 2명 모집",
     org: "○○시립교향악단", region: "서울", pay: "회당 15만원 (리허설 3회 포함)",
     when: "리허설 7/21~23, 공연 7/24(금)",
     personnel: "제2바이올린 2명", qualification: "음대 졸업 이상 또는 동등 경력",
