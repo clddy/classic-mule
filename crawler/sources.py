@@ -417,6 +417,30 @@ def parse_ulsan(s):
                                title, url, date=_row_date(a)))
     return items
 
+# ---------- 24. 포항문화재단(포항시립교향악단·합창단) — JS 렌더 + onclick moveDetail ----------
+def parse_phcf(s):
+    from jsfetch import render
+    html = render("https://www.phcf.or.kr/phcf/recruitment/view.do", wait_ms=3000)
+    items, seen = [], set()
+    for a in BeautifulSoup(html, "lxml").find_all("a", onclick=re.compile(r"moveDetail")):
+        m = re.search(r"moveDetail\((\d+)\)", a.get("onclick", ""))
+        raw = a.get_text(" ", strip=True)
+        if not m or not (8 <= len(raw) <= 120):
+            continue
+        # "<제목> <팀명> | <날짜>" 꼬리 제거
+        title = re.split(r"\s*\|\s*20\d\d", raw)[0]
+        title = re.sub(r"\s*[A-Za-z]?-?[가-힣A-Za-z·]{2,12}(팀|과|부|센터)\s*$", "", title).strip()
+        # '예술단체'·'지원사업 코디' 등 행정 오탐 방지 — 앙상블명사+채용동사 인접만
+        if not STRICT_ENSEMBLE_PAT.search(title):
+            continue
+        if m.group(1) in seen:
+            continue
+        seen.add(m.group(1))
+        url = f"https://www.phcf.or.kr/phcf/recruitment/detail.do?BRD_SEQ={m.group(1)}"
+        items.append(make_item("포항문화재단(시립교향악단·합창단)", "경북", "phcf.or.kr",
+                               title, url, date=None))
+    return items
+
 # ---------- 소스 레지스트리 ----------
 # layer: A 전국집계 / B 지역슈퍼노드 / C 도메인집계 / D 원천
 # poll:  daily / weekly(days=요일 0=월) / seasonal(months=[..], 시즌엔 daily)
@@ -453,6 +477,7 @@ SOURCES = [
     S("natchorus", "국립합창단",             parse_natchorus, "nationalchorus.or.kr", "D", "weekly", (0, 3)),
     S("jeonju",    "전주시(시립예술단)",     parse_jeonju,   "jeonju.go.kr",      "D", "weekly", (2,)),
     S("sac",       "예술의전당",             parse_sac,      "sac.or.kr",         "D", "weekly", (2,)),
+    S("phcf",      "포항문화재단(시립교향악단)", parse_phcf,   "phcf.or.kr",        "D", "weekly", (1, 4)),
 ]
 
 # ---------- 자동 발견 소스 (discovery.py 산출물) ----------
@@ -461,7 +486,16 @@ _GENERIC_PAT = re.compile(r"모집|채용|공고|초빙|오디션|강사")
 MUSIC_PAT = re.compile(
     CLASSIC_PAT.pattern + r"|찬양대|성가대|음악|연주|악단|악장|수석|예술강사")
 
+# city-wide 통합게시판용 엄격 필터 — 광범위한 MUSIC_PAT(음악/수석/연주) 오포착 방지.
+# 앙상블 명사 + 채용 동사 인접 or (상임/객원)단원 표기만 통과.
+STRICT_ENSEMBLE_PAT = re.compile(
+    r"(교향악단|합창단|예술단|연주단|오케스트라|국악관현악단|관현악단|필하모닉|무용단|오페라단)"
+    r".{0,10}(단원|모집|채용|오디션|위촉|충원|초빙|상근)"
+    r"|(상임|비상임|객원|시간제)\s*단원")
+
 def _make_generic_parser(entry):
+    music_pat = (re.compile(entry["title_pat"]) if entry.get("title_pat")
+                 else STRICT_ENSEMBLE_PAT if entry.get("strict") else MUSIC_PAT)
     def parse(s):
         if entry.get("needs_js"):
             from jsfetch import render
@@ -474,7 +508,7 @@ def _make_generic_parser(entry):
             t = a.get_text(" ", strip=True)
             if not (10 <= len(t) <= 90) or t in seen or not _GENERIC_PAT.search(t):
                 continue
-            if not MUSIC_PAT.search(t):
+            if not music_pat.search(t):
                 continue
             if a["href"].startswith(("javascript", "#", "mailto")):
                 continue

@@ -404,5 +404,40 @@
    }
   ],
   "music_only": true
+ },
+ {
+  "id": "gcart",
+  "name": "과천시립예술단(과천문화재단)",
+  "region": "경기",
+  "board_url": "https://www.gcart.or.kr/kr/commu/recruitList.do",
+  "board_label": "채용공고",
+  "needs_js": false
+ },
+ {
+  "id": "mokpo",
+  "name": "목포시립교향악단·예술단(목포시)",
+  "region": "전남",
+  "board_url": "https://www.mokpo.go.kr/www/mokpo_news/notification/incruit",
+  "board_label": "채용공고",
+  "needs_js": false,
+  "strict": true
+ },
+ {
+  "id": "yeosu",
+  "name": "여수시립예술단(여수시)",
+  "region": "전남",
+  "board_url": "https://www.yeosu.go.kr/www/govt/news/recruit",
+  "board_label": "시험·채용공고",
+  "needs_js": false,
+  "strict": true
+ },
+ {
+  "id": "wonju",
+  "name": "원주시립교향악단·합창단(원주시)",
+  "region": "강원",
+  "board_url": "https://www.wonju.go.kr/www/selectBbsNttList.do?bbsNo=1129&key=5387",
+  "board_label": "시험계획공고",
+  "needs_js": true,
+  "strict": true
  }
 ]
