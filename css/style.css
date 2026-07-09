@@ -464,6 +464,9 @@ details[open] > .filter-summary::after { content: " −"; }
 .tag.src-community { background: transparent; color: var(--ink); border: 1px solid var(--ink); }
 /* 예시(목데이터) — 노란 경고색으로 실데이터와 확실히 구분 */
 .tag.sample { background: #f6e58d; color: #6b5900; font-weight: 700; }
+/* 예시 게시글 카드 — 많이 옅게(반투명) + 점선 테두리로 '작성 예시'임을 명확히 */
+.job-card.is-sample { opacity: 0.4; border-style: dashed; background: transparent; }
+.job-card.is-sample:hover { opacity: 0.65; }
 /* 샘플 데이터 안내 배너 (연습실·과외·중고거래 등 목데이터 페이지) */
 .sample-banner { background: #fff6d6; border: 1px solid #e6cf6a; color: #6b5900;
   border-radius: 8px; padding: 10px 16px; margin: 14px 0; font-size: 0.86rem; line-height: 1.5; }

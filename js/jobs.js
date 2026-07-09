@@ -34,7 +34,8 @@ let COMMUNITY_ITEMS = JOBS.map(j => ({
   auditionDate: j.auditionDate, rehearsal: j.rehearsal, concertDate: j.concertDate,
   positions: j.positions, recruitSummary: j.recruitSummary,
   deadline: /^\d{4}/.test(j.deadline) ? j.deadline : null, deadlineText: j.deadline,
-  date: j.date, body: j.body, urgent: j.urgent, cid: j.id
+  date: j.date, body: j.body, urgent: j.urgent, cid: j.id,
+  sample: true   // data.js는 '예시' 게시글만 담음 — 카드 옅게 + '예시' 배지
 }));
 
 // ---------- 필터 정의 ----------
@@ -137,6 +138,7 @@ const sortFns = {
 function cardHTML(j) {
   const st = statusOf(j);
   const tags = `
+    ${j.sample ? `<span class="tag sample">예시</span>` : ""}
     <span class="tag ${TIER_CLS[j.tier] || "cat"}">${j.tier}</span>
     ${j.type === "구직" ? `<span class="tag type-seek">구직</span>` : ""}
     <span class="tag cat">${j.band}</span>
@@ -165,7 +167,7 @@ function cardHTML(j) {
     </article>`;
   }
   return `
-    <article class="job-card${st.key === "마감" ? " closed" : ""}" data-cid="${j.cid}">
+    <article class="job-card${st.key === "마감" ? " closed" : ""}${j.sample ? " is-sample" : ""}" data-cid="${j.cid}">
       <div class="top-row">${tags}</div>
       <h3>${j.title}</h3>
       ${program}
@@ -294,6 +296,7 @@ function openDetail(cid) {
   const j = COMMUNITY_ITEMS.find(x => x.cid === cid);
   if (!j) return;
   $("#detail-tags").innerHTML = `
+    ${j.sample ? `<span class="tag sample">예시</span>` : ""}
     <span class="tag ${TIER_CLS[j.tier] || "cat"}">${j.tier}</span>
     <span class="tag ${j.type === "구인" ? "type-offer" : "type-seek"}">${j.type}</span>
     <span class="tag cat">${j.band}</span>
