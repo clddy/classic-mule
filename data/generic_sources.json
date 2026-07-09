@@ -439,5 +439,14 @@
   "board_label": "시험계획공고",
   "needs_js": true,
   "strict": true
+ },
+ {
+  "id": "gumi",
+  "name": "구미시립예술단(구미시)",
+  "region": "경북",
+  "board_url": "https://www.gumi.go.kr/job/saeol/gosi/list.do?seCode=98&mid=0101010000",
+  "board_label": "채용·일자리(새올)",
+  "needs_js": true,
+  "strict": true
  }
 ]

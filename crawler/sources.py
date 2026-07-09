@@ -510,12 +510,16 @@ def _make_generic_parser(entry):
                 continue
             if not music_pat.search(t):
                 continue
-            if a["href"].startswith(("javascript", "#", "mailto")):
-                continue
+            href = a["href"]
+            if href.startswith(("javascript", "#", "mailto")):
+                # 새올(표준 지자체 게시판) 등: 실제 permalink가 data-action에 있음
+                href = a.get("data-action") or ""
+                if not href or href.startswith(("javascript", "#", "mailto")):
+                    continue
             seen.add(t)
             items.append(make_item(entry["name"], entry["region"],
                                    urlparse(entry["board_url"]).netloc.removeprefix("www."),
-                                   t, urljoin(entry["board_url"], a["href"]), date=_row_date(a)))
+                                   t, urljoin(entry["board_url"], href), date=_row_date(a)))
         return items
     return parse
 

@@ -16,19 +16,22 @@
 | 여수시립예술단 | `g_yeosu` | yeosu.go.kr `/…/news/recruit` | 정적, **strict** (going_recruit?idx=) |
 | 원주시립교향악단·합창단 | `g_wonju` | wonju.go.kr `selectBbsNttList.do?bbsNo=1129` | **needs_js**, strict (시 임기제 채용판) |
 | 포항문화재단(시립교향악단·합창단) | `phcf` (커스텀) | phcf.or.kr `/phcf/recruitment/view.do` | **needs_js + onclick** `moveDetail(N)`→`detail.do?BRD_SEQ=N`, strict |
+| 구미시립예술단 | `g_gumi` | gumi.go.kr `/job/saeol/gosi/list.do?seCode=98` | **needs_js + 새올 data-action**, strict — ✅ **실공고 "구미시립무용단 객원무용수 모집" 캡처** |
 
-- 파서 개선: sources.py `STRICT_ENSEMBLE_PAT`(앙상블명사+채용동사 인접 / (상임·객원)단원만) + 엔트리 `"strict":true`(또는 커스텀 `"title_pat"`).
-  city-wide·재단 통합판의 "수석전문관 채용"·"예술단**체** 지원사업 코디네이터" 등 행정 오탐 차단. `_make_generic_parser`가 `needs_js`면 jsfetch 렌더 사용.
+- 파서 개선:
+  1. sources.py `STRICT_ENSEMBLE_PAT`(앙상블명사+채용동사 인접 / (상임·객원)단원만) + 엔트리 `"strict":true`(또는 커스텀 `"title_pat"`).
+     city-wide·재단 통합판의 "수석전문관 채용"·"예술단**체** 지원사업 코디네이터" 등 행정 오탐 차단.
+  2. `_make_generic_parser`가 `needs_js`면 jsfetch 렌더 사용.
+  3. **새올(표준 지자체 게시판) 범용 지원**: href가 `#`/javascript면 앵커의 `data-action`(예: `/…/saeol/gosi/view.do?notAncmtMgtNo=N`)을 permalink로 사용. `req.post` 흉내 불필요 — 새올 쓰는 모든 지자체에 `needs_js:true`만으로 부착 가능. 탐색툴 `crawler/probe_saeol.py`.
 
 **✅ 이미 커버됨 (별도 부착 불필요)**
 - **충남교향악단(천안)** → 기존 `cfac`(천안문화재단) generic이 겸함
 - **마산시립교향악단** → 기존 `cwcf`(창원문화재단)가 겸함 (마산=창원 통합)
 
 **⛔ 부착 보류 — 기술적 차단 (다음 세션 과제, 우회법 명시)**
-- **구미시립예술단** — gumi.go.kr `/job/saeol/gosi/list.do?seCode=98` 이 **올바른 판**(렌더 시 "구미시립무용단 객원무용수 모집" 확인). 그러나 새올 게시판이 **POST 폼 방식**(`req.post(this)`)이라 GET permalink 구성 불가. → **새올 POST 리플레이 파서** 필요(여러 지자체 공용이라 범용화 가치 큼)
 - **진주시립교향악단** — 채용공고판(`06660.web`)은 렌더해도 글행 없음. 진주는 채용을 **경남 워크넷**(gyeongnam.work.go.kr/jinju/regionBoard)으로 라우팅. → 경남워크넷 파서로 접근해야 함(진주·창원 등 경남권 공용 가능)
-- **김천시** — gimcheon.go.kr HTTPS `SSLError` + Playwright도 `ERR_CONNECTION_CLOSED`(헤드리스 차단). → 실브라우저 세션(claude-in-chrome) 또는 http 우회 필요
-- **익산·청주·강릉** — 홈 JS 렌더해도 게시판 링크 0(메뉴가 이미지/스크립트). → 게시판 목록 URL 수동 확보(사이트 방문/claude-in-chrome) 후 needs_js generic 등록
+- **김천시** — gimcheon.go.kr HTTPS `SSLError` + Playwright도 `ERR_CONNECTION_CLOSED`(헤드리스 차단). → 실브라우저 세션(claude-in-chrome) 필요. 새올 여부도 미확인
+- **익산·청주·강릉** — 홈 JS 렌더해도 게시판 링크·새올 경로 0(메뉴가 이미지/스크립트, 홈에 saeol 경로 미노출). → 게시판 목록 URL 수동 확보(claude-in-chrome 사이트 방문) 후, 새올이면 `needs_js:true`만으로, 아니면 board_url로 generic 등록. `probe_saeol.py`로 재확인 가능
 
 ---
 
