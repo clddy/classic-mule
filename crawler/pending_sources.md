@@ -28,10 +28,16 @@
 - **충남교향악단(천안)** → 기존 `cfac`(천안문화재단) generic이 겸함
 - **마산시립교향악단** → 기존 `cwcf`(창원문화재단)가 겸함 (마산=창원 통합)
 
-**⛔ 부착 보류 — 기술적 차단 (다음 세션 과제, 우회법 명시)**
-- **진주시립교향악단** — 채용공고판(`06660.web`)은 렌더해도 글행 없음. 진주는 채용을 **경남 워크넷**(gyeongnam.work.go.kr/jinju/regionBoard)으로 라우팅. → 경남워크넷 파서로 접근해야 함(진주·창원 등 경남권 공용 가능)
-- **김천시** — gimcheon.go.kr HTTPS `SSLError` + Playwright도 `ERR_CONNECTION_CLOSED`(헤드리스 차단). → 실브라우저 세션(claude-in-chrome) 필요. 새올 여부도 미확인
-- **익산·청주·강릉** — 홈 JS 렌더해도 게시판 링크·새올 경로 0(메뉴가 이미지/스크립트, 홈에 saeol 경로 미노출). → 게시판 목록 URL 수동 확보(claude-in-chrome 사이트 방문) 후, 새올이면 `needs_js:true`만으로, 아니면 board_url로 generic 등록. `probe_saeol.py`로 재확인 가능
+**⛔ 부착 보류 — 헤드리스 불가 (연결된 Chrome 필요) + aggregator가 이미 겸함**
+> 2026-07-09 추가조사 결론: 아래 5곳의 계절성 단원 오디션(대개 지방공무원/공무직 채용)은
+> **아트인포·아트모아 aggregator가 이미 수집**한다(검증: 검색 시 artinfokorea.com/jobs/336=충북도립교향악단,
+> /jobs/131=충청북도립 노출). 자체 게시판 직접부착은 marginal — 급하지 않음.
+> 직접부착하려면 게시판이 JS/POST/차단이라 **연결된 Chrome(claude-in-chrome)** 로 목록 URL 확보 필요.
+> (이 세션엔 연결된 브라우저 없어 진행 불가 — `list_connected_browsers`=[])
+- **진주시립교향악단** — `06660.web` 글행 없음, 채용은 **경남워크넷**(gyeongnam.work.go.kr/jinju/regionBoard/…/retrieveBoardContList.do)로 라우팅. 그러나 워크넷 목록도 렌더 시 0건(메뉴/보드 파라미터 기반 AJAX 그리드) → 대화형 내비 필요
+- **김천시** — gimcheon.go.kr HTTPS `SSLError` + Playwright `ERR_CONNECTION_CLOSED`(헤드리스 차단)
+- **익산·청주·강릉** — 홈 JS 렌더해도 게시판 링크·새올 경로 0(이미지 메가메뉴). 청주시향은 청주시청+청주예술의전당(cheongju.go.kr/ac, JS)에 게시
+→ **다음 세션 진행법**: Chrome에 Claude 확장 연결 후 각 시 채용/오디션 게시판 방문 → 목록 URL 확보 → 새올이면 `needs_js:true`만으로, 아니면 board_url로 generic 등록. `probe_saeol.py`로 새올 여부 재확인
 
 ---
 
