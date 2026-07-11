@@ -18,13 +18,14 @@ const CAT2BAND = {
   "객원/대타": "객원·대체", "단원모집": "단원", "반주": "반주",
   "행사연주": "행사연주", "강사/레슨": "강사·레슨", "지휘/음악감독": "지휘"
 };
-const KIND2BAND = { "단원": "단원", "객원·대체": "객원·대체", "반주": "반주", "강사": "강사·레슨", "직원": "직원·스태프", "기타": "기타" };
+const KIND2BAND = { "단원": "단원", "객원·대체": "객원·대체", "반주": "반주", "강사": "강사·레슨", "교수": "교수", "직원": "직원·스태프", "기타": "기타" };
 
 const OFFICIAL_ITEMS = ((window.CRAWLED && window.CRAWLED.items) || []).map(j => ({
   key: "o" + j.id, src: "공식", type: "구인",
   tier: j.tier || "프로",
   band: KIND2BAND[j.kind] || "기타",
   insts: j.instDetails || [], group: j.inst,
+  subject: j.subject,   // 대학 교수 초빙: 전공/과목
   region: j.region, title: j.title, org: j.org,
   deadline: j.deadline, deadlineText: j.deadlineNote, date: j.date || j.firstSeen,
   personnel: j.personnel, qualification: j.qualification, contract: j.contract, pay: j.pay,
@@ -54,7 +55,7 @@ let COMMUNITY_ITEMS = JOBS.map(j => ({
 // 구분: 프로(국공립·직업) / 전공·입시(유스·입시레슨) / 교육·취미(방과후·취미레슨) / 오브리(교회·웨딩·행사)
 const TIERS = ["프로", "전공·입시", "교육·취미", "오브리"];
 const TIER_CLS = { "프로": "src-official", "전공·입시": "pos", "교육·취미": "dd-open", "오브리": "inst" };
-const BANDS = ["단원", "객원·대체", "반주", "행사연주", "강사·레슨", "지휘", "직원·스태프", "기타"];
+const BANDS = ["단원", "객원·대체", "반주", "행사연주", "강사·레슨", "지휘", "교수", "직원·스태프", "기타"];
 const INST_GROUPS = [
   ["현악", ["바이올린", "비올라", "첼로", "더블베이스"]],
   ["목관", ["플루트", "오보에", "클라리넷", "바순"]],
@@ -154,6 +155,7 @@ function cardHTML(j) {
     <span class="tag ${TIER_CLS[j.tier] || "cat"}">${j.tier}</span>
     ${j.type === "구직" ? `<span class="tag type-seek">구직</span>` : ""}
     <span class="tag cat">${j.band}</span>
+    ${j.subject && !j.insts.includes(j.subject) ? `<span class="tag inst">${j.subject}</span>` : ""}
     ${j.insts.map(i => `<span class="tag inst">${i}</span>`).join("")}
     ${(j.positions || []).filter(p => /수석|악장|차석/.test(p)).map(p => `<span class="tag pos">${p}</span>`).join("")}
     <span class="tag ${st.cls}">${st.label}</span>
@@ -251,6 +253,7 @@ function metaRows(j) {
   const insts = (j.insts || []).join("·");
   const senior = (j.positions || []).filter(p => /수석|악장|차석/.test(p)).join("·");
   if (j.band && j.band !== "기타") rows.push(["형태", j.band]);
+  if (j.subject) rows.push(["전공", cleanVal(j.subject)]);   // 대학 교수: 어떤 과목/전공인지
   if (j.recruitSummary) rows.push(["모집", cleanVal(j.recruitSummary)]);
   else if (j.personnel) rows.push(["모집", cleanVal((insts ? insts + " " : "") + j.personnel)]);
   else if (insts) rows.push(["모집", insts + (senior ? " " + senior : "")]);
@@ -291,6 +294,7 @@ function openOfficial(key) {
   $("#detail-tags").innerHTML = `
     <span class="tag ${TIER_CLS[j.tier] || "cat"}">${j.tier}</span>
     <span class="tag cat">${j.band}</span>
+    ${j.subject && !j.insts.includes(j.subject) ? `<span class="tag inst">${j.subject}</span>` : ""}
     ${j.insts.map(i => `<span class="tag inst">${i}</span>`).join("")}
     ${(j.positions || []).filter(p => /수석|악장|차석/.test(p)).map(p => `<span class="tag pos">${p}</span>`).join("")}
     <span class="tag ${st.cls}">${st.label}</span>

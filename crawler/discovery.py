@@ -1,11 +1,18 @@
 # 명부 파이프 (§5): 후보 기관 → 채용 게시판 자동 발견 → 검증 → 자동 등록/확인 큐
 # 실행: python discovery.py  → data/generic_sources.json(자동 등록) + data/source_queue.json(확인 대기)
-import json, os, re, sys, time
+# 후보는 (1) 아래 CANDIDATES 하드코딩 + (2) institutions.csv 실재검증 명부(홈페이지 보유·확정)에서 자동 로드
+import json, os, re, sys, time, csv
 import requests
 from bs4 import BeautifulSoup
-from urllib.parse import urljoin
+from urllib.parse import urljoin, urlparse
 import urllib3
 urllib3.disable_warnings()
+
+# Windows 콘솔/리다이렉트(cp949)에서 ✔/✘ 등 유니코드 출력이 죽지 않도록 stdout 강제 utf-8
+try:
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+except Exception:
+    pass
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import UA
@@ -32,6 +39,12 @@ CANDIDATES = [
     ("bscf",     "부산문화재단",        "부산", "https://www.bscf.or.kr"),
     ("gjcf",     "광주문화재단",        "기타", "https://www.gjcf.or.kr"),
     ("sjcf",     "세종시문화재단",      "기타", "https://www.sjcf.or.kr"),
+    # 시립예술단 (시청 채용/고시 게시판 — 교향악단·합창단 병설)
+    ("gcart",    "고양문화재단(고양시립합창단)", "경기", "https://www.gcart.or.kr"),
+    ("mokpo",    "목포시립예술단(교향악단·합창단)", "전남", "https://www.mokpo.go.kr"),
+    ("yeosu",    "여수시립예술단",      "전남", "https://www.yeosu.go.kr"),
+    ("wonju",    "원주시립교향악단·합창단", "강원", "https://www.wonju.go.kr"),
+    ("gumi",     "구미시립예술단",      "경북", "https://www.gumi.go.kr"),
     # 국립·공연 단체 (피트/전속 수요)
     ("dgopera",  "대구오페라하우스",    "대구", "https://www.daeguoperahouse.org"),
     ("knb",      "국립발레단",          "서울", "https://www.korean-national-ballet.kr"),
@@ -49,6 +62,41 @@ CANDIDATES = [
     ("sarang",   "사랑의교회",          "서울", "https://www.sarang.org"),
     ("fgtv",     "여의도순복음교회",    "서울", "https://www.fgtv.com"),
 ]
+
+# ---------- institutions.csv 명부 → 후보 자동 로드 ----------
+def _dom(url):
+    return urlparse(url).netloc.removeprefix("www.")
+
+def load_from_institutions():
+    """실재검증 명부(institutions.csv)에서 홈페이지 보유·확정 기관을 후보로 로드.
+    이미 손파서/하드코딩 후보로 커버된 도메인은 제외."""
+    path = os.path.join(BASE, "crawler", "institutions.csv")
+    if not os.path.exists(path):
+        return []
+    try:
+        from sources import SOURCES
+        covered = {s["domain"].removeprefix("www.") for s in SOURCES}
+    except Exception:
+        covered = set()
+    covered |= {_dom(h) for *_, h in CANDIDATES}
+    out, seen = [], set()
+    with open(path, encoding="utf-8") as f:
+        for row in csv.reader(f):
+            if not row or row[0].lstrip().startswith("#") or row[0] == "기관명" or len(row) < 8:
+                continue
+            name, region, home, real = row[0], row[3], row[4].strip(), row[7].strip()
+            home = home.split("(")[0].strip()
+            if not home.startswith("http") or real != "확정":
+                continue
+            dom = _dom(home)
+            if not dom or dom in covered or dom in seen:
+                continue
+            seen.add(dom)
+            sid = "i_" + re.sub(r"[^a-z0-9]", "", dom.replace(".", ""))[:16]
+            out.append((sid, name, region or "기타", home))
+    return out
+
+CANDIDATES = CANDIDATES + load_from_institutions()
 
 NAV_PAT = re.compile(r"채용|인재|구인|모집공고|공지사항|공고|알림")
 ITEM_PAT = re.compile(r"모집|채용|공고|초빙|오디션|강사")
@@ -129,6 +177,11 @@ def run():
                 bhtml = fetch(s, board_url, use_js=True)
                 bjs = True
             items = extract_items(bhtml, board_url) if bhtml else []
+            if not items and not bjs:  # 정적 0건 → JS 렌더 재시도 (saeol·재단 게시판 다수 JS)
+                bhtml2 = fetch(s, board_url, use_js=True)
+                items2 = extract_items(bhtml2, board_url) if bhtml2 else []
+                if items2:
+                    items, bjs = items2, True
             print(f"    [{label}] {board_url[:70]} → {len(items)}건")
             if items and (best is None or len(items) > len(best["sample"])):
                 best = {"id": sid, "name": name, "region": region,
@@ -150,8 +203,23 @@ def run():
             print("    ✘ 미발견")
         time.sleep(0.8)
 
-    with open(os.path.join(BASE, "data", "generic_sources.json"), "w", encoding="utf-8") as f:
-        json.dump(registered, f, ensure_ascii=False, indent=1)
+    # 머지: 이번 실행에서 테스트하지 않은 기존 등록 소스는 보존(통째 덮어쓰기로 인한 회귀 방지).
+    # 테스트한 후보는 이번 결과(registered)로 갱신 — 검증 실패 시 자연 드랍.
+    gs_path = os.path.join(BASE, "data", "generic_sources.json")
+    tested_ids = {sid for sid, *_ in CANDIDATES}
+    prev_registered = []
+    if os.path.exists(gs_path):
+        try:
+            with open(gs_path, encoding="utf-8") as f:
+                prev_registered = json.load(f)
+        except Exception:
+            pass
+    preserved = [e for e in prev_registered if e.get("id") not in tested_ids]
+    merged = preserved + registered
+    with open(gs_path, "w", encoding="utf-8") as f:
+        json.dump(merged, f, ensure_ascii=False, indent=1)
+    if preserved:
+        print(f"(미테스트 기존 소스 {len(preserved)}개 보존)")
     with open(os.path.join(BASE, "data", "source_queue.json"), "w", encoding="utf-8") as f:
         json.dump({"queue": queue, "failed": failed}, f, ensure_ascii=False, indent=1)
     print(f"\n자동 등록 {len(registered)} / 확인 큐 {len(queue)} / 실패 {len(failed)}")

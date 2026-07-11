@@ -1,7 +1,7 @@
 {
- "collectedAt": "2026-07-11 16:41",
- "sourceCount": 43,
- "okCount": 43,
+ "collectedAt": "2026-07-11 17:41",
+ "sourceCount": 62,
+ "okCount": 61,
  "instTotal": 75,
  "sources": [
   {
@@ -108,9 +108,8 @@
    "name": "창원문화재단",
    "layer": "B",
    "poll": "weekly",
-   "ok": true,
-   "raw": 28,
-   "kept": 1
+   "ok": false,
+   "error": "ReadTimeout: HTTPSConnectionPool(host='www.cwcf.or.kr', port=443): Read timed out. (read timeout=20)"
   },
   {
    "id": "ulsan",
@@ -338,8 +337,170 @@
    "kept": 0
   },
   {
+   "id": "g_i_musicsnuackr",
+   "name": "서울대학교",
+   "layer": "B",
+   "poll": "weekly",
+   "ok": true,
+   "raw": 2,
+   "kept": 0
+  },
+  {
+   "id": "g_i_musicyonseiackr",
+   "name": "연세대학교",
+   "layer": "B",
+   "poll": "weekly",
+   "ok": true,
+   "raw": 3,
+   "kept": 0
+  },
+  {
+   "id": "g_i_kartsackr",
+   "name": "한국예술종합학교",
+   "layer": "B",
+   "poll": "weekly",
+   "ok": true,
+   "raw": 0,
+   "kept": 0
+  },
+  {
+   "id": "g_i_artjeonjugokr",
+   "name": "전주시립교향악단",
+   "layer": "B",
+   "poll": "weekly",
+   "ok": true,
+   "raw": 5,
+   "kept": 0
+  },
+  {
+   "id": "g_i_gunsangokr",
+   "name": "군산시립교향악단",
+   "layer": "B",
+   "poll": "weekly",
+   "ok": true,
+   "raw": 7,
+   "kept": 0
+  },
+  {
+   "id": "g_i_gbgokr",
+   "name": "경상북도도립교향악단",
+   "layer": "B",
+   "poll": "weekly",
+   "ok": true,
+   "raw": 0,
+   "kept": 0
+  },
+  {
+   "id": "g_i_ansanartscom",
+   "name": "안산시립합창단",
+   "layer": "B",
+   "poll": "weekly",
+   "ok": true,
+   "raw": 8,
+   "kept": 0
+  },
+  {
+   "id": "g_i_gurigokr",
+   "name": "구리시립합창단",
+   "layer": "B",
+   "poll": "weekly",
+   "ok": true,
+   "raw": 2,
+   "kept": 1
+  },
+  {
+   "id": "g_i_suncheongokr",
+   "name": "순천시립합창단",
+   "layer": "B",
+   "poll": "weekly",
+   "ok": true,
+   "raw": 2,
+   "kept": 1
+  },
+  {
+   "id": "g_i_andonggokr",
+   "name": "안동시립합창단",
+   "layer": "B",
+   "poll": "weekly",
+   "ok": true,
+   "raw": 4,
+   "kept": 0
+  },
+  {
+   "id": "g_i_ggcforkr",
+   "name": "경기문화재단",
+   "layer": "B",
+   "poll": "weekly",
+   "ok": true,
+   "raw": 0,
+   "kept": 0
+  },
+  {
+   "id": "g_i_hcforkr",
+   "name": "화성시문화관광재단",
+   "layer": "B",
+   "poll": "weekly",
+   "ok": true,
+   "raw": 0,
+   "kept": 0
+  },
+  {
+   "id": "g_i_gokamsorkr",
+   "name": "예술경영지원센터",
+   "layer": "B",
+   "poll": "weekly",
+   "ok": true,
+   "raw": 0,
+   "kept": 0
+  },
+  {
+   "id": "g_i_millenniumsympho",
+   "name": "밀레니엄심포니오케스트라",
+   "layer": "B",
+   "poll": "weekly",
+   "ok": true,
+   "raw": 3,
+   "kept": 0
+  },
+  {
+   "id": "g_i_balletorkr",
+   "name": "서울발레시어터",
+   "layer": "B",
+   "poll": "weekly",
+   "ok": true,
+   "raw": 1,
+   "kept": 0
+  },
+  {
+   "id": "g_i_dctforkr",
+   "name": "동해문화관광재단",
+   "layer": "B",
+   "poll": "weekly",
+   "ok": true,
+   "raw": 0,
+   "kept": 0
+  },
+  {
+   "id": "g_i_cfscorkr",
+   "name": "순천문화재단",
+   "layer": "B",
+   "poll": "weekly",
+   "ok": true,
+   "raw": 0,
+   "kept": 0
+  },
+  {
+   "id": "g_i_tyhansancforkr",
+   "name": "통영문화재단",
+   "layer": "B",
+   "poll": "weekly",
+   "ok": true,
+   "raw": 0,
+   "kept": 0
+  },
+  {
    "id": "g_gcart",
-   "name": "과천시립예술단(과천문화재단)",
+   "name": "고양문화재단(고양시립합창단)",
    "layer": "B",
    "poll": "weekly",
    "ok": true,
@@ -348,7 +509,7 @@
   },
   {
    "id": "g_mokpo",
-   "name": "목포시립교향악단·예술단(목포시)",
+   "name": "목포시립예술단(교향악단·합창단)",
    "layer": "B",
    "poll": "weekly",
    "ok": true,
@@ -357,7 +518,7 @@
   },
   {
    "id": "g_yeosu",
-   "name": "여수시립예술단(여수시)",
+   "name": "여수시립예술단",
    "layer": "B",
    "poll": "weekly",
    "ok": true,
@@ -366,7 +527,7 @@
   },
   {
    "id": "g_wonju",
-   "name": "원주시립교향악단·합창단(원주시)",
+   "name": "원주시립교향악단·합창단",
    "layer": "B",
    "poll": "weekly",
    "ok": true,
@@ -374,12 +535,21 @@
    "kept": 0
   },
   {
-   "id": "g_gumi",
-   "name": "구미시립예술단(구미시)",
+   "id": "g_i_dcaforkr",
+   "name": "대전문화재단",
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 1,
+   "raw": 0,
+   "kept": 0
+  },
+  {
+   "id": "g_i_cjcultureorg",
+   "name": "청주시문화산업진흥재단",
+   "layer": "B",
+   "poll": "weekly",
+   "ok": true,
+   "raw": 0,
    "kept": 0
   },
   {
@@ -388,8 +558,8 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 25,
-   "kept": 24
+   "raw": 0,
+   "kept": 23
   }
  ],
  "items": [
@@ -425,7 +595,7 @@
    "url": "https://www.hibrain.net/recruitment/recruits/3589213",
    "date": "2026-07-13",
    "deadline": "2026-07-15",
-   "kind": "기타",
+   "kind": "교수",
    "tier": "프로",
    "inst": "전체",
    "instDetails": [],
@@ -488,7 +658,7 @@
    "url": "https://www.hibrain.net/recruitment/recruits/3589608",
    "date": null,
    "deadline": "2026-07-14",
-   "kind": "기타",
+   "kind": "교수",
    "tier": "프로",
    "inst": "전체",
    "instDetails": [],
@@ -530,7 +700,7 @@
    "url": "https://www.hibrain.net/recruitment/recruits/3589133",
    "date": null,
    "deadline": null,
-   "kind": "기타",
+   "kind": "교수",
    "tier": "프로",
    "inst": "전체",
    "instDetails": [],
@@ -572,7 +742,7 @@
    "url": "https://www.hibrain.net/recruitment/recruits/3589428",
    "date": null,
    "deadline": "2026-07-17",
-   "kind": "강사",
+   "kind": "교수",
    "tier": "프로",
    "inst": "전체",
    "instDetails": [],
@@ -677,7 +847,7 @@
    "url": "https://www.hibrain.net/recruitment/recruits/3589183",
    "date": null,
    "deadline": "2026-07-14",
-   "kind": "강사",
+   "kind": "교수",
    "tier": "프로",
    "inst": "전체",
    "instDetails": [],
@@ -719,7 +889,7 @@
    "url": "https://www.hibrain.net/recruitment/recruits/3589188",
    "date": null,
    "deadline": "2026-07-12",
-   "kind": "강사",
+   "kind": "교수",
    "tier": "프로",
    "inst": "전체",
    "instDetails": [],
@@ -727,28 +897,6 @@
    "officialUrl": "https://k-recruit.khu.ac.kr/hjis2/professor/board_list2.jsp",
    "channel": "hibrain",
    "layer": "B",
-   "firstSeen": "2026-07-11",
-   "isNew": true,
-   "extVer": 17
-  },
-  {
-   "id": "21d4220912a1600a",
-   "org": "창원문화재단(시립예술단)",
-   "region": "기타",
-   "source": "cwcf.or.kr",
-   "title": "2026년 창원문화재단 비상근 임원(이사·감사) 공개모집 공고",
-   "url": "https://www.cwcf.or.kr/commu/notice_view.asp?skey=&sword=&BCATE=BD00001&BSUBCATE=&place_idx=&page=1&idx=22569&bidx=2051",
-   "date": "2026-07-10",
-   "deadline": "2026-07-27",
-   "kind": "기타",
-   "tier": "프로",
-   "inst": "전체",
-   "instDetails": [],
-   "personnel": null,
-   "channel": "cwcf",
-   "layer": "B",
-   "bodyExcerpt": "2026년 창원문화재단 비상근 임원(이사·감사) 공개모집 공고.png",
-   "deadlineFrom": "ocr",
    "firstSeen": "2026-07-11",
    "isNew": true,
    "extVer": 17
@@ -812,6 +960,7 @@
     "타악"
    ],
    "personnel": "비올라 부수석 1명 · 오보에 부수석 1명 · 타악기 수석 1명",
+   "subject": null,
    "channel": "kbs",
    "layer": "D",
    "deadlineFrom": "page",
@@ -841,6 +990,29 @@
    "bodyExcerpt": "2026년 KBS교향악단 신규단원 채용(비올라, 오보에, 타악기) - 2026. 7. 8. 자 타악기 부문 추가 · 교향악단 신규단원 채용 · 교향악단에서 실력있고 열정 넘치는 전문 연주자를 공개 모집합니다 · 자로 모집부문에 타악기가 추가되었습니다",
    "firstSeen": "2026-07-08",
    "isNew": false,
+   "extVer": 17
+  },
+  {
+   "id": "65b8caf06ff364ce",
+   "org": "구리시립합창단",
+   "region": "경기",
+   "source": "guri.go.kr",
+   "title": "구리시 음악창작소 '스튜디오 투어' 참여자 모집",
+   "url": "https://www.guri.go.kr/www/selectBbsNttView.do?key=389&bbsNo=41&nttNo=145461&searchCtgry=&searchCnd=all&searchKrwd=&integrDeptCode=&pageIndex=1",
+   "date": "2026-07-08",
+   "deadline": "2026-08-11",
+   "kind": "기타",
+   "tier": "프로",
+   "inst": "전체",
+   "instDetails": [],
+   "personnel": null,
+   "subject": null,
+   "channel": "g_i_gurigokr",
+   "layer": "B",
+   "deadlineFrom": "attachment",
+   "bodyExcerpt": "구리시 음악창작소 '스튜디오 투어' 참여자 모집 · 사업목적 : 관내 청소년을 대상으로 문화예술 산업의 콘텐츠 제작 과정을 체험할 수 있는 기회를 제공함으로써 진로 계발을 지원하고, 창의적 문화예술 인재 양성 기여 · 사업기간 : 2026. 7. 27.(월) ~ 8. 11.(화) · 모집대상 : 구리시 관내 초·중·고등학교 학생, ** 단체접수는 전화문의 바랍니다.",
+   "firstSeen": "2026-07-11",
+   "isNew": true,
    "extVer": 17
   },
   {
@@ -894,7 +1066,7 @@
    "url": "https://www.hibrain.net/recruitment/recruits/3589236",
    "date": "2026-07-07",
    "deadline": "2026-07-12",
-   "kind": "객원·대체",
+   "kind": "교수",
    "tier": "오브리",
    "inst": "전체",
    "instDetails": [],
@@ -904,7 +1076,8 @@
    "layer": "B",
    "firstSeen": "2026-07-11",
    "isNew": true,
-   "extVer": 17
+   "extVer": 17,
+   "subject": "교회음악학"
   },
   {
    "id": "b2e199e32140e0ed",
@@ -922,6 +1095,7 @@
     "피아노"
    ],
    "personnel": "반주자",
+   "subject": null,
    "channel": "cjob",
    "layer": "C",
    "deadlineFrom": "cjob-남은기간",
@@ -949,6 +1123,7 @@
     "오보에"
    ],
    "personnel": "비올라 부수석 1명 · 오보에 부수석 1명",
+   "subject": null,
    "channel": "kbs",
    "layer": "D",
    "deadlineFrom": "page",
@@ -990,6 +1165,7 @@
     "지휘"
    ],
    "personnel": null,
+   "subject": null,
    "channel": "sejongpac",
    "layer": "B",
    "deadlineFrom": "ocr",
@@ -1031,7 +1207,7 @@
    "url": "https://www.hibrain.net/recruitment/recruits/3588187",
    "date": "2026-07-01",
    "deadline": "2026-07-15",
-   "kind": "기타",
+   "kind": "교수",
    "tier": "프로",
    "inst": "지휘",
    "instDetails": [
@@ -1043,7 +1219,8 @@
    "layer": "B",
    "firstSeen": "2026-07-11",
    "isNew": true,
-   "extVer": 17
+   "extVer": 17,
+   "subject": "지휘"
   },
   {
    "id": "da06b8ae997fd398",
@@ -1062,6 +1239,7 @@
     "베이스(성악)"
    ],
    "personnel": null,
+   "subject": null,
    "channel": "artinfo",
    "layer": "A",
    "bodyExcerpt": "모집파트: 테너 또는 베이스",
@@ -1087,6 +1265,7 @@
     "소프라노"
    ],
    "personnel": null,
+   "subject": null,
    "officialUrl": "https://www.thesolarteacademy.com/",
    "channel": "artinfo",
    "layer": "A",
@@ -1112,6 +1291,7 @@
     "피아노"
    ],
    "personnel": null,
+   "subject": null,
    "channel": "artinfo",
    "layer": "A",
    "positions": [
@@ -1140,6 +1320,7 @@
     "피아노"
    ],
    "personnel": "반주자",
+   "subject": null,
    "channel": "cjob",
    "layer": "C",
    "deadlineFrom": "cjob-남은기간",
@@ -1148,6 +1329,31 @@
    "documents": "간단한 이력서",
    "firstSeen": "2026-07-08",
    "isNew": false,
+   "extVer": 17
+  },
+  {
+   "id": "3ea45804ece40e16",
+   "org": "순천시립합창단",
+   "region": "전남",
+   "source": "suncheon.go.kr",
+   "title": "순천시립소년소녀합창단 신입단원 모집 공고",
+   "url": "https://www.suncheon.go.kr/scart/community/0001;jsessionid=047418089722771F597DF048811DDA0F?boardId=bbs_0000000000000197&mode=view&cntId=570&category=&pageIdx=",
+   "date": "2026-03-17",
+   "deadline": null,
+   "kind": "단원",
+   "tier": "전공·입시",
+   "inst": "성악",
+   "instDetails": [],
+   "personnel": null,
+   "subject": null,
+   "channel": "g_i_suncheongokr",
+   "layer": "B",
+   "positions": [
+    "단원"
+   ],
+   "bodyExcerpt": "순천시립소년소녀합창단 신입단원 모집 공고 · 2026년 순천시립소년소녀합창단 신입단원을 다음과 같이 모집 공고합니다.",
+   "firstSeen": "2026-07-11",
+   "isNew": true,
    "extVer": 17
   }
  ]

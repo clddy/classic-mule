@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import (new_session, get, relevant, extract_deadline, deadline_from_title,
                     musician_relevant, parse_recruit_table, summarize_recruit, find_position,
-                    classify_insts)
+                    classify_insts, find_subject, classify_kind)
 from sources import SOURCES
 from institutions import INSTITUTIONS
 import attach
@@ -306,6 +306,11 @@ def _extract_body_details(soup, page_text, item, ry):
         a = _find_audition(page_text)
         if a:
             item["auditionDate"] = a
+    # 대학 교수 초빙: 제목에 전공이 없으면 본문(공고표·안내)에서 보강
+    if item.get("kind") == "교수" and not item.get("subject"):
+        subj = find_subject(page_text[:2000])
+        if subj:
+            item["subject"] = subj
     if not item.get("contract") and item.get("kind") == "단원":
         c = _find_contract(page_text)
         if c:
@@ -651,7 +656,7 @@ def run(force_all=False):
                                "personnel", "auditionDate", "contract",
                                "qualification", "rehearsal", "concertDate",
                                "pay", "program", "bodyExcerpt", "instDetails",
-                               "applyEmail", "applyPhone"):
+                               "applyEmail", "applyPhone", "subject"):
                         if old.get(f_) and not it.get(f_):
                             it[f_] = old[f_]
                 if not it["deadline"]:
@@ -720,6 +725,13 @@ def run(force_all=False):
         it["firstSeen"] = old.get("firstSeen", today.isoformat()) if old else today.isoformat()
         it["isNew"] = it["firstSeen"] == today.isoformat()
         it["extVer"] = EXT_VER
+        # 제목 기반 분류(kind/subject)는 순수 함수 — 승계 항목도 최신 로직으로 재적용
+        # (서버 장애로 원본 0건 승계된 항목이 옛 분류를 물고 오는 것 방지)
+        it["kind"] = classify_kind(it["title"])
+        if it["kind"] == "교수" and not it.get("subject"):
+            subj = find_subject(it["title"])
+            if subj:
+                it["subject"] = subj
     final.sort(key=lambda x: (x.get("date") or x["firstSeen"]), reverse=True)
 
     payload = {

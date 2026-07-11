@@ -4,7 +4,7 @@ const DATA = window.CRAWLED || { collectedAt: "-", okCount: 0, sourceCount: 0, i
 
 const O_INSTS = ["현악", "목관", "금관", "타악", "건반", "성악", "지휘", "전체"];
 const O_REGIONS = ["서울", "경기", "인천", "대전", "대구", "부산", "기타"];
-const O_KINDS = ["단원", "직원", "기타"];
+const O_KINDS = ["단원", "교수", "직원", "기타"];
 const O_STATUS = ["접수중", "마감임박", "확인필요", "마감"];
 
 const oState = { insts: new Set(), regions: new Set(), kinds: new Set(["단원"]), status: new Set(), query: "" };
@@ -76,7 +76,7 @@ function renderOfficial() {
     <a class="job-card${st.key === "마감" ? " closed" : ""}" href="${j.url}" target="_blank" rel="noopener" style="display:block">
       <div class="top-row">
         <span class="tag ${st.cls}">${st.label}</span>
-        <span class="tag inst">${j.inst}</span>
+        <span class="tag inst">${j.subject || j.inst}</span>
         <span class="tag pos">${j.kind}</span>
         ${j.isNew ? `<span class="tag urgent">NEW</span>` : ""}
       </div>

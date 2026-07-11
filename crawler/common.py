@@ -176,8 +176,12 @@ def relevant(title):
     return bool(INCLUDE.search(title)) and not EXCLUDE.search(title)
 
 def classify_kind(title):
-    """단원(상임) / 객원·대체(비상임·기간제) / 반주 / 강사 / 직원 / 기타
+    """교수(대학 전임/초빙) / 단원(상임) / 객원·대체(비상임·기간제) / 반주 / 강사 / 직원 / 기타
     — 연주자 모집이 행정직과 한 공고에 섞이면 연주자 쪽으로 분류"""
+    # 대학 교원 초빙은 '객원단원'의 객원과 겹치지 않도록 먼저 판정
+    if re.search(r"전임 ?교원|초빙 ?교원|겸임 ?교원|비전임 ?교원|산학 ?교원|객원 ?교원|초빙 ?교수"
+                 r"|교수 ?(?:초빙|채용|공개채용|임용|모집)|교원 ?(?:초빙|채용|공개채용|신규 ?채용|임용)", title):
+        return "교수"
     if re.search(r"객원|비상임|대체(?:근로|인력|연주)?|기간제.*단원|단원.*기간제", title):
         return "객원·대체"
     if re.search(r"사무단원|기획운영단원|사무국|행정|안내원|매니저|팀장|본부장|시설|미화|보안", title):
@@ -326,6 +330,31 @@ def find_position(text):
     m = POSITION_PAT.search(text or "")
     return m.group(0) if m else None
 
+# ---------- 대학 교수 초빙: 전공/과목 추출 ----------
+# 악기(INST_DETAILS)로 못 잡히는 학과·전공 계열
+_ACAD_SUBJECTS = ["작곡", "음악학", "지휘", "성악", "기악", "관현악", "피아노", "오르간",
+                  "음악교육", "교회음악", "실용음악", "재즈", "뮤지컬", "이론", "반주", "음악치료"]
+
+def find_subject(text):
+    """대학 교원 초빙 제목/본문에서 '어떤 전공의 교수인지' 추출.
+    악기가 명시되면 악기(가장 구체적), 없으면 '○○과/전공' 학과명, 그다음 계열어."""
+    if not text:
+        return None
+    # 1) 세부 악기 (바이올린·플루트 등) — 가장 구체적
+    _, insts = classify_insts(text)
+    if insts:
+        return " · ".join(insts)
+    # 2) "○○과(…)" / "○○ 전공" + 교원/교수 인접
+    m = re.search(r"([가-힣]{2,8})(?:과|학과|전공)\s*(?:\(([^)]{1,20})\))?\s*"
+                  r"(?:분야\s*)?(?:전임|초빙|겸임|비전임|객원|산학)?\s*교[원수]", text)
+    if m and 2 <= len(m.group(1)) <= 8:
+        return f"{m.group(1)}({m.group(2)})" if m.group(2) else m.group(1)
+    # 3) 계열 키워드
+    for w in _ACAD_SUBJECTS:
+        if w in text:
+            return w
+    return None
+
 # ---------- 채용부문/직책/인원 표 파싱 ----------
 _HDR_PART = ["채용부문", "모집부문", "모집분야", "선발부문", "모집파트", "부문", "파트"]
 _HDR_POS = ["직책", "직급", "구분", "포지션"]
@@ -394,6 +423,7 @@ def summarize_recruit(parts):
 def make_item(org, region, source, title, url, date=None, deadline=None):
     group, details = classify_insts(title)
     clean = re.sub(r"\s+", " ", title).strip()
+    kind = classify_kind(title)
     return {
         "id": item_id(url, title),
         "org": org, "region": region, "source": source,
@@ -401,9 +431,11 @@ def make_item(org, region, source, title, url, date=None, deadline=None):
         "url": url,
         "date": date,          # 게시일 (모르면 None)
         "deadline": deadline,  # 접수 마감 (모르면 None)
-        "kind": classify_kind(title),
+        "kind": kind,
         "tier": classify_tier(title, org),
         "inst": group,
         "instDetails": details,  # 세부 악기 (복수 가능: "비올라, 오보에")
         "personnel": extract_personnel(clean),  # 모집 인원 (제목에서, 없으면 None)
+        # 대학 교수 초빙: 제목에서 전공/과목 (본문에서 보강은 main.enrich)
+        "subject": find_subject(clean) if kind == "교수" else None,
     }
