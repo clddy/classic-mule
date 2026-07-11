@@ -1,7 +1,7 @@
 {
- "collectedAt": "2026-07-09 04:49",
- "sourceCount": 37,
- "okCount": 36,
+ "collectedAt": "2026-07-11 15:11",
+ "sourceCount": 43,
+ "okCount": 43,
  "instTotal": 75,
  "sources": [
   {
@@ -10,8 +10,8 @@
    "layer": "A",
    "poll": "daily",
    "ok": true,
-   "raw": 2,
-   "kept": 1
+   "raw": 0,
+   "kept": 0
   },
   {
    "id": "artinfo",
@@ -20,7 +20,7 @@
    "poll": "daily",
    "ok": true,
    "raw": 10,
-   "kept": 4
+   "kept": 3
   },
   {
    "id": "cjob",
@@ -28,7 +28,7 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 25,
+   "raw": 24,
    "kept": 2
   },
   {
@@ -46,7 +46,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 2,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -55,7 +55,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 16,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -64,7 +64,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 2,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -73,7 +73,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 15,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -82,7 +82,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 23,
+   "skipped": true,
    "kept": 1
   },
   {
@@ -91,7 +91,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 10,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -100,7 +100,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 10,
+   "skipped": true,
    "kept": 1
   },
   {
@@ -108,8 +108,9 @@
    "name": "창원문화재단",
    "layer": "B",
    "poll": "weekly",
-   "ok": false,
-   "error": "ReadTimeout: HTTPSConnectionPool(host='www.cwcf.or.kr', port=443): Read timed out. (read timeout=20)"
+   "ok": true,
+   "skipped": true,
+   "kept": 0
   },
   {
    "id": "ulsan",
@@ -117,7 +118,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 17,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -126,7 +127,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 20,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -135,7 +136,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 10,
+   "skipped": true,
    "kept": 2
   },
   {
@@ -144,7 +145,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 15,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -153,7 +154,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 6,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -162,7 +163,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 10,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -171,7 +172,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 10,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -180,7 +181,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 11,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -189,7 +190,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 20,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -198,7 +199,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -207,7 +208,16 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
+   "kept": 0
+  },
+  {
+   "id": "phcf",
+   "name": "포항문화재단(시립교향악단)",
+   "layer": "D",
+   "poll": "weekly",
+   "ok": true,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -216,7 +226,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -225,7 +235,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -234,7 +244,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -243,7 +253,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 1,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -252,7 +262,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -261,7 +271,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -270,7 +280,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -279,7 +289,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 1,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -288,7 +298,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -297,7 +307,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -306,7 +316,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -315,7 +325,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 4,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -324,7 +334,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 1,
+   "skipped": true,
    "kept": 1
   },
   {
@@ -333,7 +343,52 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
+   "kept": 0
+  },
+  {
+   "id": "g_gcart",
+   "name": "과천시립예술단(과천문화재단)",
+   "layer": "B",
+   "poll": "weekly",
+   "ok": true,
+   "skipped": true,
+   "kept": 0
+  },
+  {
+   "id": "g_mokpo",
+   "name": "목포시립교향악단·예술단(목포시)",
+   "layer": "B",
+   "poll": "weekly",
+   "ok": true,
+   "skipped": true,
+   "kept": 0
+  },
+  {
+   "id": "g_yeosu",
+   "name": "여수시립예술단(여수시)",
+   "layer": "B",
+   "poll": "weekly",
+   "ok": true,
+   "skipped": true,
+   "kept": 0
+  },
+  {
+   "id": "g_wonju",
+   "name": "원주시립교향악단·합창단(원주시)",
+   "layer": "B",
+   "poll": "weekly",
+   "ok": true,
+   "skipped": true,
+   "kept": 0
+  },
+  {
+   "id": "g_gumi",
+   "name": "구미시립예술단(구미시)",
+   "layer": "B",
+   "poll": "weekly",
+   "ok": true,
+   "skipped": true,
    "kept": 0
   }
  ],
@@ -388,7 +443,7 @@
    ],
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 16
+   "extVer": 17
   },
   {
    "id": "0f1655bb56ef77bf",
@@ -411,7 +466,7 @@
    "pay": "스북으로 보내기 URL 복사 인쇄 관심기관등",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 16
+   "extVer": 17
   },
   {
    "id": "b2e199e32140e0ed",
@@ -437,7 +492,7 @@
    "documents": "이력서",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 16
+   "extVer": 17
   },
   {
    "id": "340d217c42aab8e1",
@@ -479,7 +534,7 @@
    "bodyExcerpt": "2026년 KBS교향악단 신규단원 채용(비올라, 오보에) · 교향악단 신규단원 채용 · 교향악단에서 실력있고 열정 넘치는 전문 연주자를 공개 모집합니다 · 모집부문별 채용 예정인원",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 16
+   "extVer": 17
   },
   {
    "id": "5dece78df88ec9d5",
@@ -506,7 +561,7 @@
    "bodyExcerpt": "세종문화회관 예술단 직책단원(소년소녀합창 지휘자) 공개채용 공고",
    "firstSeen": "2026-07-07",
    "isNew": false,
-   "extVer": 16
+   "extVer": 17
   },
   {
    "id": "e922691feb25fcfe",
@@ -535,7 +590,7 @@
    "bodyExcerpt": "주니어콰이어 2기 단원모집 공고문.jpg",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 16
+   "extVer": 17
   },
   {
    "id": "da06b8ae997fd398",
@@ -556,11 +611,11 @@
    "personnel": null,
    "channel": "artinfo",
    "layer": "A",
-   "deadlineNote": "상시",
    "bodyExcerpt": "모집파트: 테너 또는 베이스",
+   "applyEmail": "anointed77@hanmail.net",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 16
+   "extVer": 17
   },
   {
    "id": "b45188e68777edf5",
@@ -582,12 +637,11 @@
    "officialUrl": "https://www.thesolarteacademy.com/",
    "channel": "artinfo",
    "layer": "A",
-   "deadlineNote": "상시",
    "qualification": "연령: 35세 ~ 50세 학력: 성악 전공 석사 졸업 이상",
    "bodyExcerpt": "채용 | 더솔아르떼 성악아카데미 평택점과 함께할 전문 강사님을 모십니다 · 성악 전문 강사님을 모집합니다. · ✨️ 모집 분야 · 우대: 교육 및 연주 경력자 환영,",
-   "firstSeen": "2026-07-08",
-   "isNew": false,
-   "extVer": 16
+   "firstSeen": "2026-07-11",
+   "isNew": true,
+   "extVer": 17
   },
   {
    "id": "66564a9a98fa61d9",
@@ -607,42 +661,15 @@
    "personnel": null,
    "channel": "artinfo",
    "layer": "A",
-   "deadlineNote": "상시",
    "positions": [
     "반주자"
    ],
    "bodyExcerpt": "채용 | [부산] 푸른초장교회 반주자를 모십니다.",
+   "applyEmail": "pavarotti7801@hanmail.net",
+   "applyPhone": "010-4772-5362",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 16
-  },
-  {
-   "id": "4da5ac93aea9485d",
-   "org": "강동구립여성합창단",
-   "region": "서울",
-   "source": "artinfokorea.com",
-   "title": "[모집공고] 강동구립여성합창단 신임 지휘자 모집",
-   "url": "https://www.artinfokorea.com/jobs/462",
-   "date": "2026-06-17",
-   "deadline": null,
-   "kind": "단원",
-   "tier": "프로",
-   "inst": "지휘",
-   "instDetails": [
-    "지휘"
-   ],
-   "personnel": null,
-   "officialUrl": "https://www.gangdong.go.kr/web/newportal/notice/01/57324",
-   "channel": "artinfo",
-   "layer": "A",
-   "deadlineNote": "상시",
-   "positions": [
-    "지휘자"
-   ],
-   "bodyExcerpt": "채용 | [모집공고] 강동구립여성합창단 신임 지휘자 모집 · [모집공고] 강동구립여성합창단 신임 지휘자 모집",
-   "firstSeen": "2026-07-08",
-   "isNew": false,
-   "extVer": 16
+   "extVer": 17
   },
   {
    "id": "5fbc7e4eb4f8d92d",
@@ -668,7 +695,7 @@
    "documents": "간단한 이력서",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 16
+   "extVer": 17
   }
  ]
 }

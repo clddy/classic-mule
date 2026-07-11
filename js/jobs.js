@@ -20,6 +20,7 @@ const OFFICIAL_ITEMS = ((window.CRAWLED && window.CRAWLED.items) || []).map(j =>
   auditionDate: j.auditionDate, rehearsal: j.rehearsal, concertDate: j.concertDate, program: j.program,
   positions: j.positions, recruitSummary: j.recruitSummary, bodyExcerpt: j.bodyExcerpt,
   denomination: j.denomination, documents: j.documents,
+  applyEmail: j.applyEmail, applyPhone: j.applyPhone,
   url: j.url, officialUrl: j.officialUrl, isNew: j.isNew, source: j.source
 }));
 
@@ -163,7 +164,7 @@ function cardHTML(j) {
       <h3>${j.title}</h3>
       ${program}
       <div class="meta">${meta}</div>
-      <div class="source-line"><span>출처 <span class="src">${j.source}</span></span><span>눌러서 상세 · 원문 보기</span></div>
+      <div class="source-line"><span></span><span>눌러서 상세보기</span></div>
     </article>`;
   }
   return `
@@ -232,7 +233,7 @@ function metaRows(j) {
   const st = statusOf(j);
   const dl = j.deadline
     ? `${j.deadline} <span style="color:var(--ink-soft)">(${st.label})</span>`
-    : (j.deadlineText === "상시" ? "상시 모집" : (j.src === "공식" ? "원문에서 확인" : (j.deadlineText || "협의")));
+    : (j.deadlineText === "상시" ? "상시 모집" : (j.src === "공식" ? "기한 확인필요" : (j.deadlineText || "협의")));
   const rows = [["기관", j.org], ["지역", j.region], ["마감", dl]];
   const insts = (j.insts || []).join("·");
   const senior = (j.positions || []).filter(p => /수석|악장|차석/.test(p)).join("·");
@@ -252,6 +253,9 @@ function metaRows(j) {
   if (j.denomination) rows.push(["교단", cleanVal(j.denomination)]);
   if (j.documents) rows.push(["제출 서류", cleanVal(j.documents)]);
   if (j.program) rows.push(["프로그램", cleanVal(j.program)]);
+  // 포털 직접게시글: 지원 연락처를 카드 안에서 바로 노출 (포털로 내보내지 않음)
+  if (j.applyEmail) rows.push(["지원 이메일", `<a href="mailto:${j.applyEmail}">${j.applyEmail}</a>`]);
+  if (j.applyPhone) rows.push(["지원 전화", `<a href="tel:${j.applyPhone.replace(/-/g, "")}">${j.applyPhone}</a>`]);
   return rows.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("");
 }
 
@@ -279,15 +283,41 @@ function openOfficial(key) {
     <span class="tag ${st.cls}">${st.label}</span>
     ${j.isNew ? `<span class="tag urgent">NEW</span>` : ""}`;
   $("#detail-title").textContent = j.title;
-  // 원문(officialUrl) 우선, 없으면 수집 URL로 연결 — 항상 이동 가능한 버튼 유지
-  const target = j.officialUrl || j.url;
   $("#detail-meta").innerHTML = metaRows(j);
   // 하단: 간단한 요약(최대 3줄) — 없으면 비움
   $("#detail-body").textContent = shortSummary(j);
   const act = $("#detail-action");
-  act.textContent = j.officialUrl ? "공식 공고 페이지 바로가기 ↗" : "공고 보러가기 ↗";
-  act.onclick = () => window.open(target, "_blank", "noopener");
-  act.style.display = "";
+  // 링크 원칙: 집계 포털(아트인포·아트모아)로는 절대 내보내지 않는다.
+  //  - 기관 원문(officialUrl)이 있으면 그 페이지로 이동
+  //  - 포털 직접게시글(원문 없음)이면 지원 연락처로 바로 지원 (이메일/전화)
+  //  - 그 외 자체 게시판 소스는 수집 URL이 곧 원문이므로 그대로 이동
+  // 포털 도메인 패턴 — source든 officialUrl이든 여기에 걸리면 절대 링크로 내보내지 않는다
+  const PORTAL = /artinfokorea|artmore|jobkorea|saramin|albamon|work\.go\.kr\/portal/i;
+  const isAggregator = PORTAL.test(j.source || "");
+  const officialOk = j.officialUrl && !PORTAL.test(j.officialUrl);
+  if (officialOk) {
+    act.textContent = "공식 공고 페이지 바로가기 ↗";
+    act.onclick = () => window.open(j.officialUrl, "_blank", "noopener");
+    act.style.display = "";
+  } else if (isAggregator) {
+    // 포털 직접게시글 — 포털로 보내지 않고 연락처로 지원
+    if (j.applyEmail) {
+      act.textContent = "이메일로 지원 ✉";
+      act.onclick = () => window.open(`mailto:${j.applyEmail}`, "_blank");
+      act.style.display = "";
+    } else if (j.applyPhone) {
+      act.textContent = `전화 지원 ☎ ${j.applyPhone}`;
+      act.onclick = () => window.open(`tel:${j.applyPhone.replace(/-/g, "")}`, "_blank");
+      act.style.display = "";
+    } else {
+      // 연락처를 못 뽑은 드문 경우 — 링크 없이 안내만 (포털行 방지)
+      act.style.display = "none";
+    }
+  } else {
+    act.textContent = "공고 보러가기 ↗";
+    act.onclick = () => window.open(j.url, "_blank", "noopener");
+    act.style.display = "";
+  }
   $("#detail-modal").classList.add("open");
 }
 

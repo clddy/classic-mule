@@ -113,7 +113,8 @@ def find_attachments(soup, base_url):
                 cands.append((full, text))
     return cands[:3]
 
-EXT_VER = 16         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일 승계가 무효화됨
+EXT_VER = 17         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일 승계가 무효화됨
+                     # v17: 집계포털 상시 기본값 제거 + 원문(officialUrl) 죽은링크 감지·실마감 추출
 RENDER_PER_SOURCE = 3   # 소스당 Playwright 렌더링 상한
 OCR_PER_SOURCE = 6      # 소스당 이미지 공고문 OCR 상한 (항목당 최대 2장)
 _renders_used = 0
@@ -386,6 +387,77 @@ def _cjob_detail(text, item):
         if len(body) >= 12:
             item["bodyExcerpt"] = body[:180]
 
+# 집계 포털(아트인포·아트모아)에 개인·교회·학원이 직접 올린 글은 '원문'이 따로 없다.
+# 이 경우 사용자를 포털로 보내지 않고, 지원 연락처를 본문에서 뽑아 포디엄에서 바로 노출한다.
+AGGREGATORS = ("artinfokorea.com", "artmore.kr")
+_EMAIL_RE = re.compile(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}")
+_PHONE_RE = re.compile(r"01[016-9][-.\s]?\d{3,4}[-.\s]?\d{4}")
+
+def _extract_contact(page_text, item):
+    """집계 포털 직접게시글에서 지원 이메일/전화 추출 (원문 URL이 없을 때만 의미)."""
+    em = _EMAIL_RE.search(page_text)
+    if em:
+        item["applyEmail"] = em.group(0)
+    ph = _PHONE_RE.search(page_text)
+    if ph:
+        # 표기 정규화 (010-0000-0000)
+        digits = re.sub(r"\D", "", ph.group(0))
+        if len(digits) == 11:
+            item["applyPhone"] = f"{digits[:3]}-{digits[3:7]}-{digits[7:]}"
+        else:
+            item["applyPhone"] = ph.group(0)
+
+# 원문 페이지가 삭제·이전된 경우의 오류 문구 (소프트 404 감지) — 링크가 죽은 곳으로 가지 않도록.
+# ⚠️ raw HTML 전체에서 찾으면 Next.js 등 SPA가 번들에 심어둔 404 컴포넌트 문자열에 오탐한다.
+# 그래서 (1) '삭제글 alert 후 뒤로가기' 패턴과 (2) 스크립트를 걷어낸 '실제 보이는 텍스트'만 본다.
+_NOTFOUND_TXT = ("페이지를 찾을 수 없", "요청하신 페이지", "존재하지 않는", "삭제된 게시",
+                 "삭제되었습니다", "권한이 없", "게시물이 없", "잘못된 접근")
+_DEAD_ALERT_RE = re.compile(
+    r"""alert\(\s*["'][^"']*(?:존재하지\s*않|찾을\s*수\s*없|삭제된\s*게시|삭제되었|권한이\s*없|잘못된\s*접근)"""
+    r"""[^"']*["']\s*\)\s*;?\s*(?:history\.back|location\.(?:href|replace))""",
+    re.S)
+
+def _is_dead_origin(r):
+    """원문 페이지가 삭제/없는 글인지 판정 (살아있는 SPA 홈을 오탐하지 않도록 보수적으로)."""
+    if r.status_code == 404:
+        return True
+    # 게시물 삭제 시 gov CMS가 흔히 쓰는 'alert(없는 글) → history.back()' 패턴
+    if _DEAD_ALERT_RE.search(r.text):
+        return True
+    # 스크립트를 제거한 실제 본문이 짧고 not-found 문구뿐이면 서버렌더 404
+    soup = BeautifulSoup(r.text, "lxml")
+    for tag in soup(["script", "style"]):
+        tag.decompose()
+    vis = soup.get_text(" ", strip=True)
+    if len(vis) < 600 and any(m in vis for m in _NOTFOUND_TXT):
+        return True
+    return False
+
+def _origin_check(s, item, ry):
+    """기관 원문(officialUrl)을 실제로 열어본다.
+    죽은 페이지면 만료 처리(링크가 404로 가는 것 방지), 살아있으면 진짜 마감일을 추출."""
+    url = item.get("officialUrl")
+    if not url:
+        return
+    try:
+        r = get(s, url)
+    except Exception:
+        return
+    if _is_dead_origin(r):
+        # 원문이 사라짐 → 사실상 만료. 과거 sentinel로 표시해 이후 만료 필터가 제거
+        item["deadline"] = "2000-01-01"
+        item["deadlineFrom"] = "origin-dead"
+        return
+    if not item.get("deadline"):
+        soup = BeautifulSoup(r.text, "lxml")
+        for tag in soup(["script", "style", "header", "footer", "nav"]):
+            tag.decompose()
+        dl = extract_deadline(soup.get_text(" ", strip=True), ref_year=ry)
+        if dl:
+            item["deadline"] = dl
+            item["deadlineFrom"] = "origin"
+
+
 def enrich_deadline(s, item, allow_render=True, details_only=False):
     global _renders_used
     ry = _ref_year(item)
@@ -397,6 +469,15 @@ def enrich_deadline(s, item, allow_render=True, details_only=False):
         for tag in soup(["script", "style", "header", "footer", "nav"]):
             tag.decompose()
         page_text = soup.get_text(" ", strip=True)
+        # 집계 포털 항목: 원문이 있으면 원문을 검증(죽은 링크 차단 + 진짜 마감일),
+        # 원문이 없는 직접게시글이면 지원 연락처를 본문에서 확보한다.
+        if item.get("source") in AGGREGATORS:
+            if item.get("officialUrl"):
+                _origin_check(s, item, ry)
+                if item.get("deadline") == "2000-01-01":
+                    return  # 원문이 죽음 → 만료 처리하고 종료
+            else:
+                _extract_contact(page_text, item)
         # 기독정보넷은 전용 표 구조 — 별도 파서로 처리
         if item.get("source") == "cjob.co.kr":
             _cjob_detail(page_text, item)
@@ -481,11 +562,9 @@ def enrich_deadline(s, item, allow_render=True, details_only=False):
                     item["deadlineFrom"] = "page-js"
             except Exception:
                 pass
-        # 집계 포털(아트인포·아트모아)의 무마감 비공식 공고(교회·학원·개인)는
-        # 마감이 명시되지 않아 상시로 간주 → '기한 확인 필요' 노출 방지
-        if (not item.get("deadline") and not item.get("deadlineNote")
-                and item.get("source") in ("artinfokorea.com", "artmore.kr")):
-            item["deadlineNote"] = "상시"
+        # (집계 포털 무마감 공고를 '상시'로 눕히던 기본값 제거 — 상시는 본문에
+        #  '상시모집' 등이 명시된 경우에만 위에서 설정된다. 마감을 못 찾은 항목은
+        #  게시일 기준 노후 정리 로직이 정직하게 처리한다.)
     except Exception:
         log(f"  enrich 실패 {item['url'][:60]}")
 
@@ -562,7 +641,8 @@ def run(force_all=False):
                     for f_ in ("recruitParts", "recruitSummary", "positions",
                                "personnel", "auditionDate", "contract",
                                "qualification", "rehearsal", "concertDate",
-                               "pay", "program", "bodyExcerpt", "instDetails"):
+                               "pay", "program", "bodyExcerpt", "instDetails",
+                               "applyEmail", "applyPhone"):
                         if old.get(f_) and not it.get(f_):
                             it[f_] = old[f_]
                 if not it["deadline"]:
