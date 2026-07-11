@@ -1,7 +1,7 @@
 {
- "collectedAt": "2026-07-11 15:11",
- "sourceCount": 43,
- "okCount": 43,
+ "collectedAt": "2026-07-11 15:56",
+ "sourceCount": 42,
+ "okCount": 42,
  "instTotal": 75,
  "sources": [
   {
@@ -329,15 +329,6 @@
    "kept": 0
   },
   {
-   "id": "g_hibrain",
-   "name": "하이브레인넷",
-   "layer": "B",
-   "poll": "weekly",
-   "ok": true,
-   "skipped": true,
-   "kept": 1
-  },
-  {
    "id": "g_onnuri",
    "name": "온누리교회",
    "layer": "B",
@@ -441,29 +432,6 @@
    "alsoSeenOn": [
     "artmore.kr"
    ],
-   "firstSeen": "2026-07-08",
-   "isNew": false,
-   "extVer": 17
-  },
-  {
-   "id": "0f1655bb56ef77bf",
-   "org": "하이브레인넷",
-   "region": "기타",
-   "source": "hibrain.net",
-   "title": "호남신학대학교 교회음악학과 객원교원 초빙 (재공고) ~26.07.12",
-   "url": "https://www.hibrain.net/recruitment/recruits/3589236?pagekey=3589236&listType=D3NEW&pagesize=25&sortType=SORTDTM&limit=25&displayType=SUBMAIN&siteid=1&page=1",
-   "date": null,
-   "deadline": "2026-07-12",
-   "kind": "객원·대체",
-   "tier": "오브리",
-   "inst": "전체",
-   "instDetails": [],
-   "personnel": null,
-   "channel": "g_hibrain",
-   "layer": "B",
-   "deadlineFrom": "page",
-   "qualification": "학사이상 관련 홈",
-   "pay": "스북으로 보내기 URL 복사 인쇄 관심기관등",
    "firstSeen": "2026-07-08",
    "isNew": false,
    "extVer": 17

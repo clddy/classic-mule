@@ -43,7 +43,7 @@ CANDIDATES = [
     ("gmmfs",    "평창대관령음악제",    "강원", "https://www.gmmfs.com"),
     # 도메인 노드 (Wave 3)
     ("arte",     "아르떼(문화예술교육진흥원)", "기타", "https://www.arte.or.kr"),
-    ("hibrain",  "하이브레인넷",        "기타", "https://www.hibrain.net"),
+    # 하이브레인넷 제외: 로그인 강제 포털이라 본문·연락처 추출 불가 + 링크가 포털行(원칙 위반)
     # 대형교회 자체 오케스트라
     ("onnuri",   "온누리교회",          "서울", "https://www.onnuri.org"),
     ("sarang",   "사랑의교회",          "서울", "https://www.sarang.org"),

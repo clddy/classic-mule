@@ -200,11 +200,16 @@ def _find_personnel_body(text):
     m = re.search(r"([가-힣A-Za-z·/]{2,16})\s*(?:각\s*)?(\d+)\s*명\s*(?:모집|선발|채용|충원)", text)
     return f"{m.group(1).strip()} {m.group(2)}명" if m else None
 
+_PAY_NOISE = re.compile(r"보내기|복사|인쇄|관심기관|스크랩|스북|공유|목록|URL|바로가기|로그인|회원")
 def _find_pay(text):
     m = re.search(r"(회당|1회당|건당|시간당|일당|공연당|월)\s*([\d,]+\s*만?\s*원)", text)
     if m:
         return (m.group(1) + " " + m.group(2)).replace(" ", "")
-    return _seg_after(text, r"연주비|출연료|사례비|페이|보수|급여|수당|강사료", 24)
+    v = _seg_after(text, r"연주비|출연료|사례비|페이|보수|급여|수당|강사료", 24)
+    # 키워드 뒤 텍스트가 공유버튼 등 UI 잡음이거나 금액 표현이 없으면 버림
+    if v and not _PAY_NOISE.search(v) and re.search(r"원|만|협의|규정|시급|일당|사례|\d", v):
+        return v
+    return None
 
 def _find_program(text):
     return _seg_after(text, r"프로그램|연주 ?곡목?|곡\s*목|레퍼토리|연주곡", 80)

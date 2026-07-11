@@ -2,6 +2,17 @@
 // 날짜는 한국시간(KST) 기준 — toISOString은 UTC라 자정~오전9시에 하루 밀리는 문제 방지
 const TODAY = new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 10);
 
+// 집계 포털(매개체) 도메인 — 출처로 표기하지 않고, 링크로도 내보내지 않는다
+const PORTAL_RE = /artinfokorea|artmore|hibrain|jobkorea|saramin|albamon|work\.go\.kr\/portal/i;
+// 카드/모달에 보여줄 출처: 포털이면 감추고, 기관 원문이 있으면 그 도메인, 그마저 없으면 빈값
+function sourceLabel(j) {
+  if (j.source && !PORTAL_RE.test(j.source)) return j.source;
+  if (j.officialUrl && !PORTAL_RE.test(j.officialUrl)) {
+    try { return new URL(j.officialUrl).host.replace(/^www\./, ""); } catch (e) { return ""; }
+  }
+  return "";   // 포털에만 있고 기관 원문도 없음(교회·개인 직접게시) → 출처 생략
+}
+
 // ---------- 데이터 병합 ----------
 const CAT2BAND = {
   "객원/대타": "객원·대체", "단원모집": "단원", "반주": "반주",
@@ -148,11 +159,13 @@ function cardHTML(j) {
     <span class="tag ${st.cls}">${st.label}</span>
     ${j.urgent ? `<span class="tag urgent">급구</span>` : ""}
     ${j.isNew ? `<span class="tag urgent">NEW</span>` : ""}`;
+  const region = j.region && j.region !== "기타" ? `<span>${j.region}</span>` : "";
+  const pay = okPay(j.pay) ? `<span class="pay">${cleanVal(j.pay)}</span>` : "";
   const meta = `
     <span>${j.org}</span>
-    <span>${j.region}</span>
+    ${region}
     ${j.when ? `<span>${j.when}</span>` : ""}
-    ${j.pay ? `<span class="pay">${j.pay}</span>` : ""}
+    ${pay}
     ${j.deadline ? `<span>마감 ${j.deadline}</span>` : ""}`;
   // 객원·대체는 프로그램(연주곡)을 카드에 노출 (동생 피드백)
   const program = j.program
@@ -164,7 +177,7 @@ function cardHTML(j) {
       <h3>${j.title}</h3>
       ${program}
       <div class="meta">${meta}</div>
-      <div class="source-line"><span></span><span>눌러서 상세보기</span></div>
+      <div class="source-line"><span>${sourceLabel(j) ? `출처 <span class="src">${sourceLabel(j)}</span>` : ""}</span><span>눌러서 상세보기</span></div>
     </article>`;
   }
   return `
@@ -291,10 +304,9 @@ function openOfficial(key) {
   //  - 기관 원문(officialUrl)이 있으면 그 페이지로 이동
   //  - 포털 직접게시글(원문 없음)이면 지원 연락처로 바로 지원 (이메일/전화)
   //  - 그 외 자체 게시판 소스는 수집 URL이 곧 원문이므로 그대로 이동
-  // 포털 도메인 패턴 — source든 officialUrl이든 여기에 걸리면 절대 링크로 내보내지 않는다
-  const PORTAL = /artinfokorea|artmore|jobkorea|saramin|albamon|work\.go\.kr\/portal/i;
-  const isAggregator = PORTAL.test(j.source || "");
-  const officialOk = j.officialUrl && !PORTAL.test(j.officialUrl);
+  // 포털 도메인이면(source든 officialUrl이든) 절대 링크로 내보내지 않는다
+  const isAggregator = PORTAL_RE.test(j.source || "");
+  const officialOk = j.officialUrl && !PORTAL_RE.test(j.officialUrl);
   if (officialOk) {
     act.textContent = "공식 공고 페이지 바로가기 ↗";
     act.onclick = () => window.open(j.officialUrl, "_blank", "noopener");

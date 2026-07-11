@@ -336,41 +336,6 @@
   ]
  },
  {
-  "id": "hibrain",
-  "name": "하이브레인넷",
-  "region": "기타",
-  "board_url": "https://www.hibrain.net/recruitment",
-  "board_label": "채용정보",
-  "needs_js": false,
-  "sample": [
-   {
-    "title": "경희사이버대학교 2026학년도 전임교원 초빙 2026.06.26 ~ 2026.07.11",
-    "url": "https://www.hibrain.net/recruitment/recruits/3587561?listType=RECOMM&pagekey=3587561&adId=185290"
-   },
-   {
-    "title": "경북대학교 2026학년도 제2차 교수 초빙 2026.07.21 ~ 2026.07.31",
-    "url": "https://www.hibrain.net/recruitment/recruits/3571083?listType=RECOMM&pagekey=3571083&adId=179727"
-   },
-   {
-    "title": "충남테크노파크 원장 초빙 2026.07.20 ~ 2026.07.27",
-    "url": "https://www.hibrain.net/recruitment/recruits/3587519?listType=RECOMM&pagekey=3587519&adId=185280"
-   },
-   {
-    "title": "국가녹색기술연구소 정규직/별정직/박사후연구원 /석사후연구원/인턴 채용 2026.07.01 ~ 2026.07.24",
-    "url": "https://www.hibrain.net/recruitment/recruits/3587856?listType=RECOMM&pagekey=3587856&adId=185392"
-   },
-   {
-    "title": "우석대학교 2026학년도 2학기 제2차 전임교원 초빙 2026.07.06 ~ 2026.07.20",
-    "url": "https://www.hibrain.net/recruitment/recruits/3588855?listType=RECOMM&pagekey=3588855&adId=185758"
-   },
-   {
-    "title": "POSTECH 전임교원 초빙 접수기간 : 공고문 참조",
-    "url": "https://www.hibrain.net/recruitment/recruits/3566460?listType=RECOMM&pagekey=3566460&adId=184708"
-   }
-  ],
-  "music_only": true
- },
- {
   "id": "onnuri",
   "name": "온누리교회",
   "region": "서울",
