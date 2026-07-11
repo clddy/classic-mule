@@ -465,6 +465,10 @@ def _origin_check(s, item, ry):
 
 def enrich_deadline(s, item, allow_render=True, details_only=False):
     global _renders_used
+    # 하이브레인 항목은 로그인 세션으로 이미 상세 파싱됨 — 여기서 item["url"](hibrain)을
+    # 익명으로 다시 열면 '로그인후에 이용' 껍데기를 긁게 되므로 건너뛴다.
+    if item.get("source") == "hibrain.net":
+        return
     ry = _ref_year(item)
     try:
         r = get(s, item["url"])

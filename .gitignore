@@ -1,3 +1,6 @@
 __pycache__/
 data/crawl.log
 crawler/probe_result.json
+crawler/.hibrain-profile/
+crawler/.hibrain-ok
+crawler/.hibrain-cookies.json

@@ -534,5 +534,13 @@ if os.path.exists(_GS_PATH):
     except Exception:
         pass
 
+# 하이브레인넷(대학 음악 채용) — 로그인 세션 필요(hibrain_auth). 주간 폴링.
+try:
+    from sources_hibrain import parse_hibrain
+    SOURCES.append(S("hibrain", "하이브레인넷(대학 음악채용)", parse_hibrain,
+                     "hibrain.net", "B", "weekly", (1, 4)))
+except Exception:
+    pass
+
 # 하위 호환
 PARSERS = [(s["id"], s["name"], s["fn"]) for s in SOURCES]
