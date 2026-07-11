@@ -1230,5 +1230,39 @@
     "url": "https://www.use.go.kr/user/bbs/BD_selectBbs.do?q_bbsSn=1918&q_bbsDocNo=20260619095704926"
    }
   ]
+ },
+ {
+  "id": "edu_cne",
+  "name": "충남교육청(학교 채용)",
+  "region": "기타",
+  "board_url": "https://www.cne.go.kr/boardCnts/list.do?boardID=642&m=020201&s=cne",
+  "board_label": "채용공고/희망",
+  "needs_js": true,
+  "sample": [
+   {
+    "title": "폐교재산 매각 임대공고",
+    "url": "https://www.cne.go.kr/boardCnts/list.do?boardID=506&m=020902&s=cne"
+   },
+   {
+    "title": "계약제 교원 채용 지원",
+    "url": "http://www.cne.go.kr/apply/list.do?s=cne&m=032101"
+   },
+   {
+    "title": "계약제 교원 채용 지원 시스템 바로가기",
+    "url": "https://www.cne.go.kr/apply/list.do?s=cne&m=032101"
+   },
+   {
+    "title": "유치원 기간제 교사 채용",
+    "url": "https://www.cne.go.kr/boardCnts/list.do?boardID=11005&m=020201&s=cne"
+   },
+   {
+    "title": "초등 기간제 교사 채용",
+    "url": "https://www.cne.go.kr/boardCnts/list.do?boardID=641&m=020201&s=cne"
+   },
+   {
+    "title": "중등 기간제 교사 채용",
+    "url": "https://www.cne.go.kr/boardCnts/list.do?boardID=644&m=020201&s=cne"
+   }
+  ]
  }
 ]

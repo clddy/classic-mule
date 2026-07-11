@@ -1,7 +1,7 @@
 {
- "collectedAt": "2026-07-11 21:47",
- "sourceCount": 69,
- "okCount": 68,
+ "collectedAt": "2026-07-12 00:31",
+ "sourceCount": 77,
+ "okCount": 76,
  "instTotal": 75,
  "sources": [
   {
@@ -244,11 +244,74 @@
    "poll": "weekly",
    "ok": true,
    "raw": 12,
-   "kept": 10
+   "kept": 12
+  },
+  {
+   "id": "edu_gwe",
+   "name": "강원교육청(학교 채용)",
+   "layer": "C",
+   "poll": "weekly",
+   "ok": true,
+   "raw": 0,
+   "kept": 0
+  },
+  {
+   "id": "edu_jbe",
+   "name": "전북교육청(학교 채용)",
+   "layer": "C",
+   "poll": "weekly",
+   "ok": true,
+   "raw": 1,
+   "kept": 1
+  },
+  {
+   "id": "edu_dje",
+   "name": "대전교육청(학교 채용)",
+   "layer": "C",
+   "poll": "weekly",
+   "ok": true,
+   "raw": 2,
+   "kept": 0
   },
   {
    "id": "edu_ice",
    "name": "인천교육청(학교 채용)",
+   "layer": "C",
+   "poll": "weekly",
+   "ok": true,
+   "raw": 0,
+   "kept": 0
+  },
+  {
+   "id": "edu_jne",
+   "name": "전남교육청(학교 채용)",
+   "layer": "C",
+   "poll": "weekly",
+   "ok": true,
+   "raw": 3,
+   "kept": 0
+  },
+  {
+   "id": "edu_gbe",
+   "name": "경북교육청(학교 채용)",
+   "layer": "C",
+   "poll": "weekly",
+   "ok": true,
+   "raw": 0,
+   "kept": 0
+  },
+  {
+   "id": "edu_sje",
+   "name": "세종교육청(학교 채용)",
+   "layer": "C",
+   "poll": "weekly",
+   "ok": true,
+   "raw": 0,
+   "kept": 0
+  },
+  {
+   "id": "edu_dge",
+   "name": "대구교육청(모집공고)",
    "layer": "C",
    "poll": "weekly",
    "ok": true,
@@ -616,6 +679,15 @@
    "kept": 0
   },
   {
+   "id": "g_edu_cne",
+   "name": "충남교육청(학교 채용)",
+   "layer": "B",
+   "poll": "weekly",
+   "ok": true,
+   "raw": 0,
+   "kept": 0
+  },
+  {
    "id": "hibrain",
    "name": "하이브레인넷(대학 음악채용)",
    "layer": "B",
@@ -646,7 +718,7 @@
    "channel": "hibrain",
    "layer": "B",
    "firstSeen": "2026-07-11",
-   "isNew": true,
+   "isNew": false,
    "extVer": 17
   },
   {
@@ -667,7 +739,7 @@
    "channel": "hibrain",
    "layer": "B",
    "firstSeen": "2026-07-11",
-   "isNew": true,
+   "isNew": false,
    "extVer": 17
   },
   {
@@ -688,7 +760,7 @@
    "channel": "hibrain",
    "layer": "B",
    "firstSeen": "2026-07-11",
-   "isNew": true,
+   "isNew": false,
    "extVer": 17
   },
   {
@@ -713,7 +785,7 @@
    "deadlineFrom": "page",
    "bodyExcerpt": "[화랑초]1인1악기 바이올린 강사 채용 공고 · 1. 채용인원 : 1인1악기 지도강사(바이올린/비올라) 1명 · 3. 수업시수 및 급여 : 주당 12차시기본급 120만원+(지도인원*20,000원) · 4. 원서접수기간: 2026. 7. 11. ~ 2026. 7. 16.(오전 10:00까지, 초과도착 불가)",
    "firstSeen": "2026-07-11",
-   "isNew": true,
+   "isNew": false,
    "extVer": 17
   },
   {
@@ -736,7 +808,7 @@
    "deadlineFrom": "page",
    "bodyExcerpt": "문화예술 협력강사 채용 공고(동요부르기, 창의무용, 연극, 합창(뮤지컬), 합창, 뮤지컬) · 문화예술 협력강사 (동요부르기, 창의무용, 연극, 합창(뮤지컬), 합창, 뮤지컬) 를 채용하고자 합니다. · 채용공고문을 참고 부탁드립니다.",
    "firstSeen": "2026-07-11",
-   "isNew": true,
+   "isNew": false,
    "extVer": 17
   },
   {
@@ -757,7 +829,7 @@
    "channel": "hibrain",
    "layer": "B",
    "firstSeen": "2026-07-11",
-   "isNew": true,
+   "isNew": false,
    "extVer": 17
   },
   {
@@ -778,7 +850,7 @@
    "channel": "hibrain",
    "layer": "B",
    "firstSeen": "2026-07-11",
-   "isNew": true,
+   "isNew": false,
    "extVer": 17
   },
   {
@@ -799,7 +871,7 @@
    "channel": "hibrain",
    "layer": "B",
    "firstSeen": "2026-07-11",
-   "isNew": true,
+   "isNew": false,
    "extVer": 17
   },
   {
@@ -820,7 +892,7 @@
    "channel": "hibrain",
    "layer": "B",
    "firstSeen": "2026-07-11",
-   "isNew": true,
+   "isNew": false,
    "extVer": 17
   },
   {
@@ -841,7 +913,7 @@
    "channel": "hibrain",
    "layer": "B",
    "firstSeen": "2026-07-11",
-   "isNew": true,
+   "isNew": false,
    "extVer": 17
   },
   {
@@ -862,7 +934,7 @@
    "channel": "hibrain",
    "layer": "B",
    "firstSeen": "2026-07-11",
-   "isNew": true,
+   "isNew": false,
    "extVer": 17
   },
   {
@@ -883,7 +955,7 @@
    "channel": "hibrain",
    "layer": "B",
    "firstSeen": "2026-07-11",
-   "isNew": true,
+   "isNew": false,
    "extVer": 17
   },
   {
@@ -904,7 +976,7 @@
    "channel": "hibrain",
    "layer": "B",
    "firstSeen": "2026-07-11",
-   "isNew": true,
+   "isNew": false,
    "extVer": 17
   },
   {
@@ -925,7 +997,7 @@
    "channel": "hibrain",
    "layer": "B",
    "firstSeen": "2026-07-11",
-   "isNew": true,
+   "isNew": false,
    "extVer": 17
   },
   {
@@ -946,7 +1018,7 @@
    "channel": "hibrain",
    "layer": "B",
    "firstSeen": "2026-07-11",
-   "isNew": true,
+   "isNew": false,
    "extVer": 17
   },
   {
@@ -967,7 +1039,7 @@
    "channel": "hibrain",
    "layer": "B",
    "firstSeen": "2026-07-11",
-   "isNew": true,
+   "isNew": false,
    "extVer": 17
   },
   {
@@ -988,7 +1060,7 @@
    "channel": "hibrain",
    "layer": "B",
    "firstSeen": "2026-07-11",
-   "isNew": true,
+   "isNew": false,
    "extVer": 17
   },
   {
@@ -1009,7 +1081,7 @@
    "channel": "hibrain",
    "layer": "B",
    "firstSeen": "2026-07-11",
-   "isNew": true,
+   "isNew": false,
    "extVer": 17
   },
   {
@@ -1029,11 +1101,11 @@
    "subject": null,
    "channel": "edu_goe",
    "layer": "C",
+   "deadlineFrom": "page",
    "qualification": "경력 신입 학력",
    "bodyExcerpt": "기간제교사(음악) 채용 공고 · 채용방법 및 일정 · 1. 채용분야 및 예정인원 · 교원자격증 사본 또는 자격 인정 조서",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-11",
-   "isNew": true,
+   "isNew": false,
    "extVer": 17
   },
   {
@@ -1053,11 +1125,11 @@
    "subject": null,
    "channel": "edu_goe",
    "layer": "C",
+   "deadlineFrom": "page",
    "qualification": "경력 경력 학력",
    "bodyExcerpt": "진접고등학교 기간제교원 채용 공고(음악1명) · 과학 관련 교원자격증 소지자 (공통과학, 화학, 물리, 지학, 생물) · 채용방법 및 일정 · 기간제 교원 채용 공고",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-11",
-   "isNew": true,
+   "isNew": false,
    "extVer": 17
   },
   {
@@ -1077,9 +1149,33 @@
    "subject": null,
    "channel": "edu_goe",
    "layer": "C",
-   "bodyExcerpt": "[윤슬초]기간제교사(4학년 영어+6학년 음악, 상담) 채용 공고문 · 윤슬초등학교 계약제 교사 채용 공고 · 윤슬초등학교에서 근무할 기간제교사 채용 계획을 다음과 같이 공고합니다 · 및 채용 예정인원",
    "deadlineFrom": "page",
+   "bodyExcerpt": "[윤슬초]기간제교사(4학년 영어+6학년 음악, 상담) 채용 공고문 · 윤슬초등학교 계약제 교사 채용 공고 · 윤슬초등학교에서 근무할 기간제교사 채용 계획을 다음과 같이 공고합니다 · 및 채용 예정인원",
    "firstSeen": "2026-07-11",
+   "isNew": false,
+   "extVer": 17
+  },
+  {
+   "id": "3dcb1fa3dc3999b2",
+   "org": "숙지고등학교(경기교육청)",
+   "region": "경기",
+   "source": "goe.go.kr",
+   "title": "2026학년도 기간제 교원 채용(생명과학, 미술, 기술가정, 음악)",
+   "url": "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=52723",
+   "date": "2026-07-10",
+   "deadline": "2026-07-13",
+   "kind": "교수",
+   "tier": "교육·취미",
+   "inst": "전체",
+   "instDetails": [],
+   "personnel": "4명 과목 생명과학, 미술, 기술가정, 음악",
+   "subject": null,
+   "channel": "edu_goe",
+   "layer": "C",
+   "qualification": "경력 신입 학력",
+   "bodyExcerpt": "2026학년도 기간제 교원 채용(생명과학, 미술, 기술가정, 음악) · 채용방법 및 일정",
+   "deadlineFrom": "page",
+   "firstSeen": "2026-07-12",
    "isNew": true,
    "extVer": 17
   },
@@ -1100,6 +1196,7 @@
    "subject": null,
    "channel": "edu_goe",
    "layer": "C",
+   "deadlineFrom": "page",
    "recruitParts": [
     {
      "part": "중등교사",
@@ -1110,9 +1207,8 @@
    "recruitSummary": "중등교사",
    "qualification": "경력 경력무관 학력",
    "bodyExcerpt": "서울삼육고등학교 영어, 음악 기간제교사 채용공고 · 영어 1명, 음악 1명 · 채용방법 및 일정 · 학기 서울삼육고등학교 기간제교사 채용계획을 다음과 같이 공고합니다",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-11",
-   "isNew": true,
+   "isNew": false,
    "extVer": 17
   },
   {
@@ -1132,11 +1228,11 @@
    "subject": null,
    "channel": "edu_goe",
    "layer": "C",
+   "deadlineFrom": "page",
    "qualification": "(1) 해당 분야에 전문적인 능력을 가진 자 또는",
    "bodyExcerpt": "2026학년도 1인 1악기(우쿨렐레) 활동 강사 채용 공고문 · 모집 분야 및 인원 · 모집 세부 사항 · 해당 분야에 전문적인 능력을 가진 자 또는 자격증 소지자",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-11",
-   "isNew": true,
+   "isNew": false,
    "extVer": 17
   },
   {
@@ -1158,11 +1254,11 @@
    "subject": null,
    "channel": "edu_goe",
    "layer": "C",
+   "deadlineFrom": "page",
    "qualification": "경력 경력무관 학력",
    "bodyExcerpt": "상동중학교 2026학년도 1인1악기 협력강사(바이올린) 채용 공고 · 채용방법 및 일정 · 모집 분야 및 자격 · 교과 및 모집 인원",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-11",
-   "isNew": true,
+   "isNew": false,
    "extVer": 17
   },
   {
@@ -1182,11 +1278,11 @@
    "subject": null,
    "channel": "edu_goe",
    "layer": "C",
+   "deadlineFrom": "page",
    "qualification": "경력 경력 학력",
    "bodyExcerpt": "2026학년도 자혜학교 2학기 교내방과후 음악강사 채용 공고 2차 · 채용방법 및 일정 · 학기 교내방과후 음악 강사 모집 공고 · 학기 교내방과후 수업에 참여할 강사를 모집하오니 사랑과 열정으로 아이들을 지도하실 강사 선생님들의 많은 지원 바랍니다",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-11",
-   "isNew": true,
+   "isNew": false,
    "extVer": 17
   },
   {
@@ -1206,11 +1302,11 @@
    "subject": null,
    "channel": "edu_goe",
    "layer": "C",
+   "deadlineFrom": "page",
    "qualification": "경력 경력무관 학력",
    "bodyExcerpt": "2026학년도 초1-2맞춤형 프로그램 강사 채용 공고(음악예술_칼림바) · 채용방법 및 일정 · 1. 교원 또는 관련 분야 일반 자격증 있을 경우 지원 가능(미기재 및 허위기재는 서류 심사에서 제외할 수 있음.) · 5. 강사 채용 계약은 학교와 강사 개인과의 계약을 체결함.",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-11",
-   "isNew": true,
+   "isNew": false,
    "extVer": 17
   },
   {
@@ -1230,11 +1326,11 @@
    "subject": null,
    "channel": "edu_goe",
    "layer": "C",
+   "deadlineFrom": "page",
    "qualification": "경력 경력무관 학력",
    "bodyExcerpt": "2026학년도 2학기 초1-2맞춤형 프로그램(신나는 음악) 강사 모집 공고 · 채용방법 및 일정 · 정재초등학교 채용공고 제 · 맞춤형 프로그램 강사 채용 공고",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-11",
-   "isNew": true,
+   "isNew": false,
    "extVer": 17
   },
   {
@@ -1256,10 +1352,32 @@
    "subject": null,
    "channel": "edu_goe",
    "layer": "C",
+   "deadlineFrom": "page",
    "qualification": "경력 경력무관 학력",
    "bodyExcerpt": "[매양중]예술수업 악기강사(하프) 모집 공고_2차 · 채용방법 및 일정 · 다음과 같이 모집",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-11",
+   "isNew": false,
+   "extVer": 17
+  },
+  {
+   "id": "f9851696a21a61a3",
+   "org": "전주동신초등학(전북교육청)",
+   "region": "기타",
+   "source": "jbe.go.kr",
+   "title": "전주동신초등학 초등교과 6학년(음악, 미술, 실과) 채용",
+   "url": "https://www.jbe.go.kr/board/view.jbe?boardId=BBS_0000130&menuCd=DOM_000000103004006000&paging=ok&startPage=3&searchOperation=AND&dataSid=1148369",
+   "date": "2026-07-09",
+   "deadline": "2026-07-16",
+   "kind": "기타",
+   "tier": "프로",
+   "inst": "전체",
+   "instDetails": [],
+   "personnel": null,
+   "subject": null,
+   "channel": "edu_jbe",
+   "layer": "C",
+   "bodyExcerpt": "시험/채용/구직 · 기간제교사 채용계획 사전공개 · 학교/기관별 채용공고 · 채용 공고 시 유의사항",
+   "firstSeen": "2026-07-12",
    "isNew": true,
    "extVer": 17
   },
@@ -1281,7 +1399,7 @@
    "channel": "hibrain",
    "layer": "B",
    "firstSeen": "2026-07-11",
-   "isNew": true,
+   "isNew": false,
    "extVer": 17
   },
   {
@@ -1301,7 +1419,7 @@
    "channel": "hibrain",
    "layer": "B",
    "firstSeen": "2026-07-11",
-   "isNew": true,
+   "isNew": false,
    "extVer": 17
   },
   {
@@ -1374,7 +1492,7 @@
    "deadlineFrom": "attachment",
    "bodyExcerpt": "구리시 음악창작소 '스튜디오 투어' 참여자 모집 · 사업목적 : 관내 청소년을 대상으로 문화예술 산업의 콘텐츠 제작 과정을 체험할 수 있는 기회를 제공함으로써 진로 계발을 지원하고, 창의적 문화예술 인재 양성 기여 · 사업기간 : 2026. 7. 27.(월) ~ 8. 11.(화) · 모집대상 : 구리시 관내 초·중·고등학교 학생, ** 단체접수는 전화문의 바랍니다.",
    "firstSeen": "2026-07-11",
-   "isNew": true,
+   "isNew": false,
    "extVer": 17
   },
   {
@@ -1395,7 +1513,7 @@
    "channel": "hibrain",
    "layer": "B",
    "firstSeen": "2026-07-11",
-   "isNew": true,
+   "isNew": false,
    "extVer": 17
   },
   {
@@ -1416,7 +1534,7 @@
    "channel": "hibrain",
    "layer": "B",
    "firstSeen": "2026-07-11",
-   "isNew": true,
+   "isNew": false,
    "extVer": 17
   },
   {
@@ -1437,7 +1555,7 @@
    "channel": "hibrain",
    "layer": "B",
    "firstSeen": "2026-07-11",
-   "isNew": true,
+   "isNew": false,
    "extVer": 17,
    "subject": "교회음악학"
   },
@@ -1557,7 +1675,7 @@
    "channel": "hibrain",
    "layer": "B",
    "firstSeen": "2026-07-11",
-   "isNew": true,
+   "isNew": false,
    "extVer": 17
   },
   {
@@ -1580,7 +1698,7 @@
    "channel": "hibrain",
    "layer": "B",
    "firstSeen": "2026-07-11",
-   "isNew": true,
+   "isNew": false,
    "extVer": 17,
    "subject": "지휘"
   },
@@ -1634,7 +1752,7 @@
    "qualification": "연령: 35세 ~ 50세 학력: 성악 전공 석사 졸업 이상",
    "bodyExcerpt": "채용 | 더솔아르떼 성악아카데미 평택점과 함께할 전문 강사님을 모십니다 · 성악 전문 강사님을 모집합니다. · ✨️ 모집 분야 · 우대: 교육 및 연주 경력자 환영,",
    "firstSeen": "2026-07-11",
-   "isNew": true,
+   "isNew": false,
    "extVer": 17
   },
   {
@@ -1715,7 +1833,7 @@
    ],
    "bodyExcerpt": "순천시립소년소녀합창단 신입단원 모집 공고 · 2026년 순천시립소년소녀합창단 신입단원을 다음과 같이 모집 공고합니다.",
    "firstSeen": "2026-07-11",
-   "isNew": true,
+   "isNew": false,
    "extVer": 17
   }
  ]

@@ -563,21 +563,135 @@ def parse_goe(s):
                 items.append(make_item(f"{org}(경기교육청)", "경기", "goe.go.kr", title, url, date=d))
     return items
 
-# ---- 인천교육청 채용공고(na/ntt CMS) — 목록 POST 필요 ----
-def parse_ice(s):
-    items = []
+# ---- na/ntt CMS 교육청 채용게시판 (인천·전남·경북·세종 공통 벤더) ----
+# 목록 GET → 행 .nttInfoBtn[data-id] → 상세 GET selectNttInfo.do?nttSn=&mi=
+NA_NTT_BOARDS = [
+    {"id": "edu_ice", "name": "인천교육청(학교 채용)", "region": "인천", "dom": "ice.go.kr",
+     "base": "https://www.ice.go.kr/ice", "mi": "10997", "bbsId": "1981", "extra": ""},
+    {"id": "edu_jne", "name": "전남교육청(학교 채용)", "region": "기타", "dom": "jne.go.kr",
+     "base": "https://www.jne.go.kr/main", "mi": "265", "bbsId": "117", "extra": "&searchCate1=1"},
+    {"id": "edu_gbe", "name": "경북교육청(학교 채용)", "region": "기타", "dom": "gbe.kr",
+     "base": "https://www.gbe.kr/main", "mi": "3636", "bbsId": "1890", "extra": ""},
+    {"id": "edu_sje", "name": "세종교육청(학교 채용)", "region": "기타", "dom": "sje.go.kr",
+     "base": "https://www.sje.go.kr/sje", "mi": "52132", "bbsId": "108", "extra": ""},
+    # 대구 — 같은 na/ntt CMS인데 requests 차단 → Playwright 렌더(js) 경유
+    {"id": "edu_dge", "name": "대구교육청(모집공고)", "region": "대구", "dom": "dge.go.kr",
+     "base": "https://www.dge.go.kr/main", "mi": "5211", "bbsId": "1793", "extra": "", "js": True},
+]
+
+def _make_nantt_parser(cfg):
+    def parse(s):
+        items = []
+        for page in (1, 2):
+            url = (f"{cfg['base']}/na/ntt/selectNttList.do?mi={cfg['mi']}"
+                   f"&bbsId={cfg['bbsId']}&currPage={page}{cfg['extra']}")
+            try:
+                if cfg.get("js"):
+                    from jsfetch import render
+                    html = render(url, wait_ms=2500)
+                else:
+                    r = get(s, url)
+                    if r.status_code != 200:
+                        break
+                    html = r.text
+            except Exception:
+                break
+            rows = BeautifulSoup(html, "lxml").select(".nttInfoBtn[data-id]")
+            if not rows:
+                break
+            for a in rows:
+                title = a.get_text(" ", strip=True)
+                if len(title) < 8 or not EDU_MUSIC.search(title):
+                    continue
+                url = (f"{cfg['base']}/na/ntt/selectNttInfo.do?nttSn={a['data-id']}"
+                       f"&mi={cfg['mi']}&bbsId={cfg['bbsId']}")
+                items.append(make_item(cfg["name"], cfg["region"], cfg["dom"], title, url,
+                                       date=_row_date(a)))
+        return items
+    return parse
+
+# ---- 강원교육청 구인 게시판 — 목록 GET(sub.do) + 상세 GET(bbs/view.do?bbsSn=) ----
+GWE_LIST = "https://www.gwe.go.kr/main/sub.do?key=bTIzMDcyMTA1ODUxNTU%3D"
+GWE_VIEW = "https://www.gwe.go.kr/main/bbs/view.do?key=bTIzMDcyMTA1ODU2MzM%3D&bbsSn={id}"
+
+def parse_gwe(s):
+    items, seen = [], set()
     try:
-        r = s.post("https://www.ice.go.kr/ice/na/ntt/selectNttList.do", timeout=20, verify=False,
-                   data={"mi": "10997", "bbsId": "1981", "currPage": "1"},
-                   headers={"X-Requested-With": "XMLHttpRequest"})
+        r = get(s, GWE_LIST)
     except Exception:
         return items
-    for a in _soup(r).select(".nttInfoBtn[data-id]"):   # 행 = .nttInfoBtn(data-id=nttSn)
-        title = a.get_text(" ", strip=True)
-        if len(title) < 8 or not EDU_MUSIC.search(title):
+    for a in _soup(r).find_all("a", onclick=re.compile(r"goView\('\d+'")):
+        m = re.search(r"goView\('(\d+)'", a.get("onclick", ""))
+        title = a.get("title") or a.get_text(" ", strip=True)
+        title = re.sub(r"^\s*NEW\s*|\s*\[[가-힣]{2,8}\]\s*", " ", title).strip()
+        if not m or m.group(1) in seen or len(title) < 8 or not EDU_MUSIC.search(title):
             continue
-        url = f"https://www.ice.go.kr/ice/na/ntt/selectNttInfo.do?nttSn={a['data-id']}&mi=10997"
-        items.append(make_item("인천교육청(학교 채용)", "인천", "ice.go.kr", title, url, date=_row_date(a)))
+        seen.add(m.group(1))
+        items.append(make_item("강원교육청(학교 채용)", "기타", "gwe.go.kr",
+                               title, GWE_VIEW.format(id=m.group(1)), date=_row_date(a)))
+    return items
+
+# ---- 전북교육청 학교/기관별 채용공고 — 과목이 제목이 아닌 행(tr) 셀에 표기 ----
+# 행 전체 텍스트로 음악 필터 (제목 셀만으론 학교명뿐이라 판별 불가)
+JBE_LIST = ("https://www.jbe.go.kr/board/list.jbe?boardId=BBS_0000130"
+            "&menuCd=DOM_000000103004006000&startPage={page}")
+
+def parse_jbe(s):
+    from urllib.parse import urljoin as _uj
+    items = []
+    for page in (1, 2, 3):
+        try:
+            r = get(s, JBE_LIST.format(page=page))
+            if r.status_code != 200:
+                break
+        except Exception:
+            break
+        rows = _soup(r).select("table tbody tr")
+        if not rows:
+            break
+        for tr in rows:
+            # 셀 구조: [번호, 학교급, 학교명(=앵커), 과목/제목, 모집기간(시작~마감)]
+            cells = [td.get_text(" ", strip=True) for td in tr.find_all("td")]
+            a = tr.find("a", href=re.compile(r"view\.jbe"))
+            if not a or len(cells) < 5:
+                continue
+            org, subject, period = cells[2], cells[3], cells[4]
+            if not EDU_MUSIC.search(subject):     # 과목 셀로만 필터 (학교명 오탐 방지)
+                continue
+            dl = None
+            m = re.search(r"~\s*(20\d{2})-(\d{2})-(\d{2})", period)
+            if m:
+                dl = f"{m.group(1)}-{m.group(2)}-{m.group(3)}"
+            items.append(make_item(f"{org}(전북교육청)", "기타", "jbe.go.kr",
+                                   f"{org} {subject} 채용",
+                                   _uj("https://www.jbe.go.kr/", a["href"]),
+                                   date=find_date(period), deadline=dl))
+    return items
+
+# ---- 대전교육청 구인·구직(boardCnts CMS) — goView(boardID, boardSeq, lev …) → GET view.do ----
+DJE_LIST = "https://www.dje.go.kr/boardCnts/list.do?boardID={bid}&m={m}&s=dje&page={page}"
+DJE_BOARDS = [("10539", "030201"), ("54", "030202")]   # 구인·구직 / 학교인력 채용공고
+
+def parse_dje(s):
+    items, seen = [], set()
+    for bid, menu in DJE_BOARDS:
+        for page in (1, 2):
+            try:
+                r = get(s, DJE_LIST.format(bid=bid, m=menu, page=page))
+                if r.status_code != 200:
+                    break
+            except Exception:
+                break
+            for a in _soup(r).find_all(["a", "td"], onclick=re.compile(r"goView\(")):
+                m = re.search(r"goView\('(\d+)',\s*'(\d+)',\s*'(\d+)'", a.get("onclick", ""))
+                title = a.get_text(" ", strip=True)
+                if not m or len(title) < 8 or title in seen or not EDU_MUSIC.search(title):
+                    continue
+                seen.add(title)
+                url = (f"https://www.dje.go.kr/boardCnts/view.do?boardID={m.group(1)}"
+                       f"&boardSeq={m.group(2)}&lev={m.group(3)}&s=dje&m={menu}")
+                items.append(make_item("대전교육청(학교 채용)", "대전", "dje.go.kr",
+                                       title, url, date=_row_date(a)))
     return items
 
 # mode: "search"(키워드 루프, list에 {kw}) / "board"(단일 게시판, 제목 EDU_MUSIC 필터)
@@ -591,13 +705,9 @@ EDU_PORTALS = [
      "detail": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn={id}"},
     # 경남 — 별도 손파서 parse_gne(works 시스템)로 이미 수집 중.
     #
-    # ── 경기·인천: 목록이 POST → 위 손파서(parse_goe·parse_ice)로 수집 ──
-    # ── 광주·제주·울산: GET 게시판 → generic_sources.json(discovery)로 등록 ──
-    # ── 미해결(2026-07 재조사): ──
-    #  강원 gwe.go.kr sub.do   : SSR 목록이나 상세가 goView(key) 폼 submit — 폼 action 해석 필요
-    #  전남 jne / 경북 gbe / 세종 sje : na/ntt CMS인데 목록 행이 별도 AJAX(변형) — 엔드포인트 미확인
-    #  부산 pen / 대구 dge / 대전 dje / 충북 cbe / 충남 cne : requests 접근 차단(브라우저만 허용) 또는 로그인 인력풀
-    #  전북 jbe                : 게시판 제목이 '학교명'뿐이라 키워드 필터 불가(본문에만 과목)
+    # ── 커버 현황(15/17): 서울(검색형)·경남(works)·경기(POST)·강원(bbs)·전북(행필터)·대전(boardCnts)
+    #    인천·전남·경북·세종·대구(js) = na/ntt 공통 / 광주·제주·울산·충남(js) = generic 등록 ──
+    # ── 미해결(2): 부산 pen·충북 cbe = requests·Playwright 모두 차단(WAF) — 로그인 인력풀/방문IP 필요 ──
 ]
 
 # ---------- 소스 레지스트리 ----------
@@ -643,9 +753,14 @@ SOURCES = [
 # 시도교육청 방과후/강사 포털 (config 기반) — 도메인 집계 노드, 주 2회
 for _ep in EDU_PORTALS:
     SOURCES.append(S(_ep["id"], _ep["name"], _make_edu_parser(_ep), _ep["source"], "C", "weekly", (1, 4)))
-# 경기·인천 교육청 (POST 목록 — 손파서)
+# 경기(POST)·강원·전북·대전 교육청 손파서
 SOURCES.append(S("edu_goe", "경기교육청(방과후·강사)", parse_goe, "goe.go.kr", "C", "weekly", (1, 4)))
-SOURCES.append(S("edu_ice", "인천교육청(학교 채용)", parse_ice, "ice.go.kr", "C", "weekly", (1, 4)))
+SOURCES.append(S("edu_gwe", "강원교육청(학교 채용)", parse_gwe, "gwe.go.kr", "C", "weekly", (1, 4)))
+SOURCES.append(S("edu_jbe", "전북교육청(학교 채용)", parse_jbe, "jbe.go.kr", "C", "weekly", (1, 4)))
+SOURCES.append(S("edu_dje", "대전교육청(학교 채용)", parse_dje, "dje.go.kr", "C", "weekly", (1, 4)))
+# na/ntt 공통 벤더 교육청 (인천·전남·경북·세종)
+for _nb in NA_NTT_BOARDS:
+    SOURCES.append(S(_nb["id"], _nb["name"], _make_nantt_parser(_nb), _nb["dom"], "C", "weekly", (1, 4)))
 
 # ---------- 자동 발견 소스 (discovery.py 산출물) ----------
 _GENERIC_PAT = re.compile(r"모집|채용|공고|초빙|오디션|강사")
