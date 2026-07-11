@@ -577,12 +577,19 @@ NA_NTT_BOARDS = [
     # 대구 — 같은 na/ntt CMS인데 requests 차단 → Playwright 렌더(js) 경유
     {"id": "edu_dge", "name": "대구교육청(모집공고)", "region": "대구", "dom": "dge.go.kr",
      "base": "https://www.dge.go.kr/main", "mi": "5211", "bbsId": "1793", "extra": "", "js": True},
+    # 부산 — 홈만 리다이렉트 스텁, 목록은 http+Referer로 열림
+    {"id": "edu_pen", "name": "부산교육청(학교인력채용)", "region": "부산", "dom": "pen.go.kr",
+     "base": "http://www.pen.go.kr/main", "mi": "30367", "bbsId": "2364", "extra": "",
+     "referer": "https://www.pen.go.kr/"},
+    # 충북 — home/main.php는 열리고 구인정보 게시판도 na/ntt 공통
+    {"id": "edu_cbe", "name": "충북교육청(구인정보)", "region": "기타", "dom": "cbe.go.kr",
+     "base": "https://www.cbe.go.kr/cbe", "mi": "11716", "bbsId": "1798", "extra": ""},
 ]
 
 def _make_nantt_parser(cfg):
     def parse(s):
         items = []
-        for page in (1, 2):
+        for page in (1, 2, 3):
             url = (f"{cfg['base']}/na/ntt/selectNttList.do?mi={cfg['mi']}"
                    f"&bbsId={cfg['bbsId']}&currPage={page}{cfg['extra']}")
             try:
@@ -590,7 +597,8 @@ def _make_nantt_parser(cfg):
                     from jsfetch import render
                     html = render(url, wait_ms=2500)
                 else:
-                    r = get(s, url)
+                    hdr = {"Referer": cfg["referer"]} if cfg.get("referer") else None
+                    r = get(s, url, headers=hdr) if hdr else get(s, url)
                     if r.status_code != 200:
                         break
                     html = r.text
@@ -705,9 +713,10 @@ EDU_PORTALS = [
      "detail": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn={id}"},
     # 경남 — 별도 손파서 parse_gne(works 시스템)로 이미 수집 중.
     #
-    # ── 커버 현황(15/17): 서울(검색형)·경남(works)·경기(POST)·강원(bbs)·전북(행필터)·대전(boardCnts)
-    #    인천·전남·경북·세종·대구(js) = na/ntt 공통 / 광주·제주·울산·충남(js) = generic 등록 ──
-    # ── 미해결(2): 부산 pen·충북 cbe = requests·Playwright 모두 차단(WAF) — 로그인 인력풀/방문IP 필요 ──
+    # ── 커버 현황: 시도교육청 17/17 전곳 개통 ──
+    #  서울(검색형)·경남(works)·경기(POST)·강원(bbs)·전북(행필터)·대전(boardCnts)
+    #  na/ntt 공통: 인천·전남·경북·세종·대구(js)·부산(http+Referer)·충북
+    #  generic(GET게시판): 광주·제주·울산 / 충남(needs_js)
 ]
 
 # ---------- 소스 레지스트리 ----------

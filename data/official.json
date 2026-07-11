@@ -1,7 +1,7 @@
 {
- "collectedAt": "2026-07-12 00:31",
- "sourceCount": 77,
- "okCount": 76,
+ "collectedAt": "2026-07-12 01:49",
+ "sourceCount": 79,
+ "okCount": 78,
  "instTotal": 75,
  "sources": [
   {
@@ -288,7 +288,7 @@
    "layer": "C",
    "poll": "weekly",
    "ok": true,
-   "raw": 3,
+   "raw": 4,
    "kept": 0
   },
   {
@@ -317,6 +317,24 @@
    "ok": true,
    "raw": 0,
    "kept": 0
+  },
+  {
+   "id": "edu_pen",
+   "name": "부산교육청(학교인력채용)",
+   "layer": "C",
+   "poll": "weekly",
+   "ok": true,
+   "raw": 0,
+   "kept": 0
+  },
+  {
+   "id": "edu_cbe",
+   "name": "충북교육청(구인정보)",
+   "layer": "C",
+   "poll": "weekly",
+   "ok": true,
+   "raw": 2,
+   "kept": 1
   },
   {
    "id": "g_cfac",
@@ -1172,9 +1190,9 @@
    "subject": null,
    "channel": "edu_goe",
    "layer": "C",
+   "deadlineFrom": "page",
    "qualification": "경력 신입 학력",
    "bodyExcerpt": "2026학년도 기간제 교원 채용(생명과학, 미술, 기술가정, 음악) · 채용방법 및 일정",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-12",
    "isNew": true,
    "extVer": 17
@@ -1558,6 +1576,29 @@
    "isNew": false,
    "extVer": 17,
    "subject": "교회음악학"
+  },
+  {
+   "id": "34114bed196714d5",
+   "org": "충북교육청(구인정보)",
+   "region": "기타",
+   "source": "cbe.go.kr",
+   "title": "세명고 기간제교사(수학, 음악) 채용 2차공고",
+   "url": "https://www.cbe.go.kr/cbe/na/ntt/selectNttInfo.do?nttSn=1575303&mi=11716&bbsId=1798",
+   "date": "2026-07-06",
+   "deadline": "2026-07-13",
+   "kind": "기타",
+   "tier": "프로",
+   "inst": "전체",
+   "instDetails": [],
+   "personnel": null,
+   "subject": null,
+   "channel": "edu_cbe",
+   "layer": "C",
+   "bodyExcerpt": "세명고 기간제교사(수학, 음악) 채용 2차공고 · 세명고등학교는 기간제교원 채용을 다음과 같이 공고합니다. · 1. 대상 교과: 수학(1명), 음악(1명) · 담당교과 교원자격증",
+   "deadlineFrom": "page",
+   "firstSeen": "2026-07-12",
+   "isNew": true,
+   "extVer": 17
   },
   {
    "id": "b2e199e32140e0ed",
