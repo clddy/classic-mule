@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import (new_session, get, relevant, extract_deadline, deadline_from_title,
                     musician_relevant, parse_recruit_table, summarize_recruit, find_position,
-                    classify_insts, find_subject, classify_kind)
+                    classify_insts, find_subject, classify_kind, age_group)
 from sources import SOURCES
 from institutions import INSTITUTIONS
 import attach
@@ -139,21 +139,31 @@ def coverage_report(items, today):
 # ---------- 마감일 보강 ----------
 ATTACH_LINK = re.compile(r"download|fileDown|file\.do|atchFile|attach|dwld|fileId|process\.file", re.I)
 
+# 새올·JSP 게시판: javascript:fnDownload('/board/file/…','…') 형태의 다운로드 함수에서
+# 파일 경로 인자를 뽑아낸다 (첫 인자가 실제 다운로드 경로).
+_JS_FILEARG = re.compile(r"""['"](/[^'"]*?(?:/file/|download|filedown|atchfile|/atch|/dext5)[^'"]*)['"]""", re.I)
+
 def find_attachments(soup, base_url):
     from urllib.parse import urljoin
     cands, seen = [], set()
     for a in soup.find_all("a", href=True):
         href = a["href"]
-        if href.startswith(("javascript", "#", "mailto")):
-            continue
         text = a.get_text(" ", strip=True)
-        if (re.search(r"\.(pdf|hwpx?|zip)(\?|$)", href, re.I)
+        if href.startswith(("#", "mailto")):
+            continue
+        full = None
+        if href.startswith("javascript"):
+            m = _JS_FILEARG.search(href)
+            if not m:
+                continue
+            full = urljoin(base_url, re.sub(r";jsessionid=[^?&'\"]*", "", m.group(1), flags=re.I))
+        elif (re.search(r"\.(pdf|hwpx?|zip)(\?|$)", href, re.I)
                 or re.search(r"\.(pdf|hwpx?|zip)\b", text, re.I)
                 or ATTACH_LINK.search(href)):
             full = urljoin(base_url, href)
-            if full not in seen:
-                seen.add(full)
-                cands.append((full, text))
+        if full and full not in seen:
+            seen.add(full)
+            cands.append((full, text))
     return cands[:3]
 
 EXT_VER = 17         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일 승계가 무효화됨
@@ -768,8 +778,9 @@ def run(force_all=False):
         it["firstSeen"] = old.get("firstSeen", today.isoformat()) if old else today.isoformat()
         it["isNew"] = it["firstSeen"] == today.isoformat()
         it["extVer"] = EXT_VER
-        # 제목 기반 분류(kind/subject)는 순수 함수 — 승계 항목도 최신 로직으로 재적용
+        # 제목 기반 분류(kind/subject/ageGroup)는 순수 함수 — 승계 항목도 최신 로직으로 재적용
         # (서버 장애로 원본 0건 승계된 항목이 옛 분류를 물고 오는 것 방지)
+        it["ageGroup"] = age_group(it["title"], it.get("org", ""))
         it["kind"] = classify_kind(it["title"])
         if it["kind"] == "교수" and not it.get("subject"):
             subj = find_subject(it["title"])

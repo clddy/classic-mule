@@ -26,6 +26,7 @@ const OFFICIAL_ITEMS = ((window.CRAWLED && window.CRAWLED.items) || []).map(j =>
   band: KIND2BAND[j.kind] || "기타",
   insts: j.instDetails || [], group: j.inst,
   subject: j.subject,   // 대학 교수 초빙: 전공/과목
+  ageGroup: j.ageGroup || "성인",   // 지원자 연령: 성인 / 미성년
   region: j.region, title: j.title, org: j.org,
   deadline: j.deadline, deadlineText: j.deadlineNote, date: j.date || j.firstSeen,
   personnel: j.personnel, qualification: j.qualification, contract: j.contract, pay: j.pay,
@@ -41,6 +42,7 @@ let COMMUNITY_ITEMS = JOBS.map(j => ({
   tier: j.tier || "프로",
   band: CAT2BAND[j.cat] || "기타",
   insts: j.instDetails || [j.instDetail], group: j.inst,
+  ageGroup: "성인",
   region: j.region, title: j.title, org: j.org, pay: j.pay,
   when: j.when, program: j.program,
   personnel: j.personnel, qualification: j.qualification, contract: j.contract,
@@ -55,6 +57,7 @@ let COMMUNITY_ITEMS = JOBS.map(j => ({
 // 구분: 프로(국공립·직업) / 전공·입시(유스·입시레슨) / 교육·취미(방과후·취미레슨) / 오브리(교회·웨딩·행사)
 const TIERS = ["프로", "전공·입시", "교육·취미", "오브리"];
 const TIER_CLS = { "프로": "src-official", "전공·입시": "pos", "교육·취미": "dd-open", "오브리": "inst" };
+const AGES = ["성인", "미성년"];
 const BANDS = ["단원", "객원·대체", "반주", "행사연주", "강사·레슨", "지휘", "교수", "직원·스태프", "기타"];
 const INST_GROUPS = [
   ["현악", ["바이올린", "비올라", "첼로", "더블베이스"]],
@@ -66,7 +69,7 @@ const INST_GROUPS = [
 const REGION_LIST = ["서울", "경기", "인천", "대전", "대구", "부산", "기타"];
 const STATUSES = ["접수중", "마감임박", "확인필요", "마감"];
 
-const state = { tab: "전체", tiers: new Set(), bands: new Set(), insts: new Set(), regions: new Set(), status: new Set(), query: "", sort: "deadline" };
+const state = { tab: "전체", tiers: new Set(), ages: new Set(), bands: new Set(), insts: new Set(), regions: new Set(), status: new Set(), query: "", sort: "deadline" };
 const $ = (s) => document.querySelector(s);
 
 function statusOf(j) {
@@ -110,6 +113,7 @@ function filtered() {
   return all.filter(j => {
     if (state.tab !== "전체" && j.type !== state.tab) return false;
     if (state.tiers.size && !state.tiers.has(j.tier)) return false;
+    if (state.ages.size && !state.ages.has(j.ageGroup)) return false;
     if (state.bands.size && !state.bands.has(j.band)) return false;
     if (state.insts.size) {
       if (!j.insts.length || ![...state.insts].some(v => j.insts.includes(v))) return false;
@@ -153,6 +157,7 @@ function cardHTML(j) {
   const tags = `
     ${j.sample ? `<span class="tag sample">예시</span>` : ""}
     <span class="tag ${TIER_CLS[j.tier] || "cat"}">${j.tier}</span>
+    ${j.ageGroup === "미성년" ? `<span class="tag pos">미성년</span>` : ""}
     ${j.type === "구직" ? `<span class="tag type-seek">구직</span>` : ""}
     <span class="tag cat">${j.band}</span>
     ${j.subject && !j.insts.includes(j.subject) ? `<span class="tag inst">${j.subject}</span>` : ""}
@@ -222,6 +227,7 @@ function renderTabs() {
 function renderAll() {
   renderTabs();
   renderChips("#filter-tier", TIERS, state.tiers);
+  renderChips("#filter-age", AGES, state.ages);
   renderChips("#filter-band", BANDS, state.bands);
   renderInstChips();
   renderChips("#filter-region", REGION_LIST, state.regions);
@@ -400,7 +406,7 @@ document.addEventListener("DOMContentLoaded", () => {
   $("#search-input").addEventListener("input", (e) => { state.query = e.target.value.trim(); renderList(); });
   $("#sort-sel").addEventListener("change", (e) => { state.sort = e.target.value; renderList(); });
   $("#filter-reset").addEventListener("click", () => {
-    state.tiers.clear(); state.bands.clear(); state.insts.clear(); state.regions.clear(); state.status.clear();
+    state.tiers.clear(); state.ages.clear(); state.bands.clear(); state.insts.clear(); state.regions.clear(); state.status.clear();
     state.query = ""; $("#search-input").value = "";
     renderAll();
   });

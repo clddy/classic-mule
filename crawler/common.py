@@ -282,6 +282,20 @@ def classify_insts(title):
         return "전체", []
     return groups[0], details
 
+# ---------- 연령 (지원자 기준): 성인 / 미성년 ----------
+# 미성년 = '지원하는 사람 자체가 미성년'인 공고 (소년소녀합창단·유스오케 단원 모집 등).
+# 청소년단체라도 지휘자·강사·반주 등 성인이 지원하는 자리는 성인.
+_YOUTH_TARGET = re.compile(r"소년소녀|청소년|유스|youth|유소년|아동|어린이|주니어|키즈|초등부|중등부")
+_ADULT_ROLE = re.compile(r"지휘|강사|교사|교수|반주자|트레이너|코치|스태프|사무|행정|감독|매니저"
+                         r"|악장|수석|차석|부수석|튜티|직원|인턴|근로자|안내|보조|상근|위촉")
+
+def age_group(title, org=""):
+    """지원자 연령 구분 — 미성년 본인이 지원하는 단원모집만 '미성년', 나머지 '성인'."""
+    t = f"{title} {org}"
+    if _YOUTH_TARGET.search(t) and not _ADULT_ROLE.search(t):
+        return "미성년"
+    return "성인"
+
 def classify_tier(title, org=""):
     """프로(국공립·직업) / 전공·입시 / 교육·취미 / 오브리(행사·교회)"""
     t = f"{title} {org}"
@@ -436,6 +450,7 @@ def make_item(org, region, source, title, url, date=None, deadline=None):
         "deadline": deadline,  # 접수 마감 (모르면 None)
         "kind": kind,
         "tier": classify_tier(title, org),
+        "ageGroup": age_group(clean, org),   # 지원자 연령: 성인 / 미성년
         "inst": group,
         "instDetails": details,  # 세부 악기 (복수 가능: "비올라, 오보에")
         "personnel": extract_personnel(clean),  # 모집 인원 (제목에서, 없으면 None)

@@ -1,7 +1,7 @@
 {
- "collectedAt": "2026-07-12 02:49",
+ "collectedAt": "2026-07-12 03:19",
  "sourceCount": 80,
- "okCount": 79,
+ "okCount": 80,
  "instTotal": 75,
  "sources": [
   {
@@ -126,8 +126,9 @@
    "name": "창원문화재단",
    "layer": "B",
    "poll": "weekly",
-   "ok": false,
-   "error": "ReadTimeout: HTTPSConnectionPool(host='www.cwcf.or.kr', port=443): Read timed out. (read timeout=20)"
+   "ok": true,
+   "raw": 28,
+   "kept": 1
   },
   {
    "id": "ulsan",
@@ -541,7 +542,7 @@
    "poll": "weekly",
    "ok": true,
    "raw": 2,
-   "kept": 1
+   "kept": 0
   },
   {
    "id": "g_i_andonggokr",
@@ -746,7 +747,8 @@
    "layer": "B",
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 17
+   "extVer": 17,
+   "ageGroup": "성인"
   },
   {
    "id": "9b9fed1c189aef5e",
@@ -767,7 +769,8 @@
    "layer": "B",
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 17
+   "extVer": 17,
+   "ageGroup": "성인"
   },
   {
    "id": "d799d2daacc55291",
@@ -788,7 +791,8 @@
    "layer": "B",
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 17
+   "extVer": 17,
+   "ageGroup": "성인"
   },
   {
    "id": "7e82257b25ad7ec7",
@@ -801,6 +805,7 @@
    "deadline": "2026-07-16",
    "kind": "강사",
    "tier": "교육·취미",
+   "ageGroup": "성인",
    "inst": "현악",
    "instDetails": [
     "바이올린"
@@ -826,6 +831,7 @@
    "deadline": "2026-07-15",
    "kind": "강사",
    "tier": "교육·취미",
+   "ageGroup": "성인",
    "inst": "성악",
    "instDetails": [],
    "personnel": "6명 과목 (",
@@ -857,7 +863,8 @@
    "layer": "B",
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 17
+   "extVer": 17,
+   "ageGroup": "성인"
   },
   {
    "id": "fe531e2e0f28b479",
@@ -878,7 +885,8 @@
    "layer": "B",
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 17
+   "extVer": 17,
+   "ageGroup": "성인"
   },
   {
    "id": "875b04e41b406490",
@@ -899,7 +907,8 @@
    "layer": "B",
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 17
+   "extVer": 17,
+   "ageGroup": "성인"
   },
   {
    "id": "1170cbe4e8bccc87",
@@ -920,7 +929,8 @@
    "layer": "B",
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 17
+   "extVer": 17,
+   "ageGroup": "성인"
   },
   {
    "id": "887ed332ccceac36",
@@ -941,7 +951,8 @@
    "layer": "B",
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 17
+   "extVer": 17,
+   "ageGroup": "성인"
   },
   {
    "id": "6015a48666b489c3",
@@ -962,7 +973,8 @@
    "layer": "B",
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 17
+   "extVer": 17,
+   "ageGroup": "성인"
   },
   {
    "id": "682e8f2ab01c9302",
@@ -983,7 +995,8 @@
    "layer": "B",
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 17
+   "extVer": 17,
+   "ageGroup": "성인"
   },
   {
    "id": "ca81c997edbe7d67",
@@ -1004,7 +1017,8 @@
    "layer": "B",
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 17
+   "extVer": 17,
+   "ageGroup": "성인"
   },
   {
    "id": "4a732d29d3557983",
@@ -1025,7 +1039,8 @@
    "layer": "B",
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 17
+   "extVer": 17,
+   "ageGroup": "성인"
   },
   {
    "id": "2e29513f2f828862",
@@ -1046,7 +1061,8 @@
    "layer": "B",
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 17
+   "extVer": 17,
+   "ageGroup": "성인"
   },
   {
    "id": "2567e43ae1c8b1dc",
@@ -1067,7 +1083,8 @@
    "layer": "B",
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 17
+   "extVer": 17,
+   "ageGroup": "성인"
   },
   {
    "id": "74c3b7961934806e",
@@ -1088,7 +1105,8 @@
    "layer": "B",
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 17
+   "extVer": 17,
+   "ageGroup": "성인"
   },
   {
    "id": "3939c2f37d5e8985",
@@ -1109,6 +1127,31 @@
    "layer": "B",
    "firstSeen": "2026-07-11",
    "isNew": false,
+   "extVer": 17,
+   "ageGroup": "성인"
+  },
+  {
+   "id": "21d4220912a1600a",
+   "org": "창원문화재단(시립예술단)",
+   "region": "기타",
+   "source": "cwcf.or.kr",
+   "title": "2026년 창원문화재단 비상근 임원(이사·감사) 공개모집 공고",
+   "url": "https://www.cwcf.or.kr/commu/notice_view.asp?skey=&sword=&BCATE=BD00001&BSUBCATE=&place_idx=&page=1&idx=22569&bidx=2051",
+   "date": "2026-07-10",
+   "deadline": "2026-07-27",
+   "kind": "기타",
+   "tier": "프로",
+   "ageGroup": "성인",
+   "inst": "전체",
+   "instDetails": [],
+   "personnel": null,
+   "subject": null,
+   "channel": "cwcf",
+   "layer": "B",
+   "bodyExcerpt": "2026년 창원문화재단 비상근 임원(이사·감사) 공개모집 공고.png",
+   "deadlineFrom": "ocr",
+   "firstSeen": "2026-07-12",
+   "isNew": true,
    "extVer": 17
   },
   {
@@ -1122,6 +1165,7 @@
    "deadline": "2026-07-14",
    "kind": "기타",
    "tier": "교육·취미",
+   "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
    "personnel": "2",
@@ -1146,6 +1190,7 @@
    "deadline": "2026-07-14",
    "kind": "교수",
    "tier": "교육·취미",
+   "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
    "personnel": "음악 1명",
@@ -1170,6 +1215,7 @@
    "deadline": "2026-07-14",
    "kind": "기타",
    "tier": "교육·취미",
+   "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
    "personnel": "2",
@@ -1194,6 +1240,7 @@
    "deadline": "2026-07-14",
    "kind": "교수",
    "tier": "교육·취미",
+   "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
    "personnel": "2",
@@ -1218,6 +1265,7 @@
    "deadline": "2026-07-14",
    "kind": "기타",
    "tier": "교육·취미",
+   "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
    "personnel": "2",
@@ -1242,6 +1290,7 @@
    "deadline": "2026-07-14",
    "kind": "강사",
    "tier": "교육·취미",
+   "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
    "personnel": "2",
@@ -1266,6 +1315,7 @@
    "deadline": "2026-07-14",
    "kind": "강사",
    "tier": "교육·취미",
+   "ageGroup": "성인",
    "inst": "현악",
    "instDetails": [
     "바이올린"
@@ -1292,6 +1342,7 @@
    "deadline": "2026-07-14",
    "kind": "강사",
    "tier": "교육·취미",
+   "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
    "personnel": "2",
@@ -1316,6 +1367,7 @@
    "deadline": "2026-07-14",
    "kind": "강사",
    "tier": "교육·취미",
+   "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
    "personnel": "2",
@@ -1340,6 +1392,7 @@
    "deadline": "2026-07-14",
    "kind": "강사",
    "tier": "교육·취미",
+   "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
    "personnel": "2",
@@ -1364,6 +1417,7 @@
    "deadline": "2026-07-14",
    "kind": "강사",
    "tier": "교육·취미",
+   "ageGroup": "성인",
    "inst": "기타",
    "instDetails": [
     "하프"
@@ -1390,6 +1444,7 @@
    "deadline": "2026-07-16",
    "kind": "기타",
    "tier": "프로",
+   "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
    "personnel": null,
@@ -1420,7 +1475,8 @@
    "layer": "B",
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 17
+   "extVer": 17,
+   "ageGroup": "성인"
   },
   {
    "id": "05b306f57c79f14e",
@@ -1440,7 +1496,8 @@
    "layer": "B",
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 17
+   "extVer": 17,
+   "ageGroup": "성인"
   },
   {
    "id": "c80e362afc57cd51",
@@ -1453,6 +1510,7 @@
    "deadline": "2026-08-02",
    "kind": "단원",
    "tier": "프로",
+   "ageGroup": "성인",
    "inst": "현악",
    "instDetails": [
     "비올라",
@@ -1503,6 +1561,7 @@
    "deadline": "2026-08-11",
    "kind": "기타",
    "tier": "프로",
+   "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
    "personnel": null,
@@ -1534,7 +1593,8 @@
    "layer": "B",
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 17
+   "extVer": 17,
+   "ageGroup": "성인"
   },
   {
    "id": "89f36842ad7336af",
@@ -1555,7 +1615,8 @@
    "layer": "B",
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 17
+   "extVer": 17,
+   "ageGroup": "성인"
   },
   {
    "id": "b12f246594c63c6a",
@@ -1577,7 +1638,8 @@
    "firstSeen": "2026-07-11",
    "isNew": false,
    "extVer": 17,
-   "subject": "교회음악학"
+   "subject": "교회음악학",
+   "ageGroup": "성인"
   },
   {
    "id": "34114bed196714d5",
@@ -1590,6 +1652,7 @@
    "deadline": "2026-07-13",
    "kind": "기타",
    "tier": "프로",
+   "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
    "personnel": null,
@@ -1613,6 +1676,7 @@
    "deadline": "2026-12-31",
    "kind": "반주",
    "tier": "오브리",
+   "ageGroup": "성인",
    "inst": "건반",
    "instDetails": [
     "피아노"
@@ -1640,6 +1704,7 @@
    "deadline": "2026-08-02",
    "kind": "단원",
    "tier": "프로",
+   "ageGroup": "성인",
    "inst": "현악",
    "instDetails": [
     "비올라",
@@ -1683,6 +1748,7 @@
    "deadline": "2026-07-13",
    "kind": "단원",
    "tier": "전공·입시",
+   "ageGroup": "성인",
    "inst": "지휘",
    "instDetails": [
     "지휘"
@@ -1719,7 +1785,8 @@
    "layer": "B",
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 17
+   "extVer": 17,
+   "ageGroup": "성인"
   },
   {
    "id": "d23eba700bca92a7",
@@ -1743,7 +1810,8 @@
    "firstSeen": "2026-07-11",
    "isNew": false,
    "extVer": 17,
-   "subject": "지휘"
+   "subject": "지휘",
+   "ageGroup": "성인"
   },
   {
    "id": "da06b8ae997fd398",
@@ -1756,6 +1824,7 @@
    "deadline": null,
    "kind": "기타",
    "tier": "오브리",
+   "ageGroup": "성인",
    "inst": "성악",
    "instDetails": [
     "테너",
@@ -1782,6 +1851,7 @@
    "deadline": null,
    "kind": "강사",
    "tier": "전공·입시",
+   "ageGroup": "성인",
    "inst": "성악",
    "instDetails": [
     "피아노",
@@ -1789,11 +1859,11 @@
    ],
    "personnel": null,
    "subject": null,
-   "officialUrl": "https://www.thesolarteacademy.com/",
    "channel": "artinfo",
    "layer": "A",
    "qualification": "연령: 35세 ~ 50세 학력: 성악 전공 석사 졸업 이상",
    "bodyExcerpt": "채용 | 더솔아르떼 성악아카데미 평택점과 함께할 전문 강사님을 모십니다 · 성악 전문 강사님을 모집합니다. · ✨️ 모집 분야 · 우대: 교육 및 연주 경력자 환영,",
+   "applyEmail": "songhyun1128@naver.com",
    "firstSeen": "2026-07-11",
    "isNew": false,
    "extVer": 17
@@ -1809,6 +1879,7 @@
    "deadline": null,
    "kind": "반주",
    "tier": "오브리",
+   "ageGroup": "성인",
    "inst": "건반",
    "instDetails": [
     "피아노"
@@ -1838,6 +1909,7 @@
    "deadline": "2026-12-31",
    "kind": "반주",
    "tier": "오브리",
+   "ageGroup": "성인",
    "inst": "건반",
    "instDetails": [
     "피아노"
@@ -1852,31 +1924,6 @@
    "documents": "간단한 이력서",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 17
-  },
-  {
-   "id": "cb66287de8e7f156",
-   "org": "순천시립합창단",
-   "region": "전남",
-   "source": "suncheon.go.kr",
-   "title": "순천시립소년소녀합창단 신입단원 모집 공고",
-   "url": "https://www.suncheon.go.kr/scart/community/0001?boardId=bbs_0000000000000197&mode=view&cntId=570&category=&pageIdx=",
-   "date": "2026-03-17",
-   "deadline": null,
-   "kind": "단원",
-   "tier": "전공·입시",
-   "inst": "성악",
-   "instDetails": [],
-   "personnel": null,
-   "subject": null,
-   "channel": "g_i_suncheongokr",
-   "layer": "B",
-   "positions": [
-    "단원"
-   ],
-   "bodyExcerpt": "순천시립소년소녀합창단 신입단원 모집 공고 · 2026년 순천시립소년소녀합창단 신입단원을 다음과 같이 모집 공고합니다.",
-   "firstSeen": "2026-07-12",
-   "isNew": true,
    "extVer": 17
   }
  ]

@@ -352,6 +352,10 @@ def _resolve_origin(s, detail_url, skip_host):
             if h.startswith("http") and skip_host not in h \
                     and not re.search(r"facebook|instagram|youtube|kakao|blog\.naver", h) \
                     and _ORIGIN_TXT.search(a.get_text(" ", strip=True)):
+                # 경로 없는 맨 홈페이지(예: 학원 브랜드사이트)는 공고 원문이 아님 →
+                # 스킵해 집계 직접게시글이 연락처 지원(_extract_contact)으로 유도되게 한다
+                if len(urlparse(h).path.strip("/")) < 2:
+                    continue
                 return h
     except Exception:
         pass
