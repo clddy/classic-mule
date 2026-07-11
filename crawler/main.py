@@ -78,6 +78,44 @@ def dedup(items):
     return out
 
 # ---------- 커버리지 대조 ----------
+INST_CSV = os.path.join(os.path.dirname(os.path.abspath(__file__)), "institutions.csv")
+# 대조용 이름 정규화: 괄호·법인격·말미 기관유형어 제거 → 지역+식별 핵심만 남겨 오탐 줄임
+_COV_TAIL = re.compile(r"(교향악단|필하모닉|합창단|오케스트라|예술단|관현악단|국악관현악단|무용단|극단"
+                       r"|문화재단|문화관광재단|문화예술재단|문화의전당|예술의전당|문화예술회관|문화회관|아트센터|아트홀"
+                       r"|콘서트홀|문화원|음악당|대학교|교육대학교|대학|교회|교구)$")
+def _cov_core(name):
+    core = re.sub(r"\([^)]*\)|재단법인|\(재\)|사단법인|\s+", "", name)
+    prev = None
+    while core != prev:            # 말미 유형어 반복 제거 (예: '○○시립교향악단' → '○○시립')
+        prev = core
+        core = _COV_TAIL.sub("", core)
+    return core
+
+def _master_coverage(haystack):
+    """institutions.csv(실재 확정) 전체 대비 커버리지 — 카테고리별 집계 + 공백 목록."""
+    import csv as _csv
+    if not os.path.exists(INST_CSV):
+        return None
+    by_cat, gaps, total, covered = {}, [], 0, 0
+    with open(INST_CSV, encoding="utf-8") as f:
+        for row in _csv.reader(f):
+            if not row or row[0].lstrip().startswith("#") or row[0] == "기관명" or len(row) < 8:
+                continue
+            name, cat, region, real = row[0], row[1], row[3], row[7].strip()
+            if real != "확정":
+                continue
+            total += 1
+            by_cat.setdefault(cat, {"total": 0, "covered": 0})
+            by_cat[cat]["total"] += 1
+            core = _cov_core(name)
+            if len(core) >= 3 and core in haystack:
+                covered += 1
+                by_cat[cat]["covered"] += 1
+            else:
+                gaps.append({"name": name, "cat": cat, "region": region})
+    return {"total": total, "covered": covered, "gapCount": len(gaps),
+            "byCategory": by_cat, "gaps": gaps}
+
 def coverage_report(items, today):
     haystack = " ".join(f"{i['org']} {i['title']}" for i in items)
     covered, gaps = [], []
@@ -86,11 +124,16 @@ def coverage_report(items, today):
             covered.append(inst["name"])
         else:
             gaps.append({"name": inst["name"], "type": inst["type"], "region": inst["region"]})
+    master = _master_coverage(haystack)
     report = {"date": today.isoformat(), "total": len(INSTITUTIONS),
-              "covered": len(covered), "gapCount": len(gaps), "gaps": gaps}
+              "covered": len(covered), "gapCount": len(gaps), "gaps": gaps,
+              "master": master}
     with open(COVERAGE, "w", encoding="utf-8") as f:
         json.dump(report, f, ensure_ascii=False, indent=1)
-    log(f"커버리지: 명부 {len(INSTITUTIONS)}곳 중 {len(covered)}곳 공고 확인, 공백 {len(gaps)}곳 → coverage_report.json")
+    log(f"커버리지(시드 {len(INSTITUTIONS)}): {len(covered)}곳 확인, 공백 {len(gaps)}곳")
+    if master:
+        log(f"커버리지(마스터 institutions.csv {master['total']}): "
+            f"{master['covered']}곳 확인, 공백 {master['gapCount']}곳 → coverage_report.json")
     return report
 
 # ---------- 마감일 보강 ----------
@@ -399,7 +442,7 @@ def _cjob_detail(text, item):
 
 # 집계 포털(아트인포·아트모아)에 개인·교회·학원이 직접 올린 글은 '원문'이 따로 없다.
 # 이 경우 사용자를 포털로 보내지 않고, 지원 연락처를 본문에서 뽑아 포디엄에서 바로 노출한다.
-AGGREGATORS = ("artinfokorea.com", "artmore.kr")
+AGGREGATORS = ("artinfokorea.com", "artmore.kr", "job.cleaneye.go.kr")
 _EMAIL_RE = re.compile(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}")
 _PHONE_RE = re.compile(r"01[016-9][-.\s]?\d{3,4}[-.\s]?\d{4}")
 

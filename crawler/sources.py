@@ -441,6 +441,55 @@ def parse_phcf(s):
                                title, url, date=None))
     return items
 
+# ---------- 25. 클린아이 잡+ (행안부 지방공공기관 통합채용 = 문화재단·시설공단·출연기관) ----------
+# 목록이 JSON API(pubEndDate=마감까지 포함) → 상세파싱 불필요. 상세(POST)에서 기관 원문 홈페이지 해석.
+# 시립예술단·문화재단 단원/연주 채용의 법정 발행 채널 — 미커버 '나머지' 공공기관을 통째로 포착.
+CLEANEYE_LIST = "https://job.cleaneye.go.kr/user/selectYpRecruitment.do"
+CLEANEYE_DETAIL = "https://job.cleaneye.go.kr/user/ypCareersData.do"
+CLEANEYE_MUSIC = re.compile(
+    r"교향악단|필하모닉|합창단|오케스트라|관현악|국악관현악|예술단|연주단|윈드 ?오케스트라"
+    r"|반주자|성악|악장|수석 ?단원|상임 ?단원|객원 ?단원|비상임 ?단원|단원 ?(?:모집|채용|충원|위촉|공개)")
+
+def _cleaneye_origin(s, x):
+    """클린아이 상세(POST)에서 기관 원문 홈페이지/공고 링크 추출 (없으면 None)."""
+    try:
+        r = s.post(CLEANEYE_DETAIL, timeout=15, verify=False,
+                   data={"empyear": x.get("empyear"), "entSeq": x.get("entSeq"), "ypEntId": x.get("ypEntId")})
+        for m in re.finditer(r'https?://[^"\'<>\s)]+', r.text):
+            u = m.group(0)
+            if not re.search(r"cleaneye|w3\.org|hrdb\.go|worktogether|matchingbank|gojobs|"
+                             r"moel\.go|work24|work\.go|alio\.go|saramin|jobkorea|incruit|albamon|"
+                             r"\.(?:css|js|png|jpe?g|gif|woff2?|ico)", u, re.I):
+                return u
+    except Exception:
+        pass
+    return None
+
+def parse_cleaneye(s):
+    items = []
+    for page in range(1, 9):   # 최근 800건(게시일 역순) 스캔 → 음악 공고만
+        try:
+            r = s.post(CLEANEYE_LIST, timeout=20, verify=False,
+                       data={"pageIndex": page, "recordCountPerPage": 100})
+            rows = json.loads(r.text).get("list", [])
+        except Exception:
+            break
+        if not rows:
+            break
+        for x in rows:
+            title = re.sub(r"\s+", " ", x.get("entTitle", "")).strip()
+            org = re.sub(r"^\(재\)\s*|^재단법인\s*", "", x.get("entName", "")).strip()
+            if not (CLEANEYE_MUSIC.search(title) or re.search(r"교향악|필하모닉|합창단|예술단", org)):
+                continue
+            origin = _cleaneye_origin(s, x)
+            it = make_item(org, region_from(f"{org} {title}"), "job.cleaneye.go.kr", title,
+                           origin or CLEANEYE_LIST,
+                           date=(x.get("pubDate") or None), deadline=(x.get("pubEndDate") or None))
+            if origin:
+                it["officialUrl"] = origin
+            items.append(it)
+    return items
+
 # ---------- 소스 레지스트리 ----------
 # layer: A 전국집계 / B 지역슈퍼노드 / C 도메인집계 / D 원천
 # poll:  daily / weekly(days=요일 0=월) / seasonal(months=[..], 시즌엔 daily)
@@ -453,6 +502,7 @@ SOURCES = [
     # A. 전국 집계 노드 — 매일
     S("artmore",   "아트모아(일자리 포털)",  parse_artmore,  "artmore.kr",        "A", "daily"),
     S("artinfo",   "아트인포(클래식 채용)",  parse_artinfo,  "artinfokorea.com",  "A", "daily"),
+    S("cleaneye",  "클린아이 잡+(지방공공기관)", parse_cleaneye, "job.cleaneye.go.kr", "A", "daily"),
     # C. 도메인 집계 노드 — 매일
     S("cjob",      "기독정보넷(교회 반주)",  parse_cjob,     "cjob.co.kr",        "C", "daily"),
     S("gne",       "경남교육청 방과후강사",  parse_gne,      "gne.go.kr",         "C", "daily"),

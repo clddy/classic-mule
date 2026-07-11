@@ -1,7 +1,7 @@
 {
- "collectedAt": "2026-07-11 17:41",
- "sourceCount": 62,
- "okCount": 61,
+ "collectedAt": "2026-07-11 18:03",
+ "sourceCount": 63,
+ "okCount": 62,
  "instTotal": 75,
  "sources": [
   {
@@ -21,6 +21,15 @@
    "ok": true,
    "raw": 10,
    "kept": 3
+  },
+  {
+   "id": "cleaneye",
+   "name": "클린아이 잡+(지방공공기관)",
+   "layer": "A",
+   "poll": "daily",
+   "ok": true,
+   "raw": 0,
+   "kept": 0
   },
   {
    "id": "cjob",

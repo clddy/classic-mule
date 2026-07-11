@@ -3,7 +3,7 @@
 const TODAY = new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 10);
 
 // 집계 포털(매개체) 도메인 — 출처로 표기하지 않고, 링크로도 내보내지 않는다
-const PORTAL_RE = /artinfokorea|artmore|hibrain|jobkorea|saramin|albamon|work\.go\.kr\/portal/i;
+const PORTAL_RE = /artinfokorea|artmore|hibrain|jobkorea|saramin|albamon|cleaneye|gojobs|work\.go\.kr\/portal/i;
 // 카드/모달에 보여줄 출처: 포털이면 감추고, 기관 원문이 있으면 그 도메인, 그마저 없으면 빈값
 function sourceLabel(j) {
   if (j.source && !PORTAL_RE.test(j.source)) return j.source;
