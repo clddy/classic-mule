@@ -490,6 +490,65 @@ def parse_cleaneye(s):
             items.append(it)
     return items
 
+# ---------- 26. 시도교육청 방과후/강사 채용 포털 (개별 파서, config 파라미터화) ----------
+# 각 교육청 구인구직 포털은 시스템이 제각각 → 포털별 config(검색URL 템플릿 + 상세 id 패턴)로 파라미터화.
+# 방과후 오케스트라·관악부·1인1악기 등 음악 강사 공고를 키워드로 검색해 수집.
+from urllib.parse import quote as _q
+EDU_KWS = ["오케스트라", "관현악", "관악부", "바이올린", "첼로", "플루트", "성악", "합창"]
+EDU_MUSIC = re.compile(
+    r"오케스트라|관현악|관악|현악|합주|바이올린|비올라|첼로|더블 ?베이스|콘트라베이스"
+    r"|플루트|오보에|클라리넷|바순|호른|트럼펫|트롬본|튜바|색소폰|타악|팀파니"
+    r"|피아노|성악|합창|음악|악기")
+
+def _make_edu_parser(cfg):
+    """교육청 포털 config → 파서.
+    mode 'search': kws 루프하며 list.format(kw=)를 검색 / 'board': 단일 URL을 EDU_MUSIC로 필터.
+    공통: sel(상세앵커) → idpat(href/onclick에서 id) → detail.format(id=)."""
+    urls = ([cfg["list"].format(kw=_q(kw)) for kw in cfg.get("kws", EDU_KWS)]
+            if cfg.get("mode", "search") == "search" else [cfg["list"]])
+    def parse(s):
+        items, seen = [], set()
+        for url in urls:
+            try:
+                r = get(s, url, encoding=cfg.get("enc"))
+                if r.status_code != 200:
+                    continue
+            except Exception:
+                continue
+            for a in _soup(r).select(cfg["sel"]):
+                title = a.get_text(" ", strip=True)
+                if len(title) < 6 or title in seen or not EDU_MUSIC.search(title):
+                    continue
+                blob = (a.get("href") or "") + " " + (a.get("onclick") or "")
+                m = re.search(cfg["idpat"], blob)
+                if not m:
+                    continue
+                seen.add(title)
+                items.append(make_item(cfg["name"], cfg["region"], cfg["source"],
+                                       title, cfg["detail"].format(id=m.group(1))))
+        return items
+    return parse
+
+# mode: "search"(키워드 루프, list에 {kw}) / "board"(단일 게시판, 제목 EDU_MUSIC 필터)
+EDU_PORTALS = [
+    # 서울 — 서울교육일자리포털(제목검색형, 공개). 확인·수집됨.
+    {"id": "edu_seoul", "name": "서울시교육청(방과후 강사)", "region": "서울", "source": "work.sen.go.kr",
+     "mode": "search",
+     "list": "https://work.sen.go.kr/work/search/recInfo/BD_selectSrchRecInfo.do"
+             "?q_srchType=rcrtTtl&q_srchText={kw}&q_currPage=1&q_rowPerPage=30&q_sortBy=regDt",
+     "sel": 'a[href*="BD_selectRecDetail.do"]', "idpat": r"q_rcrtSn=(\d+)",
+     "detail": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn={id}"},
+    # 경남 — 별도 손파서 parse_gne(works 시스템)로 이미 수집 중.
+    #
+    # ── 나머지 시도교육청: 공개 크롤 불가(2026-07 조사) — 접근 뚫리면 위 형식으로 1줄 추가 ──
+    #  경기 goe.go.kr/recruit  : hnfpPbancList.do POST/AJAX (searchType/searchValue) — 목록 동적로딩
+    #  부산 school.pen.go.kr    : 방과후 업무지원시스템 = 로그인 필수
+    #  울산 use.go.kr/job       : 통합인력풀로 이전, 공개 게시판엔 안내공지만
+    #  충북 after.cbe.go.kr     : JS 스텁(553B)
+    #  전북 jbe.go.kr           : 채용공고 게시판이나 제목이 '학교/기관명'이라 악기 키워드 필터 불가(본문에만)
+    #  대구·인천·광주·대전·세종·강원·충남·전남·경북·제주 : 각 통합인력풀/별도시스템 — 개별 조사 필요
+]
+
 # ---------- 소스 레지스트리 ----------
 # layer: A 전국집계 / B 지역슈퍼노드 / C 도메인집계 / D 원천
 # poll:  daily / weekly(days=요일 0=월) / seasonal(months=[..], 시즌엔 daily)
@@ -529,6 +588,10 @@ SOURCES = [
     S("sac",       "예술의전당",             parse_sac,      "sac.or.kr",         "D", "weekly", (2,)),
     S("phcf",      "포항문화재단(시립교향악단)", parse_phcf,   "phcf.or.kr",        "D", "weekly", (1, 4)),
 ]
+
+# 시도교육청 방과후/강사 포털 (config 기반) — 도메인 집계 노드, 주 2회
+for _ep in EDU_PORTALS:
+    SOURCES.append(S(_ep["id"], _ep["name"], _make_edu_parser(_ep), _ep["source"], "C", "weekly", (1, 4)))
 
 # ---------- 자동 발견 소스 (discovery.py 산출물) ----------
 _GENERIC_PAT = re.compile(r"모집|채용|공고|초빙|오디션|강사")

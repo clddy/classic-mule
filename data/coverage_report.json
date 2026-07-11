@@ -1,8 +1,8 @@
 {
  "date": "2026-07-11",
  "total": 75,
- "covered": 3,
- "gapCount": 72,
+ "covered": 4,
+ "gapCount": 71,
  "gaps": [
   {
    "name": "서울시립교향악단",
@@ -330,11 +330,6 @@
    "region": "서울"
   },
   {
-   "name": "강동아트센터",
-   "type": "예술단",
-   "region": "서울"
-  },
-  {
    "name": "마포문화재단",
    "type": "공연장",
    "region": "서울"
@@ -367,8 +362,8 @@
  ],
  "master": {
   "total": 604,
-  "covered": 6,
-  "gapCount": 598,
+  "covered": 7,
+  "gapCount": 597,
   "byCategory": {
    "대학": {
     "total": 77,
@@ -400,7 +395,7 @@
    },
    "학교": {
     "total": 17,
-    "covered": 0
+    "covered": 1
    },
    "민간": {
     "total": 25,
@@ -1567,11 +1562,6 @@
     "name": "천주교 인천교구(전례음악)",
     "cat": "교회",
     "region": "인천"
-   },
-   {
-    "name": "서울시교육청",
-    "cat": "학교",
-    "region": "서울"
    },
    {
     "name": "부산시교육청",
