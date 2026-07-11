@@ -490,6 +490,48 @@ def parse_cleaneye(s):
             items.append(it)
     return items
 
+# ---------- 25b. 나라일터(인사혁신처 gojobs) — 공공기관·지자체·군악대 채용 공식 발행채널 ----------
+# 공고명 검색(searchKeyword) GET → 행 tr[번호|공고명|기관|게시일|마감일|조회] → 상세 apmView.do GET.
+# 시립예술단·학교 오케스트라·군악대 등 '나머지' 공공 채용의 원천(문서: 나라일터=원천 취급).
+GOJOBS_LIST = "https://www.gojobs.go.kr/apmList.do"
+GOJOBS_VIEW = "https://www.gojobs.go.kr/apmView.do?empmnsn={sn}&empmnsecode={ec}&menuNo=401"
+GOJOBS_KWS = ["오케스트라", "관현악", "교향악단", "합창단", "관악부", "국악관현악단", "예술단", "군악"]
+
+def parse_gojobs(s):
+    items, seen = [], set()
+    for kw in GOJOBS_KWS:
+        try:
+            r = get(s, GOJOBS_LIST, params={"menuNo": "401", "searchKeyword": kw})
+            if r.status_code != 200:
+                continue
+        except Exception:
+            continue
+        for tr in re.findall(r"<tr[^>]*>[\s\S]*?</tr>", r.text):
+            m = re.search(r"fn_apmView\('(\d+)',\s*'(\d+)'\)", tr)
+            if not m or m.group(2) in seen:
+                continue
+            cells = [re.sub(r"\s+", " ", c).strip()
+                     for c in re.sub(r"<[^>]+>", "\n", tr).split("\n") if c.strip()]
+            # cells 대략 [번호, 공고명, 기관경로, 게시일, 마감일, 조회수]
+            title = next((c for c in cells if len(c) >= 8 and re.search(r"모집|채용|공고|강사|단원", c)), None)
+            if not title or not MUSIC_PAT.search(title):
+                continue
+            dates = [c for c in cells if re.match(r"20\d\d-\d\d-\d\d$", c)]
+            # 기관 셀: '○○교육청 ○○지원청 ○○학교' 경로 → 말단 기관명. 공고명/숫자 셀 제외.
+            org_c = next((c for c in cells
+                          if c != title and not re.match(r"20\d\d|^\d+$", c)
+                          and re.search(r"학교|유치원|교육청|교육지원청|재단|시청|도청|구청|군청"
+                                        r"|예술단|회관|공사|공단|대학|병원|연구원|진흥원|센터|청$", c)), "")
+            org = re.sub(r".*\s", "", org_c.strip()) if org_c else "공공기관"
+            if org in ("공고", "채용", "") or len(org) < 2:
+                org = org_c.strip().split()[-1] if org_c.strip() else "공공기관"
+            seen.add(m.group(2))
+            items.append(make_item(f"{org}(나라일터)", region_from(org_c), "gojobs.go.kr", title,
+                                   GOJOBS_VIEW.format(sn=m.group(2), ec=m.group(1)),
+                                   date=(dates[0] if dates else None),
+                                   deadline=(dates[-1] if len(dates) >= 2 else None)))
+    return items
+
 # ---------- 26. 시도교육청 방과후/강사 채용 포털 (개별 파서, config 파라미터화) ----------
 # 각 교육청 구인구직 포털은 시스템이 제각각 → 포털별 config(검색URL 템플릿 + 상세 id 패턴)로 파라미터화.
 # 방과후 오케스트라·관악부·1인1악기 등 음악 강사 공고를 키워드로 검색해 수집.
@@ -531,8 +573,11 @@ def _make_edu_parser(cfg):
 
 # ---- 경기교육청 구인구직(hnfp) — 목록 POST + 상세 GET (2026-07 리버스엔지니어링) ----
 # 키워드 검색은 서버에서 무시됨 → 목록 페이지 순회 후 제목(EDU_MUSIC) 클라이언트 필터.
+# 경기 상세는 goView 폼 POST-submit이라 GET 딥링크 불가 → 공개 구인목록으로 연결
+GOE_BOARD = "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancList.do?mi=10502"
+
 def parse_goe(s):
-    items = []
+    items, seen = [], set()
     for ocpt in ("", "A", "B"):        # 전체·기간제/사립교원·교육공무직(방과후 포함)
         for page in (1, 2):
             try:
@@ -553,14 +598,13 @@ def parse_goe(s):
                                tit_el.get_text(" ", strip=True))
                 if len(title) < 8 or not EDU_MUSIC.search(title):
                     continue
+                if m.group(1) in seen:
+                    continue
+                seen.add(m.group(1))
                 org_el = a.select_one(".cont_top span")
                 org = org_el.get_text(strip=True) if org_el else "경기 학교"
                 d = find_date(a.get_text(" ", strip=True))
-                url = f"https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn={m.group(1)}"
-                key = m.group(1)
-                if any(key in i["url"] for i in items):
-                    continue
-                items.append(make_item(f"{org}(경기교육청)", "경기", "goe.go.kr", title, url, date=d))
+                items.append(make_item(f"{org}(경기교육청)", "경기", "goe.go.kr", title, GOE_BOARD, date=d))
     return items
 
 # ---- na/ntt CMS 교육청 채용게시판 (인천·전남·경북·세종 공통 벤더) ----
@@ -732,6 +776,7 @@ SOURCES = [
     S("artmore",   "아트모아(일자리 포털)",  parse_artmore,  "artmore.kr",        "A", "daily"),
     S("artinfo",   "아트인포(클래식 채용)",  parse_artinfo,  "artinfokorea.com",  "A", "daily"),
     S("cleaneye",  "클린아이 잡+(지방공공기관)", parse_cleaneye, "job.cleaneye.go.kr", "A", "daily"),
+    S("gojobs",    "나라일터(공공·군악대)",  parse_gojobs,   "gojobs.go.kr",      "A", "daily"),
     # C. 도메인 집계 노드 — 매일
     S("cjob",      "기독정보넷(교회 반주)",  parse_cjob,     "cjob.co.kr",        "C", "daily"),
     S("gne",       "경남교육청 방과후강사",  parse_gne,      "gne.go.kr",         "C", "daily"),

@@ -425,6 +425,8 @@ def make_item(org, region, source, title, url, date=None, deadline=None):
     group, details = classify_insts(title)
     clean = re.sub(r"\s+", " ", title).strip()
     kind = classify_kind(title)
+    # 세션ID가 박힌 링크는 만료·비이식성 → 제거 (새올·JSP 게시판 대응)
+    url = re.sub(r";jsessionid=[^?&#]*", "", url, flags=re.I)
     return {
         "id": item_id(url, title),
         "org": org, "region": region, "source": source,
