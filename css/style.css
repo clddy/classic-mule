@@ -611,6 +611,56 @@ details[open] > .filter-summary::after { content: " −"; }
   padding: 1px 6px;
 }
 
+/* 상단 최근 업데이트 — 가볍게 한 줄 */
+.update-line {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 0.75rem;
+  color: var(--ink-soft);
+  margin-bottom: 14px;
+}
+.update-line .dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--green);
+  display: inline-block;
+  flex-shrink: 0;
+}
+.update-line strong { color: var(--ink); font-weight: 600; }
+
+/* 하단 수집 정보 — 잘 안 보이게, 눌러야 펼쳐짐 */
+.crawl-detail {
+  margin: 40px 0 8px;
+  font-size: 0.72rem;
+  color: var(--ink-faint, var(--ink-soft));
+  opacity: 0.65;
+}
+.crawl-detail summary {
+  cursor: pointer;
+  list-style: none;
+  color: var(--ink-soft);
+  padding: 4px 0;
+  user-select: none;
+}
+.crawl-detail summary::-webkit-details-marker { display: none; }
+.crawl-detail summary::before { content: "▸ "; }
+.crawl-detail[open] summary::before { content: "▾ "; }
+.crawl-detail summary:hover { color: var(--ink); }
+.crawl-detail-body {
+  padding: 8px 0 4px;
+  line-height: 1.7;
+}
+.crawl-detail-body .cd-stat { color: var(--ink-soft); margin-bottom: 8px; }
+.crawl-detail-body .cd-srcs { display: flex; flex-wrap: wrap; gap: 5px; }
+.crawl-detail-body .cd-src {
+  border: 1px solid var(--line);
+  border-radius: 3px;
+  padding: 1px 7px;
+  white-space: nowrap;
+}
+.crawl-detail-body .cd-src.off { opacity: 0.45; text-decoration: line-through; }
+
 /* ---------- 홈 크롤 배너 ---------- */
 .crawl-banner {
   display: flex;

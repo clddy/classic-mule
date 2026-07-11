@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Song+Myung&family=Cormorant:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-  <link rel="stylesheet" href="css/style.css?v=7">
+  <link rel="stylesheet" href="css/style.css?v=8">
 </head>
 <body>
 
@@ -68,9 +68,9 @@
   </aside>
 
   <main>
-    <div class="crawl-note">
+    <div class="update-line">
       <span class="dot"></span>
-      <span id="crawl-meta"></span>
+      <span id="update-time"></span>
     </div>
     <div class="board-toolbar">
       <div class="search-box">
@@ -85,6 +85,10 @@
     </div>
     <div class="result-count" id="result-count"></div>
     <div class="job-list" id="job-list"></div>
+    <details class="crawl-detail" id="crawl-detail">
+      <summary>수집 정보 — 어디서 모으나요?</summary>
+      <div class="crawl-detail-body" id="crawl-detail-body"></div>
+    </details>
   </main>
 </div>
 
@@ -238,14 +242,23 @@
 <script src="js/data.js?v=4"></script>
 <script src="js/jobs.js?v=20"></script>
 <script>
-  // 수집 현황 배너
+  // 상단: 최근 업데이트만 가볍게 / 하단: 수집처 상세(펼치면 어디서 모으는지)
   (function () {
     const D = window.CRAWLED;
-    const el = document.getElementById("crawl-meta");
-    if (D) {
-      el.innerHTML = `공식 공고 마지막 수집: <strong>${D.collectedAt}</strong> · 직접 수집처 ${D.okCount}/${D.sourceCount}곳${D.instTotal ? ` · 기관 명부 ${D.instTotal}곳 대조` : ""} · 아트인포·아트모아 통합으로 전국 기관 공고 집계 · 매일 18시 자동 수집`;
-    } else {
-      el.textContent = "공식 공고 데이터를 불러오지 못했습니다.";
+    const top = document.getElementById("update-time");
+    const body = document.getElementById("crawl-detail-body");
+    if (!D) { if (top) top.textContent = "데이터를 불러오지 못했습니다."; return; }
+    if (top) top.innerHTML = `최근 업데이트 <strong>${D.collectedAt}</strong>`;
+    if (body) {
+      const srcs = (D.sources || []).slice()
+        .sort((a, b) => (a.name || "").localeCompare(b.name || "", "ko"));
+      const chips = srcs.map(s =>
+        `<span class="cd-src${s.ok ? "" : " off"}" title="${s.ok ? "정상 응답" : "이번 수집 실패"}">${s.name || s.id}</span>`
+      ).join("");
+      body.innerHTML =
+        `<div class="cd-stat">매일 18시 자동 수집 · 직접 수집처 ${D.okCount}/${D.sourceCount}곳 응답` +
+        `${D.instTotal ? ` · 전국 기관 명부 ${D.instTotal}곳과 대조` : ""}</div>` +
+        `<div class="cd-srcs">${chips}</div>`;
     }
   })();
 </script>
