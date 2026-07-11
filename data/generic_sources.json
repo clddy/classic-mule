@@ -1128,5 +1128,107 @@
     "url": "https://cjculture.org/sub.php?code=34&mode=view&no=852&category=&page=1&search=&keyword="
    }
   ]
+ },
+ {
+  "id": "edu_gen",
+  "name": "광주교육청(구인)",
+  "region": "기타",
+  "board_url": "https://www.gen.go.kr/xboard/board.php?tbnum=32&mode=list",
+  "board_label": "채용게시판",
+  "needs_js": false,
+  "sample": [
+   {
+    "title": "단기 수업지원 시간강사 인력풀",
+    "url": "https://www.gen.go.kr/xboard/board.php?tbnum=463"
+   },
+   {
+    "title": "늘봄·방과후학교강사",
+    "url": "https://www.gen.go.kr/sub/page.php?page_code=news_11_04_01"
+   },
+   {
+    "title": "각종시험공고 바로가기",
+    "url": "http://www.gen.go.kr/xboard/board.php?tbnum=49"
+   },
+   {
+    "title": "기간제교사 및 시간강사 구인(중등) 바로가기",
+    "url": "https://giganje.gen.go.kr/site/?siteNo=05"
+   },
+   {
+    "title": "특수학교(급)강사구인",
+    "url": "https://www.gen.go.kr/xboard/board.php?mode=list&tbnum=32&sCat=0&page=1&keyset=&searchword=&sCat=12&page=1&keyset=&searchword="
+   },
+   {
+    "title": "교과교실강사/영어회화전문강사",
+    "url": "https://www.gen.go.kr/xboard/board.php?mode=list&tbnum=32&sCat=0&page=1&keyset=&searchword=&sCat=14&page=1&keyset=&searchword="
+   }
+  ]
+ },
+ {
+  "id": "edu_jje",
+  "name": "제주교육청(채용·시험)",
+  "region": "기타",
+  "board_url": "https://www.jje.go.kr/index.jje?menuCd=DOM_000000103003000000",
+  "board_label": "채용게시판",
+  "needs_js": false,
+  "sample": [
+   {
+    "title": "2026학년도 남녕고등학교 학생보호인력(안전지킴이)봉사자 모집 공고",
+    "url": "https://www.jje.go.kr/board/view.jje?boardId=BBS_0000507&menuCd=DOM_000000103003009000&orderBy=REGISTER_DATE DESC&paging=ok&startPage=1&dataSid=1475092"
+   },
+   {
+    "title": "(제주시교육지원청 학교지원센터) 2026학년도 제주시교육지원청 7월 관내 유치원방과후과정 특성화프로그램 외부강사 합격자 발표 및 합격자등록 공고",
+    "url": "https://www.jje.go.kr/board/view.jje?boardId=BBS_0000507&menuCd=DOM_000000103003009000&orderBy=REGISTER_DATE DESC&paging=ok&startPage=1&dataSid=1475080"
+   },
+   {
+    "title": "(제주시교육지원청 학교지원센터)2026학년도 7월 제주시교육지원청 관내 기간제교원(중학교) 합격자 발표 및 합격자 등록 공고",
+    "url": "https://www.jje.go.kr/board/view.jje?boardId=BBS_0000507&menuCd=DOM_000000103003009000&orderBy=REGISTER_DATE DESC&paging=ok&startPage=1&dataSid=1475072"
+   },
+   {
+    "title": "2026학년도 표선중학교 시간강사 채용 공고",
+    "url": "https://www.jje.go.kr/board/view.jje?boardId=BBS_0000507&menuCd=DOM_000000103003009000&orderBy=REGISTER_DATE DESC&paging=ok&startPage=1&dataSid=1475070"
+   },
+   {
+    "title": "(제주시교육지원청 학교지원센터) 2026학년도 제주시교육지원청 7월 관내 기간제교원(초등) 합격자 발표 및 합격자등록 공고",
+    "url": "https://www.jje.go.kr/board/view.jje?boardId=BBS_0000507&menuCd=DOM_000000103003009000&orderBy=REGISTER_DATE DESC&paging=ok&startPage=1&dataSid=1475069"
+   },
+   {
+    "title": "2026학년도 대기고등학교 (영어)기간제교사 채용 공고",
+    "url": "https://www.jje.go.kr/board/view.jje?boardId=BBS_0000507&menuCd=DOM_000000103003009000&orderBy=REGISTER_DATE DESC&paging=ok&startPage=1&dataSid=1475057"
+   }
+  ]
+ },
+ {
+  "id": "edu_use",
+  "name": "울산교육청(교육공무직·강사)",
+  "region": "기타",
+  "board_url": "https://www.use.go.kr/user/bbs/BD_selectBbsList.do?q_bbsSn=1918",
+  "board_label": "채용게시판",
+  "needs_js": false,
+  "sample": [
+   {
+    "title": "채용공고(통합인력풀)",
+    "url": "https://use.go.kr/job/index.do"
+   },
+   {
+    "title": "초등 수업지원시간강사",
+    "url": "https://www.use.go.kr/user/eduSchedule/BD_EduCalList.do?q_eduScheduleSe=강북"
+   },
+   {
+    "title": "2026년 제2회 교육공무직 채용시험 원서접수 현황(최종)",
+    "url": "https://www.use.go.kr/user/bbs/BD_selectBbs.do?q_bbsSn=1918&q_bbsDocNo=20260701103233338"
+   },
+   {
+    "title": "2026년 제2회 교육공무직 채용시험 원서접수 현황(4일차)",
+    "url": "https://www.use.go.kr/user/bbs/BD_selectBbs.do?q_bbsSn=1918&q_bbsDocNo=20260630094406546"
+   },
+   {
+    "title": "2026년 제2회 교육공무직 채용시험 원서접수 현황(3일차)",
+    "url": "https://www.use.go.kr/user/bbs/BD_selectBbs.do?q_bbsSn=1918&q_bbsDocNo=20260629095209662"
+   },
+   {
+    "title": "2026년 제2회 울산교육청 교육공무직(조리실무사) 공개경쟁 채용시험 공...",
+    "url": "https://www.use.go.kr/user/bbs/BD_selectBbs.do?q_bbsSn=1918&q_bbsDocNo=20260619095704926"
+   }
+  ]
  }
 ]

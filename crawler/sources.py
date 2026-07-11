@@ -529,6 +529,57 @@ def _make_edu_parser(cfg):
         return items
     return parse
 
+# ---- 경기교육청 구인구직(hnfp) — 목록 POST + 상세 GET (2026-07 리버스엔지니어링) ----
+# 키워드 검색은 서버에서 무시됨 → 목록 페이지 순회 후 제목(EDU_MUSIC) 클라이언트 필터.
+def parse_goe(s):
+    items = []
+    for ocpt in ("", "A", "B"):        # 전체·기간제/사립교원·교육공무직(방과후 포함)
+        for page in (1, 2):
+            try:
+                r = s.post("https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancList.do?mi=10502",
+                           timeout=20, verify=False,
+                           data={"currPage": page, "pageIndex": 50, "mi": "10502",
+                                 "srchEcptDl": "Y", "srchOcptCd": ocpt})
+                if r.status_code != 200:
+                    continue
+            except Exception:
+                continue
+            for a in _soup(r).select('a[href*="goView"]'):
+                m = re.search(r"goView\('(\d+)'\)", a.get("href", ""))
+                tit_el = a.select_one("p.cont_tit")
+                if not m or not tit_el:
+                    continue
+                title = re.sub(r"^\s*(?:마감임박|신규|NEW|D-\d+)\s*", "",
+                               tit_el.get_text(" ", strip=True))
+                if len(title) < 8 or not EDU_MUSIC.search(title):
+                    continue
+                org_el = a.select_one(".cont_top span")
+                org = org_el.get_text(strip=True) if org_el else "경기 학교"
+                d = find_date(a.get_text(" ", strip=True))
+                url = f"https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn={m.group(1)}"
+                key = m.group(1)
+                if any(key in i["url"] for i in items):
+                    continue
+                items.append(make_item(f"{org}(경기교육청)", "경기", "goe.go.kr", title, url, date=d))
+    return items
+
+# ---- 인천교육청 채용공고(na/ntt CMS) — 목록 POST 필요 ----
+def parse_ice(s):
+    items = []
+    try:
+        r = s.post("https://www.ice.go.kr/ice/na/ntt/selectNttList.do", timeout=20, verify=False,
+                   data={"mi": "10997", "bbsId": "1981", "currPage": "1"},
+                   headers={"X-Requested-With": "XMLHttpRequest"})
+    except Exception:
+        return items
+    for a in _soup(r).select(".nttInfoBtn[data-id]"):   # 행 = .nttInfoBtn(data-id=nttSn)
+        title = a.get_text(" ", strip=True)
+        if len(title) < 8 or not EDU_MUSIC.search(title):
+            continue
+        url = f"https://www.ice.go.kr/ice/na/ntt/selectNttInfo.do?nttSn={a['data-id']}&mi=10997"
+        items.append(make_item("인천교육청(학교 채용)", "인천", "ice.go.kr", title, url, date=_row_date(a)))
+    return items
+
 # mode: "search"(키워드 루프, list에 {kw}) / "board"(단일 게시판, 제목 EDU_MUSIC 필터)
 EDU_PORTALS = [
     # 서울 — 서울교육일자리포털(제목검색형, 공개). 확인·수집됨.
@@ -540,13 +591,13 @@ EDU_PORTALS = [
      "detail": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn={id}"},
     # 경남 — 별도 손파서 parse_gne(works 시스템)로 이미 수집 중.
     #
-    # ── 나머지 시도교육청: 공개 크롤 불가(2026-07 조사) — 접근 뚫리면 위 형식으로 1줄 추가 ──
-    #  경기 goe.go.kr/recruit  : hnfpPbancList.do POST/AJAX (searchType/searchValue) — 목록 동적로딩
-    #  부산 school.pen.go.kr    : 방과후 업무지원시스템 = 로그인 필수
-    #  울산 use.go.kr/job       : 통합인력풀로 이전, 공개 게시판엔 안내공지만
-    #  충북 after.cbe.go.kr     : JS 스텁(553B)
-    #  전북 jbe.go.kr           : 채용공고 게시판이나 제목이 '학교/기관명'이라 악기 키워드 필터 불가(본문에만)
-    #  대구·인천·광주·대전·세종·강원·충남·전남·경북·제주 : 각 통합인력풀/별도시스템 — 개별 조사 필요
+    # ── 경기·인천: 목록이 POST → 위 손파서(parse_goe·parse_ice)로 수집 ──
+    # ── 광주·제주·울산: GET 게시판 → generic_sources.json(discovery)로 등록 ──
+    # ── 미해결(2026-07 재조사): ──
+    #  강원 gwe.go.kr sub.do   : SSR 목록이나 상세가 goView(key) 폼 submit — 폼 action 해석 필요
+    #  전남 jne / 경북 gbe / 세종 sje : na/ntt CMS인데 목록 행이 별도 AJAX(변형) — 엔드포인트 미확인
+    #  부산 pen / 대구 dge / 대전 dje / 충북 cbe / 충남 cne : requests 접근 차단(브라우저만 허용) 또는 로그인 인력풀
+    #  전북 jbe                : 게시판 제목이 '학교명'뿐이라 키워드 필터 불가(본문에만 과목)
 ]
 
 # ---------- 소스 레지스트리 ----------
@@ -592,6 +643,9 @@ SOURCES = [
 # 시도교육청 방과후/강사 포털 (config 기반) — 도메인 집계 노드, 주 2회
 for _ep in EDU_PORTALS:
     SOURCES.append(S(_ep["id"], _ep["name"], _make_edu_parser(_ep), _ep["source"], "C", "weekly", (1, 4)))
+# 경기·인천 교육청 (POST 목록 — 손파서)
+SOURCES.append(S("edu_goe", "경기교육청(방과후·강사)", parse_goe, "goe.go.kr", "C", "weekly", (1, 4)))
+SOURCES.append(S("edu_ice", "인천교육청(학교 채용)", parse_ice, "ice.go.kr", "C", "weekly", (1, 4)))
 
 # ---------- 자동 발견 소스 (discovery.py 산출물) ----------
 _GENERIC_PAT = re.compile(r"모집|채용|공고|초빙|오디션|강사")

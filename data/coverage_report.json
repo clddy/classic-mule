@@ -1,8 +1,8 @@
 {
  "date": "2026-07-11",
  "total": 75,
- "covered": 4,
- "gapCount": 71,
+ "covered": 3,
+ "gapCount": 72,
  "gaps": [
   {
    "name": "서울시립교향악단",
@@ -327,6 +327,11 @@
   {
    "name": "LG아트센터",
    "type": "공연장",
+   "region": "서울"
+  },
+  {
+   "name": "강동아트센터",
+   "type": "예술단",
    "region": "서울"
   },
   {
