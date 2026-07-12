@@ -431,30 +431,28 @@ def find_subject(text):
 # 대학이 전 학과 강사를 한 공고로 내면 hibrain 음악학 카테고리에도 뜬다. 세부 전공은
 # 첨부(HWP/XLSX)의 교과목표에만 있어, 여기서 '음악 관련 전공/학과'만 추려 subject로 쓴다.
 # 반환이 None이고 첨부 본문이 충실했다면 → 그 대학엔 음악 교과목이 없음(비음악 확정).
-_MUSIC_SIG = re.compile(
-    r"음악|성악|기악|피아노|바이올린|비올라|첼로|더블베이스|콘트라베이스|플루트|오보에|클라리넷|바순|파곳"
-    r"|호른|트럼펫|트롬본|튜바|색소폰|타악|팀파니|하프|오르간|관현악|작곡|음악학|국악|실용음악|합창|지휘"
-    r"|반주|음악교육|교회음악|뮤지컬|음악치료|대위법|화성법|시창|청음|음악사")
+# 음악 '학과/전공'만 정밀 추출 — 전화번호·긴 설명셀에 섞여 있어도 학과명만 깔끔히 집는다.
+# '별 음악회' 같은 행사명(…회)은 학과 접미사가 아니라 매칭 안 됨 → 비음악으로 올바르게 판정.
+_MUSIC_DEPT = re.compile(
+    r"[가-힣]{0,5}(?:음악|성악|기악|작곡|국악|실용음악|관현악|교회음악|음악학|음악교육|피아노)"
+    r"[가-힣]{0,6}(?:학과|전공|학부|계열|과)")
+# 학과명에 음악어가 없어도 음악을 확정지을 수 있는 전용 교과목/실기
+_MUSIC_COURSE = re.compile(r"대위법|화성법|시창|청음|음악사|작곡법|지휘법|반주법|성악실기|기악실기|국악실기")
 
 def find_music_subjects(text, max_n=6):
-    """첨부 교과목표 평문에서 음악 관련 '전공/학과'(우선) 또는 교과목명을 추려 리스트 반환.
-    음악 신호가 전혀 없으면 None."""
+    """첨부 교과목표에서 음악 '학과/전공'을 정밀 추출(전화번호·잡음 제거).
+    학과명이 없어도 음악 전용 교과목이 있으면 그것으로 대체. 음악이 전혀 없으면 None."""
     if not text:
         return None
-    majors, courses, seen = [], [], set()
-    for c in re.split(r"[|\n\t;,]+", text):
-        c = re.sub(r"\s+", " ", c).strip(" ·-—()［］[]")
-        if not c or len(c) > 30 or c in seen:
-            continue
-        if not _MUSIC_SIG.search(c):
-            continue
-        seen.add(c)
-        if re.search(r"(전공|학과|음악과|학부|계열|과)$", c):
-            majors.append(c)
-        else:
-            courses.append(c)
-    picks = list(dict.fromkeys(majors or courses))
-    return picks[:max_n] if picks else None
+    depts = []
+    for m in _MUSIC_DEPT.finditer(text):
+        t = m.group(0).strip()
+        if 3 <= len(t) <= 16 and t not in depts:
+            depts.append(t)
+    if depts:
+        return depts[:max_n]
+    courses = list(dict.fromkeys(_MUSIC_COURSE.findall(text)))
+    return courses[:max_n] if courses else None
 
 # ---------- 채용부문/직책/인원 표 파싱 ----------
 _HDR_PART = ["채용부문", "모집부문", "모집분야", "선발부문", "모집파트", "부문", "파트"]
