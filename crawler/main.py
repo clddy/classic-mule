@@ -143,6 +143,40 @@ ATTACH_LINK = re.compile(r"download|fileDown|file\.do|atchFile|attach|dwld|fileI
 # 파일 경로 인자를 뽑아낸다 (첫 인자가 실제 다운로드 경로).
 _JS_FILEARG = re.compile(r"""['"](/[^'"]*?(?:/file/|download|filedown|atchfile|/atch|/dext5)[^'"]*)['"]""", re.I)
 
+# 경로에 download 흔적이 없는 JSP(원광대 downFile 등): 페이지 스크립트의 함수 정의에서
+# location.href="…jsp?path="+path+"&ofilename="+encodeURIComponent(f) 템플릿을 복원해 URL 조립
+_JS_CALL = re.compile(r"^javascript:\s*(\w+)\s*\((.*)\)\s*;?\s*$", re.I | re.S)
+_JS_STRARG = re.compile(r"""['"]([^'"]*)['"]""")
+
+def _js_template_url(soup, base_url, href):
+    from urllib.parse import urljoin, quote
+    m = _JS_CALL.match(href.strip())
+    if not m:
+        return None
+    fname, args = m.group(1), _JS_STRARG.findall(m.group(2))
+    # 파일 확장자가 인자에 보일 때만 (내비게이션 함수 오포착 방지)
+    if not args or not any(re.search(r"\.(pdf|hwpx?|xlsx?|docx?|zip)$", a, re.I) for a in args):
+        return None
+    script = " ".join(sc.get_text() for sc in soup.find_all("script"))
+    fm = re.search(r"function\s+" + re.escape(fname) + r"\s*\(([^)]*)\)\s*\{(.*?)\}", script, re.S)
+    if not fm:
+        return None
+    params = [p.strip() for p in fm.group(1).split(",") if p.strip()]
+    lm = re.search(r"location(?:\.href)?\s*=\s*([^;\n]+)", fm.group(2))
+    if not lm:
+        return None
+    argmap = dict(zip(params, args))
+    url = ""
+    for s1, s2, enc, ident in re.findall(
+            r"\"([^\"]*)\"|'([^']*)'|encodeURIComponent\s*\(\s*(\w+)\s*\)|\b(\w+)\b", lm.group(1)):
+        if s1 or s2:
+            url += (s1 or s2)
+        elif enc:
+            url += quote(argmap.get(enc, ""))
+        elif ident in argmap:
+            url += quote(argmap[ident], safe="/")
+    return urljoin(base_url, url) if "?" in url else None
+
 def find_attachments(soup, base_url):
     from urllib.parse import urljoin
     cands, seen = [], set()
@@ -154,9 +188,12 @@ def find_attachments(soup, base_url):
         full = None
         if href.startswith("javascript"):
             m = _JS_FILEARG.search(href)
-            if not m:
-                continue
-            full = urljoin(base_url, re.sub(r";jsessionid=[^?&'\"]*", "", m.group(1), flags=re.I))
+            if m:
+                full = urljoin(base_url, re.sub(r";jsessionid=[^?&'\"]*", "", m.group(1), flags=re.I))
+            else:
+                full = _js_template_url(soup, base_url, href)   # downFile(path, name) 템플릿형
+                if not full:
+                    continue
         elif (re.search(r"\.(pdf|hwpx?|zip)(\?|$)", href, re.I)
                 or re.search(r"\.(pdf|hwpx?|zip)\b", text, re.I)
                 or ATTACH_LINK.search(href)):
