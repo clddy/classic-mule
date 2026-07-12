@@ -203,8 +203,9 @@ def find_attachments(soup, base_url):
             cands.append((full, text))
     return cands[:3]
 
-EXT_VER = 18         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일 승계가 무효화됨
+EXT_VER = 19         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
                      #  v18: 대학 강사 초빙 원문 첨부(HWP/XLSX)에서 음악 전공 추출 + 비음악 제외
+                     #  v19: 음악 학과/전공 정밀 추출(행사명·전화번호 오염 제거) — 재추출 강제
                      # v17: 집계포털 상시 기본값 제거 + 원문(officialUrl) 죽은링크 감지·실마감 추출
 RENDER_PER_SOURCE = 3   # 소스당 Playwright 렌더링 상한
 OCR_PER_SOURCE = 6      # 소스당 이미지 공고문 OCR 상한 (항목당 최대 2장)
