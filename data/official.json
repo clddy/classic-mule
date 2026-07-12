@@ -1,5 +1,5 @@
 {
- "collectedAt": "2026-07-12 18:40",
+ "collectedAt": "2026-07-12 20:10",
  "sourceCount": 80,
  "okCount": 80,
  "instTotal": 75,
@@ -749,7 +749,7 @@
    "layer": "B",
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 17
+   "extVer": 19
   },
   {
    "id": "9b9fed1c189aef5e",
@@ -766,36 +766,14 @@
    "inst": "전체",
    "instDetails": [],
    "personnel": null,
-   "subject": null,
+   "subject": "교회음악과 · 예배음악편곡과",
    "officialUrl": "https://job.kbtus.ac.kr/job/CMS/Board/Board.do?mCode=MN029&mode=view&mgr_seq=233&board_seq=37363&",
    "channel": "hibrain",
    "layer": "B",
+   "subjectFrom": "attach",
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 17
-  },
-  {
-   "id": "d799d2daacc55291",
-   "org": "고신대학교",
-   "region": "부산",
-   "source": "hibrain.net",
-   "title": "고신대학교 강사 모집",
-   "url": "https://www.hibrain.net/recruitment/recruits/3588824",
-   "date": "2026-07-13",
-   "deadline": "2026-07-14",
-   "kind": "강사",
-   "tier": "프로",
-   "ageGroup": "성인",
-   "inst": "전체",
-   "instDetails": [],
-   "personnel": null,
-   "subject": null,
-   "officialUrl": "https://www.kosin.ac.kr/kr/index.php?pCode=ksurecruit&mode=view&idx=46214",
-   "channel": "hibrain",
-   "layer": "B",
-   "firstSeen": "2026-07-11",
-   "isNew": false,
-   "extVer": 17
+   "extVer": 19
   },
   {
    "id": "7e82257b25ad7ec7",
@@ -817,11 +795,11 @@
    "subject": null,
    "channel": "edu_seoul",
    "layer": "C",
-   "deadlineFrom": "page",
    "bodyExcerpt": "[화랑초]1인1악기 바이올린 강사 채용 공고 · 1. 채용인원 : 1인1악기 지도강사(바이올린/비올라) 1명 · 3. 수업시수 및 급여 : 주당 12차시기본급 120만원+(지도인원*20,000원) · 4. 원서접수기간: 2026. 7. 11. ~ 2026. 7. 16.(오전 10:00까지, 초과도착 불가)",
+   "deadlineFrom": "page",
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 17
+   "extVer": 19
   },
   {
    "id": "428abbc6ac01b1a1",
@@ -841,34 +819,11 @@
    "subject": null,
    "channel": "edu_seoul",
    "layer": "C",
-   "deadlineFrom": "page",
    "bodyExcerpt": "문화예술 협력강사 채용 공고(동요부르기, 창의무용, 연극, 합창(뮤지컬), 합창, 뮤지컬) · 문화예술 협력강사 (동요부르기, 창의무용, 연극, 합창(뮤지컬), 합창, 뮤지컬) 를 채용하고자 합니다. · 채용공고문을 참고 부탁드립니다.",
+   "deadlineFrom": "page",
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 17
-  },
-  {
-   "id": "c12d970d5beba854",
-   "org": "연세대학교",
-   "region": "강원",
-   "source": "hibrain.net",
-   "title": "연세대학교 미래캠퍼스 강사 모집",
-   "url": "https://www.hibrain.net/recruitment/recruits/3589628",
-   "date": null,
-   "deadline": "2026-07-16",
-   "kind": "강사",
-   "tier": "프로",
-   "ageGroup": "성인",
-   "inst": "전체",
-   "instDetails": [],
-   "personnel": null,
-   "subject": null,
-   "officialUrl": "https://mirae.yonsei.ac.kr/wj/1370/subview.do?enc=Zm5jdDF8QEB8JTJGYmJzJTJGd2olMkYxMTIlMkY5NDM2MDQlMkZhcnRjbFZpZXcuZG8lM0ZwYWdlJTNEMSUyNmZpbmRUeXBlJTNEJTI2ZmluZFdvcmQlM0QlMjZmaW5kQ2xTZXElM0QlMjZmaW5kT3Bud3JkJTNEJTI2cmdzQmduZGVTdHIlM0QlMjZyZ3NFbmRkZVN0ciUzRCUyNnBhc3N3b3JkJTNEJTI2",
-   "channel": "hibrain",
-   "layer": "B",
-   "firstSeen": "2026-07-11",
-   "isNew": false,
-   "extVer": 17
+   "extVer": 19
   },
   {
    "id": "fe531e2e0f28b479",
@@ -885,13 +840,14 @@
    "inst": "전체",
    "instDetails": [],
    "personnel": null,
-   "subject": null,
+   "subject": "음악교육과",
    "officialUrl": "https://www.kyungnam.ac.kr/bbs/ko/1133/198222/artclView.do",
    "channel": "hibrain",
    "layer": "B",
+   "subjectFrom": "attach",
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 17
+   "extVer": 19
   },
   {
    "id": "875b04e41b406490",
@@ -912,9 +868,10 @@
    "officialUrl": "https://www.jnue.kr/portal/jnue/bbs/view.do?menuId=M0006000100010000&boardSeq=15819#{}",
    "channel": "hibrain",
    "layer": "B",
+   "musicUnverified": true,
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 17
+   "extVer": 19
   },
   {
    "id": "1170cbe4e8bccc87",
@@ -935,9 +892,10 @@
    "officialUrl": "https://portal.hanyang.ac.kr/huas/iycy/hycy.do?pageGb=gscy",
    "channel": "hibrain",
    "layer": "B",
+   "musicUnverified": true,
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 17
+   "extVer": 19
   },
   {
    "id": "887ed332ccceac36",
@@ -958,9 +916,10 @@
    "officialUrl": "https://portal.hanyang.ac.kr/huas/iycy/hycy.do?pageGb=gscy#",
    "channel": "hibrain",
    "layer": "B",
+   "musicUnverified": true,
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 17
+   "extVer": 19
   },
   {
    "id": "6015a48666b489c3",
@@ -977,13 +936,14 @@
    "inst": "전체",
    "instDetails": [],
    "personnel": null,
-   "subject": null,
+   "subject": "음악학과",
    "officialUrl": "https://www.inje.ac.kr/kor/setRoute/B_Page.asp?pCode=PR040030000&varCat=8&page=1&bMode=view&varKey=28523",
    "channel": "hibrain",
    "layer": "B",
+   "subjectFrom": "attach",
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 17
+   "extVer": 19
   },
   {
    "id": "682e8f2ab01c9302",
@@ -1000,36 +960,14 @@
    "inst": "전체",
    "instDetails": [],
    "personnel": null,
-   "subject": null,
+   "subject": "음악과",
    "officialUrl": "https://intra.wku.ac.kr/recruit/rcrt_notice_dtl.jsp?works_no=7170016f65de4ba8908fd703d42d9be8",
    "channel": "hibrain",
    "layer": "B",
+   "subjectFrom": "attach",
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 17
-  },
-  {
-   "id": "ca81c997edbe7d67",
-   "org": "건국대학교",
-   "region": "서울",
-   "source": "hibrain.net",
-   "title": "건국대학교 강사 모집 (2차)",
-   "url": "https://www.hibrain.net/recruitment/recruits/3589485",
-   "date": null,
-   "deadline": "2026-07-13",
-   "kind": "강사",
-   "tier": "프로",
-   "ageGroup": "성인",
-   "inst": "전체",
-   "instDetails": [],
-   "personnel": null,
-   "subject": null,
-   "officialUrl": "https://www.konkuk.ac.kr/konkuk/38042/subview.do",
-   "channel": "hibrain",
-   "layer": "B",
-   "firstSeen": "2026-07-11",
-   "isNew": false,
-   "extVer": 17
+   "extVer": 19
   },
   {
    "id": "4a732d29d3557983",
@@ -1046,37 +984,14 @@
    "inst": "전체",
    "instDetails": [],
    "personnel": null,
-   "subject": null,
+   "subject": "음악예술융합학전공",
    "officialUrl": "https://www.scnu.ac.kr/SCNU/na/ntt/selectNttInfo.do?currPage=1&mi=1623&nttSn=281314396",
    "channel": "hibrain",
    "layer": "B",
+   "subjectFrom": "attach",
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 17
-  },
-  {
-   "id": "2e29513f2f828862",
-   "org": "국립창원대학교",
-   "region": "경남",
-   "source": "hibrain.net",
-   "title": "국립창원대학교 강사 모집",
-   "url": "https://www.hibrain.net/recruitment/recruits/3589219",
-   "date": null,
-   "deadline": "2026-07-15",
-   "kind": "강사",
-   "tier": "프로",
-   "ageGroup": "성인",
-   "inst": "전체",
-   "instDetails": [],
-   "personnel": null,
-   "subject": null,
-   "officialUrl": "https://www.changwon.ac.kr/kor/na/ntt/selectNttInfo.do?nttSn=1421525&mi=10177&bbsId=2932",
-   "channel": "hibrain",
-   "layer": "B",
-   "originDeepened": true,
-   "firstSeen": "2026-07-11",
-   "isNew": false,
-   "extVer": 17
+   "extVer": 19
   },
   {
    "id": "2567e43ae1c8b1dc",
@@ -1097,9 +1012,10 @@
    "officialUrl": "https://k-recruit.khu.ac.kr/hjis2/professor/board_list2.jsp?program_div=5",
    "channel": "hibrain",
    "layer": "B",
+   "musicUnverified": true,
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 17
+   "extVer": 19
   },
   {
    "id": "74c3b7961934806e",
@@ -1120,9 +1036,10 @@
    "officialUrl": "https://www.skuniv.ac.kr/notice/65289",
    "channel": "hibrain",
    "layer": "B",
+   "musicUnverified": true,
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 17
+   "extVer": 19
   },
   {
    "id": "3939c2f37d5e8985",
@@ -1143,9 +1060,10 @@
    "officialUrl": "https://k-recruit.khu.ac.kr/hjis2/professor/board_list2.jsp",
    "channel": "hibrain",
    "layer": "B",
+   "musicUnverified": true,
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 17
+   "extVer": 19
   },
   {
    "id": "21d4220912a1600a",
@@ -1165,11 +1083,11 @@
    "subject": null,
    "channel": "cwcf",
    "layer": "B",
-   "deadlineFrom": "ocr",
    "bodyExcerpt": "2026년 창원문화재단 비상근 임원(이사·감사) 공개모집 공고.png",
+   "deadlineFrom": "ocr",
    "firstSeen": "2026-07-12",
    "isNew": true,
-   "extVer": 17
+   "extVer": 19
   },
   {
    "id": "30dd0035a4f25b80",
@@ -1194,7 +1112,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-12",
    "isNew": true,
-   "extVer": 17
+   "extVer": 19
   },
   {
    "id": "068396ad859b3dfb",
@@ -1219,7 +1137,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-12",
    "isNew": true,
-   "extVer": 17
+   "extVer": 19
   },
   {
    "id": "39048c64368dac11",
@@ -1243,7 +1161,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-12",
    "isNew": true,
-   "extVer": 17
+   "extVer": 19
   },
   {
    "id": "3dcb1fa3dc3999b2",
@@ -1268,7 +1186,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-12",
    "isNew": true,
-   "extVer": 17
+   "extVer": 19
   },
   {
    "id": "c4968030544efd1f",
@@ -1301,7 +1219,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-12",
    "isNew": true,
-   "extVer": 17
+   "extVer": 19
   },
   {
    "id": "d9bbb9afbeca97d2",
@@ -1326,7 +1244,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-12",
    "isNew": true,
-   "extVer": 17
+   "extVer": 19
   },
   {
    "id": "596fc69413cf2eb2",
@@ -1353,7 +1271,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-12",
    "isNew": true,
-   "extVer": 17
+   "extVer": 19
   },
   {
    "id": "cb1f2cc8922378bb",
@@ -1378,7 +1296,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-12",
    "isNew": true,
-   "extVer": 17
+   "extVer": 19
   },
   {
    "id": "5617a5dc7773a9a5",
@@ -1403,7 +1321,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-12",
    "isNew": true,
-   "extVer": 17
+   "extVer": 19
   },
   {
    "id": "5f240324b3b2d587",
@@ -1428,7 +1346,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-12",
    "isNew": true,
-   "extVer": 17
+   "extVer": 19
   },
   {
    "id": "c7cb1977c98a5fe1",
@@ -1455,7 +1373,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-12",
    "isNew": true,
-   "extVer": 17
+   "extVer": 19
   },
   {
    "id": "f9851696a21a61a3",
@@ -1478,7 +1396,7 @@
    "bodyExcerpt": "시험/채용/구직 · 기간제교사 채용계획 사전공개 · 학교/기관별 채용공고 · 채용 공고 시 유의사항",
    "firstSeen": "2026-07-12",
    "isNew": true,
-   "extVer": 17
+   "extVer": 19
   },
   {
    "id": "74aafb0f253525a2",
@@ -1501,7 +1419,7 @@
    "layer": "B",
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 17
+   "extVer": 19
   },
   {
    "id": "05b306f57c79f14e",
@@ -1521,9 +1439,10 @@
    "subject": null,
    "channel": "hibrain",
    "layer": "B",
+   "musicUnverified": true,
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 17
+   "extVer": 19
   },
   {
    "id": "c80e362afc57cd51",
@@ -1547,7 +1466,6 @@
    "subject": null,
    "channel": "kbs",
    "layer": "D",
-   "deadlineFrom": "page",
    "recruitParts": [
     {
      "part": "비올라",
@@ -1572,9 +1490,10 @@
    ],
    "auditionDate": "8/17 · 8/23",
    "bodyExcerpt": "2026년 KBS교향악단 신규단원 채용(비올라, 오보에, 타악기) - 2026. 7. 8. 자 타악기 부문 추가 · 교향악단 신규단원 채용 · 교향악단에서 실력있고 열정 넘치는 전문 연주자를 공개 모집합니다 · 자로 모집부문에 타악기가 추가되었습니다",
+   "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 17
+   "extVer": 19
   },
   {
    "id": "32a2dfcd05fc5cbb",
@@ -1595,9 +1514,10 @@
    "officialUrl": "https://www.seoularts.ac.kr/web/cop/bbsWeb/selectBoardDetail.do?bbsId=BBSMSTR_000000000651&nttId=242393&nttIds=0&searchYear=&pageIndex=1&mblDn=&idchk=&nttYear=&pubLink=&searchCnd=&searchWrd=&temp=",
    "channel": "hibrain",
    "layer": "B",
+   "musicUnverified": true,
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 17
+   "extVer": 19
   },
   {
    "id": "89f36842ad7336af",
@@ -1618,32 +1538,10 @@
    "officialUrl": "https://www.bufs.ac.kr/bbs/board.php?bo_table=notice_rec&wr_id=383",
    "channel": "hibrain",
    "layer": "B",
+   "musicUnverified": true,
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 17
-  },
-  {
-   "id": "d22fe2133269b952",
-   "org": "대신대학교",
-   "region": "경북",
-   "source": "hibrain.net",
-   "title": "대신대학교 비전임교원 모집",
-   "url": "https://www.hibrain.net/recruitment/recruits/3588337",
-   "date": "2026-07-08",
-   "deadline": "2026-07-14",
-   "kind": "교수",
-   "tier": "프로",
-   "ageGroup": "성인",
-   "inst": "전체",
-   "instDetails": [],
-   "personnel": null,
-   "subject": null,
-   "officialUrl": "https://www.daeshin.ac.kr/html/05_community/01.php?AT=V&b_id=0000221699999999",
-   "channel": "hibrain",
-   "layer": "B",
-   "firstSeen": "2026-07-12",
-   "isNew": true,
-   "extVer": 17
+   "extVer": 19
   },
   {
    "id": "34114bed196714d5",
@@ -1663,11 +1561,11 @@
    "subject": null,
    "channel": "edu_cbe",
    "layer": "C",
-   "deadlineFrom": "page",
    "bodyExcerpt": "세명고 기간제교사(수학, 음악) 채용 2차공고 · 세명고등학교는 기간제교원 채용을 다음과 같이 공고합니다. · 1. 대상 교과: 수학(1명), 음악(1명) · 담당교과 교원자격증",
+   "deadlineFrom": "page",
    "firstSeen": "2026-07-12",
    "isNew": true,
-   "extVer": 17
+   "extVer": 19
   },
   {
    "id": "b2e199e32140e0ed",
@@ -1695,7 +1593,7 @@
    "documents": "이력서",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 17
+   "extVer": 19
   },
   {
    "id": "340d217c42aab8e1",
@@ -1718,7 +1616,6 @@
    "subject": null,
    "channel": "kbs",
    "layer": "D",
-   "deadlineFrom": "page",
    "recruitParts": [
     {
      "part": "비올라",
@@ -1737,9 +1634,10 @@
    ],
    "auditionDate": "8/17 · 8/23",
    "bodyExcerpt": "2026년 KBS교향악단 신규단원 채용(비올라, 오보에) · 교향악단 신규단원 채용 · 교향악단에서 실력있고 열정 넘치는 전문 연주자를 공개 모집합니다 · 모집부문별 채용 예정인원",
+   "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 17
+   "extVer": 19
   },
   {
    "id": "5dece78df88ec9d5",
@@ -1761,37 +1659,14 @@
    "subject": null,
    "channel": "sejongpac",
    "layer": "B",
-   "deadlineFrom": "ocr",
    "positions": [
     "단원"
    ],
    "bodyExcerpt": "세종문화회관 예술단 직책단원(소년소녀합창 지휘자) 공개채용 공고",
+   "deadlineFrom": "ocr",
    "firstSeen": "2026-07-07",
    "isNew": false,
-   "extVer": 17
-  },
-  {
-   "id": "9455a9f35ff8686a",
-   "org": "인사혁신처",
-   "region": "기타",
-   "source": "hibrain.net",
-   "title": "인사혁신처 개방형직위 모집",
-   "url": "https://www.hibrain.net/recruitment/recruits/3588619",
-   "date": "2026-07-01",
-   "deadline": "2026-07-13",
-   "kind": "기타",
-   "tier": "프로",
-   "ageGroup": "성인",
-   "inst": "전체",
-   "instDetails": [],
-   "personnel": null,
-   "subject": null,
-   "officialUrl": "https://gongmuwon.gosi.kr/crrut/indexMain2.do",
-   "channel": "hibrain",
-   "layer": "B",
-   "firstSeen": "2026-07-11",
-   "isNew": false,
-   "extVer": 17
+   "extVer": 19
   },
   {
    "id": "d23eba700bca92a7",
@@ -1816,7 +1691,7 @@
    "layer": "B",
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 17
+   "extVer": 19
   },
   {
    "id": "da06b8ae997fd398",
@@ -1839,11 +1714,11 @@
    "subject": null,
    "channel": "artinfo",
    "layer": "A",
-   "bodyExcerpt": "모집파트: 테너 또는 베이스",
    "applyEmail": "anointed77@hanmail.net",
+   "bodyExcerpt": "모집파트: 테너 또는 베이스",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 17
+   "extVer": 19
   },
   {
    "id": "b45188e68777edf5",
@@ -1866,12 +1741,12 @@
    "subject": null,
    "channel": "artinfo",
    "layer": "A",
+   "applyEmail": "songhyun1128@naver.com",
    "qualification": "연령: 35세 ~ 50세 학력: 성악 전공 석사 졸업 이상",
    "bodyExcerpt": "채용 | 더솔아르떼 성악아카데미 평택점과 함께할 전문 강사님을 모십니다 · 성악 전문 강사님을 모집합니다. · ✨️ 모집 분야 · 우대: 교육 및 연주 경력자 환영,",
-   "applyEmail": "songhyun1128@naver.com",
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 17
+   "extVer": 19
   },
   {
    "id": "66564a9a98fa61d9",
@@ -1893,15 +1768,15 @@
    "subject": null,
    "channel": "artinfo",
    "layer": "A",
+   "applyEmail": "pavarotti7801@hanmail.net",
+   "applyPhone": "010-4772-5362",
    "positions": [
     "반주자"
    ],
    "bodyExcerpt": "채용 | [부산] 푸른초장교회 반주자를 모십니다.",
-   "applyEmail": "pavarotti7801@hanmail.net",
-   "applyPhone": "010-4772-5362",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 17
+   "extVer": 19
   },
   {
    "id": "5fbc7e4eb4f8d92d",
@@ -1929,7 +1804,7 @@
    "documents": "간단한 이력서",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 17
+   "extVer": 19
   }
  ]
 }
