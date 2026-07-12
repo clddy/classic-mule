@@ -66,7 +66,8 @@ const INST_GROUPS = [
   ["기타", ["타악", "피아노", "하프", "지휘"]],
   ["성악", ["소프라노", "메조소프라노", "알토", "테너", "바리톤", "베이스(성악)"]],
 ];
-const REGION_LIST = ["서울", "경기", "인천", "대전", "대구", "부산", "기타"];
+const REGION_LIST = ["서울", "경기", "인천", "강원", "대전", "세종", "충북", "충남",
+  "대구", "경북", "부산", "울산", "경남", "광주", "전북", "전남", "제주", "기타"];
 const STATUSES = ["접수중", "마감임박", "확인필요", "마감"];
 
 const state = { tab: "전체", tiers: new Set(), ages: new Set(), bands: new Set(), insts: new Set(), regions: new Set(), status: new Set(), query: "", sort: "deadline" };

@@ -7,24 +7,17 @@
 """
 import re
 from bs4 import BeautifulSoup
-from common import make_item
+from common import make_item, region_from
 
 # 음악학 = AP02 (예술체육 AP 하위). 국악학과는 상위 musician_relevant가 풍류로 분리 제외.
 AP02_LIST = ("https://www.hibrain.net/recruitment/categories/MJR/"
              "categories/AP/categories/AP02/recruits")
 DETAIL = "https://www.hibrain.net/recruitment/recruits/"
-_UI_REGIONS = ("서울", "경기", "인천", "대전", "대구", "부산")
 
 
 def _region(text):
     m = re.search(r"근무예정지\s*([가-힣]+)", text)
-    if not m:
-        return "기타"
-    v = m.group(1)
-    for r in _UI_REGIONS:
-        if v.startswith(r):
-            return r
-    return "기타"   # 그 외 지역은 UI 필터에 없어 '기타'로
+    return region_from(m.group(1)) if m else "기타"
 
 
 def _dates(text):
