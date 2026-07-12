@@ -367,8 +367,8 @@
  ],
  "master": {
   "total": 604,
-  "covered": 6,
-  "gapCount": 598,
+  "covered": 5,
+  "gapCount": 599,
   "byCategory": {
    "대학": {
     "total": 77,
@@ -380,7 +380,7 @@
    },
    "예술단": {
     "total": 54,
-    "covered": 3
+    "covered": 2
    },
    "지자체": {
     "total": 323,
@@ -1015,6 +1015,11 @@
    },
    {
     "name": "광명시립합창단",
+    "cat": "예술단",
+    "region": "경기"
+   },
+   {
+    "name": "구리시립합창단",
     "cat": "예술단",
     "region": "경기"
    },

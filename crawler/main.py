@@ -496,6 +496,66 @@ def _is_dead_origin(r):
         return True
     return False
 
+# ---------- 목록 origin 딥링크화 ----------
+# 집계(hibrain 등)가 해석한 원문이 '공지사항 목록'인 경우가 있다(예: 대학 채용 게시판 목록).
+# 목표는 목록이 아니라 해당 공고 상세까지 도달하는 것 — 목록을 열어 제목 토큰이 겹치는
+# 상세 앵커를 찾아 officialUrl을 교체한다.
+_LIST_URL = re.compile(r"selectNttList|List\.do|list\.do|/list\b|mode=list|BbsList", re.I)
+_DETAIL_HREF = re.compile(r"nttSn=\d|selectNttInfo|mode=view|/view|View\.do|articleNo=\d|wr_id=\d"
+                          r"|boardSeq=\d|seq=\d|[?&]idx=\d|dataSid=\d|[?&]no=\d|bbsSn=\d|artclView", re.I)
+_TOKEN_SPLIT = re.compile(r"[\s\[\]()〈〉<>.,·/|~\-_!?'\"“”]+")
+_STOP_TOKENS = {"모집", "채용", "공고", "공고문", "안내", "초빙", "임용", "재공고", "및", "제", "차",
+                "2025", "2026", "2027", "학년도", "년도", "상반기", "하반기", "학기"}
+
+def _title_tokens(t):
+    return {w for w in _TOKEN_SPLIT.split(t or "") if len(w) >= 2 and w not in _STOP_TOKENS}
+
+def _deepen_list_origin(s, item):
+    """officialUrl이 목록 페이지면, 그 안에서 제목이 가장 잘 맞는 상세 앵커로 교체."""
+    from urllib.parse import urljoin
+    url = item.get("officialUrl")
+    if not url or not _LIST_URL.search(url) or _DETAIL_HREF.search(url):
+        return
+    try:
+        r = get(s, url)
+        if r.status_code != 200:
+            return
+    except Exception:
+        return
+    want = _title_tokens(item["title"])
+    kind_kw = re.compile(r"강사|교원|교수|채용|모집|임용|단원|초빙")
+    best, best_score = None, 0
+    soup = BeautifulSoup(r.text, "lxml")
+    # na/ntt CMS(대학·교육청 공통): 행이 javascript 앵커(.nttInfoBtn[data-id]) →
+    # selectNttInfo.do?nttSn= 상세 URL을 직접 조립
+    m_na = re.search(r"^(.*)/na/ntt/selectNttList\.do", url)
+    if m_na:
+        from urllib.parse import parse_qs, urlparse as _up
+        q = parse_qs(_up(url).query)
+        mi, bbs = (q.get("mi") or [""])[0], (q.get("bbsId") or [""])[0]
+        for a in soup.select(".nttInfoBtn[data-id]"):
+            t = a.get_text(" ", strip=True)
+            if len(t) < 6 or not kind_kw.search(t):
+                continue
+            score = len(want & _title_tokens(t))
+            if score > best_score:
+                best = f"{m_na.group(1)}/na/ntt/selectNttInfo.do?nttSn={a['data-id']}&mi={mi}&bbsId={bbs}"
+                best_score = score
+    for a in soup.find_all("a", href=True):
+        href = a["href"]
+        if href.startswith(("javascript", "#", "mailto")) or not _DETAIL_HREF.search(href):
+            continue
+        t = a.get_text(" ", strip=True)
+        if len(t) < 6 or not kind_kw.search(t):
+            continue
+        score = len(want & _title_tokens(t))
+        if score > best_score:
+            best, best_score = urljoin(url, href), score
+    # 토큰 2개 이상 겹칠 때만 확신하고 교체 (엉뚱한 공고로 보내지 않도록 보수적)
+    if best and best_score >= 2:
+        item["officialUrl"] = best
+        item["originDeepened"] = True
+
 def _origin_check(s, item, ry):
     """기관 원문(officialUrl)을 실제로 열어본다.
     죽은 페이지면 만료 처리(링크가 404로 가는 것 방지), 살아있으면 진짜 마감일을 추출."""
@@ -525,7 +585,9 @@ def enrich_deadline(s, item, allow_render=True, details_only=False):
     global _renders_used
     # 하이브레인 항목은 로그인 세션으로 이미 상세 파싱됨 — 여기서 item["url"](hibrain)을
     # 익명으로 다시 열면 '로그인후에 이용' 껍데기를 긁게 되므로 건너뛴다.
+    # 단, 원문(officialUrl)이 '공지 목록'이면 상세 공고까지 파고들어 교체(창원대 케이스).
     if item.get("source") == "hibrain.net":
+        _deepen_list_origin(s, item)
         return
     ry = _ref_year(item)
     try:
@@ -540,6 +602,7 @@ def enrich_deadline(s, item, allow_render=True, details_only=False):
         # 원문이 없는 직접게시글이면 지원 연락처를 본문에서 확보한다.
         if item.get("source") in AGGREGATORS:
             if item.get("officialUrl"):
+                _deepen_list_origin(s, item)   # 목록 origin이면 상세 공고까지 파고들기
                 _origin_check(s, item, ry)
                 if item.get("deadline") == "2000-01-01":
                     return  # 원문이 죽음 → 만료 처리하고 종료
@@ -729,6 +792,12 @@ def run(force_all=False):
             detail_need = [i for i in kept if i["deadline"] and not i.get("bodyExcerpt")]
             for it in detail_need[:budget]:
                 enrich_deadline(s, it, allow_render=False, details_only=True)
+            # 원문이 '공지 목록'인 항목은 enrich 여부와 무관하게 상세 공고로 딥링크화
+            # (마감·요약이 이미 있어 enrich를 건너뛴 hibrain 항목 등)
+            for it in kept:
+                if it.get("officialUrl") and _LIST_URL.search(it["officialUrl"]) \
+                        and not it.get("originDeepened"):
+                    _deepen_list_origin(s, it)
             # 마감이 게시일보다 '한참'(>180일) 앞서면 연말→연초 연도 오타로 보고 +1년 보정
             # (며칠 앞선 건 그냥 지난 공고 — 잘못 미래로 밀어올리지 않음)
             for it in kept:

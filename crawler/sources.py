@@ -577,8 +577,9 @@ def _make_edu_parser(cfg):
 
 # ---- 경기교육청 구인구직(hnfp) — 목록 POST + 상세 GET (2026-07 리버스엔지니어링) ----
 # 키워드 검색은 서버에서 무시됨 → 목록 페이지 순회 후 제목(EDU_MUSIC) 클라이언트 필터.
-# 경기 상세는 goView 폼 POST-submit이라 GET 딥링크 불가 → 공개 구인목록으로 연결
-GOE_BOARD = "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancList.do?mi=10502"
+# 경기 상세: hnfpPbancInfoView.do GET이 쿠키 없이도 열림(2026-07 재검증, 94KB 정상)
+# — 과거 타임아웃은 일시 장애였음. 특정 공고 딥링크로 연결한다.
+GOE_VIEW = "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn={id}"
 
 def parse_goe(s):
     items, seen = [], set()
@@ -608,7 +609,8 @@ def parse_goe(s):
                 org_el = a.select_one(".cont_top span")
                 org = org_el.get_text(strip=True) if org_el else "경기 학교"
                 d = find_date(a.get_text(" ", strip=True))
-                items.append(make_item(f"{org}(경기교육청)", "경기", "goe.go.kr", title, GOE_BOARD, date=d))
+                items.append(make_item(f"{org}(경기교육청)", "경기", "goe.go.kr", title,
+                                       GOE_VIEW.format(id=m.group(1)), date=d))
     return items
 
 # ---- na/ntt CMS 교육청 채용게시판 (인천·전남·경북·세종 공통 벤더) ----
