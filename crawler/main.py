@@ -211,7 +211,16 @@ def find_attachments(soup, base_url):
         if full and full not in seen:
             seen.add(full)
             cands.append((full, text))
-    return cands[:3]
+    # WordPress 게시판(서경대 등): href="#" 이고 실제 파일경로가 data-file-key 속성에 있음
+    if not cands and soup.find(src=re.compile(r"wp-content")):
+        for el in soup.find_all(attrs={"data-file-key": True}):
+            key = (el.get("data-file-key") or "").lstrip("/")
+            if re.search(r"\.(pdf|hwpx?|xlsx?|docx?|zip)$", key, re.I):
+                full = urljoin(base_url, "/wp-content/uploads/" + key)
+                if full not in seen:
+                    seen.add(full)
+                    cands.append((full, el.get_text(" ", strip=True)))
+    return cands[:4]
 
 EXT_VER = 19         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
                      #  v18: 대학 강사 초빙 원문 첨부(HWP/XLSX)에서 음악 전공 추출 + 비음악 제외
