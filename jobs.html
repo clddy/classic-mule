@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Song+Myung&family=Cormorant:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-  <link rel="stylesheet" href="css/style.css?v=8">
+  <link rel="stylesheet" href="css/style.css?v=9">
 </head>
 <body>
 
@@ -68,6 +68,10 @@
     <div class="filter-group">
       <h4>상태</h4>
       <div class="filter-options" id="filter-status"></div>
+    </div>
+    <div class="filter-group">
+      <h4>악기 제공</h4>
+      <div class="filter-options" id="filter-provided"></div>
     </div>
   </aside>
 
@@ -201,6 +205,42 @@
           </select>
         </div>
       </div>
+      <div class="form-section-label">악기 제공 <span class="hint">— 연주자가 가장 먼저 확인하는 항목 (특히 타악·건반)</span></div>
+      <div class="form-row">
+        <div class="form-field">
+          <label>악기 제공 여부</label>
+          <select name="w-instProvided">
+            <option value="">해당 없음</option>
+            <option value="제공됨">제공됨</option>
+            <option value="개인 지참">개인 지참</option>
+            <option value="일부 제공">일부 제공</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label>제공/지참 악기 상세</label>
+          <input type="text" name="w-instProvidedDetail" placeholder="예: 팀파니·마림바 제공, 말렛 개인 지참">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-field">
+          <label>셋업/운반</label>
+          <select name="w-setup">
+            <option value="">해당 없음</option>
+            <option value="없음">필요 없음</option>
+            <option value="셋업만">셋업만</option>
+            <option value="운반 포함">운반 포함</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label>건반 종류 <span class="hint">(반주·건반 공고)</span></label>
+          <select name="w-keyboard">
+            <option value="">해당 없음</option>
+            <option value="그랜드">그랜드 피아노</option>
+            <option value="업라이트">업라이트</option>
+            <option value="전자">전자 피아노</option>
+          </select>
+        </div>
+      </div>
       <div class="form-field">
         <label>제목</label>
         <input type="text" name="w-title" required placeholder="예: 정기연주회 비올라 객원 1명 모십니다">
@@ -221,8 +261,18 @@
           <input type="text" name="w-org" required placeholder="○○앙상블">
         </div>
         <div class="form-field">
+          <label>연락처 <span class="hint">(급구 시 필수 · 지원자가 바로 연락)</span></label>
+          <input type="tel" name="w-phone" placeholder="010-0000-0000">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-field">
           <label>보수</label>
           <input type="text" name="w-pay" placeholder="회당 15만원 / 협의">
+        </div>
+        <div class="form-field">
+          <label>리허설 횟수 <span class="hint">(연주자가 회당 페이 계산)</span></label>
+          <input type="number" name="w-rehearsalCount" min="0" placeholder="예: 2">
         </div>
       </div>
       <div class="form-row">
@@ -263,7 +313,7 @@
 
 <script>document.write('<scr'+'ipt src="data/official-data.js?t='+Math.floor(Date.now()/600000)+'"></scr'+'ipt>');</script>
 <script src="js/data.js?v=4"></script>
-<script src="js/jobs.js?v=23"></script>
+<script src="js/jobs.js?v=24"></script>
 <script>
   // 상단: 최근 업데이트만 가볍게 / 하단: 수집처 상세(펼치면 어디서 모으는지)
   (function () {

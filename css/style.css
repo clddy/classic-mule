@@ -720,3 +720,63 @@ details[open] > .filter-summary::after { content: " −"; }
 @media (prefers-reduced-motion: reduce) {
   * { transition: none !important; }
 }
+
+/* ---------- 글쓰기 폼 보조 ---------- */
+.form-section-label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--ink);
+  margin: 6px 0 2px;
+  padding-top: 8px;
+  border-top: 1px dashed var(--line);
+}
+.form-section-label .hint, label .hint {
+  font-weight: 400;
+  color: var(--ink-soft);
+  font-size: 0.76rem;
+}
+
+/* ---------- 악기 제공 배지 (포디엄 고유 필드) ---------- */
+.tag.provided {
+  background: var(--green-tint);
+  color: var(--green);
+  font-weight: 600;
+}
+/* ---------- 내 공고 배지 ---------- */
+.tag.mine {
+  background: var(--claret);
+  color: #fff;
+  font-weight: 600;
+}
+
+/* ---------- 직접 올린 공고 고정 섹션 ---------- */
+.pinned-head {
+  grid-column: 1 / -1;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--claret);
+  margin: 2px 0 4px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.pinned-head span {
+  background: var(--claret);
+  color: #fff;
+  border-radius: 999px;
+  font-size: 0.7rem;
+  padding: 1px 8px;
+}
+.pinned-sep {
+  grid-column: 1 / -1;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--ink-soft);
+  margin: 14px 0 2px;
+  padding-top: 10px;
+  border-top: 1px solid var(--line);
+}
+.job-card.mine {
+  border-color: var(--claret);
+  box-shadow: inset 3px 0 0 var(--claret);
+}
