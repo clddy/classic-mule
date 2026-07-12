@@ -90,7 +90,7 @@ def _auto_relogin(page):
         page.goto(LOGIN_URL, wait_until="domcontentloaded", timeout=25000)
         page.wait_for_timeout(800)
         try:
-            page.check("#isAutoSignin", timeout=3000)   # 자동로그인 → 영구 쿠키
+            page.check("#isAutoSignin", timeout=3000, force=True)   # 자동로그인 → 영구 쿠키
         except Exception:
             pass
         page.fill("#userid", uid)
@@ -123,7 +123,7 @@ def setup():
         page.goto(LOGIN_URL, wait_until="domcontentloaded")
         # '자동로그인' 체크 → 영구 쿠키 발급 (세션 쿠키만 받아 하루 만에 풀리는 것 방지)
         try:
-            page.check("#isAutoSignin", timeout=3000)
+            page.check("#isAutoSignin", timeout=3000, force=True)
             print("  [i] '자동로그인' 체크함 (세션 영구 유지)")
         except Exception:
             print("  [i] 자동로그인 체크박스를 못 찾음 — 화면에서 직접 체크해 주세요")
