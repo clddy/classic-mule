@@ -148,21 +148,30 @@ _JS_FILEARG = re.compile(r"""['"](/[^'"]*?(?:/file/|download|filedown|atchfile|/
 _JS_CALL = re.compile(r"^javascript:\s*(\w+)\s*\((.*)\)\s*;?\s*$", re.I | re.S)
 _JS_STRARG = re.compile(r"""['"]([^'"]*)['"]""")
 
-def _js_template_url(soup, base_url, href):
+def _js_template_url(soup, base_url, href, text=""):
     from urllib.parse import urljoin, quote
     m = _JS_CALL.match(href.strip())
     if not m:
         return None
     fname, args = m.group(1), _JS_STRARG.findall(m.group(2))
-    # 파일 확장자가 인자에 보일 때만 (내비게이션 함수 오포착 방지)
-    if not args or not any(re.search(r"\.(pdf|hwpx?|xlsx?|docx?|zip)$", a, re.I) for a in args):
+    if not args:
+        return None
+    # 다운로드 함수로 볼 근거: 인자/앵커텍스트에 파일 확장자, 또는 함수명이 down/file/atch/fms
+    arg_ext = any(re.search(r"\.(pdf|hwpx?|xlsx?|docx?|zip)$", a, re.I) for a in args)
+    text_ext = bool(re.search(r"\.(pdf|hwpx?|xlsx?|docx?|zip)\b", text or "", re.I))
+    fname_dl = bool(re.search(r"down|file|atch|attach|fms|fdown", fname, re.I))
+    if not (arg_ext or text_ext or fname_dl):
         return None
     script = " ".join(sc.get_text() for sc in soup.find_all("script"))
     fm = re.search(r"function\s+" + re.escape(fname) + r"\s*\(([^)]*)\)\s*\{(.*?)\}", script, re.S)
     if not fm:
         return None
     params = [p.strip() for p in fm.group(1).split(",") if p.strip()]
-    lm = re.search(r"location(?:\.href)?\s*=\s*([^;\n]+)", fm.group(2))
+    body = fm.group(2)
+    # location.href="…"  또는  window.open("…")  또는  form.action="…"
+    lm = (re.search(r"location(?:\.href)?\s*=\s*([^;\n]+)", body)
+          or re.search(r"window\.open\s*\(\s*([^;,\n]+)", body)
+          or re.search(r"\.action\s*=\s*([^;\n]+)", body))
     if not lm:
         return None
     argmap = dict(zip(params, args))
@@ -175,7 +184,8 @@ def _js_template_url(soup, base_url, href):
             url += quote(argmap.get(enc, ""))
         elif ident in argmap:
             url += quote(argmap[ident], safe="/")
-    return urljoin(base_url, url) if "?" in url else None
+    ok = "?" in url or re.search(r"\.(pdf|hwpx?|xlsx?|docx?|zip)", url, re.I)
+    return urljoin(base_url, url) if ok else None
 
 def find_attachments(soup, base_url):
     from urllib.parse import urljoin
@@ -191,7 +201,7 @@ def find_attachments(soup, base_url):
             if m:
                 full = urljoin(base_url, re.sub(r";jsessionid=[^?&'\"]*", "", m.group(1), flags=re.I))
             else:
-                full = _js_template_url(soup, base_url, href)   # downFile(path, name) 템플릿형
+                full = _js_template_url(soup, base_url, href, text)  # downFile/eGov 템플릿형
                 if not full:
                     continue
         elif (re.search(r"\.(pdf|hwpx?|zip)(\?|$)", href, re.I)
@@ -646,9 +656,14 @@ def _music_from_origin(s, item):
     except Exception:
         item["musicUnverified"] = True
         return
-    soup = BeautifulSoup(r.text, "lxml")
+    # 일부 대형 페이지(서울예술대 2.3MB 등)는 lxml이 다운로드 앵커를 누락 → html.parser 폴백
+    atts = []
+    for parser in ("lxml", "html.parser"):
+        atts = find_attachments(BeautifulSoup(r.text, parser), r.url)
+        if atts:
+            break
     texts, seen = [], set()
-    for furl, fname in find_attachments(soup, r.url):
+    for furl, fname in atts:
         if furl in seen:
             continue
         seen.add(furl)
