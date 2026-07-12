@@ -53,6 +53,18 @@ let COMMUNITY_ITEMS = JOBS.map(j => ({
   sample: true   // data.js는 '예시' 게시글만 담음 — 카드 옅게 + '예시' 배지
 }));
 
+// ---------- 사용자가 직접 올린 공고 (localStorage 지속) ----------
+// 이 기기에서 올린 글은 새로고침해도 유지된다. mine:true → '내 공고 관리'에서 삭제 가능.
+// ※ 다른 사용자에게도 보이려면 공유 백엔드가 필요(지금은 이 기기 로컬 프로토타입).
+const LS_KEY = "podium_user_posts_v2";
+function loadUserPosts() {
+  try { return JSON.parse(localStorage.getItem(LS_KEY)) || []; } catch (e) { return []; }
+}
+function saveUserPosts() {
+  try { localStorage.setItem(LS_KEY, JSON.stringify(USER_POSTS)); } catch (e) {}
+}
+let USER_POSTS = loadUserPosts();
+
 // ---------- 필터 정의 ----------
 // 구분: 프로(국공립·직업) / 전공·입시(유스·입시레슨) / 교육·취미(방과후·취미레슨) / 오브리(교회·웨딩·행사)
 const TIERS = ["프로", "전공·입시", "교육·취미", "오브리"];
@@ -70,7 +82,7 @@ const REGION_LIST = ["서울", "경기", "인천", "강원", "대전", "세종",
   "대구", "경북", "부산", "울산", "경남", "광주", "전북", "전남", "제주", "기타"];
 const STATUSES = ["접수중", "마감임박", "확인필요", "마감"];
 
-const state = { tab: "전체", tiers: new Set(), ages: new Set(), bands: new Set(), insts: new Set(), regions: new Set(), status: new Set(), query: "", sort: "deadline" };
+const state = { tab: "전체", tiers: new Set(), ages: new Set(), bands: new Set(), insts: new Set(), regions: new Set(), status: new Set(), provided: new Set(), query: "", sort: "deadline" };
 const $ = (s) => document.querySelector(s);
 
 function statusOf(j) {
@@ -110,7 +122,7 @@ function renderInstChips() {
 
 // ---------- 필터링 ----------
 function filtered() {
-  const all = [...OFFICIAL_ITEMS, ...COMMUNITY_ITEMS];
+  const all = [...OFFICIAL_ITEMS, ...USER_POSTS, ...COMMUNITY_ITEMS];
   return all.filter(j => {
     if (state.tab !== "전체" && j.type !== state.tab) return false;
     if (state.tiers.size && !state.tiers.has(j.tier)) return false;
@@ -121,6 +133,7 @@ function filtered() {
     }
     if (state.regions.size && !state.regions.has(j.region)) return false;
     if (state.status.size && !state.status.has(statusOf(j).key)) return false;
+    if (state.provided.size && !/제공/.test(j.instProvided || "")) return false;
     if (state.query) {
       const q = state.query.toLowerCase();
       if (!`${j.title} ${j.org} ${j.insts.join(" ")} ${j.body || ""}`.toLowerCase().includes(q)) return false;
@@ -165,6 +178,7 @@ function cardHTML(j) {
     ${j.insts.map(i => `<span class="tag inst">${i}</span>`).join("")}
     ${(j.positions || []).filter(p => /수석|악장|차석/.test(p)).map(p => `<span class="tag pos">${p}</span>`).join("")}
     <span class="tag ${st.cls}">${st.label}</span>
+    ${/제공/.test(j.instProvided || "") ? `<span class="tag provided">악기 제공</span>` : ""}
     ${j.urgent ? `<span class="tag urgent">급구</span>` : ""}
     ${j.isNew ? `<span class="tag urgent">NEW</span>` : ""}`;
   const region = j.region && j.region !== "기타" ? `<span>${j.region}</span>` : "";
@@ -174,6 +188,7 @@ function cardHTML(j) {
     ${region}
     ${j.when ? `<span>${j.when}</span>` : ""}
     ${pay}
+    ${j.rehearsalCount ? `<span>리허설 ${j.rehearsalCount}회</span>` : ""}
     ${j.deadline ? `<span>마감 ${j.deadline}</span>` : ""}`;
   // 객원·대체는 프로그램(연주곡)을 카드에 노출 (동생 피드백)
   const program = j.program
@@ -189,7 +204,7 @@ function cardHTML(j) {
     </article>`;
   }
   return `
-    <article class="job-card${st.key === "마감" ? " closed" : ""}${j.sample ? " is-sample" : ""}" data-cid="${j.cid}">
+    <article class="job-card${st.key === "마감" ? " closed" : ""}${j.sample ? " is-sample" : ""}${j.mine ? " mine" : ""}" data-cid="${j.cid}">
       <div class="top-row">${tags}</div>
       <h3>${j.title}</h3>
       ${program}
@@ -199,14 +214,25 @@ function cardHTML(j) {
 
 function renderList() {
   const list = filtered();
-  const oc = list.filter(x => x.src === "공식").length;
-  $("#result-count").innerHTML = `총 <strong>${list.length}</strong>건 (공식 ${oc} · 소규모 ${list.length - oc}) — 카드를 누르면 요약과 원문 링크가 열립니다`;
+  // 직접 올린 공고(내 기기)를 최상단 고정 — 급구 먼저, 그다음 최신순
+  const mine = list.filter(x => x.mine)
+    .sort((a, b) => (b.urgent ? 1 : 0) - (a.urgent ? 1 : 0) || b.cid - a.cid);
+  const rest = list.filter(x => !x.mine);
+  const oc = rest.filter(x => x.src === "공식").length;
+  $("#result-count").innerHTML = `총 <strong>${list.length}</strong>건 (공식 ${oc} · 소규모 ${list.length - oc}) — 카드를 누르면 상세가 열립니다`;
   const el = $("#job-list");
   if (!list.length) {
     el.innerHTML = `<div class="empty">조건에 맞는 공고가 없습니다.<br>필터를 조정해 보세요.</div>`;
     return;
   }
-  el.innerHTML = list.map(cardHTML).join("");
+  let html = "";
+  if (mine.length) {
+    html += `<div class="pinned-head">📌 직접 올린 공고 <span>${mine.length}</span></div>`;
+    html += mine.map(cardHTML).join("");
+    if (rest.length) html += `<div class="pinned-sep">전체 공고</div>`;
+  }
+  html += rest.map(cardHTML).join("");
+  el.innerHTML = html;
   el.querySelectorAll(".job-card[data-cid]").forEach(card => {
     card.addEventListener("click", () => openDetail(+card.dataset.cid));
   });
@@ -233,6 +259,7 @@ function renderAll() {
   renderInstChips();
   renderChips("#filter-region", REGION_LIST, state.regions);
   renderChips("#filter-status", STATUSES, state.status);
+  renderChips("#filter-provided", ["제공됨"], state.provided);
   renderList();
 }
 
@@ -249,6 +276,17 @@ function cleanVal(v) {
     .replace(/[·|,\s~]+$/, "").trim();
 }
 function okPay(v) { return v && /원|만|협의|규정|시급|일당|사례/.test(v) && !/보내기|스북|URL|복사|인쇄/.test(v); }
+// 총 보수를 (리허설 N회 + 공연 1회)로 나눈 회당 환산 — 이미 회당/시간당이면 생략
+function payPerSession(j) {
+  if (!j.rehearsalCount || j.rehearsalCount < 1) return null;
+  if (/회당|시간당|일당|시급/.test(j.pay || "")) return null;
+  const m = String(j.pay || "").match(/([\d,]+)\s*만/);
+  if (!m) return null;
+  const total = Number(m[1].replace(/,/g, ""));
+  if (!total) return null;
+  const per = Math.round(total / (j.rehearsalCount + 1) * 10) / 10;
+  return `약 ${per}만원 (총 ${total}만 ÷ 리허설 ${j.rehearsalCount}+공연)`;
+}
 
 // 상단 메타 = 사실(기관·지역·마감) + 구조화 필드(형태·모집·자격·일정 …)
 function metaRows(j) {
@@ -267,12 +305,26 @@ function metaRows(j) {
   const q = cleanVal(j.qualification);
   if (q && q.length >= 4) rows.push(["자격", q]);
   const reh = cleanVal(j.rehearsal || j.when);
-  if (reh && /\d/.test(reh)) rows.push(["리허설", reh]);
+  if (!j.rehearsalCount && reh && /\d/.test(reh)) rows.push(["리허설", reh]);
   const con = cleanVal(j.concertDate);
   if (con && /\d/.test(con)) rows.push(["연주일", con]);
   if (j.auditionDate) rows.push(["오디션", cleanVal(j.auditionDate)]);
   if (j.contract) rows.push(["계약", cleanVal(j.contract)]);
   if (okPay(j.pay)) rows.push(["페이", cleanVal(j.pay)]);
+  // 리허설 횟수 + 회당 환산 (연주자가 시간당 효율로 판단)
+  if (j.rehearsalCount) {
+    const rw = cleanVal(j.rehearsalWhen || j.when);
+    rows.push(["리허설", `${j.rehearsalCount}회${rw ? " · " + rw : ""}`]);
+    const pps = payPerSession(j);
+    if (pps) rows.push(["회당 환산", pps]);
+  }
+  // 악기 제공 — 포디엄만의 필드 (특히 타악·건반)
+  if (j.instProvided) {
+    rows.push(["악기 제공", j.instProvided + (j.instProvidedDetail ? ` — ${cleanVal(j.instProvidedDetail)}` : "")]);
+  }
+  if (j.setup) rows.push(["셋업/운반", j.setup]);
+  if (j.keyboard) rows.push(["건반", j.keyboard]);
+  if (j.phone) rows.push(["연락처", `<a href="tel:${j.phone.replace(/-/g, "")}">${j.phone}</a>`]);
   if (j.denomination) rows.push(["교단", cleanVal(j.denomination)]);
   if (j.documents) rows.push(["제출 서류", cleanVal(j.documents)]);
   if (j.program) rows.push(["프로그램", cleanVal(j.program)]);
@@ -333,8 +385,10 @@ function openOfficial(key) {
       act.onclick = () => window.open(`tel:${j.applyPhone.replace(/-/g, "")}`, "_blank");
       act.style.display = "";
     } else {
-      // 연락처를 못 뽑은 드문 경우 — 링크 없이 안내만 (포털行 방지)
-      act.style.display = "none";
+      // 연락처를 못 뽑은 드문 경우 — 카드가 죽지 않게 원문(수집 URL) 링크로 폴백
+      act.textContent = "공고 보러가기 ↗";
+      act.onclick = () => window.open(j.url, "_blank", "noopener");
+      act.style.display = "";
     }
   } else {
     act.textContent = "공고 보러가기 ↗";
@@ -346,10 +400,11 @@ function openOfficial(key) {
 
 // ---------- 소규모 글 상세 모달 ----------
 function openDetail(cid) {
-  const j = COMMUNITY_ITEMS.find(x => x.cid === cid);
+  const j = USER_POSTS.find(x => x.cid === cid) || COMMUNITY_ITEMS.find(x => x.cid === cid);
   if (!j) return;
   $("#detail-tags").innerHTML = `
     ${j.sample ? `<span class="tag sample">예시</span>` : ""}
+    ${j.mine ? `<span class="tag mine">내 공고</span>` : ""}
     <span class="tag ${TIER_CLS[j.tier] || "cat"}">${j.tier}</span>
     <span class="tag ${j.type === "구인" ? "type-offer" : "type-seek"}">${j.type}</span>
     <span class="tag cat">${j.band}</span>
@@ -359,9 +414,20 @@ function openDetail(cid) {
   $("#detail-meta").innerHTML = metaRows(j) + `<dt>등록일</dt><dd>${j.date}</dd>`;
   $("#detail-body").textContent = j.body || shortSummary(j) || "";
   const act = $("#detail-action");
-  act.style.display = "";
-  act.textContent = "지원하기 / 연락하기";
-  act.onclick = () => alert("지원/연락 기능은 프로토타입에서 제공되지 않습니다.");
+  // 내가 올린 글이면 삭제 버튼, 연락처 있으면 바로 전화, 아니면 안내
+  if (j.mine) {
+    act.style.display = "";
+    act.textContent = "이 공고 삭제 🗑";
+    act.onclick = () => deleteMyPost(j.cid);
+  } else if (j.phone) {
+    act.style.display = "";
+    act.textContent = `전화 연락 ☎ ${j.phone}`;
+    act.onclick = () => window.open(`tel:${j.phone.replace(/-/g, "")}`, "_blank");
+  } else {
+    act.style.display = "";
+    act.textContent = "지원하기 / 연락하기";
+    act.onclick = () => alert("이 예시 글은 연락처가 없습니다. '＋ 글 올리기'로 직접 등록해 보세요.");
+  }
   $("#detail-modal").classList.add("open");
 }
 
@@ -369,33 +435,62 @@ function openDetail(cid) {
 function submitWrite(e) {
   e.preventDefault();
   const f = e.target;
-  const cid = Math.max(0, ...COMMUNITY_ITEMS.map(j => j.cid)) + 1;
-  const inst = f.elements["w-instDetail"].value.trim() || f.elements["w-inst"].value;
+  const v = (n) => (f.elements[n] ? f.elements[n].value.trim() : "");
+  const urgent = f.elements["w-urgent"].checked;
+  const phone = v("w-phone");
+  // 급구는 지원자가 바로 연락해야 하므로 연락처 필수
+  if (urgent && !phone) {
+    alert("급구 공고는 연락처를 입력해 주세요. (지원자가 바로 연락할 수 있어야 합니다)");
+    f.elements["w-phone"].focus();
+    return;
+  }
+  const cid = Date.now();   // 기기 고유 id (localStorage 병합 충돌 방지)
+  const inst = v("w-instDetail") || v("w-inst");
+  const rc = v("w-rehearsalCount");
   const item = {
-    key: "c" + cid, cid, src: "소규모",
+    key: "c" + cid, cid, src: "소규모", mine: true,   // 이 기기에서 올림
     type: f.elements["w-type"].value === "offer" ? "구인" : "구직",
-    tier: f.elements["w-tier"].value,
-    band: CAT2BAND[f.elements["w-cat"].value] || "기타",
-    insts: [inst], group: f.elements["w-inst"].value,
-    when: f.elements["w-when"].value || null,
-    program: f.elements["w-program"].value || null,
-    personnel: f.elements["w-personnel"].value || null,
-    qualification: f.elements["w-qual"].value || null,
-    region: f.elements["w-region"].value,
-    title: f.elements["w-title"].value,
-    org: f.elements["w-org"].value,
-    pay: f.elements["w-pay"].value || "협의",
-    deadline: f.elements["w-deadline"].value || null,
-    deadlineText: f.elements["w-deadline"].value || "상시",
-    date: TODAY, body: f.elements["w-body"].value,
-    urgent: f.elements["w-urgent"].checked
+    tier: v("w-tier"),
+    band: CAT2BAND[v("w-cat")] || "기타",
+    insts: [inst], group: v("w-inst"),
+    when: v("w-when") || null,
+    program: v("w-program") || null,
+    personnel: v("w-personnel") || null,
+    qualification: v("w-qual") || null,
+    region: v("w-region"),
+    title: v("w-title"),
+    org: v("w-org"),
+    pay: v("w-pay") || "협의",
+    phone: phone || null,
+    instProvided: v("w-instProvided") || null,
+    instProvidedDetail: v("w-instProvidedDetail") || null,
+    setup: v("w-setup") || null,
+    keyboard: v("w-keyboard") || null,
+    rehearsalCount: rc ? Number(rc) : null,
+    rehearsalWhen: v("w-rehearsalWhen") || null,
+    deadline: v("w-deadline") || null,
+    deadlineText: v("w-deadline") || "상시",
+    date: TODAY, body: v("w-body"),
+    urgent
   };
-  COMMUNITY_ITEMS.unshift(item);
+  USER_POSTS.unshift(item);
+  saveUserPosts();
   f.reset();
   $("#write-modal").classList.remove("open");
   state.tab = item.type;
   renderAll();
   openDetail(cid);
+}
+
+// 내 공고(이 기기에서 올린 것) 삭제
+function deleteMyPost(cid) {
+  const i = USER_POSTS.findIndex(p => p.cid === cid);
+  if (i < 0) return;
+  if (!confirm("이 공고를 삭제할까요? (이 기기에서 올린 공고)")) return;
+  USER_POSTS.splice(i, 1);
+  saveUserPosts();
+  $("#detail-modal").classList.remove("open");
+  renderAll();
 }
 
 // ---------- 초기화 ----------
@@ -407,7 +502,7 @@ document.addEventListener("DOMContentLoaded", () => {
   $("#search-input").addEventListener("input", (e) => { state.query = e.target.value.trim(); renderList(); });
   $("#sort-sel").addEventListener("change", (e) => { state.sort = e.target.value; renderList(); });
   $("#filter-reset").addEventListener("click", () => {
-    state.tiers.clear(); state.ages.clear(); state.bands.clear(); state.insts.clear(); state.regions.clear(); state.status.clear();
+    state.tiers.clear(); state.ages.clear(); state.bands.clear(); state.insts.clear(); state.regions.clear(); state.status.clear(); state.provided.clear();
     state.query = ""; $("#search-input").value = "";
     renderAll();
   });
