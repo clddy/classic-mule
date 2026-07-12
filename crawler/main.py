@@ -809,5 +809,19 @@ def run(force_all=False):
         + (f" → 미성년 공고: {'; '.join(it['title'][:30] for it in final if it.get('ageGroup') == '미성년')}" if n_minor else ""))
     log(f"완료: {len(final)}건 저장 (dedup 전 {len(uniq)}건) → {OUT}")
 
+    # ---------- 안전장치: 소스 장애 텔레그램 알림 ----------
+    # 실패(예외) 소스 + 0건 반환으로 승계된 소스를 요약해 알림 (정상이면 조용)
+    fails = [x for x in source_stats if not x.get("ok")]
+    if fails:
+        try:
+            sys.path.insert(0, r"C:\ohai\telegram-notify")
+            from notify import send
+            lines = [f"· {x['name']}: {x.get('error', '?')[:60]}" for x in fails[:8]]
+            send(f"[포디엄] 크롤 소스 {len(fails)}곳 실패 "
+                 f"(전체 {len(SOURCES)}곳, 수집 {len(final)}건)\n" + "\n".join(lines),
+                 silent=True)
+        except Exception:
+            pass
+
 if __name__ == "__main__":
     run(force_all="--all" in sys.argv)

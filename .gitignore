@@ -4,3 +4,4 @@ crawler/probe_result.json
 crawler/.hibrain-profile/
 crawler/.hibrain-ok
 crawler/.hibrain-cookies.json
+crawler/.env
