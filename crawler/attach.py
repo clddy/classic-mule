@@ -1,5 +1,5 @@
-# 첨부파일(PDF/HWP/HWPX) 텍스트 추출 + 이미지 공고문 OCR
-import io, os, re, zipfile, zlib
+# 첨부파일(PDF/HWP/HWPX/XLSX) 텍스트 추출 + 이미지 공고문 OCR
+import io, os, re, zipfile, zlib, html
 
 TESSERACT = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 TESSDATA = os.path.join(os.path.dirname(os.path.abspath(__file__)), "tessdata")
@@ -131,6 +131,40 @@ def extract_hwpx(data: bytes) -> str:
             out.append(re.sub(r"<[^>]+>", " ", xml))
     return "\n".join(out)
 
+def extract_xlsx(data: bytes) -> str:
+    """XLSX(엑셀): 공유문자열 + 시트 셀을 '행 단위'로 추출. openpyxl 없이 zip+XML 파싱.
+    대학 강사 채용의 '채용 교과목 현황'이 xlsx로만 오는 경우(순천대·원광대 등) 대응."""
+    with zipfile.ZipFile(io.BytesIO(data)) as z:
+        names = set(z.namelist())
+        shared = []
+        if "xl/sharedStrings.xml" in names:
+            xml = z.read("xl/sharedStrings.xml").decode("utf-8", errors="ignore")
+            for si in re.findall(r"<si\b[^>]*>(.*?)</si>", xml, re.S):
+                shared.append(html.unescape("".join(re.findall(r"<t[^>]*>(.*?)</t>", si, re.S))))
+        out = []
+        sheets = sorted(n for n in names if re.match(r"xl/worksheets/sheet\d+\.xml$", n))
+        for sn in sheets:
+            xml = z.read(sn).decode("utf-8", errors="ignore")
+            for row in re.findall(r"<row\b[^>]*>(.*?)</row>", xml, re.S):
+                cells = []
+                for attrs, inner in re.findall(r"<c\b([^>]*)>(.*?)</c>", row, re.S):
+                    t = re.search(r'\bt="([^"]+)"', attrs)
+                    typ = t.group(1) if t else None
+                    if typ == "s":  # 공유문자열 인덱스
+                        v = re.search(r"<v>(\d+)</v>", inner)
+                        if v and 0 <= int(v.group(1)) < len(shared):
+                            cells.append(shared[int(v.group(1))])
+                    elif typ == "inlineStr":
+                        cells.append(html.unescape("".join(re.findall(r"<t[^>]*>(.*?)</t>", inner, re.S))))
+                    else:  # str/숫자
+                        v = re.search(r"<v>(.*?)</v>", inner, re.S)
+                        if v:
+                            cells.append(html.unescape(v.group(1)))
+                if cells:
+                    out.append(" | ".join(c for c in cells if c))
+    return "\n".join(out)
+
+
 def extract_any(filename: str, data: bytes, depth: int = 0) -> str:
     """확장자보다 매직바이트 우선 판별. zip이면 내부 문서(중첩 zip 포함)까지 재귀 추출."""
     fn = (filename or "").lower()
@@ -139,21 +173,30 @@ def extract_any(filename: str, data: bytes, depth: int = 0) -> str:
             return extract_pdf(data)
         if data[:8] == b"\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1" or fn.endswith(".hwp"):
             return extract_hwp(data)
+        if fn.endswith((".xlsx", ".xlsm")):
+            return extract_xlsx(data)
         if data[:2] == b"PK":
             with zipfile.ZipFile(io.BytesIO(data)) as z:
                 names = z.namelist()
+                nameset = set(names)
                 if any(n.startswith("Contents/section") or n == "Preview/PrvText.txt" for n in names):
                     return extract_hwpx(data)
-                # 일반 zip — 공고문류 우선, 악보 zip은 뒤로. 중첩 zip은 depth 2까지
-                names.sort(key=lambda n: ("악보" in n, z.getinfo(n).file_size))
+                if "xl/workbook.xml" in nameset:      # 단일 xlsx (매직바이트만 PK)
+                    return extract_xlsx(data)
+                # 첨부 묶음 zip — 교과목/공고문 우선, 동의서·서식·매뉴얼·악보는 뒤로. 중첩 zip은 depth 2까지
+                def _pri(n):
+                    boiler = bool(re.search(r"동의서|서식|매뉴얼|맵|계획서|환산|안내|악보", n))
+                    subj = bool(re.search(r"교과목|공고|채용|모집|전공|현황|대상", n))
+                    return (boiler, not subj, z.getinfo(n).file_size)
+                names.sort(key=_pri)
                 out = []
-                for n in names[:10]:
+                for n in names[:12]:
                     low = n.lower()
-                    if low.endswith((".hwp", ".hwpx", ".pdf")):
+                    if low.endswith((".hwp", ".hwpx", ".pdf", ".xlsx", ".xlsm")):
                         out.append(extract_any(n, z.read(n), depth + 1))
                     elif low.endswith(".zip") and depth < 2:
                         out.append(extract_any(n, z.read(n), depth + 1))
-                    if sum(len(t) for t in out) > 3000:
+                    if sum(len(t) for t in out) > 4000:
                         break
                 return "\n".join(out)
     except Exception as e:

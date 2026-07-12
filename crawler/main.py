@@ -6,7 +6,7 @@ from bs4 import BeautifulSoup
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import (new_session, get, relevant, extract_deadline, deadline_from_title,
                     musician_relevant, parse_recruit_table, summarize_recruit, find_position,
-                    classify_insts, find_subject, classify_kind, age_group)
+                    classify_insts, find_subject, find_music_subjects, classify_kind, age_group)
 from sources import SOURCES
 from institutions import INSTITUTIONS
 import attach
@@ -166,7 +166,8 @@ def find_attachments(soup, base_url):
             cands.append((full, text))
     return cands[:3]
 
-EXT_VER = 17         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일 승계가 무효화됨
+EXT_VER = 18         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일 승계가 무효화됨
+                     #  v18: 대학 강사 초빙 원문 첨부(HWP/XLSX)에서 음악 전공 추출 + 비음악 제외
                      # v17: 집계포털 상시 기본값 제거 + 원문(officialUrl) 죽은링크 감지·실마감 추출
 RENDER_PER_SOURCE = 3   # 소스당 Playwright 렌더링 상한
 OCR_PER_SOURCE = 6      # 소스당 이미지 공고문 OCR 상한 (항목당 최대 2장)
@@ -453,6 +454,12 @@ def _cjob_detail(text, item):
 # 집계 포털(아트인포·아트모아)에 개인·교회·학원이 직접 올린 글은 '원문'이 따로 없다.
 # 이 경우 사용자를 포털로 보내지 않고, 지원 연락처를 본문에서 뽑아 포디엄에서 바로 노출한다.
 AGGREGATORS = ("artinfokorea.com", "artmore.kr", "job.cleaneye.go.kr")
+
+# hibrain 제목에 이미 음악 전공/악기 신호가 있으면 첨부 검증 없이 신뢰 (성악과·합창지휘·교향악단 등)
+_MUSIC_TITLE = re.compile(
+    r"음악|성악|기악|피아노|바이올린|비올라|첼로|더블베이스|콘트라베이스|플루트|오보에|클라리넷|바순"
+    r"|호른|트럼펫|트롬본|튜바|색소폰|타악|팀파니|하프|오르간|관현악|작곡|국악|실용음악|합창|지휘"
+    r"|반주|교회음악|뮤지컬|음악치료|성악과|교향악|필하모닉|오케스트라")
 _EMAIL_RE = re.compile(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}")
 _PHONE_RE = re.compile(r"01[016-9][-.\s]?\d{3,4}[-.\s]?\d{4}")
 
@@ -579,6 +586,55 @@ def _origin_check(s, item, ry):
         if dl:
             item["deadline"] = dl
             item["deadlineFrom"] = "origin"
+
+def _music_from_origin(s, item):
+    """대학 '전체 강사 초빙'(제목만 '○○대 강사 모집'이고 전공 미상): 원문(officialUrl)의
+    첨부 '채용 교과목표'(HWP/XLSX)를 열어 음악 관련 전공을 추출한다.
+      · 음악 전공 발견 → item['subject'] 채움 (사용자가 '어떤 전공인지' 바로 앎)
+      · 첨부를 충분히 읽었는데 음악이 전혀 없음 → item['nonMusic']=True (최종 필터에서 제외)
+      · 원문/첨부를 못 열거나 빈약 → item['musicUnverified']=True (자동확인 불가 → 메일 문의 후보)
+    """
+    if item.get("subject"):
+        return
+    url = item.get("officialUrl")
+    if not url:
+        item["musicUnverified"] = True
+        return
+    try:
+        r = get(s, url)
+        if r.status_code != 200:
+            item["musicUnverified"] = True
+            return
+    except Exception:
+        item["musicUnverified"] = True
+        return
+    soup = BeautifulSoup(r.text, "lxml")
+    texts, seen = [], set()
+    for furl, fname in find_attachments(soup, r.url):
+        if furl in seen:
+            continue
+        seen.add(furl)
+        try:
+            fr = s.get(furl, timeout=40, verify=False, headers={"Referer": url})
+            if fr.status_code != 200 or not (200 < len(fr.content) < 40_000_000):
+                continue
+            cd = fr.headers.get("Content-Disposition", "")
+            m = re.search(r"filename\*?=(?:UTF-8'')?\"?([^\";]+)", cd)
+            name = m.group(1) if m else (fname or furl)
+            texts.append(attach.extract_any(name, fr.content))
+        except Exception:
+            continue
+        if len(texts) >= 6:
+            break
+    blob = "\n".join(texts)
+    subs = find_music_subjects(blob)
+    if subs:
+        item["subject"] = " · ".join(subs)
+        item["subjectFrom"] = "attach"
+    elif len(re.sub(r"\s", "", blob)) > 800:   # 교과목표를 충분히 읽었는데 음악 0 → 비음악
+        item["nonMusic"] = True
+    else:
+        item["musicUnverified"] = True
 
 
 def enrich_deadline(s, item, allow_render=True, details_only=False):
@@ -798,6 +854,20 @@ def run(force_all=False):
                 if it.get("officialUrl") and _LIST_URL.search(it["officialUrl"]) \
                         and not it.get("originDeepened"):
                     _deepen_list_origin(s, it)
+            # hibrain(대학 음악채용 카테고리) 항목 정밀화:
+            #  · 제목에 이미 음악 전공/악기 신호가 있으면 신뢰(성악과·지휘 등) — 그대로 노출
+            #  · '○○대 강사 모집'처럼 전공 미상 대학 공고면 원문 첨부 교과목표로 음악 전공 검증
+            #  · 대학도 음악도 아닌 항목(인사혁신처 등 카테고리 오분류)은 제외
+            for it in kept:
+                if it.get("source") != "hibrain.net" or it.get("subject") or it.get("nonMusic"):
+                    continue
+                blob = it["title"] + " " + it.get("org", "")
+                if _MUSIC_TITLE.search(blob):
+                    continue
+                if re.search(r"대학교|대학원|예술학교|대학\b", blob):
+                    _music_from_origin(s, it)
+                else:
+                    it["nonMusic"] = True   # 비대학·비음악 (예: 인사혁신처 개방형직위)
             # 마감이 게시일보다 '한참'(>180일) 앞서면 연말→연초 연도 오타로 보고 +1년 보정
             # (며칠 앞선 건 그냥 지난 공고 — 잘못 미래로 밀어올리지 않음)
             for it in kept:
@@ -842,6 +912,8 @@ def run(force_all=False):
     final = dedup(uniq)
     # 승계 경로로 들어온 항목까지 포함해 음악인 대상 필터를 최종 일괄 적용
     final = [i for i in final if musician_relevant(i["title"], i.get("kind", ""), i.get("org", ""))]
+    # 대학 전체 강사 초빙 중 첨부 확인 결과 음악 교과목이 전혀 없던 공고는 제외(비음악 확정)
+    final = [i for i in final if not i.get("nonMusic")]
     for it in final:
         old = prev_by_id.get(it["id"])
         it["firstSeen"] = old.get("firstSeen", today.isoformat()) if old else today.isoformat()

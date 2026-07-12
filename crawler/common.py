@@ -427,6 +427,35 @@ def find_subject(text):
             return w
     return None
 
+# ---------- 대학 '전체 강사 초빙'의 채용 교과목표에서 음악 전공만 골라내기 ----------
+# 대학이 전 학과 강사를 한 공고로 내면 hibrain 음악학 카테고리에도 뜬다. 세부 전공은
+# 첨부(HWP/XLSX)의 교과목표에만 있어, 여기서 '음악 관련 전공/학과'만 추려 subject로 쓴다.
+# 반환이 None이고 첨부 본문이 충실했다면 → 그 대학엔 음악 교과목이 없음(비음악 확정).
+_MUSIC_SIG = re.compile(
+    r"음악|성악|기악|피아노|바이올린|비올라|첼로|더블베이스|콘트라베이스|플루트|오보에|클라리넷|바순|파곳"
+    r"|호른|트럼펫|트롬본|튜바|색소폰|타악|팀파니|하프|오르간|관현악|작곡|음악학|국악|실용음악|합창|지휘"
+    r"|반주|음악교육|교회음악|뮤지컬|음악치료|대위법|화성법|시창|청음|음악사")
+
+def find_music_subjects(text, max_n=6):
+    """첨부 교과목표 평문에서 음악 관련 '전공/학과'(우선) 또는 교과목명을 추려 리스트 반환.
+    음악 신호가 전혀 없으면 None."""
+    if not text:
+        return None
+    majors, courses, seen = [], [], set()
+    for c in re.split(r"[|\n\t;,]+", text):
+        c = re.sub(r"\s+", " ", c).strip(" ·-—()［］[]")
+        if not c or len(c) > 30 or c in seen:
+            continue
+        if not _MUSIC_SIG.search(c):
+            continue
+        seen.add(c)
+        if re.search(r"(전공|학과|음악과|학부|계열|과)$", c):
+            majors.append(c)
+        else:
+            courses.append(c)
+    picks = list(dict.fromkeys(majors or courses))
+    return picks[:max_n] if picks else None
+
 # ---------- 채용부문/직책/인원 표 파싱 ----------
 _HDR_PART = ["채용부문", "모집부문", "모집분야", "선발부문", "모집파트", "부문", "파트"]
 _HDR_POS = ["직책", "직급", "구분", "포지션"]
