@@ -804,6 +804,9 @@ def run(force_all=False):
         f.write(";\n")
 
     coverage_report(final, today)
+    n_minor = sum(1 for it in final if it.get("ageGroup") == "미성년")
+    log(f"연령 분포: 성인 {len(final) - n_minor} / 미성년 {n_minor}"
+        + (f" → 미성년 공고: {'; '.join(it['title'][:30] for it in final if it.get('ageGroup') == '미성년')}" if n_minor else ""))
     log(f"완료: {len(final)}건 저장 (dedup 전 {len(uniq)}건) → {OUT}")
 
 if __name__ == "__main__":
