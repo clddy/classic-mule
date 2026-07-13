@@ -28,7 +28,7 @@ const OFFICIAL_ITEMS = ((window.CRAWLED && window.CRAWLED.items) || []).map(j =>
   subject: j.subject,   // 대학 교수 초빙: 전공/과목
   courses: j.courses,   // 대학 강사: 담당 교과목(무엇을 가르치는지)
   obri: j.obri,         // 오브리(교회·행사) — 연주의 하위 필터
-  certReq: j.certReq, degreeReq: j.degreeReq,   // 자격요건 필드
+  certReq: j.certReq, degreeReq: j.degreeReq, careerReq: j.careerReq,   // 자격요건 필드
   ageGroup: j.ageGroup || "성인",   // 지원자 연령: 성인 / 미성년
   region: j.region, title: j.title, org: j.org,
   deadline: j.deadline, deadlineText: j.deadlineNote, date: j.date || j.firstSeen,
@@ -68,6 +68,9 @@ function saveUserPosts() {
 }
 let USER_POSTS = loadUserPosts();
 
+// 연령은 필터가 아니라 '배지'로만 노출. 지금은 꺼둠 — 나중에 이 플래그만 true로 켜면 미성년 배지가 뜬다.
+const SHOW_AGE_BADGE = false;
+
 // ---------- 필터 정의 ----------
 // 등급(단일 축: 연주냐 가르치냐, 가르치면 누구를). 미분류는 사람 확인 큐 → 필터 칩에는 노출 안 함.
 const TIERS = ["연주", "교육 — 대학", "교육 — 입시·전공", "교육 — 취미·입문"];
@@ -87,7 +90,7 @@ const REGION_LIST = ["서울", "경기", "인천", "강원", "대전", "세종",
   "대구", "경북", "부산", "울산", "경남", "광주", "전북", "전남", "제주", "기타"];
 const STATUSES = ["접수중", "마감임박", "확인필요", "마감"];
 
-const state = { tab: "전체", tiers: new Set(), bands: new Set(), insts: new Set(), regions: new Set(), status: new Set(), provided: new Set(), obri: false, noCert: false, query: "", sort: "deadline" };
+const state = { tab: "전체", tiers: new Set(), bands: new Set(), insts: new Set(), regions: new Set(), status: new Set(), provided: new Set(), obri: false, noCert: false, noCareer: false, query: "", sort: "deadline" };
 const $ = (s) => document.querySelector(s);
 
 function statusOf(j) {
@@ -133,6 +136,7 @@ function filtered() {
     if (state.tiers.size && !state.tiers.has(j.tier)) return false;
     if (state.obri && !j.obri) return false;                       // 오브리(교회·행사)만
     if (state.noCert && j.certReq === "예") return false;          // 교원자격증 불필요한 자리만
+    if (state.noCareer && j.careerReq !== "무관") return false;    // 경력 무관인 자리만
     if (state.bands.size && !state.bands.has(j.band)) return false;
     if (state.insts.size) {
       if (!j.insts.length || ![...state.insts].some(v => j.insts.includes(v))) return false;
@@ -161,7 +165,10 @@ function concertNum(j) {
   if (m) return 20260000 + (+m[1]) * 100 + (+m[2]);
   return Infinity;
 }
+// 연주(단원·객원·반주) 공고가 교육 공고에 묻히지 않도록 상단 노출 — 마감 안 된 연주는 최상단으로.
+const playRank = (j) => (j.tier === "연주" && statusOf(j).key !== "마감") ? 0 : 1;
 const byDeadline = (a, b) => {
+  if (playRank(a) !== playRank(b)) return playRank(a) - playRank(b);   // 연주 우선
   const sa = statusOf(a), sb = statusOf(b);
   if (sa.dday !== sb.dday) return sa.dday - sb.dday;
   return (b.date || "").localeCompare(a.date || "");
@@ -177,6 +184,7 @@ function cardHTML(j) {
   const tags = `
     ${j.sample ? `<span class="tag sample">예시</span>` : ""}
     <span class="tag ${TIER_CLS[j.tier] || "cat"}">${j.tier}</span>
+    ${SHOW_AGE_BADGE && j.ageGroup === "미성년" ? `<span class="tag pos">미성년</span>` : ""}
     ${j.type === "구직" ? `<span class="tag type-seek">구직</span>` : ""}
     <span class="tag cat">${j.band}</span>
     ${j.subject && !j.insts.includes(j.subject) ? `<span class="tag inst">${j.subject}</span>` : ""}
@@ -269,6 +277,7 @@ function renderAll() {
   renderChips("#filter-tier", TIERS, state.tiers);
   renderToggle("#filter-obri", "교회·행사(오브리)만", "obri");
   renderToggle("#filter-cert", "교원자격증 불필요만", "noCert");
+  renderToggle("#filter-career", "경력 무관만", "noCareer");
   renderChips("#filter-band", BANDS, state.bands);
   renderInstChips();
   renderChips("#filter-region", REGION_LIST, state.regions);
@@ -316,6 +325,7 @@ function metaRows(j) {
   if (j.courses && j.courses.length) rows.push(["교과목", j.courses.join(", ")]);   // 대학 강사: 담당 과목
   if (j.certReq && j.certReq !== "무관") rows.push(["교원자격증", j.certReq === "예" ? "필요" : "불필요"]);
   if (j.degreeReq && j.degreeReq !== "무관") rows.push(["학위 요건", j.degreeReq + " 이상"]);
+  if (j.careerReq && j.careerReq !== "미기재") rows.push(["경력", j.careerReq]);
   if (j.recruitSummary) rows.push(["모집", cleanVal(j.recruitSummary)]);
   else if (j.personnel) rows.push(["모집", cleanVal((insts ? insts + " " : "") + j.personnel)]);
   else if (insts) rows.push(["모집", insts + (senior ? " " + senior : "")]);
@@ -469,7 +479,7 @@ function submitWrite(e) {
     type: f.elements["w-type"].value === "offer" ? "구인" : "구직",
     tier: v("w-tier"),
     obri: !!f.elements["w-obri"]?.checked,
-    certReq: v("w-cert") || "무관", degreeReq: v("w-degree") || "무관",
+    certReq: v("w-cert") || "무관", degreeReq: v("w-degree") || "무관", careerReq: v("w-career") || "미기재",
     band: CAT2BAND[v("w-cat")] || "기타",
     insts: [inst], group: v("w-inst"),
     when: v("w-when") || null,
@@ -521,7 +531,7 @@ document.addEventListener("DOMContentLoaded", () => {
   $("#search-input").addEventListener("input", (e) => { state.query = e.target.value.trim(); renderList(); });
   $("#sort-sel").addEventListener("change", (e) => { state.sort = e.target.value; renderList(); });
   $("#filter-reset").addEventListener("click", () => {
-    state.tiers.clear(); state.bands.clear(); state.insts.clear(); state.regions.clear(); state.status.clear(); state.provided.clear(); state.obri = false; state.noCert = false;
+    state.tiers.clear(); state.bands.clear(); state.insts.clear(); state.regions.clear(); state.status.clear(); state.provided.clear(); state.obri = false; state.noCert = false; state.noCareer = false;
     state.query = ""; $("#search-input").value = "";
     renderAll();
   });

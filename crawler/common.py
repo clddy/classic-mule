@@ -394,6 +394,20 @@ def degree_req(text):
         return "학사"
     return "무관"
 
+# 경력 요건: 무관 / 필요 / 미기재 (숫자 대신 3값). '경력 우대'는 지원 문턱이 없으므로 무관으로 본다.
+_CAREER_NONE = re.compile(r"경력 ?무관|경력 ?관계 ?없|경력 ?불문|신입 ?가능|무경력 ?가능|경력 ?우대")
+_CAREER_REQ = re.compile(r"경력 ?\d+ ?년 ?이상|경력자에 ?한|경력 ?필수|경력 ?필요|유경험자|재직 ?\d+ ?년|\d+ ?년 ?이상 ?경력")
+
+def career_req(text):
+    """경력 요건: 무관 / 필요 / 미기재. 명시 없으면 미기재."""
+    if not text:
+        return "미기재"
+    if _CAREER_NONE.search(text):
+        return "무관"
+    if _CAREER_REQ.search(text):
+        return "필요"
+    return "미기재"
+
 # 텍스트에서 시도 단위 지역 추출 (집계 노드용)
 # 전국 17개 시도 정규화 — 시도 정식명·약칭 + 주요 도시를 소재 시도로 매핑.
 # (구체적인 도시/정식명을 먼저 두어 약칭보다 우선 매칭)
@@ -699,6 +713,7 @@ def make_item(org, region, source, title, url, date=None, deadline=None):
         "obri": is_obri(clean, org),         # 오브리(교회·행사) — 연주 태그의 하위 필터
         "certReq": cert_required(classify_tier(clean, org), clean),   # 교원자격증: 예/아니오/무관
         "degreeReq": degree_req(clean),      # 학위 요건 (본문 보강은 main.enrich)
+        "careerReq": career_req(clean),      # 경력: 무관/필요/미기재
         "ageGroup": age_group(clean, org),   # 지원자 연령 (필터 별도축)
         "inst": group,
         "instDetails": details,  # 세부 악기 (복수 가능: "비올라, 오보에")
