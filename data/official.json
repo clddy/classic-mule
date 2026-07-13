@@ -1,7 +1,7 @@
 {
- "collectedAt": "2026-07-14 00:00",
+ "collectedAt": "2026-07-14 00:05",
  "sourceCount": 80,
- "okCount": 79,
+ "okCount": 78,
  "instTotal": 75,
  "sources": [
   {
@@ -244,7 +244,7 @@
    "poll": "weekly",
    "ok": true,
    "raw": 3,
-   "kept": 2
+   "kept": 3
   },
   {
    "id": "edu_goe",
@@ -252,8 +252,8 @@
    "layer": "C",
    "poll": "weekly",
    "ok": true,
-   "raw": 10,
-   "kept": 10
+   "raw": 8,
+   "kept": 8
   },
   {
    "id": "edu_gwe",
@@ -539,9 +539,8 @@
    "name": "순천시립합창단",
    "layer": "B",
    "poll": "weekly",
-   "ok": true,
-   "raw": 2,
-   "kept": 0
+   "ok": false,
+   "error": "ReadTimeout: HTTPSConnectionPool(host='www.suncheon.go.kr', port=443): Read timed out. (read timeout=20)"
   },
   {
    "id": "g_i_andonggokr",
@@ -720,8 +719,8 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 25,
-   "kept": 25
+   "raw": 24,
+   "kept": 24
   }
  ],
  "items": [
@@ -1196,30 +1195,6 @@
    "extVer": 22
   },
   {
-   "id": "887ed332ccceac36",
-   "org": "한양대학교",
-   "region": "경기",
-   "source": "hibrain.net",
-   "title": "한양대학교 ERICA캠퍼스 강사 모집",
-   "url": "https://www.hibrain.net/recruitment/recruits/3588154",
-   "date": null,
-   "deadline": null,
-   "kind": "강사",
-   "tier": "대학·전공",
-   "ageGroup": "성인",
-   "inst": "전체",
-   "instDetails": [],
-   "personnel": null,
-   "subject": null,
-   "officialUrl": "https://portal.hanyang.ac.kr/huas/iycy/hycy.do?pageGb=gscy#",
-   "channel": "hibrain",
-   "layer": "B",
-   "musicUnverified": true,
-   "firstSeen": "2026-07-11",
-   "isNew": false,
-   "extVer": 22
-  },
-  {
    "id": "6015a48666b489c3",
    "org": "인제대학교",
    "region": "경남",
@@ -1398,31 +1373,6 @@
    "extVer": 22
   },
   {
-   "id": "3bcb4831db4be4cc",
-   "org": "숙지고등학교(경기교육청)",
-   "region": "경기",
-   "source": "goe.go.kr",
-   "title": "오늘마감 2026학년도 기간제교사 채용(음악)",
-   "url": "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=52721",
-   "date": "2026-07-10",
-   "deadline": "2026-07-13",
-   "kind": "기타",
-   "tier": "입문·취미",
-   "ageGroup": "성인",
-   "inst": "전체",
-   "instDetails": [],
-   "personnel": "1명 과목 음악 채용",
-   "subject": null,
-   "channel": "edu_goe",
-   "layer": "C",
-   "deadlineFrom": "page",
-   "qualification": "경력 신입 학력",
-   "bodyExcerpt": "2026학년도 기간제교사 채용(생명과학, 미술, 기술가정, 음악) · 채용방법 및 일정",
-   "firstSeen": "2026-07-13",
-   "isNew": true,
-   "extVer": 22
-  },
-  {
    "id": "5f240324b3b2d587",
    "org": "정재초등학교(경기교육청)",
    "region": "경기",
@@ -1445,33 +1395,6 @@
    "bodyExcerpt": "2026학년도 2학기 초1-2맞춤형 프로그램(신나는 음악) 강사 모집 공고 · 채용방법 및 일정 · 정재초등학교 채용공고 제 · 맞춤형 프로그램 강사 채용 공고",
    "firstSeen": "2026-07-12",
    "isNew": false,
-   "extVer": 22
-  },
-  {
-   "id": "32f3e2457d57b046",
-   "org": "매양중학교(경기교육청)",
-   "region": "경기",
-   "source": "goe.go.kr",
-   "title": "오늘마감 [매양중]예술수업 악기강사(하프) 모집 공고_2차",
-   "url": "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=52666",
-   "date": "2026-07-10",
-   "deadline": "2026-07-13",
-   "kind": "강사",
-   "tier": "입문·취미",
-   "ageGroup": "성인",
-   "inst": "기타",
-   "instDetails": [
-    "하프"
-   ],
-   "personnel": "1명 과목 채용",
-   "subject": null,
-   "channel": "edu_goe",
-   "layer": "C",
-   "deadlineFrom": "page",
-   "qualification": "경력 경력무관 학력",
-   "bodyExcerpt": "[매양중]예술수업 악기강사(하프) 모집 공고_2차 · 채용방법 및 일정 · 다음과 같이 모집",
-   "firstSeen": "2026-07-13",
-   "isNew": true,
    "extVer": 22
   },
   {
