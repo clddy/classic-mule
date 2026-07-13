@@ -465,6 +465,12 @@ _INSTR_SILGI = re.compile(
     r"(?:바이올린|비올라|첼로|더블베이스|콘트라베이스|플룻|플루트|오보에|클라리넷|바순|호른|트럼펫|트롬본"
     r"|튜바|색소폰|타악|팀파니|하프|오르간|피아노|성악|기악)(?:실기|전공실기)")
 _KNOWN_COURSE = re.compile(r"대위법|화성법|시창청음|시창|청음|음악사|작곡법|지휘법|반주법|음악교육론|음악이론|악기론|합창지휘")
+_BARE_INSTR = re.compile(
+    r"^(?:바이올린|비올라|첼로|더블베이스|콘트라베이스|플루트|플룻|오보에|클라리넷|바순|호른|트럼펫|트롬본"
+    r"|튜바|색소폰|타악|팀파니|하프|오르간|피아노|성악|작곡|지휘|국악|반주)$")
+_COURSE_STOP = re.compile(
+    r"학위|이상|우수|경력|시행|평가|면접|실험|실습|서류|접수|지원|자격|규정|계획|현황|기준|명단|첨부"
+    r"|참조|변경|사정|우대|담당|인원|박사|석사|년제|해당|점수|비고|기타|증빙|제출|모집|채용|공고")
 
 def find_music_courses(text, max_n=5):
     """첨부 교과목표에서 '음악 담당 교과목명'을 정제해 리스트로 반환(학과명·전화·코드·행사명 제외)."""
@@ -481,16 +487,24 @@ def find_music_courses(text, max_n=5):
         add(m)
     for m in _KNOWN_COURSE.findall(text):
         add(m)
-    # 2) 독립 셀의 음악 과목명 (순천대 '음악으로 세상 읽기' 등)
-    for c in re.split(r"[|\n\t;,]+", text):
-        c = re.sub(r"\s+", " ", c).strip(" ·-—()[]／/")
-        if not (3 <= len(c) <= 20):
+    # 2) 독립 셀의 음악 과목명 (순천대 '음악으로 세상 읽기' 등) — 자격·절차·코드 문구는 배제
+    for c in re.split(r"[|\n\t;,/]+", text):
+        c = re.sub(r"\s+", " ", c).strip(" ·-—[]．.")
+        c = re.sub(r"\s*\((?:[A-Za-z]{1,3}|성악|기악)\)\s*$", "", c)   # 끝의 악기코드 (FI)
+        if _BARE_INSTR.match(c):        # 단독 악기명(플루트·비올라 등)은 짧아도 유효
+            add(c)
             continue
-        if re.search(r"\d{2,}[-)]\d|@", c) or not _COURSE_SIG.search(c):
+        if not (4 <= len(c) <= 18) or not _COURSE_SIG.search(c):
+            continue
+        if _COURSE_STOP.search(c) or c.count("(") != c.count(")"):   # 자격·절차 문구 / 잘린 괄호
+            continue
+        if re.search(r"[A-Za-z]{2,}\s?\d|\d{2,}[-)]\d|@", c):   # 과목코드·전화·이메일
             continue
         if re.search(r"(전공|학과|학부|계열|과)$", c):     # 학과명은 subject가 담당
             continue
-        add(re.sub(r"\s*[0-9Ⅰ-Ⅹ]+\s*$", "", c).strip())
+        c = re.sub(r"\s*[0-9Ⅰ-Ⅹ]+\s*$", "", c).strip()  # 끝 번호/로마자
+        if len(c) >= 4:      # 정제 후 3자 조각(원음악·교음악)은 배제, 온전한 명칭만
+            add(c)
     return out[:max_n] if out else None
 
 # ---------- 채용부문/직책/인원 표 파싱 ----------
