@@ -7,7 +7,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import (new_session, get, relevant, extract_deadline, deadline_from_title,
                     musician_relevant, parse_recruit_table, summarize_recruit, find_position,
                     classify_insts, find_subject, find_music_subjects, find_music_courses,
-                    classify_kind, age_group)
+                    classify_kind, classify_tier, age_group)
 from sources import SOURCES
 from institutions import INSTITUTIONS
 import attach
@@ -223,11 +223,12 @@ def find_attachments(soup, base_url):
                     cands.append((full, el.get_text(" ", strip=True)))
     return cands[:4]
 
-EXT_VER = 21         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
+EXT_VER = 22         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
                      #  v18: 대학 강사 초빙 원문 첨부(HWP/XLSX)에서 음악 전공 추출 + 비음악 제외
                      #  v19: 음악 학과/전공 정밀 추출(행사명·전화번호 오염 제거) — 재추출 강제
                      #  v20: 담당 교과목(courses) 추출·패널 노출 — 재추출 강제
                      #  v21: 담당 교과목 정제 강화(자격문구·코드·조각 제거) — 재추출 강제
+                     #  v22: 실용음악 전공 제외(→비음악), 등급 4분류 개편 — 재추출 강제
                      # v17: 집계포털 상시 기본값 제거 + 원문(officialUrl) 죽은링크 감지·실마감 추출
 RENDER_PER_SOURCE = 3   # 소스당 Playwright 렌더링 상한
 OCR_PER_SOURCE = 6      # 소스당 이미지 공고문 OCR 상한 (항목당 최대 2장)
@@ -987,10 +988,11 @@ def run(force_all=False):
         it["firstSeen"] = old.get("firstSeen", today.isoformat()) if old else today.isoformat()
         it["isNew"] = it["firstSeen"] == today.isoformat()
         it["extVer"] = EXT_VER
-        # 제목 기반 분류(kind/subject/ageGroup)는 순수 함수 — 승계 항목도 최신 로직으로 재적용
+        # 제목 기반 분류(kind/tier/ageGroup)는 순수 함수 — 승계 항목도 최신 로직으로 재적용
         # (서버 장애로 원본 0건 승계된 항목이 옛 분류를 물고 오는 것 방지)
         it["ageGroup"] = age_group(it["title"], it.get("org", ""))
         it["kind"] = classify_kind(it["title"])
+        it["tier"] = classify_tier(it["title"], it.get("org", ""))   # 등급 최신 로직 재적용
         if it["kind"] == "교수" and not it.get("subject"):
             subj = find_subject(it["title"])
             if subj:
