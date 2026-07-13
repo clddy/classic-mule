@@ -46,6 +46,11 @@
     <div class="filter-group">
       <h4>구분</h4>
       <div class="filter-options" id="filter-tier"></div>
+      <div class="filter-options" id="filter-obri" style="margin-top:6px"></div>
+    </div>
+    <div class="filter-group">
+      <h4>자격</h4>
+      <div class="filter-options" id="filter-cert"></div>
     </div>
     <div class="filter-group">
       <h4>유형</h4>
@@ -129,14 +134,36 @@
           <label>구분</label>
           <select name="w-tier" required>
             <option value="연주">연주 (단원·객원·반주·행사)</option>
-            <option value="대학·전공">대학·전공 (대학 강사·교수)</option>
-            <option value="예중·예고">예중·예고 (전공지망 청소년)</option>
-            <option value="입문·취미">입문·취미 (학원·방과후·일반학교)</option>
+            <option value="교육 — 대학">교육 — 대학 (교수·시간강사)</option>
+            <option value="교육 — 입시·전공">교육 — 입시·전공 (예중·예고·입시)</option>
+            <option value="교육 — 취미·입문">교육 — 취미·입문 (학원·방과후·일반학교)</option>
           </select>
+          <label style="margin-top:8px;font-weight:400;display:flex;align-items:center;gap:6px">
+            <input type="checkbox" name="w-obri" style="width:auto"> 오브리(교회·웨딩·행사)
+          </label>
         </div>
         <div class="form-field">
           <label>일시 (연주·근무일)</label>
           <input type="text" name="w-when" placeholder="예: 7/21~23 리허설, 7/24 공연">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-field">
+          <label>교원자격증</label>
+          <select name="w-cert">
+            <option value="무관">무관</option>
+            <option value="아니오">불필요</option>
+            <option value="예">필요</option>
+          </select>
+        </div>
+        <div class="form-field">
+          <label>학위 요건</label>
+          <select name="w-degree">
+            <option value="무관">무관</option>
+            <option value="학사">학사</option>
+            <option value="석사">석사</option>
+            <option value="박사">박사</option>
+          </select>
         </div>
       </div>
       <div class="form-row">

@@ -327,16 +327,17 @@ def age_group(title, org=""):
 #   교육 — 입시·전공  = 예중·예고생·입시생을 가르침 (실기강사·입시레슨·콩쿠르지도)
 #   교육 — 취미·입문  = 일반인·아동을 가르침 (학원·문화센터·방과후·복지관·꿈의오케·초중고 기간제/방과후)
 #   미분류          = 어디에도 안 걸림 → 추측 금지, 사람 확인 큐
-_EDU_UNIV = re.compile(r"교수|전임 ?교원|시간 ?강사|겸임 ?교원|초빙 ?교원|조교수|부교수|비전임 ?교원|산학 ?교원|초빙 ?교수")
+# 대학 교원 역할 — 대학(_EDU_UNIV_PLACE)과 함께면 '교육 — 대학'. 대학 공고는 보통 '강사'로만 표기됨.
+_EDU_UNIV = re.compile(r"교수|전임 ?교원|시간 ?강사|겸임 ?교원|초빙 ?교원|조교수|부교수|비전임 ?교원|산학 ?교원|초빙 ?교수|강사|교원|초빙")
 _EDU_UNIV_PLACE = re.compile(r"대학교|대학원|음악대학|음대(?!\w)|대학\b")
 _EDU_IPSI = re.compile(r"예중|예고|예술 ?중|예술 ?고|음악 ?중점|입시|콩쿠르 ?지도|실기 ?지도|입시 ?레슨|예술 ?영재")
 _EDU_HOBBY = re.compile(
-    r"학원|문화 ?센터|방과 ?후|방과후학교|늘봄|복지관|꿈의 ?오케|꿈의오케스트라|평생 ?교육|기간제"
+    r"학원|아카데미|문화 ?센터|방과 ?후|방과후학교|늘봄|복지관|꿈의 ?오케|꿈의오케스트라|평생 ?교육|기간제|계약제 ?교[원사]"
     r"|오케스트라 ?강사|예술 ?강사|협력강사|1 ?인 ?1 ?악기|주민 ?센터|음악 ?교실"
     r"|초등학교|중학교|고등학교|특수학교|유치원|어린이집|정교사|기간제교사|기간제교원")
 _PLAY = re.compile(
-    r"단원 ?모집|오디션|객원|대타|대체 ?(?:연주|인력)?|반주자|세션|지휘자|음악 ?감독"
-    r"|연주자 ?모집|상임 ?단원|위촉 ?단원|수석|악장|정단원")
+    r"단원|오디션|객원|대타|대체 ?(?:연주|인력)?|반주자|세션|지휘자|음악 ?감독"
+    r"|연주자 ?(?:모집|채용)|수석|악장|솔리스트|성악가")
 # 오브리(교회·웨딩·행사) — 별도 태그 아님. 연주로 분류하되 하위 필터로 노출.
 _OBRI = re.compile(r"교회|성당|예배|성가대|찬양|주일|전례|미사|웨딩|결혼식|예식|부활절|성탄절|추수감사|특송|축가|행사 ?연주|기업 ?행사")
 _OBRI_PLAY = re.compile(r"반주|연주|성가|찬양|지휘|솔리스트|성악|테너|베이스|바리톤|소프라노|메조|알토|피아노|오르간|첼로|바이올린")
@@ -350,7 +351,8 @@ def classify_tier(title, org=""):
     지시서 3-1 우선순위: 대학교원 → 입시·전공 → 취미·입문 → 연주 → 오브리연주 → 미분류.
     교육 신호를 연주보다 먼저 봐서 '오케스트라 강사(초등)'=교육, '오케스트라 객원'=연주로 갈린다."""
     t = f"{title} {org}"
-    if _EDU_UNIV.search(t) and _EDU_UNIV_PLACE.search(t):
+    # 예중·예고가 함께 보이면(대학 부설 예고 등) 입시·전공이 우선 — 대학 규칙에서 먼저 배제
+    if _EDU_UNIV.search(t) and _EDU_UNIV_PLACE.search(t) and not _EDU_IPSI.search(t):
         return "교육 — 대학"
     if _EDU_IPSI.search(t):
         return "교육 — 입시·전공"
@@ -361,6 +363,36 @@ def classify_tier(title, org=""):
     if _OBRI.search(t) and _OBRI_PLAY.search(t):     # 교회·행사 + 연주 성격
         return "연주"
     return "미분류"                                   # 추측 금지 — 사람 확인 큐
+
+# ---------- 자격요건 필드 (태그가 아니라 필터 가능한 필드) ----------
+# 사실: 대학교수·시간강사=교원자격증 불필요 / 초중고 정교사·임용=필요 / 방과후·예술강사=대체로 불필요.
+_CERT_YES = re.compile(r"정교사|교원 ?자격|교사 ?자격|교직 ?이수|임용|기간제 ?교[사원]|계약제 ?교[사원]|중등 ?교사|초등 ?교사|담임")
+_CERT_NO_ROLE = re.compile(r"방과 ?후|예술 ?강사|협력강사|늘봄|1 ?인 ?1 ?악기|꿈의 ?오케|학원|문화 ?센터|레슨|아카데미")
+
+def cert_required(tier, title, text=""):
+    """교원자격증(정교사) 필요 여부: 예 / 아니오 / 무관. 확실치 않으면 무관."""
+    blob = f"{title} {text}"
+    if _CERT_YES.search(blob) and not _CERT_NO_ROLE.search(blob):
+        return "예"
+    if tier == "교육 — 대학":
+        return "아니오"          # 대학 교원 = 교원자격증 불필요(사실)
+    if tier == "연주":
+        return "무관"            # 연주직은 교직과 무관
+    if _CERT_NO_ROLE.search(blob):
+        return "아니오"          # 방과후·예술강사·학원·레슨 = 대체로 불필요
+    return "무관"
+
+def degree_req(text):
+    """학위 요건: 박사 / 석사 / 학사 / 무관 (본문에서 가장 높은 요건)."""
+    if not text:
+        return "무관"
+    if "박사" in text:
+        return "박사"
+    if "석사" in text:
+        return "석사"
+    if re.search(r"학사|대졸|4년제|학위 ?소지", text):
+        return "학사"
+    return "무관"
 
 # 텍스트에서 시도 단위 지역 추출 (집계 노드용)
 # 전국 17개 시도 정규화 — 시도 정식명·약칭 + 주요 도시를 소재 시도로 매핑.
@@ -663,8 +695,11 @@ def make_item(org, region, source, title, url, date=None, deadline=None):
         "date": date,          # 게시일 (모르면 None)
         "deadline": deadline,  # 접수 마감 (모르면 None)
         "kind": kind,
-        "tier": classify_tier(title, org),
-        "ageGroup": age_group(clean, org),   # 지원자 연령: 성인 / 미성년
+        "tier": classify_tier(clean, org),
+        "obri": is_obri(clean, org),         # 오브리(교회·행사) — 연주 태그의 하위 필터
+        "certReq": cert_required(classify_tier(clean, org), clean),   # 교원자격증: 예/아니오/무관
+        "degreeReq": degree_req(clean),      # 학위 요건 (본문 보강은 main.enrich)
+        "ageGroup": age_group(clean, org),   # 지원자 연령 (필터 별도축)
         "inst": group,
         "instDetails": details,  # 세부 악기 (복수 가능: "비올라, 오보에")
         "personnel": extract_personnel(clean),  # 모집 인원 (제목에서, 없으면 None)

@@ -7,7 +7,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import (new_session, get, relevant, extract_deadline, deadline_from_title,
                     musician_relevant, parse_recruit_table, summarize_recruit, find_position,
                     classify_insts, find_subject, find_music_subjects, find_music_courses,
-                    classify_kind, classify_tier, age_group)
+                    classify_kind, classify_tier, is_obri, cert_required, degree_req, age_group)
 from sources import SOURCES
 from institutions import INSTITUTIONS
 import attach
@@ -993,10 +993,18 @@ def run(force_all=False):
         it["ageGroup"] = age_group(it["title"], it.get("org", ""))
         it["kind"] = classify_kind(it["title"])
         it["tier"] = classify_tier(it["title"], it.get("org", ""))   # 등급 최신 로직 재적용
+        it["obri"] = is_obri(it["title"], it.get("org", ""))
+        # 자격 필드 — 본문(자격·요약)까지 반영해 정확도 향상
+        qtext = " ".join(str(it.get(f, "") or "") for f in ("title", "qualification", "bodyExcerpt", "recruitSummary"))
+        it["certReq"] = cert_required(it["tier"], it["title"], qtext)
+        it["degreeReq"] = degree_req(qtext)
         if it["kind"] == "교수" and not it.get("subject"):
             subj = find_subject(it["title"])
             if subj:
                 it["subject"] = subj
+    n_unclass = sum(1 for it in final if it["tier"] == "미분류")
+    if n_unclass:
+        log(f"미분류 큐: {n_unclass}건 — {'; '.join(it['title'][:24] for it in final if it['tier'] == '미분류')}")
     final.sort(key=lambda x: (x.get("date") or x["firstSeen"]), reverse=True)
 
     payload = {

@@ -27,6 +27,8 @@ const OFFICIAL_ITEMS = ((window.CRAWLED && window.CRAWLED.items) || []).map(j =>
   insts: j.instDetails || [], group: j.inst,
   subject: j.subject,   // 대학 교수 초빙: 전공/과목
   courses: j.courses,   // 대학 강사: 담당 교과목(무엇을 가르치는지)
+  obri: j.obri,         // 오브리(교회·행사) — 연주의 하위 필터
+  certReq: j.certReq, degreeReq: j.degreeReq,   // 자격요건 필드
   ageGroup: j.ageGroup || "성인",   // 지원자 연령: 성인 / 미성년
   region: j.region, title: j.title, org: j.org,
   deadline: j.deadline, deadlineText: j.deadlineNote, date: j.date || j.firstSeen,
@@ -67,9 +69,12 @@ function saveUserPosts() {
 let USER_POSTS = loadUserPosts();
 
 // ---------- 필터 정의 ----------
-// 등급: 연주(단원·객원·반주·행사) / 대학·전공(대학 강사·교수) / 예중·예고(전공지망 청소년) / 입문·취미(학원·방과후·일반학교)
-const TIERS = ["연주", "대학·전공", "예중·예고", "입문·취미"];
-const TIER_CLS = { "연주": "src-official", "대학·전공": "pos", "예중·예고": "inst", "입문·취미": "dd-open" };
+// 등급(단일 축: 연주냐 가르치냐, 가르치면 누구를). 미분류는 사람 확인 큐 → 필터 칩에는 노출 안 함.
+const TIERS = ["연주", "교육 — 대학", "교육 — 입시·전공", "교육 — 취미·입문"];
+const TIER_CLS = {
+  "연주": "src-official", "교육 — 대학": "pos", "교육 — 입시·전공": "inst",
+  "교육 — 취미·입문": "dd-open", "미분류": "dd-always"
+};
 const BANDS = ["단원", "객원·대체", "반주", "행사연주", "강사·레슨", "지휘", "교수", "직원·스태프", "기타"];
 const INST_GROUPS = [
   ["현악", ["바이올린", "비올라", "첼로", "더블베이스"]],
@@ -82,7 +87,7 @@ const REGION_LIST = ["서울", "경기", "인천", "강원", "대전", "세종",
   "대구", "경북", "부산", "울산", "경남", "광주", "전북", "전남", "제주", "기타"];
 const STATUSES = ["접수중", "마감임박", "확인필요", "마감"];
 
-const state = { tab: "전체", tiers: new Set(), bands: new Set(), insts: new Set(), regions: new Set(), status: new Set(), provided: new Set(), query: "", sort: "deadline" };
+const state = { tab: "전체", tiers: new Set(), bands: new Set(), insts: new Set(), regions: new Set(), status: new Set(), provided: new Set(), obri: false, noCert: false, query: "", sort: "deadline" };
 const $ = (s) => document.querySelector(s);
 
 function statusOf(j) {
@@ -126,6 +131,8 @@ function filtered() {
   return all.filter(j => {
     if (state.tab !== "전체" && j.type !== state.tab) return false;
     if (state.tiers.size && !state.tiers.has(j.tier)) return false;
+    if (state.obri && !j.obri) return false;                       // 오브리(교회·행사)만
+    if (state.noCert && j.certReq === "예") return false;          // 교원자격증 불필요한 자리만
     if (state.bands.size && !state.bands.has(j.band)) return false;
     if (state.insts.size) {
       if (!j.insts.length || ![...state.insts].some(v => j.insts.includes(v))) return false;
@@ -249,9 +256,19 @@ function renderTabs() {
   $("#tab-구직").innerHTML = `구직 <span class="count">${all.filter(x => x.type === "구직").length}</span>`;
 }
 
+// 단일 토글 필터 (오브리·교원자격증) — 다중선택 칩과 달리 boolean state
+function renderToggle(sel, label, key) {
+  const el = $(sel);
+  if (!el) return;
+  el.innerHTML = `<button class="chip${state[key] ? " on" : ""}">${label}</button>`;
+  el.querySelector(".chip").addEventListener("click", () => { state[key] = !state[key]; renderAll(); });
+}
+
 function renderAll() {
   renderTabs();
   renderChips("#filter-tier", TIERS, state.tiers);
+  renderToggle("#filter-obri", "교회·행사(오브리)만", "obri");
+  renderToggle("#filter-cert", "교원자격증 불필요만", "noCert");
   renderChips("#filter-band", BANDS, state.bands);
   renderInstChips();
   renderChips("#filter-region", REGION_LIST, state.regions);
@@ -297,6 +314,8 @@ function metaRows(j) {
   if (j.band && j.band !== "기타") rows.push(["형태", j.band]);
   if (j.subject) rows.push(["전공", cleanVal(j.subject)]);   // 대학 교수: 어떤 과목/전공인지
   if (j.courses && j.courses.length) rows.push(["교과목", j.courses.join(", ")]);   // 대학 강사: 담당 과목
+  if (j.certReq && j.certReq !== "무관") rows.push(["교원자격증", j.certReq === "예" ? "필요" : "불필요"]);
+  if (j.degreeReq && j.degreeReq !== "무관") rows.push(["학위 요건", j.degreeReq + " 이상"]);
   if (j.recruitSummary) rows.push(["모집", cleanVal(j.recruitSummary)]);
   else if (j.personnel) rows.push(["모집", cleanVal((insts ? insts + " " : "") + j.personnel)]);
   else if (insts) rows.push(["모집", insts + (senior ? " " + senior : "")]);
@@ -449,6 +468,8 @@ function submitWrite(e) {
     key: "c" + cid, cid, src: "소규모", mine: true,   // 이 기기에서 올림
     type: f.elements["w-type"].value === "offer" ? "구인" : "구직",
     tier: v("w-tier"),
+    obri: !!f.elements["w-obri"]?.checked,
+    certReq: v("w-cert") || "무관", degreeReq: v("w-degree") || "무관",
     band: CAT2BAND[v("w-cat")] || "기타",
     insts: [inst], group: v("w-inst"),
     when: v("w-when") || null,
@@ -500,7 +521,7 @@ document.addEventListener("DOMContentLoaded", () => {
   $("#search-input").addEventListener("input", (e) => { state.query = e.target.value.trim(); renderList(); });
   $("#sort-sel").addEventListener("change", (e) => { state.sort = e.target.value; renderList(); });
   $("#filter-reset").addEventListener("click", () => {
-    state.tiers.clear(); state.bands.clear(); state.insts.clear(); state.regions.clear(); state.status.clear(); state.provided.clear();
+    state.tiers.clear(); state.bands.clear(); state.insts.clear(); state.regions.clear(); state.status.clear(); state.provided.clear(); state.obri = false; state.noCert = false;
     state.query = ""; $("#search-input").value = "";
     renderAll();
   });
