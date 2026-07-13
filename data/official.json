@@ -1,7 +1,7 @@
 {
- "collectedAt": "2026-07-13 13:40",
+ "collectedAt": "2026-07-13 23:52",
  "sourceCount": 80,
- "okCount": 79,
+ "okCount": 78,
  "instTotal": 75,
  "sources": [
   {
@@ -10,7 +10,7 @@
    "layer": "A",
    "poll": "daily",
    "ok": true,
-   "raw": 1,
+   "raw": 0,
    "kept": 0
   },
   {
@@ -73,7 +73,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 16,
+   "raw": 11,
    "kept": 0
   },
   {
@@ -126,9 +126,8 @@
    "name": "창원문화재단",
    "layer": "B",
    "poll": "weekly",
-   "ok": true,
-   "raw": 28,
-   "kept": 1
+   "ok": false,
+   "error": "ReadTimeout: HTTPSConnectionPool(host='www.cwcf.or.kr', port=443): Read timed out. (read timeout=20)"
   },
   {
    "id": "ulsan",
@@ -244,7 +243,7 @@
    "layer": "C",
    "poll": "weekly",
    "ok": true,
-   "raw": 2,
+   "raw": 3,
    "kept": 2
   },
   {
@@ -253,8 +252,8 @@
    "layer": "C",
    "poll": "weekly",
    "ok": true,
-   "raw": 11,
-   "kept": 11
+   "raw": 10,
+   "kept": 10
   },
   {
    "id": "edu_gwe",
@@ -271,7 +270,7 @@
    "layer": "C",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "raw": 1,
    "kept": 1
   },
   {
@@ -280,7 +279,7 @@
    "layer": "C",
    "poll": "weekly",
    "ok": true,
-   "raw": 4,
+   "raw": 2,
    "kept": 0
   },
   {
@@ -316,8 +315,8 @@
    "layer": "C",
    "poll": "weekly",
    "ok": true,
-   "raw": 1,
-   "kept": 1
+   "raw": 3,
+   "kept": 3
   },
   {
    "id": "edu_dge",
@@ -334,8 +333,8 @@
    "layer": "C",
    "poll": "weekly",
    "ok": true,
-   "raw": 1,
-   "kept": 1
+   "raw": 2,
+   "kept": 2
   },
   {
    "id": "edu_cbe",
@@ -369,9 +368,8 @@
    "name": "안양문화예술재단",
    "layer": "B",
    "poll": "weekly",
-   "ok": true,
-   "raw": 0,
-   "kept": 0
+   "ok": false,
+   "error": "Error: Page.goto: net::ERR_NAME_NOT_RESOLVED at https://ayac.or.kr/base/menu/baseView?menuLevel=1&menuNo=6\nCall log:\n  - naviga"
   },
   {
    "id": "g_uac",
@@ -432,8 +430,9 @@
    "name": "유니버설발레단",
    "layer": "B",
    "poll": "weekly",
-   "ok": false,
-   "error": "ReadTimeout: HTTPSConnectionPool(host='www.universalballet.com', port=443): Read timed out. (read timeout=20)"
+   "ok": true,
+   "raw": 0,
+   "kept": 0
   },
   {
    "id": "g_jeongdong",
@@ -721,7 +720,7 @@
    "poll": "weekly",
    "ok": true,
    "raw": 25,
-   "kept": 24
+   "kept": 25
   }
  ],
  "items": [
@@ -735,7 +734,7 @@
    "date": "2026-07-20",
    "deadline": null,
    "kind": "강사",
-   "tier": "프로",
+   "tier": "입문·취미",
    "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
@@ -745,44 +744,188 @@
    "layer": "C",
    "firstSeen": "2026-07-13",
    "isNew": true,
-   "extVer": 21
+   "extVer": 22
   },
   {
-   "id": "81ec31d6ff47b220",
-   "org": "가수중학교(경기교육청)",
-   "region": "경기",
-   "source": "goe.go.kr",
-   "title": "2026학년도 가수중학교 기간제교원 채용 공고(사회, 음악)",
-   "url": "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=52849",
-   "date": "2026-07-13",
-   "deadline": "2026-07-15",
-   "kind": "교수",
-   "tier": "교육·취미",
+   "id": "20354038846ef89b",
+   "org": "세종교육청(학교 채용)",
+   "region": "세종",
+   "source": "sje.go.kr",
+   "title": "N 2026학년도 계약제 교원(음악, 생물) 채용 공고",
+   "url": "https://www.sje.go.kr/sje/na/ntt/selectNttInfo.do?nttSn=3070185&mi=52132&bbsId=108",
+   "date": "2026-07-16",
+   "deadline": null,
+   "kind": "기타",
+   "tier": "입문·취미",
    "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
-   "personnel": "2명 과목 사회, 음악 채용",
+   "personnel": null,
+   "subject": null,
+   "channel": "edu_sje",
+   "layer": "C",
+   "firstSeen": "2026-07-13",
+   "isNew": true,
+   "extVer": 22
+  },
+  {
+   "id": "502a055beddc9e31",
+   "org": "동신대학교",
+   "region": "전남",
+   "source": "hibrain.net",
+   "title": "동신대학교 2026학년도 2학기 전임교원 초빙 (2차)",
+   "url": "https://www.hibrain.net/recruitment/recruits/3588778",
+   "date": "2026-07-15",
+   "deadline": "2026-07-20",
+   "kind": "교수",
+   "tier": "대학·전공",
+   "ageGroup": "성인",
+   "inst": "전체",
+   "instDetails": [],
+   "personnel": null,
+   "subject": null,
+   "channel": "hibrain",
+   "layer": "B",
+   "musicUnverified": true,
+   "firstSeen": "2026-07-13",
+   "isNew": true,
+   "extVer": 22
+  },
+  {
+   "id": "9e92bf0ead219b34",
+   "org": "서울시교육청(방과후 강사)",
+   "region": "서울",
+   "source": "work.sen.go.kr",
+   "title": "2026년 중동중학교 합창 협력강사 채용 공고",
+   "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=105312",
+   "date": null,
+   "deadline": "2026-07-15",
+   "kind": "강사",
+   "tier": "입문·취미",
+   "ageGroup": "성인",
+   "inst": "성악",
+   "instDetails": [],
+   "personnel": "1명 과목 (",
+   "subject": null,
+   "channel": "edu_seoul",
+   "layer": "C",
+   "bodyExcerpt": "2026년 중동중학교 합창 협력강사 채용 공고",
+   "deadlineFrom": "page",
+   "firstSeen": "2026-07-13",
+   "isNew": true,
+   "extVer": 22
+  },
+  {
+   "id": "8d0719284f6e6c58",
+   "org": "부천중학교(경기교육청)",
+   "region": "경기",
+   "source": "goe.go.kr",
+   "title": "부천중학교 기간제교사(음악) 채용 공고",
+   "url": "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=53005",
+   "date": "2026-07-13",
+   "deadline": "2026-07-16",
+   "kind": "기타",
+   "tier": "입문·취미",
+   "ageGroup": "성인",
+   "inst": "전체",
+   "instDetails": [],
+   "personnel": "1명 과목 음악 채용",
    "subject": null,
    "channel": "edu_goe",
    "layer": "C",
    "qualification": "경력 경력무관 학력",
-   "bodyExcerpt": "2026학년도 가수중학교 기간제교원 채용 공고(사회, 음악) · 채용방법 및 일정 · 정교사 이상 자격증 소지자 · 채용과목 교원자격증",
+   "bodyExcerpt": "부천중학교 기간제교사(음악) 채용 공고 · 채용방법 및 일정 · 기간제교원 채용 공고 · 학년도 부천중학교 기간제교원 채용 계획을 다음과 같이 공고합니다",
    "deadlineFrom": "page",
    "firstSeen": "2026-07-13",
    "isNew": true,
-   "extVer": 21
+   "extVer": 22
   },
   {
-   "id": "dc481e4c0ec4a696",
-   "org": "부산교육청(학교인력채용)",
-   "region": "부산",
-   "source": "pen.go.kr",
-   "title": "2026학년도 부산관광고등학교 기간제교원(영어, 조리, 디자인, 음악) 채용공고 새글",
-   "url": "http://www.pen.go.kr/main/na/ntt/selectNttInfo.do?nttSn=1175546&mi=30367&bbsId=2364",
+   "id": "cb3bed1a4819ab0e",
+   "org": "화창초등학교(경기교육청)",
+   "region": "경기",
+   "source": "goe.go.kr",
+   "title": "화창초등학교 전담 기간제 교사 채용(창체. 음악)",
+   "url": "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=52969",
    "date": "2026-07-13",
    "deadline": "2026-07-16",
    "kind": "기타",
-   "tier": "교육·취미",
+   "tier": "입문·취미",
+   "ageGroup": "성인",
+   "inst": "전체",
+   "instDetails": [],
+   "personnel": "1명 과목 채용",
+   "subject": null,
+   "channel": "edu_goe",
+   "layer": "C",
+   "qualification": "경력 신입 학력",
+   "bodyExcerpt": "화창초등학교 전담 기간제 교사 채용(창체. 음악) · 채용 인원 및 기간 · 초등교사 자격증 · 교원자격증 사본 또는 자격 인정 조서",
+   "deadlineFrom": "page",
+   "firstSeen": "2026-07-13",
+   "isNew": true,
+   "extVer": 22
+  },
+  {
+   "id": "ec07271e12be4e9b",
+   "org": "세종초등학교(경기교육청)",
+   "region": "경기",
+   "source": "goe.go.kr",
+   "title": "2026년 방과후학교 강사(바이올린) 채용 공고",
+   "url": "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=52962",
+   "date": "2026-07-13",
+   "deadline": "2026-07-20",
+   "kind": "강사",
+   "tier": "입문·취미",
+   "ageGroup": "성인",
+   "inst": "현악",
+   "instDetails": [
+    "바이올린"
+   ],
+   "personnel": "1명 과목 바이올린 채용",
+   "subject": null,
+   "channel": "edu_goe",
+   "layer": "C",
+   "qualification": "경력 신입 학력",
+   "bodyExcerpt": "2026년 방과후학교 강사(바이올린) 채용 공고 · 채용방법 및 일정 · 학년도 세종초등학교 방과후학교 강사 모집 공고 · 학년도 방과후학교 특기적성 프로그램 강사를 다음과 같이 공개 채용 합니다",
+   "deadlineFrom": "page",
+   "firstSeen": "2026-07-13",
+   "isNew": true,
+   "extVer": 22
+  },
+  {
+   "id": "fad13b3ff5f109a6",
+   "org": "전라고등학교(전북교육청)",
+   "region": "전북",
+   "source": "jbe.go.kr",
+   "title": "전라고등학교 (기간제교사), 음악(시간강사) 채용",
+   "url": "https://www.jbe.go.kr/board/view.jbe?boardId=BBS_0000130&menuCd=DOM_000000103004006000&paging=ok&startPage=1&searchOperation=AND&dataSid=1149985",
+   "date": "2026-07-13",
+   "deadline": "2026-07-19",
+   "kind": "강사",
+   "tier": "입문·취미",
+   "ageGroup": "성인",
+   "inst": "전체",
+   "instDetails": [],
+   "personnel": null,
+   "subject": null,
+   "channel": "edu_jbe",
+   "layer": "C",
+   "bodyExcerpt": "시험/채용/구직 · 기간제교사 채용계획 사전공개 · 학교/기관별 채용공고 · 채용 공고 시 유의사항",
+   "firstSeen": "2026-07-13",
+   "isNew": true,
+   "extVer": 22
+  },
+  {
+   "id": "e93239a0f784cf0b",
+   "org": "부산교육청(학교인력채용)",
+   "region": "부산",
+   "source": "pen.go.kr",
+   "title": "2026학년도 문현여자중학교 기간제교사(음악) 채용 공고 새글",
+   "url": "http://www.pen.go.kr/main/na/ntt/selectNttInfo.do?nttSn=1175596&mi=30367&bbsId=2364",
+   "date": "2026-07-13",
+   "deadline": "2026-07-16",
+   "kind": "기타",
+   "tier": "입문·취미",
    "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
@@ -790,11 +933,34 @@
    "subject": null,
    "channel": "edu_pen",
    "layer": "C",
-   "bodyExcerpt": "2026학년도 부산관광고등학교 기간제교원(영어, 조리, 디자인, 음악) 채용공고 · 1. 채용 기간 · 가. 영어 : 26.8.18. ~ 26.10.3. (※ 출산휴가 연장 사유 발생 시 계약기간은 최대 10일 범위 내에서 연장될 수 있음) · 2. 채용 사유: 출산휴가 대체 등",
+   "bodyExcerpt": "2026학년도 문현여자중학교 기간제교사(음악) 채용 공고 · 1. 채용 과목 : 음악 · 2. 접수 기간 : 2026. 7. 13.(월) ~2026. 7. 16.(목) 12:00 · 2026학년도 대명여자고등학교 기간제교사(체육) 채용 공고",
    "deadlineFrom": "page",
    "firstSeen": "2026-07-13",
    "isNew": true,
-   "extVer": 21
+   "extVer": 22
+  },
+  {
+   "id": "ab6ab4db614db931",
+   "org": "한국학대학",
+   "region": "경기",
+   "source": "hibrain.net",
+   "title": "한국학중앙연구원 한국학대학원 음악학 강사 모집",
+   "url": "https://www.hibrain.net/recruitment/recruits/3589644",
+   "date": null,
+   "deadline": "2026-07-24",
+   "kind": "강사",
+   "tier": "대학·전공",
+   "ageGroup": "성인",
+   "inst": "전체",
+   "instDetails": [],
+   "personnel": null,
+   "subject": null,
+   "officialUrl": "https://www.aks.ac.kr/cop/bbs/selectBoardArticle.do?nttId=323182&bbsId=BBSMSTR_000000000082&menuNo=4010110000#",
+   "channel": "hibrain",
+   "layer": "B",
+   "firstSeen": "2026-07-13",
+   "isNew": true,
+   "extVer": 22
   },
   {
    "id": "7cbdfcead718d997",
@@ -806,7 +972,7 @@
    "date": null,
    "deadline": "2026-07-17",
    "kind": "강사",
-   "tier": "프로",
+   "tier": "대학·전공",
    "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
@@ -818,7 +984,7 @@
    "musicUnverified": true,
    "firstSeen": "2026-07-13",
    "isNew": true,
-   "extVer": 21
+   "extVer": 22
   },
   {
    "id": "a6f9fc4e4179de25",
@@ -830,7 +996,7 @@
    "date": "2026-07-13",
    "deadline": "2026-07-20",
    "kind": "단원",
-   "tier": "전공·입시",
+   "tier": "연주",
    "ageGroup": "성인",
    "inst": "지휘",
    "instDetails": [
@@ -843,7 +1009,7 @@
    "layer": "B",
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 21
+   "extVer": 22
   },
   {
    "id": "9b9fed1c189aef5e",
@@ -855,7 +1021,7 @@
    "date": "2026-07-13",
    "deadline": "2026-07-15",
    "kind": "교수",
-   "tier": "프로",
+   "tier": "대학·전공",
    "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
@@ -874,7 +1040,7 @@
    ],
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 21
+   "extVer": 22
   },
   {
    "id": "c12d970d5beba854",
@@ -886,7 +1052,7 @@
    "date": null,
    "deadline": "2026-07-16",
    "kind": "강사",
-   "tier": "프로",
+   "tier": "대학·전공",
    "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
@@ -901,7 +1067,7 @@
    ],
    "firstSeen": "2026-07-12",
    "isNew": false,
-   "extVer": 21
+   "extVer": 22
   },
   {
    "id": "2e29513f2f828862",
@@ -913,27 +1079,19 @@
    "date": null,
    "deadline": "2026-07-15",
    "kind": "강사",
-   "tier": "프로",
+   "tier": "대학·전공",
    "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
    "personnel": null,
-   "subject": "음악과 · 음악교육전공",
-   "officialUrl": "https://www.changwon.ac.kr/kor/na/ntt/selectNttInfo.do?nttSn=1421525&mi=10177&bbsId=2932",
+   "subject": null,
+   "officialUrl": "https://www.changwon.ac.kr/kor/na/ntt/selectNttList.do?mi=10177&bbsId=2932",
    "channel": "hibrain",
    "layer": "B",
-   "originDeepened": true,
-   "subjectFrom": "attach",
-   "courses": [
-    "초등음악교육",
-    "전공실기1(지휘)",
-    "전공실기2(지휘)",
-    "음악형식지도론",
-    "음악분석및논문작성법"
-   ],
+   "musicUnverified": true,
    "firstSeen": "2026-07-12",
    "isNew": false,
-   "extVer": 21
+   "extVer": 22
   },
   {
    "id": "7e82257b25ad7ec7",
@@ -945,7 +1103,7 @@
    "date": null,
    "deadline": "2026-07-16",
    "kind": "강사",
-   "tier": "교육·취미",
+   "tier": "입문·취미",
    "ageGroup": "성인",
    "inst": "현악",
    "instDetails": [
@@ -959,31 +1117,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 21
-  },
-  {
-   "id": "428abbc6ac01b1a1",
-   "org": "서울시교육청(방과후 강사)",
-   "region": "서울",
-   "source": "work.sen.go.kr",
-   "title": "문화예술 협력강사 채용 공고(동요부르기, 창의무용, 연극, 합창(뮤지컬), 합창, 뮤지컬)",
-   "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=104907",
-   "date": null,
-   "deadline": "2026-07-15",
-   "kind": "강사",
-   "tier": "교육·취미",
-   "ageGroup": "성인",
-   "inst": "성악",
-   "instDetails": [],
-   "personnel": "6명 과목 (",
-   "subject": null,
-   "channel": "edu_seoul",
-   "layer": "C",
-   "bodyExcerpt": "문화예술 협력강사 채용 공고(동요부르기, 창의무용, 연극, 합창(뮤지컬), 합창, 뮤지컬) · 문화예술 협력강사 (동요부르기, 창의무용, 연극, 합창(뮤지컬), 합창, 뮤지컬) 를 채용하고자 합니다. · 채용공고문을 참고 부탁드립니다.",
-   "deadlineFrom": "page",
-   "firstSeen": "2026-07-11",
-   "isNew": false,
-   "extVer": 21
+   "extVer": 22
   },
   {
    "id": "fe531e2e0f28b479",
@@ -995,7 +1129,7 @@
    "date": null,
    "deadline": "2026-07-14",
    "kind": "교수",
-   "tier": "프로",
+   "tier": "대학·전공",
    "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
@@ -1013,7 +1147,7 @@
    ],
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 21
+   "extVer": 22
   },
   {
    "id": "875b04e41b406490",
@@ -1025,7 +1159,7 @@
    "date": null,
    "deadline": "2026-07-16",
    "kind": "강사",
-   "tier": "프로",
+   "tier": "대학·전공",
    "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
@@ -1037,7 +1171,7 @@
    "musicUnverified": true,
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 21
+   "extVer": 22
   },
   {
    "id": "1170cbe4e8bccc87",
@@ -1049,7 +1183,7 @@
    "date": null,
    "deadline": null,
    "kind": "교수",
-   "tier": "프로",
+   "tier": "대학·전공",
    "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
@@ -1061,7 +1195,7 @@
    "musicUnverified": true,
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 21
+   "extVer": 22
   },
   {
    "id": "887ed332ccceac36",
@@ -1073,7 +1207,7 @@
    "date": null,
    "deadline": null,
    "kind": "강사",
-   "tier": "프로",
+   "tier": "대학·전공",
    "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
@@ -1085,7 +1219,7 @@
    "musicUnverified": true,
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 21
+   "extVer": 22
   },
   {
    "id": "6015a48666b489c3",
@@ -1097,7 +1231,7 @@
    "date": null,
    "deadline": "2026-07-17",
    "kind": "교수",
-   "tier": "프로",
+   "tier": "대학·전공",
    "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
@@ -1115,62 +1249,7 @@
    ],
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 21
-  },
-  {
-   "id": "682e8f2ab01c9302",
-   "org": "원광대학교",
-   "region": "전북",
-   "source": "hibrain.net",
-   "title": "원광대학교 강사 모집",
-   "url": "https://www.hibrain.net/recruitment/recruits/3589381",
-   "date": null,
-   "deadline": "2026-07-13",
-   "kind": "강사",
-   "tier": "프로",
-   "ageGroup": "성인",
-   "inst": "전체",
-   "instDetails": [],
-   "personnel": null,
-   "subject": "음악과",
-   "officialUrl": "https://intra.wku.ac.kr/recruit/rcrt_notice_dtl.jsp?works_no=7170016f65de4ba8908fd703d42d9be8",
-   "channel": "hibrain",
-   "layer": "B",
-   "subjectFrom": "attach",
-   "courses": [
-    "대위법"
-   ],
-   "firstSeen": "2026-07-11",
-   "isNew": false,
-   "extVer": 21
-  },
-  {
-   "id": "4a732d29d3557983",
-   "org": "국립순천대학교",
-   "region": "전남",
-   "source": "hibrain.net",
-   "title": "국립순천대학교 강사 모집",
-   "url": "https://www.hibrain.net/recruitment/recruits/3589171",
-   "date": null,
-   "deadline": "2026-07-13",
-   "kind": "강사",
-   "tier": "프로",
-   "ageGroup": "성인",
-   "inst": "전체",
-   "instDetails": [],
-   "personnel": null,
-   "subject": "음악예술융합학전공",
-   "officialUrl": "https://www.scnu.ac.kr/SCNU/na/ntt/selectNttInfo.do?currPage=1&mi=1623&nttSn=281314396",
-   "channel": "hibrain",
-   "layer": "B",
-   "subjectFrom": "attach",
-   "courses": [
-    "음악하기로 배우는 삶",
-    "음악으로 세상 읽기"
-   ],
-   "firstSeen": "2026-07-11",
-   "isNew": false,
-   "extVer": 21
+   "extVer": 22
   },
   {
    "id": "2567e43ae1c8b1dc",
@@ -1182,7 +1261,7 @@
    "date": null,
    "deadline": "2026-07-14",
    "kind": "교수",
-   "tier": "프로",
+   "tier": "대학·전공",
    "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
@@ -1194,7 +1273,7 @@
    "musicUnverified": true,
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 21
+   "extVer": 22
   },
   {
    "id": "74c3b7961934806e",
@@ -1206,7 +1285,7 @@
    "date": null,
    "deadline": "2026-07-14",
    "kind": "강사",
-   "tier": "프로",
+   "tier": "대학·전공",
    "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
@@ -1218,105 +1297,7 @@
    "subjectFrom": "attach",
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 21
-  },
-  {
-   "id": "21d4220912a1600a",
-   "org": "창원문화재단(시립예술단)",
-   "region": "경남",
-   "source": "cwcf.or.kr",
-   "title": "2026년 창원문화재단 비상근 임원(이사·감사) 공개모집 공고",
-   "url": "https://www.cwcf.or.kr/commu/notice_view.asp?skey=&sword=&BCATE=BD00001&BSUBCATE=&place_idx=&page=1&idx=22569&bidx=2051",
-   "date": "2026-07-10",
-   "deadline": "2026-07-27",
-   "kind": "기타",
-   "tier": "프로",
-   "ageGroup": "성인",
-   "inst": "전체",
-   "instDetails": [],
-   "personnel": null,
-   "subject": null,
-   "channel": "cwcf",
-   "layer": "B",
-   "bodyExcerpt": "2026년 창원문화재단 비상근 임원(이사·감사) 공개모집 공고.png",
-   "deadlineFrom": "ocr",
-   "firstSeen": "2026-07-12",
-   "isNew": false,
-   "extVer": 21
-  },
-  {
-   "id": "30dd0035a4f25b80",
-   "org": "신봉고등학교(경기교육청)",
-   "region": "경기",
-   "source": "goe.go.kr",
-   "title": "기간제교사(음악) 채용 공고",
-   "url": "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=52814",
-   "date": "2026-07-10",
-   "deadline": "2026-07-15",
-   "kind": "기타",
-   "tier": "교육·취미",
-   "ageGroup": "성인",
-   "inst": "전체",
-   "instDetails": [],
-   "personnel": "1명 과목 음악 채용",
-   "subject": null,
-   "channel": "edu_goe",
-   "layer": "C",
-   "qualification": "경력 신입 학력",
-   "bodyExcerpt": "기간제교사(음악) 채용 공고 · 채용방법 및 일정 · 1. 채용분야 및 예정인원 · 교원자격증 사본 또는 자격 인정 조서",
-   "deadlineFrom": "page",
-   "firstSeen": "2026-07-12",
-   "isNew": false,
-   "extVer": 21
-  },
-  {
-   "id": "865186ddf701973e",
-   "org": "진접고등학교(경기교육청)",
-   "region": "경기",
-   "source": "goe.go.kr",
-   "title": "(수정)진접고등학교 기간제교원 채용 공고(음악1명)",
-   "url": "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=52794",
-   "date": "2026-07-10",
-   "deadline": "2026-07-16",
-   "kind": "교수",
-   "tier": "교육·취미",
-   "ageGroup": "성인",
-   "inst": "전체",
-   "instDetails": [],
-   "personnel": "음악 1명",
-   "subject": null,
-   "channel": "edu_goe",
-   "layer": "C",
-   "qualification": "경력 경력 학력",
-   "bodyExcerpt": "(수정)진접고등학교 기간제교원 채용 공고(음악1명) · 과학 관련 교원자격증 소지자 (공통과학, 화학, 물리, 지학, 생물) · 채용방법 및 일정 · 기간제 교원 채용 공고",
-   "deadlineFrom": "page",
-   "firstSeen": "2026-07-13",
-   "isNew": true,
-   "extVer": 21
-  },
-  {
-   "id": "39048c64368dac11",
-   "org": "윤슬초등학교(경기교육청)",
-   "region": "경기",
-   "source": "goe.go.kr",
-   "title": "[윤슬초]기간제교사(4학년 영어+6학년 음악, 상담) 채용 공고문",
-   "url": "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=52789",
-   "date": "2026-07-10",
-   "deadline": "2026-07-14",
-   "kind": "기타",
-   "tier": "교육·취미",
-   "ageGroup": "성인",
-   "inst": "전체",
-   "instDetails": [],
-   "personnel": "2명 과목 4학년 영어+6학년 음악, 상담 ",
-   "subject": null,
-   "channel": "edu_goe",
-   "layer": "C",
-   "bodyExcerpt": "[윤슬초]기간제교사(4학년 영어+6학년 음악, 상담) 채용 공고문 · 윤슬초등학교 계약제 교사 채용 공고 · 윤슬초등학교에서 근무할 기간제교사 채용 계획을 다음과 같이 공고합니다 · 및 채용 예정인원",
-   "deadlineFrom": "page",
-   "firstSeen": "2026-07-12",
-   "isNew": false,
-   "extVer": 21
+   "extVer": 22
   },
   {
    "id": "d9bbb9afbeca97d2",
@@ -1328,7 +1309,7 @@
    "date": "2026-07-10",
    "deadline": "2026-07-17",
    "kind": "강사",
-   "tier": "교육·취미",
+   "tier": "입문·취미",
    "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
@@ -1341,7 +1322,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-12",
    "isNew": false,
-   "extVer": 21
+   "extVer": 22
   },
   {
    "id": "596fc69413cf2eb2",
@@ -1353,7 +1334,7 @@
    "date": "2026-07-10",
    "deadline": "2026-07-16",
    "kind": "강사",
-   "tier": "교육·취미",
+   "tier": "입문·취미",
    "ageGroup": "성인",
    "inst": "현악",
    "instDetails": [
@@ -1368,7 +1349,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-12",
    "isNew": false,
-   "extVer": 21
+   "extVer": 22
   },
   {
    "id": "cb1f2cc8922378bb",
@@ -1380,7 +1361,7 @@
    "date": "2026-07-10",
    "deadline": "2026-07-15",
    "kind": "강사",
-   "tier": "교육·취미",
+   "tier": "입문·취미",
    "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
@@ -1393,7 +1374,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-12",
    "isNew": false,
-   "extVer": 21
+   "extVer": 22
   },
   {
    "id": "5617a5dc7773a9a5",
@@ -1405,7 +1386,7 @@
    "date": "2026-07-10",
    "deadline": "2026-07-16",
    "kind": "강사",
-   "tier": "교육·취미",
+   "tier": "입문·취미",
    "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
@@ -1418,19 +1399,19 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-12",
    "isNew": false,
-   "extVer": 21
+   "extVer": 22
   },
   {
    "id": "3bcb4831db4be4cc",
    "org": "숙지고등학교(경기교육청)",
    "region": "경기",
    "source": "goe.go.kr",
-   "title": "오늘마감 2026학년도 기간제교사 채용(생명과학, 미술, 기술가정, 음악)",
+   "title": "오늘마감 2026학년도 기간제교사 채용(음악)",
    "url": "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=52721",
    "date": "2026-07-10",
    "deadline": "2026-07-13",
    "kind": "기타",
-   "tier": "교육·취미",
+   "tier": "입문·취미",
    "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
@@ -1443,7 +1424,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-13",
    "isNew": true,
-   "extVer": 21
+   "extVer": 22
   },
   {
    "id": "5f240324b3b2d587",
@@ -1455,7 +1436,7 @@
    "date": "2026-07-10",
    "deadline": "2026-07-16",
    "kind": "강사",
-   "tier": "교육·취미",
+   "tier": "입문·취미",
    "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
@@ -1468,7 +1449,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-12",
    "isNew": false,
-   "extVer": 21
+   "extVer": 22
   },
   {
    "id": "32f3e2457d57b046",
@@ -1480,7 +1461,7 @@
    "date": "2026-07-10",
    "deadline": "2026-07-13",
    "kind": "강사",
-   "tier": "교육·취미",
+   "tier": "입문·취미",
    "ageGroup": "성인",
    "inst": "기타",
    "instDetails": [
@@ -1495,30 +1476,31 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-13",
    "isNew": true,
-   "extVer": 21
+   "extVer": 22
   },
   {
-   "id": "f9851696a21a61a3",
-   "org": "전주동신초등학(전북교육청)",
-   "region": "전북",
-   "source": "jbe.go.kr",
-   "title": "전주동신초등학 초등교과 6학년(음악, 미술, 실과) 채용",
-   "url": "https://www.jbe.go.kr/board/view.jbe?boardId=BBS_0000130&menuCd=DOM_000000103004006000&paging=ok&startPage=3&searchOperation=AND&dataSid=1148369",
-   "date": "2026-07-09",
+   "id": "50b2549137f40b6d",
+   "org": "오산대학교",
+   "region": "경기",
+   "source": "hibrain.net",
+   "title": "오산대학교 강사 모집",
+   "url": "https://www.hibrain.net/recruitment/recruits/3589815",
+   "date": "2026-07-10",
    "deadline": "2026-07-16",
-   "kind": "기타",
-   "tier": "프로",
+   "kind": "강사",
+   "tier": "대학·전공",
    "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
    "personnel": null,
    "subject": null,
-   "channel": "edu_jbe",
-   "layer": "C",
-   "bodyExcerpt": "시험/채용/구직 · 기간제교사 채용계획 사전공개 · 학교/기관별 채용공고 · 채용 공고 시 유의사항",
-   "firstSeen": "2026-07-12",
-   "isNew": false,
-   "extVer": 21
+   "officialUrl": "https://www.osan.ac.kr/?menuno=958",
+   "channel": "hibrain",
+   "layer": "B",
+   "musicUnverified": true,
+   "firstSeen": "2026-07-13",
+   "isNew": true,
+   "extVer": 22
   },
   {
    "id": "74aafb0f253525a2",
@@ -1530,7 +1512,7 @@
    "date": "2026-07-09",
    "deadline": "2026-07-15",
    "kind": "강사",
-   "tier": "프로",
+   "tier": "대학·전공",
    "ageGroup": "성인",
    "inst": "성악",
    "instDetails": [],
@@ -1541,7 +1523,7 @@
    "layer": "B",
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 21
+   "extVer": 22
   },
   {
    "id": "05b306f57c79f14e",
@@ -1553,7 +1535,7 @@
    "date": "2026-07-09",
    "deadline": "2026-07-15",
    "kind": "강사",
-   "tier": "프로",
+   "tier": "대학·전공",
    "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
@@ -1564,7 +1546,7 @@
    "musicUnverified": true,
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 21
+   "extVer": 22
   },
   {
    "id": "c80e362afc57cd51",
@@ -1576,7 +1558,7 @@
    "date": "2026-07-08",
    "deadline": "2026-08-02",
    "kind": "단원",
-   "tier": "프로",
+   "tier": "연주",
    "ageGroup": "성인",
    "inst": "현악",
    "instDetails": [
@@ -1615,31 +1597,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 21
-  },
-  {
-   "id": "32a2dfcd05fc5cbb",
-   "org": "서울예술대학교",
-   "region": "경기",
-   "source": "hibrain.net",
-   "title": "서울예술대학교 강사 모집",
-   "url": "https://www.hibrain.net/recruitment/recruits/3589217",
-   "date": "2026-07-08",
-   "deadline": "2026-07-13",
-   "kind": "강사",
-   "tier": "프로",
-   "ageGroup": "성인",
-   "inst": "전체",
-   "instDetails": [],
-   "personnel": null,
-   "subject": "실용음악전공",
-   "officialUrl": "https://www.seoularts.ac.kr/web/cop/bbsWeb/selectBoardDetail.do?bbsId=BBSMSTR_000000000651&nttId=242393&nttIds=0&searchYear=&pageIndex=1&mblDn=&idchk=&nttYear=&pubLink=&searchCnd=&searchWrd=&temp=",
-   "channel": "hibrain",
-   "layer": "B",
-   "subjectFrom": "attach",
-   "firstSeen": "2026-07-11",
-   "isNew": false,
-   "extVer": 21
+   "extVer": 22
   },
   {
    "id": "89f36842ad7336af",
@@ -1651,7 +1609,7 @@
    "date": "2026-07-08",
    "deadline": "2026-07-14",
    "kind": "강사",
-   "tier": "프로",
+   "tier": "대학·전공",
    "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
@@ -1663,19 +1621,19 @@
    "musicUnverified": true,
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 21
+   "extVer": 22
   },
   {
    "id": "34114bed196714d5",
    "org": "충북교육청(구인정보)",
    "region": "충북",
    "source": "cbe.go.kr",
-   "title": "세명고 기간제교사(수학, 음악) 채용 2차공고",
+   "title": "세명고 기간제교사(음악) 채용 2차공고",
    "url": "https://www.cbe.go.kr/cbe/na/ntt/selectNttInfo.do?nttSn=1575303&mi=11716&bbsId=1798",
    "date": "2026-07-06",
    "deadline": "2026-07-13",
    "kind": "기타",
-   "tier": "프로",
+   "tier": "입문·취미",
    "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
@@ -1687,7 +1645,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-12",
    "isNew": false,
-   "extVer": 21
+   "extVer": 22
   },
   {
    "id": "b2e199e32140e0ed",
@@ -1699,7 +1657,7 @@
    "date": "2026-07-03",
    "deadline": "2026-12-31",
    "kind": "반주",
-   "tier": "오브리",
+   "tier": "연주",
    "ageGroup": "성인",
    "inst": "건반",
    "instDetails": [
@@ -1715,7 +1673,7 @@
    "documents": "이력서",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 21
+   "extVer": 22
   },
   {
    "id": "340d217c42aab8e1",
@@ -1727,7 +1685,7 @@
    "date": "2026-07-03",
    "deadline": "2026-08-02",
    "kind": "단원",
-   "tier": "프로",
+   "tier": "연주",
    "ageGroup": "성인",
    "inst": "현악",
    "instDetails": [
@@ -1759,7 +1717,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 21
+   "extVer": 22
   },
   {
    "id": "5dece78df88ec9d5",
@@ -1771,7 +1729,7 @@
    "date": "2026-07-01",
    "deadline": "2026-07-13",
    "kind": "단원",
-   "tier": "전공·입시",
+   "tier": "연주",
    "ageGroup": "성인",
    "inst": "지휘",
    "instDetails": [
@@ -1788,7 +1746,7 @@
    "deadlineFrom": "ocr",
    "firstSeen": "2026-07-07",
    "isNew": false,
-   "extVer": 21
+   "extVer": 22
   },
   {
    "id": "d23eba700bca92a7",
@@ -1800,7 +1758,7 @@
    "date": "2026-07-01",
    "deadline": "2026-07-15",
    "kind": "교수",
-   "tier": "프로",
+   "tier": "대학·전공",
    "ageGroup": "성인",
    "inst": "지휘",
    "instDetails": [
@@ -1813,7 +1771,7 @@
    "layer": "B",
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 21
+   "extVer": 22
   },
   {
    "id": "da06b8ae997fd398",
@@ -1825,7 +1783,7 @@
    "date": "2026-06-17",
    "deadline": null,
    "kind": "기타",
-   "tier": "오브리",
+   "tier": "연주",
    "ageGroup": "성인",
    "inst": "성악",
    "instDetails": [
@@ -1840,7 +1798,7 @@
    "bodyExcerpt": "모집파트: 테너 또는 베이스",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 21
+   "extVer": 22
   },
   {
    "id": "b45188e68777edf5",
@@ -1852,7 +1810,7 @@
    "date": "2026-06-17",
    "deadline": null,
    "kind": "강사",
-   "tier": "전공·입시",
+   "tier": "입문·취미",
    "ageGroup": "성인",
    "inst": "성악",
    "instDetails": [
@@ -1868,7 +1826,7 @@
    "bodyExcerpt": "채용 | 더솔아르떼 성악아카데미 평택점과 함께할 전문 강사님을 모십니다 · 성악 전문 강사님을 모집합니다. · ✨️ 모집 분야 · 우대: 교육 및 연주 경력자 환영,",
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 21
+   "extVer": 22
   },
   {
    "id": "66564a9a98fa61d9",
@@ -1880,7 +1838,7 @@
    "date": "2026-06-17",
    "deadline": null,
    "kind": "반주",
-   "tier": "오브리",
+   "tier": "연주",
    "ageGroup": "성인",
    "inst": "건반",
    "instDetails": [
@@ -1898,7 +1856,7 @@
    "bodyExcerpt": "채용 | [부산] 푸른초장교회 반주자를 모십니다.",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 21
+   "extVer": 22
   },
   {
    "id": "5fbc7e4eb4f8d92d",
@@ -1910,7 +1868,7 @@
    "date": "2026-05-20",
    "deadline": "2026-12-31",
    "kind": "반주",
-   "tier": "오브리",
+   "tier": "연주",
    "ageGroup": "성인",
    "inst": "건반",
    "instDetails": [
@@ -1926,7 +1884,7 @@
    "documents": "간단한 이력서",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 21
+   "extVer": 22
   }
  ]
 }
