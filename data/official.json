@@ -1,7 +1,7 @@
 {
- "collectedAt": "2026-07-13 23:52",
+ "collectedAt": "2026-07-14 00:00",
  "sourceCount": 80,
- "okCount": 78,
+ "okCount": 79,
  "instTotal": 75,
  "sources": [
   {
@@ -368,8 +368,9 @@
    "name": "안양문화예술재단",
    "layer": "B",
    "poll": "weekly",
-   "ok": false,
-   "error": "Error: Page.goto: net::ERR_NAME_NOT_RESOLVED at https://ayac.or.kr/base/menu/baseView?menuLevel=1&menuNo=6\nCall log:\n  - naviga"
+   "ok": true,
+   "raw": 0,
+   "kept": 0
   },
   {
    "id": "g_uac",
@@ -751,7 +752,7 @@
    "org": "세종교육청(학교 채용)",
    "region": "세종",
    "source": "sje.go.kr",
-   "title": "N 2026학년도 계약제 교원(음악, 생물) 채용 공고",
+   "title": "N 2026학년도 계약제 교원(음악) 채용 공고",
    "url": "https://www.sje.go.kr/sje/na/ntt/selectNttInfo.do?nttSn=3070185&mi=52132&bbsId=108",
    "date": "2026-07-16",
    "deadline": null,
@@ -809,8 +810,8 @@
    "subject": null,
    "channel": "edu_seoul",
    "layer": "C",
-   "bodyExcerpt": "2026년 중동중학교 합창 협력강사 채용 공고",
    "deadlineFrom": "page",
+   "bodyExcerpt": "2026년 중동중학교 합창 협력강사 채용 공고",
    "firstSeen": "2026-07-13",
    "isNew": true,
    "extVer": 22
@@ -833,9 +834,9 @@
    "subject": null,
    "channel": "edu_goe",
    "layer": "C",
+   "deadlineFrom": "page",
    "qualification": "경력 경력무관 학력",
    "bodyExcerpt": "부천중학교 기간제교사(음악) 채용 공고 · 채용방법 및 일정 · 기간제교원 채용 공고 · 학년도 부천중학교 기간제교원 채용 계획을 다음과 같이 공고합니다",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-13",
    "isNew": true,
    "extVer": 22
@@ -858,9 +859,9 @@
    "subject": null,
    "channel": "edu_goe",
    "layer": "C",
+   "deadlineFrom": "page",
    "qualification": "경력 신입 학력",
    "bodyExcerpt": "화창초등학교 전담 기간제 교사 채용(창체. 음악) · 채용 인원 및 기간 · 초등교사 자격증 · 교원자격증 사본 또는 자격 인정 조서",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-13",
    "isNew": true,
    "extVer": 22
@@ -885,9 +886,9 @@
    "subject": null,
    "channel": "edu_goe",
    "layer": "C",
+   "deadlineFrom": "page",
    "qualification": "경력 신입 학력",
    "bodyExcerpt": "2026년 방과후학교 강사(바이올린) 채용 공고 · 채용방법 및 일정 · 학년도 세종초등학교 방과후학교 강사 모집 공고 · 학년도 방과후학교 특기적성 프로그램 강사를 다음과 같이 공개 채용 합니다",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-13",
    "isNew": true,
    "extVer": 22
@@ -933,8 +934,8 @@
    "subject": null,
    "channel": "edu_pen",
    "layer": "C",
-   "bodyExcerpt": "2026학년도 문현여자중학교 기간제교사(음악) 채용 공고 · 1. 채용 과목 : 음악 · 2. 접수 기간 : 2026. 7. 13.(월) ~2026. 7. 16.(목) 12:00 · 2026학년도 대명여자고등학교 기간제교사(체육) 채용 공고",
    "deadlineFrom": "page",
+   "bodyExcerpt": "2026학년도 문현여자중학교 기간제교사(음악) 채용 공고 · 1. 채용 과목 : 음악 · 2. 접수 기간 : 2026. 7. 13.(월) ~2026. 7. 16.(목) 12:00 · 2026학년도 대명여자고등학교 기간제교사(체육) 채용 공고",
    "firstSeen": "2026-07-13",
    "isNew": true,
    "extVer": 22
@@ -1030,7 +1031,6 @@
    "officialUrl": "https://job.kbtus.ac.kr/job/CMS/Board/Board.do?mCode=MN029&mode=view&mgr_seq=233&board_seq=37363&",
    "channel": "hibrain",
    "layer": "B",
-   "subjectFrom": "attach",
    "courses": [
     "대위법",
     "반주법",
@@ -1061,7 +1061,6 @@
    "officialUrl": "https://mirae.yonsei.ac.kr/wj/1370/subview.do?enc=Zm5jdDF8QEB8JTJGYmJzJTJGd2olMkYxMTIlMkY5NDM2MDQlMkZhcnRjbFZpZXcuZG8lM0ZwYWdlJTNEMSUyNmZpbmRUeXBlJTNEJTI2ZmluZFdvcmQlM0QlMjZmaW5kQ2xTZXElM0QlMjZmaW5kT3Bud3JkJTNEJTI2cmdzQmduZGVTdHIlM0QlMjZyZ3NFbmRkZVN0ciUzRCUyNnBhc3N3b3JkJTNEJTI2",
    "channel": "hibrain",
    "layer": "B",
-   "subjectFrom": "attach",
    "courses": [
     "음악사"
    ],
@@ -1113,8 +1112,8 @@
    "subject": null,
    "channel": "edu_seoul",
    "layer": "C",
-   "bodyExcerpt": "[화랑초]1인1악기 바이올린 강사 채용 공고 · 1. 채용인원 : 1인1악기 지도강사(바이올린/비올라) 1명 · 3. 수업시수 및 급여 : 주당 12차시기본급 120만원+(지도인원*20,000원) · 4. 원서접수기간: 2026. 7. 11. ~ 2026. 7. 16.(오전 10:00까지, 초과도착 불가)",
    "deadlineFrom": "page",
+   "bodyExcerpt": "[화랑초]1인1악기 바이올린 강사 채용 공고 · 1. 채용인원 : 1인1악기 지도강사(바이올린/비올라) 1명 · 3. 수업시수 및 급여 : 주당 12차시기본급 120만원+(지도인원*20,000원) · 4. 원서접수기간: 2026. 7. 11. ~ 2026. 7. 16.(오전 10:00까지, 초과도착 불가)",
    "firstSeen": "2026-07-11",
    "isNew": false,
    "extVer": 22
@@ -1138,7 +1137,6 @@
    "officialUrl": "https://www.kyungnam.ac.kr/bbs/ko/1133/198222/artclView.do",
    "channel": "hibrain",
    "layer": "B",
-   "subjectFrom": "attach",
    "courses": [
     "비올라실기",
     "콘트라베이스실기",
@@ -1240,7 +1238,6 @@
    "officialUrl": "https://www.inje.ac.kr/kor/setRoute/B_Page.asp?pCode=PR040030000&varCat=8&page=1&bMode=view&varKey=28523",
    "channel": "hibrain",
    "layer": "B",
-   "subjectFrom": "attach",
    "courses": [
     "플루트",
     "전공실기",
@@ -1294,7 +1291,6 @@
    "officialUrl": "https://www.skuniv.ac.kr/notice/65289",
    "channel": "hibrain",
    "layer": "B",
-   "subjectFrom": "attach",
    "firstSeen": "2026-07-11",
    "isNew": false,
    "extVer": 22
@@ -1317,9 +1313,9 @@
    "subject": null,
    "channel": "edu_goe",
    "layer": "C",
+   "deadlineFrom": "page",
    "qualification": "(1) 해당 분야에 전문적인 능력을 가진 자 또는",
    "bodyExcerpt": "2026학년도 1인 1악기(우쿨렐레) 활동 강사 채용 공고문 · 모집 분야 및 인원 · 모집 세부 사항 · 해당 분야에 전문적인 능력을 가진 자 또는 자격증 소지자",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-12",
    "isNew": false,
    "extVer": 22
@@ -1344,9 +1340,9 @@
    "subject": null,
    "channel": "edu_goe",
    "layer": "C",
+   "deadlineFrom": "page",
    "qualification": "경력 경력무관 학력",
    "bodyExcerpt": "상동중학교 2026학년도 1인1악기 협력강사(바이올린) 채용 공고 · 채용방법 및 일정 · 모집 분야 및 자격 · 교과 및 모집 인원",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-12",
    "isNew": false,
    "extVer": 22
@@ -1369,9 +1365,9 @@
    "subject": null,
    "channel": "edu_goe",
    "layer": "C",
+   "deadlineFrom": "page",
    "qualification": "경력 경력 학력",
    "bodyExcerpt": "2026학년도 자혜학교 2학기 교내방과후 음악강사 채용 공고 2차 · 채용방법 및 일정 · 학기 교내방과후 음악 강사 모집 공고 · 학기 교내방과후 수업에 참여할 강사를 모집하오니 사랑과 열정으로 아이들을 지도하실 강사 선생님들의 많은 지원 바랍니다",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-12",
    "isNew": false,
    "extVer": 22
@@ -1394,9 +1390,9 @@
    "subject": null,
    "channel": "edu_goe",
    "layer": "C",
+   "deadlineFrom": "page",
    "qualification": "경력 경력무관 학력",
    "bodyExcerpt": "2026학년도 초1-2맞춤형 프로그램 강사 채용 공고(음악예술_칼림바) · 채용방법 및 일정 · 1. 교원 또는 관련 분야 일반 자격증 있을 경우 지원 가능(미기재 및 허위기재는 서류 심사에서 제외할 수 있음.) · 5. 강사 채용 계약은 학교와 강사 개인과의 계약을 체결함.",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-12",
    "isNew": false,
    "extVer": 22
@@ -1419,9 +1415,9 @@
    "subject": null,
    "channel": "edu_goe",
    "layer": "C",
+   "deadlineFrom": "page",
    "qualification": "경력 신입 학력",
    "bodyExcerpt": "2026학년도 기간제교사 채용(생명과학, 미술, 기술가정, 음악) · 채용방법 및 일정",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-13",
    "isNew": true,
    "extVer": 22
@@ -1444,9 +1440,9 @@
    "subject": null,
    "channel": "edu_goe",
    "layer": "C",
+   "deadlineFrom": "page",
    "qualification": "경력 경력무관 학력",
    "bodyExcerpt": "2026학년도 2학기 초1-2맞춤형 프로그램(신나는 음악) 강사 모집 공고 · 채용방법 및 일정 · 정재초등학교 채용공고 제 · 맞춤형 프로그램 강사 채용 공고",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-12",
    "isNew": false,
    "extVer": 22
@@ -1471,9 +1467,9 @@
    "subject": null,
    "channel": "edu_goe",
    "layer": "C",
+   "deadlineFrom": "page",
    "qualification": "경력 경력무관 학력",
    "bodyExcerpt": "[매양중]예술수업 악기강사(하프) 모집 공고_2차 · 채용방법 및 일정 · 다음과 같이 모집",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-13",
    "isNew": true,
    "extVer": 22
@@ -1570,6 +1566,7 @@
    "subject": null,
    "channel": "kbs",
    "layer": "D",
+   "deadlineFrom": "page",
    "recruitParts": [
     {
      "part": "비올라",
@@ -1594,7 +1591,6 @@
    ],
    "auditionDate": "8/17 · 8/23",
    "bodyExcerpt": "2026년 KBS교향악단 신규단원 채용(비올라, 오보에, 타악기) - 2026. 7. 8. 자 타악기 부문 추가 · 교향악단 신규단원 채용 · 교향악단에서 실력있고 열정 넘치는 전문 연주자를 공개 모집합니다 · 자로 모집부문에 타악기가 추가되었습니다",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": false,
    "extVer": 22
@@ -1641,8 +1637,8 @@
    "subject": null,
    "channel": "edu_cbe",
    "layer": "C",
-   "bodyExcerpt": "세명고 기간제교사(수학, 음악) 채용 2차공고 · 세명고등학교는 기간제교원 채용을 다음과 같이 공고합니다. · 1. 대상 교과: 수학(1명), 음악(1명) · 담당교과 교원자격증",
    "deadlineFrom": "page",
+   "bodyExcerpt": "세명고 기간제교사(수학, 음악) 채용 2차공고 · 세명고등학교는 기간제교원 채용을 다음과 같이 공고합니다. · 1. 대상 교과: 수학(1명), 음악(1명) · 담당교과 교원자격증",
    "firstSeen": "2026-07-12",
    "isNew": false,
    "extVer": 22
@@ -1696,6 +1692,7 @@
    "subject": null,
    "channel": "kbs",
    "layer": "D",
+   "deadlineFrom": "page",
    "recruitParts": [
     {
      "part": "비올라",
@@ -1714,7 +1711,6 @@
    ],
    "auditionDate": "8/17 · 8/23",
    "bodyExcerpt": "2026년 KBS교향악단 신규단원 채용(비올라, 오보에) · 교향악단 신규단원 채용 · 교향악단에서 실력있고 열정 넘치는 전문 연주자를 공개 모집합니다 · 모집부문별 채용 예정인원",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": false,
    "extVer": 22
@@ -1739,11 +1735,11 @@
    "subject": null,
    "channel": "sejongpac",
    "layer": "B",
+   "deadlineFrom": "ocr",
    "positions": [
     "단원"
    ],
    "bodyExcerpt": "세종문화회관 예술단 직책단원(소년소녀합창 지휘자) 공개채용 공고",
-   "deadlineFrom": "ocr",
    "firstSeen": "2026-07-07",
    "isNew": false,
    "extVer": 22
@@ -1794,8 +1790,8 @@
    "subject": null,
    "channel": "artinfo",
    "layer": "A",
-   "applyEmail": "anointed77@hanmail.net",
    "bodyExcerpt": "모집파트: 테너 또는 베이스",
+   "applyEmail": "anointed77@hanmail.net",
    "firstSeen": "2026-07-08",
    "isNew": false,
    "extVer": 22
@@ -1821,9 +1817,9 @@
    "subject": null,
    "channel": "artinfo",
    "layer": "A",
-   "applyEmail": "songhyun1128@naver.com",
    "qualification": "연령: 35세 ~ 50세 학력: 성악 전공 석사 졸업 이상",
    "bodyExcerpt": "채용 | 더솔아르떼 성악아카데미 평택점과 함께할 전문 강사님을 모십니다 · 성악 전문 강사님을 모집합니다. · ✨️ 모집 분야 · 우대: 교육 및 연주 경력자 환영,",
+   "applyEmail": "songhyun1128@naver.com",
    "firstSeen": "2026-07-11",
    "isNew": false,
    "extVer": 22
@@ -1848,12 +1844,12 @@
    "subject": null,
    "channel": "artinfo",
    "layer": "A",
-   "applyEmail": "pavarotti7801@hanmail.net",
-   "applyPhone": "010-4772-5362",
    "positions": [
     "반주자"
    ],
    "bodyExcerpt": "채용 | [부산] 푸른초장교회 반주자를 모십니다.",
+   "applyEmail": "pavarotti7801@hanmail.net",
+   "applyPhone": "010-4772-5362",
    "firstSeen": "2026-07-08",
    "isNew": false,
    "extVer": 22
