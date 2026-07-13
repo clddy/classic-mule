@@ -1,5 +1,5 @@
 {
- "collectedAt": "2026-07-13 13:25",
+ "collectedAt": "2026-07-13 13:40",
  "sourceCount": 80,
  "okCount": 79,
  "instTotal": 75,
@@ -10,7 +10,7 @@
    "layer": "A",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
+   "raw": 1,
    "kept": 0
   },
   {
@@ -745,7 +745,7 @@
    "layer": "C",
    "firstSeen": "2026-07-13",
    "isNew": true,
-   "extVer": 20
+   "extVer": 21
   },
   {
    "id": "81ec31d6ff47b220",
@@ -770,7 +770,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-13",
    "isNew": true,
-   "extVer": 20
+   "extVer": 21
   },
   {
    "id": "dc481e4c0ec4a696",
@@ -794,7 +794,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-13",
    "isNew": true,
-   "extVer": 20
+   "extVer": 21
   },
   {
    "id": "7cbdfcead718d997",
@@ -818,7 +818,7 @@
    "musicUnverified": true,
    "firstSeen": "2026-07-13",
    "isNew": true,
-   "extVer": 20
+   "extVer": 21
   },
   {
    "id": "a6f9fc4e4179de25",
@@ -843,7 +843,7 @@
    "layer": "B",
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 20
+   "extVer": 21
   },
   {
    "id": "9b9fed1c189aef5e",
@@ -874,7 +874,7 @@
    ],
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 20
+   "extVer": 21
   },
   {
    "id": "c12d970d5beba854",
@@ -897,12 +897,11 @@
    "layer": "B",
    "subjectFrom": "attach",
    "courses": [
-    "음악사",
-    "실기평가 등"
+    "음악사"
    ],
    "firstSeen": "2026-07-12",
    "isNew": false,
-   "extVer": 20
+   "extVer": 21
   },
   {
    "id": "2e29513f2f828862",
@@ -926,15 +925,15 @@
    "originDeepened": true,
    "subjectFrom": "attach",
    "courses": [
-    "면접/실기시행",
     "초등음악교육",
-    "원음악",
-    "전공실기1(지휘",
-    "전공실기2(지휘"
+    "전공실기1(지휘)",
+    "전공실기2(지휘)",
+    "음악형식지도론",
+    "음악분석및논문작성법"
    ],
    "firstSeen": "2026-07-12",
    "isNew": false,
-   "extVer": 20
+   "extVer": 21
   },
   {
    "id": "7e82257b25ad7ec7",
@@ -960,7 +959,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 20
+   "extVer": 21
   },
   {
    "id": "428abbc6ac01b1a1",
@@ -984,7 +983,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 20
+   "extVer": 21
   },
   {
    "id": "fe531e2e0f28b479",
@@ -1014,7 +1013,7 @@
    ],
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 20
+   "extVer": 21
   },
   {
    "id": "875b04e41b406490",
@@ -1038,7 +1037,7 @@
    "musicUnverified": true,
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 20
+   "extVer": 21
   },
   {
    "id": "1170cbe4e8bccc87",
@@ -1062,7 +1061,7 @@
    "musicUnverified": true,
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 20
+   "extVer": 21
   },
   {
    "id": "887ed332ccceac36",
@@ -1086,7 +1085,7 @@
    "musicUnverified": true,
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 20
+   "extVer": 21
   },
   {
    "id": "6015a48666b489c3",
@@ -1111,13 +1110,12 @@
    "courses": [
     "플루트",
     "전공실기",
-    "플루트 전공 석사학위 이상",
     "비올라",
-    "비올라 전공 석사학위 이상"
+    "바순"
    ],
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 20
+   "extVer": 21
   },
   {
    "id": "682e8f2ab01c9302",
@@ -1144,7 +1142,7 @@
    ],
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 20
+   "extVer": 21
   },
   {
    "id": "4a732d29d3557983",
@@ -1172,7 +1170,7 @@
    ],
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 20
+   "extVer": 21
   },
   {
    "id": "2567e43ae1c8b1dc",
@@ -1196,7 +1194,7 @@
    "musicUnverified": true,
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 20
+   "extVer": 21
   },
   {
    "id": "74c3b7961934806e",
@@ -1218,13 +1216,9 @@
    "channel": "hibrain",
    "layer": "B",
    "subjectFrom": "attach",
-   "courses": [
-    "MU1053 부전공실기 1 력 우수자",
-    "실험/실습/실기"
-   ],
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 20
+   "extVer": 21
   },
   {
    "id": "21d4220912a1600a",
@@ -1248,7 +1242,7 @@
    "deadlineFrom": "ocr",
    "firstSeen": "2026-07-12",
    "isNew": false,
-   "extVer": 20
+   "extVer": 21
   },
   {
    "id": "30dd0035a4f25b80",
@@ -1273,7 +1267,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-12",
    "isNew": false,
-   "extVer": 20
+   "extVer": 21
   },
   {
    "id": "865186ddf701973e",
@@ -1298,7 +1292,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-13",
    "isNew": true,
-   "extVer": 20
+   "extVer": 21
   },
   {
    "id": "39048c64368dac11",
@@ -1322,7 +1316,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-12",
    "isNew": false,
-   "extVer": 20
+   "extVer": 21
   },
   {
    "id": "d9bbb9afbeca97d2",
@@ -1347,7 +1341,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-12",
    "isNew": false,
-   "extVer": 20
+   "extVer": 21
   },
   {
    "id": "596fc69413cf2eb2",
@@ -1374,7 +1368,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-12",
    "isNew": false,
-   "extVer": 20
+   "extVer": 21
   },
   {
    "id": "cb1f2cc8922378bb",
@@ -1399,7 +1393,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-12",
    "isNew": false,
-   "extVer": 20
+   "extVer": 21
   },
   {
    "id": "5617a5dc7773a9a5",
@@ -1424,7 +1418,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-12",
    "isNew": false,
-   "extVer": 20
+   "extVer": 21
   },
   {
    "id": "3bcb4831db4be4cc",
@@ -1449,7 +1443,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-13",
    "isNew": true,
-   "extVer": 20
+   "extVer": 21
   },
   {
    "id": "5f240324b3b2d587",
@@ -1474,7 +1468,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-12",
    "isNew": false,
-   "extVer": 20
+   "extVer": 21
   },
   {
    "id": "32f3e2457d57b046",
@@ -1501,7 +1495,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-13",
    "isNew": true,
-   "extVer": 20
+   "extVer": 21
   },
   {
    "id": "f9851696a21a61a3",
@@ -1524,7 +1518,7 @@
    "bodyExcerpt": "시험/채용/구직 · 기간제교사 채용계획 사전공개 · 학교/기관별 채용공고 · 채용 공고 시 유의사항",
    "firstSeen": "2026-07-12",
    "isNew": false,
-   "extVer": 20
+   "extVer": 21
   },
   {
    "id": "74aafb0f253525a2",
@@ -1547,7 +1541,7 @@
    "layer": "B",
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 20
+   "extVer": 21
   },
   {
    "id": "05b306f57c79f14e",
@@ -1570,7 +1564,7 @@
    "musicUnverified": true,
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 20
+   "extVer": 21
   },
   {
    "id": "c80e362afc57cd51",
@@ -1621,7 +1615,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 20
+   "extVer": 21
   },
   {
    "id": "32a2dfcd05fc5cbb",
@@ -1645,7 +1639,7 @@
    "subjectFrom": "attach",
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 20
+   "extVer": 21
   },
   {
    "id": "89f36842ad7336af",
@@ -1669,7 +1663,7 @@
    "musicUnverified": true,
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 20
+   "extVer": 21
   },
   {
    "id": "34114bed196714d5",
@@ -1693,7 +1687,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-12",
    "isNew": false,
-   "extVer": 20
+   "extVer": 21
   },
   {
    "id": "b2e199e32140e0ed",
@@ -1721,7 +1715,7 @@
    "documents": "이력서",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 20
+   "extVer": 21
   },
   {
    "id": "340d217c42aab8e1",
@@ -1765,7 +1759,7 @@
    "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 20
+   "extVer": 21
   },
   {
    "id": "5dece78df88ec9d5",
@@ -1794,7 +1788,7 @@
    "deadlineFrom": "ocr",
    "firstSeen": "2026-07-07",
    "isNew": false,
-   "extVer": 20
+   "extVer": 21
   },
   {
    "id": "d23eba700bca92a7",
@@ -1819,7 +1813,7 @@
    "layer": "B",
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 20
+   "extVer": 21
   },
   {
    "id": "da06b8ae997fd398",
@@ -1846,7 +1840,7 @@
    "bodyExcerpt": "모집파트: 테너 또는 베이스",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 20
+   "extVer": 21
   },
   {
    "id": "b45188e68777edf5",
@@ -1874,7 +1868,7 @@
    "bodyExcerpt": "채용 | 더솔아르떼 성악아카데미 평택점과 함께할 전문 강사님을 모십니다 · 성악 전문 강사님을 모집합니다. · ✨️ 모집 분야 · 우대: 교육 및 연주 경력자 환영,",
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 20
+   "extVer": 21
   },
   {
    "id": "66564a9a98fa61d9",
@@ -1904,7 +1898,7 @@
    "bodyExcerpt": "채용 | [부산] 푸른초장교회 반주자를 모십니다.",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 20
+   "extVer": 21
   },
   {
    "id": "5fbc7e4eb4f8d92d",
@@ -1932,7 +1926,7 @@
    "documents": "간단한 이력서",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 20
+   "extVer": 21
   }
  ]
 }
