@@ -454,6 +454,45 @@ def find_music_subjects(text, max_n=6):
     courses = list(dict.fromkeys(_MUSIC_COURSE.findall(text)))
     return courses[:max_n] if courses else None
 
+# 담당 교과목명 추출 — 전공(학과)이 아니라 '무엇을 가르치는지'를 패널에 구체적으로 보여주기 위함.
+_COURSE_SIG = re.compile(
+    r"음악|성악|합창|관현악|기악|피아노|바이올린|비올라|첼로|더블베이스|콘트라베이스|플룻|플루트|오보에"
+    r"|클라리넷|바순|호른|트럼펫|트롬본|튜바|색소폰|타악|팀파니|하프|오르간|작곡|대위법|화성법|시창|청음"
+    r"|음악사|지휘|반주|국악|실용음악|앙상블|중주|실기|악기론|음악이론|음악교육론")
+
+_COURSE_EVENT = re.compile(r"음악회|연주회|발표회|축제|콘서트|페스티벌|공연")
+_INSTR_SILGI = re.compile(
+    r"(?:바이올린|비올라|첼로|더블베이스|콘트라베이스|플룻|플루트|오보에|클라리넷|바순|호른|트럼펫|트롬본"
+    r"|튜바|색소폰|타악|팀파니|하프|오르간|피아노|성악|기악)(?:실기|전공실기)")
+_KNOWN_COURSE = re.compile(r"대위법|화성법|시창청음|시창|청음|음악사|작곡법|지휘법|반주법|음악교육론|음악이론|악기론|합창지휘")
+
+def find_music_courses(text, max_n=5):
+    """첨부 교과목표에서 '음악 담당 교과목명'을 정제해 리스트로 반환(학과명·전화·코드·행사명 제외)."""
+    if not text:
+        return None
+    out, seen = [], set()
+    def add(c):
+        c = c.strip()
+        if len(c) >= 2 and c not in seen and not _COURSE_EVENT.search(c):
+            seen.add(c)
+            out.append(c)
+    # 1) 악기실기 + 알려진 이론 교과목은 긴 설명 셀에 묻혀 있어도 직접 추출
+    for m in _INSTR_SILGI.findall(text):
+        add(m)
+    for m in _KNOWN_COURSE.findall(text):
+        add(m)
+    # 2) 독립 셀의 음악 과목명 (순천대 '음악으로 세상 읽기' 등)
+    for c in re.split(r"[|\n\t;,]+", text):
+        c = re.sub(r"\s+", " ", c).strip(" ·-—()[]／/")
+        if not (3 <= len(c) <= 20):
+            continue
+        if re.search(r"\d{2,}[-)]\d|@", c) or not _COURSE_SIG.search(c):
+            continue
+        if re.search(r"(전공|학과|학부|계열|과)$", c):     # 학과명은 subject가 담당
+            continue
+        add(re.sub(r"\s*[0-9Ⅰ-Ⅹ]+\s*$", "", c).strip())
+    return out[:max_n] if out else None
+
 # ---------- 채용부문/직책/인원 표 파싱 ----------
 _HDR_PART = ["채용부문", "모집부문", "모집분야", "선발부문", "모집파트", "부문", "파트"]
 _HDR_POS = ["직책", "직급", "구분", "포지션"]

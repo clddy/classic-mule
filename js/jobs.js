@@ -26,6 +26,7 @@ const OFFICIAL_ITEMS = ((window.CRAWLED && window.CRAWLED.items) || []).map(j =>
   band: KIND2BAND[j.kind] || "기타",
   insts: j.instDetails || [], group: j.inst,
   subject: j.subject,   // 대학 교수 초빙: 전공/과목
+  courses: j.courses,   // 대학 강사: 담당 교과목(무엇을 가르치는지)
   ageGroup: j.ageGroup || "성인",   // 지원자 연령: 성인 / 미성년
   region: j.region, title: j.title, org: j.org,
   deadline: j.deadline, deadlineText: j.deadlineNote, date: j.date || j.firstSeen,
@@ -299,6 +300,7 @@ function metaRows(j) {
   const senior = (j.positions || []).filter(p => /수석|악장|차석/.test(p)).join("·");
   if (j.band && j.band !== "기타") rows.push(["형태", j.band]);
   if (j.subject) rows.push(["전공", cleanVal(j.subject)]);   // 대학 교수: 어떤 과목/전공인지
+  if (j.courses && j.courses.length) rows.push(["교과목", j.courses.join(", ")]);   // 대학 강사: 담당 과목
   if (j.recruitSummary) rows.push(["모집", cleanVal(j.recruitSummary)]);
   else if (j.personnel) rows.push(["모집", cleanVal((insts ? insts + " " : "") + j.personnel)]);
   else if (insts) rows.push(["모집", insts + (senior ? " " + senior : "")]);
