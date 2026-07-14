@@ -361,6 +361,20 @@ def _resolve_origin(s, detail_url, skip_host):
         pass
     return None
 
+# 아트인포 카드는 첫 텍스트 노드조차 '제목+지역+악기+외N+기관명+게시일'을 통째로 담는 경우가 있다.
+# 꼬리(지역으로 시작해 YYYY.MM.DD로 끝남)를 잘라내고, 기관명이 본제목 앞에 중복 접두된 것도 정리.
+_ARTINFO_TAIL = re.compile(
+    r"\s+(?:서울|부산|대구|인천|광주|대전|울산|세종|경기|강원|충북|충남|전북|전남|경북|경남|제주)"
+    r"\s+\S.{0,80}?20\d{2}\.\d{2}\.\d{2}\s*$")
+
+def _artinfo_clean(t):
+    t = _ARTINFO_TAIL.sub("", t).strip()
+    # "부산 푸른초장교회 [부산] 푸른초장교회 반주자를…" — 괄호 본제목 앞의 기관명 접두 제거
+    m = re.search(r"\s(\[[^\]]{1,12}\]\s*\S.+)$", t)
+    if m and m.start() <= 25 and not re.search(r"모집|채용|공고", t[:m.start()]):
+        t = m.group(1)
+    return t
+
 def parse_artinfo(s):
     r = get(s, "https://www.artinfokorea.com/jobs")
     items, seen = [], set()
@@ -374,7 +388,7 @@ def parse_artinfo(s):
             continue
         # 카드 앵커가 제목+지역+악기+기관명을 통째로 담고 있어 첫 텍스트 노드만 제목으로
         first = next((t.strip() for t in a.stripped_strings), "")
-        title = first if len(first) >= 10 else full[:90]
+        title = _artinfo_clean(first if len(first) >= 10 else full[:90])
         it = make_item(org_from_title(title, "아트인포(클래식 채용)"), region_from(full), "artinfokorea.com",
                        title[:90], urljoin("https://www.artinfokorea.com", href),
                        date=_row_date(a))

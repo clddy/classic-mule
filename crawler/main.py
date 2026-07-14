@@ -76,7 +76,22 @@ def dedup(items):
         if others:
             canon["alsoSeenOn"] = others
         out.append(canon)
-    return out
+    # 2차: 같은 기관 + 같은 마감인데 악기 집합이 포함관계면 재공고(악기 추가)로 보고 병합.
+    # (KBS '비올라·오보에' 원공고 → '비올라·오보에·타악기' 추가 재공고가 둘 다 남는 문제)
+    by_org = {}
+    for it in out:
+        if it.get("deadline") and not GENERIC_ORG.search(it.get("org", "")):
+            by_org.setdefault((norm_org(it["org"]), it["deadline"]), []).append(it)
+    drop = set()
+    for group in by_org.values():
+        if len(group) < 2:
+            continue
+        group.sort(key=lambda x: len(x.get("instDetails") or []), reverse=True)
+        for i, small in enumerate(group[1:], 1):
+            s = set(small.get("instDetails") or [])
+            if s and any(s < set(big.get("instDetails") or []) for big in group[:i]):
+                drop.add(small["id"])
+    return [it for it in out if it["id"] not in drop]
 
 # ---------- 커버리지 대조 ----------
 INST_CSV = os.path.join(os.path.dirname(os.path.abspath(__file__)), "institutions.csv")
