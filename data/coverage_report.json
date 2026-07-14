@@ -1,5 +1,5 @@
 {
- "date": "2026-07-14",
+ "date": "2026-07-15",
  "total": 75,
  "covered": 1,
  "gapCount": 74,
@@ -377,12 +377,12 @@
  ],
  "master": {
   "total": 604,
-  "covered": 5,
-  "gapCount": 599,
+  "covered": 6,
+  "gapCount": 598,
   "byCategory": {
    "대학": {
     "total": 77,
-    "covered": 1
+    "covered": 2
    },
    "교육대": {
     "total": 10,
@@ -527,11 +527,6 @@
     "name": "서울신학대학교",
     "cat": "대학",
     "region": "경기"
-   },
-   {
-    "name": "한국교원대학교",
-    "cat": "대학",
-    "region": "충북"
    },
    {
     "name": "가천대학교",
