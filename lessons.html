@@ -38,10 +38,11 @@
 <div class="page-head">
   <div class="container">
     <h1>과외 매칭</h1>
-    <p class="desc">사사 라인, 입시 합격 실적, 시범레슨 여부까지 — 레슨 결정에 진짜 필요한 정보로 찾습니다. <span style="color:var(--ink-soft)">(등록 예시 · 실데이터 준비 중)</span></p>
+    <p class="desc">사사 라인, 입시 합격 실적, 시범레슨 여부까지 — 레슨 결정에 진짜 필요한 정보로 찾습니다. <b>강사 자리</b> 탭은 전국 교육청·학원 공고를 매일 자동 수집한 실데이터입니다.</p>
     <div class="tabs">
       <button class="tab active" id="tab-teacher">선생님 찾기</button>
       <button class="tab" id="tab-request">학생 레슨 요청</button>
+      <button class="tab" id="tab-jobs">강사 자리 <span class="soon" id="jobs-count"></span></button>
     </div>
   </div>
 </div>
@@ -155,6 +156,7 @@
 
 <a class="feedback-fab" href="mailto:ohmjin3141@naver.com?subject=%ED%8F%AC%EB%94%94%EC%97%84%20%EA%B3%BC%EC%99%B8%20%ED%94%BC%EB%93%9C%EB%B0%B1">피드백 보내기</a>
 
+<script src="data/official-data.js"></script>
 <script>
 // 리서치 반영: 사사·합격실적이 핵심 신뢰 정보, 성악은 반주자 비용 별도, 시범레슨 문화
 // 학력·입상 경력은 필수 표기, 사사는 표기하지 않음 (피드백 반영)
@@ -170,6 +172,25 @@ const TEACHERS = [
 const REQUESTS = [
   { inst:"현악", detail:"바이올린", title:"예고 입시 준비 중3, 주 2회 레슨 선생님 찾습니다", region:"분당", budget:"회당 10~15만", mode:"스튜디오 방문 가능", note:"현재 스즈키 10권 수준. 11월 콩쿠르 목표.", sample:true },
 ];
+
+// 강사 자리 공고 (실데이터) — 구인구직 크롤러가 수집한 교육 계열 공고를 그대로 연동.
+// 가르치는 일 = 교육 — 입시·전공(예중·예고·입시) / 교육 — 취미·입문(학원·방과후·문화센터).
+const LESSON_JOBS = ((window.CRAWLED && window.CRAWLED.items) || [])
+  .filter(j => j.tier === "교육 — 입시·전공" || j.tier === "교육 — 취미·입문")
+  .map(j => ({
+    key: "o" + j.id, title: j.title, org: j.org, region: j.region,
+    tier: j.tier, deadline: j.deadline, deadlineNote: j.deadlineNote,
+    insts: j.instDetails || [], subject: j.subject, courses: j.courses,
+    certReq: j.certReq, careerReq: j.careerReq,
+  }));
+
+function dday(j){
+  if (!j.deadline) return j.deadlineNote === "상시" ? {t:"상시",cls:"dd-open"} : {t:"기한 확인",cls:"dd-always"};
+  const diff = Math.round((new Date(j.deadline) - new Date(new Date(Date.now()+9*3600*1000).toISOString().slice(0,10))) / 86400000);
+  if (diff < 0) return {t:"마감",cls:"dd-closed"};
+  if (diff <= 7) return {t:`마감임박 D-${diff}`,cls:"dd-soon"};
+  return {t:`D-${diff}`,cls:"dd-open"};
+}
 
 // 악기는 세부 단위로 — 바이올린 선생님이 비올라를 가르칠 수는 없으니까
 const INST_GROUPS=[
@@ -203,9 +224,34 @@ function render(){
   instChips();chips("#f-level",LEVELS,st.level);chips("#f-mode",MODES,st.mode);chips("#f-cond",CONDS,st.cond);
   $("#tab-teacher").classList.toggle("active",st.tab==="teacher");
   $("#tab-request").classList.toggle("active",st.tab==="request");
+  $("#tab-jobs").classList.toggle("active",st.tab==="jobs");
   const q=st.q.toLowerCase();
   let html="";
-  if(st.tab==="teacher"){
+  if(st.tab==="jobs"){
+    // 실데이터: 크롤 수집 강사·레슨 공고. 클릭 → 구인구직 상세 딥링크.
+    const list=LESSON_JOBS.filter(j=>{
+      if(st.inst.size&&!(j.insts||[]).some(d=>instMatch(d,st.inst)))return false;
+      if(q&&!`${j.title} ${j.org} ${j.region} ${(j.insts||[]).join(" ")}`.toLowerCase().includes(q))return false;
+      return true;
+    });
+    $("#result-count").innerHTML=`강사 자리 <strong>${list.length}</strong>건 <span style="color:var(--ink-soft);font-size:0.8rem">— 매일 자동 수집 · 클릭하면 구인구직 상세로 이동</span>`;
+    html=list.map(j=>{
+      const d=dday(j);
+      return `
+      <a class="job-card" href="jobs.html#post=${encodeURIComponent(j.key)}" style="display:block">
+        <div class="top-row">
+          <span class="tag src-official">공식</span>
+          <span class="tag ${j.tier==="교육 — 입시·전공"?"inst":"dd-open"}">${j.tier}</span>
+          <span class="tag ${d.cls}">${d.t}</span>
+          ${(j.insts||[]).map(x=>`<span class="tag inst">${x}</span>`).join("")}
+          ${j.subject?`<span class="tag cat">${j.subject}</span>`:""}
+          ${j.certReq==="아니오"?`<span class="tag ok">자격증 불필요</span>`:""}
+          ${j.careerReq==="무관"?`<span class="tag ok">경력 무관</span>`:""}
+        </div>
+        <h3>${j.title}</h3>
+        <div class="meta"><span>${j.org}</span><span>${j.region}</span>${j.courses&&j.courses.length?`<span>${j.courses.slice(0,2).join(", ")}</span>`:""}</div>
+      </a>`;}).join("");
+  } else if(st.tab==="teacher"){
     const list=TEACHERS.filter(t=>{
       if(st.inst.size&&!instMatch(t.detail,st.inst))return false;
       if(st.level.size&&![...st.level].some(l=>t.target.includes(l)))return false;
@@ -258,6 +304,8 @@ document.addEventListener("DOMContentLoaded",()=>{
   render();
   $("#tab-teacher").addEventListener("click",()=>{st.tab="teacher";render();});
   $("#tab-request").addEventListener("click",()=>{st.tab="request";render();});
+  $("#tab-jobs").addEventListener("click",()=>{st.tab="jobs";render();});
+  $("#jobs-count").textContent=LESSON_JOBS.length||"";
   $("#search-input").addEventListener("input",e=>{st.q=e.target.value.trim();render();});
   $("#sort-sel").addEventListener("change",e=>{st.sort=e.target.value;render();});
   // 레슨 요청서

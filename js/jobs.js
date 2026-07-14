@@ -540,6 +540,12 @@ function deleteMyPost(cid) {
 // ---------- 초기화 ----------
 document.addEventListener("DOMContentLoaded", () => {
   renderAll();
+  // 딥링크: 과외 페이지 등에서 jobs.html#post=o<id> 로 진입하면 해당 공고 모달을 바로 연다
+  const hm = location.hash.match(/^#post=(.+)$/);
+  if (hm) {
+    const key = decodeURIComponent(hm[1]);
+    if (OFFICIAL_ITEMS.some(j => j.key === key)) openOfficial(key);
+  }
   ["전체", "구인", "구직"].forEach(t => {
     $(`#tab-${t}`).addEventListener("click", () => { state.tab = t; renderAll(); });
   });
