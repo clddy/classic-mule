@@ -2,7 +2,7 @@
 import os, re, json
 from urllib.parse import urljoin, urlparse
 from bs4 import BeautifulSoup
-from common import get, make_item, find_date, relevant, region_from
+from common import get, make_item, find_date, relevant, region_from, DATE_PAT, norm_date
 
 def _soup(r):
     return BeautifulSoup(r.text, "lxml")
@@ -677,8 +677,23 @@ def _make_nantt_parser(cfg):
                     continue
                 url = (f"{cfg['base']}/na/ntt/selectNttInfo.do?nttSn={a['data-id']}"
                        f"&mi={cfg['mi']}&bbsId={cfg['bbsId']}")
-                items.append(make_item(cfg["name"], cfg["region"], cfg["dom"], title, url,
-                                       date=_row_date(a)))
+                # 행 구조: 번호 학교명 과목 제목 모집상태 마감일 담당자 게시일
+                #  → 날짜가 2개면 min=게시일·max=마감일 (find_date는 첫 날짜=마감을 게시일로 오인했었음)
+                node = a
+                for _ in range(4):
+                    if node.parent is None:
+                        break
+                    node = node.parent
+                    if node.name in ("tr", "li"):
+                        break
+                rowtxt = node.get_text(" ", strip=True)
+                ds = sorted(norm_date(m) for m in DATE_PAT.finditer(rowtxt))
+                date = ds[0] if ds else None
+                deadline = ds[-1] if len(ds) >= 2 and ds[-1] > ds[0] else None
+                mo = re.match(r"^\d+\s+([가-힣A-Za-z\d]{2,20}(?:학교|유치원))\s", rowtxt)
+                org = f"{mo.group(1)}({cfg['name'][:2]}교육청)" if mo else cfg["name"]
+                items.append(make_item(org, cfg["region"], cfg["dom"], title, url,
+                                       date=date, deadline=deadline))
         return items
     return parse
 
