@@ -4,7 +4,7 @@
 // 실제 게시글은 사용자가 '글쓰기'로 등록 (서버 도입 전까지 세션 내 유지, 새로고침 시 초기화)
 const JOBS = [
   {
-    id: 1, type: "offer", cat: "객원/대타", tier: "프로", inst: "현악", instDetail: "바이올린",
+    id: 1, type: "offer", cat: "객원/대타", tier: "연주", inst: "현악", instDetail: "바이올린",
     title: "시립교향악단 정기연주회 제2바이올린 객원 2명 모집",
     org: "○○시립교향악단", region: "서울", pay: "회당 15만원 (리허설 3회 포함)",
     when: "리허설 7/21~23, 공연 7/24(금)",
@@ -15,7 +15,7 @@ const JOBS = [
     body: "7월 정기연주회 제2바이올린 객원 2명을 모십니다.\n\n· 리허설: 7/21(화)~7/23(목) 오후 2시, 공연 7/24(금) 저녁\n· 장소: 세종문화회관 대극장\n· 자격: 음대 졸업 이상 또는 동등 경력\n\n이력서와 연주 영상 링크를 보내주세요."
   },
   {
-    id: 9, type: "seek", cat: "객원/대타", tier: "프로", inst: "현악", instDetail: "첼로",
+    id: 9, type: "seek", cat: "객원/대타", tier: "연주", inst: "현악", instDetail: "첼로",
     title: "[첼로] 오케스트라 객원·행사 연주 가능합니다",
     org: "김○○ (예술대 석사 졸)", region: "서울", pay: "협의",
     date: "2026-07-06", deadline: "상시", urgent: false,

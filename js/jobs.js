@@ -60,8 +60,23 @@ let COMMUNITY_ITEMS = JOBS.map(j => ({
 // 이 기기에서 올린 글은 새로고침해도 유지된다. mine:true → '내 공고 관리'에서 삭제 가능.
 // ※ 다른 사용자에게도 보이려면 공유 백엔드가 필요(지금은 이 기기 로컬 프로토타입).
 const LS_KEY = "podium_user_posts_v2";
+// 태그 체계 개편(구 4분류 → 연주/교육 3종): 이 기기에 저장된 옛 글의 tier를 새 체계로 이관
+const TIER_MIGRATE = {
+  "프로": "연주", "오브리": "연주", "전공·입시": "교육 — 입시·전공",
+  "교육·취미": "교육 — 취미·입문", "대학·전공": "교육 — 대학",
+  "예중·예고": "교육 — 입시·전공", "입문·취미": "교육 — 취미·입문"
+};
 function loadUserPosts() {
-  try { return JSON.parse(localStorage.getItem(LS_KEY)) || []; } catch (e) { return []; }
+  try {
+    const posts = JSON.parse(localStorage.getItem(LS_KEY)) || [];
+    for (const p of posts) {
+      if (TIER_MIGRATE[p.tier]) {
+        if (p.tier === "오브리") p.obri = true;   // 오브리는 연주의 하위 필터로 승계
+        p.tier = TIER_MIGRATE[p.tier];
+      }
+    }
+    return posts;
+  } catch (e) { return []; }
 }
 function saveUserPosts() {
   try { localStorage.setItem(LS_KEY, JSON.stringify(USER_POSTS)); } catch (e) {}
