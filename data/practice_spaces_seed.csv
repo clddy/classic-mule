@@ -75,6 +75,8 @@ name,category,region,district,address,price_type,price,rental_unit,apply_method,
 [포털] 서울문화포털 문화공간,public,서울,,,,,,온라인,,,누구나,https://culture.seoul.go.kr/culture/culture/cultureSpace/list.do,,서울 문화공간 전체 데이터베이스·연습실 검색 가능,https://culture.seoul.go.kr/culture/culture/cultureSpace/list.do
 [포털] 서울시 공공서비스예약 오픈API,public,서울,,,,,,온라인,,,누구나,https://data.seoul.go.kr/dataList/OA-20497/S/1/datasetView.do,,API 실검증완료(2026-07-12): ListPublicReservationInstitution=시설대관 590건·SVCNM/장소/유무료/이용대상/예약URL 필드. ⚠️웹크롤은 차단(비정상접근 감지) — 반드시 인증키(무료·즉시발급) API로만. sample키=5건 한정,https://www.data.go.kr/data/15125787/openapi.do
 [포털] 서울시 청소년시설 통합예약,public,서울,,,,,,온라인,,,청소년,https://online.youth.seoul.kr,,시립청소년센터 21곳 통합예약 시스템,https://online112.youth.seoul.kr
+[명부] e청소년(여가부 청소년활동정보),public,전국,,,,,,온라인,,,청소년,https://www.youth.go.kr,,전국 청소년수련관·문화의집 시설검색+종합평가·안전점검 결과까지 조회 — 지시서 3-4 명부소스,https://www.youth.go.kr/youth/eYouth/main/main.yt
+[명부] 전국문화기반시설총람(문체부),public,전국,,,,,,,,,,https://www.data.go.kr/data/3075558/fileData.do,,생활문화센터·문예회관·문화의집·지방문화원 전국 총람(2025.01 기준·XLSX) — 공공 연습공간 모명부. 다운로드는 data.go.kr 로그인 필요,https://www.data.go.kr/data/3075558/fileData.do
 
 # ===== 검증 후 제외 (실재하나 리스팅 부적합) =====
 # 노들섬 다목적홀 숲 — 서울시발레단 전용 전환, 외부대관 중단 (nodeul.org 확인)
