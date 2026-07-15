@@ -56,7 +56,16 @@ name,category,region,district,address,price_type,price,rental_unit,apply_method,
 # ===== 음악창작소 네트워크 (문체부·콘진원 지역기반형 — 전국 16곳) =====
 충남음악창작소,public,충남,,,시간당,,시간,온라인,,승인제,누구나,https://www.cnmusicfactory.com,타악가능|성악·앙상블가능,합주실·녹음실·문체부 지역기반형 음악창작소,https://www.cnmusicfactory.com
 전북 레드콘 음악창작소,public,전북,전주시,,시간당,,시간,온라인,,승인제,누구나,https://www.kocca.kr/kocca/subPage.do?menuNo=205047,타악가능|성악·앙상블가능,콘진원 지역음악창작소·창작자(뮤지션) 모집 운영,https://chn.kocca.kr/kocca/bbs/view/B0158919/1962737.do
-[네트워크] 지역 음악창작소 16곳,public,전국,,,시간당,,시간,온라인,,승인제,누구나,https://www.kocca.kr/kocca/subPage.do?menuNo=205047,타악가능,광주·부산·대구·대전(인터뮤직)·제주·인천·경주 등 16곳 운영 — 콘진원 사업페이지에서 지역별 개별 확인,https://www.kocca.kr/kocca/subPage.do?menuNo=205047
+부산음악창작소,public,부산,,,시간당,,시간,온라인,,승인제,누구나,https://www.musiclabbusan.com,타악가능|성악·앙상블가능,전문 스튜디오·음향장비·지역음악인 열린공간,https://www.musiclabbusan.com
+인천음악창작소 PORTROCK,public,인천,부평구,산곡동 449 부평캠프마켓,시간당,,시간,온라인,,승인제,누구나,https://www.portrock.kr,타악가능|성악·앙상블가능,부평캠프마켓 내·인천음악콘텐츠협회 운영,https://www.portrock.kr
+[네트워크] 지역 음악창작소 17곳(콘진원 공식),public,전국,,,시간당,,시간,온라인,,승인제,누구나,https://www.kocca.kr/kocca/subPage.do?menuNo=205047,타악가능,공식 17곳: 강원·경기·경남·경북·광주·대구·대전·부산·서울(마포)·세종·울산·인천·전남·전북·제주·충남·충주 — 각 지역 개별 사이트 보유,https://www.kocca.kr/kocca/subPage.do?menuNo=205047
+
+# ===== 서울 시립청소년센터 네트워크 (21곳 — 밴드·음악연습실 보유 다수) =====
+시립보라매청소년센터,public,서울,동작구,여의대방로20길 61,회당,,시간,온라인,,선착순,누구나,https://www.boramyc.or.kr,타악가능|성악·앙상블가능,02-834-6411·수련시설 내 음악연습실,https://www.boramyc.or.kr
+시립노원청소년센터,public,서울,노원구,,회당,,시간,온라인,,선착순,누구나,https://online112.youth.seoul.kr/?center_id=112,타악가능,서울시 청소년시설 통합예약(online.youth.seoul.kr) 연동,https://online112.youth.seoul.kr/?center_id=112
+시립목동청소년센터,public,서울,양천구,목동서로 143,회당,,시간,온라인,,선착순,누구나,http://www.wawa.or.kr,타악가능,02-2642-1318,http://www.wawa.or.kr
+시립서울청소년센터,public,서울,,,회당,,시간,온라인,,선착순,누구나,http://youthc.or.kr,타악가능,,http://youthc.or.kr
+[네트워크] 서울 시립청소년센터 21곳,public,서울,,,회당,,시간,온라인,,선착순,누구나,https://online.youth.seoul.kr,타악가능,구 청소년수련관 21곳(2019 개칭)·상당수 밴드/음악연습실 보유·통합예약시스템 존재,https://news.seoul.go.kr/welfare/archives/385937
 
 # ===== 수집 포털 노드 (개별 공간이 아니라 '소스' — 파서 웨이브용) =====
 [포털] 서울시 공공서비스예약,public,서울,,,,,,온라인,,,누구나,https://yeyak.seoul.go.kr,,시립·구립 연습공간 통합예약 최대노드·시설대관 카테고리 크롤 대상,https://yeyak.seoul.go.kr/web/main.do
@@ -64,6 +73,8 @@ name,category,region,district,address,price_type,price,rental_unit,apply_method,
 [포털] 아르코 공연예술연습공간,public,전국,,,,,,온라인,분기단위,,누구나,https://www.arko.or.kr/pspace/,,전국 아르코 연습센터 통합 대관예약·지역선택→달력 예약,https://www.arko.or.kr/pspace/
 [포털] 시흥 공유플랫폼 시소,public,경기,시흥시,,,,,온라인,,,누구나,https://share.siheung.go.kr,,시흥시 공공공간 공유플랫폼·'음악공간' 카테고리 확인,https://share.siheung.go.kr/space/view.do?key=305000&space_no=207
 [포털] 서울문화포털 문화공간,public,서울,,,,,,온라인,,,누구나,https://culture.seoul.go.kr/culture/culture/cultureSpace/list.do,,서울 문화공간 전체 데이터베이스·연습실 검색 가능,https://culture.seoul.go.kr/culture/culture/cultureSpace/list.do
+[포털] 서울시 공공서비스예약 오픈API,public,서울,,,,,,온라인,,,누구나,https://data.seoul.go.kr/dataList/OA-20497/S/1/datasetView.do,,예약시스템 전체 데이터셋(OA-20497)+공공데이터포털 API(15125787) — 파서 최우선 소스(크롤 불필요),https://www.data.go.kr/data/15125787/openapi.do
+[포털] 서울시 청소년시설 통합예약,public,서울,,,,,,온라인,,,청소년,https://online.youth.seoul.kr,,시립청소년센터 21곳 통합예약 시스템,https://online112.youth.seoul.kr
 
 # ===== 검증 후 제외 (실재하나 리스팅 부적합) =====
 # 노들섬 다목적홀 숲 — 서울시발레단 전용 전환, 외부대관 중단 (nodeul.org 확인)
