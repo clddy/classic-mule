@@ -395,7 +395,6 @@ function cardPublic(r, i){
     <div class="top-row">
       ${catBadge(r)} ${priceBadge(r)}
       <span class="tag cat">${esc(r.region)}</span>
-      ${st.sort==="dist"&&distOf(r)!==Infinity?`<span class="tag inst">약 ${distOf(r).toFixed(1)}km</span>`:""}
       ${(r.instruments||[]).map(x=>`<span class="tag pos">${x}</span>`).join("")}
       ${r.spaces?`<span class="tag inst">${esc(r.spaces)}</span>`:""}
     </div>
