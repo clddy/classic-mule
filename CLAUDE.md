@@ -21,6 +21,12 @@
 - 대형 페이지(2MB+)에서 lxml이 앵커를 누락할 수 있다 → 첨부 못 찾으면 html.parser 폴백 있음.
 - 태그/필드 스키마를 바꾸면 세 군데 동기화: crawler(common.py) + js/jobs.js(TIERS·매핑·필터)
   + jobs.html(폼 옵션) + js/data.js(예시글). localStorage 옛 글은 TIER_MIGRATE로 이관.
+- **지역 체계는 16개 시도** — 2026-07-01 전남광주통합특별시 출범으로 전남·광주가 한 광역단체가
+  됐다. 표기는 `광주·전남`(약칭 '광주특별시'는 옛 광주광역시와 헷갈려 안 씀). 정의는
+  common.py(REGION_ORDER·_REGION_TOKENS)이고 jobs.js·practice.html이 같은 표를 복제한다 —
+  넷 다 같이 고칠 것. 옛 수집분은 REGION_MIGRATE(양쪽)로 화면에서 이관.
+- **'광주'는 경기 광주시일 수 있다** — 실제로 고산생활문화센터(경기 광주시)가 광주광역시로
+  잘못 들어가 있었다. _REGION_TOKENS는 경기 광주시(곤지암·오포·퇴촌…)를 맨 '광주'보다 먼저 본다.
 
 ## 크롤 검증 루틴
 

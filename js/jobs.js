@@ -101,8 +101,12 @@ const INST_GROUPS = [
   ["기타", ["타악", "피아노", "하프", "지휘"]],
   ["성악", ["소프라노", "메조소프라노", "알토", "테너", "바리톤", "베이스(성악)"]],
 ];
+// 2026-07-01 전남광주통합특별시 출범 — 전남·광주가 한 광역단체가 됐다. crawler/common.py와 같은 표기.
 const REGION_LIST = ["서울", "경기", "인천", "강원", "대전", "세종", "충북", "충남",
-  "대구", "경북", "부산", "울산", "경남", "광주", "전북", "전남", "제주", "기타"];
+  "대구", "경북", "부산", "울산", "경남", "광주·전남", "전북", "제주", "기타"];
+// 통합 전에 수집된 글은 region이 아직 '광주'·'전남'이다 — 다음 크롤 전까지 화면에서 옮겨 읽는다.
+const REGION_MIGRATE = { "광주": "광주·전남", "전남": "광주·전남" };
+function regionOf(j){ const r = j.region || "기타"; return REGION_MIGRATE[r] || r; }
 const STATUSES = ["접수중", "마감임박", "확인필요", "마감"];
 
 const state = { tab: "전체", tiers: new Set(), bands: new Set(), insts: new Set(), regions: new Set(), status: new Set(), provided: new Set(), obri: false, noCert: false, noCareer: false, query: "", sort: "deadline" };
@@ -156,7 +160,7 @@ function filtered() {
     if (state.insts.size) {
       if (!j.insts.length || ![...state.insts].some(v => j.insts.includes(v))) return false;
     }
-    if (state.regions.size && !state.regions.has(j.region)) return false;
+    if (state.regions.size && !state.regions.has(regionOf(j))) return false;
     if (state.status.size && !state.status.has(statusOf(j).key)) return false;
     if (state.provided.size && !/제공/.test(j.instProvided || "")) return false;
     if (state.query) {
@@ -209,7 +213,7 @@ function cardHTML(j) {
     ${/제공/.test(j.instProvided || "") ? `<span class="tag provided">악기 제공</span>` : ""}
     ${j.urgent ? `<span class="tag urgent">급구</span>` : ""}
     ${j.isNew ? `<span class="tag urgent">NEW</span>` : ""}`;
-  const region = j.region && j.region !== "기타" ? `<span>${j.region}</span>` : "";
+  const region = regionOf(j) !== "기타" ? `<span>${regionOf(j)}</span>` : "";
   const pay = okPay(j.pay) ? `<span class="pay">${cleanVal(j.pay)}</span>` : "";
   const meta = `
     <span>${j.org}</span>
@@ -332,7 +336,7 @@ function metaRows(j) {
   const dl = j.deadline
     ? `${j.deadline} <span style="color:var(--ink-soft)">(${st.label})</span>`
     : (j.deadlineText === "상시" ? "상시 모집" : (j.src === "공식" ? "기한 확인필요" : (j.deadlineText || "협의")));
-  const rows = [["기관", j.org], ["지역", j.region], ["마감", dl]];
+  const rows = [["기관", j.org], ["지역", regionOf(j)], ["마감", dl]];
   const insts = (j.insts || []).join("·");
   const senior = (j.positions || []).filter(p => /수석|악장|차석/.test(p)).join("·");
   if (j.band && j.band !== "기타") rows.push(["형태", j.band]);

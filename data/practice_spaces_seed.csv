@@ -32,12 +32,12 @@ name,category,region,district,address,price_type,price,rental_unit,apply_method,
 아르코공연연습센터@금정,public,부산,금정구,,시간당,,시간,온라인,분기단위,승인제,누구나,https://www.arko.or.kr/pspace/,성악·앙상블가능,금정문화재단 위탁운영,https://www.arko.or.kr/pspace/,확인
 아르코공연연습센터@창원,public,경남,창원시,경남 창원시 마산회원구 삼호로 135 3·15아트센터 1층,시간당,,시간,온라인,분기단위,승인제,누구나,https://www.cwcf.or.kr/rental/rental_arko6.asp,성악·앙상블가능,창원문화재단 위탁운영,https://www.arko.or.kr/pspace/,확인
 아르코공연연습센터@포항,public,경북,포항시,,시간당,,시간,온라인,분기단위,승인제,누구나,https://www.arko.or.kr/pspace/,성악·앙상블가능,포항문화재단 위탁운영,https://www.arko.or.kr/pspace/,확인
-아르코공연연습센터@광주(광산),public,광주,광산구,,시간당,,시간,온라인,분기단위,승인제,누구나,https://www.arko.or.kr/pspace/,성악·앙상블가능,광산 아르코공연연습센터 운영위원회,https://www.arko.or.kr/pspace/,확인
+아르코공연연습센터@광주(광산),public,광주·전남,광산구,,시간당,,시간,온라인,분기단위,승인제,누구나,https://www.arko.or.kr/pspace/,성악·앙상블가능,광산 아르코공연연습센터 운영위원회,https://www.arko.or.kr/pspace/,확인
 아르코공연연습센터@세종,public,세종,,,유료,5000,시간대,온라인,분기단위,승인제,누구나,https://www.arko.or.kr/pspace/,성악·앙상블가능,대연습실 108㎡ 2만원(전일 4만원)·중연습실 72㎡ 1만원·소연습실 49/45㎡ 5천원. 오전/오후/야간 시간대별. 피아노·신디사이저·발레바. 조치원읍 소재. 070-7779-5033,https://www.arko.or.kr/pspace/,확인
 아르코공연연습센터@원주,public,강원,원주시,강원 원주시 향교길 77 남산골문화센터,시간당,,시간,온라인,분기단위,승인제,누구나,https://www.wcf.or.kr/common_page/contents_page.php?board_code=72&tsort=2&msort=72&ssort=,성악·앙상블가능,원주문화재단 위탁운영(재단 안내페이지는 JS스텁 — 아르코 통합예약으로 연결),https://www.arko.or.kr/pspace/,확인
 아르코공연연습센터@영월,public,강원,영월군,,시간당,,시간,온라인,분기단위,승인제,누구나,https://www.arko.or.kr/pspace/,성악·앙상블가능,영월문화관광재단 위탁운영,https://www.arko.or.kr/pspace/,확인
-강진아르코공연연습센터,public,전남,강진군,,시간당,,시간,온라인,분기단위,승인제,누구나,https://www.arko.or.kr/pspace/,성악·앙상블가능,강진군문화재단 위탁운영,https://www.arko.or.kr/pspace/,확인
-아르코공연연습센터@담양,public,전남,담양군,전남 담양군 담양읍 지침1길 10 해동문화예술촌,시간당,,시간,온라인,분기단위,승인제,누구나,https://www.damyangcf.or.kr/user/sub3030,성악·앙상블가능,담양군문화재단 위탁운영,https://www.damyangcf.or.kr/user/sub3030,확인
+강진아르코공연연습센터,public,광주·전남,강진군,,시간당,,시간,온라인,분기단위,승인제,누구나,https://www.arko.or.kr/pspace/,성악·앙상블가능,강진군문화재단 위탁운영,https://www.arko.or.kr/pspace/,확인
+아르코공연연습센터@담양,public,광주·전남,담양군,전남 담양군 담양읍 지침1길 10 해동문화예술촌,시간당,,시간,온라인,분기단위,승인제,누구나,https://www.damyangcf.or.kr/user/sub3030,성악·앙상블가능,담양군문화재단 위탁운영,https://www.damyangcf.or.kr/user/sub3030,확인
 아르코공연연습센터@서천,public,충남,서천군,,시간당,,시간,온라인,분기단위,승인제,누구나,https://www.arko.or.kr/pspace/,성악·앙상블가능,충남문화관광재단 위탁운영,https://www.arko.or.kr/pspace/,확인
 아르코공연연습센터@제주,public,제주,,,시간당,,시간,온라인,분기단위,승인제,누구나,https://www.arko.or.kr/pspace/,성악·앙상블가능,제주문화예술재단 MOU·운영,https://www.arko.or.kr/pspace/,확인
 # 아르코 위탁운영기관 추가 확인분(전주·청주·춘천·인천문화재단)도 각 지역 센터 존재 추정 — 등록 시 개별 확인
@@ -65,7 +65,7 @@ name,category,region,district,address,price_type,price,rental_unit,apply_method,
 # ===== 호남·문예회관·국립 (4차) =====
 우진문화공간,public,전북,전주시,,시간당,,시간,전화,,승인제,누구나,http://www.woojin.or.kr/sub/04_sub_01.html,피아노있음|성악·앙상블가능,★클래식 특화: 기악·성악 연습실+개인연습실 명시(민간 문화재단). 무용·연극 전용연습실 별도. 10~22시 개방,http://www.woojin.or.kr/sub/04_sub_01.html,확인
 전주공연예술연습공간,public,전북,전주시,전북 전주시 완산구 현무1길 25,시간당,,시간,온라인,,승인제,누구나,https://www.jjcf.or.kr/main/inner.php?sMenu=H1500,성악·앙상블가능,"중연습실2·대연습실2+세미나실(269.7㎡,  지하1~지상3층). 피아노·드럼·음향/조명 완비. 월~토 10~22시. 정기대관(심사)+수시대관. 청소년 무료대관 지원. 문의 063-213-2016",검증 2026-07-12 대관확인,확인
-광주 음악산업진흥센터,public,광주,,광주 남구 송암로 24,시간당,,시간,온라인,,승인제,누구나,https://www.gicon.or.kr/menu.es?mid=a11003030000,타악가능|성악·앙상블가능,광주정보문화산업진흥원 운영·음악창작소 광주 거점·대관안내 페이지 운영,https://www.gicon.or.kr/menu.es?mid=a11003030000,확인
+광주 음악산업진흥센터,public,광주·전남,,광주 남구 송암로 24,시간당,,시간,온라인,,승인제,누구나,https://www.gicon.or.kr/menu.es?mid=a11003030000,타악가능|성악·앙상블가능,광주정보문화산업진흥원 운영·음악창작소 광주 거점·대관안내 페이지 운영,https://www.gicon.or.kr/menu.es?mid=a11003030000,확인
 고산생활문화센터(경기 광주시),public,경기,광주시,경기 광주시 태봉로 193 고산지구문화누리센터 2층,무료,0,시간,온라인,,선착순,누구나,https://glcc.nsart.or.kr/M000177/S001/conts.do,성악·앙상블가능,연습실1~3(18~39㎡) 악기·노래연습 용도·무료. 고산지구문화누리센터 2층,https://glcc.nsart.or.kr,확인
 고양아람누리 연습실,public,경기,고양시,경기도 고양시 덕양구 어울림로 33,회당,,반일,온라인,,승인제,누구나,https://artgy.or.kr/RE/RE0101V.aspx,성악·앙상블가능|대편성가능,1회=5시간 기준 대관·초과 시간당 추가·고양문화재단(어울림누리 연습실 별도),https://artgy.or.kr/RE/RE0101V.aspx,확인
 

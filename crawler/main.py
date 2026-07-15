@@ -7,7 +7,8 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import (new_session, get, relevant, extract_deadline, deadline_from_title,
                     musician_relevant, parse_recruit_table, summarize_recruit, find_position,
                     classify_insts, find_subject, find_music_subjects, find_music_courses,
-                    classify_kind, classify_tier, is_obri, cert_required, degree_req, career_req, age_group)
+                    classify_kind, classify_tier, is_obri, cert_required, degree_req, career_req, age_group,
+                    region_from)
 from sources import SOURCES
 from institutions import INSTITUTIONS
 import attach
@@ -238,7 +239,8 @@ def find_attachments(soup, base_url):
                     cands.append((full, el.get_text(" ", strip=True)))
     return cands[:4]
 
-EXT_VER = 22         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
+EXT_VER = 23         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
+                     # 23: region_from 개편(전남광주통합특별시 반영, 경기 광주시 오분류 수정)
                      #  v18: 대학 강사 초빙 원문 첨부(HWP/XLSX)에서 음악 전공 추출 + 비음악 제외
                      #  v19: 음악 학과/전공 정밀 추출(행사명·전화번호 오염 제거) — 재추출 강제
                      #  v20: 담당 교과목(courses) 추출·패널 노출 — 재추출 강제
@@ -497,7 +499,7 @@ def _cjob_detail(text, item):
         item["personnel"] = role
     reg = grab(r"지역\s*(.+?)\s*-\s*(?:등록일|남은기간)")
     if reg in _CJOB_REGIONS:
-        item["region"] = reg if reg in ("서울", "경기", "인천", "대전", "대구", "부산") else "기타"
+        item["region"] = region_from(reg)      # 17개 전 지역 유지 (예전엔 6개만 남기고 기타로 버렸다)
     d = grab(r"등록일\s*(20\d\d-\d\d-\d\d)")
     if d:
         item["date"] = d

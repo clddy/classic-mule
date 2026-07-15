@@ -438,7 +438,7 @@ window.SEED_ROOMS = [
  {
   "name": "아르코공연연습센터@광주(광산)",
   "category": "public",
-  "sido": "광주",
+  "sido": "광주·전남",
   "district": "광산구",
   "region": "광산구",
   "price": "시간당 유료",
@@ -522,7 +522,7 @@ window.SEED_ROOMS = [
  {
   "name": "강진아르코공연연습센터",
   "category": "public",
-  "sido": "전남",
+  "sido": "광주·전남",
   "district": "강진군",
   "region": "강진군",
   "price": "시간당 유료",
@@ -543,7 +543,7 @@ window.SEED_ROOMS = [
  {
   "name": "아르코공연연습센터@담양",
   "category": "public",
-  "sido": "전남",
+  "sido": "광주·전남",
   "district": "담양군",
   "region": "담양군",
   "addr": "전남 담양군 담양읍 지침1길 10 해동문화예술촌",
@@ -903,8 +903,8 @@ window.SEED_ROOMS = [
  {
   "name": "광주 음악산업진흥센터",
   "category": "public",
-  "sido": "광주",
-  "region": "광주",
+  "sido": "광주·전남",
+  "region": "광주·전남",
   "addr": "광주 남구 송암로 24",
   "price": "시간당 유료",
   "free": false,
