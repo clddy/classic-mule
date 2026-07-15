@@ -1,0 +1,56 @@
+name,category,region,district,address,price_type,price,rental_unit,apply_method,apply_timing,selection,eligibility,booking_url,instruments,notes,source_verified
+# ============================================================
+# 포디엄 연습실 시드 — 실재 검증 리스팅 (2026-07-12 웹검증)
+# category: public(신청제·공공) / instant(즉시예약·민간)
+# 빈 필드 = 미확인(등록 시 개별 확인). source_verified = 검증 근거 URL
+# ============================================================
+
+# ===== 서울 — 생활문화센터 (서울문화재단 계열) =====
+서울생활문화센터 낙원,public,서울,종로구,낙원악기상가 내,,,시간,온라인,,선착순,누구나,http://www.nakwon-communityart.or.kr,피아노있음|성악·앙상블가능,악기거리 한복판·방음 연습실+악기장비 보유·음악특화 센터,http://www.nakwon-communityart.or.kr
+서울생활문화센터 신도림,public,서울,구로구,신도림동,,,시간,온라인,매월초일괄,승인제,누구나,https://culture.seoul.go.kr,성악·앙상블가능,다목적홀A(공연·행사)+B(소규모)·월 단위 대관공고,https://culture.seoul.go.kr/culture/bbs/B0000000/view.do?nttId=8588
+서울생활문화센터 서교,public,서울,마포구,서교동,,,시간,온라인,,선착순,누구나,https://seogyocenter.or.kr/space1rent,성악·앙상블가능,연습실1 온라인 대관 페이지 운영·다목적 공간 별도,https://seogyocenter.or.kr/space1rent
+서울생활문화센터 체부,public,서울,종로구,체부동 (구 체부동교회),,,시간,온라인,,승인제,누구나,https://lifeculture.sfac.or.kr,성악·앙상블가능|대편성가능,체부동생활문화센터·오케스트라 연습 가능한 한옥+예배당 개조 공간,https://lifeculture.sfac.or.kr/main/place/living-culture-space-map001.do
+
+# ===== 서울 — 문화재단·시립 =====
+서울문화재단 대학로연습실,public,서울,종로구,동숭동,시간당,15000,시간,온라인,분기단위,승인제,누구나,https://sirs.sfac.or.kr/rent/notice,성악·앙상블가능,연습실 4관+다목적실·기본대관료 1.5만~2.8만·분기 정기대관(2개월 전 공고)+잔여 수시대관·연극 중심이나 공연예술 전반,https://sfac.or.kr/site/SFAC_KOR/02/10216030000002018102303.jsp
+예술청(서울문화재단 대학로센터),public,서울,종로구,동숭길 (구 동숭아트센터),무료,0,시간,온라인,,승인제,예술인등록,https://www.sfac.or.kr/artspace,성악·앙상블가능,프로젝트룸·아고라 등 예술인 전용 무료대관·예술 종사자 가입제(성악가 명시 포함),https://opengov.seoul.go.kr/mediahub/24082864
+서울시립청소년음악센터,public,서울,,,회당,,시간,온라인,,선착순,누구나,https://symc.or.kr/rental,피아노있음|성악·앙상블가능|타악가능,합주실·개인실기실·합창실·블랙박스·레코딩스튜디오. 청소년 할인·일반인은 부가세 10% 추가,https://symc.or.kr/rental
+플랫폼창동61 스튜디오61,public,서울,도봉구,마들로11길 74,시간당,,시간,전화,,선착순,누구나,http://www.platform61.kr,타악가능|성악·앙상블가능,리허설 스튜디오(드럼·앰프 상비)·전화예약 070-4451-0901,http://www.platform61.kr/load.asp?subPage=920
+서울시민청(바스락홀·활짝라운지),public,서울,중구,서울시청 지하 1~2층,,,회당,온라인,,승인제,누구나,https://www.seoulcitizenshall.kr,성악·앙상블가능,음악·연극·무용 공연 대관은 바스락홀 배정·연습보다 발표·공연용,https://www.seoulcitizenshall.kr/?c=citizenhall/spaceinfo
+아르코·대학로예술극장 연습실,public,서울,종로구,대학로,,,시간,온라인,분기단위,승인제,누구나,https://theater.arko.or.kr,성악·앙상블가능,아르코 창작공간 연습실·공연예술 단체 위주,https://theater.arko.or.kr
+
+# ===== 인천·경기 =====
+연수구문화의집 음악연습실,public,인천,연수구,,회당,,분기,이메일,분기단위,승인제,누구나,https://www.yeonsu.go.kr/culture/reservation,피아노있음|성악·앙상블가능|대편성가능,108㎡ 클래식 합주 가능·3개월치 일괄 접수(이메일·방문만)·지시서 실물확인 사례,https://www.yeonsu.go.kr/culture/reservation/culture/fixed_rental4.asp
+인천 청소년수련관 음악연습실,public,인천,,,무료,0,시간,온라인,,선착순,청소년,https://www.insiseol.or.kr/culture/youth/guide/music.jsp,타악가능|성악·앙상블가능,인천시설공단 무료대관·밴드 위주나 음악연습실 명시,https://www.insiseol.or.kr/culture/youth/guide/music.jsp
+부천문화재단 공연예술연습공간,public,경기,부천시,,시간당,,시간,온라인,,승인제,누구나,https://www.bcf.or.kr/base/contents/view?contentsNo=34,성악·앙상블가능|대편성가능,대연습실1 등 복수 연습실·아르코 위탁운영기관,https://www.bcf.or.kr/base/contents/view?contentsNo=34&menuLevel=3&menuNo=16
+부천생활문화센터,public,경기,부천시,,,,시간,온라인,,선착순,누구나,https://www.bcf.or.kr/bcc/main/view,성악·앙상블가능,부천문화재단 운영 생활문화시설,https://www.bcf.or.kr/bcc/main/view
+소사생활문화센터,public,경기,부천시,소사구,,,시간,온라인,,선착순,누구나,https://share.gg.go.kr,성악·앙상블가능,경기공유서비스 등재·댄스무용실 등 확인,https://share.gg.go.kr/facilityListO/view?instiCode=B552809&facilityId=F0009
+성남문화예술교육센터(꿈꾸는예술터),public,경기,성남시,,,,시간,온라인,,승인제,누구나,https://www.snarte.or.kr,성악·앙상블가능,성남문화재단 계열 예술교육 공간,https://www.snarte.or.kr
+아르코공연연습센터@화성,public,경기,화성시,,시간당,,시간,온라인,분기단위,승인제,누구나,https://www.arko.or.kr/pspace/,성악·앙상블가능|대편성가능,화성시문화재단 위탁운영,https://www.arko.or.kr/pspace/
+
+# ===== 지방 광역 — 아르코 공연연습센터 네트워크 + 문화재단 =====
+대구공연예술연습공간,public,대구,남구,명덕로42 (대명동),회당,15000,시간,온라인,분기단위,승인제,누구나,https://www.arko.or.kr/pspace/,성악·앙상블가능|대편성가능,1타임 1.5만원·대구문화예술진흥원 운영·정기대관 공고제,https://www.arko.or.kr/pspace/board/view/709
+대전 예술가의집,public,대전,,,시간당,,시간,온라인,,승인제,누구나,https://dcaf.or.kr/web/page.do?menuIdx=446,성악·앙상블가능,대전문화재단 대관운영·다목적 연습·발표 공간,https://dcaf.or.kr/web/page.do?menuIdx=446
+대전 음악창작소 인터뮤직,public,대전,,,시간당,,시간,온라인,,승인제,누구나,https://dcaf.or.kr/web/page.do?menuIdx=556,타악가능|성악·앙상블가능,대전문화재단 음악특화 창작소·녹음/합주,https://dcaf.or.kr/web/page.do?menuIdx=556
+아르코공연연습센터@울산,public,울산,,,시간당,,시간,온라인,분기단위,승인제,누구나,https://uctf.or.kr/facility/encore-center/intro,성악·앙상블가능|대편성가능,울산문화관광재단 위탁운영,https://uctf.or.kr/facility/encore-center/intro
+아르코공연연습센터@금정,public,부산,금정구,,시간당,,시간,온라인,분기단위,승인제,누구나,https://www.arko.or.kr/pspace/,성악·앙상블가능,금정문화재단 위탁운영,https://www.arko.or.kr/pspace/
+아르코공연연습센터@창원,public,경남,창원시,,시간당,,시간,온라인,분기단위,승인제,누구나,https://www.arko.or.kr/pspace/,성악·앙상블가능,창원문화재단 위탁운영,https://www.arko.or.kr/pspace/
+아르코공연연습센터@포항,public,경북,포항시,,시간당,,시간,온라인,분기단위,승인제,누구나,https://www.arko.or.kr/pspace/,성악·앙상블가능,포항문화재단 위탁운영,https://www.arko.or.kr/pspace/
+아르코공연연습센터@광주(광산),public,광주,광산구,,시간당,,시간,온라인,분기단위,승인제,누구나,https://www.arko.or.kr/pspace/,성악·앙상블가능,광산 아르코공연연습센터 운영위원회,https://www.arko.or.kr/pspace/
+아르코공연연습센터@세종,public,세종,,,시간당,,시간,온라인,분기단위,승인제,누구나,https://www.arko.or.kr/pspace/,성악·앙상블가능,세종시문화재단 위탁운영,https://www.arko.or.kr/pspace/
+아르코공연연습센터@원주,public,강원,원주시,,시간당,,시간,온라인,분기단위,승인제,누구나,https://www.wcf.or.kr/common_page/contents_page.php?board_code=72,성악·앙상블가능,원주문화재단 위탁운영,https://www.wcf.or.kr/common_page/contents_page.php?board_code=72
+아르코공연연습센터@영월,public,강원,영월군,,시간당,,시간,온라인,분기단위,승인제,누구나,https://www.arko.or.kr/pspace/,성악·앙상블가능,영월문화관광재단 위탁운영,https://www.arko.or.kr/pspace/
+강진아르코공연연습센터,public,전남,강진군,,시간당,,시간,온라인,분기단위,승인제,누구나,https://www.arko.or.kr/pspace/,성악·앙상블가능,강진군문화재단 위탁운영,https://www.arko.or.kr/pspace/
+아르코공연연습센터@담양,public,전남,담양군,,시간당,,시간,온라인,분기단위,승인제,누구나,https://www.damyangcf.or.kr/user/sub3030,성악·앙상블가능,담양군문화재단 위탁운영,https://www.damyangcf.or.kr/user/sub3030
+아르코공연연습센터@서천,public,충남,서천군,,시간당,,시간,온라인,분기단위,승인제,누구나,https://www.arko.or.kr/pspace/,성악·앙상블가능,충남문화관광재단 위탁운영,https://www.arko.or.kr/pspace/
+아르코공연연습센터@제주,public,제주,,,시간당,,시간,온라인,분기단위,승인제,누구나,https://www.arko.or.kr/pspace/,성악·앙상블가능,제주문화예술재단 MOU·운영,https://www.arko.or.kr/pspace/
+# 아르코 위탁운영기관 추가 확인분(전주·청주·춘천·인천문화재단)도 각 지역 센터 존재 추정 — 등록 시 개별 확인
+
+# ===== 수집 포털 노드 (개별 공간이 아니라 '소스' — 파서 웨이브용) =====
+[포털] 서울시 공공서비스예약,public,서울,,,,,,온라인,,,누구나,https://yeyak.seoul.go.kr,,시립·구립 연습공간 통합예약 최대노드·시설대관 카테고리 크롤 대상,https://yeyak.seoul.go.kr/web/main.do
+[포털] 경기공유서비스,public,경기,,,,,,온라인,,,누구나,https://share.gg.go.kr,,경기도 공공시설 통합 공유·연습실/다목적실 검색 가능,https://share.gg.go.kr
+[포털] 아르코 공연예술연습공간,public,전국,,,,,,온라인,분기단위,,누구나,https://www.arko.or.kr/pspace/,,전국 아르코 연습센터 통합 대관예약·지역선택→달력 예약,https://www.arko.or.kr/pspace/
+
+# ===== 검증 후 제외 (실재하나 리스팅 부적합) =====
+# 노들섬 다목적홀 숲 — 서울시발레단 전용 전환, 외부대관 중단 (nodeul.org 확인)
+# 서울대 관악학생생활관 연습실 — 재학생 전용 (지시서 3-5 원칙대로 제외)
