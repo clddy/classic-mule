@@ -74,7 +74,7 @@
       <div class="filter-options" id="f-region"></div>
     </div>
     <div class="filter-group" id="f-district-group" style="display:none">
-      <h4>서울 세부 (구)</h4>
+      <h4>가까운 순 기준 (구) <span style="font-size:0.7rem;color:var(--ink-soft);font-weight:400">— 목록은 그대로, 순서만</span></h4>
       <div class="filter-options" id="f-district"></div>
     </div>
     <div class="filter-group">
@@ -263,7 +263,8 @@ function sidoOf(r){
 }
 function districtOf(r){ return /구$/.test(r.region || "") ? r.region : (r.district || null); }
 
-const st = { tab: "all", cat: new Set(), inst: new Set(), region: new Set(), district: new Set(),
+// district는 '필터'가 아니라 거리 정렬의 기준점(단일 선택) — 선택해도 목록은 줄지 않는다
+const st = { tab: "all", cat: new Set(), inst: new Set(), region: new Set(), district: null,
              price: new Set(), elig: new Set(), cond: new Set(), q: "", sort: "reco" };
 const $ = s => document.querySelector(s);
 
@@ -282,6 +283,14 @@ function chips(sel, items, set, hotFirst){
   }));
 }
 
+// 단일 선택 칩 (기준 구 — 복수 선택 불가, 같은 칩 재클릭 시 해제)
+function radioChips(sel, items, cur, onPick){
+  const el = $(sel);
+  el.innerHTML = items.map(v => `<button class="chip${cur===v?" on":""}" data-v="${v}">${v}</button>`).join("");
+  el.querySelectorAll(".chip").forEach(c => c.addEventListener("click", () =>
+    onPick(cur === c.dataset.v ? null : c.dataset.v)));
+}
+
 function matchElig(r, set){
   const e = r.eligibility || "";
   return [...set].some(v =>
@@ -297,7 +306,7 @@ function pass(r){
   if (st.cat.size && !st.cat.has(r.cat)) return false;
   if (st.inst.size && ![...st.inst].every(v => (r.instruments || []).includes(v))) return false;
   if (st.region.size && !st.region.has(sidoOf(r))) return false;
-  if (st.district.size && !st.district.has(districtOf(r))) return false;
+  // district는 걸러내지 않는다 — 거리 정렬 기준점일 뿐 (서울 전체가 계속 보여야 함)
   if (st.price.size){
     const isFree = !!r.free || r.price === "무료";
     if (!( (st.price.has("무료") && isFree) || (st.price.has("유료") && !isFree) )) return false;
@@ -361,9 +370,10 @@ function distKm(a, b){    // haversine
   const h=Math.sin(dLa/2)**2 + Math.cos(a[0]*Math.PI/180)*Math.cos(b[0]*Math.PI/180)*Math.sin(dLo/2)**2;
   return 2*R*Math.asin(Math.sqrt(h));
 }
-// 거리 기준점: 선택한 서울 구(첫 번째) 중심 — 구 칩을 누르면 자동으로 '가까운순' 사용 가능
+// 거리 기준점: 선택한 구 중심(단일). 구 미선택 시 선택 시도 중심
 function distOrigin(){
-  for (const d of st.district) if (SEOUL_GU[d]) return SEOUL_GU[d];
+  if (st.district && SEOUL_GU[st.district]) return SEOUL_GU[st.district];
+  if (st.district && CITY[st.district]) return CITY[st.district];
   for (const s of st.region) if (SIDO_C[s]) return SIDO_C[s];
   return null;
 }
@@ -377,7 +387,17 @@ const sortFns = {
                   || (priceNum(a)===0?0:1)-(priceNum(b)===0?0:1)
                   || String(a.name).localeCompare(String(b.name), "ko"),
   price: (a,b) => priceNum(a)-priceNum(b) || String(a.name).localeCompare(String(b.name), "ko"),
-  dist:  (a,b) => distOf(a)-distOf(b) || String(a.name).localeCompare(String(b.name), "ko"),
+  // 가까운순: 기준 구 안의 공간이 먼저(가나다순), 그 밖은 기준 구에서 가까운 순
+  dist:  (a,b) => {
+    const byName = String(a.name).localeCompare(String(b.name), "ko");
+    if (st.district){
+      const ai = districtOf(a) === st.district ? 0 : 1;
+      const bi = districtOf(b) === st.district ? 0 : 1;
+      if (ai !== bi) return ai - bi;          // 기준 구 안이 항상 위
+      if (ai === 0) return byName;            // 둘 다 기준 구 안 → 가나다순
+    }
+    return distOf(a) - distOf(b) || byName;   // 그 외 → 거리순
+  },
   name:  (a,b) => String(a.name).localeCompare(String(b.name), "ko"),
 };
 
@@ -437,15 +457,17 @@ function render(){
   chips("#f-cat", CATS, st.cat);
   chips("#f-inst", INSTS, st.inst, true);
   chips("#f-region", REGION_LIST, st.region);
-  // '서울'을 누르면 구 단위 세부 필터가 나타난다 — 구를 고르면 자동으로 가까운순
+  // '서울'을 누르면 구 목록이 나타난다. 구는 필터가 아니라 '거리 기준점'(단일 선택) —
+  // 고르면 서울 전체를 유지한 채 그 구 안은 가나다순 최상단, 나머지는 가까운 순으로 재정렬
   const showGu = st.region.has("서울");
   $("#f-district-group").style.display = showGu ? "" : "none";
-  if (!showGu && st.district.size) st.district.clear();
-  chips("#f-district", districtsOf(), st.district);
-  if (showGu) $("#f-district").querySelectorAll(".chip").forEach(c =>
-    c.addEventListener("click", () => {           // chips()의 토글 후 실행 — 구 선택 시 가까운순 전환
-      if (st.district.size){ st.sort = "dist"; $("#sort-sel").value = "dist"; render(); }
-    }));
+  if (!showGu && st.district) st.district = null;
+  radioChips("#f-district", districtsOf(), st.district, v => {
+    st.district = v;
+    st.sort = v ? "dist" : "reco";
+    $("#sort-sel").value = st.sort;
+    render();
+  });
   chips("#f-price", PRICES, st.price);
   chips("#f-elig", ELIGS, st.elig);
   chips("#f-cond", CONDS, st.cond);
@@ -552,7 +574,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
   $("#sort-sel").addEventListener("change", e=>{ st.sort=e.target.value; render(); });
   $("#map-wrap").addEventListener("toggle", ()=>{ updateMap(); if (MAP) setTimeout(()=>MAP.invalidateSize(), 60); });
   $("#filter-reset").addEventListener("click", ()=>{
-    st.cat.clear(); st.inst.clear(); st.region.clear(); st.district.clear();
+    st.cat.clear(); st.inst.clear(); st.region.clear(); st.district=null;
     st.price.clear(); st.elig.clear(); st.cond.clear(); st.q=""; st.sort="reco";
     $("#search-input").value=""; $("#sort-sel").value="reco"; render();
   });
