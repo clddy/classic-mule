@@ -50,7 +50,7 @@
 <div class="page-head">
   <div class="container">
     <h1>연습실 매칭</h1>
-    <p class="desc">방음·채광·통풍·시설·남은 자리까지 — 계약 전에 알아야 할 것들을 전부 공개합니다. <span style="color:var(--ink-soft)">(등록 예시 · 실데이터 준비 중)</span></p>
+    <p class="desc">방음·채광·통풍·시설·남은 자리까지 — 계약 전에 알아야 할 것들을 전부 공개합니다. <b>공공 연습공간</b>은 기관 공식 정보 기반 실데이터입니다.</p>
     <div class="tabs"><button class="tab active">연습실 찾기</button></div>
   </div>
 </div>
@@ -72,6 +72,9 @@
     <div class="board-toolbar">
       <div class="search-box"><input type="text" id="search-input" placeholder="동네, 연습실 이름으로 검색"></div>
     </div>
+    <h3 style="font-size:0.95rem;color:var(--navy);margin:2px 0 10px">공공 연습공간 <span style="font-weight:400;font-size:0.78rem;color:var(--ink-soft)">— 기관 공식 홈페이지 확인 실데이터 · 저렴한 대관</span></h3>
+    <div class="job-list" id="public-list" style="margin-bottom:26px"></div>
+    <h3 style="font-size:0.95rem;color:var(--navy);margin:2px 0 10px">등록 연습실</h3>
     <div class="result-count" id="result-count"></div>
     <div class="job-list" id="room-list"></div>
   </main>
@@ -116,7 +119,27 @@
 
 <a class="feedback-fab" href="mailto:ohmjin3141@naver.com?subject=%ED%8F%AC%EB%94%94%EC%97%84%20%EC%97%B0%EC%8A%B5%EC%8B%A4%20%ED%94%BC%EB%93%9C%EB%B0%B1">피드백 보내기</a>
 
+<script src="data/practice-public.js"></script>
 <script>
+// 공공 연습공간 (실데이터) — 기관 공식 홈페이지에서 확인한 사실만. 클릭 시 공식 페이지로 이동.
+function renderPublic(){
+  const el = document.querySelector("#public-list");
+  const rooms = window.PUBLIC_ROOMS || [];
+  el.innerHTML = rooms.map(r => `
+    <a class="job-card" href="${r.url}" target="_blank" rel="noopener" style="display:block">
+      <div class="top-row">
+        <span class="tag src-official">공공</span>
+        <span class="tag cat">${r.region}</span>
+        <span class="tag inst">${r.spaces}</span>
+      </div>
+      <h3>${r.name} <span style="font-weight:400;font-size:0.8rem;color:var(--ink-soft)">공식 페이지 ↗</span></h3>
+      <div style="font-size:0.84rem;color:var(--ink);margin-top:2px">${r.focus}</div>
+      <div class="meta"><span>${r.addr}</span></div>
+      <div class="meta"><span class="pay">${r.price}</span></div>
+      <div class="source-line"><span>${r.hours} · ${r.how}</span><span>확인일 ${r.verified}</span></div>
+    </a>`).join("");
+}
+
 // 등록 예시 1건만 유지 — 처음 연습실을 등록하는 사람이 어떤 정보를 채우면 되는지 참고용.
 // sample:true → 카드가 옅게(예시) 표시됨. 실제 등록분이 생기면 이 예시는 내려감.
 const ROOMS = [
@@ -224,6 +247,7 @@ function openRoom(r){
 }
 
 document.addEventListener("DOMContentLoaded",()=>{
+  renderPublic();
   render();
   const bd=$("#room-modal");
   bd.addEventListener("click",e=>{if(e.target===bd)bd.classList.remove("open");});
