@@ -41,9 +41,11 @@ with open(SRC, encoding="utf-8") as f:
             "booking_url": d["booking_url"].strip(),
             "src": src_dom,
             "notes": d["notes"].strip() or None,
+            # 연습실 '대관 가능'을 실제 페이지에서 확인했는지 — 미확인은 화면에 그대로 표기한다
+            "rentalVerified": (d.get("rental_verified", "").strip() == "확인"),
             "verified": "2026-07-12",
         }
-        item = {k: v for k, v in item.items() if v not in (None, "", [])}
+        item = {k: v for k, v in item.items() if v not in (None, "", []) or k == "rentalVerified"}
         if name.startswith("["):
             metas.append({"name": name, "url": d["booking_url"].strip(),
                           "note": (d["notes"].strip()[:80] if d["notes"].strip() else "")})

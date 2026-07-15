@@ -17,9 +17,10 @@ window.SEED_ROOMS = [
    "피아노있음",
    "성악·앙상블가능"
   ],
-  "booking_url": "http://www.nakwon-communityart.or.kr",
+  "booking_url": "http://nakwon-communityart.or.kr/bbs/space01",
   "src": "nakwon-communityart.or.kr",
-  "notes": "악기거리 한복판·방음 연습실+악기장비 보유·음악특화 센터",
+  "notes": "연습실 소·대+회의실·강의실·녹음실·N스페이스홀 수시대관(대관일 7일 전까지). 정치/종교/영리 목적 대관 불가. 문의 02-6959-8323",
+  "rentalVerified": true,
   "verified": "2026-07-12"
  },
  {
@@ -41,6 +42,7 @@ window.SEED_ROOMS = [
   "booking_url": "https://culture.seoul.go.kr",
   "src": "culture.seoul.go.kr",
   "notes": "다목적홀A(공연·행사)+B(소규모)·월 단위 대관공고",
+  "rentalVerified": false,
   "verified": "2026-07-12"
  },
  {
@@ -61,6 +63,7 @@ window.SEED_ROOMS = [
   "booking_url": "https://seogyocenter.or.kr/space1rent",
   "src": "seogyocenter.or.kr",
   "notes": "연습실1 온라인 대관 페이지 운영·다목적 공간 별도",
+  "rentalVerified": true,
   "verified": "2026-07-12"
  },
  {
@@ -79,9 +82,10 @@ window.SEED_ROOMS = [
    "성악·앙상블가능",
    "대편성가능"
   ],
-  "booking_url": "https://lifeculture.sfac.or.kr",
+  "booking_url": "https://lifeculture.sfac.or.kr/main/place/map.do",
   "src": "lifeculture.sfac.or.kr",
   "notes": "체부동생활문화센터·오케스트라 연습 가능한 한옥+예배당 개조 공간",
+  "rentalVerified": true,
   "verified": "2026-07-12"
  },
  {
@@ -100,9 +104,10 @@ window.SEED_ROOMS = [
   "instruments": [
    "성악·앙상블가능"
   ],
-  "booking_url": "https://sirs.sfac.or.kr/rent/notice",
+  "booking_url": "https://sirs.sfac.or.kr/rent/notice?isAvailable=",
   "src": "sirs.sfac.or.kr",
-  "notes": "연습실 4관+다목적실·기본대관료 1.5만~2.8만(단위=기본대관 1회 기준·시간단위 재확인 필요)·분기 정기대관(2개월 전 공고)+잔여 수시대관·연극 중심이나 공연예술 전반",
+  "notes": "연습실 4관+다목적실. 정기대관=분기별 20일 이상 장기(분기 2개월 전 공고)",
+  "rentalVerified": false,
   "verified": "2026-07-12"
  },
  {
@@ -123,6 +128,7 @@ window.SEED_ROOMS = [
   "booking_url": "https://www.sfac.or.kr/artspace/artspace/art_office_map.do",
   "src": "sfac.or.kr",
   "notes": "프로젝트룸·아고라 등 예술인 전용 무료대관·예술 종사자 가입제(성악가 명시 포함)·구 예술청에서 개편",
+  "rentalVerified": false,
   "verified": "2026-07-12"
  },
  {
@@ -140,9 +146,10 @@ window.SEED_ROOMS = [
    "성악·앙상블가능",
    "타악가능"
   ],
-  "booking_url": "https://symc.or.kr",
+  "booking_url": "https://symc.or.kr/rental",
   "src": "symc.or.kr",
-  "notes": "합주실·개인실기실·합창실·블랙박스·레코딩스튜디오. 청소년 할인·일반인은 부가세 10% 추가. 홈 상단 '대관' 메뉴",
+  "notes": "소리지음 — 합주실·개인실기실·합창실·레코딩스튜디오·블랙박스. 양천구 남부순환로 657. 월~토 09~21시",
+  "rentalVerified": false,
   "verified": "2026-07-12"
  },
  {
@@ -164,26 +171,7 @@ window.SEED_ROOMS = [
   "booking_url": "http://www.platform61.kr",
   "src": "platform61.kr",
   "notes": "리허설 스튜디오(드럼·앰프 상비)·전화예약 070-4451-0901",
-  "verified": "2026-07-12"
- },
- {
-  "name": "서울시민청(바스락홀·활짝라운지)",
-  "category": "public",
-  "sido": "서울",
-  "district": "중구",
-  "region": "중구",
-  "addr": "서울시청 지하 1~2층",
-  "price": "요금 기관 확인",
-  "free": false,
-  "selection": "승인제",
-  "apply_method": "온라인",
-  "eligibility": "누구나",
-  "instruments": [
-   "성악·앙상블가능"
-  ],
-  "booking_url": "http://www.seoulcitizenshall.kr",
-  "src": "seoulcitizenshall.kr",
-  "notes": "음악·연극·무용 공연 대관은 바스락홀 배정·연습보다 발표·공연용 (https 인증서 오류 — http 접속)",
+  "rentalVerified": false,
   "verified": "2026-07-12"
  },
  {
@@ -205,6 +193,7 @@ window.SEED_ROOMS = [
   "booking_url": "https://theater.arko.or.kr",
   "src": "theater.arko.or.kr",
   "notes": "아르코 창작공간 연습실·공연예술 단체 위주",
+  "rentalVerified": true,
   "verified": "2026-07-12"
  },
  {
@@ -224,9 +213,10 @@ window.SEED_ROOMS = [
    "성악·앙상블가능",
    "대편성가능"
   ],
-  "booking_url": "https://www.yeonsu.go.kr/culture/reservation",
+  "booking_url": "https://www.yeonsu.go.kr/tour/art/cultural_house/facility/music_practice.asp",
   "src": "yeonsu.go.kr",
-  "notes": "108㎡ 클래식 합주 가능·3개월치 일괄 접수(이메일·방문만)·지시서 실물확인 사례",
+  "notes": "108㎡ 음악전용·클래식 단체/동아리 합주 가능(음향·드럼·전자건반·보면대). 평일10~20시 토10~18시 일·공휴일 휴무. 이메일/방문 접수만",
+  "rentalVerified": true,
   "verified": "2026-07-12"
  },
  {
@@ -246,6 +236,7 @@ window.SEED_ROOMS = [
   "booking_url": "https://www.insiseol.or.kr/culture/youth/guide/music.jsp",
   "src": "insiseol.or.kr",
   "notes": "인천시설공단 무료대관·밴드 위주나 음악연습실 명시",
+  "rentalVerified": true,
   "verified": "2026-07-12"
  },
  {
@@ -266,6 +257,7 @@ window.SEED_ROOMS = [
   "booking_url": "https://www.bcf.or.kr/base/contents/view?contentsNo=34",
   "src": "bcf.or.kr",
   "notes": "대연습실1 등 복수 연습실·아르코 위탁운영기관",
+  "rentalVerified": true,
   "verified": "2026-07-12"
  },
  {
@@ -282,9 +274,10 @@ window.SEED_ROOMS = [
   "instruments": [
    "성악·앙상블가능"
   ],
-  "booking_url": "https://www.bcf.or.kr/bcc/main/view",
+  "booking_url": "https://www.bcf.or.kr/base/rental/select?menuLevel=2&menuNo=16",
   "src": "bcf.or.kr",
   "notes": "부천문화재단 운영 생활문화시설",
+  "rentalVerified": true,
   "verified": "2026-07-12"
  },
  {
@@ -305,6 +298,7 @@ window.SEED_ROOMS = [
   "booking_url": "https://share.gg.go.kr",
   "src": "share.gg.go.kr",
   "notes": "경기공유서비스 등재·댄스무용실 등 확인",
+  "rentalVerified": true,
   "verified": "2026-07-12"
  },
  {
@@ -324,6 +318,7 @@ window.SEED_ROOMS = [
   "booking_url": "https://www.snarte.or.kr",
   "src": "snarte.or.kr",
   "notes": "성남문화재단 계열 예술교육 공간",
+  "rentalVerified": false,
   "verified": "2026-07-12"
  },
  {
@@ -345,6 +340,7 @@ window.SEED_ROOMS = [
   "booking_url": "https://www.arko.or.kr/pspace/",
   "src": "arko.or.kr",
   "notes": "화성시문화재단 위탁운영",
+  "rentalVerified": true,
   "verified": "2026-07-12"
  },
  {
@@ -367,6 +363,7 @@ window.SEED_ROOMS = [
   "booking_url": "https://www.arko.or.kr/pspace/",
   "src": "arko.or.kr",
   "notes": "1타임 1.5만원·대구문화예술진흥원 운영·정기대관 공고제",
+  "rentalVerified": true,
   "verified": "2026-07-12"
  },
  {
@@ -385,6 +382,7 @@ window.SEED_ROOMS = [
   "booking_url": "https://dcaf.or.kr/web/page.do?menuIdx=446",
   "src": "dcaf.or.kr",
   "notes": "대전문화재단 대관운영·다목적 연습·발표 공간",
+  "rentalVerified": true,
   "verified": "2026-07-12"
  },
  {
@@ -404,6 +402,7 @@ window.SEED_ROOMS = [
   "booking_url": "https://dcaf.or.kr/web/page.do?menuIdx=556",
   "src": "dcaf.or.kr",
   "notes": "대전문화재단 음악특화 창작소·녹음/합주",
+  "rentalVerified": true,
   "verified": "2026-07-12"
  },
  {
@@ -424,6 +423,7 @@ window.SEED_ROOMS = [
   "booking_url": "https://uctf.or.kr/facility/encore-center/intro",
   "src": "uctf.or.kr",
   "notes": "울산문화관광재단 위탁운영",
+  "rentalVerified": true,
   "verified": "2026-07-12"
  },
  {
@@ -444,6 +444,7 @@ window.SEED_ROOMS = [
   "booking_url": "https://www.arko.or.kr/pspace/",
   "src": "arko.or.kr",
   "notes": "금정문화재단 위탁운영",
+  "rentalVerified": true,
   "verified": "2026-07-12"
  },
  {
@@ -464,6 +465,7 @@ window.SEED_ROOMS = [
   "booking_url": "https://www.arko.or.kr/pspace/",
   "src": "arko.or.kr",
   "notes": "창원문화재단 위탁운영",
+  "rentalVerified": true,
   "verified": "2026-07-12"
  },
  {
@@ -484,6 +486,7 @@ window.SEED_ROOMS = [
   "booking_url": "https://www.arko.or.kr/pspace/",
   "src": "arko.or.kr",
   "notes": "포항문화재단 위탁운영",
+  "rentalVerified": true,
   "verified": "2026-07-12"
  },
  {
@@ -504,6 +507,7 @@ window.SEED_ROOMS = [
   "booking_url": "https://www.arko.or.kr/pspace/",
   "src": "arko.or.kr",
   "notes": "광산 아르코공연연습센터 운영위원회",
+  "rentalVerified": true,
   "verified": "2026-07-12"
  },
  {
@@ -523,6 +527,7 @@ window.SEED_ROOMS = [
   "booking_url": "https://www.arko.or.kr/pspace/",
   "src": "arko.or.kr",
   "notes": "세종시문화재단 위탁운영",
+  "rentalVerified": true,
   "verified": "2026-07-12"
  },
  {
@@ -543,6 +548,7 @@ window.SEED_ROOMS = [
   "booking_url": "https://www.arko.or.kr/pspace/",
   "src": "arko.or.kr",
   "notes": "원주문화재단 위탁운영(재단 안내페이지는 JS스텁 — 아르코 통합예약으로 연결)",
+  "rentalVerified": true,
   "verified": "2026-07-12"
  },
  {
@@ -563,6 +569,7 @@ window.SEED_ROOMS = [
   "booking_url": "https://www.arko.or.kr/pspace/",
   "src": "arko.or.kr",
   "notes": "영월문화관광재단 위탁운영",
+  "rentalVerified": true,
   "verified": "2026-07-12"
  },
  {
@@ -583,6 +590,7 @@ window.SEED_ROOMS = [
   "booking_url": "https://www.arko.or.kr/pspace/",
   "src": "arko.or.kr",
   "notes": "강진군문화재단 위탁운영",
+  "rentalVerified": true,
   "verified": "2026-07-12"
  },
  {
@@ -603,6 +611,7 @@ window.SEED_ROOMS = [
   "booking_url": "https://www.damyangcf.or.kr/user/sub3030",
   "src": "damyangcf.or.kr",
   "notes": "담양군문화재단 위탁운영",
+  "rentalVerified": true,
   "verified": "2026-07-12"
  },
  {
@@ -623,6 +632,7 @@ window.SEED_ROOMS = [
   "booking_url": "https://www.arko.or.kr/pspace/",
   "src": "arko.or.kr",
   "notes": "충남문화관광재단 위탁운영",
+  "rentalVerified": true,
   "verified": "2026-07-12"
  },
  {
@@ -642,6 +652,7 @@ window.SEED_ROOMS = [
   "booking_url": "https://www.arko.or.kr/pspace/",
   "src": "arko.or.kr",
   "notes": "제주문화예술재단 MOU·운영",
+  "rentalVerified": true,
   "verified": "2026-07-12"
  },
  {
@@ -663,6 +674,7 @@ window.SEED_ROOMS = [
   "booking_url": "https://www.mapoindie.or.kr/sub/space/app2.asp",
   "src": "mapoindie.or.kr",
   "notes": "녹음실·개인작업실·밴드작업실·50석 소극장. 화~토 10~22시(일·월 휴관). 마포문화재단 운영·문체부 음악창작소 1호(2013)",
+  "rentalVerified": false,
   "verified": "2026-07-12"
  },
  {
@@ -682,6 +694,7 @@ window.SEED_ROOMS = [
   "booking_url": "https://www.seocho.go.kr/site/seocho/ex/artCenter/ArtCenterCalendarF.do?searchType=B",
   "src": "seocho.go.kr",
   "notes": "구청 직영 음악연습실·온라인 예약캘린더 운영(희귀한 구청 직영 사례)",
+  "rentalVerified": true,
   "verified": "2026-07-12"
  },
  {
@@ -700,6 +713,7 @@ window.SEED_ROOMS = [
   "booking_url": "http://www.sapy.kr/anytime_1",
   "src": "sapy.kr",
   "notes": "서울문화재단 청년예술인 공간·수시대관 운영·청년 예술인 대상",
+  "rentalVerified": true,
   "verified": "2026-07-12"
  },
  {
@@ -719,6 +733,7 @@ window.SEED_ROOMS = [
   "booking_url": "https://yfac.kr/main/contents.do?a_num=29798379",
   "src": "yfac.kr",
   "notes": "마루연습실 I·II(거울·스피커·콘솔)·무용 겸용",
+  "rentalVerified": true,
   "verified": "2026-07-12"
  },
  {
@@ -738,6 +753,7 @@ window.SEED_ROOMS = [
   "booking_url": "https://www.ijongno.co.kr/fmcs/41",
   "src": "ijongno.co.kr",
   "notes": "종로구시설관리공단 통합예약 시스템",
+  "rentalVerified": true,
   "verified": "2026-07-12"
  },
  {
@@ -754,9 +770,10 @@ window.SEED_ROOMS = [
    "타악가능",
    "성악·앙상블가능"
   ],
-  "booking_url": "https://www.cnmusicfactory.com",
+  "booking_url": "https://www.cnmusicfactory.com/reservation/content.do",
   "src": "cnmusicfactory.com",
   "notes": "합주실·녹음실·문체부 지역기반형 음악창작소",
+  "rentalVerified": true,
   "verified": "2026-07-12"
  },
  {
@@ -777,6 +794,7 @@ window.SEED_ROOMS = [
   "booking_url": "https://www.kocca.kr/kocca/subPage.do?menuNo=205047",
   "src": "kocca.kr",
   "notes": "콘진원 지역음악창작소·창작자(뮤지션) 모집 운영",
+  "rentalVerified": false,
   "verified": "2026-07-12"
  },
  {
@@ -796,6 +814,7 @@ window.SEED_ROOMS = [
   "booking_url": "https://www.musiclabbusan.com",
   "src": "musiclabbusan.com",
   "notes": "전문 스튜디오·음향장비·지역음악인 열린공간",
+  "rentalVerified": false,
   "verified": "2026-07-12"
  },
  {
@@ -817,6 +836,7 @@ window.SEED_ROOMS = [
   "booking_url": "https://www.portrock.kr",
   "src": "portrock.kr",
   "notes": "부평캠프마켓 내·인천음악콘텐츠협회 운영",
+  "rentalVerified": true,
   "verified": "2026-07-12"
  },
  {
@@ -838,6 +858,7 @@ window.SEED_ROOMS = [
   "booking_url": "https://www.boramyc.or.kr",
   "src": "boramyc.or.kr",
   "notes": "02-834-6411·수련시설 내 음악연습실",
+  "rentalVerified": false,
   "verified": "2026-07-12"
  },
  {
@@ -857,6 +878,7 @@ window.SEED_ROOMS = [
   "booking_url": "https://online112.youth.seoul.kr/?center_id=112",
   "src": "online112.youth.seoul.kr",
   "notes": "서울시 청소년시설 통합예약(online.youth.seoul.kr) 연동",
+  "rentalVerified": false,
   "verified": "2026-07-12"
  },
  {
@@ -874,9 +896,10 @@ window.SEED_ROOMS = [
   "instruments": [
    "타악가능"
   ],
-  "booking_url": "http://www.wawa.or.kr",
+  "booking_url": "http://www.wawa.or.kr/sub02/sub01.php",
   "src": "wawa.or.kr",
   "notes": "02-2642-1318",
+  "rentalVerified": true,
   "verified": "2026-07-12"
  },
  {
@@ -894,6 +917,7 @@ window.SEED_ROOMS = [
   ],
   "booking_url": "http://youthc.or.kr",
   "src": "youthc.or.kr",
+  "rentalVerified": false,
   "verified": "2026-07-12"
  },
  {
@@ -914,6 +938,7 @@ window.SEED_ROOMS = [
   "booking_url": "http://www.woojin.or.kr/sub/04_sub_01.html",
   "src": "woojin.or.kr",
   "notes": "★클래식 특화: 기악·성악 연습실+개인연습실 명시(민간 문화재단). 무용·연극 전용연습실 별도. 10~22시 개방",
+  "rentalVerified": true,
   "verified": "2026-07-12"
  },
  {
@@ -933,6 +958,7 @@ window.SEED_ROOMS = [
   "booking_url": "https://youth.jeonju.go.kr/index.9is?contentUid=9be517a76e211549016e58e694352de2",
   "src": "youth.jeonju.go.kr",
   "notes": "중연습실2·대연습실2·세미나실(지하1~지상3층 269.7㎡)·전주문화재단(아르코 위탁)",
+  "rentalVerified": false,
   "verified": "2026-07-12"
  },
  {
@@ -952,6 +978,7 @@ window.SEED_ROOMS = [
   "booking_url": "https://www.gicon.or.kr/menu.es?mid=a11003030000",
   "src": "gicon.or.kr",
   "notes": "광주정보문화산업진흥원 운영·음악창작소 광주 거점·대관안내 페이지 운영",
+  "rentalVerified": true,
   "verified": "2026-07-12"
  },
  {
@@ -971,6 +998,7 @@ window.SEED_ROOMS = [
   "booking_url": "https://glcc.nsart.or.kr/M000177/S001/conts.do",
   "src": "glcc.nsart.or.kr",
   "notes": "광주 생활문화센터(남구 소재)",
+  "rentalVerified": true,
   "verified": "2026-07-12"
  },
  {
@@ -991,28 +1019,7 @@ window.SEED_ROOMS = [
   "booking_url": "https://artgy.or.kr/RE/RE0101V.aspx",
   "src": "artgy.or.kr",
   "notes": "1회=5시간 기준 대관·초과 시간당 추가·고양문화재단(어울림누리 연습실 별도)",
-  "verified": "2026-07-12"
- },
- {
-  "name": "국립극장 뜰아래연습장",
-  "category": "public",
-  "sido": "서울",
-  "district": "중구",
-  "region": "중구",
-  "addr": "장충동",
-  "price": "시간당",
-  "free": false,
-  "selection": "승인제",
-  "apply_method": "온라인",
-  "eligibility": "누구나",
-  "instruments": [
-   "성악·앙상블가능",
-   "대편성가능",
-   "타악가능"
-  ],
-  "booking_url": "https://www.ntok.go.kr",
-  "src": "ntok.go.kr",
-  "notes": "연습실 17개 보유 — 자체·국립단체 우선이라 외부대관 창 축소 추세(확인 후 이용)",
+  "rentalVerified": true,
   "verified": "2026-07-12"
  }
 ];

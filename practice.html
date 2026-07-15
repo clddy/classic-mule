@@ -253,7 +253,7 @@ const CATS = [["instant","⚡ 즉시 예약"], ["public","🏛 신청제·공공
 const INSTS = ["타악가능", "금관가능", "피아노있음", "성악·앙상블가능", "대편성가능"];
 const PRICES = ["무료", "유료"];
 const ELIGS = ["누구나", "지역주민", "청소년", "단체", "예술인"];
-const CONDS = ["방음 시공", "24시간", "엘리베이터"];
+const CONDS = ["대관 확인됨", "방음 시공", "24시간", "엘리베이터"];
 // 지역: 구인구직(jobs.js REGION_LIST)과 동일한 17개 시도 고정 체계
 const REGION_LIST = ["서울", "경기", "인천", "강원", "대전", "세종", "충북", "충남",
   "대구", "경북", "부산", "울산", "경남", "광주", "전북", "전남", "제주", "기타"];
@@ -319,6 +319,8 @@ function pass(r){
     if (r.cat !== "public") return false;          // 자격 필터는 신청제 전용
     if (!matchElig(r, st.elig)) return false;
   }
+  // 공공은 rentalVerified가 '연습실 대관을 실제로 확인했는지'. 민간(즉시)은 대여가 곧 사업이라 항상 통과.
+  if (st.cond.has("대관 확인됨") && r.cat === "public" && !r.rentalVerified) return false;
   if (st.cond.has("방음 시공") && !r.soundWall) return false;
   if (st.cond.has("24시간") && !r.h24) return false;
   if (st.cond.has("엘리베이터") && !(r.elev || r.floor === "엘리베이터")) return false;
@@ -425,6 +427,7 @@ function cardPublic(r, i){
     <div class="top-row">
       ${catBadge(r)} ${priceBadge(r)}
       <span class="tag cat">${esc(r.region)}</span>
+      ${r.rentalVerified===false?`<span class="tag" style="border-color:var(--ink-soft);color:var(--ink-soft)">대관 확인필요</span>`:""}
       ${(r.instruments||[]).map(x=>`<span class="tag pos">${x}</span>`).join("")}
       ${r.spaces?`<span class="tag inst">${esc(r.spaces)}</span>`:""}
     </div>
