@@ -27,6 +27,19 @@
   넷 다 같이 고칠 것. 옛 수집분은 REGION_MIGRATE(양쪽)로 화면에서 이관.
 - **'광주'는 경기 광주시일 수 있다** — 실제로 고산생활문화센터(경기 광주시)가 광주광역시로
   잘못 들어가 있었다. _REGION_TOKENS는 경기 광주시(곤지암·오포·퇴촌…)를 맨 '광주'보다 먼저 본다.
+- **스케줄 실행에서 `python`을 이름으로 부르지 말 것** — 파이썬이 레지스트리 PATH(사용자·
+  시스템 모두)에 등록돼 있지 않다. 터미널에선 잡히지만 작업 스케줄러가 띄운 프로세스에선
+  해석 실패한다. 이것 때문에 PodiumCrawler가 매일 '성공(0x0)'을 보고하면서 아무것도 안 했다
+  (2026-07-16 규명). run_daily.ps1의 `Resolve-Python`(py.exe 런처 경유)을 쓸 것.
+- **playwright 브라우저 기본 경로는 스케줄 실행에서 안 보인다** — `AppData\Local\ms-playwright`가
+  Claude 앱(MSIX) 컨테이너의 `Packages\Claude_*\LocalCache\` 아래로 리디렉션돼 있어서,
+  컨테이너 밖(스케줄러)에선 '브라우저 없음'이 된다. 두 run_*.ps1이
+  `PLAYWRIGHT_BROWSERS_PATH=C:\ohai\playwright-browsers`(실제 경로)를 박아 쓴다. jsfetch.py도 이걸 탄다.
+- **.ps1에 한글을 넣으면 UTF-8 BOM 필수** — Windows PowerShell 5.1은 BOM 없는 UTF-8을 ANSI로
+  읽어 문자열 종결자가 깨진다(구문 오류). 저장 후 반드시 Parser로 구문 확인할 것.
+- **자동화 스크립트는 실패를 삼키지 말 것** — `& python x.py` 다음 줄로 그냥 넘어가면 스크립트가
+  exit 0으로 끝나고 스케줄러는 '성공'이라 보고한다. 단계마다 `$LASTEXITCODE`를 보고, 결과 파일이
+  실제로 갱신됐는지까지 확인할 것.
 
 ## 크롤 검증 루틴
 
@@ -34,6 +47,22 @@
 2. 로그에서 `미분류 큐`·`완료:` 확인 → data/official.json에서 결과 검증
 3. 프론트는 launch.json `podium` 서버로 열어 필터·패널 동작 확인
 4. data 커밋+푸시 (official.json, official-data.js, coverage_report.json)
+
+## 자동 실행 (작업 스케줄러)
+
+- `PodiumCrawler` 18:00 → `crawler/run_daily.ps1` (크롤 → 커밋 → 푸시)
+- `PodiumHealth` 18:40 → `crawler/run_health.ps1` → `health_check.py --site`
+
+헬스체크는 **이상이 있을 때만** 텔레그램으로 알린다(HIGH·MED만; LOW는 로그만).
+전체 기록은 data/health.log, 소스별 수집량 baseline은 data/health_history.json (둘 다 gitignore).
+
+핵심은 baseline 비교다 — 평소 10건 나오던 기관이 오늘 0건이면 공고가 없는 게 아니라 파서가
+깨진 것이다. FAIL 없이 조용히 0건이 되는 게 제일 위험하다. **정상 관측 5일치가 쌓여야
+baseline 판정이 켜진다**(그전엔 조용함). 분류기·추출기를 고쳐 수집량이 의도적으로 달라지면
+급감 경고가 며칠 뜰 수 있다 — 그건 오탐이니 무시하면 median이 알아서 따라온다.
+
+크롤과 헬스체크를 **별도 작업으로 나눈 이유**: 크롤이 아예 실행되지 않은 날에도 헬스체크가
+돌아야 "크롤이 안 돌았다"(check_freshness)를 알아챌 수 있다. 한 스크립트에 붙이면 같이 죽는다.
 
 ## 경계
 

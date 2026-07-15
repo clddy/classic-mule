@@ -12,3 +12,8 @@ tools/.env
 # 실서비스 시 미러링 금지 — 민간 연습실은 호스트 직접 등록 원칙.
 local/
 crawler/.geocode-cache.json
+
+# 헬스체크 로컬 상태 — 이 PC에서만 의미 있는 baseline·로그 (공개 저장소에 불필요)
+data/health.log
+data/health_history.json
+data/run_daily.log
