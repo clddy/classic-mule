@@ -32,14 +32,14 @@ name,category,region,district,address,price_type,price,rental_unit,apply_method,
 아르코공연연습센터@금정,public,부산,금정구,,시간당,,시간,온라인,분기단위,승인제,누구나,https://www.arko.or.kr/pspace/,성악·앙상블가능,금정문화재단 위탁운영,https://www.arko.or.kr/pspace/,확인
 아르코공연연습센터@창원,public,경남,창원시,경남 창원시 마산회원구 삼호로 135 3·15아트센터 1층,시간당,,시간,온라인,분기단위,승인제,누구나,https://www.cwcf.or.kr/rental/rental_arko6.asp,성악·앙상블가능,창원문화재단 위탁운영,https://www.arko.or.kr/pspace/,확인
 아르코공연연습센터@포항,public,경북,포항시,,시간당,,시간,온라인,분기단위,승인제,누구나,https://www.arko.or.kr/pspace/,성악·앙상블가능,포항문화재단 위탁운영,https://www.arko.or.kr/pspace/,확인
-아르코공연연습센터@광주(광산),public,광주·전남,광산구,,시간당,,시간,온라인,분기단위,승인제,누구나,https://www.arko.or.kr/pspace/,성악·앙상블가능,광산 아르코공연연습센터 운영위원회,https://www.arko.or.kr/pspace/,확인
+아르코공연연습센터@광주(광산),public,광주·전남,광산구,광주 광산구 소촌로85번길 14-9 소촌아트팩토리,시간당,,시간,온라인,분기단위,승인제,누구나,https://www.arko.or.kr/pspace/,성악·앙상블가능,소촌아트팩토리 내. 연습실 2실·세미나실·리딩룸. 2017-10 개관. 광산 아르코공연연습센터 운영위원회. 062-960-3637,https://www.arko.or.kr/pspace/,확인
 아르코공연연습센터@세종,public,세종,,,유료,5000,시간대,온라인,분기단위,승인제,누구나,https://www.arko.or.kr/pspace/,성악·앙상블가능,대연습실 108㎡ 2만원(전일 4만원)·중연습실 72㎡ 1만원·소연습실 49/45㎡ 5천원. 오전/오후/야간 시간대별. 피아노·신디사이저·발레바. 조치원읍 소재. 070-7779-5033,https://www.arko.or.kr/pspace/,확인
 아르코공연연습센터@원주,public,강원,원주시,강원 원주시 향교길 77 남산골문화센터,시간당,,시간,온라인,분기단위,승인제,누구나,https://www.wcf.or.kr/common_page/contents_page.php?board_code=72&tsort=2&msort=72&ssort=,성악·앙상블가능,원주문화재단 위탁운영(재단 안내페이지는 JS스텁 — 아르코 통합예약으로 연결),https://www.arko.or.kr/pspace/,확인
-아르코공연연습센터@영월,public,강원,영월군,,시간당,,시간,온라인,분기단위,승인제,누구나,https://www.arko.or.kr/pspace/,성악·앙상블가능,영월문화관광재단 위탁운영,https://www.arko.or.kr/pspace/,확인
-강진아르코공연연습센터,public,광주·전남,강진군,,시간당,,시간,온라인,분기단위,승인제,누구나,https://www.arko.or.kr/pspace/,성악·앙상블가능,강진군문화재단 위탁운영,https://www.arko.or.kr/pspace/,확인
+아르코공연연습센터@영월,public,강원,영월군,강원 영월군 북면 영월로 1246,시간당,,시간,온라인,분기단위,승인제,누구나,https://www.arko.or.kr/pspace/,성악·앙상블가능,"옛 문곡휴게소 리모델링(1,080㎡). 1층 대연습실, 2층 중연습실1·소연습실4·세미나실. 2021-03 개관. 033-375-6310",https://www.arko.or.kr/pspace/,확인
+강진아르코공연연습센터,public,광주·전남,강진군,전남 강진군 대구면 저두리 66,시간당,,시간,온라인,분기단위,승인제,누구나,https://www.arko.or.kr/pspace/,성악·앙상블가능,2층 건물. 대·중·소연습실 3실+세미나실·식당. 시간대 3구간(10~13/14~17/18~22). 레지던시 운영(전일 대관 시 최대 4실 무료). 070-4238-8006,https://www.arko.or.kr/pspace/,확인
 아르코공연연습센터@담양,public,광주·전남,담양군,전남 담양군 담양읍 지침1길 10 해동문화예술촌,시간당,,시간,온라인,분기단위,승인제,누구나,https://www.damyangcf.or.kr/user/sub3030,성악·앙상블가능,담양군문화재단 위탁운영,https://www.damyangcf.or.kr/user/sub3030,확인
-아르코공연연습센터@서천,public,충남,서천군,,시간당,,시간,온라인,분기단위,승인제,누구나,https://www.arko.or.kr/pspace/,성악·앙상블가능,충남문화관광재단 위탁운영,https://www.arko.or.kr/pspace/,확인
-아르코공연연습센터@제주,public,제주,,,시간당,,시간,온라인,분기단위,승인제,누구나,https://www.arko.or.kr/pspace/,성악·앙상블가능,제주문화예술재단 MOU·운영,https://www.arko.or.kr/pspace/,확인
+아르코공연연습센터@서천,public,충남,서천군,충남 서천군 장항읍 성화로 26-2,시간당,,시간,온라인,분기단위,승인제,누구나,https://www.arko.or.kr/pspace/,성악·앙상블가능,중연습실·소연습실1·2. 월~토 10~22시(일·공휴일 휴관). 충남문화관광재단 운영. 041-957-0615,https://www.arko.or.kr/pspace/,확인
+아르코공연연습센터@제주,public,제주,,제주 제주시 중앙로14길 18 제주아트플랫폼 3~4층,시간당,,시간,온라인,분기단위,승인제,누구나,https://www.arko.or.kr/pspace/,성악·앙상블가능,제주아트플랫폼(구 아카데미극장) 3~4층. 중연습실 140㎡ 2실·소연습실 48㎡·개인연습실 12㎡ 2실. 2024-12 개관. 064-800-9197,https://www.arko.or.kr/pspace/,확인
 # 아르코 위탁운영기관 추가 확인분(전주·청주·춘천·인천문화재단)도 각 지역 센터 존재 추정 — 등록 시 개별 확인
 
 # ===== 서울 — 추가 발굴 (2차) =====
@@ -73,6 +73,10 @@ name,category,region,district,address,price_type,price,rental_unit,apply_method,
 [포털] 서울시 공공서비스예약,public,서울,,,,,,온라인,,,누구나,https://yeyak.seoul.go.kr,,시립·구립 연습공간 통합예약 최대노드·시설대관 카테고리 크롤 대상,https://yeyak.seoul.go.kr/web/main.do,-
 [포털] 경기공유서비스,public,경기,,,,,,온라인,,,누구나,https://share.gg.go.kr,,실측검증(2026-07-12): '연습실' 공식분류 존재·31개 시군·카드에 [시군|기관|분류|요금|수용인원|예약방법(인터넷/전화)|선별(심사/선착순)] 전부 구조화 — 지시서 스키마와 1:1 매핑·파서 최적 타깃,https://share.gg.go.kr,-
 [포털] 아르코 공연예술연습공간,public,전국,,,,,,온라인,분기단위,,누구나,https://www.arko.or.kr/pspace/,,전국 아르코 연습센터 통합 대관예약·지역선택→달력 예약,https://www.arko.or.kr/pspace/,-
+춘천공연예술연습공간,public,강원,춘천시,강원 춘천시 삭주로 3 (구 춘천여고·춘천시청 별관),시간당,,시간,온라인,분기단위,승인제,누구나,https://www.cccf.or.kr/home/reservation/space/practice_space,성악·앙상블가능|대편성가능|피아노있음,"대연습실 4실(113~142㎡, 30~50명)·중연습실 71㎡·세미나실. 대연습실에 그랜드/디지털피아노·의자·보면대. 공연예술전문단체·동호회·개인 누구나. 춘천문화재단. 033-259-5888",검증 2026-07-16 대관확인,확인
+인천공연예술연습공간,public,인천,미추홀구,인천 미추홀구 경인로 222,유료,10000,시간대,온라인,분기단위,승인제,누구나,https://ifac.or.kr/ifacintro/facilities/appci.do?key=m2502106873549,성악·앙상블가능|대편성가능,대연습실 172㎡(덧마루·음향·조명) 2만~4만·중연습실 80.6㎡ 1만·다목적실 88.2㎡·리딩룸 23.1㎡ 무료. 정기대관 연 3회 공고+수시대관. 인천문화재단. 032-868-9162,검증 2026-07-16 대관확인,확인
+청주공연예술연습공간(동부창고 35동),public,충북,청주시,충북 청주시 청원구 덕벌로 30 동부창고 35동,시간당,,시간,온라인,분기단위,승인제,누구나,https://dbchangko.org/sub.php?code=44,성악·앙상블가능|대편성가능,"대연습장 135평·중연습장 32평·소연습장 11평 2실+샤워실·탈의실. 화~금 10~22시, 토·일 10~17시(월·공휴일 휴관). 아르코 통합대관. 청주시문화산업진흥재단. 043-715-6866",검증 2026-07-16 대관확인,확인
+부산공연예술연습공간,public,부산,남구,부산 남구 우암로 84-1 부산문화재단 5층,시간당,,시간,온라인,,승인제,누구나,https://www.bscf.or.kr/pspace/contents.do?mId=0100000000,성악·앙상블가능|대편성가능,부산문화재단 5층. 감만창의문화촌 인근(2호선 못골역). 온라인 예약. 부산문화재단 대관 051-745-7237,검증 2026-07-16 대관확인,확인
 [포털] 시흥 공유플랫폼 시소,public,경기,시흥시,,,,,온라인,,,누구나,https://share.siheung.go.kr,,시흥시 공공공간 공유플랫폼·'음악공간' 카테고리 확인,https://share.siheung.go.kr/space/view.do?key=305000&space_no=207,-
 [포털] 서울문화포털 문화공간,public,서울,,,,,,온라인,,,누구나,https://culture.seoul.go.kr/culture/culture/cultureSpace/list.do?menuNo=200025,,서울 문화공간 전체 데이터베이스·연습실 검색 가능,https://culture.seoul.go.kr/culture/culture/cultureSpace/list.do?menuNo=200025,-
 [포털] 서울시 공공서비스예약 오픈API,public,서울,,,,,,온라인,,,누구나,https://data.seoul.go.kr/dataList/OA-20497/S/1/datasetView.do,,API 실검증완료(2026-07-12): ListPublicReservationInstitution=시설대관 590건·SVCNM/장소/유무료/이용대상/예약URL 필드. ⚠️웹크롤은 차단(비정상접근 감지) — 반드시 인증키(무료·즉시발급) API로만. sample키=5건 한정,https://www.data.go.kr/data/15125787/openapi.do,-

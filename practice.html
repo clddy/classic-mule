@@ -196,11 +196,11 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="data/practice-public.js?v=20260716b"></script>
-<script src="data/practice-seed.js?v=20260716b"></script>
-<script src="data/practice-yeyak.js?v=20260716b"></script>
-<script src="data/practice-instant.js?v=20260716b"></script>
-<script src="data/practice-coords.js?v=20260716b"></script>
+<script src="data/practice-public.js?v=20260716d"></script>
+<script src="data/practice-seed.js?v=20260716d"></script>
+<script src="data/practice-yeyak.js?v=20260716d"></script>
+<script src="data/practice-instant.js?v=20260716d"></script>
+<script src="data/practice-coords.js?v=20260716d"></script>
 <script>
 // ===== 연습실 통합 보드 — '대여 방식' 축: 즉시 예약(instant, 민간) / 신청제·공공(public) =====
 // 공공 = 실데이터 (큐레이션 practice-public.js + 서울시 공공서비스예약 practice-yeyak.js).
@@ -266,6 +266,11 @@ const SIDO_ALIAS = { "광주": GJ, "전남": GJ, "전라남": GJ, "전남광주"
 // '경기 광주시'는 광주광역시가 아니다 — 통합특별시로 접기 전에 먼저 걸러낸다.
 const GYEONGGI_GWANGJU = /경기\s*광주|경기도\s*광주|곤지암|오포|초월읍|퇴촌|도척/;
 function sidoOf(r){
+  // 시드가 시도를 명시했으면 그대로 믿는다. 주소 문자열 부분일치보다 반드시 먼저 —
+  // '전남 강진군 대구면'의 '대구면'이 대구광역시로, '충남 서천군'이 충남으로 읽히는 식의 오분류를 막는다.
+  const declared = (r.sido || "").trim();
+  if (SIDO_ALIAS[declared]) return SIDO_ALIAS[declared];
+  if (SIDO_KEYS.includes(declared)) return declared;
   const raw = `${r.sido || ""} ${r.region || ""} ${r.addr || ""}`;
   if (GYEONGGI_GWANGJU.test(raw)) return "경기";
   for (const s of SIDO_KEYS) if (raw.includes(s)) return s;
