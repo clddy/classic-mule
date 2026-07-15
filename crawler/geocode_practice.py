@@ -39,6 +39,19 @@ def targets():
         os.unlink(tmp)
 
 
+# Nominatim은 축약 시도명(전북·충남…)을 인식하지 못한다 → 정식 명칭으로 펼쳐서 질의한다
+SIDO_FULL = {"서울": "서울특별시", "부산": "부산광역시", "대구": "대구광역시", "인천": "인천광역시",
+             "광주": "광주광역시", "대전": "대전광역시", "울산": "울산광역시", "세종": "세종특별자치시",
+             "경기": "경기도", "강원": "강원특별자치도", "충북": "충청북도", "충남": "충청남도",
+             "전북": "전북특별자치도", "전남": "전라남도", "경북": "경상북도", "경남": "경상남도",
+             "제주": "제주특별자치도"}
+
+
+def expand_sido(q):
+    m = re.match(r"^(%s)(?![가-힣])" % "|".join(SIDO_FULL), q)
+    return SIDO_FULL[m.group(1)] + q[m.end():] if m else q
+
+
 def clean_addr(a):
     """'서울 마포구 양화로 72, 효성해링턴타워 B1~B2 (서교동)' → '서울 마포구 양화로 72'
     Nominatim은 건물명·층·괄호주석이 붙으면 매칭을 실패한다."""
@@ -63,7 +76,7 @@ def queries_for(r):
     if name:
         qs.append(" ".join(x for x in [sido, dist, name] if x))
         qs.append(name)                            # 기관명 단독 (우진문화공간 등)
-    return [q.strip() for q in dict.fromkeys(qs) if q.strip()]
+    return [expand_sido(q.strip()) for q in dict.fromkeys(qs) if q.strip()]
 
 
 def geocode(q):
@@ -77,15 +90,28 @@ def geocode(q):
         hit = [float(js[0]["lat"]), float(js[0]["lon"])] if js else None
     except Exception:
         hit = None
-    cache[q] = hit
-    json.dump(cache, open(CACHE, "w", encoding="utf-8"), ensure_ascii=False)
+    if hit:                  # 실패는 캐시하지 않는다 — 주소를 보강하면 다시 시도해야 한다
+        cache[q] = hit
+        json.dump(cache, open(CACHE, "w", encoding="utf-8"), ensure_ascii=False)
     time.sleep(1.1)          # Nominatim: 초당 1건 이하
     return hit
 
 
+def _existing():
+    """이번 실행에서 실패한 곳의 좌표를 날리지 않는다 (discovery.py에서 겪은 덮어쓰기 회귀)."""
+    if not os.path.exists(OUT):
+        return {}
+    m = re.search(r"window\.ROOM_COORDS\s*=\s*(\{.*?\});", open(OUT, encoding="utf-8").read(), re.S)
+    try:
+        return json.loads(m.group(1)) if m else {}
+    except Exception:
+        return {}
+
+
 def main():
     rooms = targets()
-    coords, ok = {}, 0
+    coords, ok = _existing(), 0
+    kept = len(coords)
     for r in rooms:
         name = r.get("name")
         if not name:

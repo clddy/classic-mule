@@ -196,11 +196,11 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="data/practice-public.js"></script>
-<script src="data/practice-seed.js"></script>
-<script src="data/practice-yeyak.js"></script>
-<script src="data/practice-instant.js"></script>
-<script src="data/practice-coords.js"></script>
+<script src="data/practice-public.js?v=20260716"></script>
+<script src="data/practice-seed.js?v=20260716"></script>
+<script src="data/practice-yeyak.js?v=20260716"></script>
+<script src="data/practice-instant.js?v=20260716"></script>
+<script src="data/practice-coords.js?v=20260716"></script>
 <script>
 // ===== 연습실 통합 보드 — '대여 방식' 축: 즉시 예약(instant, 민간) / 신청제·공공(public) =====
 // 공공 = 실데이터 (큐레이션 practice-public.js + 서울시 공공서비스예약 practice-yeyak.js).
@@ -266,10 +266,15 @@ function sidoOf(r){
   return "기타";
 }
 function districtOf(r){ return /구$/.test(r.region || "") ? r.region : (r.district || null); }
+// 구 이름은 시도를 넘어 중복된다(서울 강서구/부산 강서구, 대구 남구/광주 남구).
+// 앵커 구와 같은지 볼 땐 시도까지 함께 봐야 다른 지역 공간이 '기준 구 안'으로 오인되지 않는다.
+function inAnchorDistrict(r){
+  return !!st.district && districtOf(r) === st.district && sidoOf(r) === st.districtSido;
+}
 
 // district는 '필터'가 아니라 거리 정렬의 기준점(단일 선택) — 선택해도 목록은 줄지 않는다
 const st = { tab: "all", cat: new Set(), inst: new Set(), region: new Set(), district: null,
-             price: new Set(), elig: new Set(), cond: new Set(), q: "", sort: "reco" };
+             districtSido: null, price: new Set(), elig: new Set(), cond: new Set(), q: "", sort: "reco" };
 const $ = s => document.querySelector(s);
 
 function districtsOf(){   // 서울 세부 필터용 — 데이터에 있는 서울 구만
@@ -403,8 +408,8 @@ const sortFns = {
   dist:  (a,b) => {
     const byName = String(a.name).localeCompare(String(b.name), "ko");
     if (st.district){
-      const ai = districtOf(a) === st.district ? 0 : 1;
-      const bi = districtOf(b) === st.district ? 0 : 1;
+      const ai = inAnchorDistrict(a) ? 0 : 1;
+      const bi = inAnchorDistrict(b) ? 0 : 1;
       if (ai !== bi) return ai - bi;          // 기준 구 안이 항상 위
       if (ai === 0) return byName;            // 둘 다 기준 구 안 → 가나다순
     }
@@ -482,9 +487,10 @@ function render(){
   // 고르면 서울 전체를 유지한 채 그 구 안은 가나다순 최상단, 나머지는 가까운 순으로 재정렬
   const showGu = st.region.has("서울");
   $("#f-district-group").style.display = showGu ? "" : "none";
-  if (!showGu && st.district) st.district = null;
+  if (!showGu && st.district) { st.district = null; st.districtSido = null; }
   radioChips("#f-district", districtsOf(), st.district, v => {
     st.district = v;
+    st.districtSido = v ? "서울" : null;   // 구 칩은 서울 선택 시에만 뜬다(districtsOf)
     st.sort = v ? "dist" : "reco";
     $("#sort-sel").value = st.sort;
     render();
@@ -603,7 +609,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
   $("#sort-sel").addEventListener("change", e=>{ st.sort=e.target.value; render(); });
   $("#map-wrap").addEventListener("toggle", ()=>{ updateMap(); if (MAP) setTimeout(()=>MAP.invalidateSize(), 60); });
   $("#filter-reset").addEventListener("click", ()=>{
-    st.cat.clear(); st.inst.clear(); st.region.clear(); st.district=null;
+    st.cat.clear(); st.inst.clear(); st.region.clear(); st.district=null; st.districtSido=null;
     st.price.clear(); st.elig.clear(); st.cond.clear(); st.q=""; st.sort="reco";
     $("#search-input").value=""; $("#sort-sel").value="reco"; render();
   });
