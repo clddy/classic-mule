@@ -12,11 +12,11 @@ name,category,region,district,address,price_type,price,rental_unit,apply_method,
 서울생활문화센터 체부,public,서울,종로구,체부동 (구 체부동교회),,,시간,온라인,,승인제,누구나,https://lifeculture.sfac.or.kr,성악·앙상블가능|대편성가능,체부동생활문화센터·오케스트라 연습 가능한 한옥+예배당 개조 공간,https://lifeculture.sfac.or.kr/main/place/living-culture-space-map001.do
 
 # ===== 서울 — 문화재단·시립 =====
-서울문화재단 대학로연습실,public,서울,종로구,동숭동,시간당,15000,시간,온라인,분기단위,승인제,누구나,https://sirs.sfac.or.kr/rent/notice,성악·앙상블가능,연습실 4관+다목적실·기본대관료 1.5만~2.8만·분기 정기대관(2개월 전 공고)+잔여 수시대관·연극 중심이나 공연예술 전반,https://sfac.or.kr/site/SFAC_KOR/02/10216030000002018102303.jsp
-예술청(서울문화재단 대학로센터),public,서울,종로구,동숭길 (구 동숭아트센터),무료,0,시간,온라인,,승인제,예술인등록,https://www.sfac.or.kr/artspace,성악·앙상블가능,프로젝트룸·아고라 등 예술인 전용 무료대관·예술 종사자 가입제(성악가 명시 포함),https://opengov.seoul.go.kr/mediahub/24082864
-서울시립청소년음악센터,public,서울,,,회당,,시간,온라인,,선착순,누구나,https://symc.or.kr/rental,피아노있음|성악·앙상블가능|타악가능,합주실·개인실기실·합창실·블랙박스·레코딩스튜디오. 청소년 할인·일반인은 부가세 10% 추가,https://symc.or.kr/rental
+서울문화재단 대학로연습실,public,서울,종로구,동숭동,회당,15000,시간,온라인,분기단위,승인제,누구나,https://sirs.sfac.or.kr/rent/notice,성악·앙상블가능,연습실 4관+다목적실·기본대관료 1.5만~2.8만(단위=기본대관 1회 기준·시간단위 재확인 필요)·분기 정기대관(2개월 전 공고)+잔여 수시대관·연극 중심이나 공연예술 전반,https://sfac.or.kr/site/SFAC_KOR/02/10216030000002018102303.jsp
+서울예술인지원센터(구 예술청),public,서울,종로구,동숭길 (구 동숭아트센터),무료,0,시간,온라인,,승인제,예술인등록,https://www.sfac.or.kr/artspace/artspace/art_office_map.do,성악·앙상블가능,프로젝트룸·아고라 등 예술인 전용 무료대관·예술 종사자 가입제(성악가 명시 포함)·구 예술청에서 개편,https://www.sfac.or.kr/site/SFAC_KOR/09/10927010000002021111005.jsp
+서울시립청소년음악센터,public,서울,,,회당,,시간,온라인,,선착순,누구나,https://symc.or.kr,피아노있음|성악·앙상블가능|타악가능,합주실·개인실기실·합창실·블랙박스·레코딩스튜디오. 청소년 할인·일반인은 부가세 10% 추가. 홈 상단 '대관' 메뉴,https://symc.or.kr
 플랫폼창동61 스튜디오61,public,서울,도봉구,마들로11길 74,시간당,,시간,전화,,선착순,누구나,http://www.platform61.kr,타악가능|성악·앙상블가능,리허설 스튜디오(드럼·앰프 상비)·전화예약 070-4451-0901,http://www.platform61.kr/load.asp?subPage=920
-서울시민청(바스락홀·활짝라운지),public,서울,중구,서울시청 지하 1~2층,,,회당,온라인,,승인제,누구나,https://www.seoulcitizenshall.kr,성악·앙상블가능,음악·연극·무용 공연 대관은 바스락홀 배정·연습보다 발표·공연용,https://www.seoulcitizenshall.kr/?c=citizenhall/spaceinfo
+서울시민청(바스락홀·활짝라운지),public,서울,중구,서울시청 지하 1~2층,,,회당,온라인,,승인제,누구나,http://www.seoulcitizenshall.kr,성악·앙상블가능,음악·연극·무용 공연 대관은 바스락홀 배정·연습보다 발표·공연용 (https 인증서 오류 — http 접속),http://www.seoulcitizenshall.kr/?c=citizenhall/spaceinfo
 아르코·대학로예술극장 연습실,public,서울,종로구,대학로,,,시간,온라인,분기단위,승인제,누구나,https://theater.arko.or.kr,성악·앙상블가능,아르코 창작공간 연습실·공연예술 단체 위주,https://theater.arko.or.kr
 
 # ===== 인천·경기 =====
@@ -38,7 +38,7 @@ name,category,region,district,address,price_type,price,rental_unit,apply_method,
 아르코공연연습센터@포항,public,경북,포항시,,시간당,,시간,온라인,분기단위,승인제,누구나,https://www.arko.or.kr/pspace/,성악·앙상블가능,포항문화재단 위탁운영,https://www.arko.or.kr/pspace/
 아르코공연연습센터@광주(광산),public,광주,광산구,,시간당,,시간,온라인,분기단위,승인제,누구나,https://www.arko.or.kr/pspace/,성악·앙상블가능,광산 아르코공연연습센터 운영위원회,https://www.arko.or.kr/pspace/
 아르코공연연습센터@세종,public,세종,,,시간당,,시간,온라인,분기단위,승인제,누구나,https://www.arko.or.kr/pspace/,성악·앙상블가능,세종시문화재단 위탁운영,https://www.arko.or.kr/pspace/
-아르코공연연습센터@원주,public,강원,원주시,,시간당,,시간,온라인,분기단위,승인제,누구나,https://www.wcf.or.kr/common_page/contents_page.php?board_code=72,성악·앙상블가능,원주문화재단 위탁운영,https://www.wcf.or.kr/common_page/contents_page.php?board_code=72
+아르코공연연습센터@원주,public,강원,원주시,,시간당,,시간,온라인,분기단위,승인제,누구나,https://www.arko.or.kr/pspace/,성악·앙상블가능,원주문화재단 위탁운영(재단 안내페이지는 JS스텁 — 아르코 통합예약으로 연결),https://www.arko.or.kr/pspace/
 아르코공연연습센터@영월,public,강원,영월군,,시간당,,시간,온라인,분기단위,승인제,누구나,https://www.arko.or.kr/pspace/,성악·앙상블가능,영월문화관광재단 위탁운영,https://www.arko.or.kr/pspace/
 강진아르코공연연습센터,public,전남,강진군,,시간당,,시간,온라인,분기단위,승인제,누구나,https://www.arko.or.kr/pspace/,성악·앙상블가능,강진군문화재단 위탁운영,https://www.arko.or.kr/pspace/
 아르코공연연습센터@담양,public,전남,담양군,,시간당,,시간,온라인,분기단위,승인제,누구나,https://www.damyangcf.or.kr/user/sub3030,성악·앙상블가능,담양군문화재단 위탁운영,https://www.damyangcf.or.kr/user/sub3030
@@ -65,7 +65,7 @@ name,category,region,district,address,price_type,price,rental_unit,apply_method,
 시립노원청소년센터,public,서울,노원구,,회당,,시간,온라인,,선착순,누구나,https://online112.youth.seoul.kr/?center_id=112,타악가능,서울시 청소년시설 통합예약(online.youth.seoul.kr) 연동,https://online112.youth.seoul.kr/?center_id=112
 시립목동청소년센터,public,서울,양천구,목동서로 143,회당,,시간,온라인,,선착순,누구나,http://www.wawa.or.kr,타악가능,02-2642-1318,http://www.wawa.or.kr
 시립서울청소년센터,public,서울,,,회당,,시간,온라인,,선착순,누구나,http://youthc.or.kr,타악가능,,http://youthc.or.kr
-[네트워크] 서울 시립청소년센터 21곳,public,서울,,,회당,,시간,온라인,,선착순,누구나,https://online.youth.seoul.kr,타악가능,구 청소년수련관 21곳(2019 개칭)·상당수 밴드/음악연습실 보유·통합예약시스템 존재,https://news.seoul.go.kr/welfare/archives/385937
+[네트워크] 서울 시립청소년센터 21곳,public,서울,,,회당,,시간,온라인,,선착순,누구나,https://online112.youth.seoul.kr/?center_id=112,타악가능,구 청소년수련관 21곳(2019 개칭)·상당수 밴드/음악연습실 보유·센터별 online{N}.youth.seoul.kr?center_id={N} 예약(base URL은 500 — 쿼리 필수),https://news.seoul.go.kr/welfare/archives/385937
 
 # ===== 호남·문예회관·국립 (4차) =====
 우진문화공간,public,전북,전주시,,시간당,,시간,전화,,승인제,누구나,http://www.woojin.or.kr/sub/04_sub_01.html,피아노있음|성악·앙상블가능,★클래식 특화: 기악·성악 연습실+개인연습실 명시(민간 문화재단). 무용·연극 전용연습실 별도. 10~22시 개방,http://www.woojin.or.kr/sub/04_sub_01.html
@@ -80,14 +80,13 @@ name,category,region,district,address,price_type,price,rental_unit,apply_method,
 [포털] 경기공유서비스,public,경기,,,,,,온라인,,,누구나,https://share.gg.go.kr,,실측검증(2026-07-12): '연습실' 공식분류 존재·31개 시군·카드에 [시군|기관|분류|요금|수용인원|예약방법(인터넷/전화)|선별(심사/선착순)] 전부 구조화 — 지시서 스키마와 1:1 매핑·파서 최적 타깃,https://share.gg.go.kr
 [포털] 아르코 공연예술연습공간,public,전국,,,,,,온라인,분기단위,,누구나,https://www.arko.or.kr/pspace/,,전국 아르코 연습센터 통합 대관예약·지역선택→달력 예약,https://www.arko.or.kr/pspace/
 [포털] 시흥 공유플랫폼 시소,public,경기,시흥시,,,,,온라인,,,누구나,https://share.siheung.go.kr,,시흥시 공공공간 공유플랫폼·'음악공간' 카테고리 확인,https://share.siheung.go.kr/space/view.do?key=305000&space_no=207
-[포털] 서울문화포털 문화공간,public,서울,,,,,,온라인,,,누구나,https://culture.seoul.go.kr/culture/culture/cultureSpace/list.do,,서울 문화공간 전체 데이터베이스·연습실 검색 가능,https://culture.seoul.go.kr/culture/culture/cultureSpace/list.do
+[포털] 서울문화포털 문화공간,public,서울,,,,,,온라인,,,누구나,https://culture.seoul.go.kr/culture/culture/cultureSpace/list.do?menuNo=200025,,서울 문화공간 전체 데이터베이스·연습실 검색 가능,https://culture.seoul.go.kr/culture/culture/cultureSpace/list.do?menuNo=200025
 [포털] 서울시 공공서비스예약 오픈API,public,서울,,,,,,온라인,,,누구나,https://data.seoul.go.kr/dataList/OA-20497/S/1/datasetView.do,,API 실검증완료(2026-07-12): ListPublicReservationInstitution=시설대관 590건·SVCNM/장소/유무료/이용대상/예약URL 필드. ⚠️웹크롤은 차단(비정상접근 감지) — 반드시 인증키(무료·즉시발급) API로만. sample키=5건 한정,https://www.data.go.kr/data/15125787/openapi.do
-[포털] 서울시 청소년시설 통합예약,public,서울,,,,,,온라인,,,청소년,https://online.youth.seoul.kr,,시립청소년센터 21곳 통합예약 시스템,https://online112.youth.seoul.kr
 [명부] e청소년(여가부 청소년활동정보),public,전국,,,,,,온라인,,,청소년,https://www.youth.go.kr,,전국 청소년수련관·문화의집 시설검색+종합평가·안전점검 결과까지 조회 — 지시서 3-4 명부소스,https://www.youth.go.kr/youth/eYouth/main/main.yt
 [명부] 전국문화기반시설총람(문체부),public,전국,,,,,,,,,,https://www.data.go.kr/data/3075558/fileData.do,,생활문화센터·문예회관·문화의집·지방문화원 전국 총람(2025.01 기준·XLSX) — 공공 연습공간 모명부. 다운로드는 data.go.kr 로그인 필요,https://www.data.go.kr/data/3075558/fileData.do
 [포털] 부산광역시 통합예약,public,부산,,,,,,온라인,,,누구나,https://reserve.busan.go.kr,,시청+16개 구군+산하기관 예약 전 채널 일원화 — 부산 공공연습공간 단일 관문,https://reserve.busan.go.kr/index
 [포털] 대구광역시 통합예약,public,대구,,,,,,온라인,,,누구나,https://yeyak.daegu.go.kr,,대구시 통합예약시스템,https://yeyak.daegu.go.kr
-[포털] 인천시설공단 통합예약,public,인천,,,,,,온라인,,,누구나,https://reserve.insiseol.or.kr,,인천시설공단 시설 통합예약(청소년수련관 음악연습실 무료대관 포함),https://reserve.insiseol.or.kr
+[포털] 인천시설공단 통합예약,public,인천,,,,,,온라인,,,누구나,http://reserve.insiseol.or.kr,,인천시설공단 시설 통합예약(청소년수련관 음악연습실 무료대관 포함)·https 미지원 http 접속,http://reserve.insiseol.or.kr
 
 # ===== 검증 후 제외 (실재하나 리스팅 부적합) =====
 # 노들섬 다목적홀 숲 — 서울시발레단 전용 전환, 외부대관 중단 (nodeul.org 확인)
