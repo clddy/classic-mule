@@ -55,15 +55,51 @@
 <div class="container board-layout">
   <aside class="filters">
     <button class="filter-reset filter-reset-top" id="filter-reset">필터 초기화 ↺</button>
-    <div class="filter-group"><h4>악기 조건</h4><div class="filter-options" id="f-inst"></div></div>
-    <div class="filter-group"><h4>지역</h4><div class="filter-options" id="f-region"></div></div>
-    <div class="filter-group"><h4>가격</h4><div class="filter-options" id="f-price"></div></div>
-    <div class="filter-group"><h4>자격 (신청제)</h4><div class="filter-options" id="f-elig"></div></div>
-    <div class="filter-group"><h4>기타 조건</h4><div class="filter-options" id="f-cond"></div></div>
+    <div class="filter-group">
+      <h4>대여 방식</h4>
+      <div class="filter-options" id="f-cat"></div>
+    </div>
+    <div class="filter-group">
+      <h4>가격</h4>
+      <div class="filter-options" id="f-price"></div>
+    </div>
+    <div class="filter-group">
+      <details open>
+        <summary class="filter-summary">악기 조건 (접기/펼치기)</summary>
+        <div id="f-inst"></div>
+      </details>
+    </div>
+    <div class="filter-group">
+      <h4>지역</h4>
+      <div class="filter-options" id="f-region"></div>
+    </div>
+    <div class="filter-group">
+      <details>
+        <summary class="filter-summary">서울 세부 (구)</summary>
+        <div class="filter-options" id="f-district"></div>
+      </details>
+    </div>
+    <div class="filter-group">
+      <h4>자격 (신청제)</h4>
+      <div class="filter-options" id="f-elig"></div>
+    </div>
+    <div class="filter-group">
+      <h4>기타 조건</h4>
+      <div class="filter-options" id="f-cond"></div>
+    </div>
   </aside>
   <main>
+    <div class="update-line">
+      <span class="dot"></span>
+      <span id="update-time"></span>
+    </div>
     <div class="board-toolbar">
-      <div class="search-box"><input type="text" id="search-input" placeholder="동네, 공간 이름으로 검색"></div>
+      <div class="search-box"><input type="text" id="search-input" placeholder="공간명, 동네, 조건으로 검색"></div>
+      <select id="sort-sel" class="sort-sel">
+        <option value="reco">추천순</option>
+        <option value="price">무료·저가순</option>
+        <option value="name">이름순</option>
+      </select>
       <button class="btn-primary" id="btn-host">＋ 공간 등록</button>
     </div>
     <div class="result-count" id="result-count"></div>
@@ -192,20 +228,40 @@ const PUBLIC_ALL = (window.PUBLIC_ROOMS || []).map(r => ({ ...r, cat: "public" }
 
 function allRooms(){ return [...HOST_ROOMS, ...SAMPLE_INSTANT, ...PUBLIC_ALL]; }
 
-// ---------- 필터 ----------
+// ---------- 필터 (구인구직란과 동일 체계) ----------
 // '타악 가능'은 확인된 페인포인트라 최상단·강조(hot)
+const CATS = [["instant","⚡ 즉시 예약"], ["public","🏛 신청제·공공"]];
 const INSTS = ["타악가능", "금관가능", "피아노있음", "성악·앙상블가능", "대편성가능"];
 const PRICES = ["무료", "유료"];
 const ELIGS = ["누구나", "지역주민", "청소년", "단체", "예술인"];
 const CONDS = ["방음 시공", "24시간", "엘리베이터"];
-const st = { tab: "all", inst: new Set(), region: new Set(), price: new Set(), elig: new Set(), cond: new Set(), q: "" };
+// 지역: 구인구직(jobs.js REGION_LIST)과 동일한 17개 시도 고정 체계
+const REGION_LIST = ["서울", "경기", "인천", "강원", "대전", "세종", "충북", "충남",
+  "대구", "경북", "부산", "울산", "경남", "광주", "전북", "전남", "제주", "기타"];
+// 데이터의 region이 시군구 단위(서초구·종로구…)면 시도로 정규화
+const SIDO_KEYS = ["서울","경기","인천","강원","대전","세종","충북","충남","대구","경북","부산","울산","경남","광주","전북","전남","제주"];
+function sidoOf(r){
+  const raw = `${r.sido || ""} ${r.region || ""} ${r.addr || ""}`;
+  for (const s of SIDO_KEYS) if (raw.includes(s)) return s;
+  if (/구$|동$/.test(r.region || "")) return "서울";   // 구 단위 단독 표기(서울 수집분) 폴백
+  return "기타";
+}
+function districtOf(r){ return /구$/.test(r.region || "") ? r.region : (r.district || null); }
+
+const st = { tab: "all", cat: new Set(), inst: new Set(), region: new Set(), district: new Set(),
+             price: new Set(), elig: new Set(), cond: new Set(), q: "", sort: "reco" };
 const $ = s => document.querySelector(s);
 
-function regionsOf(){ return [...new Set(allRooms().map(r => r.region).filter(Boolean))]; }
+function districtsOf(){
+  return [...new Set(allRooms().map(districtOf).filter(Boolean))].sort();
+}
 
 function chips(sel, items, set, hotFirst){
   const el = $(sel);
-  el.innerHTML = items.map((v,i) => `<button class="chip${set.has(v)?" on":""}${hotFirst&&i===0?" hot":""}" data-v="${v}">${v}</button>`).join("");
+  el.innerHTML = items.map((v,i) => {
+    const [val, label] = Array.isArray(v) ? v : [v, v];
+    return `<button class="chip${set.has(val)?" on":""}${hotFirst&&i===0?" hot":""}" data-v="${val}">${label}</button>`;
+  }).join("");
   el.querySelectorAll(".chip").forEach(c => c.addEventListener("click", () => {
     const v = c.dataset.v; set.has(v) ? set.delete(v) : set.add(v); render();
   }));
@@ -223,8 +279,10 @@ function matchElig(r, set){
 
 function pass(r){
   if (st.tab !== "all" && r.cat !== st.tab) return false;
+  if (st.cat.size && !st.cat.has(r.cat)) return false;
   if (st.inst.size && ![...st.inst].every(v => (r.instruments || []).includes(v))) return false;
-  if (st.region.size && !st.region.has(r.region)) return false;
+  if (st.region.size && !st.region.has(sidoOf(r))) return false;
+  if (st.district.size && !st.district.has(districtOf(r))) return false;
   if (st.price.size){
     const isFree = !!r.free || r.price === "무료";
     if (!( (st.price.has("무료") && isFree) || (st.price.has("유료") && !isFree) )) return false;
@@ -239,6 +297,27 @@ function pass(r){
   if (st.q && !`${r.name} ${r.region} ${r.addr||""} ${r.notes||""}`.toLowerCase().includes(st.q.toLowerCase())) return false;
   return true;
 }
+
+// ---------- 정렬 (구인구직 sort-sel과 동일 패턴) ----------
+// 가격 숫자화: 무료=0, '3만원/타임'→30000, '15,000원'→15000 — 비교용 근사치
+function priceNum(r){
+  if (r.free || r.price === "무료") return 0;
+  const s = String(r.price ?? "");
+  let m = s.match(/(\d[\d,]*)\s*만/);
+  if (m) return +m[1].replace(/,/g,"") * 10000;
+  m = s.match(/(\d[\d,]{2,})\s*원/);
+  if (m) return +m[1].replace(/,/g,"");
+  if (r.monthly) return r.monthly * 10000;
+  if (r.hourly) return r.hourly * 10000;
+  return Infinity;   // 가격 미상은 뒤로
+}
+const sortFns = {
+  reco:  (a,b) => (b.mine?1:0)-(a.mine?1:0) || (a.sample?1:0)-(b.sample?1:0)
+                  || (priceNum(a)===0?0:1)-(priceNum(b)===0?0:1)
+                  || String(a.name).localeCompare(String(b.name), "ko"),
+  price: (a,b) => priceNum(a)-priceNum(b) || String(a.name).localeCompare(String(b.name), "ko"),
+  name:  (a,b) => String(a.name).localeCompare(String(b.name), "ko"),
+};
 
 // ---------- 카드 ----------
 const catBadge = r => r.cat === "public"
@@ -293,18 +372,28 @@ function cardInstant(r, i){
 
 let CUR = [];
 function render(){
+  chips("#f-cat", CATS, st.cat);
   chips("#f-inst", INSTS, st.inst, true);
-  chips("#f-region", regionsOf(), st.region);
+  chips("#f-region", REGION_LIST, st.region);
+  chips("#f-district", districtsOf(), st.district);
   chips("#f-price", PRICES, st.price);
   chips("#f-elig", ELIGS, st.elig);
   chips("#f-cond", CONDS, st.cond);
+  // 탭: 구인구직처럼 카운트 배지
+  const all = allRooms();
+  const cnt = { all: all.length,
+                instant: all.filter(r=>r.cat==="instant").length,
+                public: all.filter(r=>r.cat==="public").length };
+  $("#tab-all").innerHTML = `전체 <span class="count">${cnt.all}</span>`;
+  $("#tab-instant").innerHTML = `⚡ 즉시 예약 <span class="count">${cnt.instant}</span>`;
+  $("#tab-public").innerHTML = `🏛 신청제·공공 <span class="count">${cnt.public}</span>`;
   for (const t of ["all","instant","public"]) $(`#tab-${t}`).classList.toggle("active", st.tab===t);
-  CUR = allRooms().filter(pass);
+  CUR = all.filter(pass).sort(sortFns[st.sort] || sortFns.reco);
   const nPub = CUR.filter(r=>r.cat==="public").length, nIns = CUR.length - nPub;
-  $("#result-count").innerHTML = `총 <strong>${CUR.length}</strong>곳 <span style="color:var(--ink-soft);font-size:0.8rem">— 즉시 예약 ${nIns} · 신청제·공공 ${nPub}</span>`;
+  $("#result-count").innerHTML = `총 <strong>${CUR.length}</strong>곳 <span style="color:var(--ink-soft);font-size:0.8rem">— 즉시 예약 ${nIns} · 신청제·공공 ${nPub}</span> — 카드를 누르면 상세와 예약 방법이 열립니다`;
   $("#room-list").innerHTML = CUR.length
     ? CUR.map((r,i)=> r.cat==="public" ? cardPublic(r,i) : cardInstant(r,i)).join("")
-    : `<div class="empty">조건에 맞는 공간이 없습니다.</div>`;
+    : `<div class="empty">조건에 맞는 공간이 없습니다.<br>필터를 조정해 보세요.</div>`;
   document.querySelectorAll("#room-list .job-card").forEach(card=>{
     card.addEventListener("click", ()=>openRoom(CUR[+card.dataset.i]));
   });
@@ -352,13 +441,20 @@ function openRoom(r){
 
 // ---------- 초기화 ----------
 document.addEventListener("DOMContentLoaded", ()=>{
+  // 업데이트 라인: yeyak 수집분 확인일 (구인구직 update-line과 동일 패턴)
+  const fetched = (window.YEYAK_ROOMS || {}).fetched;
+  $("#update-time").textContent = fetched
+    ? `공공 데이터 확인 ${fetched} · 공식 예약페이지 기준`
+    : `공공 데이터 — 각 기관 공식정보 기준`;
   render();
   for (const t of ["all","instant","public"])
     $(`#tab-${t}`).addEventListener("click", ()=>{ st.tab=t; render(); });
   $("#search-input").addEventListener("input", e=>{ st.q=e.target.value.trim(); render(); });
+  $("#sort-sel").addEventListener("change", e=>{ st.sort=e.target.value; render(); });
   $("#filter-reset").addEventListener("click", ()=>{
-    st.inst.clear(); st.region.clear(); st.price.clear(); st.elig.clear(); st.cond.clear(); st.q="";
-    $("#search-input").value=""; render();
+    st.cat.clear(); st.inst.clear(); st.region.clear(); st.district.clear();
+    st.price.clear(); st.elig.clear(); st.cond.clear(); st.q=""; st.sort="reco";
+    $("#search-input").value=""; $("#sort-sel").value="reco"; render();
   });
   for (const mid of ["room-modal","host-modal"]){
     const m = document.getElementById(mid);
