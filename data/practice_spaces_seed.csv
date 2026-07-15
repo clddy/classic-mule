@@ -46,11 +46,26 @@ name,category,region,district,address,price_type,price,rental_unit,apply_method,
 아르코공연연습센터@제주,public,제주,,,시간당,,시간,온라인,분기단위,승인제,누구나,https://www.arko.or.kr/pspace/,성악·앙상블가능,제주문화예술재단 MOU·운영,https://www.arko.or.kr/pspace/
 # 아르코 위탁운영기관 추가 확인분(전주·청주·춘천·인천문화재단)도 각 지역 센터 존재 추정 — 등록 시 개별 확인
 
+# ===== 서울 — 추가 발굴 (2차) =====
+서울마포음악창작소(구 뮤지스땅스),public,서울,마포구,아현동 지하2층,시간당,,시간,온라인,,승인제,누구나,https://www.mapoindie.or.kr/sub/space/app2.asp,타악가능|성악·앙상블가능,녹음실·개인작업실·밴드작업실·50석 소극장. 화~토 10~22시(일·월 휴관). 마포문화재단 운영·문체부 음악창작소 1호(2013),https://www.mapoindie.or.kr
+서초구 음악연습실,public,서울,서초구,,회당,,시간,온라인,,선착순,누구나,https://www.seocho.go.kr/site/seocho/ex/artCenter/ArtCenterCalendarF.do?searchType=B,피아노있음,구청 직영 음악연습실·온라인 예약캘린더 운영(희귀한 구청 직영 사례),https://www.seocho.go.kr/site/seocho/ex/artCenter/ArtCenterCalendarF.do
+청년예술청 SAPY,public,서울,,,무료,0,시간,온라인,,승인제,예술인등록,http://www.sapy.kr/anytime_1,성악·앙상블가능,서울문화재단 청년예술인 공간·수시대관 운영·청년 예술인 대상,http://www.sapy.kr/anytime_1
+양천문화재단 생활문화센터(마루연습실),public,서울,양천구,,시간당,,시간,온라인,,선착순,누구나,https://yfac.kr/main/contents.do?a_num=29798379,성악·앙상블가능,마루연습실 I·II(거울·스피커·콘솔)·무용 겸용,https://yfac.kr/main/contents.do?a_num=29798379
+종로문화체육센터,public,서울,종로구,,시간당,,시간,온라인,,선착순,누구나,https://www.ijongno.co.kr/fmcs/41,성악·앙상블가능,종로구시설관리공단 통합예약 시스템,https://www.ijongno.co.kr/fmcs/41
+
+# ===== 음악창작소 네트워크 (문체부·콘진원 지역기반형 — 전국 16곳) =====
+충남음악창작소,public,충남,,,시간당,,시간,온라인,,승인제,누구나,https://www.cnmusicfactory.com,타악가능|성악·앙상블가능,합주실·녹음실·문체부 지역기반형 음악창작소,https://www.cnmusicfactory.com
+전북 레드콘 음악창작소,public,전북,전주시,,시간당,,시간,온라인,,승인제,누구나,https://www.kocca.kr/kocca/subPage.do?menuNo=205047,타악가능|성악·앙상블가능,콘진원 지역음악창작소·창작자(뮤지션) 모집 운영,https://chn.kocca.kr/kocca/bbs/view/B0158919/1962737.do
+[네트워크] 지역 음악창작소 16곳,public,전국,,,시간당,,시간,온라인,,승인제,누구나,https://www.kocca.kr/kocca/subPage.do?menuNo=205047,타악가능,광주·부산·대구·대전(인터뮤직)·제주·인천·경주 등 16곳 운영 — 콘진원 사업페이지에서 지역별 개별 확인,https://www.kocca.kr/kocca/subPage.do?menuNo=205047
+
 # ===== 수집 포털 노드 (개별 공간이 아니라 '소스' — 파서 웨이브용) =====
 [포털] 서울시 공공서비스예약,public,서울,,,,,,온라인,,,누구나,https://yeyak.seoul.go.kr,,시립·구립 연습공간 통합예약 최대노드·시설대관 카테고리 크롤 대상,https://yeyak.seoul.go.kr/web/main.do
 [포털] 경기공유서비스,public,경기,,,,,,온라인,,,누구나,https://share.gg.go.kr,,경기도 공공시설 통합 공유·연습실/다목적실 검색 가능,https://share.gg.go.kr
 [포털] 아르코 공연예술연습공간,public,전국,,,,,,온라인,분기단위,,누구나,https://www.arko.or.kr/pspace/,,전국 아르코 연습센터 통합 대관예약·지역선택→달력 예약,https://www.arko.or.kr/pspace/
+[포털] 시흥 공유플랫폼 시소,public,경기,시흥시,,,,,온라인,,,누구나,https://share.siheung.go.kr,,시흥시 공공공간 공유플랫폼·'음악공간' 카테고리 확인,https://share.siheung.go.kr/space/view.do?key=305000&space_no=207
+[포털] 서울문화포털 문화공간,public,서울,,,,,,온라인,,,누구나,https://culture.seoul.go.kr/culture/culture/cultureSpace/list.do,,서울 문화공간 전체 데이터베이스·연습실 검색 가능,https://culture.seoul.go.kr/culture/culture/cultureSpace/list.do
 
 # ===== 검증 후 제외 (실재하나 리스팅 부적합) =====
 # 노들섬 다목적홀 숲 — 서울시발레단 전용 전환, 외부대관 중단 (nodeul.org 확인)
 # 서울대 관악학생생활관 연습실 — 재학생 전용 (지시서 3-5 원칙대로 제외)
+# 서울남산국악당·돈화문국악당 — 공연장 대관 중심(연습실 아님), 공연장 카테고리로 별도 관리 권장
