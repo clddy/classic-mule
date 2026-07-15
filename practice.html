@@ -73,11 +73,9 @@
       <h4>지역</h4>
       <div class="filter-options" id="f-region"></div>
     </div>
-    <div class="filter-group">
-      <details>
-        <summary class="filter-summary">서울 세부 (구)</summary>
-        <div class="filter-options" id="f-district"></div>
-      </details>
+    <div class="filter-group" id="f-district-group" style="display:none">
+      <h4>서울 세부 (구)</h4>
+      <div class="filter-options" id="f-district"></div>
     </div>
     <div class="filter-group">
       <h4>자격 (신청제)</h4>
@@ -98,11 +96,16 @@
       <select id="sort-sel" class="sort-sel">
         <option value="reco">추천순</option>
         <option value="price">무료·저가순</option>
+        <option value="dist">가까운순 (선택 지역 기준)</option>
         <option value="name">이름순</option>
       </select>
       <button class="btn-primary" id="btn-host">＋ 공간 등록</button>
     </div>
     <div class="result-count" id="result-count"></div>
+    <details id="map-wrap" style="margin-bottom:12px">
+      <summary class="filter-summary" style="cursor:pointer">🗺 지도로 보기 (근사 위치)</summary>
+      <div id="map" style="height:340px;border-radius:10px;margin-top:8px"></div>
+    </details>
     <div class="job-list" id="room-list"></div>
   </main>
 </div>
@@ -191,7 +194,10 @@
 
 <a class="feedback-fab" href="mailto:ohmjin3141@naver.com?subject=%ED%8F%AC%EB%94%94%EC%97%84%20%EC%97%B0%EC%8A%B5%EC%8B%A4%20%ED%94%BC%EB%93%9C%EB%B0%B1">피드백 보내기</a>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script src="data/practice-public.js"></script>
+<script src="data/practice-seed.js"></script>
 <script src="data/practice-yeyak.js"></script>
 <script>
 // ===== 연습실 통합 보드 — '대여 방식' 축: 즉시 예약(instant, 민간) / 신청제·공공(public) =====
@@ -216,15 +222,24 @@ const loadHost = () => { try { return JSON.parse(localStorage.getItem(LS_HOST)) 
 let HOST_ROOMS = loadHost();
 const saveHost = () => { try { localStorage.setItem(LS_HOST, JSON.stringify(HOST_ROOMS)); } catch(e){} };
 
-// 공공 실데이터 병합 (큐레이션 + yeyak 수집분)
-const PUBLIC_ALL = (window.PUBLIC_ROOMS || []).map(r => ({ ...r, cat: "public" }))
-  .concat(((window.YEYAK_ROOMS || {}).items || []).map(r => ({
+// 공공 실데이터 병합 (큐레이션 + 시드 51곳 + yeyak 수집분) — 이름 중복은 큐레이션 우선
+const _normName = s => String(s||"").replace(/\s|\(.*?\)/g, "");
+const _curated = (window.PUBLIC_ROOMS || []).map(r => ({ ...r, cat: "public" }));
+const _curNames = new Set(_curated.map(r => _normName(r.name)));
+const _seed = (window.SEED_ROOMS || [])
+  .filter(r => !_curNames.has(_normName(r.name)))
+  .map(r => ({ ...r, cat: "public" }));
+const _seedNames = new Set([..._curNames, ..._seed.map(r => _normName(r.name))]);
+const _yeyak = ((window.YEYAK_ROOMS || {}).items || [])
+  .filter(r => !_seedNames.has(_normName(r.name)))
+  .map(r => ({
     ...r, cat: "public",
     price: /무료/.test(r.price) ? "무료" : r.price,
     free: /무료/.test(r.price),
     instruments: r.instruments || [],
     verified: (window.YEYAK_ROOMS || {}).fetched,
-  })));
+  }));
+const PUBLIC_ALL = [..._curated, ..._seed, ..._yeyak];
 
 function allRooms(){ return [...HOST_ROOMS, ...SAMPLE_INSTANT, ...PUBLIC_ALL]; }
 
@@ -252,8 +267,8 @@ const st = { tab: "all", cat: new Set(), inst: new Set(), region: new Set(), dis
              price: new Set(), elig: new Set(), cond: new Set(), q: "", sort: "reco" };
 const $ = s => document.querySelector(s);
 
-function districtsOf(){
-  return [...new Set(allRooms().map(districtOf).filter(Boolean))].sort();
+function districtsOf(){   // 서울 세부 필터용 — 데이터에 있는 서울 구만
+  return [...new Set(allRooms().filter(r=>sidoOf(r)==="서울").map(districtOf).filter(Boolean))].sort();
 }
 
 function chips(sel, items, set, hotFirst){
@@ -311,11 +326,58 @@ function priceNum(r){
   if (r.hourly) return r.hourly * 10000;
   return Infinity;   // 가격 미상은 뒤로
 }
+// ---------- 좌표·거리 (구/시 중심 근사 — 지도표시·가까운순 정렬용) ----------
+const SEOUL_GU = {"종로구":[37.573,126.979],"중구":[37.564,126.998],"용산구":[37.532,126.990],
+ "성동구":[37.563,127.037],"광진구":[37.538,127.082],"동대문구":[37.574,127.040],"중랑구":[37.606,127.093],
+ "성북구":[37.589,127.017],"강북구":[37.640,127.026],"도봉구":[37.669,127.047],"노원구":[37.654,127.056],
+ "은평구":[37.603,126.929],"서대문구":[37.579,126.937],"마포구":[37.566,126.902],"양천구":[37.517,126.867],
+ "강서구":[37.551,126.850],"구로구":[37.495,126.887],"금천구":[37.457,126.895],"영등포구":[37.526,126.896],
+ "동작구":[37.512,126.940],"관악구":[37.478,126.952],"서초구":[37.484,127.033],"강남구":[37.517,127.047],
+ "송파구":[37.515,127.106],"강동구":[37.530,127.124]};
+const CITY = {"부천시":[37.503,126.766],"성남시":[37.420,127.127],"고양시":[37.658,126.832],
+ "화성시":[37.199,126.831],"시흥시":[37.380,126.803],"수원시":[37.264,127.029],
+ "연수구":[37.410,126.678],"부평구":[37.507,126.722],
+ "전주시":[35.824,127.148],"원주시":[37.342,127.920],"창원시":[35.228,128.681],"포항시":[36.019,129.343],
+ "금정구":[35.243,129.092],"광산구":[35.140,126.794],"남구":[35.846,128.597],
+ "강진군":[34.642,126.767],"담양군":[35.321,126.988],"서천군":[36.080,126.691],"영월군":[37.183,128.462],
+ "경산시":[35.825,128.741],"김천시":[36.140,128.114],"안동시":[36.568,128.729],"양산시":[35.335,129.037],
+ "남양주시":[37.636,127.216],"의정부시":[37.738,127.034],"안양시":[37.394,126.957],"용인시":[37.241,127.178],
+ "김해시":[35.228,128.889],"천안시":[36.815,127.114],"청주시":[36.642,127.489],"군산시":[35.968,126.737],
+ "여수시":[34.760,127.662],"순천시":[34.951,127.487],"목포시":[34.812,126.392],"통영시":[34.854,128.433],
+ "도봉구":[37.669,127.047]};
+const SIDO_C = {"서울":[37.567,126.978],"경기":[37.289,127.054],"인천":[37.456,126.705],
+ "강원":[37.885,127.730],"대전":[36.351,127.385],"세종":[36.480,127.289],"충북":[36.635,127.491],
+ "충남":[36.659,126.673],"대구":[35.871,128.601],"경북":[36.576,128.506],"부산":[35.180,129.075],
+ "울산":[35.539,129.311],"경남":[35.238,128.692],"광주":[35.160,126.851],"전북":[35.820,127.109],
+ "전남":[34.816,126.463],"제주":[33.499,126.531]};
+function coordOf(r){
+  const d = districtOf(r);
+  if (d && SEOUL_GU[d] && sidoOf(r)==="서울") return SEOUL_GU[d];
+  if (d && CITY[d]) return CITY[d];
+  return SIDO_C[sidoOf(r)] || null;
+}
+function distKm(a, b){    // haversine
+  const R=6371, dLa=(b[0]-a[0])*Math.PI/180, dLo=(b[1]-a[1])*Math.PI/180;
+  const h=Math.sin(dLa/2)**2 + Math.cos(a[0]*Math.PI/180)*Math.cos(b[0]*Math.PI/180)*Math.sin(dLo/2)**2;
+  return 2*R*Math.asin(Math.sqrt(h));
+}
+// 거리 기준점: 선택한 서울 구(첫 번째) 중심 — 구 칩을 누르면 자동으로 '가까운순' 사용 가능
+function distOrigin(){
+  for (const d of st.district) if (SEOUL_GU[d]) return SEOUL_GU[d];
+  for (const s of st.region) if (SIDO_C[s]) return SIDO_C[s];
+  return null;
+}
+function distOf(r){
+  const o = distOrigin(), c = coordOf(r);
+  return (o && c) ? distKm(o, c) : Infinity;
+}
+
 const sortFns = {
   reco:  (a,b) => (b.mine?1:0)-(a.mine?1:0) || (a.sample?1:0)-(b.sample?1:0)
                   || (priceNum(a)===0?0:1)-(priceNum(b)===0?0:1)
                   || String(a.name).localeCompare(String(b.name), "ko"),
   price: (a,b) => priceNum(a)-priceNum(b) || String(a.name).localeCompare(String(b.name), "ko"),
+  dist:  (a,b) => distOf(a)-distOf(b) || String(a.name).localeCompare(String(b.name), "ko"),
   name:  (a,b) => String(a.name).localeCompare(String(b.name), "ko"),
 };
 
@@ -333,6 +395,7 @@ function cardPublic(r, i){
     <div class="top-row">
       ${catBadge(r)} ${priceBadge(r)}
       <span class="tag cat">${esc(r.region)}</span>
+      ${st.sort==="dist"&&distOf(r)!==Infinity?`<span class="tag inst">약 ${distOf(r).toFixed(1)}km</span>`:""}
       ${(r.instruments||[]).map(x=>`<span class="tag pos">${x}</span>`).join("")}
       ${r.spaces?`<span class="tag inst">${esc(r.spaces)}</span>`:""}
     </div>
@@ -375,7 +438,15 @@ function render(){
   chips("#f-cat", CATS, st.cat);
   chips("#f-inst", INSTS, st.inst, true);
   chips("#f-region", REGION_LIST, st.region);
+  // '서울'을 누르면 구 단위 세부 필터가 나타난다 — 구를 고르면 자동으로 가까운순
+  const showGu = st.region.has("서울");
+  $("#f-district-group").style.display = showGu ? "" : "none";
+  if (!showGu && st.district.size) st.district.clear();
   chips("#f-district", districtsOf(), st.district);
+  if (showGu) $("#f-district").querySelectorAll(".chip").forEach(c =>
+    c.addEventListener("click", () => {           // chips()의 토글 후 실행 — 구 선택 시 가까운순 전환
+      if (st.district.size){ st.sort = "dist"; $("#sort-sel").value = "dist"; render(); }
+    }));
   chips("#f-price", PRICES, st.price);
   chips("#f-elig", ELIGS, st.elig);
   chips("#f-cond", CONDS, st.cond);
@@ -397,6 +468,35 @@ function render(){
   document.querySelectorAll("#room-list .job-card").forEach(card=>{
     card.addEventListener("click", ()=>openRoom(CUR[+card.dataset.i]));
   });
+  updateMap();
+}
+
+// ---------- 지도 (Leaflet + OSM — API키 불필요, 구/시 중심 근사 마커) ----------
+let MAP = null, MARKERS = null;
+function updateMap(){
+  const wrap = $("#map-wrap");
+  if (!wrap.open || typeof L === "undefined") return;
+  if (!MAP){
+    MAP = L.map("map").setView([37.55, 127.0], 11);
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+      { attribution: "© OpenStreetMap", maxZoom: 18 }).addTo(MAP);
+    MARKERS = L.layerGroup().addTo(MAP);
+  }
+  MARKERS.clearLayers();
+  const pts = [];
+  const o = distOrigin();
+  CUR.forEach(r=>{
+    const c = coordOf(r);
+    if (!c) return;
+    // 같은 구 중심에 겹치는 마커는 살짝 흩뿌림
+    const jit = [c[0] + (Math.random()-0.5)*0.006, c[1] + (Math.random()-0.5)*0.006];
+    const m = L.circleMarker(jit, { radius: 7, weight: 2,
+      color: r.cat==="public" ? "#1f3a5f" : "#b08d2f",
+      fillColor: (r.free||r.price==="무료") ? "#7a1f2b" : "#fff", fillOpacity: 0.9 });
+    m.bindPopup(`<b>${esc(r.name)}</b><br>${esc(r.price||"")}${o&&coordOf(r)?`<br>선택 지역에서 약 ${distKm(o,coordOf(r)).toFixed(1)}km`:""}`);
+    m.addTo(MARKERS); pts.push(jit);
+  });
+  if (pts.length) MAP.fitBounds(L.latLngBounds(pts).pad(0.2));
 }
 
 // ---------- 상세 모달 ----------
@@ -451,6 +551,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
     $(`#tab-${t}`).addEventListener("click", ()=>{ st.tab=t; render(); });
   $("#search-input").addEventListener("input", e=>{ st.q=e.target.value.trim(); render(); });
   $("#sort-sel").addEventListener("change", e=>{ st.sort=e.target.value; render(); });
+  $("#map-wrap").addEventListener("toggle", ()=>{ updateMap(); if (MAP) setTimeout(()=>MAP.invalidateSize(), 60); });
   $("#filter-reset").addEventListener("click", ()=>{
     st.cat.clear(); st.inst.clear(); st.region.clear(); st.district.clear();
     st.price.clear(); st.elig.clear(); st.cond.clear(); st.q=""; st.sort="reco";
