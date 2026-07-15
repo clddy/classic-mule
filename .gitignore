@@ -11,3 +11,4 @@ tools/.env
 # 프로토타입 참고용이며 공개 배포(GitHub Pages)에 절대 올리지 않는다.
 # 실서비스 시 미러링 금지 — 민간 연습실은 호스트 직접 등록 원칙.
 local/
+crawler/.geocode-cache.json

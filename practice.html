@@ -199,6 +199,8 @@
 <script src="data/practice-public.js"></script>
 <script src="data/practice-seed.js"></script>
 <script src="data/practice-yeyak.js"></script>
+<script src="data/practice-instant.js"></script>
+<script src="data/practice-coords.js"></script>
 <script>
 // ===== 연습실 통합 보드 — '대여 방식' 축: 즉시 예약(instant, 민간) / 신청제·공공(public) =====
 // 공공 = 실데이터 (큐레이션 practice-public.js + 서울시 공공서비스예약 practice-yeyak.js).
@@ -241,7 +243,9 @@ const _yeyak = ((window.YEYAK_ROOMS || {}).items || [])
   }));
 const PUBLIC_ALL = [..._curated, ..._seed, ..._yeyak];
 
-function allRooms(){ return [...HOST_ROOMS, ...SAMPLE_INSTANT, ...PUBLIC_ALL]; }
+// 즉시예약(민간) — 프로토타입 수집분. 실서비스에서는 호스트 직접 등록으로 대체한다.
+const INSTANT_ALL = (window.INSTANT_ROOMS || []).map(r => ({ ...r, cat: "instant" }));
+function allRooms(){ return [...HOST_ROOMS, ...INSTANT_ALL, ...SAMPLE_INSTANT, ...PUBLIC_ALL]; }
 
 // ---------- 필터 (구인구직란과 동일 체계) ----------
 // '타악 가능'은 확인된 페인포인트라 최상단·강조(hot)
@@ -359,12 +363,18 @@ const SIDO_C = {"서울":[37.567,126.978],"경기":[37.289,127.054],"인천":[37
  "충남":[36.659,126.673],"대구":[35.871,128.601],"경북":[36.576,128.506],"부산":[35.180,129.075],
  "울산":[35.539,129.311],"경남":[35.238,128.692],"광주":[35.160,126.851],"전북":[35.820,127.109],
  "전남":[34.816,126.463],"제주":[33.499,126.531]};
+// 좌표 우선순위: ①매물 자체 실좌표(스클 JSON-LD) ②지오코딩 실좌표 ③구/시 중심 근사 ④시도 중심
 function coordOf(r){
+  if (r.lat && r.lng) return [+r.lat, +r.lng];
+  const geo = (window.ROOM_COORDS || {})[r.name];
+  if (geo) return geo;
   const d = districtOf(r);
   if (d && SEOUL_GU[d] && sidoOf(r)==="서울") return SEOUL_GU[d];
   if (d && CITY[d]) return CITY[d];
   return SIDO_C[sidoOf(r)] || null;
 }
+// 실좌표(정밀) 여부 — 지도에서 근사치와 구분해 표시
+function isExactCoord(r){ return !!((r.lat && r.lng) || (window.ROOM_COORDS || {})[r.name]); }
 function distKm(a, b){    // haversine
   const R=6371, dLa=(b[0]-a[0])*Math.PI/180, dLo=(b[1]-a[1])*Math.PI/180;
   const h=Math.sin(dLa/2)**2 + Math.cos(a[0]*Math.PI/180)*Math.cos(b[0]*Math.PI/180)*Math.sin(dLo/2)**2;
@@ -427,9 +437,22 @@ function cardPublic(r, i){
 }
 
 function cardInstant(r, i){
+  // 가격: 호스트 등록분(월/시간 단가) 또는 수집분(price 문자열) 둘 다 지원
+  const priceHtml = (r.monthly || r.hourly)
+    ? `${r.monthly?`월 ${r.monthly}만원`:""} ${r.hourly?`<span class="per">· 시간 ${Math.round(r.hourly*10)}천원</span>`:""} <span class="per">(최소 ${r.minHours||1}시간)${r.nego?" · 협의가능":""}</span>`
+    : `${esc(r.price||"요금 확인")} <span class="per">(최소 ${r.minHours||1}시간)</span>`;
+  const specs = [
+    r.station ? `<span>위치 <b>🚇 ${esc(r.station)} · ${esc(r.floor||"")} ${r.elev?"· 엘리베이터":"· 계단만"}</b></span>`
+              : (r.addr ? `<span>주소 <b>${esc(r.addr)}</b></span>` : (r.floor?`<span>층·접근 <b>${esc(r.floor)}</b></span>`:"")),
+    r.size ? `<span>면적 <b>${esc(r.size)}</b></span>` : "",
+    r.vent ? `<span>환기 <b>${esc(r.vent)}</b></span>` : "",
+    r.phone ? `<span>문의 <b>${esc(r.phone)}</b></span>` : "",
+    r.soundWall!==undefined ? `<span>방음 <b>${r.soundWall?"방음벽 시공":esc(r.sound||"미기재")}${r.windowLayer?" · "+esc(r.windowLayer):""}</b></span>`
+                            : (r.sound?`<span>방음 <b>${esc(r.sound)}</b></span>`:""),
+  ].filter(Boolean).join("");
   return `
   <article class="job-card${r.sample?" is-sample":""}" data-i="${i}">
-    <div class="room-photo"><span class="photo-count">사진 ${r.photos||0}장</span></div>
+    ${r.photos?`<div class="room-photo"><span class="photo-count">사진 ${r.photos}장</span></div>`:""}
     <div class="top-row">
       ${r.sample?`<span class="tag sample">예시</span>`:""}
       ${r.mine?`<span class="tag pos">내 공간</span>`:""}
@@ -441,14 +464,9 @@ function cardInstant(r, i){
       ${r.h24?`<span class="tag cat">24시간</span>`:""}
     </div>
     <h3>${esc(r.name)} ${r.reviews?`<span style="font-weight:400;font-size:0.8rem;color:var(--ink-soft)">⭐ 후기 ${r.reviews} · ♥ ${r.likes}</span>`:""}</h3>
-    <div class="price-line">${r.monthly?`월 ${r.monthly}만원`:""} ${r.hourly?`<span class="per">· 시간 ${Math.round(r.hourly*10)}천원</span>`:""} <span class="per">(최소 ${r.minHours||1}시간)${r.nego?" · 협의가능":""}</span></div>
-    <div class="spec-grid">
-      ${r.station?`<span>위치 <b>🚇 ${esc(r.station)} · ${esc(r.floor||"")} ${r.elev?"· 엘리베이터":"· 계단만"}</b></span>`:`<span>층·접근 <b>${esc(r.floor||"-")}</b></span>`}
-      ${r.size?`<span>면적 <b>${esc(r.size)}</b></span>`:""}
-      ${r.vent?`<span>환기 <b>${esc(r.vent)}</b></span>`:""}
-      ${r.soundWall!==undefined?`<span>방음 <b>${r.soundWall?"방음벽 시공":esc(r.sound||"미기재")}${r.windowLayer?" · "+esc(r.windowLayer):""}</b></span>`:(r.sound?`<span>방음 <b>${esc(r.sound)}</b></span>`:"")}
-    </div>
-    <div class="source-line"><span>${esc(r.notes||"")}</span></div>
+    <div class="price-line">${priceHtml}</div>
+    <div class="spec-grid">${specs}</div>
+    <div class="source-line"><span>${esc(r.notes||"")}</span>${r.src?`<span>출처 <span class="src">${esc(r.src)}</span> · 확인 ${esc(r.verified||"")}</span>`:""}</div>
   </article>`;
 }
 
@@ -509,13 +527,19 @@ function updateMap(){
   CUR.forEach(r=>{
     const c = coordOf(r);
     if (!c) return;
-    // 같은 구 중심에 겹치는 마커는 살짝 흩뿌림
-    const jit = [c[0] + (Math.random()-0.5)*0.006, c[1] + (Math.random()-0.5)*0.006];
-    const m = L.circleMarker(jit, { radius: 7, weight: 2,
+    // 실좌표는 그대로, 구 중심 근사치만 겹침 방지로 살짝 흩뿌림
+    const exact = isExactCoord(r);
+    const pos = exact ? c : [c[0] + (Math.random()-0.5)*0.006, c[1] + (Math.random()-0.5)*0.006];
+    const m = L.circleMarker(pos, { radius: exact ? 7 : 5, weight: exact ? 2 : 1,
+      opacity: exact ? 1 : 0.6,
       color: r.cat==="public" ? "#1f3a5f" : "#b08d2f",
-      fillColor: (r.free||r.price==="무료") ? "#7a1f2b" : "#fff", fillOpacity: 0.9 });
-    m.bindPopup(`<b>${esc(r.name)}</b><br>${esc(r.price||"")}${o&&coordOf(r)?`<br>선택 지역에서 약 ${distKm(o,coordOf(r)).toFixed(1)}km`:""}`);
-    m.addTo(MARKERS); pts.push(jit);
+      fillColor: (r.free||r.price==="무료") ? "#7a1f2b" : "#fff", fillOpacity: exact ? 0.9 : 0.45 });
+    m.bindPopup(`<b>${esc(r.name)}</b><br>${esc(r.price||"")}`
+      + (r.addr ? `<br><span style="color:#666">${esc(r.addr)}</span>` : "")
+      + (o ? `<br>선택 지역에서 약 ${distKm(o,c).toFixed(1)}km` : "")
+      + (exact ? "" : `<br><span style="color:#999">※ 구 중심 근사 위치</span>`)
+      + (r.booking_url ? `<br><a href="${esc(r.booking_url)}" target="_blank" rel="noopener">예약 페이지 ↗</a>` : ""));
+    m.addTo(MARKERS); pts.push(pos);
   });
   if (pts.length) MAP.fitBounds(L.latLngBounds(pts).pad(0.2));
 }
@@ -539,8 +563,10 @@ function openRoom(r){
       ["위치", r.station?`🚇 ${r.station} · ${r.floor||""} ${r.elev?"(엘리베이터)":"(계단만)"}`:(r.floor||"")],
       ["면적", r.size], ["방음", r.soundWall?`방음벽 시공${r.windowLayer?" · "+r.windowLayer:""}`:(r.sound||"미기재")],
       ["채광/환기", [r.light,r.vent].filter(Boolean).join(" · ")],
+      ["주소", r.addr], ["문의", r.phone],
       ["대여 방식", `${r.instant?"바로결제":"승인 후 확정"} · 최소 ${r.minHours||1}시간`],
-      ["영업시간", r.h24?"24시간 (무인 출입)":"09:00 ~ 22:00"],
+      ["영업시간", r.h24?"24시간 (무인 출입)":(r.src?null:"09:00 ~ 22:00")],
+      ["출처", r.src?`${r.src} (확인 ${r.verified||"-"})`:null],
       ["남은 자리", r.slots!==undefined?(r.slots>0?`${r.slots}자리`:"만실 (대기 등록 가능)"):null],
     ].filter(([k,v])=>v).map(([k,v])=>`<dt>${k}</dt><dd>${esc(v)}</dd>`).join("");
   $("#rm-intro").textContent = r.notes || "";
@@ -548,8 +574,8 @@ function openRoom(r){
   const note = $("#rm-public-note");
   note.style.display = isPub ? "" : "none";
   if (isPub) note.innerHTML = `이 공간은 <b>신청제·공공</b>입니다 — 결제가 아니라 ${esc(r.apply_method||"기관 절차")}로 신청하며, ${esc(r.selection||"기관 심사")} 방식으로 선정됩니다.`;
-  $("#rm-actions").innerHTML = isPub
-    ? `<a class="btn-primary" href="${esc(r.booking_url)}" target="_blank" rel="noopener" style="text-decoration:none">예약 페이지 가기 ↗</a>`
+  $("#rm-actions").innerHTML = (isPub || r.booking_url)
+    ? `${r.mine?`<button class="btn-outline" id="rm-del">삭제</button>`:""}<a class="btn-primary" href="${esc(r.booking_url)}" target="_blank" rel="noopener" style="text-decoration:none">${isPub?"예약 페이지 가기":"원문 보기"} ↗</a>`
     : `${r.mine?`<button class="btn-outline" id="rm-del">삭제</button>`:""}<button class="btn-primary" onclick="alert('프로토타입: 예약·결제는 실서비스에서 제공됩니다.')">예약 신청하기</button>`;
   const del = $("#rm-del");
   if (del) del.addEventListener("click", ()=>{

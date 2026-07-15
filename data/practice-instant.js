@@ -1,0 +1,196 @@
+// 자동생성: crawler/build_instant.py ← local/spacecloud_mirror.json
+// 즉시예약(민간) — 실존 업체의 사실 정보만 수록(상호·주소·전화·가격·좌표) + 출처·원문 링크.
+// 원 플랫폼의 설명문은 복제하지 않음. 프로토타입 한정 — 실서비스 시 호스트 직접 등록으로 대체.
+window.INSTANT_ROOMS = [
+ {
+  "name": "신촌 [원픽] 음악 연습실 대여",
+  "category": "instant",
+  "sido": "서울",
+  "district": "마포구",
+  "region": "마포구",
+  "addr": "서울특별시 마포구 신촌로 20길 22 한음빌딩 3,4층",
+  "phone": "0504-0905-7913",
+  "lat": 37.554317,
+  "lng": 126.938286,
+  "hourlyMin": 3000,
+  "hourlyMax": 13000,
+  "price": "시간 3,000~13,000원",
+  "free": false,
+  "instant": true,
+  "minHours": 1,
+  "instruments": [
+   "성악·앙상블가능",
+   "피아노있음"
+  ],
+  "booking_url": "https://www.spacecloud.kr/space/11029",
+  "src": "spacecloud.kr",
+  "verified": "2026-07-12"
+ },
+ {
+  "name": "클로이 피아노스튜디오 음악연습실",
+  "category": "instant",
+  "sido": "경기",
+  "district": "과천시",
+  "region": "과천시",
+  "addr": "경기 과천시 관문로 92 101동 3층 323호",
+  "phone": "0504-1381-4779",
+  "lat": 37.42979456,
+  "lng": 126.99029558,
+  "price": "요금 원문 확인",
+  "free": false,
+  "instant": true,
+  "minHours": 1,
+  "instruments": [
+   "금관가능",
+   "성악·앙상블가능",
+   "피아노있음"
+  ],
+  "booking_url": "https://www.spacecloud.kr/space/50498",
+  "src": "spacecloud.kr",
+  "verified": "2026-07-12"
+ },
+ {
+  "name": "서울 단독 그랜드피아노연습실",
+  "category": "instant",
+  "sido": "서울",
+  "district": "송파구",
+  "region": "송파구",
+  "addr": "서울 송파구 가락로21길 36 B1 (RAVE STUDIO) B1",
+  "phone": "0504-1380-2071",
+  "lat": 37.50492902,
+  "lng": 127.1110035,
+  "hourlyMin": 5000,
+  "hourlyMax": 15000,
+  "price": "시간 5,000~15,000원",
+  "free": false,
+  "instant": true,
+  "minHours": 1,
+  "instruments": [
+   "성악·앙상블가능",
+   "피아노있음"
+  ],
+  "booking_url": "https://www.spacecloud.kr/space/30478",
+  "src": "spacecloud.kr",
+  "verified": "2026-07-12"
+ },
+ {
+  "name": "대학로 그랜드 피아노 연습실",
+  "category": "instant",
+  "sido": "서울",
+  "district": "종로구",
+  "region": "종로구",
+  "addr": "서울특별시 종로구 명륜3가 127 명륜 빌딩 3층 그랜드 피아노 연습실",
+  "phone": "0504-0905-0133",
+  "lat": 37.583714,
+  "lng": 126.997406,
+  "hourlyMin": 1000,
+  "hourlyMax": 6000,
+  "price": "시간 1,000~6,000원",
+  "free": false,
+  "instant": true,
+  "minHours": 1,
+  "instruments": [
+   "성악·앙상블가능",
+   "피아노있음"
+  ],
+  "booking_url": "https://www.spacecloud.kr/space/910",
+  "src": "spacecloud.kr",
+  "verified": "2026-07-12"
+ },
+ {
+  "name": "신림,서울대,숭실대,연습실.다목적",
+  "category": "instant",
+  "sido": "서울",
+  "district": "관악구",
+  "region": "관악구",
+  "addr": "서울특별시 관악구 봉천동 7-55 비1F  티오피스튜디오",
+  "phone": "0504-0905-3458",
+  "lat": 37.48691,
+  "lng": 126.9576,
+  "hourlyMin": 1000,
+  "hourlyMax": 8000,
+  "price": "시간 1,000~8,000원",
+  "free": false,
+  "instant": true,
+  "minHours": 1,
+  "instruments": [
+   "금관가능",
+   "성악·앙상블가능",
+   "피아노있음"
+  ],
+  "booking_url": "https://www.spacecloud.kr/space/13170",
+  "src": "spacecloud.kr",
+  "verified": "2026-07-12"
+ },
+ {
+  "name": "공간음악",
+  "category": "instant",
+  "sido": "서울",
+  "district": "동작구",
+  "region": "동작구",
+  "addr": "서울 동작구 장승배기로 75 4층 ",
+  "phone": "0504-1380-4065",
+  "lat": 37.50436128,
+  "lng": 126.93894298,
+  "hourlyMin": 2500,
+  "hourlyMax": 7000,
+  "price": "시간 2,500~7,000원",
+  "free": false,
+  "instant": true,
+  "minHours": 1,
+  "instruments": [
+   "대편성가능",
+   "피아노있음"
+  ],
+  "booking_url": "https://www.spacecloud.kr/space/77468",
+  "src": "spacecloud.kr",
+  "verified": "2026-07-12"
+ },
+ {
+  "name": "신촌점-마온연습실-댄스연기피아노",
+  "category": "instant",
+  "sido": "서울",
+  "district": "서대문구",
+  "region": "서대문구",
+  "addr": "서울 서대문구 연세로5길 38 지하1층",
+  "phone": "0504-3220-5578",
+  "lat": 37.55613816,
+  "lng": 126.93527149,
+  "hourlyMin": 2500,
+  "hourlyMax": 15000,
+  "price": "시간 2,500~15,000원",
+  "free": false,
+  "instant": true,
+  "minHours": 1,
+  "instruments": [
+   "피아노있음"
+  ],
+  "booking_url": "https://www.spacecloud.kr/space/39285",
+  "src": "spacecloud.kr",
+  "verified": "2026-07-12"
+ },
+ {
+  "name": "이룸스튜디오홍대(보컬,피아노)",
+  "category": "instant",
+  "sido": "서울",
+  "district": "마포구",
+  "region": "마포구",
+  "addr": "서울 마포구 월드컵북로1길 26 희승빌딩 4층 1번방",
+  "phone": "0504-0905-4563",
+  "lat": 37.55478892,
+  "lng": 126.91985541,
+  "hourlyMin": 2000,
+  "hourlyMax": 8000,
+  "price": "시간 2,000~8,000원",
+  "free": false,
+  "instant": true,
+  "minHours": 1,
+  "instruments": [
+   "성악·앙상블가능",
+   "피아노있음"
+  ],
+  "booking_url": "https://www.spacecloud.kr/space/43720",
+  "src": "spacecloud.kr",
+  "verified": "2026-07-12"
+ }
+];
