@@ -24,28 +24,6 @@ window.SEED_ROOMS = [
   "verified": "2026-07-12"
  },
  {
-  "name": "서울생활문화센터 신도림",
-  "category": "public",
-  "sido": "서울",
-  "district": "구로구",
-  "region": "구로구",
-  "addr": "신도림동",
-  "price": "요금 기관 확인",
-  "free": false,
-  "selection": "승인제",
-  "apply_method": "온라인",
-  "apply_timing": "매월초일괄",
-  "eligibility": "누구나",
-  "instruments": [
-   "성악·앙상블가능"
-  ],
-  "booking_url": "https://culture.seoul.go.kr",
-  "src": "culture.seoul.go.kr",
-  "notes": "다목적홀A(공연·행사)+B(소규모)·월 단위 대관공고",
-  "rentalVerified": false,
-  "verified": "2026-07-12"
- },
- {
   "name": "서울생활문화센터 서교",
   "category": "public",
   "sido": "서울",
@@ -106,29 +84,8 @@ window.SEED_ROOMS = [
   ],
   "booking_url": "https://sirs.sfac.or.kr/rent/notice?isAvailable=",
   "src": "sirs.sfac.or.kr",
-  "notes": "연습실 4관+다목적실. 정기대관=분기별 20일 이상 장기(분기 2개월 전 공고)",
-  "rentalVerified": false,
-  "verified": "2026-07-12"
- },
- {
-  "name": "서울예술인지원센터(구 예술청)",
-  "category": "public",
-  "sido": "서울",
-  "district": "종로구",
-  "region": "종로구",
-  "addr": "동숭길 (구 동숭아트센터)",
-  "price": "무료",
-  "free": true,
-  "selection": "승인제",
-  "apply_method": "온라인",
-  "eligibility": "예술인등록",
-  "instruments": [
-   "성악·앙상블가능"
-  ],
-  "booking_url": "https://www.sfac.or.kr/artspace/artspace/art_office_map.do",
-  "src": "sfac.or.kr",
-  "notes": "프로젝트룸·아고라 등 예술인 전용 무료대관·예술 종사자 가입제(성악가 명시 포함)·구 예술청에서 개편",
-  "rentalVerified": false,
+  "notes": "연습실 4관+다목적실. 정기대관=분기별 20일 이상 장기(분기 2개월 전 공고),  수시대관=잔여일자(분기 15일 전),  다목적실=월 단위(전월 15일부터). 온라인·방문·이메일 접수",
+  "rentalVerified": true,
   "verified": "2026-07-12"
  },
  {
@@ -148,30 +105,8 @@ window.SEED_ROOMS = [
   ],
   "booking_url": "https://symc.or.kr/rental",
   "src": "symc.or.kr",
-  "notes": "소리지음 — 합주실·개인실기실·합창실·레코딩스튜디오·블랙박스. 양천구 남부순환로 657. 월~토 09~21시",
-  "rentalVerified": false,
-  "verified": "2026-07-12"
- },
- {
-  "name": "플랫폼창동61 스튜디오61",
-  "category": "public",
-  "sido": "서울",
-  "district": "도봉구",
-  "region": "도봉구",
-  "addr": "마들로11길 74",
-  "price": "시간당",
-  "free": false,
-  "selection": "선착순",
-  "apply_method": "전화",
-  "eligibility": "누구나",
-  "instruments": [
-   "타악가능",
-   "성악·앙상블가능"
-  ],
-  "booking_url": "http://www.platform61.kr",
-  "src": "platform61.kr",
-  "notes": "리허설 스튜디오(드럼·앰프 상비)·전화예약 070-4451-0901",
-  "rentalVerified": false,
+  "notes": "소리지음 — 합주실·개인실기실·합창실·레코딩스튜디오·블랙박스. 양천구 남부순환로 657. 월~토 09~21시,  일 10~17시. 청소년 할인·일반인 부가세 10% 추가",
+  "rentalVerified": true,
   "verified": "2026-07-12"
  },
  {
@@ -307,7 +242,7 @@ window.SEED_ROOMS = [
   "sido": "경기",
   "district": "성남시",
   "region": "성남시",
-  "price": "요금 기관 확인",
+  "price": "유료",
   "free": false,
   "selection": "승인제",
   "apply_method": "온라인",
@@ -315,10 +250,10 @@ window.SEED_ROOMS = [
   "instruments": [
    "성악·앙상블가능"
   ],
-  "booking_url": "https://www.snarte.or.kr",
+  "booking_url": "https://snarte.or.kr/user/space/list.php",
   "src": "snarte.or.kr",
-  "notes": "성남문화재단 계열 예술교육 공간",
-  "rentalVerified": false,
+  "notes": "소리랩·스튜디오 등 홈페이지 실시간 공간예약. 3시간 단위(화~금 10/14/18시, 토 2회). 사용 30일 전~2일 전 신청, 관리자 승인 후 결제. 문화예술교육·창작활동 목적에 한함. 031-240-9120",
+  "rentalVerified": true,
   "verified": "2026-07-12"
  },
  {
@@ -671,10 +606,10 @@ window.SEED_ROOMS = [
    "타악가능",
    "성악·앙상블가능"
   ],
-  "booking_url": "https://www.mapoindie.or.kr/sub/space/app2.asp",
+  "booking_url": "https://www.mapoindie.or.kr/sub/space/app.asp",
   "src": "mapoindie.or.kr",
-  "notes": "녹음실·개인작업실·밴드작업실·50석 소극장. 화~토 10~22시(일·월 휴관). 마포문화재단 운영·문체부 음악창작소 1호(2013)",
-  "rentalVerified": false,
+  "notes": "녹음실·개인작업실·밴드작업실·공연장(아현동 지하2층). ⚠️작업실 예약은 뮤지션 회원 승인 후 가능·공연장 대관은 메일 접수(14일 전). 인디/밴드 중심이라 클래식 연습 적합성은 별도 확인 필요",
+  "rentalVerified": true,
   "verified": "2026-07-12"
  },
  {
@@ -782,8 +717,8 @@ window.SEED_ROOMS = [
   "sido": "전북",
   "district": "전주시",
   "region": "전주시",
-  "price": "시간당",
-  "free": false,
+  "price": "무료",
+  "free": true,
   "selection": "승인제",
   "apply_method": "온라인",
   "eligibility": "누구나",
@@ -791,10 +726,10 @@ window.SEED_ROOMS = [
    "타악가능",
    "성악·앙상블가능"
   ],
-  "booking_url": "https://www.kocca.kr/kocca/subPage.do?menuNo=205047",
-  "src": "kocca.kr",
-  "notes": "콘진원 지역음악창작소·창작자(뮤지션) 모집 운영",
-  "rentalVerified": false,
+  "booking_url": "https://www.redcon.kr/",
+  "src": "redcon.kr",
+  "notes": "녹음편집실·연습실·커뮤니티라운지·교육실. 음악인 무료 이용(작년 185건 대여). 평일 운영(주말·공휴일 휴무). 전주 덕진구 소리로 31 · 063-282-2388",
+  "rentalVerified": true,
   "verified": "2026-07-12"
  },
  {
@@ -811,10 +746,10 @@ window.SEED_ROOMS = [
    "타악가능",
    "성악·앙상블가능"
   ],
-  "booking_url": "https://www.musiclabbusan.com",
+  "booking_url": "https://www.musiclabbusan.com/board/notice/details/?schCode=KONOTICE00669",
   "src": "musiclabbusan.com",
-  "notes": "전문 스튜디오·음향장비·지역음악인 열린공간",
-  "rentalVerified": false,
+  "notes": "음악 콘텐츠 제작 전문 스튜디오·음향장비. 대관 절차: 회원가입→할인증빙 등록→관리자 승인→대관신청→결제. ⚠️녹음·제작 중심이라 클래식 연습실 여부 미확인",
+  "rentalVerified": true,
   "verified": "2026-07-12"
  },
  {
@@ -846,7 +781,7 @@ window.SEED_ROOMS = [
   "district": "동작구",
   "region": "동작구",
   "addr": "여의대방로20길 61",
-  "price": "회당",
+  "price": "40,000원/3시간",
   "free": false,
   "selection": "선착순",
   "apply_method": "온라인",
@@ -855,10 +790,10 @@ window.SEED_ROOMS = [
    "타악가능",
    "성악·앙상블가능"
   ],
-  "booking_url": "https://www.boramyc.or.kr",
+  "booking_url": "https://www.boramyc.or.kr/sub01/sub06_3.php",
   "src": "boramyc.or.kr",
-  "notes": "02-834-6411·수련시설 내 음악연습실",
-  "rentalVerified": false,
+  "notes": "연습실 102/107/207/208호·큰연습실·음악실 대관. 음악실 4만원, 연습실 11만~18만원(3시간, 평일). 청소년활동 관련자·일반인 누구나. 09~21시. 02-834-7231",
+  "rentalVerified": true,
   "verified": "2026-07-12"
  },
  {
@@ -875,10 +810,10 @@ window.SEED_ROOMS = [
   "instruments": [
    "타악가능"
   ],
-  "booking_url": "https://online112.youth.seoul.kr/?center_id=112",
-  "src": "online112.youth.seoul.kr",
-  "notes": "서울시 청소년시설 통합예약(online.youth.seoul.kr) 연동",
-  "rentalVerified": false,
+  "booking_url": "https://www.youthcenter.or.kr/39",
+  "src": "youthcenter.or.kr",
+  "notes": "시설소개에 연습실·음악실 명시",
+  "rentalVerified": true,
   "verified": "2026-07-12"
  },
  {
@@ -900,24 +835,6 @@ window.SEED_ROOMS = [
   "src": "wawa.or.kr",
   "notes": "02-2642-1318",
   "rentalVerified": true,
-  "verified": "2026-07-12"
- },
- {
-  "name": "시립서울청소년센터",
-  "category": "public",
-  "sido": "서울",
-  "region": "서울",
-  "price": "회당",
-  "free": false,
-  "selection": "선착순",
-  "apply_method": "온라인",
-  "eligibility": "누구나",
-  "instruments": [
-   "타악가능"
-  ],
-  "booking_url": "http://youthc.or.kr",
-  "src": "youthc.or.kr",
-  "rentalVerified": false,
   "verified": "2026-07-12"
  },
  {
@@ -955,10 +872,10 @@ window.SEED_ROOMS = [
   "instruments": [
    "성악·앙상블가능"
   ],
-  "booking_url": "https://youth.jeonju.go.kr/index.9is?contentUid=9be517a76e211549016e58e694352de2",
-  "src": "youth.jeonju.go.kr",
-  "notes": "중연습실2·대연습실2·세미나실(지하1~지상3층 269.7㎡)·전주문화재단(아르코 위탁)",
-  "rentalVerified": false,
+  "booking_url": "https://www.jjcf.or.kr/main/inner.php?sMenu=H1500",
+  "src": "jjcf.or.kr",
+  "notes": "중연습실2·대연습실2+세미나실(269.7㎡,  지하1~지상3층). 피아노·드럼·음향/조명 완비. 월~토 10~22시. 정기대관(심사)+수시대관. 청소년 무료대관 지원. 문의 063-213-2016",
+  "rentalVerified": true,
   "verified": "2026-07-12"
  },
  {

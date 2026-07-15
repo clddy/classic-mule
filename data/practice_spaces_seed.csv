@@ -7,15 +7,12 @@ name,category,region,district,address,price_type,price,rental_unit,apply_method,
 
 # ===== 서울 — 생활문화센터 (서울문화재단 계열) =====
 서울생활문화센터 낙원,public,서울,종로구,낙원악기상가 내,,,시간,온라인,,선착순,누구나,http://nakwon-communityart.or.kr/bbs/space01,피아노있음|성악·앙상블가능,연습실 소·대+회의실·강의실·녹음실·N스페이스홀 수시대관(대관일 7일 전까지). 정치/종교/영리 목적 대관 불가. 문의 02-6959-8323,검증 2026-07-12 대관확인,확인
-서울생활문화센터 신도림,public,서울,구로구,신도림동,,,시간,온라인,매월초일괄,승인제,누구나,https://culture.seoul.go.kr,성악·앙상블가능,다목적홀A(공연·행사)+B(소규모)·월 단위 대관공고,https://culture.seoul.go.kr/culture/bbs/B0000000/view.do?nttId=8588,확인필요
 서울생활문화센터 서교,public,서울,마포구,서교동,,,시간,온라인,,선착순,누구나,https://seogyocenter.or.kr/space1rent,성악·앙상블가능,연습실1 온라인 대관 페이지 운영·다목적 공간 별도,https://seogyocenter.or.kr/space1rent,확인
 서울생활문화센터 체부,public,서울,종로구,체부동 (구 체부동교회),,,시간,온라인,,승인제,누구나,https://lifeculture.sfac.or.kr/main/place/map.do,성악·앙상블가능|대편성가능,체부동생활문화센터·오케스트라 연습 가능한 한옥+예배당 개조 공간,검증 2026-07-12 대관확인,확인
 
 # ===== 서울 — 문화재단·시립 =====
-서울문화재단 대학로연습실,public,서울,종로구,동숭동,회당,15000,시간,온라인,분기단위,승인제,누구나,https://sirs.sfac.or.kr/rent/notice?isAvailable=,성악·앙상블가능,연습실 4관+다목적실. 정기대관=분기별 20일 이상 장기(분기 2개월 전 공고), 수시대관=잔여일자(분기 15일 전), 다목적실=월 단위(전월 15일부터). 온라인·방문·이메일 접수,검증 2026-07-12 대관확인,확인
-서울예술인지원센터(구 예술청),public,서울,종로구,동숭길 (구 동숭아트센터),무료,0,시간,온라인,,승인제,예술인등록,https://www.sfac.or.kr/artspace/artspace/art_office_map.do,성악·앙상블가능,프로젝트룸·아고라 등 예술인 전용 무료대관·예술 종사자 가입제(성악가 명시 포함)·구 예술청에서 개편,https://www.sfac.or.kr/site/SFAC_KOR/09/10927010000002021111005.jsp,확인필요
-서울시립청소년음악센터,public,서울,,,회당,,시간,온라인,,선착순,누구나,https://symc.or.kr/rental,피아노있음|성악·앙상블가능|타악가능,소리지음 — 합주실·개인실기실·합창실·레코딩스튜디오·블랙박스. 양천구 남부순환로 657. 월~토 09~21시, 일 10~17시. 청소년 할인·일반인 부가세 10% 추가,검증 2026-07-12 대관확인,확인
-플랫폼창동61 스튜디오61,public,서울,도봉구,마들로11길 74,시간당,,시간,전화,,선착순,누구나,http://www.platform61.kr,타악가능|성악·앙상블가능,리허설 스튜디오(드럼·앰프 상비)·전화예약 070-4451-0901,http://www.platform61.kr/load.asp?subPage=920,확인필요
+서울문화재단 대학로연습실,public,서울,종로구,동숭동,회당,15000,시간,온라인,분기단위,승인제,누구나,https://sirs.sfac.or.kr/rent/notice?isAvailable=,성악·앙상블가능,"연습실 4관+다목적실. 정기대관=분기별 20일 이상 장기(분기 2개월 전 공고),  수시대관=잔여일자(분기 15일 전),  다목적실=월 단위(전월 15일부터). 온라인·방문·이메일 접수",검증 2026-07-12 대관확인,확인
+서울시립청소년음악센터,public,서울,,,회당,,시간,온라인,,선착순,누구나,https://symc.or.kr/rental,피아노있음|성악·앙상블가능|타악가능,"소리지음 — 합주실·개인실기실·합창실·레코딩스튜디오·블랙박스. 양천구 남부순환로 657. 월~토 09~21시,  일 10~17시. 청소년 할인·일반인 부가세 10% 추가",검증 2026-07-12 대관확인,확인
 아르코·대학로예술극장 연습실,public,서울,종로구,대학로,,,시간,온라인,분기단위,승인제,누구나,https://theater.arko.or.kr,성악·앙상블가능,아르코 창작공간 연습실·공연예술 단체 위주,https://theater.arko.or.kr,확인
 
 # ===== 인천·경기 =====
@@ -24,7 +21,7 @@ name,category,region,district,address,price_type,price,rental_unit,apply_method,
 부천문화재단 공연예술연습공간,public,경기,부천시,,시간당,,시간,온라인,,승인제,누구나,https://www.bcf.or.kr/base/contents/view?contentsNo=34,성악·앙상블가능|대편성가능,대연습실1 등 복수 연습실·아르코 위탁운영기관,https://www.bcf.or.kr/base/contents/view?contentsNo=34&menuLevel=3&menuNo=16,확인
 부천생활문화센터,public,경기,부천시,,,,시간,온라인,,선착순,누구나,https://www.bcf.or.kr/base/rental/select?menuLevel=2&menuNo=16,성악·앙상블가능,부천문화재단 운영 생활문화시설,검증 2026-07-12 대관확인,확인
 소사생활문화센터,public,경기,부천시,소사구,,,시간,온라인,,선착순,누구나,https://share.gg.go.kr,성악·앙상블가능,경기공유서비스 등재·댄스무용실 등 확인,https://share.gg.go.kr/facilityListO/view?instiCode=B552809&facilityId=F0009,확인
-성남문화예술교육센터(꿈꾸는예술터),public,경기,성남시,,,,시간,온라인,,승인제,누구나,https://www.snarte.or.kr,성악·앙상블가능,성남문화재단 계열 예술교육 공간,https://www.snarte.or.kr,확인필요
+성남문화예술교육센터(꿈꾸는예술터),public,경기,성남시,,유료,,3시간,온라인,,승인제,누구나,https://snarte.or.kr/user/space/list.php,성악·앙상블가능,"소리랩·스튜디오 등 홈페이지 실시간 공간예약. 3시간 단위(화~금 10/14/18시, 토 2회). 사용 30일 전~2일 전 신청, 관리자 승인 후 결제. 문화예술교육·창작활동 목적에 한함. 031-240-9120",검증 2026-07-12 대관확인,확인
 아르코공연연습센터@화성,public,경기,화성시,,시간당,,시간,온라인,분기단위,승인제,누구나,https://www.arko.or.kr/pspace/,성악·앙상블가능|대편성가능,화성시문화재단 위탁운영,https://www.arko.or.kr/pspace/,확인
 
 # ===== 지방 광역 — 아르코 공연연습센터 네트워크 + 문화재단 =====
@@ -46,7 +43,7 @@ name,category,region,district,address,price_type,price,rental_unit,apply_method,
 # 아르코 위탁운영기관 추가 확인분(전주·청주·춘천·인천문화재단)도 각 지역 센터 존재 추정 — 등록 시 개별 확인
 
 # ===== 서울 — 추가 발굴 (2차) =====
-서울마포음악창작소(구 뮤지스땅스),public,서울,마포구,아현동 지하2층,시간당,,시간,온라인,,승인제,누구나,https://www.mapoindie.or.kr/sub/space/app2.asp,타악가능|성악·앙상블가능,녹음실·개인작업실·밴드작업실·50석 소극장. 화~토 10~22시(일·월 휴관). 마포문화재단 운영·문체부 음악창작소 1호(2013),https://www.mapoindie.or.kr,확인필요
+서울마포음악창작소(구 뮤지스땅스),public,서울,마포구,아현동 지하2층,시간당,,시간,온라인,,승인제,누구나,https://www.mapoindie.or.kr/sub/space/app.asp,타악가능|성악·앙상블가능,녹음실·개인작업실·밴드작업실·공연장(아현동 지하2층). ⚠️작업실 예약은 뮤지션 회원 승인 후 가능·공연장 대관은 메일 접수(14일 전). 인디/밴드 중심이라 클래식 연습 적합성은 별도 확인 필요,검증 2026-07-12 대관확인,확인
 서초구 음악연습실,public,서울,서초구,,회당,,시간,온라인,,선착순,누구나,https://www.seocho.go.kr/site/seocho/ex/artCenter/ArtCenterCalendarF.do?searchType=B,피아노있음,구청 직영 음악연습실·온라인 예약캘린더 운영(희귀한 구청 직영 사례),https://www.seocho.go.kr/site/seocho/ex/artCenter/ArtCenterCalendarF.do,확인
 청년예술청 SAPY,public,서울,,,무료,0,시간,온라인,,승인제,예술인등록,http://www.sapy.kr/anytime_1,성악·앙상블가능,서울문화재단 청년예술인 공간·수시대관 운영·청년 예술인 대상,http://www.sapy.kr/anytime_1,확인
 양천문화재단 생활문화센터(마루연습실),public,서울,양천구,,시간당,,시간,온라인,,선착순,누구나,https://yfac.kr/main/contents.do?a_num=29798379,성악·앙상블가능,마루연습실 I·II(거울·스피커·콘솔)·무용 겸용,https://yfac.kr/main/contents.do?a_num=29798379,확인
@@ -54,21 +51,20 @@ name,category,region,district,address,price_type,price,rental_unit,apply_method,
 
 # ===== 음악창작소 네트워크 (문체부·콘진원 지역기반형 — 전국 16곳) =====
 충남음악창작소,public,충남,,,시간당,,시간,온라인,,승인제,누구나,https://www.cnmusicfactory.com/reservation/content.do,타악가능|성악·앙상블가능,합주실·녹음실·문체부 지역기반형 음악창작소,검증 2026-07-12 대관확인,확인
-전북 레드콘 음악창작소,public,전북,전주시,,시간당,,시간,온라인,,승인제,누구나,https://www.kocca.kr/kocca/subPage.do?menuNo=205047,타악가능|성악·앙상블가능,콘진원 지역음악창작소·창작자(뮤지션) 모집 운영,https://chn.kocca.kr/kocca/bbs/view/B0158919/1962737.do,확인필요
-부산음악창작소,public,부산,,,시간당,,시간,온라인,,승인제,누구나,https://www.musiclabbusan.com,타악가능|성악·앙상블가능,전문 스튜디오·음향장비·지역음악인 열린공간,https://www.musiclabbusan.com,확인필요
+전북 레드콘 음악창작소,public,전북,전주시,,무료,0,시간,온라인,,승인제,누구나,https://www.redcon.kr/,타악가능|성악·앙상블가능,녹음편집실·연습실·커뮤니티라운지·교육실. 음악인 무료 이용(작년 185건 대여). 평일 운영(주말·공휴일 휴무). 전주 덕진구 소리로 31 · 063-282-2388,검증 2026-07-12 대관확인,확인
+부산음악창작소,public,부산,,,시간당,,시간,온라인,,승인제,누구나,https://www.musiclabbusan.com/board/notice/details/?schCode=KONOTICE00669,타악가능|성악·앙상블가능,음악 콘텐츠 제작 전문 스튜디오·음향장비. 대관 절차: 회원가입→할인증빙 등록→관리자 승인→대관신청→결제. ⚠️녹음·제작 중심이라 클래식 연습실 여부 미확인,검증 2026-07-12 대관확인,확인
 인천음악창작소 PORTROCK,public,인천,부평구,산곡동 449 부평캠프마켓,시간당,,시간,온라인,,승인제,누구나,https://www.portrock.kr,타악가능|성악·앙상블가능,부평캠프마켓 내·인천음악콘텐츠협회 운영,https://www.portrock.kr,확인
 [네트워크] 지역 음악창작소 17곳(콘진원 공식),public,전국,,,시간당,,시간,온라인,,승인제,누구나,https://www.kocca.kr/kocca/subPage.do?menuNo=205047,타악가능,공식 17곳: 강원·경기·경남·경북·광주·대구·대전·부산·서울(마포)·세종·울산·인천·전남·전북·제주·충남·충주 — 각 지역 개별 사이트 보유,https://www.kocca.kr/kocca/subPage.do?menuNo=205047,-
 
 # ===== 서울 시립청소년센터 네트워크 (21곳 — 밴드·음악연습실 보유 다수) =====
-시립보라매청소년센터,public,서울,동작구,여의대방로20길 61,회당,,시간,온라인,,선착순,누구나,https://www.boramyc.or.kr,타악가능|성악·앙상블가능,02-834-6411·수련시설 내 음악연습실,https://www.boramyc.or.kr,확인필요
-시립노원청소년센터,public,서울,노원구,,회당,,시간,온라인,,선착순,누구나,https://online112.youth.seoul.kr/?center_id=112,타악가능,서울시 청소년시설 통합예약(online.youth.seoul.kr) 연동,https://online112.youth.seoul.kr/?center_id=112,확인필요
+시립보라매청소년센터,public,서울,동작구,여의대방로20길 61,유료,40000,3시간,온라인,,선착순,누구나,https://www.boramyc.or.kr/sub01/sub06_3.php,타악가능|성악·앙상블가능,"연습실 102/107/207/208호·큰연습실·음악실 대관. 음악실 4만원, 연습실 11만~18만원(3시간, 평일). 청소년활동 관련자·일반인 누구나. 09~21시. 02-834-7231",검증 2026-07-12 대관확인,확인
+시립노원청소년센터,public,서울,노원구,,회당,,시간,온라인,,선착순,누구나,https://www.youthcenter.or.kr/39,타악가능,시설소개에 연습실·음악실 명시,검증 2026-07-12 대관확인,확인
 시립목동청소년센터,public,서울,양천구,목동서로 143,회당,,시간,온라인,,선착순,누구나,http://www.wawa.or.kr/sub02/sub01.php,타악가능,02-2642-1318,검증 2026-07-12 대관확인,확인
-시립서울청소년센터,public,서울,,,회당,,시간,온라인,,선착순,누구나,http://youthc.or.kr,타악가능,,http://youthc.or.kr,확인필요
 [네트워크] 서울 시립청소년센터 21곳,public,서울,,,회당,,시간,온라인,,선착순,누구나,https://online112.youth.seoul.kr/?center_id=112,타악가능,구 청소년수련관 21곳(2019 개칭)·상당수 밴드/음악연습실 보유·센터별 online{N}.youth.seoul.kr?center_id={N} 예약(base URL은 500 — 쿼리 필수),https://news.seoul.go.kr/welfare/archives/385937,-
 
 # ===== 호남·문예회관·국립 (4차) =====
 우진문화공간,public,전북,전주시,,시간당,,시간,전화,,승인제,누구나,http://www.woojin.or.kr/sub/04_sub_01.html,피아노있음|성악·앙상블가능,★클래식 특화: 기악·성악 연습실+개인연습실 명시(민간 문화재단). 무용·연극 전용연습실 별도. 10~22시 개방,http://www.woojin.or.kr/sub/04_sub_01.html,확인
-전주공연예술연습공간,public,전북,전주시,,시간당,,시간,온라인,,승인제,누구나,https://youth.jeonju.go.kr/index.9is?contentUid=9be517a76e211549016e58e694352de2,성악·앙상블가능,중연습실2·대연습실2·세미나실(지하1~지상3층 269.7㎡)·전주문화재단(아르코 위탁),https://youth.jeonju.go.kr,확인필요
+전주공연예술연습공간,public,전북,전주시,,시간당,,시간,온라인,,승인제,누구나,https://www.jjcf.or.kr/main/inner.php?sMenu=H1500,성악·앙상블가능,"중연습실2·대연습실2+세미나실(269.7㎡,  지하1~지상3층). 피아노·드럼·음향/조명 완비. 월~토 10~22시. 정기대관(심사)+수시대관. 청소년 무료대관 지원. 문의 063-213-2016",검증 2026-07-12 대관확인,확인
 광주 음악산업진흥센터,public,광주,,,시간당,,시간,온라인,,승인제,누구나,https://www.gicon.or.kr/menu.es?mid=a11003030000,타악가능|성악·앙상블가능,광주정보문화산업진흥원 운영·음악창작소 광주 거점·대관안내 페이지 운영,https://www.gicon.or.kr/menu.es?mid=a11003030000,확인
 광주시 생활문화센터,public,광주,남구,,시간당,,시간,온라인,,선착순,누구나,https://glcc.nsart.or.kr/M000177/S001/conts.do,성악·앙상블가능,광주 생활문화센터(남구 소재),https://glcc.nsart.or.kr,확인
 고양아람누리 연습실,public,경기,고양시,,회당,,반일,온라인,,승인제,누구나,https://artgy.or.kr/RE/RE0101V.aspx,성악·앙상블가능|대편성가능,1회=5시간 기준 대관·초과 시간당 추가·고양문화재단(어울림누리 연습실 별도),https://artgy.or.kr/RE/RE0101V.aspx,확인
@@ -93,3 +89,7 @@ name,category,region,district,address,price_type,price,rental_unit,apply_method,
 # 예술의전당 국립예술단체 공용연습장 — 국립 5개 단체(오페라·발레·합창·현대무용·국립심포니) 전용, 외부대관 없음
 # 서울시민청(바스락홀·활짝라운지) — 공연·발표 대관이지 연습실 아님 (2026-07-12 스코프 정리로 제외)
 # 국립극장 뜰아래연습장 — 연습실 17개나 국립단체 우선·외부대관 축소 (2026-07-12 제외)
+# 플랫폼창동61 스튜디오61 — 폐관·운영종료 확인(KOPIS '(폐관)' 표기) (2026-07-12 제외)
+# 서울예술인지원센터(구 예술청) — 대관공간이 렉처룸·세미나룸·프로젝트룸·미팅룸뿐, 연습실 없음 (2026-07-12 제외)
+# 서울생활문화센터 신도림 — 미술·전시 중심, 대관은 문화교실뿐. 구로문화재단 대관목록에도 연습실 없음 (2026-07-12 제외)
+# 시립서울청소년센터 — 대관시설이 대/중/소회의실·예체능실뿐, 연습실 없음 (2026-07-12 제외)
