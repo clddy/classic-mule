@@ -22,8 +22,11 @@ with open(SRC, encoding="utf-8") as f:
         name = d["name"].strip()
         price_type, price = d["price_type"].strip(), d["price"].strip()
         free = price_type == "무료" or price == "0"
+        # price_type은 과금 단위(시간당·회당)라 그대로 찍으면 카드에 "시간당"만 남는다 → 금액을
+        # 모를 땐 단위에 '유료'를 붙여 문장으로 만든다.
         price_disp = ("무료" if free
                       else f"{int(price):,}원/{d['rental_unit'] or '회'}" if price.isdigit() and price != "0"
+                      else f"{price_type} 유료" if price_type in ("시간당", "회당")
                       else (price_type or "요금 기관 확인"))
         src_dom = re.sub(r"^https?://(www\.)?", "", d["booking_url"]).split("/")[0]
         item = {
