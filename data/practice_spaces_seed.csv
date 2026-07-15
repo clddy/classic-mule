@@ -69,11 +69,11 @@ name,category,region,district,address,price_type,price,rental_unit,apply_method,
 
 # ===== 수집 포털 노드 (개별 공간이 아니라 '소스' — 파서 웨이브용) =====
 [포털] 서울시 공공서비스예약,public,서울,,,,,,온라인,,,누구나,https://yeyak.seoul.go.kr,,시립·구립 연습공간 통합예약 최대노드·시설대관 카테고리 크롤 대상,https://yeyak.seoul.go.kr/web/main.do
-[포털] 경기공유서비스,public,경기,,,,,,온라인,,,누구나,https://share.gg.go.kr,,경기도 공공시설 통합 공유·연습실/다목적실 검색 가능,https://share.gg.go.kr
+[포털] 경기공유서비스,public,경기,,,,,,온라인,,,누구나,https://share.gg.go.kr,,실측검증(2026-07-12): '연습실' 공식분류 존재·31개 시군·카드에 [시군|기관|분류|요금|수용인원|예약방법(인터넷/전화)|선별(심사/선착순)] 전부 구조화 — 지시서 스키마와 1:1 매핑·파서 최적 타깃,https://share.gg.go.kr
 [포털] 아르코 공연예술연습공간,public,전국,,,,,,온라인,분기단위,,누구나,https://www.arko.or.kr/pspace/,,전국 아르코 연습센터 통합 대관예약·지역선택→달력 예약,https://www.arko.or.kr/pspace/
 [포털] 시흥 공유플랫폼 시소,public,경기,시흥시,,,,,온라인,,,누구나,https://share.siheung.go.kr,,시흥시 공공공간 공유플랫폼·'음악공간' 카테고리 확인,https://share.siheung.go.kr/space/view.do?key=305000&space_no=207
 [포털] 서울문화포털 문화공간,public,서울,,,,,,온라인,,,누구나,https://culture.seoul.go.kr/culture/culture/cultureSpace/list.do,,서울 문화공간 전체 데이터베이스·연습실 검색 가능,https://culture.seoul.go.kr/culture/culture/cultureSpace/list.do
-[포털] 서울시 공공서비스예약 오픈API,public,서울,,,,,,온라인,,,누구나,https://data.seoul.go.kr/dataList/OA-20497/S/1/datasetView.do,,예약시스템 전체 데이터셋(OA-20497)+공공데이터포털 API(15125787) — 파서 최우선 소스(크롤 불필요),https://www.data.go.kr/data/15125787/openapi.do
+[포털] 서울시 공공서비스예약 오픈API,public,서울,,,,,,온라인,,,누구나,https://data.seoul.go.kr/dataList/OA-20497/S/1/datasetView.do,,API 실검증완료(2026-07-12): ListPublicReservationInstitution=시설대관 590건·SVCNM/장소/유무료/이용대상/예약URL 필드. ⚠️웹크롤은 차단(비정상접근 감지) — 반드시 인증키(무료·즉시발급) API로만. sample키=5건 한정,https://www.data.go.kr/data/15125787/openapi.do
 [포털] 서울시 청소년시설 통합예약,public,서울,,,,,,온라인,,,청소년,https://online.youth.seoul.kr,,시립청소년센터 21곳 통합예약 시스템,https://online112.youth.seoul.kr
 
 # ===== 검증 후 제외 (실재하나 리스팅 부적합) =====
