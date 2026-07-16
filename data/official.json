@@ -1,7 +1,7 @@
 {
- "collectedAt": "2026-07-15 03:01",
+ "collectedAt": "2026-07-16 18:02",
  "sourceCount": 80,
- "okCount": 79,
+ "okCount": 80,
  "instTotal": 75,
  "sources": [
   {
@@ -10,8 +10,8 @@
    "layer": "A",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
-   "kept": 0
+   "raw": 1,
+   "kept": 1
   },
   {
    "id": "artinfo",
@@ -38,7 +38,7 @@
    "poll": "daily",
    "ok": true,
    "raw": 28,
-   "kept": 0
+   "kept": 1
   },
   {
    "id": "cjob",
@@ -46,7 +46,7 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 24,
+   "raw": 25,
    "kept": 2
   },
   {
@@ -64,7 +64,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 3,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -100,7 +100,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 22,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -118,7 +118,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 10,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -127,7 +127,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 25,
+   "raw": 26,
    "kept": 0
   },
   {
@@ -136,7 +136,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 18,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -145,7 +145,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 20,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -154,8 +154,8 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 10,
-   "kept": 2
+   "skipped": true,
+   "kept": 1
   },
   {
    "id": "knso",
@@ -163,7 +163,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 15,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -172,7 +172,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 6,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -181,7 +181,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 10,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -190,7 +190,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 10,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -199,7 +199,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 11,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -217,7 +217,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -226,7 +226,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -235,7 +235,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -244,8 +244,8 @@
    "layer": "C",
    "poll": "weekly",
    "ok": true,
-   "raw": 17,
-   "kept": 16
+   "skipped": true,
+   "kept": 5
   },
   {
    "id": "edu_goe",
@@ -253,7 +253,7 @@
    "layer": "C",
    "poll": "weekly",
    "ok": true,
-   "raw": 6,
+   "skipped": true,
    "kept": 5
   },
   {
@@ -262,7 +262,7 @@
    "layer": "C",
    "poll": "weekly",
    "ok": true,
-   "raw": 1,
+   "skipped": true,
    "kept": 1
   },
   {
@@ -271,7 +271,7 @@
    "layer": "C",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 1
   },
   {
@@ -280,7 +280,7 @@
    "layer": "C",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -289,7 +289,7 @@
    "layer": "C",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -298,7 +298,7 @@
    "layer": "C",
    "poll": "weekly",
    "ok": true,
-   "raw": 4,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -307,7 +307,7 @@
    "layer": "C",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -316,8 +316,8 @@
    "layer": "C",
    "poll": "weekly",
    "ok": true,
-   "raw": 3,
-   "kept": 3
+   "skipped": true,
+   "kept": 2
   },
   {
    "id": "edu_dge",
@@ -325,7 +325,7 @@
    "layer": "C",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -334,7 +334,7 @@
    "layer": "C",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 1
   },
   {
@@ -343,7 +343,7 @@
    "layer": "C",
    "poll": "weekly",
    "ok": true,
-   "raw": 1,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -352,7 +352,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -361,7 +361,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -370,7 +370,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -379,7 +379,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 1,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -388,7 +388,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -397,7 +397,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -406,7 +406,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -415,7 +415,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 1,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -424,7 +424,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -433,7 +433,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -442,7 +442,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -451,7 +451,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 4,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -460,7 +460,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -469,7 +469,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 2,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -478,7 +478,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 3,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -487,7 +487,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -496,7 +496,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 5,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -505,7 +505,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 7,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -514,7 +514,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -523,7 +523,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 8,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -532,7 +532,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 2,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -540,8 +540,9 @@
    "name": "순천시립합창단",
    "layer": "B",
    "poll": "weekly",
-   "ok": false,
-   "error": "ReadTimeout: HTTPSConnectionPool(host='www.suncheon.go.kr', port=443): Read timed out. (read timeout=20)"
+   "ok": true,
+   "skipped": true,
+   "kept": 0
   },
   {
    "id": "g_i_andonggokr",
@@ -549,7 +550,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 4,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -558,7 +559,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -567,7 +568,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -576,7 +577,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -585,7 +586,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 3,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -594,7 +595,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 1,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -603,7 +604,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -612,7 +613,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -621,7 +622,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -630,7 +631,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -639,7 +640,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -648,7 +649,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -657,7 +658,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -666,7 +667,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -675,7 +676,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -684,7 +685,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 1,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -693,7 +694,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 1,
+   "skipped": true,
    "kept": 1
   },
   {
@@ -702,7 +703,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -711,7 +712,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -720,11 +721,74 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 18,
-   "kept": 17
+   "skipped": true,
+   "kept": 15
   }
  ],
  "items": [
+  {
+   "id": "eba70f97d0ee5b1d",
+   "org": "아트모아(예술 일자리 포털)",
+   "region": "기타",
+   "source": "artmore.kr",
+   "title": "[뮤직앤아트컴퍼니] 공연기획 경력직 채용공고 (클래식|국내외)",
+   "url": "https://www.artmore.kr/sub/recruit/search_view.do?rec_idx=94109",
+   "date": "2026-07-16",
+   "deadline": null,
+   "kind": "기타",
+   "tier": "미분류",
+   "obri": false,
+   "certReq": "무관",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "ageGroup": "성인",
+   "inst": "전체",
+   "instDetails": [],
+   "personnel": null,
+   "subject": null,
+   "channel": "artmore",
+   "layer": "A",
+   "applyEmail": "mnac@mnac.co.kr",
+   "qualification": "경력 경력 3년 학력 대학교(4년)",
+   "bodyExcerpt": "[뮤직앤아트컴퍼니] 공연기획 경력직 채용공고 (클래식|국내외) · 혁신적인 태도로 도전하고 헌신하며 클래식 음악 산업의 미래를 도모하는 뮤직앤아트컴퍼니에서 클래식 음악 현장을 함께 만들어 갈 인재를 모집합니다. · 근무형태: 정규직 (수습기간 3개월) · 급여: 면접 후 협의",
+   "deadlineNote": "상시",
+   "firstSeen": "2026-07-16",
+   "isNew": true,
+   "extVer": 23
+  },
+  {
+   "id": "4ee1647aabee0f03",
+   "org": "제주특별자치도교육청(나라일터)",
+   "region": "제주",
+   "source": "gojobs.go.kr",
+   "title": "제주특별자치도교육청 시간선택제임기제공무원 채용 계획 공고 (핫빛 장애인오케스트라 지휘자) (시간선택제임기제 다급)",
+   "url": "https://www.gojobs.go.kr/apmView.do?empmnsn=298194&empmnsecode=020&menuNo=401",
+   "date": "2026-07-15",
+   "deadline": "2026-07-24",
+   "kind": "단원",
+   "tier": "연주",
+   "obri": false,
+   "certReq": "무관",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "ageGroup": "성인",
+   "inst": "지휘",
+   "instDetails": [
+    "지휘"
+   ],
+   "personnel": null,
+   "subject": null,
+   "channel": "gojobs",
+   "layer": "A",
+   "positions": [
+    "지휘자"
+   ],
+   "qualification": "경력, 학위 등",
+   "bodyExcerpt": "일반채용 모집공고 · 제주특별자치도교육청 시간선택제임기제공무원 채용 계획 공고 (핫빛 장애인오케스트라 지휘자) (시간선택제임기제 다급) · 시간선택제임기제 다급 1명 · 장애인 채용 / 우대",
+   "firstSeen": "2026-07-16",
+   "isNew": true,
+   "extVer": 23
+  },
   {
    "id": "34668fb38d7e8765",
    "org": "서울시교육청(방과후 강사)",
@@ -750,8 +814,8 @@
    "bodyExcerpt": "목동고등학교 기간제교사 채용공고(음악, 중국어, 일반사회) · 지원서, 자기소개서, 교원자격증 사본 등 · 채용과목별로 근무기간이 다르니 확인 후 지원바랍니다.!",
    "deadlineFrom": "page",
    "firstSeen": "2026-07-15",
-   "isNew": true,
-   "extVer": 22
+   "isNew": false,
+   "extVer": 23
   },
   {
    "id": "de1ada2d59415d12",
@@ -778,8 +842,8 @@
    "bodyExcerpt": "음악 협력 수업 강사 채용 공고",
    "deadlineFrom": "page",
    "firstSeen": "2026-07-15",
-   "isNew": true,
-   "extVer": 22
+   "isNew": false,
+   "extVer": 23
   },
   {
    "id": "a85044b18e1835b7",
@@ -806,8 +870,8 @@
    "bodyExcerpt": "오류중 2026학년도 2학기 기간제교원(음악, 영어) 채용",
    "deadlineFrom": "page",
    "firstSeen": "2026-07-15",
-   "isNew": true,
-   "extVer": 22
+   "isNew": false,
+   "extVer": 23
   },
   {
    "id": "41cf6dcab235d3b3",
@@ -840,8 +904,8 @@
     "음악전공실기"
    ],
    "firstSeen": "2026-07-15",
-   "isNew": true,
-   "extVer": 22
+   "isNew": false,
+   "extVer": 23
   },
   {
    "id": "502a055beddc9e31",
@@ -868,7 +932,7 @@
    "musicUnverified": true,
    "firstSeen": "2026-07-13",
    "isNew": false,
-   "extVer": 22
+   "extVer": 23
   },
   {
    "id": "eb718c8d15a8bff2",
@@ -896,8 +960,8 @@
    "qualification": "경력 신입 학력",
    "bodyExcerpt": "2026 이현중학교 기간제교사(음악) 채용 · 채용방법 및 일정 · 지원서 및 자기소개서 - 교원자격증 사본 · 채용분야 및 채용 예정인원",
    "firstSeen": "2026-07-15",
-   "isNew": true,
-   "extVer": 22
+   "isNew": false,
+   "extVer": 23
   },
   {
    "id": "bec7c3819e166ea6",
@@ -925,8 +989,8 @@
    "qualification": "경력 경력 학력",
    "bodyExcerpt": "미금중학교 기간제교원 채용 계획(음악) · 채용방법 및 일정 · 채용 분야 및 채용 예정 인원 · 채용 응시 자격",
    "firstSeen": "2026-07-15",
-   "isNew": true,
-   "extVer": 22
+   "isNew": false,
+   "extVer": 23
   },
   {
    "id": "67e05ba4beba3d8d",
@@ -954,8 +1018,8 @@
    "qualification": "경력 경력무관 학력",
    "bodyExcerpt": "[성남서중학교] 2026학년도 기간제교원 채용 공고(2차-음악) · 채용방법 및 일정 · 기간제교원 채용 공고 · 학년도 성남서중학교 기간제교원 채용 계획을 다음과 같이 공고합니다",
    "firstSeen": "2026-07-15",
-   "isNew": true,
-   "extVer": 22
+   "isNew": false,
+   "extVer": 23
   },
   {
    "id": "545678a99e3a6ff5",
@@ -983,8 +1047,8 @@
    "qualification": "경력 신입 학력",
    "bodyExcerpt": "2026 삼가초 1인1악기 오카리나 강사 채용 공고 · 채용방법 및 일정",
    "firstSeen": "2026-07-15",
-   "isNew": true,
-   "extVer": 22
+   "isNew": false,
+   "extVer": 23
   },
   {
    "id": "e4a47c7f68910daa",
@@ -1011,8 +1075,8 @@
    "deadlineFrom": "page",
    "bodyExcerpt": "채용이 완료된 학교에서는 채용문의에 대한 불필요한 민원 발생을 미연에 방지하고자 \"채용여부\"를 반드시 \"채용완료\"로 수정하여 주시기 바랍니다. · 구인공고시 채용 마감일자를 반드시 기재하여 주시기 바랍니다. · 채용 마감일자가 지난 경우, 채용이 완료되지 않아도 재공고시까지 지원하실 수 없으니 착오없으시기 바랍니다. · 악기뱅크2.0 울림프로젝트 6학년 우쿨렐레 강사 채용 공고",
    "firstSeen": "2026-07-15",
-   "isNew": true,
-   "extVer": 22
+   "isNew": false,
+   "extVer": 23
   },
   {
    "id": "147c4cca4039c7d8",
@@ -1039,8 +1103,8 @@
    "deadlineFrom": "page",
    "bodyExcerpt": "2026학년도 제주여자중학교 2학기 기간제 교원 채용 공고(영어, 음악, 체육, 수학, 도덕) · 정규교사의 충원 및 복직발령 등으로 직무에 종사할 수 있게 될 때에는 계약기간 중이라도 계약을 해지함 · 중등학교 정교사 자격증 소지자 · 기간제교원 포함",
    "firstSeen": "2026-07-15",
-   "isNew": true,
-   "extVer": 22
+   "isNew": false,
+   "extVer": 23
   },
   {
    "id": "9e92bf0ead219b34",
@@ -1068,7 +1132,7 @@
    "bodyExcerpt": "2026년 중동중학교 합창 협력강사 채용 공고",
    "firstSeen": "2026-07-13",
    "isNew": false,
-   "extVer": 22
+   "extVer": 23
   },
   {
    "id": "ec07271e12be4e9b",
@@ -1099,7 +1163,7 @@
    "bodyExcerpt": "2026년 방과후학교 강사(바이올린) 채용 공고 · 채용방법 및 일정 · 학년도 세종초등학교 방과후학교 강사 모집 공고 · 학년도 방과후학교 특기적성 프로그램 강사를 다음과 같이 공개 채용 합니다",
    "firstSeen": "2026-07-13",
    "isNew": false,
-   "extVer": 22
+   "extVer": 23
   },
   {
    "id": "fad13b3ff5f109a6",
@@ -1126,7 +1190,7 @@
    "bodyExcerpt": "시험/채용/구직 · 기간제교사 채용계획 사전공개 · 학교/기관별 채용공고 · 채용 공고 시 유의사항",
    "firstSeen": "2026-07-13",
    "isNew": false,
-   "extVer": 22
+   "extVer": 23
   },
   {
    "id": "321d999b96347488",
@@ -1151,8 +1215,8 @@
    "channel": "edu_sje",
    "layer": "C",
    "firstSeen": "2026-07-15",
-   "isNew": true,
-   "extVer": 22
+   "isNew": false,
+   "extVer": 23
   },
   {
    "id": "62fa1901c4775d17",
@@ -1177,8 +1241,8 @@
    "channel": "edu_sje",
    "layer": "C",
    "firstSeen": "2026-07-15",
-   "isNew": true,
-   "extVer": 22
+   "isNew": false,
+   "extVer": 23
   },
   {
    "id": "e93239a0f784cf0b",
@@ -1206,7 +1270,7 @@
    "bodyExcerpt": "2026학년도 문현여자중학교 기간제교사(음악) 채용 공고 · 1. 채용 과목 : 음악 · 2. 접수 기간 : 2026. 7. 13.(월) ~2026. 7. 16.(목) 12:00 · 2026학년도 대명여자고등학교 기간제교사(체육) 채용 공고",
    "firstSeen": "2026-07-13",
    "isNew": false,
-   "extVer": 22
+   "extVer": 23
   },
   {
    "id": "ab6ab4db614db931",
@@ -1233,7 +1297,7 @@
    "layer": "B",
    "firstSeen": "2026-07-13",
    "isNew": false,
-   "extVer": 22
+   "extVer": 23
   },
   {
    "id": "7cbdfcead718d997",
@@ -1261,7 +1325,7 @@
    "musicUnverified": true,
    "firstSeen": "2026-07-13",
    "isNew": false,
-   "extVer": 22
+   "extVer": 23
   },
   {
    "id": "a6f9fc4e4179de25",
@@ -1290,7 +1354,7 @@
    "layer": "B",
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 22
+   "extVer": 23
   },
   {
    "id": "9b9fed1c189aef5e",
@@ -1324,7 +1388,7 @@
    ],
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 22
+   "extVer": 23
   },
   {
    "id": "c12d970d5beba854",
@@ -1354,7 +1418,7 @@
    ],
    "firstSeen": "2026-07-12",
    "isNew": false,
-   "extVer": 22
+   "extVer": 23
   },
   {
    "id": "2e29513f2f828862",
@@ -1382,7 +1446,7 @@
    "musicUnverified": true,
    "firstSeen": "2026-07-12",
    "isNew": false,
-   "extVer": 22
+   "extVer": 23
   },
   {
    "id": "7e82257b25ad7ec7",
@@ -1412,7 +1476,7 @@
    "bodyExcerpt": "[화랑초]1인1악기 바이올린 강사 채용 공고 · 1. 채용인원 : 1인1악기 지도강사(바이올린/비올라) 1명 · 3. 수업시수 및 급여 : 주당 12차시기본급 120만원+(지도인원*20,000원) · 4. 원서접수기간: 2026. 7. 11. ~ 2026. 7. 16.(오전 10:00까지, 초과도착 불가)",
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 22
+   "extVer": 23
   },
   {
    "id": "1170cbe4e8bccc87",
@@ -1440,7 +1504,7 @@
    "musicUnverified": true,
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 22
+   "extVer": 23
   },
   {
    "id": "875b04e41b406490",
@@ -1468,7 +1532,7 @@
    "musicUnverified": true,
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 22
+   "extVer": 23
   },
   {
    "id": "6015a48666b489c3",
@@ -1501,7 +1565,7 @@
    ],
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 22
+   "extVer": 23
   },
   {
    "id": "50b2549137f40b6d",
@@ -1529,7 +1593,7 @@
    "musicUnverified": true,
    "firstSeen": "2026-07-13",
    "isNew": false,
-   "extVer": 22
+   "extVer": 23
   },
   {
    "id": "74aafb0f253525a2",
@@ -1556,7 +1620,7 @@
    "layer": "B",
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 22
+   "extVer": 23
   },
   {
    "id": "05b306f57c79f14e",
@@ -1583,7 +1647,7 @@
    "musicUnverified": true,
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 22
+   "extVer": 23
   },
   {
    "id": "c80e362afc57cd51",
@@ -1638,7 +1702,7 @@
    "bodyExcerpt": "2026년 KBS교향악단 신규단원 채용(비올라, 오보에, 타악기) - 2026. 7. 8. 자 타악기 부문 추가 · 교향악단 신규단원 채용 · 교향악단에서 실력있고 열정 넘치는 전문 연주자를 공개 모집합니다 · 자로 모집부문에 타악기가 추가되었습니다",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 22
+   "extVer": 23
   },
   {
    "id": "b2e199e32140e0ed",
@@ -1670,7 +1734,7 @@
    "documents": "이력서",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 22
+   "extVer": 23
   },
   {
    "id": "d23eba700bca92a7",
@@ -1699,7 +1763,7 @@
    "layer": "B",
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 22
+   "extVer": 23
   },
   {
    "id": "92ae6dfd180543fb",
@@ -1726,11 +1790,11 @@
    "subject": null,
    "channel": "artinfo",
    "layer": "A",
-   "bodyExcerpt": "모집파트: 테너 또는 베이스",
    "applyEmail": "anointed77@hanmail.net",
+   "bodyExcerpt": "모집파트: 테너 또는 베이스",
    "firstSeen": "2026-07-15",
-   "isNew": true,
-   "extVer": 22,
+   "isNew": false,
+   "extVer": 23,
    "deadlineNote": "상시",
    "auditionDate": "오디션 없음 — 담임목사 면접만",
    "documents": "이력서 이메일 접수 (핸드폰 번호 필히 기재)",
@@ -1762,12 +1826,12 @@
    "subject": null,
    "channel": "artinfo",
    "layer": "A",
+   "applyEmail": "songhyun1128@naver.com",
    "qualification": "연령: 35세 ~ 50세 학력: 성악 전공 석사 졸업 이상",
    "bodyExcerpt": "채용 | 더솔아르떼 성악아카데미 평택점과 함께할 전문 강사님을 모십니다 · 성악 전문 강사님을 모집합니다. · ✨️ 모집 분야 · 우대: 교육 및 연주 경력자 환영,",
-   "applyEmail": "songhyun1128@naver.com",
    "firstSeen": "2026-07-11",
    "isNew": false,
-   "extVer": 22,
+   "extVer": 23,
    "deadlineNote": "상시",
    "documents": "이력서 이메일 접수 → 검토 후 면접",
    "verifiedAt": "2026-07-14",
@@ -1797,15 +1861,15 @@
    "subject": null,
    "channel": "artinfo",
    "layer": "A",
+   "applyEmail": "pavarotti7801@hanmail.net",
+   "applyPhone": "010-4772-5362",
    "positions": [
     "반주자"
    ],
    "bodyExcerpt": "채용 | [부산] 푸른초장교회 반주자를 모십니다.",
-   "applyEmail": "pavarotti7801@hanmail.net",
-   "applyPhone": "010-4772-5362",
    "firstSeen": "2026-07-15",
-   "isNew": true,
-   "extVer": 22
+   "isNew": false,
+   "extVer": 23
   },
   {
    "id": "5fbc7e4eb4f8d92d",
@@ -1837,7 +1901,7 @@
    "documents": "간단한 이력서",
    "firstSeen": "2026-07-08",
    "isNew": false,
-   "extVer": 22
+   "extVer": 23
   }
  ]
 }
