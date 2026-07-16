@@ -29,6 +29,7 @@ const OFFICIAL_ITEMS = ((window.CRAWLED && window.CRAWLED.items) || []).map(j =>
   courses: j.courses,   // 대학 강사: 담당 교과목(무엇을 가르치는지)
   obri: j.obri,         // 오브리(교회·행사) — 연주의 하위 필터
   certReq: j.certReq, degreeReq: j.degreeReq, careerReq: j.careerReq,   // 자격요건 필드
+  verifiedAt: j.verifiedAt, verifiedNote: j.verifiedNote,   // 사람이 직접 확인한 사실 (overrides.json)
   ageGroup: j.ageGroup || "성인",   // 지원자 연령: 성인 / 미성년
   region: j.region, title: j.title, org: j.org,
   deadline: j.deadline, deadlineText: j.deadlineNote, date: j.date || j.firstSeen,
@@ -204,6 +205,7 @@ function cardHTML(j) {
     ${j.sample ? `<span class="tag sample">예시</span>` : ""}
     <span class="tag ${TIER_CLS[j.tier] || "cat"}">${j.tier}</span>
     ${SHOW_AGE_BADGE && j.ageGroup === "미성년" ? `<span class="tag pos">미성년</span>` : ""}
+    ${j.verifiedNote ? `<span class="tag ok">✓ 모집 확인 ${j.verifiedAt || ""}</span>` : ""}
     ${j.type === "구직" ? `<span class="tag type-seek">구직</span>` : ""}
     <span class="tag cat">${j.band}</span>
     ${j.subject && !j.insts.includes(j.subject) ? `<span class="tag inst">${j.subject}</span>` : ""}
@@ -342,6 +344,7 @@ function metaRows(j) {
   if (j.band && j.band !== "기타") rows.push(["형태", j.band]);
   if (j.subject) rows.push(["전공", cleanVal(j.subject)]);   // 대학 교수: 어떤 과목/전공인지
   if (j.courses && j.courses.length) rows.push(["교과목", j.courses.join(", ")]);   // 대학 강사: 담당 과목
+  if (j.verifiedNote) rows.push(["✓ 직접 확인", `${cleanVal(j.verifiedNote)}${j.verifiedAt ? ` <span style="color:var(--ink-soft)">(${j.verifiedAt})</span>` : ""}`]);
   if (j.certReq && j.certReq !== "무관") rows.push(["교원자격증", j.certReq === "예" ? "필요" : "불필요"]);
   if (j.degreeReq && j.degreeReq !== "무관") rows.push(["학위 요건", j.degreeReq + " 이상"]);
   if (j.careerReq && j.careerReq !== "미기재") rows.push(["경력", j.careerReq]);

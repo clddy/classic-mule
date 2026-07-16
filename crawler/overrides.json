@@ -1,0 +1,16 @@
+{
+  "_설명": "사람이 직접 확인한 사실을 크롤 결과 위에 덮어쓰는 파일. URL을 키로 매칭(제목이 바뀌어도 안정). 크롤이 돌 때마다 최종 단계에서 병합되므로 재크롤에도 살아남는다. 공고가 목록에서 사라지면 자동으로 무시됨.",
+  "https://www.artinfokorea.com/jobs/467": {
+    "deadlineNote": "상시",
+    "auditionDate": "오디션 없음 — 담임목사 면접만",
+    "documents": "이력서 이메일 접수 (핸드폰 번호 필히 기재)",
+    "verifiedAt": "2026-07-14",
+    "verifiedNote": "교회에 직접 확인: 지원자가 없어 계속 모집 중. 오디션 없이 담임목사 면접만 진행."
+  },
+  "https://www.artinfokorea.com/jobs/466": {
+    "deadlineNote": "상시",
+    "documents": "이력서 이메일 접수 → 검토 후 면접",
+    "verifiedAt": "2026-07-14",
+    "verifiedNote": "학원에 직접 확인: 강사 구인 진행 중. 이력서 접수 후 검토를 거쳐 면접."
+  }
+}

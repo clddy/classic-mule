@@ -1023,6 +1023,22 @@ def run(force_all=False):
     n_unclass = sum(1 for it in final if it["tier"] == "미분류")
     if n_unclass:
         log(f"미분류 큐: {n_unclass}건 — {'; '.join(it['title'][:24] for it in final if it['tier'] == '미분류')}")
+    # 사람이 직접 확인한 사실(전화·메일 회신) 병합 — 자동 추출값 위에 덮어씀 (crawler/overrides.json, URL 키)
+    ov_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "overrides.json")
+    if os.path.exists(ov_path):
+        try:
+            with open(ov_path, encoding="utf-8") as f:
+                overrides = {k: v for k, v in json.load(f).items() if not k.startswith("_")}
+            n_ov = 0
+            for it in final:
+                ov = overrides.get(it.get("url")) or overrides.get(it.get("officialUrl") or "")
+                if ov:
+                    it.update(ov)
+                    n_ov += 1
+            if n_ov:
+                log(f"확인정보 병합: {n_ov}건 (overrides.json)")
+        except Exception as e:
+            log(f"WARN overrides.json 병합 실패: {e}")
     final.sort(key=lambda x: (x.get("date") or x["firstSeen"]), reverse=True)
 
     payload = {
