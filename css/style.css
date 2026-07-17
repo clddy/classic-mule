@@ -346,9 +346,12 @@ details[open] > .filter-summary::after { content: " −"; }
 }
 
 /* ---------- 목록 툴바 ---------- */
-.board-toolbar { display: flex; gap: 10px; margin-bottom: 16px; align-items: center; }
+/* wrap 필수 — 없으면 정렬버튼+검색창의 최소폭이 375px를 넘어 모바일 그리드
+   트랙(1fr)을 통째로 밀어내고, 페이지 전체에 가로 스크롤이 생긴다. */
+.board-toolbar { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 16px; align-items: center; }
 .search-box {
   flex: 1;
+  min-width: 160px;  /* 이보다 좁아지느니 다음 줄로 내려간다 (좁은 화면에서 검색창 뭉개짐 방지) */
   display: flex;
   align-items: center;
   background: var(--paper);
@@ -359,6 +362,7 @@ details[open] > .filter-summary::after { content: " −"; }
 .search-box:focus-within { border-color: var(--ink); }
 .search-box input {
   flex: 1;
+  min-width: 0;  /* input 고유폭(약 200px)이 .search-box의 최소폭이 되는 것 차단 */
   border: none;
   outline: none;
   padding: 10px 8px;

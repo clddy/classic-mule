@@ -1000,6 +1000,22 @@ def run(force_all=False):
     final = [i for i in final if musician_relevant(i["title"], i.get("kind", ""), i.get("org", ""))]
     # 대학 전체 강사 초빙 중 첨부 확인 결과 음악 교과목이 전혀 없던 공고는 제외(비음악 확정)
     final = [i for i in final if not i.get("nonMusic")]
+    # 원본이 삭제된 공고 제거 — 헬스체크(health_check.py)가 2회 연속 404/410으로
+    # 확인한 링크만 거른다(1회는 네트워크 블립일 수 있어 헬스체크 쪽 기준을 그대로 따름).
+    # 원본이 사라진 공고는 마감이 남았어도 승계 경로로 계속 살아남는데, 유저가 누르면
+    # 404라 신뢰가 깨진다. 링크가 살아나면 헬스체크가 streak을 지워 다시 노출된다.
+    hist_path = os.path.join(BASE, "data", "health_history.json")
+    try:
+        with open(hist_path, encoding="utf-8") as f:
+            _dead = {u for u, s in (json.load(f).get("deadLinks") or {}).items()
+                     if s.get("n", 0) >= 2}
+    except (FileNotFoundError, json.JSONDecodeError):
+        _dead = set()
+    if _dead:
+        gone = [i for i in final if i.get("url") in _dead]
+        final = [i for i in final if i.get("url") not in _dead]
+        for g in gone:
+            log(f"DROP 원본 삭제(연속 404): {g.get('org')} / {(g.get('title') or '')[:40]}")
     for it in final:
         old = prev_by_id.get(it["id"])
         it["firstSeen"] = old.get("firstSeen", today.isoformat()) if old else today.isoformat()
