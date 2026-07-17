@@ -118,243 +118,234 @@
   </div>
 </div>
 
-<!-- 글쓰기 모달 -->
+<!-- 글쓰기 모달 — 등록 폼 스펙 v1: Step(구분→유형→폼) · 필수만으로 3분 등록 · 나머지는 '상세 추가' -->
 <div class="modal-backdrop" id="write-modal">
   <div class="modal">
     <button class="modal-close">✕</button>
-    <h2>글 올리기 <span style="font-size:0.75rem;color:var(--ink-soft);font-weight:400">(소규모 구인·구직)</span></h2>
-    <form class="form-grid" id="write-form">
-      <div class="form-field">
-        <label>구분</label>
-        <div class="radio-row">
-          <label><input type="radio" name="w-type" value="offer" checked> 구인 (사람을 찾습니다)</label>
-          <label><input type="radio" name="w-type" value="seek"> 구직 (자리를 찾습니다)</label>
-        </div>
+    <h2 id="write-head">글 올리기</h2>
+
+    <!-- Step 1: 구분 -->
+    <div id="ws-1" class="write-step">
+      <div style="display:grid;gap:10px;margin-top:8px">
+        <button type="button" class="btn-outline ws-big" data-kind="offer" style="padding:18px;text-align:left;font-size:0.95rem"><b>구인</b> — 사람을 찾습니다<br><span style="font-size:0.78rem;color:var(--ink-soft)">객원·반주·강사 모집 공고를 올립니다</span></button>
+        <button type="button" class="btn-outline ws-big" data-kind="seek" style="padding:18px;text-align:left;font-size:0.95rem"><b>구직</b> — 자리를 찾습니다<br><span style="font-size:0.78rem;color:var(--ink-soft)">연주자 명부에 프로필로 올라갑니다 (검색되는 쪽)</span></button>
       </div>
-      <div class="form-row">
-        <div class="form-field">
-          <label>구분</label>
-          <select name="w-tier" required>
-            <option value="연주">연주 (단원·객원·반주·행사)</option>
-            <option value="교육 — 대학">교육 — 대학 (교수·시간강사)</option>
-            <option value="교육 — 입시·전공">교육 — 입시·전공 (예중·예고·입시)</option>
-            <option value="교육 — 취미·입문">교육 — 취미·입문 (학원·방과후·일반학교)</option>
-          </select>
-          <label style="margin-top:8px;font-weight:400;display:flex;align-items:center;gap:6px">
-            <input type="checkbox" name="w-obri" style="width:auto"> 오브리(교회·웨딩·행사)
-          </label>
-        </div>
-        <div class="form-field">
-          <label>일시 (연주·근무일)</label>
-          <input type="text" name="w-when" placeholder="예: 7/21~23 리허설, 7/24 공연">
-        </div>
+    </div>
+
+    <!-- Step 2: 유형 (구인만) -->
+    <div id="ws-2" class="write-step" style="display:none">
+      <button type="button" class="btn-ghost" id="ws-back1" style="margin-bottom:8px">← 구분 다시 선택</button>
+      <div style="display:grid;gap:8px">
+        <button type="button" class="btn-outline ws-big" data-wtype="연주" style="padding:14px;text-align:left"><b>연주</b> <span style="font-size:0.78rem;color:var(--ink-soft)">— 객원·단원·행사·반주</span></button>
+        <button type="button" class="btn-outline ws-big" data-wtype="오브리" style="padding:14px;text-align:left"><b>오브리</b> <span style="font-size:0.78rem;color:var(--ink-soft)">— 교회·웨딩·행사</span></button>
+        <button type="button" class="btn-outline ws-big" data-wtype="교육 — 대학" style="padding:14px;text-align:left"><b>교육 — 대학</b> <span style="font-size:0.78rem;color:var(--ink-soft)">— 교수·겸임·시간강사</span></button>
+        <button type="button" class="btn-outline ws-big" data-wtype="교육 — 입시·전공" style="padding:14px;text-align:left"><b>교육 — 입시·전공</b> <span style="font-size:0.78rem;color:var(--ink-soft)">— 예중·예고·입시 레슨</span></button>
+        <button type="button" class="btn-outline ws-big" data-wtype="교육 — 취미·입문" style="padding:14px;text-align:left"><b>교육 — 취미·입문</b> <span style="font-size:0.78rem;color:var(--ink-soft)">— 학원·방과후·문화센터</span></button>
       </div>
-      <div class="form-row">
-        <div class="form-field">
-          <label>분야</label>
-          <select name="w-cat" required>
-            <option value="객원/대타">객원/대타</option>
-            <option value="단원모집">단원모집</option>
-            <option value="반주">반주</option>
-            <option value="행사연주">행사연주</option>
-            <option value="강사/레슨">강사/레슨</option>
-            <option value="지휘/음악감독">지휘/음악감독</option>
-          </select>
-        </div>
-        <div class="form-field">
-          <label>악기군</label>
-          <select name="w-inst" required>
-            <option value="현악">현악</option>
-            <option value="목관">목관</option>
-            <option value="금관">금관</option>
-            <option value="타악">타악</option>
-            <option value="건반">건반</option>
-            <option value="성악">성악</option>
-            <option value="지휘">지휘</option>
-          </select>
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-field">
-          <label>세부 악기 (예: 바이올린)</label>
-          <input type="text" name="w-instDetail" placeholder="바이올린">
-        </div>
-        <div class="form-field">
-          <label>지역</label>
-          <select name="w-region" required>
-            <optgroup label="수도권">
-              <option value="서울">서울</option>
-              <option value="경기">경기</option>
-              <option value="인천">인천</option>
-            </optgroup>
-            <optgroup label="강원·충청">
-              <option value="강원">강원</option>
-              <option value="대전">대전</option>
-              <option value="세종">세종</option>
-              <option value="충북">충북</option>
-              <option value="충남">충남</option>
-            </optgroup>
-            <optgroup label="영남">
-              <option value="대구">대구</option>
-              <option value="경북">경북</option>
-              <option value="부산">부산</option>
-              <option value="울산">울산</option>
-              <option value="경남">경남</option>
-            </optgroup>
-            <optgroup label="호남·제주">
-              <option value="광주·전남">광주·전남</option>
-              <option value="전북">전북</option>
-              <option value="제주">제주</option>
-            </optgroup>
-            <option value="기타">기타</option>
-          </select>
-        </div>
-      </div>
-      <!-- 필수는 여기까지(구분·제목·일시·지역·연락처+이름·보수) — '주일 반주자 급구'가 1분에 끝나야 한다 -->
-      <div class="form-field">
-        <label>제목</label>
-        <input type="text" name="w-title" required placeholder="예: 정기연주회 비올라 객원 1명 모십니다">
-      </div>
-      <div class="form-row">
-        <div class="form-field">
-          <label>기관/팀명 또는 이름</label>
-          <input type="text" name="w-org" required placeholder="○○앙상블">
-        </div>
-        <div class="form-field">
-          <label>연락처 <span class="hint">(급구 시 필수 · 지원자가 바로 연락)</span></label>
-          <input type="tel" name="w-phone" placeholder="010-0000-0000">
-        </div>
-      </div>
-      <div class="form-row">
-        <div class="form-field">
-          <label>보수</label>
-          <input type="text" name="w-pay" placeholder="회당 15만원 / 협의">
-        </div>
-        <div class="form-field" style="display:flex;align-items:flex-end;padding-bottom:6px">
-          <label style="display:flex;align-items:center;gap:6px;margin:0;font-weight:400">
-            <input type="checkbox" name="w-urgent"> 급구로 표시
-          </label>
-        </div>
-      </div>
-      <!-- 나머지는 구분(연주/교육·구인/구직)에 따라 조건부 + '상세 추가'로 접힘 -->
-      <details class="form-field" id="wf-more">
-        <summary style="cursor:pointer;font-size:0.85rem;color:var(--navy)">상세 추가 (선택) — 악기 제공·모집 인원·마감·프로그램 등</summary>
-        <div class="form-grid" style="margin-top:10px">
-          <div class="form-row" id="wf-edu">
-            <div class="form-field">
-              <label>교원자격증</label>
-              <select name="w-cert">
-                <option value="무관">무관</option>
-                <option value="아니오">불필요</option>
-                <option value="예">필요</option>
-              </select>
-            </div>
-            <div class="form-field">
-              <label>학위 요건</label>
-              <select name="w-degree">
-                <option value="무관">무관</option>
-                <option value="학사">학사</option>
-                <option value="석사">석사</option>
-                <option value="박사">박사</option>
-              </select>
-            </div>
-            <div class="form-field">
-              <label>경력</label>
-              <select name="w-career">
-                <option value="미기재">미기재</option>
-                <option value="무관">무관</option>
-                <option value="필요">필요</option>
-              </select>
-            </div>
-          </div>
-          <div id="wf-play">
-            <div class="form-section-label">악기 제공 <span class="hint">— 연주자가 가장 먼저 확인하는 항목 (특히 타악·건반)</span></div>
-            <div class="form-row">
-              <div class="form-field">
-                <label>악기 제공 여부</label>
-                <select name="w-instProvided">
-                  <option value="">해당 없음</option>
-                  <option value="제공됨">제공됨</option>
-                  <option value="개인 지참">개인 지참</option>
-                  <option value="일부 제공">일부 제공</option>
-                </select>
-              </div>
-              <div class="form-field">
-                <label>제공/지참 악기 상세</label>
-                <input type="text" name="w-instProvidedDetail" placeholder="예: 팀파니·마림바 제공, 말렛 개인 지참">
-              </div>
-            </div>
-            <div class="form-row">
-              <div class="form-field">
-                <label>셋업/운반</label>
-                <select name="w-setup">
-                  <option value="">해당 없음</option>
-                  <option value="없음">필요 없음</option>
-                  <option value="셋업만">셋업만</option>
-                  <option value="운반 포함">운반 포함</option>
-                </select>
-              </div>
-              <div class="form-field">
-                <label>건반 종류 <span class="hint">(반주·건반 공고)</span></label>
-                <select name="w-keyboard">
-                  <option value="">해당 없음</option>
-                  <option value="그랜드">그랜드 피아노</option>
-                  <option value="업라이트">업라이트</option>
-                  <option value="전자">전자 피아노</option>
-                </select>
-              </div>
-            </div>
-            <div class="form-field">
-              <label>리허설 횟수 <span class="hint">(연주자가 회당 페이 계산)</span></label>
-              <input type="number" name="w-rehearsalCount" min="0" placeholder="예: 2">
-            </div>
-            <div class="form-field">
-              <label>프로그램 <span style="font-weight:400;color:var(--ink-soft)">(객원 모집 시 기재 권장)</span></label>
-              <input type="text" name="w-program" placeholder="예: 브람스 교향곡 4번, 시벨리우스 협주곡">
-            </div>
-          </div>
-          <div class="form-row" id="wf-offer">
-            <div class="form-field">
-              <label>모집 인원</label>
-              <input type="text" name="w-personnel" placeholder="예: 제2바이올린 2명">
-            </div>
-            <div class="form-field">
-              <label>자격</label>
-              <input type="text" name="w-qual" placeholder="예: 음대 졸업 이상">
-            </div>
-            <div class="form-field">
-              <label>마감일</label>
-              <input type="date" name="w-deadline">
-            </div>
-          </div>
-          <!-- 구직 전용 — 구직 글이 쌓이면 연주자 명부(directory)가 된다. 과외 섹션의 신뢰 문법(학력·소속) 재사용 -->
-          <div id="wf-seek" style="display:none">
-            <div class="form-row">
-              <div class="form-field">
-                <label>학력·소속 <span class="hint">(예: ○○예술대 석사 졸)</span></label>
-                <input type="text" name="w-seek-edu" placeholder="○○대 기악과 졸업">
-              </div>
-              <div class="form-field">
-                <label>경력 요약</label>
-                <input type="text" name="w-seek-career" placeholder="예: 시향 객원 3년, 행사 콰르텟 다수">
-              </div>
-            </div>
-            <div class="form-field">
-              <label>가능 지역·시간대</label>
-              <input type="text" name="w-seek-avail" placeholder="예: 서울 전역·경기 남부, 주말 가능">
-            </div>
-          </div>
-        </div>
+    </div>
+
+    <!-- Step 3: 폼 -->
+    <form class="form-grid" id="write-form" style="display:none" novalidate>
+      <button type="button" class="btn-ghost" id="ws-back2" style="align-self:flex-start">← 유형 다시 선택</button>
+      <div id="wf-req" class="form-grid"></div>
+      <details id="wf-opt"><summary style="cursor:pointer;font-size:0.85rem;color:var(--navy)">상세 추가 ▾ <span style="font-weight:400;color:var(--ink-soft)">(선택 — 등록을 막지 않습니다)</span></summary>
+        <div id="wf-opt-body" class="form-grid" style="margin-top:10px"></div>
       </details>
-      <div class="form-field">
-        <label>상세 내용 <span class="hint">(선택)</span></label>
-        <textarea name="w-body" placeholder="일정, 연습 횟수, 자격 요건, 연락 방법 등을 적어주세요."></textarea>
-      </div>
       <div class="modal-actions">
         <button type="button" class="btn-outline" onclick="document.getElementById('write-modal').classList.remove('open')">취소</button>
-        <button type="submit" class="btn-primary">등록하기</button>
+        <button type="submit" class="btn-primary" id="wf-submit" disabled>등록하기</button>
       </div>
     </form>
+
+    <!-- 등록 직후: 미리보기 + 공유 + 관리 안내 -->
+    <div id="write-done" style="display:none">
+      <p style="font-size:0.9rem;color:var(--navy)"><b>등록 완료!</b> 보드에 이렇게 노출됩니다.</p>
+      <div id="wd-preview" class="job-list"></div>
+      <div class="modal-actions" style="justify-content:flex-start">
+        <button type="button" class="btn-outline" id="wd-copy">🔗 링크 복사</button>
+        <button type="button" class="btn-outline" id="wd-kakao">💬 카톡에 공유</button>
+        <button type="button" class="btn-primary" id="wd-close">확인</button>
+      </div>
+      <p style="font-size:0.76rem;color:var(--ink-soft)">수정·마감 처리: 내 글은 목록 상단에 고정되며, 카드를 열어 삭제할 수 있어요. <span style="opacity:0.8">(프로토타입: 이 기기 기준 — 실서비스에서는 관리 링크가 발급됩니다)</span></p>
+    </div>
+
+    <!-- 필드 블록 풀 — 엔진(js/write.js)이 유형에 따라 필수/상세로 옮겨 조립 -->
+    <div id="wf-pool" style="display:none">
+      <div class="wf form-field" data-f="title">
+        <label>제목</label>
+        <input type="text" name="w-title" maxlength="60" placeholder="아래 필드를 채우면 제목을 제안해 드려요">
+        <div id="title-sugg" style="display:none;margin-top:6px;font-size:0.8rem">
+          <button type="button" class="btn-ghost" id="title-sugg-btn" style="border:1px dashed var(--line);border-radius:6px;padding:6px 10px;text-align:left"></button>
+        </div>
+      </div>
+      <div class="wf form-field" data-f="region">
+        <label>지역</label>
+        <select name="w-region">
+          <optgroup label="수도권"><option value="서울">서울</option><option value="경기">경기</option><option value="인천">인천</option></optgroup>
+          <optgroup label="강원·충청"><option value="강원">강원</option><option value="대전">대전</option><option value="세종">세종</option><option value="충북">충북</option><option value="충남">충남</option></optgroup>
+          <optgroup label="영남"><option value="대구">대구</option><option value="경북">경북</option><option value="부산">부산</option><option value="울산">울산</option><option value="경남">경남</option></optgroup>
+          <optgroup label="호남·제주"><option value="광주·전남">광주·전남</option><option value="전북">전북</option><option value="제주">제주</option></optgroup>
+          <option value="기타">기타</option>
+        </select>
+      </div>
+      <div class="wf form-field" data-f="org">
+        <label id="org-label">게시자명 (기관/팀명 또는 이름)</label>
+        <input type="text" name="w-org" maxlength="30" placeholder="○○앙상블 / ○○교회 / 김○○">
+        <span class="hint">실명·기관명 공개 시 지원율이 크게 올라갑니다</span>
+      </div>
+      <div class="wf form-field" data-f="contact">
+        <label>연락 방법 <span class="hint">— 하나 이상</span></label>
+        <div class="form-row">
+          <input type="tel" name="w-phone" placeholder="전화·문자 010-0000-0000">
+          <input type="email" name="w-email" placeholder="이메일">
+        </div>
+        <input type="url" name="w-chat" placeholder="오픈채팅 링크 (선택)" style="margin-top:6px">
+      </div>
+      <div class="wf form-field" data-f="pay">
+        <label id="pay-label">보수</label>
+        <div class="form-row" style="grid-template-columns:1fr auto auto;align-items:center;gap:8px">
+          <input type="number" name="w-pay-amt" min="0" step="0.5" placeholder="금액 (만원)">
+          <select name="w-pay-unit" style="width:auto"><option value="회당">회당</option><option value="시간당">시간당</option><option value="월">월</option><option value="건당">건당</option></select>
+          <label style="display:flex;align-items:center;gap:4px;font-weight:400;margin:0"><input type="checkbox" name="w-pay-nego" style="width:auto"> 협의</label>
+        </div>
+      </div>
+      <div class="wf form-field" data-f="cat">
+        <label id="cat-label">분야</label>
+        <select name="w-cat"></select>
+      </div>
+      <div class="wf" data-f="instr">
+        <div class="form-row">
+          <div class="form-field">
+            <label id="instr-label">악기군</label>
+            <select name="w-inst">
+              <option value="현악">현악</option><option value="목관">목관</option><option value="금관">금관</option>
+              <option value="타악">타악</option><option value="건반">건반</option><option value="성악">성악</option><option value="지휘">지휘</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label id="instr2-label">세부 악기</label>
+            <input type="text" name="w-instDetail" placeholder="바이올린">
+          </div>
+        </div>
+      </div>
+      <div class="wf form-field" data-f="when">
+        <label id="when-label">일시 (연주·근무일)</label>
+        <input type="text" name="w-when" placeholder="예: 7/24(금) 저녁 공연">
+        <span class="hint" id="urgent-hint" style="display:none;color:var(--claret)">연주일이 임박했어요 — 아래 '상세 추가'에서 급구로 표시하면 눈에 띕니다</span>
+      </div>
+      <div class="wf form-field" data-f="regular">
+        <label>정기/단발</label>
+        <select name="w-regular"><option value="단발">단발 (하루)</option><option value="정기">정기 (매주)</option></select>
+      </div>
+      <div class="wf form-field" data-f="rehearsal">
+        <label>리허설 횟수·일정 <span class="hint">(연주자가 회당 페이를 계산합니다)</span></label>
+        <div class="form-row">
+          <input type="number" name="w-rehearsalCount" min="0" placeholder="횟수 (예: 2)">
+          <input type="text" name="w-rehearsalWhen" placeholder="예: 7/21~23 오후 2시">
+        </div>
+      </div>
+      <div class="wf form-field" data-f="deadline">
+        <label>마감일 <span class="hint" id="deadline-hint">비워두면 '충원 시 마감'</span></label>
+        <input type="date" name="w-deadline">
+      </div>
+      <div class="wf form-field" data-f="program">
+        <label>프로그램 <span class="hint">객원 지원 판단에 큰 도움이 됩니다</span></label>
+        <input type="text" name="w-program" placeholder="예: 브람스 교향곡 4번, 시벨리우스 협주곡">
+      </div>
+      <div class="wf" data-f="provided">
+        <div class="form-section-label">악기 제공 <span class="hint">— 연주자가 가장 먼저 확인하는 항목</span></div>
+        <div class="form-row">
+          <div class="form-field">
+            <label>악기 제공 여부</label>
+            <select name="w-instProvided"><option value="제공됨">제공됨</option><option value="개인 지참">개인 지참</option><option value="일부 제공">일부 제공</option></select>
+          </div>
+          <div class="form-field" id="prov-perc">
+            <label>셋업·운반</label>
+            <select name="w-setup"><option value="없음">필요 없음</option><option value="셋업만">셋업만</option><option value="운반 포함">운반 포함</option></select>
+          </div>
+          <div class="form-field" id="prov-key">
+            <label>건반 종류</label>
+            <select name="w-keyboard"><option value="그랜드">그랜드</option><option value="업라이트">업라이트</option><option value="전자">전자</option></select>
+          </div>
+        </div>
+        <div class="form-field" id="prov-detail"><label>보유 악기 상세</label><input type="text" name="w-instProvidedDetail" placeholder="예: 팀파니 4대·마림바 제공, 말렛 개인 지참"></div>
+      </div>
+      <div class="wf form-field" data-f="personnel">
+        <label>모집 인원</label>
+        <input type="text" name="w-personnel" placeholder="1" value="1">
+      </div>
+      <div class="wf form-field" data-f="degree">
+        <label>학위 요건</label>
+        <select name="w-degree"><option value="무관">무관</option><option value="학사">학사</option><option value="석사">석사</option><option value="박사">박사</option></select>
+      </div>
+      <div class="wf form-field" data-f="career">
+        <label>경력</label>
+        <select name="w-career"><option value="미기재">미기재</option><option value="무관">무관</option><option value="필요">필요</option></select>
+      </div>
+      <div class="wf form-field" data-f="cert">
+        <label>교원자격증</label>
+        <select name="w-cert"><option value="무관">무관</option><option value="아니오">불필요</option><option value="예">필요</option></select>
+      </div>
+      <div class="wf form-field" data-f="applyLink">
+        <label>지원 방법·링크</label>
+        <input type="text" name="w-applyLink" placeholder="지원 페이지 URL 또는 '이메일로 이력서 접수'">
+      </div>
+      <div class="wf form-field" data-f="urgent">
+        <label style="display:flex;align-items:center;gap:6px;font-weight:400"><input type="checkbox" name="w-urgent" style="width:auto"> 급구로 표시 <span class="hint">(전화 연락처 필수)</span></label>
+      </div>
+      <div class="wf form-field" data-f="body">
+        <label>상세 내용</label>
+        <textarea name="w-body" rows="4" placeholder="일정, 자격, 참고 사항 등"></textarea>
+      </div>
+      <!-- 구직(명부 프로필) 전용 -->
+      <div class="wf form-field" data-f="seekInstr">
+        <label>악기·분야 <span class="hint">복수 선택</span></label>
+        <div class="radio-row" style="flex-wrap:wrap" id="seek-instr-row">
+          <label><input type="checkbox" name="ws-i" value="현악" style="width:auto"> 현악</label>
+          <label><input type="checkbox" name="ws-i" value="목관" style="width:auto"> 목관</label>
+          <label><input type="checkbox" name="ws-i" value="금관" style="width:auto"> 금관</label>
+          <label><input type="checkbox" name="ws-i" value="타악" style="width:auto"> 타악</label>
+          <label><input type="checkbox" name="ws-i" value="건반" style="width:auto"> 건반</label>
+          <label><input type="checkbox" name="ws-i" value="성악" style="width:auto"> 성악</label>
+          <label><input type="checkbox" name="ws-i" value="지휘" style="width:auto"> 지휘</label>
+        </div>
+        <input type="text" name="w-instDetail2" placeholder="세부 악기 (예: 첼로)" style="margin-top:6px">
+      </div>
+      <div class="wf form-field" data-f="seekTypes">
+        <label>가능 유형 <span class="hint">복수 선택</span></label>
+        <div class="radio-row" style="flex-wrap:wrap">
+          <label><input type="checkbox" name="ws-t" value="객원·대타" style="width:auto"> 객원·대타</label>
+          <label><input type="checkbox" name="ws-t" value="오브리" style="width:auto"> 오브리</label>
+          <label><input type="checkbox" name="ws-t" value="반주" style="width:auto"> 반주</label>
+          <label><input type="checkbox" name="ws-t" value="레슨" style="width:auto"> 레슨</label>
+        </div>
+      </div>
+      <div class="wf form-field" data-f="seekRegions">
+        <label>가능 지역 <span class="hint">복수 선택</span></label>
+        <div class="radio-row" style="flex-wrap:wrap" id="seek-region-row">
+          <label><input type="checkbox" name="ws-r" value="서울" style="width:auto"> 서울</label>
+          <label><input type="checkbox" name="ws-r" value="경기" style="width:auto"> 경기</label>
+          <label><input type="checkbox" name="ws-r" value="인천" style="width:auto"> 인천</label>
+          <label><input type="checkbox" name="ws-r" value="충청권" style="width:auto"> 충청권</label>
+          <label><input type="checkbox" name="ws-r" value="영남권" style="width:auto"> 영남권</label>
+          <label><input type="checkbox" name="ws-r" value="호남권" style="width:auto"> 호남권</label>
+          <label><input type="checkbox" name="ws-r" value="강원" style="width:auto"> 강원</label>
+          <label><input type="checkbox" name="ws-r" value="제주" style="width:auto"> 제주</label>
+        </div>
+      </div>
+      <div class="wf form-field" data-f="seekEdu">
+        <label>학력·사사 <span class="hint">신뢰 마커 — 예: ○○예술대 석사 · ○○○ 사사</span></label>
+        <input type="text" name="w-seek-edu" maxlength="50" placeholder="○○예술대 석사">
+      </div>
+      <div class="wf form-field" data-f="seekCareer">
+        <label>경력 요약 <span class="hint">1~2줄</span></label>
+        <input type="text" name="w-seek-career" maxlength="80" placeholder="예: 시향 객원 3년, 교회 반주 5년">
+      </div>
+      <div class="wf form-field" data-f="seekWhen">
+        <label>가능 시기·요일</label>
+        <input type="text" name="w-seek-when" placeholder="예: 주말 전일, 평일 저녁">
+      </div>
+    </div>
   </div>
 </div>
 
@@ -369,7 +360,8 @@
 
 <script>document.write('<scr'+'ipt src="data/official-data.js?t='+Math.floor(Date.now()/600000)+'"></scr'+'ipt>');</script>
 <script src="js/data.js?v=4"></script>
-<script src="js/jobs.js?v=26"></script>
+<script src="js/jobs.js?v=27"></script>
+<script src="js/write.js?v=2"></script>
 <script>
   // 상단: 최근 업데이트만 가볍게 / 하단: 수집처 상세(펼치면 어디서 모으는지)
   (function () {

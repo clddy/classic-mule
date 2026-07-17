@@ -520,64 +520,7 @@ function openDetail(cid) {
 }
 
 // ---------- 글쓰기 ----------
-function submitWrite(e) {
-  e.preventDefault();
-  const f = e.target;
-  const v = (n) => (f.elements[n] ? f.elements[n].value.trim() : "");
-  const urgent = f.elements["w-urgent"].checked;
-  const phone = v("w-phone");
-  // 급구는 지원자가 바로 연락해야 하므로 연락처 필수
-  if (urgent && !phone) {
-    alert("급구 공고는 연락처를 입력해 주세요. (지원자가 바로 연락할 수 있어야 합니다)");
-    f.elements["w-phone"].focus();
-    return;
-  }
-  const cid = Date.now();   // 기기 고유 id (localStorage 병합 충돌 방지)
-  const inst = v("w-instDetail") || v("w-inst");
-  const rc = v("w-rehearsalCount");
-  const item = {
-    key: "c" + cid, cid, src: "소규모", mine: true,   // 이 기기에서 올림
-    type: f.elements["w-type"].value === "offer" ? "구인" : "구직",
-    tier: v("w-tier"),
-    obri: !!f.elements["w-obri"]?.checked,
-    certReq: v("w-cert") || "무관", degreeReq: v("w-degree") || "무관", careerReq: v("w-career") || "미기재",
-    band: CAT2BAND[v("w-cat")] || "기타",
-    insts: [inst], group: v("w-inst"),
-    when: v("w-when") || null,
-    program: v("w-program") || null,
-    personnel: v("w-personnel") || null,
-    qualification: v("w-qual") || null,
-    region: v("w-region"),
-    title: v("w-title"),
-    org: v("w-org"),
-    pay: v("w-pay") || "협의",
-    phone: phone || null,
-    instProvided: v("w-instProvided") || null,
-    instProvidedDetail: v("w-instProvidedDetail") || null,
-    setup: v("w-setup") || null,
-    keyboard: v("w-keyboard") || null,
-    rehearsalCount: rc ? Number(rc) : null,
-    rehearsalWhen: v("w-rehearsalWhen") || null,
-    deadline: v("w-deadline") || null,
-    deadlineText: v("w-deadline") || "상시",
-    date: TODAY, body: v("w-body"),
-    urgent
-  };
-  // 구직 글 = 연주자 명부의 씨앗 — 학력·소속/경력/가능 지역을 구조 필드로 흡수
-  if (item.type === "구직") {
-    item.qualification = v("w-seek-edu") || item.qualification;
-    item.body = [v("w-seek-career") && `경력: ${v("w-seek-career")}`,
-                 v("w-seek-avail") && `가능: ${v("w-seek-avail")}`,
-                 item.body].filter(Boolean).join("\n");
-  }
-  USER_POSTS.unshift(item);
-  saveUserPosts();
-  f.reset();
-  $("#write-modal").classList.remove("open");
-  state.tab = item.type;
-  renderAll();
-  openDetail(cid);
-}
+// 글 등록은 스펙 v1 엔진(js/write.js)이 담당 — 스텝 폼·매트릭스·제목 제안·완료 화면
 
 // 내 공고(이 기기에서 올린 것) 삭제
 function deleteMyPost(cid) {
@@ -598,6 +541,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (hm) {
     const key = decodeURIComponent(hm[1]);
     if (OFFICIAL_ITEMS.some(j => j.key === key)) openOfficial(key);
+    else if (/^c\d+$/.test(key)) openDetail(+key.slice(1));   // 직접 등록 글 공유 링크
   }
   ["전체", "구인", "구직"].forEach(t => {
     $(`#tab-${t}`).addEventListener("click", () => { state.tab = t; renderAll(); });
@@ -609,23 +553,10 @@ document.addEventListener("DOMContentLoaded", () => {
     state.query = ""; $("#search-input").value = "";
     renderAll();
   });
-  $("#btn-write").addEventListener("click", () => $("#write-modal").classList.add("open"));
-  $("#write-form").addEventListener("submit", submitWrite);
-  // 폼 조건부 노출 — 구분에 따라 폼이 변신: 교육 필드는 교육 선택 시, 악기 제공은 연주+구인,
-  // 모집 필드는 구인, 구직 전용 필드는 구직 선택 시만 (오브리 글은 4~5칸이면 끝나야 한다)
-  const wf = $("#write-form");
-  function updateWriteForm() {
-    const tier = wf.elements["w-tier"].value;
-    const seek = wf.elements["w-type"].value === "seek";
-    const show = (id, on) => { const el = document.getElementById(id); if (el) el.style.display = on ? "" : "none"; };
-    show("wf-edu", tier.startsWith("교육"));
-    show("wf-play", tier === "연주" && !seek);
-    show("wf-offer", !seek);
-    show("wf-seek", seek);
-  }
-  wf.elements["w-tier"].addEventListener("change", updateWriteForm);
-  for (const r of wf.elements["w-type"]) r.addEventListener("change", updateWriteForm);
-  updateWriteForm();
+  $("#btn-write").addEventListener("click", () => {
+    $("#write-modal").classList.add("open");
+    if (window.PodiumWrite) PodiumWrite.reset();   // 스텝 1(구분 선택)부터
+  });
   document.querySelectorAll(".modal-backdrop").forEach(bd => {
     bd.addEventListener("click", (e) => { if (e.target === bd) bd.classList.remove("open"); });
     bd.querySelector(".modal-close").addEventListener("click", () => bd.classList.remove("open"));
