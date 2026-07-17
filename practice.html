@@ -55,20 +55,7 @@
 <div class="container board-layout">
   <aside class="filters">
     <button class="filter-reset filter-reset-top" id="filter-reset">필터 초기화 ↺</button>
-    <div class="filter-group">
-      <h4>대여 방식</h4>
-      <div class="filter-options" id="f-cat"></div>
-    </div>
-    <div class="filter-group">
-      <h4>가격</h4>
-      <div class="filter-options" id="f-price"></div>
-    </div>
-    <div class="filter-group">
-      <details open>
-        <summary class="filter-summary">악기 조건 (접기/펼치기)</summary>
-        <div id="f-inst"></div>
-      </details>
-    </div>
+    <!-- 실사용 빈도 상위 3개(지역·악기·가격)만 기본 노출, 나머지는 '상세 필터'로 접음 -->
     <div class="filter-group">
       <h4>지역</h4>
       <div class="filter-options" id="f-region"></div>
@@ -78,13 +65,29 @@
       <div class="filter-options" id="f-district"></div>
     </div>
     <div class="filter-group">
-      <h4>자격 (신청제)</h4>
-      <div class="filter-options" id="f-elig"></div>
+      <h4>연주 허용 <span style="font-size:0.7rem;color:var(--ink-soft);font-weight:400">— 소리 내도 되는가</span></h4>
+      <div class="filter-options" id="f-allow"></div>
     </div>
     <div class="filter-group">
-      <h4>기타 조건</h4>
-      <div class="filter-options" id="f-cond"></div>
+      <h4>비치 악기 <span style="font-size:0.7rem;color:var(--ink-soft);font-weight:400">— 갖다 놓은 악기</span></h4>
+      <div class="filter-options" id="f-equip"></div>
     </div>
+    <div class="filter-group">
+      <h4>가격·유형</h4>
+      <div class="filter-options" id="f-price"></div>
+      <div class="filter-options" id="f-ptype" style="margin-top:6px"></div>
+    </div>
+    <details class="filter-group" id="detail-filters">
+      <summary class="filter-summary">상세 필터 (대여 방식·자격·기타)</summary>
+      <div style="margin-top:8px">
+        <h4>대여 방식</h4>
+        <div class="filter-options" id="f-cat"></div>
+        <h4 style="margin-top:10px">자격 (신청제)</h4>
+        <div class="filter-options" id="f-elig"></div>
+        <h4 style="margin-top:10px">기타 조건</h4>
+        <div class="filter-options" id="f-cond"></div>
+      </div>
+    </details>
   </aside>
   <main>
     <div class="update-line">
@@ -103,7 +106,7 @@
     </div>
     <div class="result-count" id="result-count"></div>
     <details id="map-wrap" style="margin-bottom:12px">
-      <summary class="filter-summary" style="cursor:pointer">🗺 지도로 보기 (근사 위치)</summary>
+      <summary class="filter-summary" style="cursor:pointer">🗺 지도로 보기 <span style="font-size:0.72rem;color:var(--ink-soft);font-weight:400">— 공공기관은 공식 주소 기준 정확 위치, 흐린 마커만 구 중심 근사</span></summary>
       <div id="map" style="height:340px;border-radius:10px;margin-top:8px"></div>
     </details>
     <div class="job-list" id="room-list"></div>
@@ -127,9 +130,10 @@
         · 최소 이용시간 미만 예약은 불가합니다.<br>
         · 퇴실 시 보면대·의자 원위치, 냉난방·조명 소등을 확인해주세요.<br>
         · 소음 민원 방지를 위해 방음문은 반드시 닫고 연주해주세요.<br>
-        · 금관·타악은 "타악 가능" 표기 연습실에서만 가능합니다.
+        · 금관은 "금관 허용", 타악은 "타악 허용" 표기 공간에서만 가능합니다.
       </div>
-      <h3 style="font-size:0.95rem;color:var(--navy);margin:14px 0 6px">환불 규정 (표준)</h3>
+      <h3 style="font-size:0.95rem;color:var(--navy);margin:14px 0 6px">환불 규정 (예시)</h3>
+      <p style="font-size:0.76rem;color:var(--ink-soft);margin:0 0 6px">아래는 예시 규정입니다 — <b>각 공간의 자체 환불 정책이 우선</b>하니 예약 전 반드시 확인하세요. 포디엄은 결제 당사자가 아닙니다.</p>
       <dl class="detail-meta" style="margin-bottom:16px">
         <dt>7일 전까지</dt><dd>100% 환불</dd>
         <dt>3일 전까지</dt><dd>70% 환불</dd>
@@ -147,7 +151,7 @@
 <div class="modal-backdrop" id="host-modal">
   <div class="modal">
     <button class="modal-close">✕</button>
-    <h2>공간 등록 <span style="font-size:0.75rem;color:var(--ink-soft);font-weight:400">(민간 연습실 · 이 기기에 저장되는 프로토타입)</span></h2>
+    <h2>공간 등록 <span style="font-size:0.75rem;color:var(--ink-soft);font-weight:400">(민간 연습실 · 등록 내용은 포디엄 운영자에게 메일로 전달됩니다)</span></h2>
     <form class="form-grid" id="host-form">
       <div class="form-row">
         <div class="form-field"><label>공간명</label><input type="text" name="h-name" required maxlength="40" placeholder="예: ○○음악연습실 2호점"></div>
@@ -155,34 +159,64 @@
       </div>
       <div class="form-field"><label>주소</label><input type="text" name="h-addr" maxlength="60" placeholder="도로명 주소"></div>
       <div class="form-row">
+        <div class="form-field"><label>가까운 지하철역</label><input type="text" name="h-station" maxlength="16" placeholder="예: 교대역"></div>
+        <div class="form-field"><label>역에서 도보 (분)</label><input type="number" name="h-walk" min="1" max="40" placeholder="예: 4"></div>
+      </div>
+      <div class="form-row">
         <div class="form-field">
-          <label>대여 방식</label>
-          <select name="h-booking"><option value="바로결제">바로결제 (즉시 확정)</option><option value="승인후확정">승인 후 확정</option></select>
+          <label>예약 방식</label>
+          <select name="h-booking">
+            <option value="문의">예약 문의 (전화·오픈채팅)</option>
+            <option value="외부링크">외부 예약 링크 (네이버 예약 등)</option>
+            <option value="승인후확정">신청 후 승인 확정</option>
+          </select>
         </div>
-        <div class="form-field"><label>최소 이용시간</label><input type="number" name="h-min" min="1" max="12" value="1"> </div>
+        <div class="form-field"><label>예약 링크·연락처</label><input type="text" name="h-book-to" maxlength="80" placeholder="URL 또는 전화번호"></div>
       </div>
       <div class="form-row">
         <div class="form-field"><label>월 고정 (만원, 없으면 비움)</label><input type="number" name="h-monthly" min="0" step="0.5"></div>
         <div class="form-field"><label>시간당 (천원, 없으면 비움)</label><input type="number" name="h-hourly" min="0" step="0.5"></div>
       </div>
       <div class="form-row">
+        <div class="form-field"><label>최소 이용시간</label><input type="number" name="h-min" min="1" max="12" value="1"></div>
         <div class="form-field">
           <label>층·접근</label>
           <select name="h-floor"><option value="엘리베이터">엘리베이터 있음</option><option value="계단만">계단만 (첼로·타악 운반 주의)</option><option value="1층">1층</option></select>
         </div>
-        <div class="form-field"><label>방음</label><input type="text" name="h-sound" maxlength="24" placeholder="예: 방음벽 시공 · 3중창"></div>
       </div>
       <div class="form-field">
-        <label>악기 조건 (해당 항목 체크)</label>
+        <label>방음 — 확인 가능한 사실만 <span style="font-weight:400;color:var(--ink-soft)">('방음 잘 됨' 같은 자기평가 대신)</span></label>
         <div class="radio-row" style="flex-wrap:wrap">
-          <label><input type="checkbox" name="h-i-piano" style="width:auto"> 피아노 있음</label>
-          <label><input type="checkbox" name="h-i-perc" style="width:auto"> 타악 가능</label>
-          <label><input type="checkbox" name="h-i-brass" style="width:auto"> 금관 가능</label>
-          <label><input type="checkbox" name="h-i-ens" style="width:auto"> 성악·앙상블 가능</label>
-          <label><input type="checkbox" name="h-i-big" style="width:auto"> 대편성 가능</label>
+          <label><input type="checkbox" name="h-s-door" style="width:auto"> 방음문 있음</label>
+          <label>야간 이용
+            <select name="h-night" style="width:auto;margin-left:4px">
+              <option value="">미기재</option><option value="22시까지">22시까지</option>
+              <option value="24시간">24시간</option><option value="주간만">주간만</option>
+            </select>
+          </label>
         </div>
       </div>
-      <div class="form-field"><label>소개·유의사항</label><textarea name="h-notes" rows="4" placeholder="이용 안내, 시설, 예약 방법 등"></textarea></div>
+      <div class="form-field">
+        <label>연주 허용 <span style="font-weight:400;color:var(--ink-soft)">— 소리 내도 되는 것</span></label>
+        <div class="radio-row" style="flex-wrap:wrap">
+          <label><input type="checkbox" name="h-a-perc" style="width:auto"> 타악 허용</label>
+          <label><input type="checkbox" name="h-a-brass" style="width:auto"> 금관 허용</label>
+          <label><input type="checkbox" name="h-a-ens" style="width:auto"> 성악·앙상블 허용</label>
+          <label><input type="checkbox" name="h-a-big" style="width:auto"> 대편성 허용</label>
+        </div>
+      </div>
+      <div class="form-field">
+        <label>비치 악기 <span style="font-weight:400;color:var(--ink-soft)">— 들고 다닐 수 없는 악기가 핵심 (마림바·팀파니·그랜드)</span></label>
+        <div class="radio-row" style="flex-wrap:wrap">
+          <label><input type="checkbox" name="h-e-grand" style="width:auto"> 그랜드피아노</label>
+          <label><input type="checkbox" name="h-e-upright" style="width:auto"> 업라이트피아노</label>
+          <label><input type="checkbox" name="h-e-marimba" style="width:auto"> 마림바</label>
+          <label><input type="checkbox" name="h-e-timpani" style="width:auto"> 팀파니</label>
+          <label><input type="checkbox" name="h-e-drum" style="width:auto"> 드럼</label>
+        </div>
+      </div>
+      <div class="form-field"><label>사진 URL <span style="font-weight:400;color:var(--ink-soft)">(채광·시설은 사진이 전달합니다 — 1장부터)</span></label><input type="url" name="h-photo" maxlength="200" placeholder="https://…"></div>
+      <div class="form-field"><label>소개·유의사항</label><textarea name="h-notes" rows="4" placeholder="이용 안내, 시설, 환불 정책 등"></textarea></div>
       <div class="modal-actions"><button type="submit" class="btn-primary">등록</button></div>
     </form>
   </div>
@@ -210,13 +244,30 @@ const esc = s => String(s ?? "").replace(/&/g,"&amp;").replace(/</g,"&lt;").repl
 // 등록 예시(민간) — 호스트가 어떤 정보를 채우면 되는지 참고용
 const SAMPLE_INSTANT = [{
   cat: "instant", sample: true,
-  name: "서초 뮤직스페이스 3호실", region: "서초구", station: "교대역 도보 4분", floor: "지상 3층", photos: 4,
-  reviews: 41, likes: 230, instant: true, minHours: 1, elev: true,
+  name: "서초 뮤직스페이스 3호실", region: "서초구", station: "교대역", walkMin: 4, floor: "지상 3층", photos: 4,
+  reviews: 41, likes: 230, book: "문의", minHours: 1, elev: true,
   size: "5평(16.5㎡)", monthly: 25, hourly: 0.4, nego: true, modes: ["월 고정", "시간제"],
-  soundWall: true, windowLayer: "3중창", light: "남향 · 채광 좋음", vent: "전열교환 환기",
-  humid: true, h24: false, instruments: ["피아노있음", "성악·앙상블가능"], slots: 2,
+  soundDoor: true, night: "22시까지", windowLayer: "3중창", light: "남향 · 채광 좋음", vent: "전열교환 환기",
+  humid: true, h24: false, allow: ["성악·앙상블 허용"], equip: ["그랜드피아노"], slots: 2,
   notes: "월 정기권 기준 자유 이용. 그랜드 야마하 C3. 항온항습기 상시 가동. 성악 가능, 금관·타악 불가."
 }];
+
+// ---------- 악기 조건 두 축: '연주 허용'(소음) vs '비치 악기'(들고 못 다니는 악기) ----------
+// 타악 전공생의 진짜 질문은 '타악 가능?'이 아니라 '마림바가 있는가'다.
+// 옛 instruments 단일축 데이터(수집분·localStorage)를 두 축으로 정규화해 호환 유지.
+const _LEGACY_AXES = {
+  "타악가능": ["allow", "타악 허용"], "금관가능": ["allow", "금관 허용"],
+  "성악·앙상블가능": ["allow", "성악·앙상블 허용"], "대편성가능": ["allow", "대편성 허용"],
+  "피아노있음": ["equip", "피아노(구분 미상)"],
+};
+function axesOf(r){
+  const allow = [...(r.allow || [])], equip = [...(r.equip || [])];
+  for (const v of (r.instruments || [])){
+    const m = _LEGACY_AXES[v];
+    if (m && !((m[0]==="allow"?allow:equip).includes(m[1]))) (m[0]==="allow"?allow:equip).push(m[1]);
+  }
+  return { allow, equip };
+}
 
 // 호스트 등록분 (localStorage — 이 기기)
 const LS_HOST = "podium_host_rooms_v1";
@@ -248,12 +299,15 @@ const INSTANT_ALL = (window.INSTANT_ROOMS || []).map(r => ({ ...r, cat: "instant
 function allRooms(){ return [...HOST_ROOMS, ...INSTANT_ALL, ...SAMPLE_INSTANT, ...PUBLIC_ALL]; }
 
 // ---------- 필터 (구인구직란과 동일 체계) ----------
-// '타악 가능'은 확인된 페인포인트라 최상단·강조(hot)
+// '타악 허용'은 확인된 페인포인트라 최상단·강조(hot)
 const CATS = [["instant","⚡ 즉시 예약"], ["public","🏛 신청제·공공"]];
-const INSTS = ["타악가능", "금관가능", "피아노있음", "성악·앙상블가능", "대편성가능"];
+const ALLOWS = ["타악 허용", "금관 허용", "성악·앙상블 허용", "대편성 허용"];
+const EQUIPS = ["마림바", "팀파니", "그랜드피아노", "업라이트피아노", "드럼"];
 const PRICES = ["무료", "유료"];
-const ELIGS = ["누구나", "지역주민", "청소년", "단체", "예술인"];
-const CONDS = ["대관 확인됨", "방음 시공", "24시간", "엘리베이터"];
+const PTYPES = ["월세형", "시간제"];   // 상품 유형 — 가격 비교는 같은 유형 안에서만 의미 있음
+// 자격은 파싱 데이터 기준 표준화: 거주지 / 예술인활동증명 / 재학생·전공자 (검색되는 단어 그대로)
+const ELIGS = ["누구나", "서울시민", "구민·주민", "예술인활동증명", "재학생·전공자", "청소년"];
+const CONDS = ["대관 확인됨", "방음문 있음", "야간 이용(22시~)", "역세권(도보 5분)", "엘리베이터"];
 // 지역: 구인구직(jobs.js REGION_LIST)과 동일한 17개 시도 고정 체계
 // 2026-07-01 전남광주통합특별시 출범 — jobs.js REGION_LIST·crawler/common.py와 같은 표기
 const REGION_LIST = ["서울", "경기", "인천", "강원", "대전", "세종", "충북", "충남",
@@ -286,8 +340,8 @@ function inAnchorDistrict(r){
 }
 
 // district는 '필터'가 아니라 거리 정렬의 기준점(단일 선택) — 선택해도 목록은 줄지 않는다
-const st = { tab: "all", cat: new Set(), inst: new Set(), region: new Set(), district: null,
-             districtSido: null, price: new Set(), elig: new Set(), cond: new Set(), q: "", sort: "reco" };
+const st = { tab: "all", cat: new Set(), allow: new Set(), equip: new Set(), region: new Set(), district: null,
+             districtSido: null, price: new Set(), ptype: new Set(), elig: new Set(), cond: new Set(), q: "", sort: "reco" };
 const $ = s => document.querySelector(s);
 
 function districtsOf(){   // 서울 세부 필터용 — 데이터에 있는 서울 구만
@@ -317,30 +371,43 @@ function matchElig(r, set){
   const e = r.eligibility || "";
   return [...set].some(v =>
     v === "누구나" ? /누구나|제한없|성인/.test(e)
-    : v === "청소년" ? /청소년/.test(e)
-    : v === "단체" ? /단체|동아리|팀/.test(e)
-    : v === "예술인" ? /예술인/.test(e)
-    : /주민|구민|시민/.test(e));
+    : v === "서울시민" ? /서울\s?시민|서울시\s?거주|서울\s?거주/.test(e)
+    : v === "구민·주민" ? /구민|주민|시민(?!권)/.test(e)
+    : v === "예술인활동증명" ? /예술인/.test(e)
+    : v === "재학생·전공자" ? /재학|전공|학생증/.test(e)
+    : /청소년/.test(e));
+}
+
+// 상품 유형: 월세형(월 고정) vs 시간제(시간·타임 단위) — 찾는 사람도 비교 축도 다르다
+function ptypeOf(r){
+  if (r.monthly && !r.hourly) return "월세형";
+  if (r.hourly || /시간|타임|회당|1회/.test(String(r.price||""))) return "시간제";
+  if (r.monthly) return "월세형";
+  return r.cat === "public" ? "시간제" : "기타";   // 공공 대관은 타임제가 기본
 }
 
 function pass(r){
   if (st.tab !== "all" && r.cat !== st.tab) return false;
   if (st.cat.size && !st.cat.has(r.cat)) return false;
-  if (st.inst.size && ![...st.inst].every(v => (r.instruments || []).includes(v))) return false;
+  const ax = axesOf(r);
+  if (st.allow.size && ![...st.allow].every(v => ax.allow.includes(v))) return false;
+  if (st.equip.size && ![...st.equip].every(v => ax.equip.includes(v))) return false;
   if (st.region.size && !st.region.has(sidoOf(r))) return false;
   // district는 걸러내지 않는다 — 거리 정렬 기준점일 뿐 (서울 전체가 계속 보여야 함)
   if (st.price.size){
     const isFree = !!r.free || r.price === "무료";
     if (!( (st.price.has("무료") && isFree) || (st.price.has("유료") && !isFree) )) return false;
   }
+  if (st.ptype.size && !st.ptype.has(ptypeOf(r))) return false;
   if (st.elig.size){
     if (r.cat !== "public") return false;          // 자격 필터는 신청제 전용
     if (!matchElig(r, st.elig)) return false;
   }
   // 공공은 rentalVerified가 '연습실 대관을 실제로 확인했는지'. 민간(즉시)은 대여가 곧 사업이라 항상 통과.
   if (st.cond.has("대관 확인됨") && r.cat === "public" && !r.rentalVerified) return false;
-  if (st.cond.has("방음 시공") && !r.soundWall) return false;
-  if (st.cond.has("24시간") && !r.h24) return false;
+  if (st.cond.has("방음문 있음") && !(r.soundDoor || r.soundWall)) return false;
+  if (st.cond.has("야간 이용(22시~)") && !(r.h24 || r.night === "24시간")) return false;
+  if (st.cond.has("역세권(도보 5분)") && !(r.walkMin && r.walkMin <= 5)) return false;
   if (st.cond.has("엘리베이터") && !(r.elev || r.floor === "엘리베이터")) return false;
   if (st.q && !`${r.name} ${r.region} ${r.addr||""} ${r.notes||""}`.toLowerCase().includes(st.q.toLowerCase())) return false;
   return true;
@@ -417,7 +484,13 @@ const sortFns = {
   reco:  (a,b) => (b.mine?1:0)-(a.mine?1:0) || (a.sample?1:0)-(b.sample?1:0)
                   || (priceNum(a)===0?0:1)-(priceNum(b)===0?0:1)
                   || String(a.name).localeCompare(String(b.name), "ko"),
-  price: (a,b) => priceNum(a)-priceNum(b) || String(a.name).localeCompare(String(b.name), "ko"),
+  // 무료·저가순: 월세형과 시간제는 가격 비교가 불가능한 다른 상품 — 유형으로 먼저 가른 뒤 유형 안에서만 가격 비교
+  price: (a,b) => {
+    const rank = { "시간제": 0, "월세형": 1, "기타": 2 };
+    return (rank[ptypeOf(a)] ?? 2) - (rank[ptypeOf(b)] ?? 2)
+      || priceNum(a) - priceNum(b)
+      || String(a.name).localeCompare(String(b.name), "ko");
+  },
   // 가까운순: 기준 구 안의 공간이 먼저(가나다순), 그 밖은 기준 구에서 가까운 순
   dist:  (a,b) => {
     const byName = String(a.name).localeCompare(String(b.name), "ko");
@@ -438,23 +511,39 @@ const catBadge = r => r.cat === "public"
   : `<span class="tag ok">⚡ 즉시 예약</span>`;
 const priceBadge = r => (r.free || r.price === "무료") ? `<span class="tag free">무료</span>` : "";
 
+// 신청제는 구조적으로 채용공고와 같다 — 구인구직에서 검증한 마감 D-day 뱃지 UX를 재활용
+function pubDday(r){
+  const m = String(r.apply_timing || "").match(/~\s*(\d{4})[.\-](\d{1,2})[.\-](\d{1,2})/);
+  if (!m) return /분기/.test(r.apply_timing||"") ? { t:"분기 접수", cls:"dd-always" } : null;
+  const end = `${m[1]}-${String(+m[2]).padStart(2,"0")}-${String(+m[3]).padStart(2,"0")}`;
+  const today = new Date(Date.now() + 9*3600*1000).toISOString().slice(0,10);
+  const diff = Math.round((new Date(end) - new Date(today)) / 86400000);
+  if (diff < 0) return { t:"접수 마감", cls:"dd-closed" };
+  if (diff <= 7) return { t:`접수 D-${diff}`, cls:"dd-soon" };
+  return { t:`접수중 D-${diff}`, cls:"dd-open" };
+}
+
 function cardPublic(r, i){
   // 카드 레벨에서 '어떻게 신청하는지'가 바로 보이는 게 이 카테고리의 존재 이유
   const apply = [r.apply_timing, r.apply_method, r.eligibility].filter(Boolean).join(" · ");
+  const dd = pubDday(r);
+  const ax = axesOf(r);
   return `
   <article class="job-card" data-i="${i}">
     <div class="top-row">
       ${catBadge(r)} ${priceBadge(r)}
+      ${dd?`<span class="tag ${dd.cls}">${dd.t}</span>`:""}
       <span class="tag cat">${esc(r.region)}</span>
+      ${r.verified?`<span class="tag inst">✓ ${esc(r.verified)} 확인</span>`:""}
       ${r.rentalVerified===false?`<span class="tag" style="border-color:var(--ink-soft);color:var(--ink-soft)">대관 확인필요</span>`:""}
-      ${(r.instruments||[]).map(x=>`<span class="tag pos">${x}</span>`).join("")}
+      ${[...ax.allow, ...ax.equip].map(x=>`<span class="tag pos">${x}</span>`).join("")}
       ${r.spaces?`<span class="tag inst">${esc(r.spaces)}</span>`:""}
     </div>
     <h3>${esc(r.name)}</h3>
     <div class="price-line">${esc(r.price)}</div>
     ${apply?`<div class="apply-line">신청: ${esc(apply)}</div>`:""}
     <div class="meta">${r.addr?`<span>${esc(r.addr)}</span>`:""}${r.hours?`<span>${esc(r.hours)}</span>`:""}</div>
-    <div class="source-line"><span>${esc(r.notes||"")}</span><span>${r.src?esc(r.src)+" · ":""}확인 ${esc(r.verified||"")}</span></div>
+    <div class="source-line"><span>${esc(r.notes||"")}</span><span>${r.src?esc(r.src):""}</span></div>
   </article>`;
 }
 
@@ -463,27 +552,32 @@ function cardInstant(r, i){
   const priceHtml = (r.monthly || r.hourly)
     ? `${r.monthly?`월 ${r.monthly}만원`:""} ${r.hourly?`<span class="per">· 시간 ${Math.round(r.hourly*10)}천원</span>`:""} <span class="per">(최소 ${r.minHours||1}시간)${r.nego?" · 협의가능":""}</span>`
     : `${esc(r.price||"요금 확인")} <span class="per">(최소 ${r.minHours||1}시간)</span>`;
+  // 위치는 '역에서 도보 몇 분'이 실제 제약 — 악기 들고 이동하는 사람 기준
+  const stationTxt = r.walkMin ? `${esc(r.station||"")} 도보 ${r.walkMin}분` : esc(r.station||"");
   const specs = [
-    r.station ? `<span>위치 <b>🚇 ${esc(r.station)} · ${esc(r.floor||"")} ${r.elev?"· 엘리베이터":"· 계단만"}</b></span>`
+    r.station ? `<span>위치 <b>🚇 ${stationTxt} · ${esc(r.floor||"")} ${r.elev?"· 엘리베이터":"· 계단만"}</b></span>`
               : (r.addr ? `<span>주소 <b>${esc(r.addr)}</b></span>` : (r.floor?`<span>층·접근 <b>${esc(r.floor)}</b></span>`:"")),
     r.size ? `<span>면적 <b>${esc(r.size)}</b></span>` : "",
     r.vent ? `<span>환기 <b>${esc(r.vent)}</b></span>` : "",
     r.phone ? `<span>문의 <b>${esc(r.phone)}</b></span>` : "",
-    r.soundWall!==undefined ? `<span>방음 <b>${r.soundWall?"방음벽 시공":esc(r.sound||"미기재")}${r.windowLayer?" · "+esc(r.windowLayer):""}</b></span>`
-                            : (r.sound?`<span>방음 <b>${esc(r.sound)}</b></span>`:""),
+    // 방음은 자기평가 대신 검증 가능한 사실만: 방음문·야간이용 (구형 soundWall 데이터 호환)
+    (r.soundDoor || r.soundWall || r.night) ? `<span>방음·야간 <b>${[r.soundDoor||r.soundWall?"방음문":null, r.night||null].filter(Boolean).join(" · ")}</b></span>` : "",
   ].filter(Boolean).join("");
+  const ax = axesOf(r);
+  // 예약 방식 — 결제 기능이 있는 척하지 않는다: 문의 / 외부 예약 링크 / 승인 후 확정
+  const bookLabel = r.book === "외부링크" ? "외부 예약" : (r.book === "승인후확정" || r.instant === false) ? "신청 후 승인" : "예약 문의";
   return `
   <article class="job-card${r.sample?" is-sample":""}" data-i="${i}">
-    ${r.photos?`<div class="room-photo"><span class="photo-count">사진 ${r.photos}장</span></div>`:""}
+    ${r.photoUrl?`<div class="room-photo" style="background:url('${esc(r.photoUrl)}') center/cover"></div>`
+      : r.photos?`<div class="room-photo"><span class="photo-count">사진 ${r.photos}장</span></div>`:""}
     <div class="top-row">
       ${r.sample?`<span class="tag sample">예시</span>`:""}
       ${r.mine?`<span class="tag pos">내 공간</span>`:""}
       ${catBadge(r)}
-      <span class="tag ${r.instant?"ok":"cat"}">${r.instant?"바로결제":"승인 후 확정"}</span>
+      <span class="tag cat">${bookLabel}</span>
       <span class="tag cat">${esc(r.region)}</span>
-      ${(r.instruments||[]).map(x=>`<span class="tag pos">${x}</span>`).join("")}
-      ${r.soundWall?`<span class="tag inst">방음벽</span>`:""}
-      ${r.h24?`<span class="tag cat">24시간</span>`:""}
+      ${[...ax.allow, ...ax.equip].map(x=>`<span class="tag pos">${x}</span>`).join("")}
+      ${r.h24||r.night==="24시간"?`<span class="tag cat">24시간</span>`:""}
     </div>
     <h3>${esc(r.name)} ${r.reviews?`<span style="font-weight:400;font-size:0.8rem;color:var(--ink-soft)">⭐ 후기 ${r.reviews} · ♥ ${r.likes}</span>`:""}</h3>
     <div class="price-line">${priceHtml}</div>
@@ -495,7 +589,8 @@ function cardInstant(r, i){
 let CUR = [];
 function render(){
   chips("#f-cat", CATS, st.cat);
-  chips("#f-inst", INSTS, st.inst, true);
+  chips("#f-allow", ALLOWS, st.allow, true);
+  chips("#f-equip", EQUIPS, st.equip, true);
   chips("#f-region", REGION_LIST, st.region);
   // '서울'을 누르면 구 목록이 나타난다. 구는 필터가 아니라 '거리 기준점'(단일 선택) —
   // 고르면 서울 전체를 유지한 채 그 구 안은 가나다순 최상단, 나머지는 가까운 순으로 재정렬
@@ -510,6 +605,7 @@ function render(){
     render();
   });
   chips("#f-price", PRICES, st.price);
+  chips("#f-ptype", PTYPES, st.ptype);
   chips("#f-elig", ELIGS, st.elig);
   chips("#f-cond", CONDS, st.cond);
   // 탭: 구인구직처럼 카운트 배지
@@ -524,9 +620,26 @@ function render(){
   CUR = all.filter(pass).sort(sortFns[st.sort] || sortFns.reco);
   const nPub = CUR.filter(r=>r.cat==="public").length, nIns = CUR.length - nPub;
   $("#result-count").innerHTML = `총 <strong>${CUR.length}</strong>곳 <span style="color:var(--ink-soft);font-size:0.8rem">— 즉시 예약 ${nIns} · 신청제·공공 ${nPub}</span> — 카드를 누르면 상세와 예약 방법이 열립니다`;
+  // 0건 화면 = 수요 수집 장치: 어떤 조건 조합에 수요가 있는지가 프로토타입에서 제일 갖고 싶은 신호
   $("#room-list").innerHTML = CUR.length
     ? CUR.map((r,i)=> r.cat==="public" ? cardPublic(r,i) : cardInstant(r,i)).join("")
-    : `<div class="empty">조건에 맞는 공간이 없습니다.<br>필터를 조정해 보세요.</div>`;
+    : `<div class="empty">조건에 맞는 공간이 아직 없습니다.<br><br>
+        <button class="btn-primary" id="btn-demand">이 조건의 공간이 등록되면 알려주세요</button><br>
+        <span style="font-size:0.78rem">누른 조건 조합은 다음 시딩 우선순위에 반영됩니다.</span></div>`;
+  const bd = $("#btn-demand");
+  if (bd) bd.addEventListener("click", ()=>{
+    const cond = {
+      탭: st.tab, 연주허용: [...st.allow], 비치악기: [...st.equip], 지역: [...st.region],
+      가격: [...st.price], 유형: [...st.ptype], 자격: [...st.elig], 기타: [...st.cond], 검색어: st.q,
+    };
+    try {   // 수요 신호 로컬 적재 + 운영자 메일로 전달
+      const sig = JSON.parse(localStorage.getItem("podium_demand_signals") || "[]");
+      sig.push({ ...cond, at: new Date().toISOString().slice(0,16) });
+      localStorage.setItem("podium_demand_signals", JSON.stringify(sig));
+    } catch(e){}
+    const body = encodeURIComponent("연습실 수요 신호\n" + JSON.stringify(cond, null, 1));
+    location.href = `mailto:ohmjin3141@naver.com?subject=${encodeURIComponent("[포디엄] 연습실 수요 신호")}&body=${body}`;
+  });
   document.querySelectorAll("#room-list .job-card").forEach(card=>{
     card.addEventListener("click", ()=>openRoom(CUR[+card.dataset.i]));
   });
@@ -570,10 +683,14 @@ function updateMap(){
 // ---------- 상세 모달 ----------
 function openRoom(r){
   const isPub = r.cat === "public";
-  $("#rm-tags").innerHTML = `${catBadge(r)} ${priceBadge(r)}<span class="tag cat">${esc(r.region)}</span>${(r.instruments||[]).map(x=>`<span class="tag pos">${x}</span>`).join("")}`;
+  const ax = axesOf(r);
+  $("#rm-tags").innerHTML = `${catBadge(r)} ${priceBadge(r)}<span class="tag cat">${esc(r.region)}</span>${[...ax.allow, ...ax.equip].map(x=>`<span class="tag pos">${x}</span>`).join("")}${isPub&&r.verified?`<span class="tag inst">✓ ${esc(r.verified)} 확인</span>`:""}`;
   $("#rm-title").textContent = r.name;
   $("#rm-photo").style.display = isPub ? "none" : "";
-  if (!isPub) $("#rm-photo").innerHTML = `<span class="photo-count">사진 ${r.photos||0}장</span>`;
+  if (!isPub){
+    if (r.photoUrl){ $("#rm-photo").style.background = `url('${r.photoUrl.replace(/'/g,"")}') center/cover`; $("#rm-photo").innerHTML = ""; }
+    else { $("#rm-photo").style.background = ""; $("#rm-photo").innerHTML = `<span class="photo-count">사진 ${r.photos||0}장</span>`; }
+  }
   $("#rm-price").innerHTML = isPub ? esc(r.price)
     : `${r.monthly?`월 ${r.monthly}만원`:""} <span class="per">${r.hourly?`· 시간 ${Math.round(r.hourly*10)}천원`:""} (최소 ${r.minHours||1}시간)${r.nego?" · 협의가능":""}</span>`;
   $("#rm-meta").innerHTML = isPub ? [
@@ -583,12 +700,15 @@ function openRoom(r){
       ["확인일", r.verified],
     ].filter(([k,v])=>v).map(([k,v])=>`<dt>${k}</dt><dd>${esc(v)}</dd>`).join("")
     : [
-      ["위치", r.station?`🚇 ${r.station} · ${r.floor||""} ${r.elev?"(엘리베이터)":"(계단만)"}`:(r.floor||"")],
-      ["면적", r.size], ["방음", r.soundWall?`방음벽 시공${r.windowLayer?" · "+r.windowLayer:""}`:(r.sound||"미기재")],
+      ["위치", r.station?`🚇 ${r.station}${r.walkMin?` 도보 ${r.walkMin}분`:""} · ${r.floor||""} ${r.elev?"(엘리베이터)":"(계단만)"}`:(r.floor||"")],
+      ["면적", r.size],
+      // 방음은 검증 가능한 사실만 표기 (방음문·야간이용) — 자기평가 문구는 쓰지 않는다
+      ["방음·야간", [ (r.soundDoor||r.soundWall)?"방음문 있음":null, r.night?`야간 ${r.night}`:null,
+                    r.windowLayer||null ].filter(Boolean).join(" · ") || "미기재"],
       ["채광/환기", [r.light,r.vent].filter(Boolean).join(" · ")],
       ["주소", r.addr], ["문의", r.phone],
-      ["대여 방식", `${r.instant?"바로결제":"승인 후 확정"} · 최소 ${r.minHours||1}시간`],
-      ["영업시간", r.h24?"24시간 (무인 출입)":(r.src?null:"09:00 ~ 22:00")],
+      ["예약 방식", `${r.book==="외부링크"?"외부 예약 링크":r.book==="승인후확정"||r.instant===false?"신청 후 승인":"전화·문의"} · 최소 ${r.minHours||1}시간`],
+      ["영업시간", r.h24||r.night==="24시간"?"24시간":(r.src?null:"공간 문의")],
       ["출처", r.src?`${r.src} (확인 ${r.verified||"-"})`:null],
       ["남은 자리", r.slots!==undefined?(r.slots>0?`${r.slots}자리`:"만실 (대기 등록 가능)"):null],
     ].filter(([k,v])=>v).map(([k,v])=>`<dt>${k}</dt><dd>${esc(v)}</dd>`).join("");
@@ -597,9 +717,16 @@ function openRoom(r){
   const note = $("#rm-public-note");
   note.style.display = isPub ? "" : "none";
   if (isPub) note.innerHTML = `이 공간은 <b>신청제·공공</b>입니다 — 결제가 아니라 ${esc(r.apply_method||"기관 절차")}로 신청하며, ${esc(r.selection||"기관 심사")} 방식으로 선정됩니다.`;
+  // CTA는 실체만큼만: 외부 링크가 있으면 그리로, 전화가 있으면 전화, 아니면 문의 안내 (결제 흉내 금지)
+  const delHtml = r.mine ? `<button class="btn-outline" id="rm-del">삭제</button>` : "";
+  const tel = (r.bookTo || r.phone || "").match(/0\d{1,2}-?\d{3,4}-?\d{4}/);
   $("#rm-actions").innerHTML = (isPub || r.booking_url)
-    ? `${r.mine?`<button class="btn-outline" id="rm-del">삭제</button>`:""}<a class="btn-primary" href="${esc(r.booking_url)}" target="_blank" rel="noopener" style="text-decoration:none">${isPub?"예약 페이지 가기":"원문 보기"} ↗</a>`
-    : `${r.mine?`<button class="btn-outline" id="rm-del">삭제</button>`:""}<button class="btn-primary" onclick="alert('프로토타입: 예약·결제는 실서비스에서 제공됩니다.')">예약 신청하기</button>`;
+    ? `${delHtml}<a class="btn-primary" href="${esc(r.booking_url)}" target="_blank" rel="noopener" style="text-decoration:none">${isPub?"예약 페이지 가기":"원문 보기"} ↗</a>`
+    : r.book === "외부링크" && r.bookTo
+    ? `${delHtml}<a class="btn-primary" href="${esc(r.bookTo)}" target="_blank" rel="noopener" style="text-decoration:none">예약 페이지 가기 ↗</a>`
+    : tel
+    ? `${delHtml}<a class="btn-primary" href="tel:${tel[0].replace(/-/g,"")}" style="text-decoration:none">📞 예약 문의</a>`
+    : `${delHtml}<button class="btn-primary" onclick="alert('이 공간은 전화·문의 예약입니다 — 상세의 연락처로 문의하세요.')">예약 문의</button>`;
   const del = $("#rm-del");
   if (del) del.addEventListener("click", ()=>{
     if (!confirm("이 공간 등록을 삭제할까요?")) return;
@@ -623,8 +750,8 @@ document.addEventListener("DOMContentLoaded", ()=>{
   $("#sort-sel").addEventListener("change", e=>{ st.sort=e.target.value; render(); });
   $("#map-wrap").addEventListener("toggle", ()=>{ updateMap(); if (MAP) setTimeout(()=>MAP.invalidateSize(), 60); });
   $("#filter-reset").addEventListener("click", ()=>{
-    st.cat.clear(); st.inst.clear(); st.region.clear(); st.district=null; st.districtSido=null;
-    st.price.clear(); st.elig.clear(); st.cond.clear(); st.q=""; st.sort="reco";
+    st.cat.clear(); st.allow.clear(); st.equip.clear(); st.region.clear(); st.district=null; st.districtSido=null;
+    st.price.clear(); st.ptype.clear(); st.elig.clear(); st.cond.clear(); st.q=""; st.sort="reco";
     $("#search-input").value=""; $("#sort-sel").value="reco"; render();
   });
   for (const mid of ["room-modal","host-modal"]){
@@ -637,18 +764,24 @@ document.addEventListener("DOMContentLoaded", ()=>{
   $("#host-form").addEventListener("submit", e=>{
     e.preventDefault();
     const f=e.target, v=n=>f.elements[n].value.trim();
-    const instruments=[["h-i-piano","피아노있음"],["h-i-perc","타악가능"],["h-i-brass","금관가능"],["h-i-ens","성악·앙상블가능"],["h-i-big","대편성가능"]]
-      .filter(([n])=>f.elements[n].checked).map(([,label])=>label);
-    HOST_ROOMS.unshift({
+    const checked = pairs => pairs.filter(([n])=>f.elements[n].checked).map(([,label])=>label);
+    const room = {
       id:"h"+Date.now(), cat:"instant", mine:true,
       name:v("h-name"), region:v("h-region"), addr:v("h-addr"),
-      instant:v("h-booking")==="바로결제", minHours:+v("h-min")||1,
+      station:v("h-station")||null, walkMin:+v("h-walk")||null,
+      book:v("h-booking"), bookTo:v("h-book-to")||null, minHours:+v("h-min")||1,
       monthly:+v("h-monthly")||null, hourly:v("h-hourly")?+v("h-hourly")/10:null,
       floor:v("h-floor"), elev:v("h-floor")==="엘리베이터",
-      sound:v("h-sound"), soundWall:/시공/.test(v("h-sound")),
-      instruments, notes:v("h-notes"),
-    });
+      soundDoor:f.elements["h-s-door"].checked, night:v("h-night")||null,
+      allow:checked([["h-a-perc","타악 허용"],["h-a-brass","금관 허용"],["h-a-ens","성악·앙상블 허용"],["h-a-big","대편성 허용"]]),
+      equip:checked([["h-e-grand","그랜드피아노"],["h-e-upright","업라이트피아노"],["h-e-marimba","마림바"],["h-e-timpani","팀파니"],["h-e-drum","드럼"]]),
+      photoUrl:v("h-photo")||null, notes:v("h-notes"),
+    };
+    HOST_ROOMS.unshift(room);
     saveHost(); f.reset(); $("#host-modal").classList.remove("open"); render();
+    // 등록 데이터가 브라우저에만 남으면 공급이 운영자에게 안 온다 — 메일로도 전달 (서버 도입 전 수집 경로)
+    const body = encodeURIComponent("연습실 공간 등록\n" + JSON.stringify(room, null, 1));
+    location.href = `mailto:ohmjin3141@naver.com?subject=${encodeURIComponent("[포디엄] 공간 등록: "+room.name)}&body=${body}`;
   });
 });
 </script>
