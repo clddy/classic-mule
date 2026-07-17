@@ -266,7 +266,49 @@ function axesOf(r){
     const m = _LEGACY_AXES[v];
     if (m && !((m[0]==="allow"?allow:equip).includes(m[1]))) (m[0]==="allow"?allow:equip).push(m[1]);
   }
+  // 공공기관 시설 안내 텍스트에서 비치 악기 자동 추출 — '팀파니 있는 데 어디예요?'에 답하기 위한 필드.
+  // 부정 표현(불가·없음·금지)이 바로 뒤따르면 제외.
+  const txt = `${r.spaces || ""} ${r.notes || ""}`;
+  for (const [kw, label] of [["그랜드", "그랜드피아노"], ["업라이트", "업라이트피아노"],
+                             ["마림바", "마림바"], ["팀파니", "팀파니"], ["드럼", "드럼"], ["피아노", "피아노(구분 미상)"]]){
+    if (label === "피아노(구분 미상)" && (equip.includes("그랜드피아노") || equip.includes("업라이트피아노"))) continue;
+    if (txt.includes(kw) && !new RegExp(kw + "[^.·,]{0,8}(불가|없|금지|반입)").test(txt) && !equip.includes(label))
+      equip.push(label);
+  }
   return { allow, equip };
+}
+
+// 지역 태그 입도 통일: 서울 안은 구 단위, 서울 밖은 시·군 단위 (주소에서 보강)
+function regionTagOf(r){
+  const sido = sidoOf(r);
+  if (sido === "서울"){
+    const d = districtOf(r) || (String(r.addr || "").match(/([가-힣]{1,5}구)(?=\s|,|$)/) || [])[1];
+    return d || "서울";
+  }
+  if (/[시군구]$/.test(r.region || "")) return r.region;
+  const m = (String(r.addr || "").match(/([가-힣]{1,6}[시군])(?=\s|,|$)/) || [])[1];
+  return m || sido;
+}
+
+// 신청 기간 축약: 사용자가 알고 싶은 건 '지금 신청 가능한가'와 '언제까지인가' 둘뿐.
+// 분 단위 타임스탬프 제거, 기간이 6개월 이상이면 '상시 접수'로 접음.
+function fmtApply(r){
+  const t = String(r.apply_timing || "").replace(/\s*\d{2}:\d{2}(:\d{2})?/g, "").trim();
+  const m = t.match(/(\d{4})[.\-](\d{1,2})[.\-](\d{1,2})\s*~\s*(\d{4})[.\-](\d{1,2})[.\-](\d{1,2})/);
+  if (m){
+    const days = (new Date(`${m[4]}-${m[5]}-${m[6]}`) - new Date(`${m[1]}-${m[2]}-${m[3]}`)) / 86400000;
+    if (days >= 180) return "상시 접수";
+    return `~${+m[5]}.${+m[6]} 마감`;
+  }
+  return t;
+}
+
+// '유료'만 있고 금액이 없으면 정보가 아니라 정보 부재 — 가격 자리엔 '요금 확인'을 걸고 원천으로 보낸다
+function priceDisplay(r){
+  if (r.free || r.price === "무료") return "무료";
+  const s = String(r.price || "");
+  if (/\d/.test(s)) return s;
+  return null;   // 금액 미상 → 카드에서 '요금 확인 →' 처리
 }
 
 // 호스트 등록분 (localStorage — 이 기기)
@@ -523,27 +565,36 @@ function pubDday(r){
   return { t:`접수중 D-${diff}`, cls:"dd-open" };
 }
 
+// 설명 텍스트에 묻힌 전화번호는 못 쓰는 정보 — 문의 필드로 끌어낸다
+function phoneOf(r){
+  return r.phone || (String(r.notes || "").match(/0\d{1,2}[-)]\s?\d{3,4}-?\d{4}/) || [])[0] || null;
+}
+
 function cardPublic(r, i){
   // 카드 레벨에서 '어떻게 신청하는지'가 바로 보이는 게 이 카테고리의 존재 이유
-  const apply = [r.apply_timing, r.apply_method, r.eligibility].filter(Boolean).join(" · ");
+  const apply = [fmtApply(r), r.apply_method, r.eligibility].filter(Boolean).join(" · ");
   const dd = pubDday(r);
   const ax = axesOf(r);
+  const price = priceDisplay(r);
+  const phone = phoneOf(r);
   return `
   <article class="job-card" data-i="${i}">
     <div class="top-row">
       ${catBadge(r)} ${priceBadge(r)}
       ${dd?`<span class="tag ${dd.cls}">${dd.t}</span>`:""}
-      <span class="tag cat">${esc(r.region)}</span>
-      ${r.verified?`<span class="tag inst">✓ ${esc(r.verified)} 확인</span>`:""}
+      <span class="tag cat">${esc(regionTagOf(r))}</span>
       ${r.rentalVerified===false?`<span class="tag" style="border-color:var(--ink-soft);color:var(--ink-soft)">대관 확인필요</span>`:""}
       ${[...ax.allow, ...ax.equip].map(x=>`<span class="tag pos">${x}</span>`).join("")}
       ${r.spaces?`<span class="tag inst">${esc(r.spaces)}</span>`:""}
     </div>
     <h3>${esc(r.name)}</h3>
-    <div class="price-line">${esc(r.price)}</div>
+    <div class="price-line">${price ? esc(price) : `요금 확인 →`}</div>
     ${apply?`<div class="apply-line">신청: ${esc(apply)}</div>`:""}
-    <div class="meta">${r.addr?`<span>${esc(r.addr)}</span>`:""}${r.hours?`<span>${esc(r.hours)}</span>`:""}</div>
-    <div class="source-line"><span>${esc(r.notes||"")}</span><span>${r.src?esc(r.src):""}</span></div>
+    <div class="meta">${r.addr?`<span>${esc(r.addr)}</span>`:""}${phone?`<span>문의 ${esc(phone)}</span>`:""}${r.hours?`<span>${esc(String(r.hours).replace(/\s*\d{2}:\d{2}(:\d{2})?/g,""))}</span>`:""}</div>
+    <div class="modal-actions" style="margin-top:10px;justify-content:flex-start">
+      ${r.booking_url?`<a class="btn-primary" href="${esc(r.booking_url)}" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="text-decoration:none;font-size:0.82rem;padding:7px 14px">신청 페이지로 →</a>`:""}
+    </div>
+    <div class="source-line"><span>${esc(r.notes||"")}</span><span>${r.src?esc(r.src)+" · ":""}확인 ${esc(r.verified||"-")}</span></div>
   </article>`;
 }
 
@@ -575,13 +626,19 @@ function cardInstant(r, i){
       ${r.mine?`<span class="tag pos">내 공간</span>`:""}
       ${catBadge(r)}
       <span class="tag cat">${bookLabel}</span>
-      <span class="tag cat">${esc(r.region)}</span>
+      <span class="tag cat">${esc(regionTagOf(r))}</span>
       ${[...ax.allow, ...ax.equip].map(x=>`<span class="tag pos">${x}</span>`).join("")}
       ${r.h24||r.night==="24시간"?`<span class="tag cat">24시간</span>`:""}
     </div>
     <h3>${esc(r.name)} ${r.reviews?`<span style="font-weight:400;font-size:0.8rem;color:var(--ink-soft)">⭐ 후기 ${r.reviews} · ♥ ${r.likes}</span>`:""}</h3>
     <div class="price-line">${priceHtml}</div>
     <div class="spec-grid">${specs}</div>
+    ${(()=>{ // 카드 레벨 행동 버튼 — 원천으로의 클릭이 곧 전환 (회색 출처 글씨는 CTA로 안 읽힘)
+      const tel=(r.bookTo||phoneOf(r)||"").match(/0\d{1,2}-?\d{3,4}-?\d{4}/);
+      if (r.book==="외부링크"&&r.bookTo) return `<div class="modal-actions" style="margin-top:10px;justify-content:flex-start"><a class="btn-primary" href="${esc(r.bookTo)}" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="text-decoration:none;font-size:0.82rem;padding:7px 14px">예약 페이지로 →</a></div>`;
+      if (tel) return `<div class="modal-actions" style="margin-top:10px;justify-content:flex-start"><a class="btn-primary" href="tel:${tel[0].replace(/-/g,"")}" onclick="event.stopPropagation()" style="text-decoration:none;font-size:0.82rem;padding:7px 14px">📞 전화 문의</a></div>`;
+      return "";
+    })()}
     <div class="source-line"><span>${esc(r.notes||"")}</span>${r.src?`<span>출처 <span class="src">${esc(r.src)}</span> · 확인 ${esc(r.verified||"")}</span>`:""}</div>
   </article>`;
 }
@@ -695,8 +752,8 @@ function openRoom(r){
     : `${r.monthly?`월 ${r.monthly}만원`:""} <span class="per">${r.hourly?`· 시간 ${Math.round(r.hourly*10)}천원`:""} (최소 ${r.minHours||1}시간)${r.nego?" · 협의가능":""}</span>`;
   $("#rm-meta").innerHTML = isPub ? [
       ["주소", r.addr], ["공간", r.spaces], ["이용요금", r.price],
-      ["선정 방법", r.selection], ["신청 방법", r.apply_method], ["접수", r.apply_timing],
-      ["이용 대상", r.eligibility], ["운영·이용", r.hours], ["문의", r.phone],
+      ["선정 방법", r.selection], ["신청 방법", r.apply_method], ["접수", fmtApply(r)],
+      ["이용 대상", r.eligibility], ["운영·이용", r.hours], ["문의", phoneOf(r)],
       ["확인일", r.verified],
     ].filter(([k,v])=>v).map(([k,v])=>`<dt>${k}</dt><dd>${esc(v)}</dd>`).join("")
     : [
@@ -706,7 +763,7 @@ function openRoom(r){
       ["방음·야간", [ (r.soundDoor||r.soundWall)?"방음문 있음":null, r.night?`야간 ${r.night}`:null,
                     r.windowLayer||null ].filter(Boolean).join(" · ") || "미기재"],
       ["채광/환기", [r.light,r.vent].filter(Boolean).join(" · ")],
-      ["주소", r.addr], ["문의", r.phone],
+      ["주소", r.addr], ["문의", phoneOf(r)],
       ["예약 방식", `${r.book==="외부링크"?"외부 예약 링크":r.book==="승인후확정"||r.instant===false?"신청 후 승인":"전화·문의"} · 최소 ${r.minHours||1}시간`],
       ["영업시간", r.h24||r.night==="24시간"?"24시간":(r.src?null:"공간 문의")],
       ["출처", r.src?`${r.src} (확인 ${r.verified||"-"})`:null],

@@ -99,7 +99,7 @@ const INST_GROUPS = [
   ["현악", ["바이올린", "비올라", "첼로", "더블베이스"]],
   ["목관", ["플루트", "오보에", "클라리넷", "바순"]],
   ["금관", ["호른", "트럼펫", "트롬본", "튜바", "색소폰"]],
-  ["기타", ["타악", "피아노", "하프", "지휘"]],
+  ["그 외", ["타악", "피아노", "하프", "지휘"]],
   ["성악", ["소프라노", "메조소프라노", "알토", "테너", "바리톤", "베이스(성악)"]],
 ];
 // 2026-07-01 전남광주통합특별시 출범 — 전남·광주가 한 광역단체가 됐다. crawler/common.py와 같은 표기.
@@ -110,24 +110,39 @@ const REGION_MIGRATE = { "광주": "광주·전남", "전남": "광주·전남" 
 function regionOf(j){ const r = j.region || "기타"; return REGION_MIGRATE[r] || r; }
 const STATUSES = ["접수중", "마감임박", "확인필요", "마감"];
 
-const state = { tab: "전체", tiers: new Set(), bands: new Set(), insts: new Set(), regions: new Set(), status: new Set(), provided: new Set(), obri: false, noCert: false, noCareer: false, query: "", sort: "deadline" };
+const state = { tab: "전체", tiers: new Set(), bands: new Set(), insts: new Set(), regions: new Set(), status: new Set(), provided: new Set(), obri: false, noCert: false, noCareer: false, query: "", sort: "latest" };
 const $ = (s) => document.querySelector(s);
 
+// 상태 어휘 통일: 사용자가 알고 싶은 건 '지금 지원 가능한가'와 '언제까지인가' 둘뿐.
+//  · D-day 카운트는 임박(7일 이내)했을 때만 — D-167 같은 숫자는 정보가 아니라 소음
+//  · 마감이 30일 넘게 남으면 '상시·장기'로 접음 · D-0은 '오늘 마감'으로 명시
+//  · 급구·대타(마감일 없음)는 연주일이 곧 마감 → '연주일 D-n' 기준을 구분 표기
 function statusOf(j) {
-  if (!j.deadline) {
-    if (j.deadlineText === "상시") return { key: "접수중", label: "상시", cls: "dd-open", dday: 9000 };
-    return { key: "확인필요", label: "기한 확인필요", cls: "dd-always", dday: 9998 };
+  let base = j.deadline, kind = "지원 마감";
+  if (!base) {
+    const cn = concertNum(j);                       // 연주일(YYYYMMDD 정수) — 없으면 Infinity
+    if (cn !== Infinity && j.src !== "공식") {
+      const s = String(cn); base = `${s.slice(0,4)}-${s.slice(4,6)}-${s.slice(6,8)}`; kind = "연주일";
+    } else if (j.deadlineText === "상시") {
+      return { key: "접수중", label: "상시", cls: "dd-open", dday: 9000 };
+    } else {
+      return { key: "확인필요", label: "기한 확인필요", cls: "dd-always", dday: 9998 };
+    }
   }
-  const diff = Math.round((new Date(j.deadline) - new Date(TODAY)) / 86400000);
+  const diff = Math.round((new Date(base) - new Date(TODAY)) / 86400000);
   if (diff < 0) return { key: "마감", label: "마감", cls: "dd-closed", dday: 9999 };
-  if (diff <= 7) return { key: "마감임박", label: `마감임박 D-${diff}`, cls: "dd-soon", dday: diff };
-  return { key: "접수중", label: `접수중 D-${diff}`, cls: "dd-open", dday: diff };
+  if (diff === 0) return { key: "마감임박", label: kind === "연주일" ? "오늘 연주" : "오늘 마감", cls: "dd-soon", dday: 0 };
+  if (diff <= 7) return { key: "마감임박", label: `${kind} D-${diff}`, cls: "dd-soon", dday: diff };
+  if (diff > 30) return { key: "접수중", label: "상시·장기", cls: "dd-open", dday: diff };
+  return { key: "접수중", label: `접수중 (~${+base.slice(5,7)}.${+base.slice(8,10)})`, cls: "dd-open", dday: diff };
 }
 
 // ---------- 칩 렌더 ----------
+// '기타'는 클래식 사이트에서 악기 기타(guitar)로 읽힌다 — 화면 표기만 '그 외'로 (데이터 값은 유지)
+const bandLabel = b => b === "기타" ? "그 외" : b;
 function renderChips(sel, items, set) {
   const el = $(sel);
-  el.innerHTML = items.map(v => `<button class="chip${set.has(v) ? " on" : ""}" data-v="${v}">${v}</button>`).join("");
+  el.innerHTML = items.map(v => `<button class="chip${set.has(v) ? " on" : ""}" data-v="${v}">${bandLabel(v)}</button>`).join("");
   el.querySelectorAll(".chip").forEach(c => c.addEventListener("click", () => {
     const v = c.dataset.v;
     set.has(v) ? set.delete(v) : set.add(v);
@@ -149,8 +164,10 @@ function renderInstChips() {
 }
 
 // ---------- 필터링 ----------
+// 예시 카드(COMMUNITY_ITEMS)는 피드에서 제외 — 실공고 사이에 섞이면 밀도를 부풀리고
+// 지원 시도를 유발한다. 예시의 용도는 '이렇게 올리면 좋다' 템플릿 → 빈 결과 화면에서만 노출.
 function filtered() {
-  const all = [...OFFICIAL_ITEMS, ...USER_POSTS, ...COMMUNITY_ITEMS];
+  const all = [...OFFICIAL_ITEMS, ...USER_POSTS];
   return all.filter(j => {
     if (state.tab !== "전체" && j.type !== state.tab) return false;
     if (state.tiers.size && !state.tiers.has(j.tier)) return false;
@@ -194,6 +211,8 @@ const byDeadline = (a, b) => {
   return (b.date || "").localeCompare(a.date || "");
 };
 const sortFns = {
+  // 재방문자의 기본 행동은 '새로 뭐 올라왔나' — 최신순이 기본 (연주 우선 부스트 유지)
+  latest: (a, b) => playRank(a) - playRank(b) || (b.date || "").localeCompare(a.date || ""),
   deadline: byDeadline,
   pay: (a, b) => (payNum(b) - payNum(a)) || byDeadline(a, b),
   concert: (a, b) => (concertNum(a) - concertNum(b)) || byDeadline(a, b),
@@ -207,7 +226,7 @@ function cardHTML(j) {
     ${SHOW_AGE_BADGE && j.ageGroup === "미성년" ? `<span class="tag pos">미성년</span>` : ""}
     ${j.verifiedNote ? `<span class="tag ok">✓ 모집 확인 ${j.verifiedAt || ""}</span>` : ""}
     ${j.type === "구직" ? `<span class="tag type-seek">구직</span>` : ""}
-    <span class="tag cat">${j.band}</span>
+    <span class="tag cat">${bandLabel(j.band)}</span>
     ${j.subject && !j.insts.includes(j.subject) ? `<span class="tag inst">${j.subject}</span>` : ""}
     ${j.insts.map(i => `<span class="tag inst">${i}</span>`).join("")}
     ${(j.positions || []).filter(p => /수석|악장|차석/.test(p)).map(p => `<span class="tag pos">${p}</span>`).join("")}
@@ -234,16 +253,26 @@ function cardHTML(j) {
       <h3>${j.title}</h3>
       ${program}
       <div class="meta">${meta}</div>
-      <div class="source-line"><span>${sourceLabel(j) ? `출처 <span class="src">${sourceLabel(j)}</span>` : ""}</span><span>눌러서 상세보기</span></div>
+      <div class="source-line"><span>${srcLine(j)}</span><span>눌러서 상세보기</span></div>
     </article>`;
   }
   return `
     <article class="job-card${st.key === "마감" ? " closed" : ""}${j.sample ? " is-sample" : ""}${j.mine ? " mine" : ""}" data-cid="${j.cid}">
-      <div class="top-row">${tags}</div>
+      <div class="top-row">${j.mine ? `<span class="tag pos">포디엄 등록</span>` : ""}${tags}</div>
       <h3>${j.title}</h3>
       ${program}
       <div class="meta">${meta}</div>
     </article>`;
+}
+
+// 출처 표기 규칙: 수집 공고는 출처를 반드시 표기한다 — 기관 원문 도메인이 없으면
+// 게시처(포털) 이름이라도 텍스트로 남긴다(링크는 안 냄). 직접 등록은 '포디엄 등록' 뱃지.
+const PORTAL_NAME = { "artinfokorea.com": "아트인포코리아", "artmore.kr": "아트모아", "cjob.co.kr": "기독정보넷", "hibrain.net": "하이브레인넷" };
+function srcLine(j) {
+  const s = sourceLabel(j);
+  if (s) return `출처 <span class="src">${s}</span>`;
+  if (j.source) return `게시처 <span class="src">${PORTAL_NAME[j.source] || j.source}</span>`;
+  return "";
 }
 
 function renderList() {
@@ -256,7 +285,10 @@ function renderList() {
   $("#result-count").innerHTML = `총 <strong>${list.length}</strong>건 (공식 ${oc} · 소규모 ${list.length - oc}) — 카드를 누르면 상세가 열립니다`;
   const el = $("#job-list");
   if (!list.length) {
-    el.innerHTML = `<div class="empty">조건에 맞는 공고가 없습니다.<br>필터를 조정해 보세요.</div>`;
+    // 빈 결과 = 예시 카드의 자리: '이렇게 올리면 좋다' 템플릿으로만 노출 (피드에는 섞지 않음)
+    el.innerHTML = `<div class="empty">조건에 맞는 공고가 없습니다.<br>필터를 조정하거나, 직접 올려보세요.</div>
+      <div class="pinned-sep">작성 예시 — 이런 정보가 들어가면 지원이 빨라져요</div>`
+      + COMMUNITY_ITEMS.map(cardHTML).join("");
     return;
   }
   let html = "";
@@ -299,6 +331,13 @@ function renderAll() {
   renderToggle("#filter-obri", "교회·행사(오브리)만", "obri");
   renderToggle("#filter-cert", "교원자격증 불필요만", "noCert");
   renderToggle("#filter-career", "경력 무관만", "noCareer");
+  // 교원자격증·학위는 교육 공고에만 해당 — 교육 구분을 골랐을 때만 노출 (연주 찾는 사람에겐 소음)
+  const eduOn = [...state.tiers].some(t => t.startsWith("교육"));
+  const fgCert = $("#fg-cert");
+  if (fgCert) {
+    fgCert.style.display = eduOn ? "" : "none";
+    if (!eduOn && (state.noCert || state.noCareer)) { state.noCert = false; state.noCareer = false; }
+  }
   renderChips("#filter-band", BANDS, state.bands);
   renderInstChips();
   renderChips("#filter-region", REGION_LIST, state.regions);
@@ -401,7 +440,7 @@ function openOfficial(key) {
   const st = statusOf(j);
   $("#detail-tags").innerHTML = `
     <span class="tag ${TIER_CLS[j.tier] || "cat"}">${j.tier}</span>
-    <span class="tag cat">${j.band}</span>
+    <span class="tag cat">${bandLabel(j.band)}</span>
     ${j.subject && !j.insts.includes(j.subject) ? `<span class="tag inst">${j.subject}</span>` : ""}
     ${j.insts.map(i => `<span class="tag inst">${i}</span>`).join("")}
     ${(j.positions || []).filter(p => /수석|악장|차석/.test(p)).map(p => `<span class="tag pos">${p}</span>`).join("")}
@@ -456,7 +495,7 @@ function openDetail(cid) {
     ${j.mine ? `<span class="tag mine">내 공고</span>` : ""}
     <span class="tag ${TIER_CLS[j.tier] || "cat"}">${j.tier}</span>
     <span class="tag ${j.type === "구인" ? "type-offer" : "type-seek"}">${j.type}</span>
-    <span class="tag cat">${j.band}</span>
+    <span class="tag cat">${bandLabel(j.band)}</span>
     ${j.insts.map(i => `<span class="tag inst">${i}</span>`).join("")}
     ${j.urgent ? `<span class="tag urgent">급구</span>` : ""}`;
   $("#detail-title").textContent = j.title;
@@ -524,6 +563,13 @@ function submitWrite(e) {
     date: TODAY, body: v("w-body"),
     urgent
   };
+  // 구직 글 = 연주자 명부의 씨앗 — 학력·소속/경력/가능 지역을 구조 필드로 흡수
+  if (item.type === "구직") {
+    item.qualification = v("w-seek-edu") || item.qualification;
+    item.body = [v("w-seek-career") && `경력: ${v("w-seek-career")}`,
+                 v("w-seek-avail") && `가능: ${v("w-seek-avail")}`,
+                 item.body].filter(Boolean).join("\n");
+  }
   USER_POSTS.unshift(item);
   saveUserPosts();
   f.reset();
@@ -565,6 +611,21 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   $("#btn-write").addEventListener("click", () => $("#write-modal").classList.add("open"));
   $("#write-form").addEventListener("submit", submitWrite);
+  // 폼 조건부 노출 — 구분에 따라 폼이 변신: 교육 필드는 교육 선택 시, 악기 제공은 연주+구인,
+  // 모집 필드는 구인, 구직 전용 필드는 구직 선택 시만 (오브리 글은 4~5칸이면 끝나야 한다)
+  const wf = $("#write-form");
+  function updateWriteForm() {
+    const tier = wf.elements["w-tier"].value;
+    const seek = wf.elements["w-type"].value === "seek";
+    const show = (id, on) => { const el = document.getElementById(id); if (el) el.style.display = on ? "" : "none"; };
+    show("wf-edu", tier.startsWith("교육"));
+    show("wf-play", tier === "연주" && !seek);
+    show("wf-offer", !seek);
+    show("wf-seek", seek);
+  }
+  wf.elements["w-tier"].addEventListener("change", updateWriteForm);
+  for (const r of wf.elements["w-type"]) r.addEventListener("change", updateWriteForm);
+  updateWriteForm();
   document.querySelectorAll(".modal-backdrop").forEach(bd => {
     bd.addEventListener("click", (e) => { if (e.target === bd) bd.classList.remove("open"); });
     bd.querySelector(".modal-close").addEventListener("click", () => bd.classList.remove("open"));
