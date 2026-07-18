@@ -1,7 +1,7 @@
 {
- "collectedAt": "2026-07-17 18:07",
+ "collectedAt": "2026-07-18 18:01",
  "sourceCount": 80,
- "okCount": 79,
+ "okCount": 80,
  "instTotal": 75,
  "sources": [
   {
@@ -64,7 +64,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 3,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -100,7 +100,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 22,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -118,7 +118,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 10,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -136,7 +136,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 18,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -145,7 +145,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 20,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -154,8 +154,8 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 10,
-   "kept": 2
+   "skipped": true,
+   "kept": 1
   },
   {
    "id": "knso",
@@ -163,7 +163,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 15,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -172,7 +172,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 6,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -181,7 +181,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 10,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -190,7 +190,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 10,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -199,7 +199,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 11,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -235,7 +235,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -244,7 +244,7 @@
    "layer": "C",
    "poll": "weekly",
    "ok": true,
-   "raw": 9,
+   "skipped": true,
    "kept": 7
   },
   {
@@ -253,7 +253,7 @@
    "layer": "C",
    "poll": "weekly",
    "ok": true,
-   "raw": 6,
+   "skipped": true,
    "kept": 5
   },
   {
@@ -262,7 +262,7 @@
    "layer": "C",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 1
   },
   {
@@ -271,7 +271,7 @@
    "layer": "C",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 1
   },
   {
@@ -280,7 +280,7 @@
    "layer": "C",
    "poll": "weekly",
    "ok": true,
-   "raw": 1,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -289,7 +289,7 @@
    "layer": "C",
    "poll": "weekly",
    "ok": true,
-   "raw": 1,
+   "skipped": true,
    "kept": 1
   },
   {
@@ -298,7 +298,7 @@
    "layer": "C",
    "poll": "weekly",
    "ok": true,
-   "raw": 4,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -307,7 +307,7 @@
    "layer": "C",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -316,7 +316,7 @@
    "layer": "C",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -325,7 +325,7 @@
    "layer": "C",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -334,7 +334,7 @@
    "layer": "C",
    "poll": "weekly",
    "ok": true,
-   "raw": 2,
+   "skipped": true,
    "kept": 1
   },
   {
@@ -343,7 +343,7 @@
    "layer": "C",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -352,7 +352,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -361,7 +361,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -370,7 +370,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -379,7 +379,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 1,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -388,7 +388,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -397,7 +397,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -406,7 +406,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -415,7 +415,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 1,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -424,7 +424,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -433,7 +433,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -442,7 +442,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -451,7 +451,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 5,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -460,7 +460,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -469,7 +469,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 4,
+   "skipped": true,
    "kept": 1
   },
   {
@@ -478,7 +478,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 2,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -487,7 +487,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -496,7 +496,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 5,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -505,7 +505,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 8,
+   "skipped": true,
    "kept": 1
   },
   {
@@ -514,7 +514,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -523,7 +523,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 8,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -532,7 +532,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 1,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -540,8 +540,9 @@
    "name": "순천시립합창단",
    "layer": "B",
    "poll": "weekly",
-   "ok": false,
-   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.suncheon.go.kr', port=443): Max retries exceeded with url: /scart/community/0001;jsessioni"
+   "ok": true,
+   "skipped": true,
+   "kept": 0
   },
   {
    "id": "g_i_andonggokr",
@@ -549,7 +550,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 4,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -558,7 +559,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -567,7 +568,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -576,7 +577,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -585,7 +586,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 2,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -594,7 +595,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 1,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -603,7 +604,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -612,7 +613,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -621,7 +622,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -630,7 +631,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -639,7 +640,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -648,7 +649,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -657,7 +658,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -666,7 +667,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -675,7 +676,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -684,7 +685,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 1,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -693,7 +694,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 1
   },
   {
@@ -702,7 +703,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -711,7 +712,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -720,8 +721,8 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 14,
-   "kept": 13
+   "skipped": true,
+   "kept": 12
   }
  ],
  "items": [
@@ -755,7 +756,7 @@
    ],
    "bodyExcerpt": "채용 | 대구오페라콰이어 신단원 모집(알토1, 베이스2) · 대구오페라콰이어 신단원 모집(알토1, 베이스2)",
    "firstSeen": "2026-07-17",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -895,7 +896,7 @@
    "deadlineFrom": "title",
    "bodyExcerpt": "[강신중]2026학년도 3기 방과후학교 개인위탁 외부강사 모집 공고(8.24.~12.4.)(오케스트라 3명) · 2026학년도 3기 방과후학교 오케스트라 강좌를 운영해주실 강사 3명을 모집합니다. · 서류접수기간: 2026. 7. 16.(목) ~ 7. 21.(화) 15:00까지 · 면접 시간 및 장소: 강신중학교 1층 본교무실 / 2026. 7. 22.(수) 11:00",
    "firstSeen": "2026-07-17",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -925,7 +926,7 @@
    "deadlineFrom": "page",
    "bodyExcerpt": "(2026-2)악기교육(바이올린) 시간강사 채용 공고",
    "firstSeen": "2026-07-17",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -953,7 +954,7 @@
    "deadlineFrom": "page",
    "bodyExcerpt": "양화중학교)2026학년도 시간강사 채용공고(음악)",
    "firstSeen": "2026-07-17",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -981,7 +982,7 @@
    "deadlineFrom": "page",
    "bodyExcerpt": "화원중 시간강사(음악) 채용",
    "firstSeen": "2026-07-17",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -1009,7 +1010,7 @@
    "deadlineFrom": "page",
    "bodyExcerpt": "서울예술고등학교 기간제교원 채용 공고(음악)",
    "firstSeen": "2026-07-17",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -1042,7 +1043,7 @@
    "contract": "비상임",
    "bodyExcerpt": "오디션 공고<커뮤니티<군산시립예술단 · 2026년 군산시립교향악단 제85회 특별기획연주회 협연자 오디션 공고 · 군산시립교향악단 2026년 제85회 특별기획연주회와 관련하여 협연자 모집을 위하여 아래와 같이 공고하고자 합니다. · 1. 공고기간 : 2026. 7. 14.(월) ~ 2026. 8.14.(금)",
    "firstSeen": "2026-07-17",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -1070,7 +1071,7 @@
    "layer": "B",
    "musicUnverified": true,
    "firstSeen": "2026-07-17",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -1104,7 +1105,7 @@
     "이 참여하는 피아노 워크숍"
    ],
    "firstSeen": "2026-07-17",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -1163,7 +1164,7 @@
    "qualification": "경력 경력무관 학력",
    "bodyExcerpt": "채용방법 및 일정 · 기간제교원 채용 공고 · 학년도 칠보중학교 기간제교원 채용 계획을 다음과 같이 공고합니다 · 채용분야 및 채용 예정인원",
    "firstSeen": "2026-07-17",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -1192,7 +1193,7 @@
    "qualification": "경력 경력무관 학력",
    "bodyExcerpt": "일산양일중학교 기간제교사(음악-1개월 25일, 추후 3개월 연장가능) 채용공고 · 채용방법 및 일정 · 학년도 일산양일중학교 계약제교원(기간제교사) 채용 계획을 다음과 같이 공고합니다",
    "firstSeen": "2026-07-17",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -1223,7 +1224,7 @@
    "qualification": "경력 경력 학력",
    "bodyExcerpt": "2026 신능초등학교병설유치원 바이올린 강사 채용 공고 · 신능초등학교병설유치원 바이올린 강사를 모집합니다. · 1. 채용기간: 2026. 8. 18~2027. 2. 28. · 3. 강사료: 주 1회 30분/ 50,000원 (기초 교육 기간 동안 필요시 주 2회 연장 가능)",
    "firstSeen": "2026-07-17",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -1251,7 +1252,7 @@
    "deadlineFrom": "page",
    "bodyExcerpt": "호성중 2026학년도 음악과 협력수업 강사 모집 공고 · 전문 강사 모집 공고 · 강사를 모집하오니 · 모집 분야 및 인원",
    "firstSeen": "2026-07-17",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -1282,7 +1283,7 @@
    "qualification": "경력 경력무관 학력",
    "bodyExcerpt": "2026학년도 둔전초등학교 관현악단 타악기 강사 모집 공고 · 채용방법 및 일정",
    "firstSeen": "2026-07-17",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -1311,7 +1312,7 @@
    "layer": "C",
    "bodyExcerpt": "공고 < 채용공고 < 채용 < 채용/시험 | 인천광역시교육청 · 2026학년도 2학기 방과후학교 외부강사(바이올린) 채용 공고 · 채용공고 상세보기 테이블 · 학년도 초등 방과후학교 외부강사를 다음과 같이 모집합니다",
    "firstSeen": "2026-07-17",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -1338,7 +1339,7 @@
    "layer": "C",
    "bodyExcerpt": "2026학년도 부산한솔학교 방과후학교 개인위탁 외부강사(음악) 모집 공고(긴급) · 1. 채용인원: 총1명 (음악활동, 중등) · 2. 접수기간: 2026. 7. 16.(목) ~ 7. 22.(화) 11:00 · 붙임 2026학년도 부산한솔학교 방과후학교 개인위탁 외부강사 모집 공고(긴급) 1부.",
    "firstSeen": "2026-07-17",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -1366,7 +1367,7 @@
    "layer": "B",
    "musicUnverified": true,
    "firstSeen": "2026-07-17",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -1393,7 +1394,7 @@
    "layer": "B",
    "musicUnverified": true,
    "firstSeen": "2026-07-17",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -1425,7 +1426,7 @@
     "전공실기lll"
    ],
    "firstSeen": "2026-07-17",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -1544,7 +1545,7 @@
    "layer": "B",
    "bodyExcerpt": "[수시] 2027학년도 대학 신입학생 수시모집(음악대학) 실기곡목 발표 시간 공지 · 대학 신입학생 수시모집(음악대학) 실기고사 · 안내에 관한 자세한 사항은 서울대학교 입학본부 홈페이지 <2027학년도 대학 신입학생",
    "firstSeen": "2026-07-17",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -1571,7 +1572,7 @@
    "channel": "hibrain",
    "layer": "B",
    "firstSeen": "2026-07-17",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -1914,7 +1915,7 @@
    "denomination": "예장 합동",
    "documents": "이력서",
    "firstSeen": "2026-07-17",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -1946,7 +1947,7 @@
    "denomination": "순복음",
    "documents": "간단한 이력서",
    "firstSeen": "2026-07-17",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   }
  ]
