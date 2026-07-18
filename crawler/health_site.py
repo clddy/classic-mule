@@ -128,10 +128,13 @@ def _check_one(rep, browser, path, must):
 
 
 def _check_submit(rep, browser):
-    """유저 제출 플로우 E2E — 폼을 실제로 채워 등록하고 board 반영을 확인한다.
+    """유저 제출 플로우 E2E — 등록 폼 스펙 v1(스텝 폼: 구분→유형→폼) 기준.
 
-    등록된 글은 이 헤드리스 브라우저의 localStorage에만 남고 세션 종료 시 사라진다
-    (공고는 애초에 기기 로컬 저장 — 공유 백엔드 없음).
+    구인→연주 경로로 필수 필드만 채워 등록하고 board 반영을 확인한다.
+    (js/write.js 의 매트릭스 M["연주"].req 가 이 목록의 원본 — 폼 스펙이 바뀌면
+    여기도 같이 바꿔야 한다. 2026-07-18 옛 단일 폼 기준 체크가 스펙 v1 배포 후
+    'w-tier 사라짐' HIGH 를 오검출한 전례.)
+    등록된 글은 이 헤드리스 브라우저의 localStorage에만 남고 세션 종료 시 사라진다.
     """
     ctx = browser.new_context(viewport={"width": 390, "height": 844})
     page = ctx.new_page()
@@ -149,41 +152,70 @@ def _check_submit(rep, browser):
             rep.add("HIGH", "제출", "글쓰기 폼(#write-form)이 없다")
             return
 
-        # 모달을 연 뒤 required 항목만 채운다 (선택은 첫 유효 옵션)
-        page.evaluate("document.querySelector('#write-modal').classList.add('open')")
-        for name in ("w-tier", "w-cat", "w-inst", "w-region"):
-            sel = form.locator(f"select[name='{name}']")
-            if sel.count() == 0:
+        # 스텝 진입: 모달 열기 → 구분(구인) → 유형(연주) → 폼 조립
+        page.evaluate("window.PodiumWrite && PodiumWrite.reset();"
+                      "document.querySelector('#write-modal').classList.add('open')")
+        s1 = page.locator("#ws-1 button[data-kind='offer']")
+        if s1.count() == 0:
+            rep.add("HIGH", "제출", "Step1 '구인' 버튼이 없다 (스텝 폼 구조 변경?)")
+            return
+        s1.click()
+        s2 = page.locator("#ws-2 button[data-wtype='연주']")
+        if s2.count() == 0:
+            rep.add("HIGH", "제출", "Step2 '연주' 유형 버튼이 없다")
+            return
+        s2.click()
+        page.wait_for_timeout(300)
+
+        # 연주 유형의 필수 블록이 실제로 조립됐는지 (공통 4 + 연주 매트릭스)
+        for name in ("w-title", "w-region", "w-org", "w-phone",
+                     "w-cat", "w-inst", "w-when", "w-pay-amt", "w-rehearsalCount"):
+            if form.locator(f"[name='{name}']").count() == 0:
                 rep.add("HIGH", "제출", f"필수 항목 {name}가 폼에서 사라졌다")
                 return
-            opts = [v for v in sel.locator("option").evaluate_all(
-                "els => els.map(e => e.value)") if v]
-            if not opts:
-                rep.add("HIGH", "제출", f"{name} 선택지가 비었다")
-                return
-            sel.select_option(opts[0])
-        form.locator("input[name='w-title']").fill(marker)
-        form.locator("input[name='w-org']").fill("헬스체크")
-        form.locator("textarea[name='w-body']").fill("자동 점검용 글입니다.")
 
-        form.locator("button[type='submit']").click()
+        form.locator("[name='w-title']").fill(marker)
+        form.locator("[name='w-region']").select_option("서울")
+        form.locator("[name='w-org']").fill("헬스체크")
+        form.locator("[name='w-phone']").fill("010-0000-0000")
+        cat_opts = [v for v in form.locator("[name='w-cat'] option").evaluate_all(
+            "els => els.map(e => e.value)") if v]
+        if not cat_opts:
+            rep.add("HIGH", "제출", "w-cat 선택지가 비었다 (유형별 옵션 주입 실패)")
+            return
+        form.locator("[name='w-cat']").select_option(cat_opts[0])
+        # 현악 고정 — 타악·건반을 고르면 '악기 제공' 블록이 필수로 추가돼 시나리오가 달라진다
+        form.locator("[name='w-inst']").select_option("현악")
+        # 날짜 숫자를 넣으면 급구 힌트 경로가 끼어든다 — 숫자 없는 문구로 고정
+        form.locator("[name='w-when']").fill("헬스체크 점검용 일정")
+        form.locator("[name='w-pay-amt']").fill("10")
+        form.locator("[name='w-rehearsalCount']").fill("1")
+
+        submit = page.locator("#wf-submit")
+        if submit.is_disabled():
+            rep.add("HIGH", "제출", "필수를 다 채웠는데 등록 버튼이 비활성 — validate() 로직 확인")
+            return
+        submit.click()
         page.wait_for_timeout(1200)
 
-        # 저장 / 목록 반영 / 상세 열림을 따로 본다.
-        # 목록(#job-list)을 콕 집어 확인해야 한다 — body 전체를 보면 상세 모달에
+        # 저장 → 완료 화면 미리보기 → (닫은 뒤) 목록 반영을 따로 본다.
+        # 목록(#job-list)을 콕 집어 확인해야 한다 — body 전체를 보면 완료 화면에
         # 제목이 떠 있는 것만으로 통과해서, 목록 렌더가 죽어도 못 잡는다.
         stored = page.evaluate(
             "JSON.parse(localStorage.getItem('podium_user_posts_v2') || '[]').length")
-        in_list = page.evaluate(
-            "(m) => (document.querySelector('#job-list')?.innerText || '').includes(m)", marker)
-        in_detail = page.evaluate(
-            "(m) => (document.querySelector('#detail-modal')?.innerText || '').includes(m)", marker)
+        in_preview = page.evaluate(
+            "(m) => (document.querySelector('#wd-preview')?.innerText || '').includes(m)", marker)
         if stored < 1:
             rep.add("HIGH", "제출", "등록 후 localStorage에 공고가 저장되지 않았다")
-        elif not in_list:
+            return
+        if not in_preview:
+            rep.add("MED", "제출", "등록 후 완료 화면 미리보기(#wd-preview)에 글이 안 보인다")
+        page.locator("#wd-close").click()
+        page.wait_for_timeout(500)
+        in_list = page.evaluate(
+            "(m) => (document.querySelector('#job-list')?.innerText || '').includes(m)", marker)
+        if not in_list:
             rep.add("HIGH", "제출", "등록은 됐으나 목록(#job-list)에 반영되지 않았다")
-        elif not in_detail:
-            rep.add("MED", "제출", "등록 후 상세 모달이 열리지 않았다")
         if errors:
             rep.add("HIGH", "제출", f"제출 중 JS 에러 — {errors[0][:110]}")
     except Exception as e:

@@ -1001,21 +1001,42 @@ def run(force_all=False):
     # 대학 전체 강사 초빙 중 첨부 확인 결과 음악 교과목이 전혀 없던 공고는 제외(비음악 확정)
     final = [i for i in final if not i.get("nonMusic")]
     # 원본이 삭제된 공고 제거 — 헬스체크(health_check.py)가 2회 연속 404/410으로
-    # 확인한 링크만 거른다(1회는 네트워크 블립일 수 있어 헬스체크 쪽 기준을 그대로 따름).
-    # 원본이 사라진 공고는 마감이 남았어도 승계 경로로 계속 살아남는데, 유저가 누르면
-    # 404라 신뢰가 깨진다. 링크가 살아나면 헬스체크가 streak을 지워 다시 노출된다.
+    # 확인한 링크 + 묘비(tombstone)에 새겨진 링크를 거른다.
+    #
+    # 묘비가 필요한 이유(2026-07-18 규명): 헬스체크는 official.json 에 없는 URL 의
+    # streak 을 청소하는데(무한 증식 방지), 우리가 여기서 제거한 URL 이 정확히 그
+    # 경우다. cjob 처럼 삭제글이 소스 목록에 계속 남는 곳은 다음 크롤에 재수집되고,
+    # streak 이 0부터 다시 쌓여 이틀 뒤 또 제거… 를 반복하며 헬스 알림이 이틀마다
+    # 울린다. 그래서 한 번 확정된 죽음은 data/dead_tombstones.json 에 새겨 재수집을
+    # 계속 막는다. 묘비는 120일 뒤 소멸 — 같은 URL 로 진짜 새 공고가 올라오는 드문
+    # 경우의 안전판(무마감 공고 정리 기준 120일과 같은 지평선).
     hist_path = os.path.join(BASE, "data", "health_history.json")
+    tomb_path = os.path.join(BASE, "data", "dead_tombstones.json")
     try:
         with open(hist_path, encoding="utf-8") as f:
             _dead = {u for u, s in (json.load(f).get("deadLinks") or {}).items()
                      if s.get("n", 0) >= 2}
     except (FileNotFoundError, json.JSONDecodeError):
         _dead = set()
+    try:
+        with open(tomb_path, encoding="utf-8") as f:
+            tombs = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        tombs = {}
+    tombs = {u: t for u, t in tombs.items()
+             if (today - date.fromisoformat(t["since"])).days <= 120}
+    _dead |= set(tombs)
     if _dead:
         gone = [i for i in final if i.get("url") in _dead]
         final = [i for i in final if i.get("url") not in _dead]
         for g in gone:
+            u = g.get("url")
+            if u not in tombs:
+                tombs[u] = {"since": today.isoformat(), "org": g.get("org"),
+                            "title": (g.get("title") or "")[:60]}
             log(f"DROP 원본 삭제(연속 404): {g.get('org')} / {(g.get('title') or '')[:40]}")
+    with open(tomb_path, "w", encoding="utf-8") as f:
+        json.dump(tombs, f, ensure_ascii=False, indent=1)
     for it in final:
         old = prev_by_id.get(it["id"])
         it["firstSeen"] = old.get("firstSeen", today.isoformat()) if old else today.isoformat()
