@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>수집 원천 — 포디엄</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Song+Myung&family=Cormorant:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+  <link rel="stylesheet" href="css/style.css?v=9">
+  <style>
+    .src-table { width:100%; border-collapse:collapse; font-size:0.86rem; }
+    .src-table th, .src-table td { text-align:left; padding:8px 10px; border-bottom:1px solid var(--line); }
+    .src-table th { color:var(--navy); font-size:0.78rem; }
+    .ok-dot { display:inline-block; width:8px; height:8px; border-radius:50%; margin-right:6px; }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="logo">포디엄<span class="accent">.</span><span class="beta">BETA</span></a>
+    <nav class="main-nav">
+      <a href="jobs.html">구인구직</a>
+      <a href="practice.html">연습실</a>
+      <a href="about.html">소개</a>
+    </nav>
+    <div class="header-actions">
+      <button class="btn-ghost" onclick="alert('로그인은 프로토타입에서 제공되지 않습니다.')">로그인</button>
+    </div>
+  </div>
+</header>
+
+<div class="page-head">
+  <div class="container">
+    <h1>수집 원천</h1>
+    <p class="desc">포디엄이 매일 확인하는 기관·게시판 전체 목록입니다. 공고는 항상 원천으로 연결됩니다.</p>
+  </div>
+</div>
+
+<div class="container" style="max-width:860px;padding-bottom:48px">
+  <div class="update-line" style="margin-top:20px"><span class="dot"></span><span id="collected-at"></span></div>
+  <table class="src-table" style="margin-top:12px">
+    <thead><tr><th>수집 원천</th><th>주기</th><th>이번 실행</th><th>수집</th></tr></thead>
+    <tbody id="src-rows"></tbody>
+  </table>
+  <p style="font-size:0.78rem;color:var(--ink-soft);margin-top:14px">
+    · '이번 실행'은 마지막 크롤(매일 18시 일괄 실행)에서 이 원천을 정상 확인했는지입니다. 주간 원천은 지정 요일에만 폴링하며, 그 사이엔 직전 수집분을 유지합니다.<br>
+    · 수집 0건은 오류가 아니라 그 시점에 음악 분야 공고가 없었다는 뜻입니다. 원천별 수집량은 헬스체크가 상시 감시합니다.
+  </p>
+</div>
+
+<footer class="site-footer">
+  <div class="container">
+    <span class="logo serif">포디엄<span class="accent">.</span></span><br>
+    클래식 음악인을 위한 공고 집약 플랫폼 · v2.0 · <a href="sources.html" style="color:inherit">수집 원천</a>
+  </div>
+</footer>
+
+<script>document.write('<scr'+'ipt src="data/official-data.js?t='+Math.floor(Date.now()/600000)+'"></scr'+'ipt>');</script>
+<script>
+  const D = window.CRAWLED || {};
+  document.getElementById("collected-at").textContent =
+    `마지막 수집 ${D.collectedAt || "-"} · 원천 ${(D.sources || []).length}곳`;
+  const POLL = { daily: "매일", weekly: "주간", seasonal: "시즌" };
+  document.getElementById("src-rows").innerHTML = (D.sources || [])
+    .map(s => `
+      <tr>
+        <td>${s.name}</td>
+        <td>${POLL[s.poll] || s.poll || "-"}</td>
+        <td>${s.skipped
+          ? `<span class="ok-dot" style="background:var(--gold, #b08d2f)"></span>이전 수집분 유지 (주기 외)`
+          : s.ok
+          ? `<span class="ok-dot" style="background:var(--green, #2e7d4f)"></span>확인됨 (${D.collectedAt || ""})`
+          : `<span class="ok-dot" style="background:var(--red, #b3402a)"></span>수집 실패`}</td>
+        <td>${s.kept ?? "-"}건${s.raw != null ? ` / 원본 ${s.raw}` : ""}</td>
+      </tr>`).join("");
+</script>
+<a class="feedback-fab" href="mailto:ohmjin3141@naver.com?subject=%ED%8F%AC%EB%94%94%EC%97%84%20%ED%94%BC%EB%93%9C%EB%B0%B1">피드백 보내기</a>
+</body>
+</html>

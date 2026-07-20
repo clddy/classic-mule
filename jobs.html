@@ -18,9 +18,7 @@
     <nav class="main-nav">
       <a href="jobs.html" class="active">구인구직</a>
       <a href="practice.html">연습실</a>
-      <a href="lessons.html">과외</a>
-      <a href="market.html">중고거래</a>
-      <a href="community.html">커뮤니티</a>
+      <a href="about.html">소개</a>
     </nav>
     <div class="header-actions">
       <button class="btn-ghost" onclick="alert('로그인은 프로토타입에서 제공되지 않습니다.')">로그인</button>
@@ -31,12 +29,7 @@
 <div class="page-head">
   <div class="container">
     <h1>구인구직</h1>
-    <p class="desc">시향·국공립 <b>공식 채용공고</b>(매일 자동 수집)와 개인·팀의 <b>소규모 구인·구직</b>을 한곳에서. 출처 태그로 구분됩니다.</p>
-    <div class="tabs">
-      <button class="tab active" id="tab-전체">전체</button>
-      <button class="tab" id="tab-구인">구인</button>
-      <button class="tab" id="tab-구직">구직</button>
-    </div>
+    <p class="desc">전국 교향악단·교육청·대학·교회의 <b>공식 채용·모집 공고</b>(매일 자동 수집)와 <b>직접 등록 공고</b>를 한곳에서. 모든 공고는 원천 기관 태그가 붙습니다.</p>
   </div>
 </div>
 
@@ -99,6 +92,7 @@
     <details class="crawl-detail" id="crawl-detail">
       <summary>수집 정보 — 어디서 모으나요?</summary>
       <div class="crawl-detail-body" id="crawl-detail-body"></div>
+      <a href="sources.html" style="display:inline-block;margin-top:8px;font-size:0.82rem">원천 기관 전체 목록 · 수집 시각 보기 →</a>
     </details>
   </main>
 </div>
@@ -124,20 +118,11 @@
     <button class="modal-close">✕</button>
     <h2 id="write-head">글 올리기</h2>
 
-    <!-- Step 1: 구분 -->
-    <div id="ws-1" class="write-step">
-      <div style="display:grid;gap:10px;margin-top:8px">
-        <button type="button" class="btn-outline ws-big" data-kind="offer" style="padding:18px;text-align:left;font-size:0.95rem"><b>구인</b> — 사람을 찾습니다<br><span style="font-size:0.78rem;color:var(--ink-soft)">객원·반주·강사 모집 공고를 올립니다</span></button>
-        <button type="button" class="btn-outline ws-big" data-kind="seek" style="padding:18px;text-align:left;font-size:0.95rem"><b>구직</b> — 자리를 찾습니다<br><span style="font-size:0.78rem;color:var(--ink-soft)">연주자 명부에 프로필로 올라갑니다 (검색되는 쪽)</span></button>
-      </div>
-    </div>
-
-    <!-- Step 2: 유형 (구인만) -->
-    <div id="ws-2" class="write-step" style="display:none">
-      <button type="button" class="btn-ghost" id="ws-back1" style="margin-bottom:8px">← 구분 다시 선택</button>
+    <!-- Step 1: 유형 선택 -->
+    <div id="ws-2" class="write-step">
       <div style="display:grid;gap:8px">
         <button type="button" class="btn-outline ws-big" data-wtype="연주" style="padding:14px;text-align:left"><b>연주</b> <span style="font-size:0.78rem;color:var(--ink-soft)">— 객원·단원·행사·반주</span></button>
-        <button type="button" class="btn-outline ws-big" data-wtype="오브리" style="padding:14px;text-align:left"><b>오브리</b> <span style="font-size:0.78rem;color:var(--ink-soft)">— 교회·웨딩·행사</span></button>
+        <button type="button" class="btn-outline ws-big" data-wtype="교회" style="padding:14px;text-align:left"><b>교회</b> <span style="font-size:0.78rem;color:var(--ink-soft)">— 반주·지휘·솔리스트 (상시·정기 포지션)</span></button>
         <button type="button" class="btn-outline ws-big" data-wtype="교육 — 대학" style="padding:14px;text-align:left"><b>교육 — 대학</b> <span style="font-size:0.78rem;color:var(--ink-soft)">— 교수·겸임·시간강사</span></button>
         <button type="button" class="btn-outline ws-big" data-wtype="교육 — 입시·전공" style="padding:14px;text-align:left"><b>교육 — 입시·전공</b> <span style="font-size:0.78rem;color:var(--ink-soft)">— 예중·예고·입시 레슨</span></button>
         <button type="button" class="btn-outline ws-big" data-wtype="교육 — 취미·입문" style="padding:14px;text-align:left"><b>교육 — 취미·입문</b> <span style="font-size:0.78rem;color:var(--ink-soft)">— 학원·방과후·문화센터</span></button>
@@ -231,10 +216,9 @@
       <div class="wf form-field" data-f="when">
         <label id="when-label">일시 (연주·근무일)</label>
         <input type="text" name="w-when" placeholder="예: 7/24(금) 저녁 공연">
-        <span class="hint" id="urgent-hint" style="display:none;color:var(--claret)">연주일이 임박했어요 — 아래 '상세 추가'에서 급구로 표시하면 눈에 띕니다</span>
       </div>
       <div class="wf form-field" data-f="regular">
-        <label>정기/단발</label>
+        <label id="regular-label">정기/단발</label>
         <select name="w-regular"><option value="단발">단발 (하루)</option><option value="정기">정기 (매주)</option></select>
       </div>
       <div class="wf form-field" data-f="rehearsal">
@@ -290,60 +274,9 @@
         <label>지원 방법·링크</label>
         <input type="text" name="w-applyLink" placeholder="지원 페이지 URL 또는 '이메일로 이력서 접수'">
       </div>
-      <div class="wf form-field" data-f="urgent">
-        <label style="display:flex;align-items:center;gap:6px;font-weight:400"><input type="checkbox" name="w-urgent" style="width:auto"> 급구로 표시 <span class="hint">(전화 연락처 필수)</span></label>
-      </div>
       <div class="wf form-field" data-f="body">
         <label>상세 내용</label>
         <textarea name="w-body" rows="4" placeholder="일정, 자격, 참고 사항 등"></textarea>
-      </div>
-      <!-- 구직(명부 프로필) 전용 -->
-      <div class="wf form-field" data-f="seekInstr">
-        <label>악기·분야 <span class="hint">복수 선택</span></label>
-        <div class="radio-row" style="flex-wrap:wrap" id="seek-instr-row">
-          <label><input type="checkbox" name="ws-i" value="현악" style="width:auto"> 현악</label>
-          <label><input type="checkbox" name="ws-i" value="목관" style="width:auto"> 목관</label>
-          <label><input type="checkbox" name="ws-i" value="금관" style="width:auto"> 금관</label>
-          <label><input type="checkbox" name="ws-i" value="타악" style="width:auto"> 타악</label>
-          <label><input type="checkbox" name="ws-i" value="건반" style="width:auto"> 건반</label>
-          <label><input type="checkbox" name="ws-i" value="성악" style="width:auto"> 성악</label>
-          <label><input type="checkbox" name="ws-i" value="지휘" style="width:auto"> 지휘</label>
-        </div>
-        <input type="text" name="w-instDetail2" placeholder="세부 악기 (예: 첼로)" style="margin-top:6px">
-      </div>
-      <div class="wf form-field" data-f="seekTypes">
-        <label>가능 유형 <span class="hint">복수 선택</span></label>
-        <div class="radio-row" style="flex-wrap:wrap">
-          <label><input type="checkbox" name="ws-t" value="객원·대타" style="width:auto"> 객원·대타</label>
-          <label><input type="checkbox" name="ws-t" value="오브리" style="width:auto"> 오브리</label>
-          <label><input type="checkbox" name="ws-t" value="반주" style="width:auto"> 반주</label>
-          <label><input type="checkbox" name="ws-t" value="레슨" style="width:auto"> 레슨</label>
-        </div>
-      </div>
-      <div class="wf form-field" data-f="seekRegions">
-        <label>가능 지역 <span class="hint">복수 선택</span></label>
-        <div class="radio-row" style="flex-wrap:wrap" id="seek-region-row">
-          <label><input type="checkbox" name="ws-r" value="서울" style="width:auto"> 서울</label>
-          <label><input type="checkbox" name="ws-r" value="경기" style="width:auto"> 경기</label>
-          <label><input type="checkbox" name="ws-r" value="인천" style="width:auto"> 인천</label>
-          <label><input type="checkbox" name="ws-r" value="충청권" style="width:auto"> 충청권</label>
-          <label><input type="checkbox" name="ws-r" value="영남권" style="width:auto"> 영남권</label>
-          <label><input type="checkbox" name="ws-r" value="호남권" style="width:auto"> 호남권</label>
-          <label><input type="checkbox" name="ws-r" value="강원" style="width:auto"> 강원</label>
-          <label><input type="checkbox" name="ws-r" value="제주" style="width:auto"> 제주</label>
-        </div>
-      </div>
-      <div class="wf form-field" data-f="seekEdu">
-        <label>학력·사사 <span class="hint">신뢰 마커 — 예: ○○예술대 석사 · ○○○ 사사</span></label>
-        <input type="text" name="w-seek-edu" maxlength="50" placeholder="○○예술대 석사">
-      </div>
-      <div class="wf form-field" data-f="seekCareer">
-        <label>경력 요약 <span class="hint">1~2줄</span></label>
-        <input type="text" name="w-seek-career" maxlength="80" placeholder="예: 시향 객원 3년, 교회 반주 5년">
-      </div>
-      <div class="wf form-field" data-f="seekWhen">
-        <label>가능 시기·요일</label>
-        <input type="text" name="w-seek-when" placeholder="예: 주말 전일, 평일 저녁">
       </div>
     </div>
   </div>
@@ -352,7 +285,7 @@
 <footer class="site-footer">
   <div class="container">
     <span class="logo serif">포디엄<span class="accent">.</span></span><br>
-    클래식 음악인을 위한 플랫폼 · 프로토타입 v0.15
+    클래식 음악인을 위한 공고 집약 플랫폼 · v2.0 · <a href="sources.html" style="color:inherit">수집 원천</a>
   </div>
 </footer>
 
@@ -360,8 +293,8 @@
 
 <script>document.write('<scr'+'ipt src="data/official-data.js?t='+Math.floor(Date.now()/600000)+'"></scr'+'ipt>');</script>
 <script src="js/data.js?v=4"></script>
-<script src="js/jobs.js?v=27"></script>
-<script src="js/write.js?v=2"></script>
+<script src="js/jobs.js?v=28"></script>
+<script src="js/write.js?v=3"></script>
 <script>
   // 상단: 최근 업데이트만 가볍게 / 하단: 수집처 상세(펼치면 어디서 모으는지)
   (function () {

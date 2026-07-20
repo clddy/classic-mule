@@ -42,7 +42,7 @@ const OFFICIAL_ITEMS = ((window.CRAWLED && window.CRAWLED.items) || []).map(j =>
 }));
 
 let COMMUNITY_ITEMS = JOBS.map(j => ({
-  key: "c" + j.id, src: "소규모", type: j.type === "offer" ? "구인" : "구직",
+  key: "c" + j.id, src: "소규모", type: "구인",   // v2.0: 예시 데이터는 구인만
   tier: j.tier || "연주",
   band: CAT2BAND[j.cat] || "기타",
   insts: j.instDetails || [j.instDetail], group: j.inst,
@@ -169,7 +169,7 @@ function renderInstChips() {
 function filtered() {
   const all = [...OFFICIAL_ITEMS, ...USER_POSTS];
   return all.filter(j => {
-    if (state.tab !== "전체" && j.type !== state.tab) return false;
+    if (j.type === "구직") return false;   // v2.0: 구직 게시판 종료 — 저장 데이터는 유지, 표시만 안 함 (Layer 3 프로필이 자리를 물려받을 예정)
     if (state.tiers.size && !state.tiers.has(j.tier)) return false;
     if (state.obri && !j.obri) return false;                       // 오브리(교회·행사)만
     if (state.noCert && j.certReq === "예") return false;          // 교원자격증 불필요한 자리만
@@ -218,6 +218,20 @@ const sortFns = {
   concert: (a, b) => (concertNum(a) - concertNum(b)) || byDeadline(a, b),
 };
 
+// 원천 기관명 태그 — [공식] 대신 어느 기관에서 수집했는지를 그대로 보여준다 (커버리지가 곧 제품)
+const SRC_ORG = {
+  "sejongpac.or.kr": "세종문화회관", "gojobs.go.kr": "나라일터", "goe.go.kr": "경기도교육청",
+  "work.sen.go.kr": "서울시교육청", "kbssymphony.org": "KBS교향악단", "hibrain.net": "하이브레인넷",
+  "artinfokorea.com": "아트인포", "artmore.kr": "아트모아", "cjob.co.kr": "기독정보넷",
+  "ice.go.kr": "인천교육청", "pen.go.kr": "부산교육청", "gwe.go.kr": "강원교육청",
+  "jbe.go.kr": "전북교육청", "jje.go.kr": "제주교육청", "sje.go.kr": "세종교육청",
+  "jne.go.kr": "전남교육청", "gbe.kr": "경북교육청", "cbe.go.kr": "충북교육청",
+  "gne.go.kr": "경남교육청", "dje.go.kr": "대전교육청", "bscc.or.kr": "부산문화회관",
+  "cwcf.or.kr": "창원문화재단", "gunsan.go.kr": "군산시", "music.snu.ac.kr": "서울대 음대",
+  "seoulphil.or.kr": "서울시향", "artsuwon.or.kr": "수원시립예술단",
+};
+const srcOrgTag = j => SRC_ORG[j.source] || sourceLabel(j) || (PORTAL_NAME[j.source] || "");
+
 function cardHTML(j) {
   const st = statusOf(j);
   const tags = `
@@ -225,14 +239,12 @@ function cardHTML(j) {
     <span class="tag ${TIER_CLS[j.tier] || "cat"}">${j.tier}</span>
     ${SHOW_AGE_BADGE && j.ageGroup === "미성년" ? `<span class="tag pos">미성년</span>` : ""}
     ${j.verifiedNote ? `<span class="tag ok">✓ 모집 확인 ${j.verifiedAt || ""}</span>` : ""}
-    ${j.type === "구직" ? `<span class="tag type-seek">구직</span>` : ""}
     <span class="tag cat">${bandLabel(j.band)}</span>
     ${j.subject && !j.insts.includes(j.subject) ? `<span class="tag inst">${j.subject}</span>` : ""}
     ${j.insts.map(i => `<span class="tag inst">${i}</span>`).join("")}
     ${(j.positions || []).filter(p => /수석|악장|차석/.test(p)).map(p => `<span class="tag pos">${p}</span>`).join("")}
     <span class="tag ${st.cls}">${st.label}</span>
     ${/제공/.test(j.instProvided || "") ? `<span class="tag provided">악기 제공</span>` : ""}
-    ${j.urgent ? `<span class="tag urgent">급구</span>` : ""}
     ${j.isNew ? `<span class="tag urgent">NEW</span>` : ""}`;
   const region = regionOf(j) !== "기타" ? `<span>${regionOf(j)}</span>` : "";
   const pay = okPay(j.pay) ? `<span class="pay">${cleanVal(j.pay)}</span>` : "";
@@ -247,9 +259,10 @@ function cardHTML(j) {
   const program = j.program
     ? `<div class="program-line"><b>연주곡</b>${j.program}</div>` : "";
   if (j.src === "공식") {
+    const orgTag = srcOrgTag(j);
     return `
     <article class="job-card${st.key === "마감" ? " closed" : ""}" data-okey="${j.key}">
-      <div class="top-row">${tags}</div>
+      <div class="top-row">${orgTag ? `<span class="tag src-official">${orgTag}</span>` : ""}${tags}</div>
       <h3>${j.title}</h3>
       ${program}
       <div class="meta">${meta}</div>
@@ -279,7 +292,7 @@ function renderList() {
   const list = filtered();
   // 직접 올린 공고(내 기기)를 최상단 고정 — 급구 먼저, 그다음 최신순
   const mine = list.filter(x => x.mine)
-    .sort((a, b) => (b.urgent ? 1 : 0) - (a.urgent ? 1 : 0) || b.cid - a.cid);
+    .sort((a, b) => b.cid - a.cid);
   const rest = list.filter(x => !x.mine);
   const oc = rest.filter(x => x.src === "공식").length;
   $("#result-count").innerHTML = `총 <strong>${list.length}</strong>건 (공식 ${oc} · 소규모 ${list.length - oc}) — 카드를 누르면 상세가 열립니다`;
@@ -307,15 +320,6 @@ function renderList() {
   });
 }
 
-function renderTabs() {
-  ["전체", "구인", "구직"].forEach(t => {
-    $(`#tab-${t}`).classList.toggle("active", state.tab === t);
-  });
-  const all = [...OFFICIAL_ITEMS, ...COMMUNITY_ITEMS];
-  $("#tab-전체").innerHTML = `전체 <span class="count">${all.length}</span>`;
-  $("#tab-구인").innerHTML = `구인 <span class="count">${all.filter(x => x.type === "구인").length}</span>`;
-  $("#tab-구직").innerHTML = `구직 <span class="count">${all.filter(x => x.type === "구직").length}</span>`;
-}
 
 // 단일 토글 필터 (오브리·교원자격증) — 다중선택 칩과 달리 boolean state
 function renderToggle(sel, label, key) {
@@ -326,9 +330,8 @@ function renderToggle(sel, label, key) {
 }
 
 function renderAll() {
-  renderTabs();
   renderChips("#filter-tier", TIERS, state.tiers);
-  renderToggle("#filter-obri", "교회·행사(오브리)만", "obri");
+  renderToggle("#filter-obri", "교회 공고만", "obri");   // 크롤 필드명(obri)은 유지 — 크롤러 무수정
   renderToggle("#filter-cert", "교원자격증 불필요만", "noCert");
   renderToggle("#filter-career", "경력 무관만", "noCareer");
   // 교원자격증·학위는 교육 공고에만 해당 — 교육 구분을 골랐을 때만 노출 (연주 찾는 사람에겐 소음)
@@ -490,14 +493,14 @@ function openOfficial(key) {
 function openDetail(cid) {
   const j = USER_POSTS.find(x => x.cid === cid) || COMMUNITY_ITEMS.find(x => x.cid === cid);
   if (!j) return;
+  if (j.type !== "구인") return;   // v2.0: 종료된 게시판의 레거시 글은 열지 않음 (데이터는 보존)
   $("#detail-tags").innerHTML = `
     ${j.sample ? `<span class="tag sample">예시</span>` : ""}
     ${j.mine ? `<span class="tag mine">내 공고</span>` : ""}
     <span class="tag ${TIER_CLS[j.tier] || "cat"}">${j.tier}</span>
     <span class="tag ${j.type === "구인" ? "type-offer" : "type-seek"}">${j.type}</span>
     <span class="tag cat">${bandLabel(j.band)}</span>
-    ${j.insts.map(i => `<span class="tag inst">${i}</span>`).join("")}
-    ${j.urgent ? `<span class="tag urgent">급구</span>` : ""}`;
+    ${j.insts.map(i => `<span class="tag inst">${i}</span>`).join("")}`;
   $("#detail-title").textContent = j.title;
   $("#detail-meta").innerHTML = metaRows(j) + `<dt>등록일</dt><dd>${j.date}</dd>`;
   $("#detail-body").textContent = j.body || shortSummary(j) || "";
@@ -543,9 +546,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (OFFICIAL_ITEMS.some(j => j.key === key)) openOfficial(key);
     else if (/^c\d+$/.test(key)) openDetail(+key.slice(1));   // 직접 등록 글 공유 링크
   }
-  ["전체", "구인", "구직"].forEach(t => {
-    $(`#tab-${t}`).addEventListener("click", () => { state.tab = t; renderAll(); });
-  });
   $("#search-input").addEventListener("input", (e) => { state.query = e.target.value.trim(); renderList(); });
   $("#sort-sel").addEventListener("change", (e) => { state.sort = e.target.value; renderList(); });
   $("#filter-reset").addEventListener("click", () => {
@@ -555,8 +555,12 @@ document.addEventListener("DOMContentLoaded", () => {
   });
   $("#btn-write").addEventListener("click", () => {
     $("#write-modal").classList.add("open");
-    if (window.PodiumWrite) PodiumWrite.reset();   // 스텝 1(구분 선택)부터
+    if (window.PodiumWrite) PodiumWrite.reset();   // 유형 선택부터
   });
+  if (sessionStorage.getItem("podium_open_write")) {   // 홈 '공고 올리기' 진입
+    sessionStorage.removeItem("podium_open_write");
+    $("#btn-write").click();
+  }
   document.querySelectorAll(".modal-backdrop").forEach(bd => {
     bd.addEventListener("click", (e) => { if (e.target === bd) bd.classList.remove("open"); });
     bd.querySelector(".modal-close").addEventListener("click", () => bd.classList.remove("open"));

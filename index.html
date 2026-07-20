@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>포디엄 — 클래식 음악인의 무대와 일자리</title>
+  <title>포디엄 — 클래식 공고, 한곳에</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Song+Myung&family=Cormorant:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-  <link rel="stylesheet" href="css/style.css?v=6">
+  <link rel="stylesheet" href="css/style.css?v=9">
 </head>
 <body>
 
@@ -18,9 +18,7 @@
     <nav class="main-nav">
       <a href="jobs.html">구인구직</a>
       <a href="practice.html">연습실</a>
-      <a href="lessons.html">과외</a>
-      <a href="market.html">중고거래</a>
-      <a href="community.html">커뮤니티</a>
+      <a href="about.html">소개</a>
     </nav>
     <div class="header-actions">
       <button class="btn-ghost" onclick="alert('로그인은 프로토타입에서 제공되지 않습니다.')">로그인</button>
@@ -30,105 +28,76 @@
 
 <section class="hero">
   <div class="container">
-    <p class="eyebrow">클래식 음악인을 위한 플랫폼</p>
-    <h1 class="serif">흩어진 무대를<br>한 <span class="accent">포디엄</span> 위에</h1>
-    <p>오케스트라 객원부터 입시 반주, 행사 연주, 레슨까지 —
-       단톡방과 지인 소개로만 돌던 기회를 한곳에 모았습니다.</p>
+    <p class="eyebrow">클래식 음악인을 위한 공고 집약 플랫폼</p>
+    <h1 class="serif">공고로 나오는 모든 기회를<br>한 <span class="accent">포디엄</span> 위에</h1>
+    <p>전국 교향악단·합창단·교육청·대학·교회의 채용·모집 공고를 매일 자동 수집합니다.
+       모든 공고는 원천 기관으로 연결됩니다.</p>
     <div class="hero-cta">
-      <a href="jobs.html"><button class="btn-primary">구인구직 보러가기</button></a>
-      <a href="jobs.html"><button class="btn-ghost">공고 올리기</button></a>
+      <a href="jobs.html"><button class="btn-primary">전체 공고·필터 →</button></a>
+      <a href="practice.html"><button class="btn-ghost">공공 연습 공간 보기</button></a>
     </div>
-  </div>
-</section>
-
-<section class="services">
-  <div class="container">
-    <h2 class="section-title">서비스</h2>
-    <p class="section-sub">구인구직을 시작으로 클래식 음악 생태계에 필요한 것들을 하나씩 만들어갑니다.</p>
-    <div class="card-grid">
-      <a href="jobs.html" class="service-card">
-        <span class="badge-live">운영중</span>
-        <span class="icon">01</span>
-        <h3>구인구직</h3>
-        <p>시향 공식 채용공고(자동 수집)부터 객원·반주·행사 소규모 구인까지 한곳에서.</p>
-      </a>
-      <a href="practice.html" class="service-card">
-        <span class="badge-live">베타</span>
-        <span class="icon">02</span>
-        <h3>연습실 매칭</h3>
-        <p>방음·채광·시설·남은 자리·월세까지 비교하고 고릅니다.</p>
-      </a>
-      <a href="lessons.html" class="service-card">
-        <span class="badge-live">베타</span>
-        <span class="icon">03</span>
-        <h3>과외 매칭</h3>
-        <p>사사 라인과 합격 실적으로 찾는 선생님, 조건으로 올리는 레슨 요청.</p>
-      </a>
-      <a href="market.html" class="service-card">
-        <span class="badge-live">베타</span>
-        <span class="icon">04</span>
-        <h3>중고거래</h3>
-        <p>감정서·시연·위탁 — 신뢰 장치를 갖춘 악기 거래.</p>
-      </a>
-    </div>
-    <a href="jobs.html" class="crawl-banner">
-      <div>
-        <h3>공식 채용공고 자동 수집</h3>
-        <p>전국 교향악단·합창단·오페라단 명부 75곳을 대조하고, 시향·국공립 홈페이지와 아트인포·아트모아 통합 채용포털의 모집 공고를 매일 18시에 자동 수집해 [공식] 태그로 정리합니다.</p>
-      </div>
-      <button class="btn-outline">공고 보러가기 →</button>
-    </a>
   </div>
 </section>
 
 <section class="recent">
   <div class="container">
     <h2 class="section-title">최신 공고</h2>
-    <p class="section-sub">지금 올라온 구인·구직 글입니다.</p>
+    <p class="section-sub" id="feed-sub">매일 18시 자동 수집 · 카드를 누르면 상세로 이동합니다.</p>
     <div class="recent-list" id="recent-list"></div>
     <div class="recent-more">
       <a href="jobs.html"><button class="btn-outline">전체 공고 보기 →</button></a>
+      <a href="jobs.html" onclick="sessionStorage.setItem('podium_open_write','1')"><button class="btn-ghost">공고 올리기</button></a>
     </div>
+  </div>
+</section>
+
+<section class="services">
+  <div class="container">
+    <a href="practice.html" class="crawl-banner">
+      <div>
+        <h3>공공 연습 공간 — 아무도 정리해주지 않던 정보</h3>
+        <p>생활문화센터·주민센터·문화의집의 저가·무료 연습 공간을 기관 공식 정보 기준으로 모았습니다. 신청 방법·자격·접수 기간까지.</p>
+      </div>
+      <button class="btn-outline">연습실 보러가기 →</button>
+    </a>
   </div>
 </section>
 
 <footer class="site-footer">
   <div class="container">
     <span class="logo serif">포디엄<span class="accent">.</span></span><br>
-    클래식 음악인을 위한 플랫폼 · 프로토타입 v0.15
+    클래식 음악인을 위한 공고 집약 플랫폼 · v2.0 · <a href="sources.html" style="color:inherit">수집 원천</a>
   </div>
 </footer>
 
 <script>document.write('<scr'+'ipt src="data/official-data.js?t='+Math.floor(Date.now()/600000)+'"></scr'+'ipt>');</script>
-<script src="js/data.js"></script>
 <script>
-  // 홈: 마감 임박 공식 공고 2건 + 최신 소규모 글 2건 프리뷰
+  // 홈 = 공고 피드: 유효(미마감) 공고 최신순 8건. 카드 클릭 → 구인구직 상세 딥링크.
   const _today = new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 10); // KST
-  const _official = ((window.CRAWLED && window.CRAWLED.items) || [])
-    .filter(j => j.deadline && j.deadline >= _today)
-    .sort((a, b) => a.deadline.localeCompare(b.deadline))
-    .slice(0, 2)
-    .map(j => ({
-      type: "offer", cat: "공식 채용", instDetail: (j.instDetails && j.instDetails[0]) || j.inst,
-      urgent: false, title: j.title, org: j.org, region: j.region, pay: `마감 ${j.deadline}`
-    }));
-  const recent = [..._official, ...[...JOBS].sort((a, b) => b.date.localeCompare(a.date)).slice(0, 4 - _official.length)];
-  document.getElementById("recent-list").innerHTML = recent.map(j => `
-    <a href="jobs.html" class="job-card" style="display:block">
+  const D = window.CRAWLED || {};
+  const items = (D.items || [])
+    .filter(j => !j.deadline || j.deadline >= _today)
+    .sort((a, b) => String(b.date || b.firstSeen || "").localeCompare(String(a.date || a.firstSeen || "")))
+    .slice(0, 8);
+  document.getElementById("feed-sub").textContent =
+    `마지막 수집 ${D.collectedAt || "-"} · 유효 공고 ${(D.items || []).filter(j => !j.deadline || j.deadline >= _today).length}건 — 카드를 누르면 상세로 이동합니다.`;
+  const dday = j => {
+    if (!j.deadline) return j.deadlineNote === "상시" ? "상시" : "";
+    const d = Math.round((new Date(j.deadline) - new Date(_today)) / 86400000);
+    return d === 0 ? "오늘 마감" : d <= 7 ? `D-${d}` : `~${+j.deadline.slice(5,7)}.${+j.deadline.slice(8,10)}`;
+  };
+  document.getElementById("recent-list").innerHTML = items.map(j => `
+    <a href="jobs.html#post=o${j.id}" class="job-card" style="display:block">
       <div class="top-row">
-        <span class="tag ${j.type === "offer" ? "type-offer" : "type-seek"}">${j.type === "offer" ? "구인" : "구직"}</span>
-        <span class="tag cat">${j.cat}</span>
-        <span class="tag inst">${j.instDetail}</span>
-        ${j.urgent ? `<span class="tag urgent">급구</span>` : ""}
+        <span class="tag src-official">${j.org}</span>
+        ${j.tier && j.tier !== "미분류" ? `<span class="tag cat">${j.tier}</span>` : ""}
+        ${(j.instDetails || []).slice(0, 2).map(i => `<span class="tag inst">${i}</span>`).join("")}
+        ${dday(j) ? `<span class="tag ${/D-|오늘/.test(dday(j)) ? "dd-soon" : "dd-open"}">${dday(j)}</span>` : ""}
       </div>
       <h3>${j.title}</h3>
-      <div class="meta">
-        <span>${j.org}</span>
-        <span>${j.region}</span>
-        <span class="pay">${j.pay}</span>
-      </div>
-    </a>`).join("");
+      <div class="meta"><span>${j.region || ""}</span>${j.subject ? `<span>${j.subject}</span>` : ""}</div>
+    </a>`).join("") || `<div class="empty">수집된 공고를 불러오지 못했습니다.</div>`;
 </script>
-<a class="feedback-fab" href="mailto:ohmjin3141@naver.com?subject=%ED%8F%AC%EB%94%94%EC%97%84%20%ED%94%84%EB%A1%9C%ED%86%A0%ED%83%80%EC%9E%85%20%ED%94%BC%EB%93%9C%EB%B0%B1">피드백 보내기</a>
+<a class="feedback-fab" href="mailto:ohmjin3141@naver.com?subject=%ED%8F%AC%EB%94%94%EC%97%84%20%ED%94%BC%EB%93%9C%EB%B0%B1">피드백 보내기</a>
 </body>
 </html>

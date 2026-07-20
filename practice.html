@@ -30,9 +30,7 @@
     <nav class="main-nav">
       <a href="jobs.html">구인구직</a>
       <a href="practice.html" class="active">연습실</a>
-      <a href="lessons.html">과외</a>
-      <a href="market.html">중고거래</a>
-      <a href="community.html">커뮤니티</a>
+      <a href="about.html">소개</a>
     </nav>
     <div class="header-actions">
       <button class="btn-ghost" onclick="alert('로그인은 프로토타입에서 제공되지 않습니다.')">로그인</button>
@@ -43,10 +41,10 @@
 <div class="page-head">
   <div class="container">
     <h1>연습실</h1>
-    <p class="desc">급할 땐 <b>즉시 예약</b>, 아낄 땐 <b>신청제·공공</b> — 아무도 정리해주지 않던 저가 공공 연습 공간까지 한곳에서. <span style="color:var(--ink-soft)">(공공은 기관 공식정보 실데이터)</span></p>
+    <p class="desc">민간은 <b>외부 예약처 링크</b>로, 공공은 <b>신청 방법</b>까지 — 아무도 정리해주지 않던 저가 공공 연습 공간까지 한곳에서. <span style="color:var(--ink-soft)">(공공은 기관 공식정보 실데이터)</span></p>
     <div class="tabs">
       <button class="tab active" id="tab-all">전체</button>
-      <button class="tab" id="tab-instant">⚡ 즉시 예약</button>
+      <button class="tab" id="tab-instant">외부 예약</button>
       <button class="tab" id="tab-public">🏛 신청제·공공</button>
     </div>
   </div>
@@ -132,15 +130,6 @@
         · 소음 민원 방지를 위해 방음문은 반드시 닫고 연주해주세요.<br>
         · 금관은 "금관 허용", 타악은 "타악 허용" 표기 공간에서만 가능합니다.
       </div>
-      <h3 style="font-size:0.95rem;color:var(--navy);margin:14px 0 6px">환불 규정 (예시)</h3>
-      <p style="font-size:0.76rem;color:var(--ink-soft);margin:0 0 6px">아래는 예시 규정입니다 — <b>각 공간의 자체 환불 정책이 우선</b>하니 예약 전 반드시 확인하세요. 포디엄은 결제 당사자가 아닙니다.</p>
-      <dl class="detail-meta" style="margin-bottom:16px">
-        <dt>7일 전까지</dt><dd>100% 환불</dd>
-        <dt>3일 전까지</dt><dd>70% 환불</dd>
-        <dt>전날</dt><dd>50% 환불</dd>
-        <dt>이용 당일</dt><dd>환불 불가</dd>
-        <dt>결제 후 2시간 내</dt><dd>100% 환불 (이용 전에 한함)</dd>
-      </dl>
     </div>
     <div id="rm-public-note" style="display:none" class="apply-line"></div>
     <div class="modal-actions" id="rm-actions"></div>
@@ -163,15 +152,8 @@
         <div class="form-field"><label>역에서 도보 (분)</label><input type="number" name="h-walk" min="1" max="40" placeholder="예: 4"></div>
       </div>
       <div class="form-row">
-        <div class="form-field">
-          <label>예약 방식</label>
-          <select name="h-booking">
-            <option value="문의">예약 문의 (전화·오픈채팅)</option>
-            <option value="외부링크">외부 예약 링크 (네이버 예약 등)</option>
-            <option value="승인후확정">신청 후 승인 확정</option>
-          </select>
-        </div>
-        <div class="form-field"><label>예약 링크·연락처</label><input type="text" name="h-book-to" maxlength="80" placeholder="URL 또는 전화번호"></div>
+        <div class="form-field"><label>외부 예약 링크 <span class="hint">(네이버 예약·자체 페이지 등 — 예약은 그곳에서)</span></label><input type="text" name="h-book-to" maxlength="120" placeholder="https://…"></div>
+        <div class="form-field"><label>문의 전화 <span class="hint">(선택)</span></label><input type="tel" name="h-phone2" maxlength="20" placeholder="010-0000-0000"></div>
       </div>
       <div class="form-row">
         <div class="form-field"><label>월 고정 (만원, 없으면 비움)</label><input type="number" name="h-monthly" min="0" step="0.5"></div>
@@ -223,7 +205,7 @@
 </div>
 
 <footer class="site-footer">
-  <div class="container"><span class="logo serif">포디엄<span class="accent">.</span></span><br>클래식 음악인을 위한 플랫폼 · 프로토타입 v0.15</div>
+  <div class="container"><span class="logo serif">포디엄<span class="accent">.</span></span><br>클래식 음악인을 위한 공고 집약 플랫폼 · v2.0 · <a href="sources.html" style="color:inherit">수집 원천</a></div>
 </footer>
 
 <a class="feedback-fab" href="mailto:ohmjin3141@naver.com?subject=%ED%8F%AC%EB%94%94%EC%97%84%20%EC%97%B0%EC%8A%B5%EC%8B%A4%20%ED%94%BC%EB%93%9C%EB%B0%B1">피드백 보내기</a>
@@ -236,7 +218,8 @@
 <script src="data/practice-instant.js?v=20260716d"></script>
 <script src="data/practice-coords.js?v=20260716d"></script>
 <script>
-// ===== 연습실 통합 보드 — '대여 방식' 축: 즉시 예약(instant, 민간) / 신청제·공공(public) =====
+// ===== 연습실 통합 보드 — '대여 방식' 축: 외부 예약(instant, 민간=링크로 연결만) / 신청제·공공(public) =====
+// v2.0: 포디엄은 결제·예약을 다루지 않는다 — 민간은 외부 예약처 링크, 공공은 신청 방법 집약.
 // 공공 = 실데이터 (큐레이션 practice-public.js + 서울시 공공서비스예약 practice-yeyak.js).
 // 민간 = 호스트 직접 등록 원칙 (타 플랫폼 크롤 금지). 등록 예시 1건은 참고용(sample).
 const esc = s => String(s ?? "").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
@@ -245,7 +228,7 @@ const esc = s => String(s ?? "").replace(/&/g,"&amp;").replace(/</g,"&lt;").repl
 const SAMPLE_INSTANT = [{
   cat: "instant", sample: true,
   name: "서초 뮤직스페이스 3호실", region: "서초구", station: "교대역", walkMin: 4, floor: "지상 3층", photos: 4,
-  reviews: 41, likes: 230, book: "문의", minHours: 1, elev: true,
+  reviews: 41, likes: 230, book: "외부링크", bookTo: null, minHours: 1, elev: true,
   size: "5평(16.5㎡)", monthly: 25, hourly: 0.4, nego: true, modes: ["월 고정", "시간제"],
   soundDoor: true, night: "22시까지", windowLayer: "3중창", light: "남향 · 채광 좋음", vent: "전열교환 환기",
   humid: true, h24: false, allow: ["성악·앙상블 허용"], equip: ["그랜드피아노"], slots: 2,
@@ -342,7 +325,7 @@ function allRooms(){ return [...HOST_ROOMS, ...INSTANT_ALL, ...SAMPLE_INSTANT, .
 
 // ---------- 필터 (구인구직란과 동일 체계) ----------
 // '타악 허용'은 확인된 페인포인트라 최상단·강조(hot)
-const CATS = [["instant","⚡ 즉시 예약"], ["public","🏛 신청제·공공"]];
+const CATS = [["instant","외부 예약"], ["public","🏛 신청제·공공"]];
 const ALLOWS = ["타악 허용", "금관 허용", "성악·앙상블 허용", "대편성 허용"];
 const EQUIPS = ["마림바", "팀파니", "그랜드피아노", "업라이트피아노", "드럼"];
 const PRICES = ["무료", "유료"];
@@ -550,7 +533,7 @@ const sortFns = {
 // ---------- 카드 ----------
 const catBadge = r => r.cat === "public"
   ? `<span class="tag src-official">🏛 신청제·공공</span>`
-  : `<span class="tag ok">⚡ 즉시 예약</span>`;
+  : `<span class="tag ok">외부 예약</span>`;
 const priceBadge = r => (r.free || r.price === "무료") ? `<span class="tag free">무료</span>` : "";
 
 // 신청제는 구조적으로 채용공고와 같다 — 구인구직에서 검증한 마감 D-day 뱃지 UX를 재활용
@@ -616,7 +599,7 @@ function cardInstant(r, i){
   ].filter(Boolean).join("");
   const ax = axesOf(r);
   // 예약 방식 — 결제 기능이 있는 척하지 않는다: 문의 / 외부 예약 링크 / 승인 후 확정
-  const bookLabel = r.book === "외부링크" ? "외부 예약" : (r.book === "승인후확정" || r.instant === false) ? "신청 후 승인" : "예약 문의";
+  const bookLabel = "외부 예약";   // 민간 = 외부 예약처 링크로 연결 (포디엄은 예약을 다루지 않음)
   return `
   <article class="job-card${r.sample?" is-sample":""}" data-i="${i}">
     ${r.photoUrl?`<div class="room-photo" style="background:url('${esc(r.photoUrl)}') center/cover"></div>`
@@ -633,12 +616,7 @@ function cardInstant(r, i){
     <h3>${esc(r.name)} ${r.reviews?`<span style="font-weight:400;font-size:0.8rem;color:var(--ink-soft)">⭐ 후기 ${r.reviews} · ♥ ${r.likes}</span>`:""}</h3>
     <div class="price-line">${priceHtml}</div>
     <div class="spec-grid">${specs}</div>
-    ${(()=>{ // 카드 레벨 행동 버튼 — 원천으로의 클릭이 곧 전환 (회색 출처 글씨는 CTA로 안 읽힘)
-      const tel=(r.bookTo||phoneOf(r)||"").match(/0\d{1,2}-?\d{3,4}-?\d{4}/);
-      if (r.book==="외부링크"&&r.bookTo) return `<div class="modal-actions" style="margin-top:10px;justify-content:flex-start"><a class="btn-primary" href="${esc(r.bookTo)}" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="text-decoration:none;font-size:0.82rem;padding:7px 14px">예약 페이지로 →</a></div>`;
-      if (tel) return `<div class="modal-actions" style="margin-top:10px;justify-content:flex-start"><a class="btn-primary" href="tel:${tel[0].replace(/-/g,"")}" onclick="event.stopPropagation()" style="text-decoration:none;font-size:0.82rem;padding:7px 14px">📞 전화 문의</a></div>`;
-      return "";
-    })()}
+    ${/^https?:/.test(r.bookTo||"") ? `<div class="modal-actions" style="margin-top:10px;justify-content:flex-start"><a class="btn-primary" href="${esc(r.bookTo)}" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="text-decoration:none;font-size:0.82rem;padding:7px 14px">예약 페이지로 →</a></div>` : ""}
     <div class="source-line"><span>${esc(r.notes||"")}</span>${r.src?`<span>출처 <span class="src">${esc(r.src)}</span> · 확인 ${esc(r.verified||"")}</span>`:""}</div>
   </article>`;
 }
@@ -671,12 +649,12 @@ function render(){
                 instant: all.filter(r=>r.cat==="instant").length,
                 public: all.filter(r=>r.cat==="public").length };
   $("#tab-all").innerHTML = `전체 <span class="count">${cnt.all}</span>`;
-  $("#tab-instant").innerHTML = `⚡ 즉시 예약 <span class="count">${cnt.instant}</span>`;
+  $("#tab-instant").innerHTML = `외부 예약 <span class="count">${cnt.instant}</span>`;
   $("#tab-public").innerHTML = `🏛 신청제·공공 <span class="count">${cnt.public}</span>`;
   for (const t of ["all","instant","public"]) $(`#tab-${t}`).classList.toggle("active", st.tab===t);
   CUR = all.filter(pass).sort(sortFns[st.sort] || sortFns.reco);
   const nPub = CUR.filter(r=>r.cat==="public").length, nIns = CUR.length - nPub;
-  $("#result-count").innerHTML = `총 <strong>${CUR.length}</strong>곳 <span style="color:var(--ink-soft);font-size:0.8rem">— 즉시 예약 ${nIns} · 신청제·공공 ${nPub}</span> — 카드를 누르면 상세와 예약 방법이 열립니다`;
+  $("#result-count").innerHTML = `총 <strong>${CUR.length}</strong>곳 <span style="color:var(--ink-soft);font-size:0.8rem">— 외부 예약 ${nIns} · 신청제·공공 ${nPub}</span> — 카드를 누르면 상세와 예약 방법이 열립니다`;
   // 0건 화면 = 수요 수집 장치: 어떤 조건 조합에 수요가 있는지가 프로토타입에서 제일 갖고 싶은 신호
   $("#room-list").innerHTML = CUR.length
     ? CUR.map((r,i)=> r.cat==="public" ? cardPublic(r,i) : cardInstant(r,i)).join("")
@@ -764,7 +742,7 @@ function openRoom(r){
                     r.windowLayer||null ].filter(Boolean).join(" · ") || "미기재"],
       ["채광/환기", [r.light,r.vent].filter(Boolean).join(" · ")],
       ["주소", r.addr], ["문의", phoneOf(r)],
-      ["예약 방식", `${r.book==="외부링크"?"외부 예약 링크":r.book==="승인후확정"||r.instant===false?"신청 후 승인":"전화·문의"} · 최소 ${r.minHours||1}시간`],
+      ["예약 방식", `외부 예약${r.bookTo?"":" (링크 미등록)"} · 최소 ${r.minHours||1}시간`],
       ["영업시간", r.h24||r.night==="24시간"?"24시간":(r.src?null:"공간 문의")],
       ["출처", r.src?`${r.src} (확인 ${r.verified||"-"})`:null],
       ["남은 자리", r.slots!==undefined?(r.slots>0?`${r.slots}자리`:"만실 (대기 등록 가능)"):null],
@@ -779,11 +757,9 @@ function openRoom(r){
   const tel = (r.bookTo || r.phone || "").match(/0\d{1,2}-?\d{3,4}-?\d{4}/);
   $("#rm-actions").innerHTML = (isPub || r.booking_url)
     ? `${delHtml}<a class="btn-primary" href="${esc(r.booking_url)}" target="_blank" rel="noopener" style="text-decoration:none">${isPub?"예약 페이지 가기":"원문 보기"} ↗</a>`
-    : r.book === "외부링크" && r.bookTo
+    : /^https?:/.test(r.bookTo || "")
     ? `${delHtml}<a class="btn-primary" href="${esc(r.bookTo)}" target="_blank" rel="noopener" style="text-decoration:none">예약 페이지 가기 ↗</a>`
-    : tel
-    ? `${delHtml}<a class="btn-primary" href="tel:${tel[0].replace(/-/g,"")}" style="text-decoration:none">📞 예약 문의</a>`
-    : `${delHtml}<button class="btn-primary" onclick="alert('이 공간은 전화·문의 예약입니다 — 상세의 연락처로 문의하세요.')">예약 문의</button>`;
+    : delHtml || "";
   const del = $("#rm-del");
   if (del) del.addEventListener("click", ()=>{
     if (!confirm("이 공간 등록을 삭제할까요?")) return;
@@ -826,7 +802,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
       id:"h"+Date.now(), cat:"instant", mine:true,
       name:v("h-name"), region:v("h-region"), addr:v("h-addr"),
       station:v("h-station")||null, walkMin:+v("h-walk")||null,
-      book:v("h-booking"), bookTo:v("h-book-to")||null, minHours:+v("h-min")||1,
+      book:"외부링크", bookTo:v("h-book-to")||null, phone:v("h-phone2")||null, minHours:+v("h-min")||1,
       monthly:+v("h-monthly")||null, hourly:v("h-hourly")?+v("h-hourly")/10:null,
       floor:v("h-floor"), elev:v("h-floor")==="엘리베이터",
       soundDoor:f.elements["h-s-door"].checked, night:v("h-night")||null,
