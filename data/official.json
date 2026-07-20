@@ -1,5 +1,5 @@
 {
- "collectedAt": "2026-07-19 18:01",
+ "collectedAt": "2026-07-20 18:02",
  "sourceCount": 80,
  "okCount": 80,
  "instTotal": 75,
@@ -73,7 +73,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 13,
    "kept": 0
   },
   {
@@ -82,7 +82,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 1,
    "kept": 0
   },
   {
@@ -91,8 +91,8 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
-   "kept": 0
+   "raw": 15,
+   "kept": 1
   },
   {
    "id": "artsuwon",
@@ -109,7 +109,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 10,
    "kept": 0
   },
   {
@@ -127,8 +127,8 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
-   "kept": 0
+   "raw": 27,
+   "kept": 1
   },
   {
    "id": "ulsan",
@@ -145,7 +145,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 20,
    "kept": 0
   },
   {
@@ -154,8 +154,8 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
-   "kept": 1
+   "raw": 10,
+   "kept": 2
   },
   {
    "id": "knso",
@@ -163,7 +163,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 15,
    "kept": 0
   },
   {
@@ -208,7 +208,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 20,
    "kept": 0
   },
   {
@@ -727,6 +727,92 @@
  ],
  "items": [
   {
+   "id": "413cd4facfdd4f23",
+   "org": "부산문화회관(시립예술단)",
+   "region": "부산",
+   "source": "bscc.or.kr",
+   "title": "<2026년 제37회 부산합창제> 참가단체 모집 공고",
+   "url": "https://www.bscc.or.kr/05_community/?mcode=0405010000&mode=2&no=15874&page=1",
+   "date": "2026-07-20",
+   "deadline": "2026-08-21",
+   "kind": "기타",
+   "tier": "미분류",
+   "obri": false,
+   "certReq": "무관",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "ageGroup": "성인",
+   "inst": "성악",
+   "instDetails": [],
+   "personnel": null,
+   "subject": null,
+   "channel": "bscc",
+   "layer": "B",
+   "bodyExcerpt": "제37회 부산합창제 참가단체 모집 공고 · 다음과 같이 모집합니다 · 1. 모집부문 : 부산 지역을 연고로 한 20인 이상 합창단 (혼성/시니어/남성/여성) · [기타] 2026년 제69회 부산광역시 문화상 후보자 추천 접수 안내",
+   "deadlineFrom": "page",
+   "firstSeen": "2026-07-20",
+   "isNew": true,
+   "extVer": 23
+  },
+  {
+   "id": "af24aba8a5bc53b4",
+   "org": "창원문화재단(시립예술단)",
+   "region": "경남",
+   "source": "cwcf.or.kr",
+   "title": "창원문화재단 대표이사 및 실·관장 공개모집 채용 공고",
+   "url": "https://www.cwcf.or.kr/commu/notice_view.asp?skey=&sword=&BCATE=BD00001&BSUBCATE=&place_idx=&page=1&idx=22738&bidx=2056",
+   "date": "2026-07-20",
+   "deadline": "2026-08-04",
+   "kind": "기타",
+   "tier": "미분류",
+   "obri": false,
+   "certReq": "무관",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "ageGroup": "성인",
+   "inst": "전체",
+   "instDetails": [],
+   "personnel": null,
+   "subject": null,
+   "channel": "cwcf",
+   "layer": "B",
+   "bodyExcerpt": "창원문화재단 대표이사 및 실·관장 공개모집 채용 공고(표지)★_1.png",
+   "deadlineFrom": "attachment",
+   "firstSeen": "2026-07-20",
+   "isNew": true,
+   "extVer": 23
+  },
+  {
+   "id": "88da7d4b233f27b0",
+   "org": "아트모아(예술 일자리 포털)",
+   "region": "기타",
+   "source": "artmore.kr",
+   "title": "[프란츠클래식] 음악스튜디오 리셉셔니스트 신입/경력 모집",
+   "url": "https://www.artmore.kr/sub/recruit/search_view.do?rec_idx=94132",
+   "date": "2026-07-19",
+   "deadline": null,
+   "kind": "기타",
+   "tier": "미분류",
+   "obri": false,
+   "certReq": "무관",
+   "degreeReq": "무관",
+   "careerReq": "무관",
+   "ageGroup": "성인",
+   "inst": "전체",
+   "instDetails": [],
+   "personnel": null,
+   "subject": null,
+   "officialUrl": "https://i08wliyx.ninehire.site/job_posting/aM8jJ0DH",
+   "channel": "artmore",
+   "layer": "A",
+   "qualification": "경력 경력무관 학력 대학교(4년)",
+   "bodyExcerpt": "[프란츠클래식] 음악스튜디오 리셉셔니스트 신입/경력 모집 · 음악스튜디오 프란츠스튜디오 리셉셔니스트 신입/경력 모집 · 신입 급여 (주 40시간, 5일제 기준) : 월 2,156,880원(세전) · 자사 채용 페이지 지원",
+   "deadlineNote": "상시",
+   "firstSeen": "2026-07-20",
+   "isNew": true,
+   "extVer": 23
+  },
+  {
    "id": "ce075182cbd6deae",
    "org": "아트인포(클래식 채용)",
    "region": "대구",
@@ -1105,36 +1191,6 @@
     "이 참여하는 피아노 워크숍"
    ],
    "firstSeen": "2026-07-17",
-   "isNew": false,
-   "extVer": 23
-  },
-  {
-   "id": "eba70f97d0ee5b1d",
-   "org": "아트모아(예술 일자리 포털)",
-   "region": "기타",
-   "source": "artmore.kr",
-   "title": "[뮤직앤아트컴퍼니] 공연기획 경력직 채용공고 (클래식|국내외)",
-   "url": "https://www.artmore.kr/sub/recruit/search_view.do?rec_idx=94109",
-   "date": "2026-07-16",
-   "deadline": null,
-   "kind": "기타",
-   "tier": "미분류",
-   "obri": false,
-   "certReq": "무관",
-   "degreeReq": "무관",
-   "careerReq": "미기재",
-   "ageGroup": "성인",
-   "inst": "전체",
-   "instDetails": [],
-   "personnel": null,
-   "subject": null,
-   "channel": "artmore",
-   "layer": "A",
-   "deadlineNote": "상시",
-   "qualification": "경력 경력 3년 학력 대학교(4년)",
-   "bodyExcerpt": "[뮤직앤아트컴퍼니] 공연기획 경력직 채용공고 (클래식|국내외) · 혁신적인 태도로 도전하고 헌신하며 클래식 음악 산업의 미래를 도모하는 뮤직앤아트컴퍼니에서 클래식 음악 현장을 함께 만들어 갈 인재를 모집합니다. · 근무형태: 정규직 (수습기간 3개월) · 급여: 면접 후 협의",
-   "applyEmail": "mnac@mnac.co.kr",
-   "firstSeen": "2026-07-16",
    "isNew": false,
    "extVer": 23
   },
