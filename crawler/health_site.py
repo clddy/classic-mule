@@ -21,13 +21,14 @@ DATA_FILES = [
 ]
 
 # 각 페이지에 최소한 이 요소는 있어야 '렌더된 것'으로 본다.
+# v2.0(2026-07-21): lessons/market/community는 리다이렉트 스텁 — 점검 대상에서 제외
+# (헤드리스가 열면 meta refresh로 index를 또 점검할 뿐이다). about·sources 신설 페이지 추가.
 PAGES = [
-    ("index.html", None),
+    ("index.html", "#recent-list"),
     ("jobs.html", "#write-form"),
     ("practice.html", None),
-    ("lessons.html", None),
-    ("market.html", None),
-    ("community.html", None),
+    ("about.html", None),
+    ("sources.html", "#src-rows"),
 ]
 
 # 외부에서 끌어오는 것 — 우리 배포 문제가 아니므로 404 집계에서 뺀다.
@@ -128,12 +129,13 @@ def _check_one(rep, browser, path, must):
 
 
 def _check_submit(rep, browser):
-    """유저 제출 플로우 E2E — 등록 폼 스펙 v1(스텝 폼: 구분→유형→폼) 기준.
+    """유저 제출 플로우 E2E — v2.0 스텝 폼(유형 선택 → 폼) 기준.
 
-    구인→연주 경로로 필수 필드만 채워 등록하고 board 반영을 확인한다.
+    '연주' 유형 경로로 필수 필드만 채워 등록하고 board 반영을 확인한다.
     (js/write.js 의 매트릭스 M["연주"].req 가 이 목록의 원본 — 폼 스펙이 바뀌면
-    여기도 같이 바꿔야 한다. 2026-07-18 옛 단일 폼 기준 체크가 스펙 v1 배포 후
-    'w-tier 사라짐' HIGH 를 오검출한 전례.)
+    여기도 같이 바꿔야 한다. 전례 2건: 2026-07-18 옛 단일 폼 기준이 스펙 v1 배포 후
+    'w-tier 사라짐' 오검출, 2026-07-21 v1 기준이 v2.0(구직 Step1 삭제) 배포 후
+    "Step1 '구인' 버튼이 없다" 오검출.)
     등록된 글은 이 헤드리스 브라우저의 localStorage에만 남고 세션 종료 시 사라진다.
     """
     ctx = browser.new_context(viewport={"width": 390, "height": 844})
@@ -152,17 +154,12 @@ def _check_submit(rep, browser):
             rep.add("HIGH", "제출", "글쓰기 폼(#write-form)이 없다")
             return
 
-        # 스텝 진입: 모달 열기 → 구분(구인) → 유형(연주) → 폼 조립
+        # 스텝 진입 (v2.0): 모달 열기 → 유형(연주) 선택 → 폼 조립. 구직 Step은 폐지됨.
         page.evaluate("window.PodiumWrite && PodiumWrite.reset();"
                       "document.querySelector('#write-modal').classList.add('open')")
-        s1 = page.locator("#ws-1 button[data-kind='offer']")
-        if s1.count() == 0:
-            rep.add("HIGH", "제출", "Step1 '구인' 버튼이 없다 (스텝 폼 구조 변경?)")
-            return
-        s1.click()
         s2 = page.locator("#ws-2 button[data-wtype='연주']")
         if s2.count() == 0:
-            rep.add("HIGH", "제출", "Step2 '연주' 유형 버튼이 없다")
+            rep.add("HIGH", "제출", "유형 선택의 '연주' 버튼이 없다 (스텝 폼 구조 변경?)")
             return
         s2.click()
         page.wait_for_timeout(300)

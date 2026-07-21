@@ -116,6 +116,14 @@ def check_sources(rep, doc, hist, today):
         past = [e for e in h["history"] if e.get("date") != today]
         ok_past = [e for e in past if e.get("ok")]
 
+        # 주기 외 승계(skipped)는 '관측'이 아니다 — 오늘 폴링하지 않고 이전 수집분을
+        # 물려받은 것뿐이므로 baseline 비교도, 히스토리 적재도 하지 않는다.
+        # (2026-07-21 사고: skipped 8곳의 raw=0을 실측으로 읽어 '파서 깨짐' HIGH 오탐 일제 발생.
+        #  적재까지 해버리면 raw 0이 쌓여 median 자체가 오염된다.)
+        if s.get("skipped"):
+            h["history"] = past[-KEEP_DAYS:]
+            continue
+
         if not s.get("ok"):
             # --- HTTP 상태 감시 ---
             kind, transient = classify_error(s.get("error"))
