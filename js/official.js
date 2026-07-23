@@ -5,12 +5,12 @@ const DATA = window.CRAWLED || { collectedAt: "-", okCount: 0, sourceCount: 0, i
 const O_INSTS = ["현악", "목관", "금관", "타악", "건반", "성악", "지휘", "전체"];
 const O_REGIONS = ["서울", "경기", "인천", "대전", "대구", "부산", "기타"];
 const O_KINDS = ["단원", "교수", "직원", "기타"];
-const O_STATUS = ["접수중", "마감임박", "확인필요", "마감"];
+const O_STATUS = ["접수중", "마감임박", "기한 미정", "마감"];
 
 const oState = { insts: new Set(), regions: new Set(), kinds: new Set(["단원"]), status: new Set(), query: "" };
 
 function statusOf(j) {
-  if (!j.deadline) return { key: "확인필요", label: "기한 확인필요", cls: "dd-always", dday: 9998 };
+  if (!j.deadline) return { key: "기한 미정", label: "기한 미정", cls: "dd-always", dday: 9998 };
   const diff = Math.round((new Date(j.deadline) - new Date(TODAY)) / 86400000);
   if (diff < 0) return { key: "마감", label: "마감", cls: "dd-closed", dday: 9999 };
   if (diff <= 7) return { key: "마감임박", label: `마감임박 D-${diff}`, cls: "dd-soon", dday: diff };

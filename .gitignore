@@ -17,3 +17,9 @@ crawler/.geocode-cache.json
 data/health.log
 data/health_history.json
 data/run_daily.log
+
+# 메일 발송 도구는 로컬 전용 (커밋 금지 약속)
+tools/
+# 크롤러 주소 캐시
+crawler/.addr_found.json
+crawler/.addr_ok.json

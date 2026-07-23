@@ -108,9 +108,10 @@ const REGION_LIST = ["서울", "경기", "인천", "강원", "대전", "세종",
 // 통합 전에 수집된 글은 region이 아직 '광주'·'전남'이다 — 다음 크롤 전까지 화면에서 옮겨 읽는다.
 const REGION_MIGRATE = { "광주": "광주·전남", "전남": "광주·전남" };
 function regionOf(j){ const r = j.region || "기타"; return REGION_MIGRATE[r] || r; }
-const STATUSES = ["접수중", "마감임박", "확인필요", "마감"];
+const STATUSES = ["접수중", "마감임박", "기한 미정", "마감"];
 
-const state = { tab: "전체", tiers: new Set(), bands: new Set(), insts: new Set(), regions: new Set(), status: new Set(), provided: new Set(), obri: false, noCert: false, noCareer: false, query: "", sort: "latest" };
+// 기본 정렬은 마감 임박순 — '언제까지 지원 가능한가'가 이 보드의 1차 정보다 (2026-07-23)
+const state = { tab: "전체", tiers: new Set(), bands: new Set(), insts: new Set(), regions: new Set(), status: new Set(), provided: new Set(), obri: false, noCert: false, noCareer: false, query: "", sort: "deadline" };
 const $ = (s) => document.querySelector(s);
 
 // 상태 어휘 통일: 사용자가 알고 싶은 건 '지금 지원 가능한가'와 '언제까지인가' 둘뿐.
@@ -126,7 +127,8 @@ function statusOf(j) {
     } else if (j.deadlineText === "상시") {
       return { key: "접수중", label: "상시", cls: "dd-open", dday: 9000 };
     } else {
-      return { key: "확인필요", label: "기한 확인필요", cls: "dd-always", dday: 9998 };
+      // '확인필요'는 사용자에게 내보이지 않는다 — 크롤러가 찾을 때까지의 임시 표기만.
+      return { key: "기한 미정", label: "기한 미정", cls: "dd-always", dday: 9998 };
     }
   }
   const diff = Math.round((new Date(base) - new Date(TODAY)) / 86400000);
@@ -221,8 +223,8 @@ const sortFns = {
 // 원천 기관명 태그 — [공식] 대신 어느 기관에서 수집했는지를 그대로 보여준다 (커버리지가 곧 제품)
 const SRC_ORG = {
   "sejongpac.or.kr": "세종문화회관", "gojobs.go.kr": "나라일터", "goe.go.kr": "경기도교육청",
-  "work.sen.go.kr": "서울시교육청", "kbssymphony.org": "KBS교향악단", "hibrain.net": "하이브레인넷",
-  "artinfokorea.com": "아트인포", "artmore.kr": "아트모아", "cjob.co.kr": "기독정보넷",
+  "work.sen.go.kr": "서울시교육청", "kbssymphony.org": "KBS교향악단",
+  "cjob.co.kr": "기독정보넷",
   "ice.go.kr": "인천교육청", "pen.go.kr": "부산교육청", "gwe.go.kr": "강원교육청",
   "jbe.go.kr": "전북교육청", "jje.go.kr": "제주교육청", "sje.go.kr": "세종교육청",
   "jne.go.kr": "전남교육청", "gbe.kr": "경북교육청", "cbe.go.kr": "충북교육청",
@@ -230,7 +232,7 @@ const SRC_ORG = {
   "cwcf.or.kr": "창원문화재단", "gunsan.go.kr": "군산시", "music.snu.ac.kr": "서울대 음대",
   "seoulphil.or.kr": "서울시향", "artsuwon.or.kr": "수원시립예술단",
 };
-const srcOrgTag = j => SRC_ORG[j.source] || sourceLabel(j) || (PORTAL_NAME[j.source] || "");
+const srcOrgTag = j => SRC_ORG[j.source] || sourceLabel(j) || "";
 
 function cardHTML(j) {
   const st = statusOf(j);
@@ -278,14 +280,11 @@ function cardHTML(j) {
     </article>`;
 }
 
-// 출처 표기 규칙: 수집 공고는 출처를 반드시 표기한다 — 기관 원문 도메인이 없으면
-// 게시처(포털) 이름이라도 텍스트로 남긴다(링크는 안 냄). 직접 등록은 '포디엄 등록' 뱃지.
-const PORTAL_NAME = { "artinfokorea.com": "아트인포코리아", "artmore.kr": "아트모아", "cjob.co.kr": "기독정보넷", "hibrain.net": "하이브레인넷" };
+// 출처 표기 규칙: 기관 원문(officialUrl)이 있는 공고만 출처를 표기한다.
+// 집계 포털(아트인포 등) 이름은 링크는 물론 텍스트로도 내보이지 않는다 (2026-07-23 지시).
 function srcLine(j) {
   const s = sourceLabel(j);
-  if (s) return `출처 <span class="src">${s}</span>`;
-  if (j.source) return `게시처 <span class="src">${PORTAL_NAME[j.source] || j.source}</span>`;
-  return "";
+  return s ? `출처 <span class="src">${s}</span>` : "";
 }
 
 function renderList() {
@@ -379,7 +378,7 @@ function metaRows(j) {
   const st = statusOf(j);
   const dl = j.deadline
     ? `${j.deadline} <span style="color:var(--ink-soft)">(${st.label})</span>`
-    : (j.deadlineText === "상시" ? "상시 모집" : (j.src === "공식" ? "기한 확인필요" : (j.deadlineText || "협의")));
+    : (j.deadlineText === "상시" ? "상시 모집" : (j.src === "공식" ? "기한 미정" : (j.deadlineText || "협의")));
   const rows = [["기관", j.org], ["지역", regionOf(j)], ["마감", dl]];
   const insts = (j.insts || []).join("·");
   const senior = (j.positions || []).filter(p => /수석|악장|차석/.test(p)).join("·");
@@ -393,7 +392,9 @@ function metaRows(j) {
   if (j.recruitSummary) rows.push(["모집", cleanVal(j.recruitSummary)]);
   else if (j.personnel) rows.push(["모집", cleanVal((insts ? insts + " " : "") + j.personnel)]);
   else if (insts) rows.push(["모집", insts + (senior ? " " + senior : "")]);
-  const q = cleanVal(j.qualification);
+  // 원문에서 '…경험이 있는 (자)'처럼 관형형에서 잘려온 자격 문구는 '자'를 붙여 문장을 닫는다
+  let q = cleanVal(j.qualification);
+  if (/(있는|없는|준하는|가능한|갖춘|마친|수료한|졸업한|이수한|전공한|취득한|소지한)$/.test(q)) q += " 자";
   if (q && q.length >= 4) rows.push(["자격", q]);
   const reh = cleanVal(j.rehearsal || j.when);
   if (!j.rehearsalCount && reh && /\d/.test(reh)) rows.push(["리허설", reh]);
@@ -476,9 +477,10 @@ function openOfficial(key) {
       act.onclick = () => window.open(`tel:${j.applyPhone.replace(/-/g, "")}`, "_blank");
       act.style.display = "";
     } else {
-      // 연락처를 못 뽑은 드문 경우 — 카드가 죽지 않게 원문(수집 URL) 링크로 폴백
-      act.textContent = "공고 보러가기 ↗";
-      act.onclick = () => window.open(j.url, "_blank", "noopener");
+      // 연락처도 원문도 없는 드문 경우 — 포털(수집 URL)로는 절대 내보내지 않는다 (2026-07-23).
+      // 링크 없이 검색 안내만 남긴다.
+      act.textContent = "기관명으로 검색해 지원하세요";
+      act.onclick = null;
       act.style.display = "";
     }
   } else {

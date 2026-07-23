@@ -8,7 +8,7 @@ from common import (new_session, get, relevant, extract_deadline, deadline_from_
                     musician_relevant, parse_recruit_table, summarize_recruit, find_position,
                     classify_insts, find_subject, find_music_subjects, find_music_courses,
                     classify_kind, classify_tier, is_obri, cert_required, degree_req, career_req, age_group,
-                    region_from)
+                    region_from, EXCLUDE, compact_title, music_only_title)
 from sources import SOURCES
 from institutions import INSTITUTIONS
 import attach
@@ -723,6 +723,21 @@ def _music_from_origin(s, item):
         item["musicUnverified"] = True
 
 
+def _dl_hints(text):
+    """마감 추출 실패 시 규칙 개선용 단서 — 기한 어휘 주변 문구를 최대 2개 발췌.
+
+    deadline_misses.json에 쌓이는 이 발췌가 '왜 못 읽었나'를 보여준다: 새 날짜 표기가
+    보이면 extract_deadline에 규칙을 추가하는 개선 루프의 입력이다 (미분류 큐와 같은 구조)."""
+    hints = []
+    for m in re.finditer(r"마감|접수|기한|까지|모집 ?기간|지원 ?기간|제출", text):
+        s = text[max(0, m.start() - 40): m.start() + 50].strip()
+        if re.search(r"\d", s) and all(s not in h and h not in s for h in hints):
+            hints.append(s)
+        if len(hints) >= 2:
+            break
+    return hints or None
+
+
 def enrich_deadline(s, item, allow_render=True, details_only=False):
     global _renders_used
     # 하이브레인 항목은 로그인 세션으로 이미 상세 파싱됨 — 여기서 item["url"](hibrain)을
@@ -834,11 +849,60 @@ def enrich_deadline(s, item, allow_render=True, details_only=False):
                     item["deadlineFrom"] = "page-js"
             except Exception:
                 pass
+        # 전 단계(본문→첨부→OCR→렌더)를 소진하고도 못 찾은 경우 — 단서만 채집해 둔다
+        if not item.get("deadline") and not item.get("deadlineNote"):
+            item["dlHint"] = _dl_hints(page_text)
         # (집계 포털 무마감 공고를 '상시'로 눕히던 기본값 제거 — 상시는 본문에
         #  '상시모집' 등이 명시된 경우에만 위에서 설정된다. 마감을 못 찾은 항목은
         #  게시일 기준 노후 정리 로직이 정직하게 처리한다.)
     except Exception:
         log(f"  enrich 실패 {item['url'][:60]}")
+
+# ---------- 마감 미확인 추적 ----------
+# '기한 확인필요'를 화면에 오래 두지 않기로 함 (2026-07-23): 크롤러가 매 회차 전 단계
+# (본문→첨부→OCR→렌더)를 재시도하고, 3회차까지 못 찾으면 텔레그램으로 사용자에게 보고한다
+# (사용자가 직접 확인하거나 기관에 문의). dlHint 발췌는 추출 규칙 보강 재료.
+def track_deadline_misses(final):
+    miss_path = os.path.join(BASE, "data", "deadline_misses.json")
+    prev = {}
+    try:
+        with open(miss_path, encoding="utf-8") as f:
+            prev = json.load(f)
+    except Exception:
+        pass
+    today = date.today().isoformat()
+    cur = {}
+    for it in final:
+        # 교회(상시 포지션)·상시모집·마감 확보 항목은 추적 대상이 아니다
+        if it.get("deadline") or it.get("deadlineNote") == "상시" or it.get("obri"):
+            continue
+        url = it.get("officialUrl") or it.get("url")
+        e = prev.get(url) or {"firstSeen": today, "tries": 0, "reported": False}
+        if e.get("lastTry") != today:      # 하루 여러 번 돌아도 1회차로 센다
+            e["tries"] = e.get("tries", 0) + 1
+            e["lastTry"] = today
+        e["title"], e["org"] = it.get("title"), it.get("org")
+        if it.get("dlHint"):
+            e["hint"] = it["dlHint"]
+        cur[url] = e
+    # 마감이 확보됐거나 내려간 공고는 큐에서 빠진다 — 이 파일은 캐시가 아니라 '미해결 큐'
+    due = [(u, e) for u, e in cur.items() if e["tries"] >= 3 and not e.get("reported")]
+    if due:
+        try:
+            sys.path.insert(0, r"C:\ohai\telegram-notify")
+            from notify import send
+            lines = [f"· {e['org']} — {e['title'][:40]}\n  {u}" for u, e in due[:6]]
+            send(f"[포디엄] 마감일을 3회차까지 못 찾은 공고 {len(due)}건 — "
+                 f"직접 확인이나 기관 문의가 필요해요\n" + "\n".join(lines), silent=True)
+            for _, e in due:
+                e["reported"] = True
+        except Exception:
+            pass
+    with open(miss_path, "w", encoding="utf-8") as f:
+        json.dump(cur, f, ensure_ascii=False, indent=1)
+    if cur:
+        log(f"마감 미확인 {len(cur)}건 추적 중 (이번에 보고 {len(due)}건) → deadline_misses.json")
+
 
 # ---------- 메인 ----------
 def run(force_all=False):
@@ -1048,6 +1112,8 @@ def run(force_all=False):
         it["kind"] = classify_kind(it["title"])
         it["tier"] = classify_tier(it["title"], it.get("org", ""))   # 등급 최신 로직 재적용
         it["obri"] = is_obri(it["title"], it.get("org", ""))
+        # 제목 정리도 순수 함수 — 압축 규칙(compact_title)을 승계 항목에 최신 로직으로 재적용
+        it["title"] = compact_title(music_only_title(it["title"]))
         # 자격 필드 — 본문(자격·요약)까지 반영해 정확도 향상
         qtext = " ".join(str(it.get(f, "") or "") for f in ("title", "qualification", "bodyExcerpt", "recruitSummary"))
         it["certReq"] = cert_required(it["tier"], it["title"], qtext)
@@ -1057,6 +1123,12 @@ def run(force_all=False):
             subj = find_subject(it["title"])
             if subj:
                 it["subject"] = subj
+    # 제외 규칙은 소스 파싱 때만 걸린다 — 규칙을 새로 넣어도(수시모집 등 입시 공지)
+    # 이미 수집·승계된 항목이 살아남는 문제 방지: 최신 EXCLUDE를 전체에 재적용
+    n0 = len(final)
+    final = [it for it in final if not EXCLUDE.search(it["title"])]
+    if len(final) != n0:
+        log(f"제외 규칙 재적용: {n0 - len(final)}건 정리")
     n_unclass = sum(1 for it in final if it["tier"] == "미분류")
     if n_unclass:
         log(f"미분류 큐: {n_unclass}건 — {'; '.join(it['title'][:24] for it in final if it['tier'] == '미분류')}")
@@ -1098,6 +1170,8 @@ def run(force_all=False):
     log(f"연령 분포: 성인 {len(final) - n_minor} / 미성년 {n_minor}"
         + (f" → 미성년 공고: {'; '.join(it['title'][:30] for it in final if it.get('ageGroup') == '미성년')}" if n_minor else ""))
     log(f"완료: {len(final)}건 저장 (dedup 전 {len(uniq)}건) → {OUT}")
+
+    track_deadline_misses(final)
 
     # ---------- 안전장치: 소스 장애 텔레그램 알림 ----------
     # 실패(예외) 소스 + 0건 반환으로 승계된 소스를 요약해 알림 (정상이면 조용)

@@ -308,7 +308,8 @@ CLASSIC_PAT = re.compile(
 
 # 집계 포털 제목에서 실제 기관명 추출 (아트인포·아트모아는 org이 없어 포털명 대신 씀)
 _ORGWORD = (r"교향악단|합창단|국악관현악단|관현악단|필하모닉|예술단|오케스트라|윈드오케스트라"
-            r"|앙상블|콰르텟|사중주단|중창단|합주단|아카데미|음악단|뮤지컬단|무용단|극단|문화재단|교회|성당")
+            r"|앙상블|콰르텟|사중주단|중창단|합주단|아카데미|음악단|뮤지컬단|무용단|극단|문화재단|교회|성당"
+            r"|콰이어|오페라단|챔버|브라스밴드|퀸텟|트리오")
 
 def org_from_title(title, fallback):
     for m in re.finditer(r"([가-힣A-Za-z0-9][가-힣A-Za-z0-9·\s]{1,18}?(?:" + _ORGWORD + r"))", title):
@@ -330,7 +331,7 @@ def parse_artmore(s):
         title = re.sub(r"^진행중\s*", "", title)
         if len(title) < 8 or not CLASSIC_PAT.search(title):
             continue
-        it = make_item(org_from_title(title, "아트모아(예술 일자리 포털)"), "기타", "artmore.kr",
+        it = make_item(org_from_title(title, "직접 게시"), "기타", "artmore.kr",
                        title, urljoin("https://www.artmore.kr", a["href"]),
                        date=_row_date(a))
         origin = _resolve_origin(s, it["url"], "artmore.kr")
@@ -389,7 +390,7 @@ def parse_artinfo(s):
         # 카드 앵커가 제목+지역+악기+기관명을 통째로 담고 있어 첫 텍스트 노드만 제목으로
         first = next((t.strip() for t in a.stripped_strings), "")
         title = _artinfo_clean(first if len(first) >= 10 else full[:90])
-        it = make_item(org_from_title(title, "아트인포(클래식 채용)"), region_from(full), "artinfokorea.com",
+        it = make_item(org_from_title(title, "직접 게시"), region_from(full), "artinfokorea.com",
                        title[:90], urljoin("https://www.artinfokorea.com", href),
                        date=_row_date(a))
         origin = _resolve_origin(s, it["url"], "artinfokorea.com")
@@ -587,7 +588,18 @@ def _make_edu_parser(cfg):
                 if not m:
                     continue
                 seen.add(title)
-                items.append(make_item(cfg["name"], cfg["region"], cfg["source"],
+                org = cfg["name"]
+                # work.sen 카드형 앵커는 '학교명 | 전화 | 등록일… 조회수: N <제목> 과목(담당업무) …'
+                # 통짜 텍스트를 담는다 — 제목만 발라내고 학교명을 org로 승격 (200자+ 제목 사고 방지)
+                mc = re.search(r"조회수\s*:\s*\d+\s*(.+?)\s*과목\(담당업무\)", title)
+                if mc:
+                    school = title.split("|", 1)[0].strip()
+                    if 2 <= len(school) <= 20:
+                        org = f"{school}({cfg['name'].split('(')[0]})"
+                    title = mc.group(1).strip()
+                    if len(title) < 6 or not EDU_MUSIC.search(title):
+                        continue
+                items.append(make_item(org, cfg["region"], cfg["source"],
                                        title, cfg["detail"].format(id=m.group(1))))
         return items
     return parse
