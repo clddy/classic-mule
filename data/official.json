@@ -1,5 +1,5 @@
 {
- "collectedAt": "2026-07-22 18:02",
+ "collectedAt": "2026-07-23 18:01",
  "sourceCount": 80,
  "okCount": 80,
  "instTotal": 75,
@@ -10,7 +10,7 @@
    "layer": "A",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
+   "raw": 1,
    "kept": 0
   },
   {
@@ -56,7 +56,7 @@
    "poll": "daily",
    "ok": true,
    "raw": 15,
-   "kept": 0
+   "kept": 1
   },
   {
    "id": "ggac",
@@ -73,7 +73,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 13,
    "kept": 0
   },
   {
@@ -82,7 +82,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 1,
    "kept": 0
   },
   {
@@ -91,7 +91,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 15,
    "kept": 0
   },
   {
@@ -109,7 +109,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 10,
    "kept": 0
   },
   {
@@ -127,7 +127,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 27,
    "kept": 0
   },
   {
@@ -145,7 +145,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 20,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -154,8 +154,8 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 10,
-   "kept": 2
+   "skipped": true,
+   "kept": 1
   },
   {
    "id": "knso",
@@ -163,7 +163,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 15,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -208,7 +208,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 20,
    "kept": 0
   },
   {
@@ -217,7 +217,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -226,7 +226,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -470,7 +470,7 @@
    "poll": "weekly",
    "ok": true,
    "skipped": true,
-   "kept": 1
+   "kept": 0
   },
   {
    "id": "g_i_musicyonseiackr",
@@ -727,6 +727,36 @@
  ],
  "items": [
   {
+   "id": "0e48dcb9f7b816cf",
+   "org": "경남 학교 방과후(교육청 포털)",
+   "region": "경남",
+   "source": "gne.go.kr",
+   "title": "화정초등학교 방과후학교 오케스트라 플루트 강사 모집",
+   "url": "https://www.gne.go.kr/works/user/recruitment/BD_recruitmentDetail.do?regSn=1812288",
+   "date": "2026-07-24",
+   "deadline": "2027-02-28",
+   "kind": "강사",
+   "tier": "교육 — 취미·입문",
+   "obri": false,
+   "certReq": "아니오",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "ageGroup": "성인",
+   "inst": "목관",
+   "instDetails": [
+    "플루트"
+   ],
+   "personnel": "방과후학교 강사 1명 2",
+   "subject": null,
+   "channel": "gne",
+   "layer": "C",
+   "bodyExcerpt": "화정초등학교 방과후학교 오케스트라 플루트 강사 모집 공고 · 1. 모집인원: 방과후학교 강사 1명 · 2. 모집분야 : 오케스트라 플루트: (파트연습) 매주 월, 금 1부:14:00~14:50 2부: 15:00~15:50 (50분*2차시) · (합주연습) 매주 수 14:00 ~ 15:50",
+   "deadlineFrom": "page",
+   "firstSeen": "2026-07-23",
+   "isNew": true,
+   "extVer": 23
+  },
+  {
    "id": "cd6411b206ea147a",
    "org": "젤로소윈드오케스트라",
    "region": "서울",
@@ -750,17 +780,17 @@
    "subject": null,
    "channel": "artinfo",
    "layer": "A",
-   "applyEmail": "alsrbbk@gmail.com",
-   "applyPhone": "010-2601-3298",
+   "deadlineFrom": "page",
    "positions": [
     "상임지휘자"
    ],
    "contract": "상임",
    "qualification": "* 음악대학 지휘 또는 관련 전공 졸업(예정)자 * 윈드오케스트라 지휘 경력 또는 이에 준하는 경험이 있는 ",
    "bodyExcerpt": "채용 | 젤로소윈드오케스트라 상임지휘자 모집 공고 · 젤로소윈드오케스트라 상임지휘자 모집 공고 · 젤로소윈드오케스트라와 함께 음악을 만들어 갈 상임 지휘자를 모집합니다. · 1차 서류접수 마감: 2026년 7월 31일(금)",
-   "deadlineFrom": "page",
+   "applyEmail": "alsrbbk@gmail.com",
+   "applyPhone": "010-2601-3298",
    "firstSeen": "2026-07-22",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -792,6 +822,7 @@
     "단원"
    ],
    "bodyExcerpt": "채용 | 대구오페라콰이어 신단원 모집(알토1, 베이스2) · 대구오페라콰이어 신단원 모집(알토1, 베이스2)",
+   "dlHint": null,
    "firstSeen": "2026-07-17",
    "isNew": false,
    "extVer": 23
@@ -898,6 +929,7 @@
    "bodyExcerpt": "채용 | [부산] 푸른초장교회 반주자를 모십니다.",
    "applyEmail": "pavarotti7801@hanmail.net",
    "applyPhone": "010-4772-5362",
+   "dlHint": null,
    "firstSeen": "2026-07-15",
    "isNew": false,
    "extVer": 23
@@ -973,7 +1005,7 @@
    "kind": "강사",
    "tier": "교육 — 취미·입문",
    "obri": false,
-   "certReq": "예",
+   "certReq": "무관",
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
@@ -1028,10 +1060,10 @@
    "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=106109",
    "date": null,
    "deadline": "2026-07-27",
-   "kind": "강사",
+   "kind": "기타",
    "tier": "교육 — 취미·입문",
    "obri": false,
-   "certReq": "예",
+   "certReq": "무관",
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
@@ -1059,7 +1091,7 @@
    "kind": "강사",
    "tier": "교육 — 취미·입문",
    "obri": false,
-   "certReq": "예",
+   "certReq": "무관",
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
@@ -1087,7 +1119,7 @@
    "kind": "강사",
    "tier": "교육 — 취미·입문",
    "obri": false,
-   "certReq": "예",
+   "certReq": "무관",
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
