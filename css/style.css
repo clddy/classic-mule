@@ -111,7 +111,6 @@ button { font-family: inherit; cursor: pointer; }
   vertical-align: middle;
   letter-spacing: 0.02em;
 }
-.header-actions { display: flex; gap: 10px; align-items: center; }
 .btn-ghost {
   background: transparent;
   border: 1px solid var(--line);
@@ -397,6 +396,8 @@ details[open] > .filter-summary::after { content: " −"; }
 }
 .job-card:hover { border-color: var(--claret); }
 .job-card:hover h3 { color: var(--claret); }
+/* 키보드 포커스: Tab으로 카드에 왔을 때만 테두리 강조 (마우스 클릭엔 안 뜸) */
+.job-card:focus-visible { outline: 2px solid var(--claret); outline-offset: 2px; }
 .job-card .top-row {
   display: flex;
   align-items: center;

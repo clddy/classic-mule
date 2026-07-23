@@ -192,10 +192,6 @@ function filtered() {
 }
 
 // ---------- 정렬 ----------
-function payNum(j) {
-  const nums = [...String(j.pay || "").matchAll(/(\d[\d,]*)\s*만/g)].map(m => +m[1].replace(/,/g, ""));
-  return nums.length ? Math.max(...nums) : -1;
-}
 function concertNum(j) {
   const s = j.concertDate || j.when || "";
   let m = s.match(/(20\d{2})[.\-/]\s*(\d{1,2})[.\-/]\s*(\d{1,2})/);
@@ -216,7 +212,6 @@ const sortFns = {
   // 재방문자의 기본 행동은 '새로 뭐 올라왔나' — 최신순이 기본 (연주 우선 부스트 유지)
   latest: (a, b) => playRank(a) - playRank(b) || (b.date || "").localeCompare(a.date || ""),
   deadline: byDeadline,
-  pay: (a, b) => (payNum(b) - payNum(a)) || byDeadline(a, b),
   concert: (a, b) => (concertNum(a) - concertNum(b)) || byDeadline(a, b),
 };
 
@@ -263,7 +258,7 @@ function cardHTML(j) {
   if (j.src === "공식") {
     const orgTag = srcOrgTag(j);
     return `
-    <article class="job-card${st.key === "마감" ? " closed" : ""}" data-okey="${j.key}">
+    <article class="job-card${st.key === "마감" ? " closed" : ""}" data-okey="${j.key}" tabindex="0" role="button" aria-haspopup="dialog">
       <div class="top-row">${orgTag ? `<span class="tag src-official">${orgTag}</span>` : ""}${tags}</div>
       <h3>${j.title}</h3>
       ${program}
@@ -272,7 +267,7 @@ function cardHTML(j) {
     </article>`;
   }
   return `
-    <article class="job-card${st.key === "마감" ? " closed" : ""}${j.sample ? " is-sample" : ""}${j.mine ? " mine" : ""}" data-cid="${j.cid}">
+    <article class="job-card${st.key === "마감" ? " closed" : ""}${j.sample ? " is-sample" : ""}${j.mine ? " mine" : ""}" data-cid="${j.cid}" tabindex="0" role="button" aria-haspopup="dialog">
       <div class="top-row">${j.mine ? `<span class="tag pos">포디엄 등록</span>` : ""}${tags}</div>
       <h3>${j.title}</h3>
       ${program}
@@ -311,11 +306,13 @@ function renderList() {
   }
   html += rest.map(cardHTML).join("");
   el.innerHTML = html;
-  el.querySelectorAll(".job-card[data-cid]").forEach(card => {
-    card.addEventListener("click", () => openDetail(+card.dataset.cid));
-  });
-  el.querySelectorAll(".job-card[data-okey]").forEach(card => {
-    card.addEventListener("click", () => openOfficial(card.dataset.okey));
+  // 키보드 사용자: 카드는 Tab으로 이동, Enter·Space로 연다 (마우스 클릭과 동일 동작)
+  const openCard = card => card.dataset.okey ? openOfficial(card.dataset.okey) : openDetail(+card.dataset.cid);
+  el.querySelectorAll(".job-card").forEach(card => {
+    card.addEventListener("click", () => openCard(card));
+    card.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openCard(card); }
+    });
   });
 }
 
@@ -437,6 +434,14 @@ function shortSummary(j) {
   return segs.slice(0, 3).join("\n");
 }
 
+// 액션 버튼은 앵커다(휠클릭·Ctrl+클릭으로 새 탭, 우클릭 링크 복사).
+// 모달을 열 때마다 이전 공고의 href/onclick이 남지 않게 비우고 시작한다.
+function actReset(act) {
+  act.onclick = null;
+  act.removeAttribute("href");
+  act.style.display = "";
+}
+
 // ---------- 공식 공고 상세 모달 (요약 + 원문 바로가기) ----------
 function openOfficial(key) {
   const j = OFFICIAL_ITEMS.find(x => x.key === key);
@@ -462,31 +467,26 @@ function openOfficial(key) {
   // 포털 도메인이면(source든 officialUrl이든) 절대 링크로 내보내지 않는다
   const isAggregator = PORTAL_RE.test(j.source || "");
   const officialOk = j.officialUrl && !PORTAL_RE.test(j.officialUrl);
+  actReset(act);
   if (officialOk) {
     act.textContent = "공식 공고 페이지 바로가기 ↗";
-    act.onclick = () => window.open(j.officialUrl, "_blank", "noopener");
-    act.style.display = "";
+    act.href = j.officialUrl;
   } else if (isAggregator) {
     // 포털 직접게시글 — 포털로 보내지 않고 연락처로 지원
     if (j.applyEmail) {
       act.textContent = "이메일로 지원 ✉";
-      act.onclick = () => window.open(`mailto:${j.applyEmail}`, "_blank");
-      act.style.display = "";
+      act.href = `mailto:${j.applyEmail}`;
     } else if (j.applyPhone) {
       act.textContent = `전화 지원 ☎ ${j.applyPhone}`;
-      act.onclick = () => window.open(`tel:${j.applyPhone.replace(/-/g, "")}`, "_blank");
-      act.style.display = "";
+      act.href = `tel:${j.applyPhone.replace(/-/g, "")}`;
     } else {
       // 연락처도 원문도 없는 드문 경우 — 포털(수집 URL)로는 절대 내보내지 않는다 (2026-07-23).
       // 링크 없이 검색 안내만 남긴다.
       act.textContent = "기관명으로 검색해 지원하세요";
-      act.onclick = null;
-      act.style.display = "";
     }
   } else {
     act.textContent = "공고 보러가기 ↗";
-    act.onclick = () => window.open(j.url, "_blank", "noopener");
-    act.style.display = "";
+    act.href = j.url;
   }
   $("#detail-modal").classList.add("open");
 }
@@ -508,16 +508,14 @@ function openDetail(cid) {
   $("#detail-body").textContent = j.body || shortSummary(j) || "";
   const act = $("#detail-action");
   // 내가 올린 글이면 삭제 버튼, 연락처 있으면 바로 전화, 아니면 안내
+  actReset(act);
   if (j.mine) {
-    act.style.display = "";
     act.textContent = "이 공고 삭제 🗑";
     act.onclick = () => deleteMyPost(j.cid);
   } else if (j.phone) {
-    act.style.display = "";
     act.textContent = `전화 연락 ☎ ${j.phone}`;
-    act.onclick = () => window.open(`tel:${j.phone.replace(/-/g, "")}`, "_blank");
+    act.href = `tel:${j.phone.replace(/-/g, "")}`;
   } else {
-    act.style.display = "";
     act.textContent = "지원하기 / 연락하기";
     act.onclick = () => alert("이 예시 글은 연락처가 없습니다. '＋ 글 올리기'로 직접 등록해 보세요.");
   }
@@ -566,5 +564,15 @@ document.addEventListener("DOMContentLoaded", () => {
   document.querySelectorAll(".modal-backdrop").forEach(bd => {
     bd.addEventListener("click", (e) => { if (e.target === bd) bd.classList.remove("open"); });
     bd.querySelector(".modal-close").addEventListener("click", () => bd.classList.remove("open"));
+  });
+  // ESC로 열린 모달 닫기
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape") document.querySelectorAll(".modal-backdrop.open").forEach(bd => bd.classList.remove("open"));
+  });
+  // href 없는 액션(삭제·안내)은 앵커라도 Enter가 안 먹는다 — 클릭으로 이어준다
+  $("#detail-action").addEventListener("keydown", (e) => {
+    if ((e.key === "Enter" || e.key === " ") && !e.currentTarget.getAttribute("href")) {
+      e.preventDefault(); e.currentTarget.click();
+    }
   });
 });

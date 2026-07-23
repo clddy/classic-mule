@@ -20,9 +20,6 @@
       <a href="practice.html">연습실</a>
       <a href="about.html">소개</a>
     </nav>
-    <div class="header-actions">
-      <button class="btn-ghost" onclick="alert('로그인은 프로토타입에서 제공되지 않습니다.')">로그인</button>
-    </div>
   </div>
 </header>
 
@@ -83,7 +80,6 @@
         <option value="deadline" selected>마감 임박순</option>
         <option value="latest">최신순</option>
         <option value="concert">연주 날짜순</option>
-        <option value="pay">페이순</option>
       </select>
       <button class="btn-primary" id="btn-write">＋ 글 올리기</button>
     </div>
@@ -107,7 +103,8 @@
     <div class="body-text" id="detail-body"></div>
     <div class="modal-actions">
       <button class="btn-outline" onclick="document.getElementById('detail-modal').classList.remove('open')">닫기</button>
-      <button class="btn-primary" id="detail-action">지원하기 / 연락하기</button>
+      <!-- 진짜 앵커여야 새 탭 열기(휠클릭·Ctrl+클릭)·링크 복사가 된다 — href 없는 안내/삭제 상태에선 JS가 href를 비운다 -->
+      <a class="btn-primary" id="detail-action" target="_blank" rel="noopener" tabindex="0" style="text-decoration:none;text-align:center">지원하기 / 연락하기</a>
     </div>
   </div>
 </div>
