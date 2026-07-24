@@ -174,6 +174,19 @@
     $("#write-head").textContent = "등록 완료";
     $("#wd-preview").innerHTML = cardHTML(item);
     const link = location.origin + location.pathname + "#post=c" + cid;
+    // 게재 신청 = 메일 접수 (localStorage 프로토타입의 정직한 게재 경로 — 리뷰 반영 2026-07-24)
+    $("#wd-mail").onclick = () => {
+      const lines = [
+        `제목: ${item.title}`, `유형: ${item.tier || wtype}`, `기관/단체: ${item.org}`,
+        `지역: ${item.region}`, `연락처: ${item.phone}`,
+        item.insts?.length ? `악기: ${item.insts.join(", ")}` : "",
+        item.pay ? `보수: ${item.pay}` : "", item.when ? `일정: ${item.when}` : "",
+        item.deadline ? `마감: ${item.deadline}` : `마감: ${item.deadlineText || "충원 시"}`,
+        item.body ? `\n${item.body}` : "",
+      ].filter(Boolean).join("\n");
+      location.href = "mailto:ohmjin3141@naver.com?subject=" +
+        encodeURIComponent(`[포디엄 게재 신청] ${item.title}`) + "&body=" + encodeURIComponent(lines);
+    };
     $("#wd-copy").onclick = () => { navigator.clipboard?.writeText(link); $("#wd-copy").textContent = "✓ 복사됨"; };
     $("#wd-kakao").onclick = () => { navigator.clipboard?.writeText(link); alert("링크를 복사했어요 — 카톡 대화방에 붙여넣으면 공유됩니다."); };
     $("#wd-close").onclick = () => { $("#write-modal").classList.remove("open"); form.reset(); showStep(1); };

@@ -1165,6 +1165,14 @@ def run(force_all=False):
         json.dump(payload, f, ensure_ascii=False)
         f.write(";\n")
 
+    # 정적 렌더링 (검색 봇·JS 실패 대비) — 실패해도 크롤 자체는 성공으로 둔다
+    try:
+        import staticgen
+        n_static = staticgen.generate(BASE)
+        log(f"정적 생성: 공고 {n_static}건 (p/*.html, 목록 삽입, sitemap)")
+    except Exception as e:
+        log(f"WARN 정적 생성 실패: {type(e).__name__}: {e}")
+
     coverage_report(final, today)
     n_minor = sum(1 for it in final if it.get("ageGroup") == "미성년")
     log(f"연령 분포: 성인 {len(final) - n_minor} / 미성년 {n_minor}"
