@@ -1104,7 +1104,8 @@ def run(force_all=False):
     for it in final:
         old = prev_by_id.get(it["id"])
         it["firstSeen"] = old.get("firstSeen", today.isoformat()) if old else today.isoformat()
-        it["isNew"] = it["firstSeen"] == today.isoformat()
+        # NEW: 처음 수집된 날로부터 3일 이내 (프론트 isFresh와 같은 규칙 — jobs.js NEW_DAYS)
+        it["isNew"] = (today - date.fromisoformat(it["firstSeen"])).days <= 3
         it["extVer"] = EXT_VER
         # 제목 기반 분류(kind/tier/ageGroup)는 순수 함수 — 승계 항목도 최신 로직으로 재적용
         # (서버 장애로 원본 0건 승계된 항목이 옛 분류를 물고 오는 것 방지)

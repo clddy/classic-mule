@@ -57,6 +57,14 @@ def _apply(j):
     return "공고 보러가기 ↗", j.get("url")
 
 
+def _is_fresh(j, today):
+    """NEW: 처음 수집된 날로부터 3일 이내 (jobs.js isFresh와 같은 규칙)"""
+    fs = j.get("firstSeen")
+    if not fs:
+        return bool(j.get("isNew"))
+    return 0 <= (today - date.fromisoformat(fs)).days <= 3
+
+
 def _card(j, today, href):
     st, cls = _status(j, today)
     tags = [f'<span class="tag src-official">{esc(j.get("org"))}</span>']
@@ -65,6 +73,8 @@ def _card(j, today, href):
     for i in (j.get("instDetails") or [])[:3]:
         tags.append(f'<span class="tag inst">{esc(i)}</span>')
     tags.append(f'<span class="tag {cls}">{esc(st)}</span>')
+    if _is_fresh(j, today):
+        tags.append('<span class="tag urgent">NEW</span>')
     meta = [esc(j.get("region") or "")]
     if j.get("subject"):
         meta.append(esc(j["subject"]))

@@ -38,7 +38,7 @@ const OFFICIAL_ITEMS = ((window.CRAWLED && window.CRAWLED.items) || []).map(j =>
   positions: j.positions, recruitSummary: j.recruitSummary, bodyExcerpt: j.bodyExcerpt,
   denomination: j.denomination, documents: j.documents,
   applyEmail: j.applyEmail, applyPhone: j.applyPhone,
-  url: j.url, officialUrl: j.officialUrl, isNew: j.isNew, source: j.source
+  url: j.url, officialUrl: j.officialUrl, isNew: j.isNew, firstSeen: j.firstSeen, source: j.source
 }));
 
 let COMMUNITY_ITEMS = JOBS.map(j => ({
@@ -111,7 +111,7 @@ function regionOf(j){ const r = j.region || "기타"; return REGION_MIGRATE[r] |
 const STATUSES = ["접수중", "마감임박", "기한 미정", "마감"];
 
 // 기본 정렬은 마감 임박순 — '언제까지 지원 가능한가'가 이 보드의 1차 정보다 (2026-07-23)
-const state = { tab: "전체", tiers: new Set(), bands: new Set(), insts: new Set(), regions: new Set(), status: new Set(), provided: new Set(), obri: false, noCert: false, noCareer: false, query: "", sort: "deadline" };
+const state = { tab: "전체", tiers: new Set(), bands: new Set(), insts: new Set(), regions: new Set(), status: new Set(), provided: new Set(), newOnly: false, obri: false, noCert: false, noCareer: false, query: "", sort: "deadline" };
 const $ = (s) => document.querySelector(s);
 
 // 상태 어휘 통일: 사용자가 알고 싶은 건 '지금 지원 가능한가'와 '언제까지인가' 둘뿐.
@@ -172,6 +172,7 @@ function filtered() {
   const all = [...OFFICIAL_ITEMS, ...USER_POSTS];
   return all.filter(j => {
     if (j.type === "구직") return false;   // v2.0: 구직 게시판 종료 — 저장 데이터는 유지, 표시만 안 함 (Layer 3 프로필이 자리를 물려받을 예정)
+    if (state.newOnly && !isFresh(j)) return false;                 // 최근 3일 내 새로 올라온 공고만
     if (state.tiers.size && !state.tiers.has(j.tier)) return false;
     if (state.obri && !j.obri) return false;                       // 오브리(교회·행사)만
     if (state.noCert && j.certReq === "예") return false;          // 교원자격증 불필요한 자리만
@@ -201,16 +202,24 @@ function concertNum(j) {
   return Infinity;
 }
 // 연주(단원·객원·반주) 공고가 교육 공고에 묻히지 않도록 상단 노출 — 마감 안 된 연주는 최상단으로.
-const playRank = (j) => (j.tier === "연주" && statusOf(j).key !== "마감") ? 0 : 1;
+// NEW: 처음 수집된 날(firstSeen)로부터 NEW_DAYS일 이내 — 지나면 뱃지·상단 고정 해제
+const NEW_DAYS = 3;
+function isFresh(j) {
+  const fs = j.firstSeen;
+  if (fs) {
+    const days = Math.floor((new Date(TODAY) - new Date(fs)) / 86400000);
+    return days >= 0 && days <= NEW_DAYS;
+  }
+  return !!j.isNew;   // firstSeen 없으면 크롤 시 계산된 isNew로 폴백
+}
+// 순서는 무조건 d-day순 — 마감 임박한 것부터. NEW는 정렬에 관여하지 않고 왼쪽 토글 필터로만 쓴다.
 const byDeadline = (a, b) => {
-  if (playRank(a) !== playRank(b)) return playRank(a) - playRank(b);   // 연주 우선
   const sa = statusOf(a), sb = statusOf(b);
   if (sa.dday !== sb.dday) return sa.dday - sb.dday;
   return (b.date || "").localeCompare(a.date || "");
 };
 const sortFns = {
-  // 재방문자의 기본 행동은 '새로 뭐 올라왔나' — 최신순이 기본 (연주 우선 부스트 유지)
-  latest: (a, b) => playRank(a) - playRank(b) || (b.date || "").localeCompare(a.date || ""),
+  latest: (a, b) => (b.date || "").localeCompare(a.date || ""),
   deadline: byDeadline,
   concert: (a, b) => (concertNum(a) - concertNum(b)) || byDeadline(a, b),
 };
@@ -242,7 +251,7 @@ function cardHTML(j) {
     ${(j.positions || []).filter(p => /수석|악장|차석/.test(p)).map(p => `<span class="tag pos">${p}</span>`).join("")}
     <span class="tag ${st.cls}">${st.label}</span>
     ${/제공/.test(j.instProvided || "") ? `<span class="tag provided">악기 제공</span>` : ""}
-    ${j.isNew ? `<span class="tag urgent">NEW</span>` : ""}`;
+    ${isFresh(j) ? `<span class="tag urgent">NEW</span>` : ""}`;
   const region = regionOf(j) !== "기타" ? `<span>${regionOf(j)}</span>` : "";
   const pay = okPay(j.pay) ? `<span class="pay">${cleanVal(j.pay)}</span>` : "";
   const meta = `
@@ -326,6 +335,7 @@ function renderToggle(sel, label, key) {
 }
 
 function renderAll() {
+  renderToggle("#filter-new", "🔵 NEW만 보기", "newOnly");   // 맨 위 — 최근 3일 내 새 공고
   renderChips("#filter-tier", TIERS, state.tiers);
   renderToggle("#filter-obri", "교회 공고만", "obri");   // 크롤 필드명(obri)은 유지 — 크롤러 무수정
   renderToggle("#filter-cert", "교원자격증 불필요만", "noCert");
@@ -454,7 +464,7 @@ function openOfficial(key) {
     ${j.insts.map(i => `<span class="tag inst">${i}</span>`).join("")}
     ${(j.positions || []).filter(p => /수석|악장|차석/.test(p)).map(p => `<span class="tag pos">${p}</span>`).join("")}
     <span class="tag ${st.cls}">${st.label}</span>
-    ${j.isNew ? `<span class="tag urgent">NEW</span>` : ""}`;
+    ${isFresh(j) ? `<span class="tag urgent">NEW</span>` : ""}`;
   $("#detail-title").textContent = j.title;
   $("#detail-meta").innerHTML = metaRows(j);
   // 하단: 간단한 요약(최대 3줄) — 없으면 비움
