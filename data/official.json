@@ -1,5 +1,5 @@
 {
- "collectedAt": "2026-07-24 19:05",
+ "collectedAt": "2026-07-25 03:50",
  "sourceCount": 80,
  "okCount": 80,
  "instTotal": 75,
@@ -37,7 +37,7 @@
    "layer": "A",
    "poll": "daily",
    "ok": true,
-   "raw": 28,
+   "raw": 0,
    "kept": 1
   },
   {
@@ -46,8 +46,8 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 25,
-   "kept": 2
+   "raw": 0,
+   "kept": 0
   },
   {
    "id": "gne",
@@ -64,7 +64,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -73,7 +73,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 14,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -82,7 +82,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 1,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -91,7 +91,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 15,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -100,7 +100,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 21,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -109,7 +109,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 10,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -118,7 +118,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 10,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -127,7 +127,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 28,
+   "skipped": true,
    "kept": 1
   },
   {
@@ -136,7 +136,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 18,
+   "skipped": true,
    "kept": 1
   },
   {
@@ -145,7 +145,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 20,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -154,8 +154,8 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 10,
-   "kept": 2
+   "skipped": true,
+   "kept": 1
   },
   {
    "id": "knso",
@@ -163,7 +163,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 15,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -172,7 +172,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 6,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -181,7 +181,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 10,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -190,7 +190,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 10,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -199,7 +199,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 11,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -208,7 +208,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 20,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -217,7 +217,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -226,7 +226,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -235,7 +235,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -244,8 +244,8 @@
    "layer": "C",
    "poll": "weekly",
    "ok": true,
-   "raw": 14,
-   "kept": 13
+   "skipped": true,
+   "kept": 12
   },
   {
    "id": "edu_goe",
@@ -253,7 +253,7 @@
    "layer": "C",
    "poll": "weekly",
    "ok": true,
-   "raw": 8,
+   "skipped": true,
    "kept": 7
   },
   {
@@ -262,7 +262,7 @@
    "layer": "C",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 1
   },
   {
@@ -271,7 +271,7 @@
    "layer": "C",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 2
   },
   {
@@ -280,7 +280,7 @@
    "layer": "C",
    "poll": "weekly",
    "ok": true,
-   "raw": 2,
+   "skipped": true,
    "kept": 1
   },
   {
@@ -289,7 +289,7 @@
    "layer": "C",
    "poll": "weekly",
    "ok": true,
-   "raw": 1,
+   "skipped": true,
    "kept": 1
   },
   {
@@ -298,7 +298,7 @@
    "layer": "C",
    "poll": "weekly",
    "ok": true,
-   "raw": 4,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -307,7 +307,7 @@
    "layer": "C",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -316,7 +316,7 @@
    "layer": "C",
    "poll": "weekly",
    "ok": true,
-   "raw": 2,
+   "skipped": true,
    "kept": 2
   },
   {
@@ -325,7 +325,7 @@
    "layer": "C",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -334,7 +334,7 @@
    "layer": "C",
    "poll": "weekly",
    "ok": true,
-   "raw": 1,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -343,7 +343,7 @@
    "layer": "C",
    "poll": "weekly",
    "ok": true,
-   "raw": 1,
+   "skipped": true,
    "kept": 1
   },
   {
@@ -352,7 +352,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -361,7 +361,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -370,7 +370,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -379,7 +379,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 1,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -388,7 +388,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -397,7 +397,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -406,7 +406,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -415,7 +415,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 1,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -424,7 +424,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -433,7 +433,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -442,7 +442,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -451,7 +451,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 6,
+   "skipped": true,
    "kept": 1
   },
   {
@@ -460,7 +460,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -469,7 +469,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 4,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -478,7 +478,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 1,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -487,7 +487,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -496,7 +496,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 5,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -505,7 +505,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 8,
+   "skipped": true,
    "kept": 1
   },
   {
@@ -514,7 +514,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -523,7 +523,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 8,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -532,7 +532,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -541,7 +541,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 2,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -550,7 +550,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 5,
+   "skipped": true,
    "kept": 1
   },
   {
@@ -559,7 +559,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -568,7 +568,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -577,7 +577,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -586,7 +586,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 2,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -595,7 +595,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 1,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -604,7 +604,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -613,7 +613,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -622,7 +622,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -631,7 +631,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 1,
+   "skipped": true,
    "kept": 1
   },
   {
@@ -640,7 +640,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -649,7 +649,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -658,7 +658,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -667,7 +667,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -676,7 +676,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -685,7 +685,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 1,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -694,7 +694,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 1,
+   "skipped": true,
    "kept": 1
   },
   {
@@ -703,7 +703,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -712,7 +712,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -721,8 +721,8 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 17,
-   "kept": 17
+   "skipped": true,
+   "kept": 12
   }
  ],
  "items": [
@@ -750,7 +750,7 @@
    "layer": "B",
    "musicUnverified": true,
    "firstSeen": "2026-07-24",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -809,7 +809,7 @@
    "qualification": "사항 및 수상경력 (해당 시)",
    "deadlineFrom": "ocr",
    "firstSeen": "2026-07-24",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -839,7 +839,7 @@
    "deadlineFrom": "page",
    "bodyExcerpt": "화랑오케스트라 강사 채용 공고",
    "firstSeen": "2026-07-24",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -869,7 +869,7 @@
    "deadlineFrom": "page",
    "bodyExcerpt": "2026학년도 예일초등학교 바이올린 강사 채용 공고",
    "firstSeen": "2026-07-24",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -899,7 +899,7 @@
    "deadlineFrom": "page",
    "bodyExcerpt": "2026학년도 2학기 충암초 방과후교실(바이올린) 개인위탁 외부강사 모집 · 강사를 모집하오니 관심 있는 분들의 많은 참여 바랍니다",
    "firstSeen": "2026-07-24",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -927,7 +927,7 @@
    "deadlineFrom": "page",
    "bodyExcerpt": "2026 맞춤형교실 프로그램 강사 채용 공고(음악놀이, 수학놀이)",
    "firstSeen": "2026-07-24",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -955,7 +955,7 @@
    "deadlineFrom": "page",
    "bodyExcerpt": "목동고등학교 강사 및 기간제교사 채용공고(음악, 일반사회) · 응시원서, 자기소개서, 교원자격증 사본",
    "firstSeen": "2026-07-24",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -983,7 +983,7 @@
    "deadlineFrom": "page",
    "bodyExcerpt": "한서고등학교 2026학년도 2학기 기간제교사 채용 공고문(음악과)",
    "firstSeen": "2026-07-24",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -1011,7 +1011,7 @@
    "deadlineFrom": "page",
    "bodyExcerpt": "2026학년도 2학기 이화여대병설미디어고 기간제 교원 채용 공고(음악, 상업, 연극영화, 종교, 영어) · 1. 채용과목 및 인원 : 음악, 상업, 연극영화, 종교, 영어 각 1명 · 2. 계약기간 : 2026. 8. 18. ~ 2027. 2. 28. · 가. 기간: 2026. 7. 22.(수) 08:00 ～ 2026. 7. 30.(목) 24:00까지",
    "firstSeen": "2026-07-24",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -1039,7 +1039,7 @@
    "deadlineFrom": "page",
    "bodyExcerpt": "교과전담교사(음악) 채용 공고",
    "firstSeen": "2026-07-24",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -1067,7 +1067,7 @@
    "deadlineFrom": "page",
    "bodyExcerpt": "2026학년도 위례솔중학교 시간강사 채용 공고(음악)",
    "firstSeen": "2026-07-24",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -1095,7 +1095,7 @@
    "deadlineFrom": "page",
    "bodyExcerpt": "(서울하늘초) 1~2학년 스마트체육 음악줄넘기 강사 채용 공고",
    "firstSeen": "2026-07-24",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -1123,7 +1123,7 @@
    "deadlineFrom": "page",
    "bodyExcerpt": "2026학년도 시간강사 채용 공고(안)_보건,사회,음악 · 채용인원: 시간강사 보건1명 사회1명 음악 1명 · 채용기간: 2026.8.18. ~ 2027.1.9.(학기말) · 접수기간: 2026. 7. 20.(월) ~ 7. 31.(금) 12:00까지",
    "firstSeen": "2026-07-24",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -1151,7 +1151,7 @@
    "deadlineFrom": "page",
    "bodyExcerpt": "(서울율현초) 맞춤형교실 외부강사 채용공고(음악놀이, 미술놀이,종이접기)",
    "firstSeen": "2026-07-24",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -1180,7 +1180,7 @@
    "qualification": "경력 경력 학력",
    "bodyExcerpt": "연천초 초등 계약제교원 채용(과학12, 즐생8, 음악2) · 채용방법 및 일정",
    "firstSeen": "2026-07-24",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -1209,7 +1209,7 @@
    "qualification": "경력 경력 학력",
    "bodyExcerpt": "2026학년도 합창 프로그램 외부 강사 모집 · 채용방법 및 일정 · 흥천초등학교 합창 프로그램 외부 강사 모집 · 모집 분야 및 인원",
    "firstSeen": "2026-07-24",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -1236,7 +1236,7 @@
    "layer": "C",
    "dlHint": null,
    "firstSeen": "2026-07-24",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -1269,7 +1269,7 @@
    ],
    "bodyExcerpt": "과천시립예술단(소년소녀합창단) 반주자 공개채용 공고 · 2026년 제2차 육아휴직대체자 블라인드 채용 공고",
    "firstSeen": "2026-07-24",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -1299,7 +1299,7 @@
     "음악예술기획"
    ],
    "firstSeen": "2026-07-24",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -1327,7 +1327,7 @@
    "layer": "B",
    "musicUnverified": true,
    "firstSeen": "2026-07-24",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -1354,7 +1354,7 @@
    "channel": "hibrain",
    "layer": "B",
    "firstSeen": "2026-07-24",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -1382,7 +1382,7 @@
    "deadlineFrom": "page",
    "bodyExcerpt": "2026년 울산문화예술회관 U잼 어린이 창작·제작공연 예술감독 공개모집 공고 · 2026년 U잼 어린이 창작·제작공연의 성공적인 추진을 위하여 예술감독 공개모집을 다음과 같이 공고합니다. · ※ 접수처 : 관리동 3층 예술사업과(공휴일 및 평일 중식시간 · ※ 서류접수 기간 : 7. 27(월) ~ 8. 5.(수)",
    "firstSeen": "2026-07-24",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -1411,7 +1411,7 @@
    "qualification": "경력 경력무관 학력",
    "bodyExcerpt": "용인백현중 기간제교원 채용 공고문 및 지원서(음악) · 채용방법 및 일정 · 기간제교원 채용 공고 · 학년도 용인백현중학교 기간제교원 채용 계획을 다음과 같이 공고합니다",
    "firstSeen": "2026-07-24",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -1440,7 +1440,7 @@
    "qualification": "경력 경력무관 학력",
    "bodyExcerpt": "[곤지암중학교]기간제 음악교사 채용공고(음악) · 채용방법 및 일정 · 기간제교원 채용 공고 · 학년도 곤지암중학교 기간제교원 채용 계획을 다음과 같이 공고합니다",
    "firstSeen": "2026-07-24",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -1469,7 +1469,7 @@
    "qualification": "경력 경력무관 학력",
    "bodyExcerpt": "2026학년도 노비따스음악중고등학교 기간제교원 채용 공고문 · 채용방법 및 일정 · 채용분야 및 채용 예정인원 · 채용 응시 자격",
    "firstSeen": "2026-07-24",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -1498,7 +1498,7 @@
    "layer": "C",
    "bodyExcerpt": "공고 < 채용공고 < 채용 < 채용/시험 | 인천광역시교육청 · 2026학년도 학생예술동아리(바이올린) 강사 채용 공고 (3차) · 채용공고 상세보기 테이블 · 채용 공고문 참고",
    "firstSeen": "2026-07-24",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -1524,7 +1524,7 @@
    "channel": "edu_sje",
    "layer": "C",
    "firstSeen": "2026-07-24",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -1551,7 +1551,7 @@
    "layer": "C",
    "bodyExcerpt": "세명고 기간제교사(음악) 채용 3차 공고 · 세명고등학교는 기간제교원 채용을 다음과 같이 공고합니다. · 1. 대상 교과 : 음악 1명 · 방법: 직접제출 또는 우편제출(기간 마지막날 까지 도착분에 한함)",
    "firstSeen": "2026-07-24",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -1579,7 +1579,7 @@
    "deadlineFrom": "page",
    "bodyExcerpt": "2026학년도 남주고등학교 기간제교원(음악) 채용 공고 · 1. 채용과목: 음악 · 2. 채용인원: 1명 · 3. 서류접수: 2026. 7.24.(금) 15:00 ~ 2026. 7. 28.(화) 15:00",
    "firstSeen": "2026-07-24",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -1607,7 +1607,7 @@
    "layer": "B",
    "musicUnverified": true,
    "firstSeen": "2026-07-24",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -1838,7 +1838,7 @@
    "channel": "edu_sje",
    "layer": "C",
    "firstSeen": "2026-07-24",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -1865,7 +1865,7 @@
    "channel": "hibrain",
    "layer": "B",
    "firstSeen": "2026-07-24",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -1892,7 +1892,7 @@
    "layer": "B",
    "musicUnverified": true,
    "firstSeen": "2026-07-24",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -1983,7 +1983,7 @@
    "qualification": "경력 경력 학력",
    "bodyExcerpt": "2026학년도 2학기 계원예술고등학교 음악과 정규수업 실기지도강사 추가 채용 공고 · 채용방법 및 일정 · 계원예술고등학교 인재채용 온라인 접수",
    "firstSeen": "2026-07-24",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -2074,7 +2074,7 @@
     "지휘법연습"
    ],
    "firstSeen": "2026-07-24",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
@@ -2163,7 +2163,7 @@
    "layer": "B",
    "musicUnverified": true,
    "firstSeen": "2026-07-24",
-   "isNew": true,
+   "isNew": false,
    "extVer": 23
   },
   {
