@@ -9,8 +9,11 @@ def ocr_image(data: bytes) -> str:
     try:
         import pytesseract
         from PIL import Image
-        pytesseract.pytesseract.tesseract_cmd = TESSERACT
-        os.environ["TESSDATA_PREFIX"] = TESSDATA
+        # 윈도우 로컬만 명시 경로/tessdata 지정. 리눅스(Actions)는 PATH의 tesseract +
+        # apt로 깐 tesseract-ocr-kor(시스템 tessdata)를 그대로 쓴다.
+        if os.path.exists(TESSERACT):
+            pytesseract.pytesseract.tesseract_cmd = TESSERACT
+            os.environ["TESSDATA_PREFIX"] = TESSDATA
         img = Image.open(io.BytesIO(data))
         if img.width < 200 or img.height < 200:
             return ""  # 아이콘/장식 이미지 제외

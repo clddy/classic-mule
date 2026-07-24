@@ -889,7 +889,7 @@ def track_deadline_misses(final):
     due = [(u, e) for u, e in cur.items() if e["tries"] >= 3 and not e.get("reported")]
     if due:
         try:
-            sys.path.insert(0, r"C:\ohai\telegram-notify")
+            sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))  # 번들 crawler/notify.py
             from notify import send
             lines = [f"· {e['org']} — {e['title'][:40]}\n  {u}" for u, e in due[:6]]
             send(f"[포디엄] 마감일을 3회차까지 못 찾은 공고 {len(due)}건 — "
@@ -1186,7 +1186,7 @@ def run(force_all=False):
     fails = [x for x in source_stats if not x.get("ok")]
     if fails:
         try:
-            sys.path.insert(0, r"C:\ohai\telegram-notify")
+            sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))  # 번들 crawler/notify.py
             from notify import send
             lines = [f"· {x['name']}: {x.get('error', '?')[:60]}" for x in fails[:8]]
             send(f"[포디엄] 크롤 소스 {len(fails)}곳 실패 "

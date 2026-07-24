@@ -103,6 +103,11 @@ def main():
         "",
     ]
 
+    # 옵시디언 볼트는 내 PC에만 있다 — 볼트 루트가 없는 환경(Actions)에선 조용히 건너뛴다
+    vault_root = r"C:\ohai\vault"
+    if not os.path.isdir(vault_root):
+        print("옵시디언 볼트 없음 — 소스 노트 내보내기 건너뜀 (원격 실행)")
+        return
     os.makedirs(os.path.dirname(VAULT_NOTE), exist_ok=True)
     with open(VAULT_NOTE, "w", encoding="utf-8") as f:
         f.write("\n".join(lines))

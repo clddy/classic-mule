@@ -1,0 +1,12 @@
+# 포디엄 크롤러 의존성 (GitHub Actions·로컬 공통)
+# 텔레그램 알림(crawler/notify.py)은 표준 라이브러리만 써서 여기 없음.
+requests
+beautifulsoup4
+lxml
+playwright
+pytesseract
+Pillow
+pdfplumber
+pypdf
+pypdfium2
+olefile

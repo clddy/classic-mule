@@ -33,13 +33,17 @@ def _load_env():
             if ln and not ln.startswith("#") and "=" in ln:
                 k, v = ln.split("=", 1)
                 env[k.strip()] = v.strip()
+    # GitHub Actions 등 .env 파일이 없는 환경 — Secrets가 환경변수로 주입된다
+    for k in ("HIBRAIN_ID", "HIBRAIN_PW"):
+        if not env.get(k) and os.environ.get(k):
+            env[k] = os.environ[k]
     return env
 
 
 def _notify(msg):
     """텔레그램 알림 (@podiumalarmE_bot) — 실패해도 크롤은 계속."""
     try:
-        sys.path.insert(0, r"C:\ohai\telegram-notify")
+        sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))  # 번들 crawler/notify.py
         from notify import send
         send(f"[포디엄] {msg}")
     except Exception:

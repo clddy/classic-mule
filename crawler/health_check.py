@@ -410,7 +410,7 @@ def write_log(text):
 
 
 def notify(text):
-    sys.path.insert(0, r"C:\ohai\telegram-notify")
+    sys.path.insert(0, str(Path(__file__).resolve().parent))  # 번들 crawler/notify.py
     try:
         from notify import send
         send(text)

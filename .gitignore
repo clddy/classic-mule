@@ -23,3 +23,6 @@ tools/
 # 크롤러 주소 캐시
 crawler/.addr_found.json
 crawler/.addr_ok.json
+
+# 텔레그램 토큰이 저장소 안으로 새지 않도록 (번들 notify.py의 로컬 폴백 후보)
+crawler/config.json
