@@ -342,8 +342,8 @@
  ],
  "master": {
   "total": 604,
-  "covered": 13,
-  "gapCount": 591,
+  "covered": 12,
+  "gapCount": 592,
   "byCategory": {
    "대학": {
     "total": 77,
@@ -375,7 +375,7 @@
    },
    "학교": {
     "total": 17,
-    "covered": 2
+    "covered": 1
    },
    "민간": {
     "total": 25,
@@ -1602,6 +1602,11 @@
     "name": "경상남도교육청",
     "cat": "학교",
     "region": "경남"
+   },
+   {
+    "name": "제주특별자치도교육청",
+    "cat": "학교",
+    "region": "제주"
    },
    {
     "name": "프라임필하모닉오케스트라",

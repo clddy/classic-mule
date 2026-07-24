@@ -157,6 +157,17 @@ def _detail_page(j, today):
   <title>{esc(j['title'])} — 포디엄</title>
   <meta name="description" content="{desc}">
   <link rel="canonical" href="{SITE}/p/{j['id']}.html">
+  <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
+  <link rel="apple-touch-icon" href="../apple-touch-icon.png">
+  <meta name="theme-color" content="#7a2a38">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="포디엄">
+  <meta property="og:title" content="{esc(j['title'])} — {esc(j.get('org'))}">
+  <meta property="og:description" content="{desc}">
+  <meta property="og:url" content="{SITE}/p/{j['id']}.html">
+  <meta property="og:image" content="{SITE}/og-image.png">
+  <meta property="og:locale" content="ko_KR">
+  <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="../css/style.css?v=10">
   <script type="application/ld+json">{_jsonld(j)}</script>
 </head>
