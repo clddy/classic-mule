@@ -239,10 +239,12 @@ def find_attachments(soup, base_url):
                     cands.append((full, el.get_text(" ", strip=True)))
     return cands[:4]
 
-EXT_VER = 25         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
+EXT_VER = 26         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
                      # 24: work.sen 등록일(게시일) 추출 추가 — date=None이던 승계분을 다시 뽑게
                      # 25: body_text 도입 — 본문을 <header>에 넣는 사이트(대전교육청)의 마감일을
                      #     스스로 날리던 버그 수정. 못 찾았던 항목들을 다시 뽑게 한다.
+                     # 26: 자격 라벨쓰레기('경력 경력 학력') 거부 + 본문요약 메뉴·제목중복 제거
+                     #     — 승계된 오염 값들을 재추출로 씻어낸다.
                      # 23: region_from 개편(전남광주통합특별시 반영, 경기 광주시 오분류 수정)
                      #  v18: 대학 강사 초빙 원문 첨부(HWP/XLSX)에서 음악 전공 추출 + 비음악 제외
                      #  v19: 음악 학과/전공 정밀 추출(행사명·전화번호 오염 제거) — 재추출 강제
@@ -324,8 +326,13 @@ _QUAL_OK = re.compile(r"졸업|학위|학력|경력|이상|전공|재학|대학|
 def _find_qualification(text):
     q = _seg_after(text, r"지원 ?자격|응시 ?자격|자격 ?요건|참가 ?자격|모집 ?대상|지원 ?대상") \
         or _seg_after(text, r"자격(?!증)")
-    # 실제 자격 표현이 담긴 경우만 채택 (○실기·전형 조기절단 파편 배제)
-    return q if q and len(q) >= 5 and _QUAL_OK.search(q) else None
+    if not (q and len(q) >= 5 and _QUAL_OK.search(q)):
+        # 실제 자격 표현이 담긴 경우만 채택 (○실기·전형 조기절단 파편 배제)
+        return None
+    # 표의 열 제목만 긁힌 경우('경력 경력 학력') 배제 — 라벨 어휘로만 이뤄진 값은 정보가 아니다
+    if re.fullmatch(r"(?:경력|학력|자격|연령|성별|무관|우대|사항|세부내용|및|과|[,·/\s])+", q):
+        return None
+    return q
 
 def _find_personnel_body(text):
     """모집인원(표 없이 본문에만 있을 때) — 라벨 우선, 없으면 '○○ N명 모집'"""
@@ -369,13 +376,21 @@ _EXCERPT_SKIP = re.compile(
     r"|최종 ?합격|합격자|불합격|합격 ?발표|채용 ?결과|선정 ?결과|낙찰|입찰 ?결과|계약 ?체결|티켓|추가 ?오픈"
     r"|채용 ?비리|비리 ?신고|신고 ?센터|공공기관 채용|청탁|개인정보|저작권|이용약관|고객센터"
     r"|용역|평가위원|단장 ?공개"
-    r"|\[채용공고\]|\[공지\]|\[입찰\]|\[결과\]|\[알림\]")
+    r"|\[채용공고\]|\[공지\]|\[입찰\]|\[결과\]|\[알림\]"
+    # 게시판 메뉴 항목이 본문으로 긁힌 경우 (경기교육청: '교직원 온라인 채용', '구)자원봉사자모집')
+    r"|온라인 ?채용$|^구 ?\)|자원봉사자 ?모집$"
+    # 내용 없는 섹션 제목 줄 ('채용방법 및 일정')
+    r"|^(?:채용|모집|지원|접수|전형) ?(?:방법|절차|일정|안내)(?: ?및 ?(?:방법|절차|일정|안내))?$")
 
-def _body_excerpt_text(text):
+def _body_excerpt_text(text, title=None):
     keep = []
+    tnorm = re.sub(r"\s+", " ", title).strip() if title else ""
     for raw in (text or "").split("\n"):
         ln = re.sub(r"\s+", " ", raw).strip(" ·-•▷▶◦□■●○△*|:")
         if not (8 <= len(ln) <= 90) or ln in keep:
+            continue
+        # 게시글 제목이 본문 첫 줄로 반복되는 경우 — 요약에 제목을 또 싣지 않는다
+        if tnorm and (tnorm[:14] == ln[:14] or tnorm in ln or ln in tnorm):
             continue
         if ln.count("|") >= 2:      # 브레드크럼(메뉴 경로) 배제
             continue
@@ -394,8 +409,8 @@ def _body_excerpt_text(text):
             break
     return " · ".join(keep)[:240] if keep else None
 
-def _body_excerpt(soup):
-    return _body_excerpt_text(soup.get_text("\n", strip=True))
+def _body_excerpt(soup, title=None):
+    return _body_excerpt_text(soup.get_text("\n", strip=True), title=title)
 
 def _apply_details_from_text(text, item, want_excerpt=True):
     """평문 본문(페이지/첨부/OCR)에서 자격·인원·객원필드·요약을 채운다 (없는 것만)"""
@@ -417,7 +432,7 @@ def _apply_details_from_text(text, item, want_excerpt=True):
                 if v:
                     item[fld] = v
     if want_excerpt and not item.get("bodyExcerpt"):
-        ex = _body_excerpt_text(text)
+        ex = _body_excerpt_text(text, title=item.get("title"))
         if ex:
             item["bodyExcerpt"] = ex
 
@@ -455,7 +470,7 @@ def _extract_body_details(soup, page_text, item, ry):
     # 본문 요약: 줄 구조가 살아있는 soup 기준(품질 필터가 집계·게시판 잡음 제거).
     # 얇은 페이지에서 못 뽑으면 이후 첨부 단계에서 채워진다.
     if not item.get("bodyExcerpt"):
-        ex = _body_excerpt(soup)
+        ex = _body_excerpt(soup, title=item.get("title"))
         if ex:
             item["bodyExcerpt"] = ex
     # 제목에 악기가 없으면 본문에서 악기 탐지 (오케스트라 강사 등 파트별 모집)
@@ -926,6 +941,7 @@ def run(force_all=False):
                        if (it.get("channel") == src["id"]
                            or (not it.get("channel") and src["domain"] in it.get("source", "")))
                        and relevant(it["title"])
+                       and not it.get("nonMusic")
                        and musician_relevant(it["title"], it.get("kind", "기타"), it.get("org", ""))]
             for it in carried:
                 it["channel"] = src["id"]
@@ -941,8 +957,8 @@ def run(force_all=False):
             for it in raw:
                 if not relevant(it["title"]):
                     continue
-                if not musician_relevant(it["title"], it["kind"], it.get("org", "")):
-                    continue
+                if it.get("nonMusic") or not musician_relevant(it["title"], it["kind"], it.get("org", "")):
+                    continue   # nonMusic: 원제목 기준 음악 곁다리 판정 (make_item에서 세팅)
                 future_dl = it["deadline"] and it["deadline"] >= today.isoformat()
                 if it["date"] and it["date"] < cutoff and not future_dl:
                     continue
@@ -1067,7 +1083,8 @@ def run(force_all=False):
         uniq.append(it)
     final = dedup(uniq)
     # 승계 경로로 들어온 항목까지 포함해 음악인 대상 필터를 최종 일괄 적용
-    final = [i for i in final if musician_relevant(i["title"], i.get("kind", ""), i.get("org", ""))]
+    final = [i for i in final if not i.get("nonMusic")
+             and musician_relevant(i["title"], i.get("kind", ""), i.get("org", ""))]
     # 대학 전체 강사 초빙 중 첨부 확인 결과 음악 교과목이 전혀 없던 공고는 제외(비음악 확정)
     final = [i for i in final if not i.get("nonMusic")]
     # 원본이 삭제된 공고 제거 — 헬스체크(health_check.py)가 2회 연속 404/410으로
@@ -1110,15 +1127,15 @@ def run(force_all=False):
     for it in final:
         old = prev_by_id.get(it["id"])
         it["firstSeen"] = old.get("firstSeen", today.isoformat()) if old else today.isoformat()
-        # NEW: '게시된 지 3일 이내'가 사용자가 기대하는 의미다 — 게시일(date)을 알면 그걸 쓰고,
-        # 모를 때만 firstSeen으로 폴백한다. firstSeen만 쓰면 파서를 고친 날 옛 공고가 전부
-        # NEW로 뜬다 (2026-07-27 work.sen 12건 사고: 07-21 게시글이 07-24 첫 수집이라 NEW).
-        # 프론트 isFresh(jobs.js)·staticgen._is_fresh와 같은 규칙.
+        # NEW: 게시 시작 기준 '만 48시간' = 게시일 당일 + 다음 날까지 (2026-07-27 사용자:
+        # 3일은 NEW가 너무 많음). 기준은 게시일(date), 모르면 firstSeen 폴백 — firstSeen만
+        # 쓰면 파서를 고친 날 옛 공고가 전부 NEW로 뜬다(work.sen 12건 사고).
+        # 프론트 isFresh(jobs.js)·staticgen._is_fresh와 같은 규칙 — 셋이 어긋나면 안 된다.
         _basis = it.get("date") or it["firstSeen"]
         try:
-            it["isNew"] = 0 <= (today - date.fromisoformat(_basis)).days <= 3
+            it["isNew"] = 0 <= (today - date.fromisoformat(_basis)).days <= 1
         except ValueError:
-            it["isNew"] = (today - date.fromisoformat(it["firstSeen"])).days <= 3
+            it["isNew"] = (today - date.fromisoformat(it["firstSeen"])).days <= 1
         it["extVer"] = EXT_VER
         # 제목 기반 분류(kind/tier/ageGroup)는 순수 함수 — 승계 항목도 최신 로직으로 재적용
         # (서버 장애로 원본 0건 승계된 항목이 옛 분류를 물고 오는 것 방지)

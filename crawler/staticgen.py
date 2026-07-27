@@ -58,13 +58,13 @@ def _apply(j):
 
 
 def _is_fresh(j, today):
-    """NEW: 게시된 지 3일 이내. 게시일(date)이 기준이고, 모를 때만 firstSeen 폴백
-    (jobs.js isFresh·main.py isNew와 같은 규칙 — 2026-07-27 work.sen 사고)."""
+    """NEW: 게시 시작 기준 만 48시간(게시일 당일+다음 날). 기준은 게시일(date),
+    모르면 firstSeen 폴백 (jobs.js isFresh·main.py isNew와 같은 규칙)."""
     basis = j.get("date") or j.get("firstSeen")
     if not basis:
         return bool(j.get("isNew"))
     try:
-        return 0 <= (today - date.fromisoformat(basis)).days <= 3
+        return 0 <= (today - date.fromisoformat(basis)).days <= 1
     except ValueError:
         return bool(j.get("isNew"))
 

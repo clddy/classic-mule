@@ -202,10 +202,10 @@ function concertNum(j) {
   return Infinity;
 }
 // 연주(단원·객원·반주) 공고가 교육 공고에 묻히지 않도록 상단 노출 — 마감 안 된 연주는 최상단으로.
-// NEW: '게시된 지 NEW_DAYS일 이내'. 기관이 올린 날(date)이 기준이고, 게시일을 모르는 공고만
-// 우리가 처음 본 날(firstSeen)로 폴백한다. firstSeen만 쓰면 파서를 고친 날 옛 공고가 전부
-// NEW로 뜬다 (2026-07-27 work.sen 사고 — 07-21 게시글이 07-24 첫 수집이라 NEW로 표시됨).
-const NEW_DAYS = 3;
+// NEW: 게시 시작 기준 '만 48시간' — 게시일 당일과 그다음 날까지만 (2026-07-27 사용자:
+// 3일 규칙은 NEW가 너무 많다). 기준은 기관이 올린 날(date), 모르면 firstSeen 폴백.
+// 시각 정보가 없는 날짜 단위 데이터라 '이틀째까지'가 만 48시간의 실질 구현이다.
+const NEW_DAYS = 1;
 function isFresh(j) {
   const basis = j.date || j.firstSeen;
   if (basis) {

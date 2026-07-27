@@ -283,12 +283,31 @@ POP_EXCLUDE = re.compile(
     r"실용음악|실용 ?음악|생활음악|대중음악|재즈|힙합|밴드 ?(?:지도|강사|음악)|보컬 ?트레이"
     r"|싱어송라이터|K-?POP|작사|디제이|일렉트로닉|세션 ?(?:기타|드럼|베이스)|어쿠스틱 ?기타")
 
+# '(과학12, 즐생8, 음악2)' 같은 과목별 주당 시수 나열 — 학교 계약제·기간제 공고 특유의 표기
+_HOUR_PAIR = re.compile(r"([가-힣]{1,6}?)\s*(\d{1,2})\s*(?=[,)、·/]|시간)")
+
+def music_minor_in_hours(title):
+    """과목별 시수를 나열한 학교 공고에서 음악이 곁다리인지 판정.
+
+    '연천초 계약제교원 채용(과학12, 즐생8, 음악2)' — 본질은 과학 담당 초등교사 채용이고
+    음악은 주 2시간 얹힌 것. 음악 시수가 다른 과목 최대 시수보다 적으면 음악인 공고가
+    아니라고 본다 (2026-07-27 사용자 판정: 우리가 다룰 공고가 아님).
+    음악만 있거나 음악이 주력이면 통과 — '음악 12시간' 단독 공고는 살아남는다."""
+    pairs = _HOUR_PAIR.findall(title)
+    if not pairs:
+        return False
+    music = [int(n) for s, n in pairs if re.search(r"음악|국악", s)]
+    others = [int(n) for s, n in pairs if not re.search(r"음악|국악", s)]
+    return bool(music) and bool(others) and max(others) > max(music)
+
 def musician_relevant(title, kind, org=""):
     """음악인(연주·지휘·반주·강사)이 대상인 공고인지 — 행정직·스태프는 제외.
     기관명 속 '오케스트라/합창단'이 음악 키워드로 오인되지 않도록 기관명을 제거 후 판정.
     ※ 무용은 NONMUSIC_ART 약필터로 처리 — 순수 무용(무용수·안무가)은 빼되
       '무용단 반주자'처럼 클래식 연주 역할은 살린다(고객=클래식 음악인)."""
     if GUGAK_EXCLUDE.search(f"{title} {org}"):
+        return False
+    if music_minor_in_hours(title):     # 음악이 곁다리인 다과목 교사 채용
         return False
     if POP_EXCLUDE.search(f"{title} {org}"):   # 실용음악(대중·재즈 전공) 전면 제외
         return False
@@ -739,15 +758,20 @@ _OTHER_SUBJECT = re.compile(
     r"|체육|축구|농구|배구|야구|탁구|배드민턴|테니스|줄넘기|태권도|검도|유도|합기도|스포츠|요가|필라테스|수영"
     r"|무용|댄스|발레|치어리딩|방송댄스|스트릿댄스"
     r"|조리|요리|제빵|베이킹|바리스타|플로리스트|원예|텃밭|보드게임|마술|연극|연기|진로|상담|심리|과학실험|생태|환경|숲해설"
-    r"|실과|기술가정|가정|기술|보건|간호|유아|특수교육|특수)(?![가-힣])")
+    r"|실과|기술가정|가정|기술|보건|간호|유아|특수교육|특수"
+    # 초등 통합교과(즐거운생활 등) — '(과학12, 즐생8, 음악2)'식 시수 표기에서 등장
+    r"|즐거운 ?생활|즐생|바른 ?생활|슬기로운 ?생활|통합교과)(?![가-힣])")
+# 과목명에 주당 시수가 붙은 표기('과학12') — 과목만 지우면 숫자가 고아로 남는다
+_OTHER_SUBJECT_H = re.compile(r"(?:" + _OTHER_SUBJECT.pattern + r")\s*\d{0,2}")
 
 def music_only_title(title):
     """다과목 나열 공고에서 음악 외 과목명 제거. 음악 신호가 없으면 원본 유지(악기명은 항상 보존)."""
     if not title or not _MUSIC_STRONG.search(title):
         return title
-    t = _OTHER_SUBJECT.sub("", title)
+    t = _OTHER_SUBJECT_H.sub("", title)   # 과목명+붙은 시수를 함께 제거 ('과학12'→'', '12' 고아 방지)
     if t == title:
         return title
+    t = re.sub(r"\s*-\s*(?=[,)、·/])", "", t)              # 과목 제거 후 남은 고아 대시 ('초등-,')
     t = re.sub(r"(?:\s*[,·/、]\s*){2,}", ", ", t)          # 연속 구분자 → 하나로
     t = re.sub(r"[(\[（]\s*(?:[,·/、]\s*)+", lambda m: m.group(0)[0], t)   # 여는 괄호 뒤 구분자
     t = re.sub(r"(?:[,·/、]\s*)+\s*([)\]）])", r"\1", t)     # 닫는 괄호 앞 구분자
@@ -762,16 +786,20 @@ def compact_title(title):
     꼬리: '… 공고(문)', '… - 2026. 7. 8. 자'(KBS식 게시일 꼬리)
     결과가 너무 짧아지면(6자 미만) 원본 유지 — 과잉 절단 방지."""
     t = title
-    t = re.sub(r"^\s*\[?(?:NEW|새글|N)\]?\s+", "", t)      # 게시판 새글 배지가 제목에 섞여온 경우 (세종교육청)
+    t = re.sub(r"^\s*\[?(?:NEW|새글|N|오늘 ?마감|마감 ?임박|D-\d+)\]?\s+", "", t)   # 게시판 배지가 제목에 섞여온 경우 (세종교육청 새글, 경기 '오늘마감')
     t = re.sub(r"^\s*(?:붙임\s*)?제?\s*20\d{2}\s*[-–]\s*\d+\s*호\s*", "", t)      # 공고번호
     t = re.sub(r"^\s*(?:붙임\s*)?20\d{2}(?:\s*[~·\-]\s*20\d{2})?\s*학?년도?\s*(?:제?\s*[12]\s*학기\s*)?", "", t)
     t = re.sub(r"\s*[-–]\s*20\d{2}\s*\.\s*\d{1,2}\s*\.\s*\d{1,2}\s*\.?\s*자?\s*$", "", t)
+    t = re.sub(r"\s*(?:새글|NEW)\s*$", "", t)               # 꼬리에 붙은 게시판 새글 배지 (부산교육청)
     t = re.sub(r"\s*(?:재공고|공고문|공고)\s*$", "", t)      # '채용 공고'→'채용' (의미 유지)
     t = re.sub(r"\s{2,}", " ", t).strip(" -–·,")
     return t if len(t) >= 6 else title
 
 def make_item(org, region, source, title, url, date=None, deadline=None):
     group, details = classify_insts(title)   # 악기는 원제목에서 추출(정리 전) — 악기 정보 보존
+    # 음악 곁다리 판정은 반드시 '정리 전' 원제목으로 — 정리기가 타과목 시수(과학12·즐생8)를
+    # 지워버리면 '(음악2)'만 남아 판정 근거가 사라진다 (2026-07-27 연천초 2차 생존 사고)
+    non_music = music_minor_in_hours(title)
     clean = compact_title(music_only_title(re.sub(r"\s+", " ", title).strip()))
     kind = classify_kind(title)
     # 지역 정규화: 소스가 '기타'로 넘긴 경우 기관명·제목에서 시도를 유도
@@ -784,6 +812,7 @@ def make_item(org, region, source, title, url, date=None, deadline=None):
         "id": item_id(url, title),
         "org": org, "region": region, "source": source,
         "title": clean,
+        "nonMusic": non_music or None,   # 음악 곁다리(타과목 주력) — 수집 루프가 걸러냄
         "url": url,
         "date": date,          # 게시일 (모르면 None)
         "deadline": deadline,  # 접수 마감 (모르면 None)
