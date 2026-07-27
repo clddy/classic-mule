@@ -1,16 +1,11 @@
 {
  "date": "2026-07-27",
  "total": 75,
- "covered": 6,
- "gapCount": 69,
+ "covered": 7,
+ "gapCount": 68,
  "gaps": [
   {
    "name": "서울시립교향악단",
-   "type": "교향악단",
-   "region": "서울"
-  },
-  {
-   "name": "국립심포니",
    "type": "교향악단",
    "region": "서울"
   },
@@ -352,8 +347,8 @@
  ],
  "master": {
   "total": 604,
-  "covered": 10,
-  "gapCount": 594,
+  "covered": 11,
+  "gapCount": 593,
   "byCategory": {
    "대학": {
     "total": 77,
@@ -365,7 +360,7 @@
    },
    "예술단": {
     "total": 54,
-    "covered": 5
+    "covered": 6
    },
    "지자체": {
     "total": 323,
@@ -817,11 +812,6 @@
     "name": "진주교육대학교",
     "cat": "교육대",
     "region": "경남"
-   },
-   {
-    "name": "국립심포니오케스트라",
-    "cat": "예술단",
-    "region": "서울"
    },
    {
     "name": "서울시립교향악단",
