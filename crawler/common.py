@@ -2,6 +2,7 @@
 import re, hashlib, time
 import requests
 import urllib3
+from bs4 import BeautifulSoup
 urllib3.disable_warnings()
 
 UA = {
@@ -15,14 +16,29 @@ def new_session():
     s.headers.update(UA)
     return s
 
-def get(s, url, encoding=None, **kw):
-    r = s.get(url, timeout=20, verify=False, **kw)
-    if encoding:
-        r.encoding = encoding
-    elif r.encoding in (None, "ISO-8859-1"):
-        r.encoding = r.apparent_encoding
-    time.sleep(0.8)  # 예의상 간격
-    return r
+def get(s, url, encoding=None, retries=2, **kw):
+    """GET + 네트워크 오류 재시도.
+
+    공공기관 사이트는 간헐적으로 응답이 멎는다 — 대구문화예술회관은 같은 URL에
+    40초 타임아웃 2연속 뒤 3회째에 0.9초로 정상 응답했다(2026-07-27 측정).
+    재시도가 없으면 이런 딸꾹질 한 번에 그 소스의 하루치 수집이 통째로 날아간다.
+    HTTP 상태코드는 호출부가 판단하므로 여기선 연결·타임아웃 계열만 재시도한다.
+    """
+    last = None
+    for attempt in range(retries + 1):
+        try:
+            r = s.get(url, timeout=20, verify=False, **kw)
+            if encoding:
+                r.encoding = encoding
+            elif r.encoding in (None, "ISO-8859-1"):
+                r.encoding = r.apparent_encoding
+            time.sleep(0.8)  # 예의상 간격
+            return r
+        except (requests.Timeout, requests.ConnectionError) as e:
+            last = e
+            if attempt < retries:
+                time.sleep(2 * (attempt + 1))   # 2초 → 4초 백오프
+    raise last
 
 DATE_PAT = re.compile(r"(20\d{2})\s*[.\-/년]\s*(\d{1,2})\s*[.\-/월]\s*(\d{1,2})")
 
@@ -111,6 +127,32 @@ def _window_deadline(window, ref_year):
     if m:
         return _mk(ref_year, m.group(1), m.group(2))
     return None
+
+def body_text(html_or_soup, parser="lxml"):
+    """공고 페이지에서 본문 텍스트 추출 — 크롬(헤더·푸터·내비)만 걷어내고 본문은 지킨다.
+
+    script/style은 항상 제거. header/footer/nav도 제거하되, **그 결과가 원문의 40% 미만으로
+    쪼그라들면 제거를 취소하고 원문을 쓴다.**
+
+    시맨틱을 무시하고 본문 전체를 <header>로 감싸는 사이트가 있기 때문이다 — 대전교육청은
+    접수기간·채용인원·학교명이 전부 <header> 안에 있어서, 무조건 제거하면 우리가 스스로 본문을
+    날려 마감일을 영영 못 찾았다(2026-07-27 규명: 크롬 제거 시 3302자 → 44자, 1%만 남음).
+    정상 페이지는 59~100%가 남으므로 40% 컷이 둘을 안전하게 가른다.
+    """
+    soup = html_or_soup if isinstance(html_or_soup, BeautifulSoup) else BeautifulSoup(html_or_soup, parser)
+    for tag in soup(["script", "style"]):
+        tag.decompose()
+    full = soup.get_text(" ", strip=True)
+    chrome = soup(["header", "footer", "nav"])
+    if not chrome:
+        return full
+    # 제거는 파괴적이라 되돌릴 수 없다 → 사본에서 시험해 보고 채택 여부를 정한다
+    trial = BeautifulSoup(str(soup), parser)
+    for tag in trial(["header", "footer", "nav"]):
+        tag.decompose()
+    stripped = trial.get_text(" ", strip=True)
+    return stripped if full and len(stripped) >= len(full) * 0.4 else full
+
 
 # 우선 키워드(접수기간류)에서 찾으면 즉시 확정 — 활동기간·공연일 오인 방지
 # 남은기간: 기독정보넷 상세의 "남은기간 2026-05-31 23:59:59 까지" 대응
@@ -343,7 +385,9 @@ _EDU_HOBBY = re.compile(
     r"학원|아카데미|문화 ?센터|방과 ?후|방과후학교|늘봄|복지관|꿈의 ?오케|꿈의오케스트라|평생 ?교육|기간제|계약제 ?교[원사]"
     r"|오케스트라 ?강사|예술 ?강사|협력강사|1 ?인 ?1 ?악기|주민 ?센터|음악 ?교실"
     r"|초등학교|중학교|고등학교|특수학교|유치원|어린이집|정교사|기간제교사|기간제교원"
-    r"|\d ?학년|악기뱅크|울림프로젝트")   # '6학년 우쿨렐레 강사' 등 학년 표기 학교 공고
+    r"|\d ?학년|악기뱅크|울림프로젝트"
+    # 초등돌봄교실 특기적성(창의음악 등)도 학교 취미·입문 수업이다 — 없으면 미분류로 샌다
+    r"|돌봄 ?교실|특기 ?적성")   # '6학년 우쿨렐레 강사' 등 학년 표기 학교 공고
 _PLAY = re.compile(
     r"단원|오디션|객원|대타|대체 ?(?:연주|인력)?|반주자|세션|지휘자|음악 ?감독"
     r"|연주자 ?(?:모집|채용)|수석|악장|솔리스트|성악가")

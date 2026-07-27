@@ -589,9 +589,15 @@ def _make_edu_parser(cfg):
                     continue
                 seen.add(title)
                 org = cfg["name"]
-                # work.sen 카드형 앵커는 '학교명 | 전화 | 등록일… 조회수: N <제목> 과목(담당업무) …'
-                # 통짜 텍스트를 담는다 — 제목만 발라내고 학교명을 org로 승격 (200자+ 제목 사고 방지)
-                mc = re.search(r"조회수\s*:\s*\d+\s*(.+?)\s*과목\(담당업무\)", title)
+                posted = None
+                # work.sen 카드형 앵커는 '학교명 | 전화 | 등록일 : YYYY-MM-DD 조회수: N <제목> 과목(담당업무) …'
+                # 통짜 텍스트를 담는다 — 제목만 발라내고 학교명을 org로 승격 (200자+ 제목 사고 방지).
+                # 등록일도 여기서 뽑는다 — 안 뽑으면 date=None이라 NEW 판정이 firstSeen으로 밀려서,
+                # 파서를 고친 날 옛 공고가 전부 NEW로 뜬다 (2026-07-27 사용자 지적).
+                md = re.search(r"등록일\s*:\s*(20\d{2})[-.](\d{1,2})[-.](\d{1,2})", title)
+                if md:
+                    posted = f"{md.group(1)}-{int(md.group(2)):02d}-{int(md.group(3)):02d}"
+                mc = re.search(r"조회수\s*:\s*\d+\s*(?:\|\s*즉시지원\s*\d*\s*)?(.+?)\s*과목\(담당업무\)", title)
                 if mc:
                     school = title.split("|", 1)[0].strip()
                     if 2 <= len(school) <= 20:
@@ -600,7 +606,8 @@ def _make_edu_parser(cfg):
                     if len(title) < 6 or not EDU_MUSIC.search(title):
                         continue
                 items.append(make_item(org, cfg["region"], cfg["source"],
-                                       title, cfg["detail"].format(id=m.group(1))))
+                                       title, cfg["detail"].format(id=m.group(1)),
+                                       date=posted or _row_date(a)))
         return items
     return parse
 

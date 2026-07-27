@@ -8,7 +8,7 @@ from common import (new_session, get, relevant, extract_deadline, deadline_from_
                     musician_relevant, parse_recruit_table, summarize_recruit, find_position,
                     classify_insts, find_subject, find_music_subjects, find_music_courses,
                     classify_kind, classify_tier, is_obri, cert_required, degree_req, career_req, age_group,
-                    region_from, EXCLUDE, compact_title, music_only_title)
+                    region_from, EXCLUDE, compact_title, music_only_title, body_text)
 from sources import SOURCES
 from institutions import INSTITUTIONS
 import attach
@@ -239,7 +239,10 @@ def find_attachments(soup, base_url):
                     cands.append((full, el.get_text(" ", strip=True)))
     return cands[:4]
 
-EXT_VER = 23         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
+EXT_VER = 25         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
+                     # 24: work.sen 등록일(게시일) 추출 추가 — date=None이던 승계분을 다시 뽑게
+                     # 25: body_text 도입 — 본문을 <header>에 넣는 사이트(대전교육청)의 마감일을
+                     #     스스로 날리던 버그 수정. 못 찾았던 항목들을 다시 뽑게 한다.
                      # 23: region_from 개편(전남광주통합특별시 반영, 경기 광주시 오분류 수정)
                      #  v18: 대학 강사 초빙 원문 첨부(HWP/XLSX)에서 음악 전공 추출 + 비음악 제외
                      #  v19: 음악 학과/전공 정밀 추출(행사명·전화번호 오염 제거) — 재추출 강제
@@ -657,10 +660,7 @@ def _origin_check(s, item, ry):
         item["deadlineFrom"] = "origin-dead"
         return
     if not item.get("deadline"):
-        soup = BeautifulSoup(r.text, "lxml")
-        for tag in soup(["script", "style", "header", "footer", "nav"]):
-            tag.decompose()
-        dl = extract_deadline(soup.get_text(" ", strip=True), ref_year=ry)
+        dl = extract_deadline(body_text(r.text), ref_year=ry)
         if dl:
             item["deadline"] = dl
             item["deadlineFrom"] = "origin"
@@ -752,9 +752,9 @@ def enrich_deadline(s, item, allow_render=True, details_only=False):
         if r.status_code != 200:
             return
         soup = BeautifulSoup(r.text, "lxml")
-        for tag in soup(["script", "style", "header", "footer", "nav"]):
-            tag.decompose()
-        page_text = soup.get_text(" ", strip=True)
+        # 본문 텍스트는 body_text로 뽑는다 — soup에서 헤더를 직접 지우면 본문을 <header>에
+        # 넣는 사이트(대전교육청)의 내용을 통째로 날린다. soup 자체는 첨부·이미지 탐색에 계속 쓰므로 보존.
+        page_text = body_text(r.text)
         # 집계 포털 항목: 원문이 있으면 원문을 검증(죽은 링크 차단 + 진짜 마감일),
         # 원문이 없는 직접게시글이면 지원 연락처를 본문에서 확보한다.
         if item.get("source") in AGGREGATORS:
@@ -840,10 +840,7 @@ def enrich_deadline(s, item, allow_render=True, details_only=False):
                 from jsfetch import render
                 _renders_used += 1
                 html = render(item["url"], wait_ms=2500)
-                jsoup = BeautifulSoup(html, "lxml")
-                for tag in jsoup(["script", "style", "header", "footer", "nav"]):
-                    tag.decompose()
-                dl = extract_deadline(jsoup.get_text(" ", strip=True), ref_year=ry)
+                dl = extract_deadline(body_text(html), ref_year=ry)
                 if dl:
                     item["deadline"] = dl
                     item["deadlineFrom"] = "page-js"
@@ -1048,8 +1045,17 @@ def run(force_all=False):
             source_stats.append({**meta, "ok": True, "raw": len(raw), "kept": len(kept)})
             log(f"OK  {src['name']}: 원본 {len(raw)}건 → 수집 {len(kept)}건")
         except Exception as e:
-            source_stats.append({**meta, "ok": False, "error": f"{type(e).__name__}: {str(e)[:120]}"})
-            log(f"FAIL {src['name']}: {type(e).__name__}: {str(e)[:120]}")
+            # 파서가 죽어도 그 기관 공고를 사이트에서 사라지게 두지 않는다 — 0건 반환과 같은
+            # 논리로 이전 수집분을 승계한다. (2026-07-27 대구문화예술회관 ReadTimeout 사고:
+            # 서버 딸꾹질 한 번에 해당 기관 공고가 통째로 목록에서 빠졌다. 만료된 건은
+            # 뒤의 마감·노후 정리 단계가 어차피 걸러내므로 승계가 유령 공고를 만들지 않는다.)
+            carried = [it for it in prev_items if it.get("channel") == src["id"]]
+            if carried:
+                all_items.extend(carried)
+            source_stats.append({**meta, "ok": False, "kept": len(carried),
+                                 "error": f"{type(e).__name__}: {str(e)[:120]}"})
+            log(f"FAIL {src['name']}: {type(e).__name__}: {str(e)[:120]}"
+                + (f" — 이전 {len(carried)}건 승계" if carried else ""))
             traceback.print_exc()
 
     # id 중복 제거 → canonical dedup → firstSeen
@@ -1104,8 +1110,15 @@ def run(force_all=False):
     for it in final:
         old = prev_by_id.get(it["id"])
         it["firstSeen"] = old.get("firstSeen", today.isoformat()) if old else today.isoformat()
-        # NEW: 처음 수집된 날로부터 3일 이내 (프론트 isFresh와 같은 규칙 — jobs.js NEW_DAYS)
-        it["isNew"] = (today - date.fromisoformat(it["firstSeen"])).days <= 3
+        # NEW: '게시된 지 3일 이내'가 사용자가 기대하는 의미다 — 게시일(date)을 알면 그걸 쓰고,
+        # 모를 때만 firstSeen으로 폴백한다. firstSeen만 쓰면 파서를 고친 날 옛 공고가 전부
+        # NEW로 뜬다 (2026-07-27 work.sen 12건 사고: 07-21 게시글이 07-24 첫 수집이라 NEW).
+        # 프론트 isFresh(jobs.js)·staticgen._is_fresh와 같은 규칙.
+        _basis = it.get("date") or it["firstSeen"]
+        try:
+            it["isNew"] = 0 <= (today - date.fromisoformat(_basis)).days <= 3
+        except ValueError:
+            it["isNew"] = (today - date.fromisoformat(it["firstSeen"])).days <= 3
         it["extVer"] = EXT_VER
         # 제목 기반 분류(kind/tier/ageGroup)는 순수 함수 — 승계 항목도 최신 로직으로 재적용
         # (서버 장애로 원본 0건 승계된 항목이 옛 분류를 물고 오는 것 방지)

@@ -202,15 +202,17 @@ function concertNum(j) {
   return Infinity;
 }
 // 연주(단원·객원·반주) 공고가 교육 공고에 묻히지 않도록 상단 노출 — 마감 안 된 연주는 최상단으로.
-// NEW: 처음 수집된 날(firstSeen)로부터 NEW_DAYS일 이내 — 지나면 뱃지·상단 고정 해제
+// NEW: '게시된 지 NEW_DAYS일 이내'. 기관이 올린 날(date)이 기준이고, 게시일을 모르는 공고만
+// 우리가 처음 본 날(firstSeen)로 폴백한다. firstSeen만 쓰면 파서를 고친 날 옛 공고가 전부
+// NEW로 뜬다 (2026-07-27 work.sen 사고 — 07-21 게시글이 07-24 첫 수집이라 NEW로 표시됨).
 const NEW_DAYS = 3;
 function isFresh(j) {
-  const fs = j.firstSeen;
-  if (fs) {
-    const days = Math.floor((new Date(TODAY) - new Date(fs)) / 86400000);
+  const basis = j.date || j.firstSeen;
+  if (basis) {
+    const days = Math.floor((new Date(TODAY) - new Date(basis)) / 86400000);
     return days >= 0 && days <= NEW_DAYS;
   }
-  return !!j.isNew;   // firstSeen 없으면 크롤 시 계산된 isNew로 폴백
+  return !!j.isNew;
 }
 // 순서는 무조건 d-day순 — 마감 임박한 것부터. NEW는 정렬에 관여하지 않고 왼쪽 토글 필터로만 쓴다.
 const byDeadline = (a, b) => {
