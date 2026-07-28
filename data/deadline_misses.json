@@ -1,36 +1,36 @@
 {
  "https://portal.hanyang.ac.kr/huas/iycy/hycy.do?pageGb=gscy": {
   "firstSeen": "2026-07-24",
-  "tries": 3,
+  "tries": 4,
   "reported": true,
-  "lastTry": "2026-07-27",
+  "lastTry": "2026-07-28",
   "title": "한양대 음악대학 작곡과 강사 채용 (동시대음악·서양음악사2)",
   "org": "한양대학교 음악대학 작곡과"
  },
  "https://www.artinfokorea.com/jobs/471": {
   "firstSeen": "2026-07-23",
-  "tries": 4,
+  "tries": 5,
   "reported": true,
-  "lastTry": "2026-07-27",
+  "lastTry": "2026-07-28",
   "title": "대구오페라콰이어 신단원 모집(알토1, 베이스2)",
   "org": "대구오페라콰이어"
  },
  "https://www.timf.org/kr/sub/timf/notice.asp?mode=view&bid=1&s_type=&s_keyword=&s_cate=&idx=3788&page=1": {
   "firstSeen": "2026-07-23",
-  "tries": 4,
+  "tries": 5,
   "reported": true,
-  "lastTry": "2026-07-27",
+  "lastTry": "2026-07-28",
   "title": "2026 통영시민오케스트라 신규단원 모집",
   "org": "통영국제음악재단",
   "hint": [
-   "원 모집 관리자 조회수 : 170 | 2026-07-20 온라인 구글폼 접수 바로가기 https://forms.gle/7PXxumKKaEtNsuzs9 상호명  :"
+   "원 모집 관리자 조회수 : 193 | 2026-07-20 온라인 구글폼 접수 바로가기 https://forms.gle/7PXxumKKaEtNsuzs9 상호명  :"
   ]
  },
  "https://www.knso.or.kr/front/M0000034/article/view.do?atcId=AT001206": {
   "firstSeen": "2026-07-27",
-  "tries": 1,
+  "tries": 2,
   "reported": false,
-  "lastTry": "2026-07-27",
+  "lastTry": "2026-07-28",
   "title": "2026 KNCO 국립심포니콘서트오케스트라 - 단원 추가 모집",
   "org": "국립심포니오케스트라",
   "hint": [

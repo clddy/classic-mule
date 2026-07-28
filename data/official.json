@@ -1,7 +1,7 @@
 {
- "collectedAt": "2026-07-27 21:28",
+ "collectedAt": "2026-07-28 20:45",
  "sourceCount": 80,
- "okCount": 80,
+ "okCount": 71,
  "instTotal": 75,
  "sources": [
   {
@@ -10,7 +10,7 @@
    "layer": "A",
    "poll": "daily",
    "ok": true,
-   "raw": 1,
+   "raw": 0,
    "kept": 1
   },
   {
@@ -37,7 +37,7 @@
    "layer": "A",
    "poll": "daily",
    "ok": true,
-   "raw": 28,
+   "raw": 0,
    "kept": 0
   },
   {
@@ -64,7 +64,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 0,
    "kept": 0
   },
   {
@@ -73,7 +73,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 14,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -82,7 +82,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 1,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -91,7 +91,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 15,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -100,7 +100,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 21,
    "kept": 0
   },
   {
@@ -109,7 +109,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 10,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -118,7 +118,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 10,
    "kept": 0
   },
   {
@@ -127,7 +127,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "raw": 29,
+   "skipped": true,
    "kept": 1
   },
   {
@@ -135,9 +135,9 @@
    "name": "울산문화예술회관",
    "layer": "B",
    "poll": "weekly",
-   "ok": true,
-   "skipped": true,
-   "kept": 1
+   "ok": false,
+   "kept": 1,
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.ulsan.go.kr', port=443): Max retries exceeded with url: /ucac/art/page.do?mnu_code=mnu0030"
   },
   {
    "id": "seoulphil",
@@ -145,7 +145,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 20,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -154,8 +154,8 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 10,
-   "kept": 2
+   "skipped": true,
+   "kept": 1
   },
   {
    "id": "knso",
@@ -163,7 +163,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 15,
+   "skipped": true,
    "kept": 1
   },
   {
@@ -172,7 +172,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 6,
    "kept": 0
   },
   {
@@ -181,7 +181,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 10,
    "kept": 0
   },
   {
@@ -190,7 +190,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 10,
    "kept": 0
   },
   {
@@ -199,7 +199,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 11,
    "kept": 0
   },
   {
@@ -208,7 +208,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 20,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -235,7 +235,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 0,
    "kept": 0
   },
   {
@@ -244,8 +244,8 @@
    "layer": "C",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
-   "kept": 11
+   "raw": 11,
+   "kept": 10
   },
   {
    "id": "edu_goe",
@@ -253,8 +253,8 @@
    "layer": "C",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
-   "kept": 5
+   "raw": 9,
+   "kept": 7
   },
   {
    "id": "edu_gwe",
@@ -262,7 +262,7 @@
    "layer": "C",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 1,
    "kept": 1
   },
   {
@@ -271,7 +271,7 @@
    "layer": "C",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 0,
    "kept": 1
   },
   {
@@ -280,7 +280,7 @@
    "layer": "C",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 0,
    "kept": 1
   },
   {
@@ -289,7 +289,7 @@
    "layer": "C",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 0,
    "kept": 1
   },
   {
@@ -298,7 +298,7 @@
    "layer": "C",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 0,
    "kept": 0
   },
   {
@@ -307,7 +307,7 @@
    "layer": "C",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 0,
    "kept": 0
   },
   {
@@ -316,7 +316,7 @@
    "layer": "C",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 0,
    "kept": 3
   },
   {
@@ -325,7 +325,7 @@
    "layer": "C",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 0,
    "kept": 0
   },
   {
@@ -334,8 +334,8 @@
    "layer": "C",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
-   "kept": 1
+   "raw": 1,
+   "kept": 0
   },
   {
    "id": "edu_cbe",
@@ -343,7 +343,7 @@
    "layer": "C",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 1,
    "kept": 1
   },
   {
@@ -352,7 +352,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 0,
    "kept": 0
   },
   {
@@ -361,7 +361,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 0,
    "kept": 0
   },
   {
@@ -369,9 +369,9 @@
    "name": "안양문화예술재단",
    "layer": "B",
    "poll": "weekly",
-   "ok": true,
-   "skipped": true,
-   "kept": 0
+   "ok": false,
+   "kept": 0,
+   "error": "TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://ayac.or.kr/base/menu/baseView?menuLevel=1&menu"
   },
   {
    "id": "g_uac",
@@ -379,7 +379,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 1,
    "kept": 0
   },
   {
@@ -387,9 +387,9 @@
    "name": "고양문화재단",
    "layer": "B",
    "poll": "weekly",
-   "ok": true,
-   "skipped": true,
-   "kept": 0
+   "ok": false,
+   "kept": 0,
+   "error": "TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.artgy.or.kr/CU/CU0101M.aspx\", waiting unti"
   },
   {
    "id": "g_gfac",
@@ -397,7 +397,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 0,
    "kept": 0
   },
   {
@@ -406,7 +406,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 0,
    "kept": 0
   },
   {
@@ -415,7 +415,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 1,
    "kept": 0
   },
   {
@@ -424,7 +424,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 0,
    "kept": 0
   },
   {
@@ -433,7 +433,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 0,
    "kept": 0
   },
   {
@@ -442,7 +442,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 0,
    "kept": 0
   },
   {
@@ -451,7 +451,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 7,
    "kept": 1
   },
   {
@@ -460,7 +460,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 0,
    "kept": 0
   },
   {
@@ -469,7 +469,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 2,
    "kept": 0
   },
   {
@@ -478,7 +478,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 1,
    "kept": 0
   },
   {
@@ -487,7 +487,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 0,
    "kept": 0
   },
   {
@@ -496,7 +496,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 5,
    "kept": 0
   },
   {
@@ -505,17 +505,17 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
-   "kept": 1
+   "raw": 8,
+   "kept": 4
   },
   {
    "id": "g_i_gbgokr",
    "name": "경상북도도립교향악단",
    "layer": "B",
    "poll": "weekly",
-   "ok": true,
-   "skipped": true,
-   "kept": 0
+   "ok": false,
+   "kept": 0,
+   "error": "ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))"
   },
   {
    "id": "g_i_ansanartscom",
@@ -523,7 +523,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 8,
    "kept": 0
   },
   {
@@ -531,18 +531,18 @@
    "name": "구리시립합창단",
    "layer": "B",
    "poll": "weekly",
-   "ok": true,
-   "skipped": true,
-   "kept": 0
+   "ok": false,
+   "kept": 0,
+   "error": "TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.guri.go.kr/www/selectBbsNttList.do?bbsNo=4"
   },
   {
    "id": "g_i_suncheongokr",
    "name": "순천시립합창단",
    "layer": "B",
    "poll": "weekly",
-   "ok": true,
-   "skipped": true,
-   "kept": 0
+   "ok": false,
+   "kept": 0,
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.suncheon.go.kr', port=443): Max retries exceeded with url: /scart/community/0001;jsessioni"
   },
   {
    "id": "g_i_andonggokr",
@@ -550,7 +550,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 5,
    "kept": 0
   },
   {
@@ -559,7 +559,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 0,
    "kept": 0
   },
   {
@@ -568,7 +568,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 0,
    "kept": 0
   },
   {
@@ -577,7 +577,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 0,
    "kept": 0
   },
   {
@@ -586,7 +586,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 2,
    "kept": 0
   },
   {
@@ -595,7 +595,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 1,
    "kept": 0
   },
   {
@@ -604,7 +604,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 0,
    "kept": 0
   },
   {
@@ -613,7 +613,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 0,
    "kept": 0
   },
   {
@@ -622,7 +622,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 0,
    "kept": 0
   },
   {
@@ -631,7 +631,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 1,
    "kept": 1
   },
   {
@@ -639,18 +639,18 @@
    "name": "목포시립예술단(교향악단·합창단)",
    "layer": "B",
    "poll": "weekly",
-   "ok": true,
-   "skipped": true,
-   "kept": 0
+   "ok": false,
+   "kept": 0,
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.mokpo.go.kr', port=443): Max retries exceeded with url: /www/mokpo_news/notification/incru"
   },
   {
    "id": "g_yeosu",
    "name": "여수시립예술단",
    "layer": "B",
    "poll": "weekly",
-   "ok": true,
-   "skipped": true,
-   "kept": 0
+   "ok": false,
+   "kept": 0,
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.yeosu.go.kr', port=443): Max retries exceeded with url: /www/govt/news/recruit (Caused by "
   },
   {
    "id": "g_wonju",
@@ -658,7 +658,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 0,
    "kept": 0
   },
   {
@@ -667,7 +667,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 0,
    "kept": 0
   },
   {
@@ -676,7 +676,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 0,
    "kept": 0
   },
   {
@@ -685,7 +685,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 1,
    "kept": 0
   },
   {
@@ -694,7 +694,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 0,
    "kept": 1
   },
   {
@@ -703,7 +703,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 0,
    "kept": 0
   },
   {
@@ -711,9 +711,9 @@
    "name": "충남교육청(학교 채용)",
    "layer": "B",
    "poll": "weekly",
-   "ok": true,
-   "skipped": true,
-   "kept": 0
+   "ok": false,
+   "kept": 0,
+   "error": "TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.cne.go.kr/boardCnts/list.do?boardID=642&m="
   },
   {
    "id": "hibrain",
@@ -721,11 +721,204 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 0,
    "kept": 11
   }
  ],
  "items": [
+  {
+   "id": "1fea9f1b8a6fff65",
+   "org": "송양고등학교(경기교육청)",
+   "region": "경기",
+   "source": "goe.go.kr",
+   "title": "의정부 송양고 (음악 1차), 정보컴퓨터(3차), (시간강사) 채용",
+   "nonMusic": null,
+   "url": "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=54368",
+   "date": "2026-07-28",
+   "deadline": "2026-07-30",
+   "kind": "강사",
+   "tier": "교육 — 취미·입문",
+   "obri": false,
+   "certReq": "예",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "ageGroup": "성인",
+   "inst": "전체",
+   "instDetails": [],
+   "personnel": "1명 과목 음악(1차), 정보컴퓨터(3차),",
+   "subject": null,
+   "channel": "edu_goe",
+   "layer": "C",
+   "bodyExcerpt": "계약제교원 채용 공고 · 등학교에서 계약제교원 채용계획을 다음과 같이 공고합니다 · 채용 응시 자격 · 내국인으로서 채용 분야 교원자격증 소지자",
+   "deadlineFrom": "page",
+   "firstSeen": "2026-07-28",
+   "isNew": true,
+   "extVer": 26
+  },
+  {
+   "id": "462216d8b6a12d00",
+   "org": "과천고등학교(경기교육청)",
+   "region": "경기",
+   "source": "goe.go.kr",
+   "title": "26학년도 과천고등학교 기간제교원 채용(음악 1명)",
+   "nonMusic": null,
+   "url": "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=54366",
+   "date": "2026-07-28",
+   "deadline": "2026-07-31",
+   "kind": "교수",
+   "tier": "교육 — 취미·입문",
+   "obri": false,
+   "certReq": "예",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "ageGroup": "성인",
+   "inst": "전체",
+   "instDetails": [],
+   "personnel": "음악 1명",
+   "subject": null,
+   "channel": "edu_goe",
+   "layer": "C",
+   "deadlineFrom": "page",
+   "firstSeen": "2026-07-28",
+   "isNew": true,
+   "extVer": 26
+  },
+  {
+   "id": "49e381a2e67d770d",
+   "org": "강원교육청(학교 채용)",
+   "region": "강원",
+   "source": "gwe.go.kr",
+   "title": "방과후 프로그램 음악줄넘기 외부강사 채용",
+   "nonMusic": null,
+   "url": "https://www.gwe.go.kr/main/bbs/view.do?key=bTIzMDcyMTA1ODU2MzM%3D&bbsSn=54276",
+   "date": "2026-07-28",
+   "deadline": "2026-07-30",
+   "kind": "강사",
+   "tier": "교육 — 취미·입문",
+   "obri": false,
+   "certReq": "아니오",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "ageGroup": "성인",
+   "inst": "전체",
+   "instDetails": [],
+   "personnel": null,
+   "subject": null,
+   "channel": "edu_gwe",
+   "layer": "C",
+   "bodyExcerpt": "학습지원 프로그램 운영 기관 · 채용이 완료된 학교에서는 채용문의에 대한 불필요한 민원 발생을 미연에 방지하고자 \"채용여부\"를 반드시 \"채용완료\"로 수정하여 주시기 바랍니다. · 구인공고시 채용 마감일자를 반드시 기재하여 주시기 바랍니다. · 채용 마감일자가 지난 경우, 채용이 완료되지 않아도 재공고시까지 지원하실 수 없으니 착오없으시기 바랍니다.",
+   "deadlineFrom": "page",
+   "firstSeen": "2026-07-28",
+   "isNew": true,
+   "extVer": 26
+  },
+  {
+   "id": "b36c0c736bd4f8bf",
+   "org": "군산시립교향악단",
+   "region": "전북",
+   "source": "gunsan.go.kr",
+   "title": "군산시립교향악단 제85회 특별기획연주회 협연자 오디션",
+   "nonMusic": null,
+   "url": "https://www.gunsan.go.kr/gsart/m1950/view/9832341",
+   "date": null,
+   "deadline": "2026-08-14",
+   "kind": "단원",
+   "tier": "연주",
+   "obri": false,
+   "certReq": "무관",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "ageGroup": "성인",
+   "inst": "타악",
+   "instDetails": [
+    "타악",
+    "피아노"
+   ],
+   "personnel": "8명3",
+   "subject": null,
+   "channel": "g_i_gunsangokr",
+   "layer": "B",
+   "auditionDate": "7/28",
+   "contract": "비상임",
+   "bodyExcerpt": "오디션 공고<커뮤니티<군산시립예술단 · 군산시립교향악단 2026년 제85회 특별기획연주회와 관련하여 협연자 모집을 위하여 아래와 같이 공고하고자 합니다. · 1. 공고기간 : 2026. 7. 14.(월) ~ 2026. 8.14.(금) · 2. 접수기간 : 2026. 8. 10.(월) 10:00 ~ 8.14.(금) 18:00",
+   "deadlineFrom": "page",
+   "firstSeen": "2026-07-28",
+   "isNew": true,
+   "extVer": 26
+  },
+  {
+   "id": "c88b2badd49982a2",
+   "org": "군산시립교향악단",
+   "region": "전북",
+   "source": "gunsan.go.kr",
+   "title": "군산시립교향악단 비상임단원 모집",
+   "nonMusic": null,
+   "url": "https://www.gunsan.go.kr/gsart/m1950/view/9830024",
+   "date": null,
+   "deadline": "2026-07-28",
+   "kind": "객원·대체",
+   "tier": "연주",
+   "obri": false,
+   "certReq": "무관",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "ageGroup": "성인",
+   "inst": "전체",
+   "instDetails": [],
+   "personnel": "8명3",
+   "subject": null,
+   "channel": "g_i_gunsangokr",
+   "layer": "B",
+   "positions": [
+    "단원"
+   ],
+   "auditionDate": "7/28",
+   "qualification": "군산시 귀농귀촌인 중 동네작가를 희망하는 자 * 기존에 군산시 시정소식 | 26",
+   "pay": "지 개선의견 열람하신 정보에 대해 만족 하십",
+   "program": "수강생 모집 시정소식 | 26",
+   "bodyExcerpt": "오디션 공고<커뮤니티<군산시립예술단 · 군산시에서는 시민의 정서 함양과 지역문화예술 발전을 위해 군산시립교향악단을 이끌어 갈 참신하고 유능한 비상임단원을 다음과 같이 모집합니다. · 공고기간 : 2026. 5. 28.(목) ~ 6. 11.(목) [15일간] · 2026년 군산시립교향악단 제85회 특별기획연주회 협연자 오디션 공고",
+   "deadlineFrom": "page",
+   "firstSeen": "2026-07-28",
+   "isNew": true,
+   "extVer": 26
+  },
+  {
+   "id": "4f6af70a1a56809e",
+   "org": "군산시립교향악단",
+   "region": "전북",
+   "source": "gunsan.go.kr",
+   "title": "교향악단 정기연주회 객원지휘자 및 협연자 오디션",
+   "nonMusic": null,
+   "url": "https://www.gunsan.go.kr/gsart/m1950/view/1808229",
+   "date": null,
+   "deadline": "2026-07-28",
+   "kind": "객원·대체",
+   "tier": "연주",
+   "obri": false,
+   "certReq": "무관",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "ageGroup": "성인",
+   "inst": "지휘",
+   "instDetails": [
+    "지휘"
+   ],
+   "personnel": "8명3",
+   "subject": null,
+   "channel": "g_i_gunsangokr",
+   "layer": "B",
+   "positions": [
+    "지휘자"
+   ],
+   "auditionDate": "7/28",
+   "qualification": "군산시 귀농귀촌인 중 동네작가를 희망하는 자 * 기존에 군산시 시정소식 | 26",
+   "program": "수강생 모집 시정소식 | 26",
+   "bodyExcerpt": "오디션 공고<커뮤니티<군산시립예술단 · \"오디션 공고\" · 2026년 귀농귀촌 동네작가 모집 · 그린작은도서관 문화강좌 프로그램 수강생 모집",
+   "deadlineFrom": "page",
+   "firstSeen": "2026-07-28",
+   "isNew": true,
+   "extVer": 26
+  },
   {
    "id": "eaf7a8658445344b",
    "org": "직접 게시",
@@ -766,6 +959,7 @@
    "region": "서울",
    "source": "work.sen.go.kr",
    "title": "염창중 2학기 시간강사 채용공고 및 지원서(음악)",
+   "nonMusic": null,
    "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=106457",
    "date": "2026-07-27",
    "deadline": "2026-08-03",
@@ -782,9 +976,9 @@
    "subject": null,
    "channel": "edu_seoul",
    "layer": "C",
+   "deadlineFrom": "page",
    "qualification": "여부, 학력사항, 경력정보",
    "bodyExcerpt": "채용계획 사전 공개 · 주소, 사진, 전화번호, 취업지원대상 여부, 학력사항, 경력정보, 자격증 정보, 어학능력정보, 자기소개, 희망근무지, 희망직종 · 구직활동 지원 및 채용 관련 서비스 제공 · 다만, 필수항목에 대한 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다.",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-27",
    "isNew": true,
    "extVer": 26
@@ -795,6 +989,7 @@
    "region": "경기",
    "source": "goe.go.kr",
    "title": "명인중학교 기간제교사 채용 공고(음악)",
+   "nonMusic": null,
    "url": "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=54316",
    "date": "2026-07-27",
    "deadline": "2026-07-30",
@@ -811,8 +1006,8 @@
    "subject": null,
    "channel": "edu_goe",
    "layer": "C",
-   "bodyExcerpt": "퇴직교원 기간제교원을 제외하고는 감독적 지위에 임용할 수 없음 · 채용신체검사서와 신원진술서 · 추가 서류에서 채용 결격 사유가 발생할 경우 합격을 취소하며 · 채용 후라도 채용을 취소함",
    "deadlineFrom": "page",
+   "bodyExcerpt": "퇴직교원 기간제교원을 제외하고는 감독적 지위에 임용할 수 없음 · 채용신체검사서와 신원진술서 · 추가 서류에서 채용 결격 사유가 발생할 경우 합격을 취소하며 · 채용 후라도 채용을 취소함",
    "firstSeen": "2026-07-27",
    "isNew": true,
    "extVer": 26
@@ -823,6 +1018,7 @@
    "region": "경기",
    "source": "goe.go.kr",
    "title": "본원초 방과후강사채용(음악줄넘기)",
+   "nonMusic": null,
    "url": "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=54291",
    "date": "2026-07-27",
    "deadline": "2026-08-03",
@@ -850,6 +1046,7 @@
    "region": "경기",
    "source": "goe.go.kr",
    "title": "창의음악(1~4학년) 강사 채용",
+   "nonMusic": null,
    "url": "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=54289",
    "date": "2026-07-27",
    "deadline": "2026-08-14",
@@ -866,8 +1063,8 @@
    "subject": null,
    "channel": "edu_goe",
    "layer": "C",
-   "bodyExcerpt": "교사자격증 소지자, 해당 창의음악교육 분야 초등학교 지도 유경험자 · 대곡초등학교에서 근무하실 창의음악 강사를 아래와 같이 채용하고자 합니다 · 모집부문 및 인원 · 교사자격증 소지자",
    "deadlineFrom": "page",
+   "bodyExcerpt": "교사자격증 소지자, 해당 창의음악교육 분야 초등학교 지도 유경험자 · 대곡초등학교에서 근무하실 창의음악 강사를 아래와 같이 채용하고자 합니다 · 모집부문 및 인원 · 교사자격증 소지자",
    "firstSeen": "2026-07-27",
    "isNew": true,
    "extVer": 26
@@ -922,33 +1119,6 @@
    "channel": "edu_sje",
    "layer": "C",
    "bodyExcerpt": "모집 분야 및 인원 · 모집 세부 사항 · 2026학년도 2학기 계약제(기간제)교원(도덕윤리) 채용 4차 공고 · 2026학년도 학교자율장학 수업참관지ㅐ원 시간강사 채용",
-   "firstSeen": "2026-07-27",
-   "isNew": true,
-   "extVer": 26
-  },
-  {
-   "id": "ca3e8429a1305640",
-   "org": "부산교육청(학교인력채용)",
-   "region": "부산",
-   "source": "pen.go.kr",
-   "title": "거제여자중학교 시간강사(음악) 채용",
-   "url": "http://www.pen.go.kr/main/na/ntt/selectNttInfo.do?nttSn=1176544&mi=30367&bbsId=2364",
-   "date": "2026-07-27",
-   "deadline": "2026-07-30",
-   "kind": "강사",
-   "tier": "교육 — 취미·입문",
-   "obri": false,
-   "certReq": "무관",
-   "degreeReq": "무관",
-   "careerReq": "미기재",
-   "ageGroup": "성인",
-   "inst": "전체",
-   "instDetails": [],
-   "personnel": null,
-   "subject": null,
-   "channel": "edu_pen",
-   "layer": "C",
-   "bodyExcerpt": "유치원 인력 채용 · 교육공무직원 채용 관리 시스템 · 2026학년도 거제여자중학교 시간강사(음악) 채용 공고 · 1. 채용 과목 및 인원",
    "firstSeen": "2026-07-27",
    "isNew": true,
    "extVer": 26
@@ -1075,6 +1245,7 @@
    "region": "서울",
    "source": "work.sen.go.kr",
    "title": "예일초등학교 바이올린 강사 채용",
+   "nonMusic": null,
    "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=106381",
    "date": "2026-07-24",
    "deadline": "2026-08-06",
@@ -1093,9 +1264,9 @@
    "subject": null,
    "channel": "edu_seoul",
    "layer": "C",
+   "deadlineFrom": "page",
    "qualification": "여부, 학력사항, 경력정보",
    "bodyExcerpt": "채용계획 사전 공개 · 주소, 사진, 전화번호, 취업지원대상 여부, 학력사항, 경력정보, 자격증 정보, 어학능력정보, 자기소개, 희망근무지, 희망직종 · 구직활동 지원 및 채용 관련 서비스 제공 · 다만, 필수항목에 대한 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다.",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-24",
    "isNew": false,
    "extVer": 26
@@ -1106,6 +1277,7 @@
    "region": "서울",
    "source": "work.sen.go.kr",
    "title": "신정여자중학교 시간 강사(음악) 채용",
+   "nonMusic": null,
    "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=106397",
    "date": "2026-07-24",
    "deadline": "2026-07-29",
@@ -1122,9 +1294,9 @@
    "subject": null,
    "channel": "edu_seoul",
    "layer": "C",
+   "deadlineFrom": "page",
    "qualification": "여부, 학력사항, 경력정보",
    "bodyExcerpt": "채용계획 사전 공개 · 주소, 사진, 전화번호, 취업지원대상 여부, 학력사항, 경력정보, 자격증 정보, 어학능력정보, 자기소개, 희망근무지, 희망직종 · 구직활동 지원 및 채용 관련 서비스 제공 · 다만, 필수항목에 대한 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다.",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-27",
    "isNew": false,
    "extVer": 26
@@ -1135,6 +1307,7 @@
    "region": "서울",
    "source": "work.sen.go.kr",
    "title": "2026 맞춤형교실 프로그램 강사 채용 공고(음악놀이, 수학놀이)",
+   "nonMusic": null,
    "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=106412",
    "date": "2026-07-24",
    "deadline": "2026-07-30",
@@ -1151,9 +1324,9 @@
    "subject": null,
    "channel": "edu_seoul",
    "layer": "C",
+   "deadlineFrom": "page",
    "qualification": "여부, 학력사항, 경력정보",
    "bodyExcerpt": "채용계획 사전 공개 · 주소, 사진, 전화번호, 취업지원대상 여부, 학력사항, 경력정보, 자격증 정보, 어학능력정보, 자기소개, 희망근무지, 희망직종 · 구직활동 지원 및 채용 관련 서비스 제공 · 다만, 필수항목에 대한 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다.",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-24",
    "isNew": false,
    "extVer": 26
@@ -1164,6 +1337,7 @@
    "region": "서울",
    "source": "work.sen.go.kr",
    "title": "한서고등학교 2026학년도 2학기 기간제교사 채용 공고문(음악과)",
+   "nonMusic": null,
    "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=106327",
    "date": "2026-07-24",
    "deadline": "2026-07-29",
@@ -1180,9 +1354,9 @@
    "subject": null,
    "channel": "edu_seoul",
    "layer": "C",
+   "deadlineFrom": "page",
    "qualification": "여부, 학력사항, 경력정보",
    "bodyExcerpt": "채용계획 사전 공개 · 주소, 사진, 전화번호, 취업지원대상 여부, 학력사항, 경력정보, 자격증 정보, 어학능력정보, 자기소개, 희망근무지, 희망직종 · 구직활동 지원 및 채용 관련 서비스 제공 · 다만, 필수항목에 대한 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다.",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-24",
    "isNew": false,
    "extVer": 26
@@ -1193,6 +1367,7 @@
    "region": "경기",
    "source": "goe.go.kr",
    "title": "합창 프로그램 외부 강사 모집",
+   "nonMusic": null,
    "url": "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=54152",
    "date": "2026-07-24",
    "deadline": "2026-07-29",
@@ -1209,8 +1384,8 @@
    "subject": null,
    "channel": "edu_goe",
    "layer": "C",
-   "bodyExcerpt": "모집 분야 및 인원 · 모집 세부 사항 · 채용 후 최종 협의 예정 · 당 분야에 전문적인 능력을 가진 자 또는 자격증 소지자",
    "deadlineFrom": "page",
+   "bodyExcerpt": "모집 분야 및 인원 · 모집 세부 사항 · 채용 후 최종 협의 예정 · 당 분야에 전문적인 능력을 가진 자 또는 자격증 소지자",
    "firstSeen": "2026-07-24",
    "isNew": false,
    "extVer": 26
@@ -1249,6 +1424,7 @@
    "region": "경기",
    "source": "gcart.or.kr",
    "title": "과천시립예술단(소년소녀합창단) 반주자 공개채용",
+   "nonMusic": null,
    "url": "https://www.gcart.or.kr/kr/commu/recruitView.do?bbsIdx=1852&pageIndex=1&searchCondition=&searchKeyword=",
    "date": "2026-07-24",
    "deadline": "2026-08-07",
@@ -1267,11 +1443,11 @@
    "subject": null,
    "channel": "g_gcart",
    "layer": "B",
+   "deadlineFrom": "attachment",
    "positions": [
     "반주자"
    ],
    "bodyExcerpt": "2026년 제2차 육아휴직대체자 블라인드 채용 공고",
-   "deadlineFrom": "attachment",
    "firstSeen": "2026-07-24",
    "isNew": false,
    "extVer": 26
@@ -1408,6 +1584,7 @@
    "region": "서울",
    "source": "work.sen.go.kr",
    "title": "동작고등학교 시간강사(음악) 채용",
+   "nonMusic": null,
    "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=106300",
    "date": "2026-07-23",
    "deadline": "2026-07-30",
@@ -1424,9 +1601,9 @@
    "subject": null,
    "channel": "edu_seoul",
    "layer": "C",
+   "deadlineFrom": "page",
    "qualification": "여부, 학력사항, 경력정보",
    "bodyExcerpt": "채용계획 사전 공개 · 주소, 사진, 전화번호, 취업지원대상 여부, 학력사항, 경력정보, 자격증 정보, 어학능력정보, 자기소개, 희망근무지, 희망직종 · 구직활동 지원 및 채용 관련 서비스 제공 · 다만, 필수항목에 대한 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다.",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-27",
    "isNew": false,
    "extVer": 26
@@ -1494,6 +1671,7 @@
    "region": "충북",
    "source": "cbe.go.kr",
    "title": "세명고 기간제교사(음악) 채용 3차",
+   "nonMusic": null,
    "url": "https://www.cbe.go.kr/cbe/na/ntt/selectNttInfo.do?nttSn=1576420&mi=11716&bbsId=1798",
    "date": "2026-07-23",
    "deadline": "2026-07-31",
@@ -1753,37 +1931,6 @@
    "extVer": 26
   },
   {
-   "id": "e2abfb5cf3d7ed71",
-   "org": "충암초등학교(서울시교육청)",
-   "region": "서울",
-   "source": "work.sen.go.kr",
-   "title": "충암초 방과후교실(바이올린) 개인위탁 외부강사 모집",
-   "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=106251",
-   "date": "2026-07-22",
-   "deadline": "2026-07-28",
-   "kind": "강사",
-   "tier": "교육 — 취미·입문",
-   "obri": false,
-   "certReq": "아니오",
-   "degreeReq": "무관",
-   "careerReq": "미기재",
-   "ageGroup": "성인",
-   "inst": "현악",
-   "instDetails": [
-    "바이올린"
-   ],
-   "personnel": "1명 과목 (",
-   "subject": null,
-   "channel": "edu_seoul",
-   "layer": "C",
-   "qualification": "여부, 학력사항, 경력정보",
-   "bodyExcerpt": "채용계획 사전 공개 · 주소, 사진, 전화번호, 취업지원대상 여부, 학력사항, 경력정보, 자격증 정보, 어학능력정보, 자기소개, 희망근무지, 희망직종 · 구직활동 지원 및 채용 관련 서비스 제공 · 다만, 필수항목에 대한 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다.",
-   "deadlineFrom": "page",
-   "firstSeen": "2026-07-24",
-   "isNew": false,
-   "extVer": 26
-  },
-  {
    "id": "3a7c9774b25e235b",
    "org": "금호중학교(세종교육청)",
    "region": "세종",
@@ -1903,6 +2050,7 @@
    "region": "경기",
    "source": "goe.go.kr",
    "title": "[매양중] 예술수업 악기강사(하프) 모집 공고_3차",
+   "nonMusic": null,
    "url": "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=53803",
    "date": "2026-07-21",
    "deadline": null,
@@ -1921,8 +2069,8 @@
    "subject": null,
    "channel": "edu_goe",
    "layer": "C",
-   "bodyExcerpt": "다음과 같이 모집",
    "deadlineNote": "상시",
+   "bodyExcerpt": "다음과 같이 모집",
    "firstSeen": "2026-07-21",
    "isNew": false,
    "extVer": 26
@@ -1961,6 +2109,7 @@
    "region": "서울",
    "source": "work.sen.go.kr",
    "title": "(서울하늘초) 1~2학년 스마트체육 음악줄넘기 강사 채용",
+   "nonMusic": null,
    "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=105917",
    "date": "2026-07-20",
    "deadline": "2026-08-18",
@@ -1977,9 +2126,9 @@
    "subject": null,
    "channel": "edu_seoul",
    "layer": "C",
+   "deadlineFrom": "page",
    "qualification": "여부, 학력사항, 경력정보",
    "bodyExcerpt": "채용계획 사전 공개 · 주소, 사진, 전화번호, 취업지원대상 여부, 학력사항, 경력정보, 자격증 정보, 어학능력정보, 자기소개, 희망근무지, 희망직종 · 구직활동 지원 및 채용 관련 서비스 제공 · 다만, 필수항목에 대한 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다.",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-24",
    "isNew": false,
    "extVer": 26
@@ -1990,6 +2139,7 @@
    "region": "서울",
    "source": "work.sen.go.kr",
    "title": "시간강사 채용 공고(안)_, 음악",
+   "nonMusic": null,
    "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=105895",
    "date": "2026-07-20",
    "deadline": "2026-07-31",
@@ -2006,9 +2156,9 @@
    "subject": null,
    "channel": "edu_seoul",
    "layer": "C",
+   "deadlineFrom": "page",
    "qualification": "여부, 학력사항, 경력정보",
    "bodyExcerpt": "채용계획 사전 공개 · 주소, 사진, 전화번호, 취업지원대상 여부, 학력사항, 경력정보, 자격증 정보, 어학능력정보, 자기소개, 희망근무지, 희망직종 · 구직활동 지원 및 채용 관련 서비스 제공 · 다만, 필수항목에 대한 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다.",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-24",
    "isNew": false,
    "extVer": 26
@@ -2019,6 +2169,7 @@
    "region": "경남",
    "source": "timf.org",
    "title": "2026 통영시민오케스트라 신규단원 모집",
+   "nonMusic": null,
    "url": "https://www.timf.org/kr/sub/timf/notice.asp?mode=view&bid=1&s_type=&s_keyword=&s_cate=&idx=3788&page=1",
    "date": "2026-07-20",
    "deadline": null,
@@ -2040,42 +2191,9 @@
    ],
    "bodyExcerpt": "신규단원을모집합니다 . · — . 〈 오디션일정〉 rr · . _ _ . . 모집파트 。 .",
    "dlHint": [
-    "원 모집 관리자 조회수 : 170 | 2026-07-20 온라인 구글폼 접수 바로가기 https://forms.gle/7PXxumKKaEtNsuzs9 상호명  :"
+    "원 모집 관리자 조회수 : 193 | 2026-07-20 온라인 구글폼 접수 바로가기 https://forms.gle/7PXxumKKaEtNsuzs9 상호명  :"
    ],
    "firstSeen": "2026-07-21",
-   "isNew": false,
-   "extVer": 26
-  },
-  {
-   "id": "75b0e58f4b8192e4",
-   "org": "군산시립교향악단",
-   "region": "전북",
-   "source": "gunsan.go.kr",
-   "title": "군산시립교향악단 제85회 특별기획연주회 협연자 오디션",
-   "url": "https://www.gunsan.go.kr/gsart/m1950/view/9832341?",
-   "date": null,
-   "deadline": "2026-08-14",
-   "kind": "단원",
-   "tier": "연주",
-   "obri": false,
-   "certReq": "무관",
-   "degreeReq": "무관",
-   "careerReq": "미기재",
-   "ageGroup": "성인",
-   "inst": "타악",
-   "instDetails": [
-    "타악",
-    "피아노"
-   ],
-   "personnel": "8명3",
-   "subject": null,
-   "channel": "g_i_gunsangokr",
-   "layer": "B",
-   "auditionDate": "7/27",
-   "contract": "비상임",
-   "bodyExcerpt": "오디션 공고<커뮤니티<군산시립예술단 · 군산시립교향악단 2026년 제85회 특별기획연주회와 관련하여 협연자 모집을 위하여 아래와 같이 공고하고자 합니다. · 1. 공고기간 : 2026. 7. 14.(월) ~ 2026. 8.14.(금) · 2. 접수기간 : 2026. 8. 10.(월) 10:00 ~ 8.14.(금) 18:00",
-   "deadlineFrom": "page",
-   "firstSeen": "2026-07-17",
    "isNew": false,
    "extVer": 26
   },
@@ -2112,6 +2230,7 @@
    "region": "서울",
    "source": "work.sen.go.kr",
    "title": "이화여대병설미디어고 기간제 교원 채용 공고(음악, 연극영화, 종교)",
+   "nonMusic": null,
    "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=105582",
    "date": "2026-07-15",
    "deadline": "2026-07-31",
@@ -2128,67 +2247,10 @@
    "subject": null,
    "channel": "edu_seoul",
    "layer": "C",
+   "deadlineFrom": "page",
    "qualification": "여부, 학력사항, 경력정보",
    "bodyExcerpt": "채용계획 사전 공개 · 주소, 사진, 전화번호, 취업지원대상 여부, 학력사항, 경력정보, 자격증 정보, 어학능력정보, 자기소개, 희망근무지, 희망직종 · 구직활동 지원 및 채용 관련 서비스 제공 · 다만, 필수항목에 대한 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다.",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-24",
-   "isNew": false,
-   "extVer": 26
-  },
-  {
-   "id": "5b5dcd6cbdaf1cd3",
-   "org": "서울율현초등학교(서울시교육청)",
-   "region": "서울",
-   "source": "work.sen.go.kr",
-   "title": "(서울율현초) 맞춤형교실 외부강사 채용공고(음악놀이, 미술놀이,종이접기)",
-   "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=105454",
-   "date": "2026-07-14",
-   "deadline": "2026-07-28",
-   "kind": "강사",
-   "tier": "교육 — 취미·입문",
-   "obri": false,
-   "certReq": "무관",
-   "degreeReq": "무관",
-   "careerReq": "미기재",
-   "ageGroup": "성인",
-   "inst": "전체",
-   "instDetails": [],
-   "personnel": "4명 과목 (",
-   "subject": null,
-   "channel": "edu_seoul",
-   "layer": "C",
-   "qualification": "여부, 학력사항, 경력정보",
-   "bodyExcerpt": "채용계획 사전 공개 · 주소, 사진, 전화번호, 취업지원대상 여부, 학력사항, 경력정보, 자격증 정보, 어학능력정보, 자기소개, 희망근무지, 희망직종 · 구직활동 지원 및 채용 관련 서비스 제공 · 다만, 필수항목에 대한 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다.",
-   "deadlineFrom": "page",
-   "firstSeen": "2026-07-24",
-   "isNew": false,
-   "extVer": 26
-  },
-  {
-   "id": "e4a47c7f68910daa",
-   "org": "강원교육청(학교 채용)",
-   "region": "강원",
-   "source": "gwe.go.kr",
-   "title": "악기뱅크2.0 울림프로젝트 6학년 우쿨렐레 강사 채용",
-   "url": "https://www.gwe.go.kr/main/bbs/view.do?key=bTIzMDcyMTA1ODU2MzM%3D&bbsSn=53911",
-   "date": "2026-07-14",
-   "deadline": "2026-07-29",
-   "kind": "강사",
-   "tier": "교육 — 취미·입문",
-   "obri": false,
-   "certReq": "무관",
-   "degreeReq": "무관",
-   "careerReq": "미기재",
-   "ageGroup": "성인",
-   "inst": "전체",
-   "instDetails": [],
-   "personnel": null,
-   "subject": null,
-   "channel": "edu_gwe",
-   "layer": "C",
-   "deadlineFrom": "page",
-   "bodyExcerpt": "채용이 완료된 학교에서는 채용문의에 대한 불필요한 민원 발생을 미연에 방지하고자 \"채용여부\"를 반드시 \"채용완료\"로 수정하여 주시기 바랍니다. · 구인공고시 채용 마감일자를 반드시 기재하여 주시기 바랍니다. · 채용 마감일자가 지난 경우, 채용이 완료되지 않아도 재공고시까지 지원하실 수 없으니 착오없으시기 바랍니다. · 악기뱅크2.0 울림프로젝트 6학년 우쿨렐레 강사 채용 공고",
-   "firstSeen": "2026-07-15",
    "isNew": false,
    "extVer": 26
   },
