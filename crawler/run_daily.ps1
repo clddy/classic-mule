@@ -41,6 +41,11 @@ if (-not $PY) {
     exit 1
 }
 
+# PC가 꺼져 있던 날 Actions 백업이 크롤·푸시해 뒀을 수 있다. 먼저 원격을 당겨오지 않으면
+# (1) 이번 크롤이 낡은 이전 수집분을 승계하고 (2) 마지막 푸시가 거부된다. (2026-07-29)
+git pull --ff-only origin main 2>&1 | Out-Null
+if ($LASTEXITCODE -ne 0) { Note "warn: pull 실패 — 로컬이 갈라졌을 수 있다 (계속 진행)" }
+
 Note "크롤 시작 ($PY)"
 & $PY crawler\main.py
 if ($LASTEXITCODE -ne 0) {
@@ -57,8 +62,10 @@ if ((Get-Item C:\ohai\podium\data\official.json).LastWriteTime -lt (Get-Date).Ad
     exit 1
 }
 
-git add data/
-$changed = git status --porcelain data/
+# 정적 산출물(staticgen)까지 함께 커밋해야 검색 봇용 목록·공고 페이지가 갱신된다 —
+# data/ 만 넣던 탓에 로컬 크롤로는 p/·jobs.html·sitemap이 낡은 채로 남았다 (2026-07-29)
+git add data/ p/ jobs.html index.html sitemap.xml robots.txt
+$changed = git status --porcelain data/ p/ jobs.html index.html sitemap.xml robots.txt
 if ($changed) {
     $today = Get-Date -Format 'yyyy-MM-dd'
     git -c user.name="ohmjin" -c user.email="ohmjin3141@naver.com" commit -m "auto: crawl $today"
