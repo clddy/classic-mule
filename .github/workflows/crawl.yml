@@ -31,29 +31,54 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      # 한국 공공기관 사이트 일부(나라일터·기독정보넷·교육청·하이브레인)는 Actions의 해외
+      # IP에서 조용히 0건을 돌려준다 — 같은 코드가 국내 PC에서는 정상 수집된다(2026-07-29 확인).
+      # 그래서 국내 PC 크롤이 그날 이미 돌았으면 이쪽은 물러난다: Actions는 'PC가 꺼진 날의
+      # 백업'이 되고, 둘이 같은 날 밀어내며 푸시 충돌을 내지 않는다.
+      - name: 오늘 이미 수집됐는지 확인
+        id: guard
+        run: |
+          LIVE=$(curl -sf https://clddy.github.io/classic-mule/data/official.json \
+                 | python -c "import json,sys;print((json.load(sys.stdin).get('collectedAt') or '')[:10])" 2>/dev/null || echo "")
+          TODAY=$(date +%F)
+          if [ "$LIVE" = "$TODAY" ]; then
+            echo "skip=true" >> "$GITHUB_OUTPUT"
+            echo "오늘($TODAY) 이미 수집됨 — 국내 크롤이 처리했으므로 생략"
+          else
+            echo "skip=false" >> "$GITHUB_OUTPUT"
+            echo "마지막 수집 '$LIVE' — 오늘($TODAY) 크롤 진행"
+          fi
+
       - uses: actions/setup-python@v5
+        if: steps.guard.outputs.skip != 'true'
         with:
           python-version: '3.12'
           cache: pip
 
       - name: Tesseract 한국어 OCR 설치
+        if: steps.guard.outputs.skip != 'true'
         run: sudo apt-get update && sudo apt-get install -y tesseract-ocr tesseract-ocr-kor
 
       - name: 파이썬 패키지 설치
+        if: steps.guard.outputs.skip != 'true'
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
       - name: Playwright 크롬 설치
+        if: steps.guard.outputs.skip != 'true'
         run: python -m playwright install --with-deps chromium
 
       - name: 크롤 실행 (수집 → 마감 추적 → 정적 생성)
+        if: steps.guard.outputs.skip != 'true'
         run: python crawler/main.py
 
       - name: 소스 노트 내보내기 (로컬 볼트 없으면 자동 skip)
+        if: steps.guard.outputs.skip != 'true'
         run: python crawler/export_sources_md.py || true
 
       - name: 변경분 커밋·푸시
+        if: steps.guard.outputs.skip != 'true'
         run: |
           git config user.name  "podium-bot"
           git config user.email "github-actions[bot]@users.noreply.github.com"

@@ -29,6 +29,9 @@ DATA = ROOT / "data"
 OFFICIAL = DATA / "official.json"
 HISTORY = DATA / "health_history.json"
 LOG = DATA / "health.log"
+# 크롤이 GitHub Actions로 옮겨간 뒤(2026-07-25) 진실의 원천은 배포된 데이터다 —
+# 로컬 official.json은 git pull 전까지 낡은 채로 남는다.
+LIVE_JSON = "https://clddy.github.io/classic-mule/data/official.json"
 
 KEEP_DAYS = 45      # 소스별 히스토리 보관 개수
 MIN_SAMPLES = 5     # baseline을 신뢰하는 데 필요한 최소 '정상 관측' 수
@@ -186,7 +189,27 @@ def check_sources(rep, doc, hist, today):
             rep.add("MED", "소스", f"{h.get('name', sid)}: 이번 크롤 명단에서 빠짐 (마지막 {last})")
 
 
-def check_freshness(rep, doc):
+def load_doc():
+    """점검 대상 데이터 — 배포본이 로컬보다 최신이면 배포본을 쓴다. (반환: doc, 출처)
+
+    크롤이 GitHub Actions로 옮겨간 뒤로 로컬 official.json은 git pull을 해야만 갱신된다.
+    로컬을 기준 삼으면 (1) 크롤이 멀쩡히 돌아도 '안 돌았다' 오탐이 매일 나고
+    (2) 파서 baseline·필드 점검까지 낡은 데이터로 하게 된다 (2026-07-29 실제 발생:
+    Actions는 07-28까지 정상인데 로컬이 07-27이라 '2일째 크롤 안 돎' 🔴 알림).
+    사용자가 실제로 보는 것은 배포된 데이터이므로 그쪽을 점검한다.
+    """
+    local = json.loads(OFFICIAL.read_text(encoding="utf-8")) if OFFICIAL.exists() else {}
+    try:
+        r = requests.get(LIVE_JSON, timeout=25, headers=UA)
+        live = r.json() if r.status_code == 200 else None
+    except Exception:
+        live = None
+    if live and (live.get("collectedAt") or "") > (local.get("collectedAt") or ""):
+        return live, "배포"
+    return local, "로컬"
+
+
+def check_freshness(rep, doc, src="로컬"):
     """크롤 자체가 안 돌았는지. 이걸 안 보면 어제 파일을 읽고 '이상 없음'이라 답한다."""
     at = (doc.get("collectedAt") or "")[:10]
     if not at:
@@ -194,10 +217,12 @@ def check_freshness(rep, doc):
         return
     gap = (date.today() - date.fromisoformat(at)).days
     if gap >= 2:
-        rep.add("HIGH", "크롤", f"수집 기록이 {at} — {gap}일째 크롤이 안 돌았다")
+        rep.add("HIGH", "크롤", f"{src} 수집 기록이 {at} — {gap}일째 크롤이 안 돌았다")
     elif gap == 1:
-        # 자정 직후 실행 등으로 하루 차이는 날 수 있다
-        rep.add("MED", "크롤", f"수집 기록이 {at} (어제) — 오늘 크롤이 실패했는지 확인")
+        # Actions 크론(18:00 KST)은 GitHub 부하에 따라 두세 시간씩 밀린다(07-28은 20:45 완료).
+        # 헬스체크 시점에 당일 크롤이 아직 안 끝난 것은 정상이므로 로그만 남긴다 —
+        # 진짜 실패라면 다음 날 gap>=2로 올라와 HIGH로 잡힌다.
+        rep.add("LOW", "크롤", f"{src} 수집 기록이 {at} (어제) — 오늘 크롤이 아직 안 끝났거나 지연 중")
 
 
 def check_total(rep, doc, hist, today):
@@ -432,7 +457,7 @@ def main():
     if not OFFICIAL.exists():
         print("official.json이 없다 — 크롤을 먼저 돌릴 것", file=sys.stderr)
         return 2
-    doc = json.loads(OFFICIAL.read_text(encoding="utf-8"))
+    doc, doc_src = load_doc()   # 배포본이 더 최신이면 그걸 점검한다 (Actions 시대)
     items = doc.get("items", [])
     # collectedAt은 "2026-07-15 03:01" 형태 — 날짜만 쓴다
     today = (doc.get("collectedAt") or "")[:10] or date.today().isoformat()
@@ -441,7 +466,7 @@ def main():
     hist = load_history()
 
     # 1순위 — 파서
-    check_freshness(rep, doc)
+    check_freshness(rep, doc, doc_src)
     check_sources(rep, doc, hist, today)
     check_total(rep, doc, hist, today)
     check_fields(rep, items)
