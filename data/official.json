@@ -1,5 +1,5 @@
 {
- "collectedAt": "2026-07-29 19:25",
+ "collectedAt": "2026-07-30 18:02",
  "sourceCount": 80,
  "okCount": 80,
  "instTotal": 75,
@@ -73,7 +73,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 14,
    "kept": 0
   },
   {
@@ -82,7 +82,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 1,
    "kept": 0
   },
   {
@@ -91,7 +91,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 15,
    "kept": 0
   },
   {
@@ -109,7 +109,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 10,
    "kept": 0
   },
   {
@@ -127,7 +127,7 @@
    "layer": "B",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 25,
    "kept": 2
   },
   {
@@ -145,7 +145,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 20,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -154,8 +154,8 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 10,
-   "kept": 2
+   "skipped": true,
+   "kept": 1
   },
   {
    "id": "knso",
@@ -163,7 +163,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 15,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -208,7 +208,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "skipped": true,
+   "raw": 20,
    "kept": 0
   },
   {
@@ -217,7 +217,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -226,7 +226,7 @@
    "layer": "D",
    "poll": "weekly",
    "ok": true,
-   "raw": 0,
+   "skipped": true,
    "kept": 0
   },
   {
@@ -1017,10 +1017,10 @@
    "subject": null,
    "channel": "cwcf",
    "layer": "B",
-   "bodyExcerpt": "사진·영상 촬영 관리 분야 공개경쟁채용 공고 · 을 담당할 촬영 운영인력을 다음과 같이 공개 모집합니다. 사진 및 영상 촬영에 · ※ (재)창원문화재단은 직원 공개채용을 블라인드 채용으로 실시하며, 지원서·자기소개서·역량기술 · 서에는 성별, 신체조건, 용모, 학력, 연령 등 블라인드 채용 취지에 위배되는 사항을 기재할 수 없",
    "deadlineFrom": "attachment",
+   "bodyExcerpt": "사진·영상 촬영 관리 분야 공개경쟁채용 공고 · 을 담당할 촬영 운영인력을 다음과 같이 공개 모집합니다. 사진 및 영상 촬영에 · ※ (재)창원문화재단은 직원 공개채용을 블라인드 채용으로 실시하며, 지원서·자기소개서·역량기술 · 서에는 성별, 신체조건, 용모, 학력, 연령 등 블라인드 채용 취지에 위배되는 사항을 기재할 수 없",
    "firstSeen": "2026-07-29",
-   "isNew": true,
+   "isNew": false,
    "extVer": 26
   },
   {
@@ -1050,7 +1050,7 @@
    "bodyExcerpt": "채용계획 사전 공개 · 주소, 사진, 전화번호, 취업지원대상 여부, 학력사항, 경력정보, 자격증 정보, 어학능력정보, 자기소개, 희망근무지, 희망직종 · 구직활동 지원 및 채용 관련 서비스 제공 · 다만, 필수항목에 대한 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다.",
    "deadlineFrom": "page",
    "firstSeen": "2026-07-29",
-   "isNew": true,
+   "isNew": false,
    "extVer": 26
   },
   {
@@ -1079,7 +1079,7 @@
    "deadlineFrom": "page",
    "bodyExcerpt": "계약제교원 채용 공고 · 등학교에서 계약제교원 채용계획을 다음과 같이 공고합니다 · 채용 응시 자격 · 내국인으로서 채용 분야 교원자격증 소지자",
    "firstSeen": "2026-07-28",
-   "isNew": true,
+   "isNew": false,
    "extVer": 26
   },
   {
@@ -1107,7 +1107,7 @@
    "layer": "C",
    "deadlineFrom": "page",
    "firstSeen": "2026-07-28",
-   "isNew": true,
+   "isNew": false,
    "extVer": 26
   },
   {
@@ -1136,7 +1136,7 @@
    "deadlineFrom": "page",
    "bodyExcerpt": "학습지원 프로그램 운영 기관 · 채용이 완료된 학교에서는 채용문의에 대한 불필요한 민원 발생을 미연에 방지하고자 \"채용여부\"를 반드시 \"채용완료\"로 수정하여 주시기 바랍니다. · 구인공고시 채용 마감일자를 반드시 기재하여 주시기 바랍니다. · 채용 마감일자가 지난 경우, 채용이 완료되지 않아도 재공고시까지 지원하실 수 없으니 착오없으시기 바랍니다.",
    "firstSeen": "2026-07-28",
-   "isNew": true,
+   "isNew": false,
    "extVer": 26
   },
   {
@@ -1166,7 +1166,7 @@
    "layer": "C",
    "bodyExcerpt": "공고 < 채용공고 < 채용 < 채용/시험 | 인천광역시교육청 · 기간제교원 채용계획 사전공개 · 채용공고 알람신청 · 채용공고 상세보기 테이블",
    "firstSeen": "2026-07-29",
-   "isNew": true,
+   "isNew": false,
    "extVer": 26
   },
   {
@@ -1195,7 +1195,7 @@
    "layer": "B",
    "musicUnverified": true,
    "firstSeen": "2026-07-29",
-   "isNew": true,
+   "isNew": false,
    "extVer": 26
   },
   {
