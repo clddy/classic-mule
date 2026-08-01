@@ -239,12 +239,13 @@ def find_attachments(soup, base_url):
                     cands.append((full, el.get_text(" ", strip=True)))
     return cands[:4]
 
-EXT_VER = 26         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
+EXT_VER = 27         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
                      # 24: work.sen 등록일(게시일) 추출 추가 — date=None이던 승계분을 다시 뽑게
                      # 25: body_text 도입 — 본문을 <header>에 넣는 사이트(대전교육청)의 마감일을
                      #     스스로 날리던 버그 수정. 못 찾았던 항목들을 다시 뽑게 한다.
                      # 26: 자격 라벨쓰레기('경력 경력 학력') 거부 + 본문요약 메뉴·제목중복 제거
                      #     — 승계된 오염 값들을 재추출로 씻어낸다.
+                     # 27: 본문요약 OCR 파편 배제(이미지 공고문이 깨져 기호만 남는 줄)
                      # 23: region_from 개편(전남광주통합특별시 반영, 경기 광주시 오분류 수정)
                      #  v18: 대학 강사 초빙 원문 첨부(HWP/XLSX)에서 음악 전공 추출 + 비음악 제외
                      #  v19: 음악 학과/전공 정밀 추출(행사명·전화번호 오염 제거) — 재추출 강제
@@ -391,6 +392,13 @@ def _body_excerpt_text(text, title=None):
             continue
         # 게시글 제목이 본문 첫 줄로 반복되는 경우 — 요약에 제목을 또 싣지 않는다
         if tnorm and (tnorm[:14] == ln[:14] or tnorm in ln or ln in tnorm):
+            continue
+        # OCR 파편 배제 — 이미지 공고문을 읽다 깨지면 기호 부스러기만 남는다
+        # ('— . 〈 오디션일정〉 rr', '. _ _ . . 모집파트 。 .' — 통영시민오케 2026-07-29).
+        # 날짜·번호에 정상적으로 쓰이는 기호(. : , ~ ( ) / -)는 세지 않는다 —
+        # 다 세면 '3. 서류접수: 2026. 7.24.(금)' 같은 알짜 줄까지 잘려나간다.
+        solid = len(ln.replace(" ", ""))
+        if solid and len(re.findall(r"[^가-힣A-Za-z0-9\s.:,~()/\-]", ln)) / solid > 0.15:
             continue
         if ln.count("|") >= 2:      # 브레드크럼(메뉴 경로) 배제
             continue
