@@ -30,8 +30,23 @@ except Exception:
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 import requests  # noqa: E402
-from common import UA, relevant  # noqa: E402
-from discovery import fetch, board_candidates, extract_items  # noqa: E402
+from common import UA, relevant, curl_get  # noqa: E402
+from discovery import fetch as _fetch, board_candidates, extract_items  # noqa: E402
+
+
+def fetch(s, url, use_js=False):
+    """discovery.fetch + curl 폴백.
+
+    국내 사이트 다수가 파이썬 TLS 지문을 막는다(2026-08-02 확인: 백석대·제주대·창원 계열
+    requests=ReadTimeout, 일부는 404 위장까지 — 같은 내용을 curl은 200으로 받음).
+    requests 결과가 부실하면 윈도우 curl(Schannel)로 한 번 더 받아 큰 쪽을 쓴다.
+    """
+    html = _fetch(s, url, use_js)
+    if len(html) < 3000:
+        r = curl_get(url, timeout=15)
+        if r.status_code == 200 and len(r.text) > len(html):
+            return r.text
+    return html
 
 CSV = os.path.join(BASE, "crawler", "institutions.csv")
 DIR = os.path.join(BASE, "data", "fullsweep")
