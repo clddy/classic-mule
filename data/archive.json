@@ -194,18 +194,19 @@
    "org": "KBS교향악단",
    "region": "서울",
    "source": "kbssymphony.org",
-   "title": "2026년 KBS교향악단 신규단원 채용(비올라, 오보에)",
+   "title": "KBS교향악단 신규단원 채용(비올라, 오보에)",
    "url": "https://www.kbssymphony.org/ko/info/recruit.php?board_code=view&number=29496&page=1",
    "date": "2026-07-03",
    "deadline": "2026-08-02",
    "kind": "단원",
    "inst": "현악",
    "firstSeen": "2026-07-07",
-   "lastSeen": "2026-07-14",
-   "days": 7,
+   "lastSeen": "2026-08-02",
+   "days": 8,
    "instDetails": [
     "비올라",
-    "오보에"
+    "오보에",
+    "피아노"
    ],
    "tier": "연주",
    "channel": "kbs",
@@ -220,7 +221,7 @@
    "positions": [
     "부수석"
    ],
-   "bodyExcerpt": "2026년 KBS교향악단 신규단원 채용(비올라, 오보에) · 교향악단 신규단원 채용 · 교향악단에서 실력있고 열정 넘치는 전문 연주자를 공개 모집합니다 · 모집부문별 채용 예정인원"
+   "bodyExcerpt": "교향악단에서 실력있고 열정 넘치는 전문 연주자를 공개 모집합니다 · 모집부문별 채용 예정인원 · 현재 군복무 또는 공익 근무자는 채용 예정일까지 전역 또는 소집해제 상태여야 하며 · 입사지원은 채용 홈페이지에서 가능하며 마감 전까지 최종 제출이 완료되어야 합니다"
   },
   "76bde1336c0012c2": {
    "id": "76bde1336c0012c2",
@@ -2773,8 +2774,7 @@
    "instDetails": [
     "비올라",
     "오보에",
-    "타악",
-    "피아노"
+    "타악"
    ],
    "firstSeen": "2026-07-08",
    "lastSeen": "2026-08-02",
@@ -5379,7 +5379,7 @@
    "deadlineFrom": "page",
    "kind": "단원",
    "tier": "연주",
-   "inst": "타악",
+   "inst": "전체",
    "instDetails": [
     "타악",
     "피아노",
@@ -6505,8 +6505,7 @@
    "tier": "교육 — 취미·입문",
    "inst": "현악",
    "instDetails": [
-    "바이올린",
-    "관악"
+    "바이올린"
    ],
    "ageGroup": "성인",
    "obri": false,
@@ -6726,7 +6725,7 @@
    "deadlineFrom": "page",
    "kind": "강사",
    "tier": "교육 — 취미·입문",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
@@ -7451,7 +7450,7 @@
    "deadlineFrom": "page",
    "kind": "강사",
    "tier": "교육 — 취미·입문",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
@@ -8030,8 +8029,7 @@
    "tier": "교육 — 취미·입문",
    "inst": "현악",
    "instDetails": [
-    "현악",
-    "관악"
+    "현악"
    ],
    "ageGroup": "성인",
    "obri": false,
@@ -8058,7 +8056,7 @@
    "deadlineFrom": "page",
    "kind": "교수",
    "tier": "교육 — 취미·입문",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
@@ -8088,7 +8086,7 @@
    "deadlineFrom": "page",
    "kind": "기타",
    "tier": "교육 — 취미·입문",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
@@ -8467,7 +8465,7 @@
    "deadlineFrom": "page",
    "kind": "강사",
    "tier": "교육 — 취미·입문",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
@@ -8553,7 +8551,7 @@
    "deadlineFrom": "page",
    "kind": "단원",
    "tier": "연주",
-   "inst": "현악",
+   "inst": "전체",
    "instDetails": [
     "현악"
    ],
@@ -8634,7 +8632,7 @@
    "deadline": "2026-08-04",
    "kind": "강사",
    "tier": "교육 — 대학",
-   "inst": "금관",
+   "inst": "전체",
    "instDetails": [
     "튜바"
    ],
@@ -8741,7 +8739,7 @@
    "deadlineFrom": "page",
    "kind": "강사",
    "tier": "교육 — 취미·입문",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],

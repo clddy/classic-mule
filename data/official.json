@@ -1,5 +1,5 @@
 {
- "collectedAt": "2026-08-02 14:59",
+ "collectedAt": "2026-08-02 18:09",
  "sourceCount": 80,
  "okCount": 79,
  "instTotal": 75,
@@ -62,7 +62,7 @@
    "id": "ggac",
    "name": "경기아트센터(경기필)",
    "layer": "B",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 1,
    "kept": 0
@@ -71,7 +71,7 @@
    "id": "incheon",
    "name": "인천문화예술회관",
    "layer": "B",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 13,
    "kept": 0
@@ -80,7 +80,7 @@
    "id": "daegu",
    "name": "대구문화예술회관(시향)",
    "layer": "B",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 1,
    "kept": 0
@@ -89,7 +89,7 @@
    "id": "bscc",
    "name": "부산문화회관(시립예술단)",
    "layer": "B",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 15,
    "kept": 0
@@ -98,7 +98,7 @@
    "id": "artsuwon",
    "name": "수원시립예술단",
    "layer": "B",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 21,
    "kept": 0
@@ -107,7 +107,7 @@
    "id": "snart",
    "name": "성남문화재단",
    "layer": "B",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 10,
    "kept": 0
@@ -116,7 +116,7 @@
    "id": "sejongpac",
    "name": "세종문화회관(서울시예술단)",
    "layer": "B",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 10,
    "kept": 0
@@ -125,7 +125,7 @@
    "id": "cwcf",
    "name": "창원문화재단",
    "layer": "B",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": false,
    "kept": 2,
    "error": "ReadTimeout: HTTPSConnectionPool(host='www.cwcf.or.kr', port=443): Read timed out. (read timeout=20)"
@@ -134,7 +134,7 @@
    "id": "ulsan",
    "name": "울산문화예술회관",
    "layer": "B",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 19,
    "kept": 1
@@ -143,7 +143,7 @@
    "id": "seoulphil",
    "name": "서울시립교향악단",
    "layer": "D",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 20,
    "kept": 0
@@ -152,7 +152,7 @@
    "id": "kbs",
    "name": "KBS교향악단",
    "layer": "D",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 10,
    "kept": 2
@@ -161,7 +161,7 @@
    "id": "knso",
    "name": "국립심포니오케스트라",
    "layer": "D",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 15,
    "kept": 0
@@ -170,7 +170,7 @@
    "id": "bucheonphil",
    "name": "부천필하모닉",
    "layer": "D",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 6,
    "kept": 0
@@ -179,7 +179,7 @@
    "id": "dpo",
    "name": "대전시립교향악단",
    "layer": "D",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 10,
    "kept": 0
@@ -188,7 +188,7 @@
    "id": "gso",
    "name": "광주시립교향악단",
    "layer": "D",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 10,
    "kept": 0
@@ -197,7 +197,7 @@
    "id": "natopera",
    "name": "국립오페라단",
    "layer": "D",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 11,
    "kept": 0
@@ -206,7 +206,7 @@
    "id": "natchorus",
    "name": "국립합창단",
    "layer": "D",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 20,
    "kept": 0
@@ -215,7 +215,7 @@
    "id": "jeonju",
    "name": "전주시(시립예술단)",
    "layer": "D",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 0,
    "kept": 0
@@ -224,7 +224,7 @@
    "id": "sac",
    "name": "예술의전당",
    "layer": "D",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 0,
    "kept": 0
@@ -233,7 +233,7 @@
    "id": "phcf",
    "name": "포항문화재단(시립교향악단)",
    "layer": "D",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 0,
    "kept": 0
@@ -242,7 +242,7 @@
    "id": "edu_seoul",
    "name": "서울시교육청(방과후 강사)",
    "layer": "C",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 11,
    "kept": 11
@@ -251,7 +251,7 @@
    "id": "edu_goe",
    "name": "경기교육청(방과후·강사)",
    "layer": "C",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 6,
    "kept": 4
@@ -260,7 +260,7 @@
    "id": "edu_gwe",
    "name": "강원교육청(학교 채용)",
    "layer": "C",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 0,
    "kept": 1
@@ -269,7 +269,7 @@
    "id": "edu_jbe",
    "name": "전북교육청(학교 채용)",
    "layer": "C",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 0,
    "kept": 1
@@ -278,7 +278,7 @@
    "id": "edu_dje",
    "name": "대전교육청(학교 채용)",
    "layer": "C",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 0,
    "kept": 1
@@ -287,7 +287,7 @@
    "id": "edu_ice",
    "name": "인천교육청(학교 채용)",
    "layer": "C",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 0,
    "kept": 1
@@ -296,7 +296,7 @@
    "id": "edu_jne",
    "name": "전남교육청(학교 채용)",
    "layer": "C",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 4,
    "kept": 0
@@ -305,7 +305,7 @@
    "id": "edu_gbe",
    "name": "경북교육청(학교 채용)",
    "layer": "C",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 0,
    "kept": 0
@@ -314,7 +314,7 @@
    "id": "edu_sje",
    "name": "세종교육청(학교 채용)",
    "layer": "C",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 0,
    "kept": 1
@@ -323,7 +323,7 @@
    "id": "edu_dge",
    "name": "대구교육청(모집공고)",
    "layer": "C",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 0,
    "kept": 0
@@ -332,7 +332,7 @@
    "id": "edu_pen",
    "name": "부산교육청(학교인력채용)",
    "layer": "C",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 1,
    "kept": 0
@@ -341,7 +341,7 @@
    "id": "edu_cbe",
    "name": "충북교육청(구인정보)",
    "layer": "C",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 1,
    "kept": 0
@@ -350,7 +350,7 @@
    "id": "g_cfac",
    "name": "천안문화재단",
    "layer": "B",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 0,
    "kept": 0
@@ -359,7 +359,7 @@
    "id": "g_ansanart",
    "name": "안산문화재단",
    "layer": "B",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 0,
    "kept": 0
@@ -368,7 +368,7 @@
    "id": "g_ayac",
    "name": "안양문화예술재단",
    "layer": "B",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 0,
    "kept": 0
@@ -377,7 +377,7 @@
    "id": "g_uac",
    "name": "의정부예술의전당",
    "layer": "B",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 1,
    "kept": 0
@@ -386,7 +386,7 @@
    "id": "g_artgy",
    "name": "고양문화재단",
    "layer": "B",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 0,
    "kept": 0
@@ -395,7 +395,7 @@
    "id": "g_gfac",
    "name": "강남문화재단(강남심포니)",
    "layer": "B",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 0,
    "kept": 0
@@ -404,7 +404,7 @@
    "id": "g_sjcf",
    "name": "세종시문화재단",
    "layer": "B",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 0,
    "kept": 0
@@ -413,7 +413,7 @@
    "id": "g_dgopera",
    "name": "대구오페라하우스",
    "layer": "B",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 1,
    "kept": 0
@@ -422,7 +422,7 @@
    "id": "g_knb",
    "name": "국립발레단",
    "layer": "B",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 0,
    "kept": 0
@@ -431,7 +431,7 @@
    "id": "g_ubc",
    "name": "유니버설발레단",
    "layer": "B",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 0,
    "kept": 0
@@ -440,7 +440,7 @@
    "id": "g_jeongdong",
    "name": "정동극장",
    "layer": "B",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 0,
    "kept": 0
@@ -449,7 +449,7 @@
    "id": "g_timf",
    "name": "통영국제음악재단",
    "layer": "B",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 9,
    "kept": 2
@@ -458,7 +458,7 @@
    "id": "g_onnuri",
    "name": "온누리교회",
    "layer": "B",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 0,
    "kept": 0
@@ -467,7 +467,7 @@
    "id": "g_i_musicsnuackr",
    "name": "서울대학교",
    "layer": "B",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 2,
    "kept": 0
@@ -476,7 +476,7 @@
    "id": "g_i_musicyonseiackr",
    "name": "연세대학교",
    "layer": "B",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 1,
    "kept": 0
@@ -485,7 +485,7 @@
    "id": "g_i_kartsackr",
    "name": "한국예술종합학교",
    "layer": "B",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 0,
    "kept": 0
@@ -494,7 +494,7 @@
    "id": "g_i_artjeonjugokr",
    "name": "전주시립교향악단",
    "layer": "B",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 6,
    "kept": 0
@@ -503,7 +503,7 @@
    "id": "g_i_gunsangokr",
    "name": "군산시립교향악단",
    "layer": "B",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 8,
    "kept": 1
@@ -512,7 +512,7 @@
    "id": "g_i_gbgokr",
    "name": "경상북도도립교향악단",
    "layer": "B",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 0,
    "kept": 0
@@ -521,7 +521,7 @@
    "id": "g_i_ansanartscom",
    "name": "안산시립합창단",
    "layer": "B",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 8,
    "kept": 0
@@ -530,7 +530,7 @@
    "id": "g_i_gurigokr",
    "name": "구리시립합창단",
    "layer": "B",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 1,
    "kept": 1
@@ -539,7 +539,7 @@
    "id": "g_i_suncheongokr",
    "name": "순천시립합창단",
    "layer": "B",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 2,
    "kept": 0
@@ -548,7 +548,7 @@
    "id": "g_i_andonggokr",
    "name": "안동시립합창단",
    "layer": "B",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 5,
    "kept": 0
@@ -557,7 +557,7 @@
    "id": "g_i_ggcforkr",
    "name": "경기문화재단",
    "layer": "B",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 0,
    "kept": 0
@@ -566,7 +566,7 @@
    "id": "g_i_hcforkr",
    "name": "화성시문화관광재단",
    "layer": "B",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 0,
    "kept": 0
@@ -575,7 +575,7 @@
    "id": "g_i_gokamsorkr",
    "name": "예술경영지원센터",
    "layer": "B",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 0,
    "kept": 0
@@ -584,7 +584,7 @@
    "id": "g_i_millenniumsympho",
    "name": "밀레니엄심포니오케스트라",
    "layer": "B",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 2,
    "kept": 0
@@ -593,7 +593,7 @@
    "id": "g_i_balletorkr",
    "name": "서울발레시어터",
    "layer": "B",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 1,
    "kept": 0
@@ -602,7 +602,7 @@
    "id": "g_i_dctforkr",
    "name": "동해문화관광재단",
    "layer": "B",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 0,
    "kept": 0
@@ -611,7 +611,7 @@
    "id": "g_i_cfscorkr",
    "name": "순천문화재단",
    "layer": "B",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 0,
    "kept": 0
@@ -620,7 +620,7 @@
    "id": "g_i_tyhansancforkr",
    "name": "통영문화재단",
    "layer": "B",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 0,
    "kept": 0
@@ -629,7 +629,7 @@
    "id": "g_gcart",
    "name": "고양문화재단(고양시립합창단)",
    "layer": "B",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 1,
    "kept": 1
@@ -638,7 +638,7 @@
    "id": "g_mokpo",
    "name": "목포시립예술단(교향악단·합창단)",
    "layer": "B",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 0,
    "kept": 0
@@ -647,7 +647,7 @@
    "id": "g_yeosu",
    "name": "여수시립예술단",
    "layer": "B",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 0,
    "kept": 0
@@ -656,7 +656,7 @@
    "id": "g_wonju",
    "name": "원주시립교향악단·합창단",
    "layer": "B",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 0,
    "kept": 0
@@ -665,7 +665,7 @@
    "id": "g_i_dcaforkr",
    "name": "대전문화재단",
    "layer": "B",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 0,
    "kept": 0
@@ -674,7 +674,7 @@
    "id": "g_i_cjcultureorg",
    "name": "청주시문화산업진흥재단",
    "layer": "B",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 0,
    "kept": 0
@@ -683,7 +683,7 @@
    "id": "g_edu_gen",
    "name": "광주교육청(구인)",
    "layer": "B",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 1,
    "kept": 0
@@ -692,7 +692,7 @@
    "id": "g_edu_jje",
    "name": "제주교육청(채용·시험)",
    "layer": "B",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 0,
    "kept": 1
@@ -701,7 +701,7 @@
    "id": "g_edu_use",
    "name": "울산교육청(교육공무직·강사)",
    "layer": "B",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 0,
    "kept": 0
@@ -710,7 +710,7 @@
    "id": "g_edu_cne",
    "name": "충남교육청(학교 채용)",
    "layer": "B",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
    "raw": 0,
    "kept": 0
@@ -719,10 +719,10 @@
    "id": "hibrain",
    "name": "하이브레인넷(대학 음악채용)",
    "layer": "B",
-   "poll": "weekly",
+   "poll": "daily",
    "ok": true,
-   "raw": 20,
-   "kept": 19
+   "raw": 19,
+   "kept": 18
   }
  ],
  "items": [
@@ -750,7 +750,6 @@
    "officialUrl": "https://apps.ks.ac.kr/eprofappl/eprofappl/",
    "channel": "hibrain",
    "layer": "B",
-   "subjectFrom": "attach",
    "courses": [
     "음악교사 및 음악치료사",
     "음악 및 음악치료경험",
@@ -787,15 +786,15 @@
    "subject": null,
    "channel": "artinfo",
    "layer": "A",
+   "deadlineFrom": "page",
    "positions": [
     "상임지휘자"
    ],
    "contract": "상임",
    "bodyExcerpt": "참신하고 유능한 천안시립교향악단 예술감독 겸 상임지휘자를 붙임과 같이 모집합니다. · 모집기간 : 2026. 7. 31.(금) ~ 8. 14.(금) · 원서접수: 2026. 8. 12.(수)~ 8.14.(금) 방문접수(우편접수 불가) · 모집분야: 예술감독(상임지휘자) 1명",
-   "deadlineFrom": "page",
-   "officialUrl": "https://artcheonan.kr/with/notice/?vid=100",
-   "applyPhone": "041-521-3416",
    "applyEmail": "rkd0365@korea.kr",
+   "applyPhone": "041-521-3416",
+   "officialUrl": "https://artcheonan.kr/with/notice/?vid=100",
    "documents": "원서접수 2026.8.12(수)~8.14(금) 방문접수 (우편접수 불가)",
    "verifiedAt": "2026-08-02",
    "verifiedNote": "천안문화재단 공지사항에서 원문 확인 — 문화예술과 게시(2026-07-31). 접수는 방문접수만 가능.",
@@ -829,11 +828,10 @@
    "subject": null,
    "channel": "artinfo",
    "layer": "A",
-   "applyEmail": "anointed77@hanmail.net",
-   "bodyExcerpt": "모집파트: 테너 또는 베이스",
-   "dlHint": null,
    "deadlineNote": "상시",
    "auditionDate": "오디션 없음 — 담임목사 면접만",
+   "bodyExcerpt": "모집파트: 테너 또는 베이스",
+   "applyEmail": "anointed77@hanmail.net",
    "documents": "이력서 이메일 접수 (핸드폰 번호 필히 기재)",
    "verifiedAt": "2026-07-14",
    "verifiedNote": "교회에 직접 확인: 지원자가 없어 계속 모집 중. 오디션 없이 담임목사 면접만 진행.",
@@ -867,14 +865,10 @@
    "subject": null,
    "channel": "artinfo",
    "layer": "A",
-   "applyEmail": "songhyun1128@naver.com",
+   "deadlineNote": "상시",
    "qualification": "연령: 35세 ~ 50세 학력: 성악 전공 석사 졸업 이상",
    "bodyExcerpt": "성악 전문 강사님을 모집합니다. · 우대: 교육 및 연주 경력자 환영,",
-   "dlHint": [
-    ". 근무시간 오전 10시~12시 또는 오후 7~8시 근무 예정 ​ 📄  제출 서류 이력서, 최종학력증명서, 연주 영상 ​ 📩 접수 및 문의 이메일: songhyu",
-    "무 예정 ​ 📄  제출 서류 이력서, 최종학력증명서, 연주 영상 ​ 📩 접수 및 문의 이메일: songhyun1128@naver.com ​ 📍 문자 문의: 010"
-   ],
-   "deadlineNote": "상시",
+   "applyEmail": "songhyun1128@naver.com",
    "documents": "이력서 이메일 접수 → 검토 후 면접",
    "verifiedAt": "2026-07-14",
    "verifiedNote": "학원에 직접 확인: 강사 구인 진행 중. 이력서 접수 후 검토를 거쳐 면접.",
@@ -907,11 +901,11 @@
    "subject": null,
    "channel": "artinfo",
    "layer": "A",
-   "applyEmail": "pavarotti7801@hanmail.net",
-   "applyPhone": "010-4772-5362",
    "positions": [
     "반주자"
    ],
+   "applyEmail": "pavarotti7801@hanmail.net",
+   "applyPhone": "010-4772-5362",
    "dlHint": null,
    "firstSeen": "2026-07-15",
    "isNew": false,
@@ -934,7 +928,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
@@ -942,9 +936,9 @@
    "subject": null,
    "channel": "edu_seoul",
    "layer": "C",
+   "deadlineFrom": "page",
    "qualification": "여부, 학력사항, 경력정보",
    "bodyExcerpt": "1. 채용분야 및 채용 예정인원: 음악교사 1명( 4-6학년 음악 정규교과 수업) · 2. 계약기간: 2026. 9. 1.(화) ～ 2027. 2. 28.(일) · 3. 보수및 근무시간 : 시간당 25,000원(주당 24시간4-6학년 음악 정규교과 수업) · o 제출방법: e-mail 접수( hwaranges@sen.go.kr )",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-31",
    "isNew": false,
    "extVer": 32
@@ -1027,7 +1021,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "미성년",
-   "inst": "현악",
+   "inst": "전체",
    "instDetails": [
     "현악"
    ],
@@ -1035,13 +1029,13 @@
    "subject": null,
    "channel": "g_i_gurigokr",
    "layer": "B",
+   "deadlineFrom": "page",
    "positions": [
     "단원"
    ],
    "contract": "기간제",
    "qualification": "지역무관/초등학교 3학년 ~ 대학생(구리시 거주 및 구리시 소재 학교 재학생 가산점 부여) 4",
    "bodyExcerpt": "2. 모집기간 : 2026. 8. 3.(월) ~ 8. 19.(수), 09:00~18:00 · 4. 모집인원 : 0명 · 5. 접수장소 : 구리시청 문화예술과(☎031-550-2550) · 붙임 2026년 구리시립청소년교향악단 모집공고 공고문 1부. 끝.",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-31",
    "isNew": false,
    "extVer": 32
@@ -1070,7 +1064,6 @@
    "officialUrl": "https://www.cje.ac.kr/web/board/brdDetail.do?menu_cd=000209&num=95112",
    "channel": "hibrain",
    "layer": "B",
-   "subjectFrom": "attach",
    "firstSeen": "2026-07-31",
    "isNew": false,
    "extVer": 32
@@ -1092,7 +1085,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "금관",
+   "inst": "전체",
    "instDetails": [
     "튜바"
    ],
@@ -1101,7 +1094,6 @@
    "officialUrl": "https://www.kangwon.ac.kr/ko/bbs/716/detail.do?pageIndex=1&pageItm=10&pstSn=4965&searchGbn=0&searchOrderSort=0",
    "channel": "hibrain",
    "layer": "B",
-   "subjectFrom": "attach",
    "courses": [
     "튜바전공실기"
    ],
@@ -1133,7 +1125,6 @@
    "officialUrl": "https://www.changwon.ac.kr/kor/na/ntt/selectNttInfo.do?mi=10177&nttSn=1424125",
    "channel": "hibrain",
    "layer": "B",
-   "subjectFrom": "attach",
    "courses": [
     "통합창원시도시인문학의 이해",
     "전공실기4(관타현악)",
@@ -1169,7 +1160,6 @@
    "officialUrl": "https://www.bnue.ac.kr/board/detail/community01_04/44502",
    "channel": "hibrain",
    "layer": "B",
-   "subjectFrom": "attach",
    "firstSeen": "2026-07-31",
    "isNew": false,
    "extVer": 32
@@ -1199,8 +1189,8 @@
    "subject": null,
    "channel": "edu_seoul",
    "layer": "C",
-   "bodyExcerpt": "주소, 사진, 전화번호, 취업지원대상 여부, 학력사항, 경력정보, 자격증 정보, 어학능력정보, 자기소개, 희망근무지, 희망직종 · 2. 모집 인원: 바이올린 지도강사 1명 · 가. 계약 기간: 2026년 8월 18일~ 2026년 12월 31일 (2026학년도 2학기) · 가. 해당 분야(악기)학과 졸업자, 교원자격증 소지자, 강좌 관련 자격증 소지자 중 1가지 이상에 해당하는 자",
    "deadlineFrom": "page",
+   "bodyExcerpt": "주소, 사진, 전화번호, 취업지원대상 여부, 학력사항, 경력정보, 자격증 정보, 어학능력정보, 자기소개, 희망근무지, 희망직종 · 2. 모집 인원: 바이올린 지도강사 1명 · 가. 계약 기간: 2026년 8월 18일~ 2026년 12월 31일 (2026학년도 2학기) · 가. 해당 분야(악기)학과 졸업자, 교원자격증 소지자, 강좌 관련 자격증 소지자 중 1가지 이상에 해당하는 자",
    "firstSeen": "2026-07-31",
    "isNew": false,
    "extVer": 32
@@ -1222,7 +1212,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
@@ -1230,9 +1220,9 @@
    "subject": null,
    "channel": "edu_seoul",
    "layer": "C",
+   "deadlineFrom": "page",
    "qualification": "여부, 학력사항, 경력정보",
    "bodyExcerpt": "주소, 사진, 전화번호, 취업지원대상 여부, 학력사항, 경력정보, 자격증 정보, 어학능력정보, 자기소개, 희망근무지, 희망직종 · 고덕중학교 시간강사(국어, 가정, 음악, 미술 과목별 1명) 채용 공고 · 1. 채용 기간: 2026. 8. 18. ~ 2027. 1. 6. · 2. 접수 기간: 2026. 7. 30. ~ 2026. 8. 4.",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-31",
    "isNew": false,
    "extVer": 32
@@ -1261,7 +1251,6 @@
    "officialUrl": "https://www.cntu.ac.kr/board.es?act=view&bid=0011&list_no=33474&mid=a20601080000&nPage=1&tag=",
    "channel": "hibrain",
    "layer": "B",
-   "subjectFrom": "attach",
    "courses": [
     "전공실기",
     "◦전공 : 피아노"
@@ -1289,16 +1278,15 @@
    "ageGroup": "성인",
    "inst": "현악",
    "instDetails": [
-    "현악",
-    "관악"
+    "현악"
    ],
    "personnel": null,
    "subject": null,
    "channel": "edu_seoul",
    "layer": "C",
+   "deadlineFrom": "page",
    "qualification": "여부, 학력사항, 경력정보",
    "bodyExcerpt": "채용계획 사전 공개 · 주소, 사진, 전화번호, 취업지원대상 여부, 학력사항, 경력정보, 자격증 정보, 어학능력정보, 자기소개, 희망근무지, 희망직종 · 구직활동 지원 및 채용 관련 서비스 제공 · 다만, 필수항목에 대한 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다.",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-29",
    "isNew": false,
    "extVer": 32
@@ -1320,7 +1308,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
@@ -1328,9 +1316,9 @@
    "subject": null,
    "channel": "edu_seoul",
    "layer": "C",
+   "deadlineFrom": "page",
    "qualification": "여부, 학력사항, 경력정보",
    "bodyExcerpt": "채용계획 사전 공개 · 주소, 사진, 전화번호, 취업지원대상 여부, 학력사항, 경력정보, 자격증 정보, 어학능력정보, 자기소개, 희망근무지, 희망직종 · 구직활동 지원 및 채용 관련 서비스 제공 · 다만, 필수항목에 대한 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다.",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-29",
    "isNew": false,
    "extVer": 32
@@ -1352,7 +1340,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
@@ -1360,9 +1348,9 @@
    "subject": null,
    "channel": "edu_seoul",
    "layer": "C",
+   "deadlineFrom": "page",
    "qualification": "여부, 학력사항, 경력정보",
    "bodyExcerpt": "주소, 사진, 전화번호, 취업지원대상 여부, 학력사항, 경력정보, 자격증 정보, 어학능력정보, 자기소개, 희망근무지, 희망직종 · 2. 계약기간 : 2026년 8월 18일 ~ 2027년 2월 28일 · 3. 원서접수 기간 : 2026년 7월 29(수) ~ 2026년 8월 2일(일) 22:00 · 4. 접수 방법 : email 접수 (ethicsxun@sen.go.kr)",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-29",
    "isNew": false,
    "extVer": 32
@@ -1384,7 +1372,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "타악",
+   "inst": "전체",
    "instDetails": [
     "타악",
     "피아노",
@@ -1395,10 +1383,10 @@
    "subject": null,
    "channel": "g_i_gunsangokr",
    "layer": "B",
+   "deadlineFrom": "page",
    "auditionDate": "8/2",
    "contract": "비상임",
    "bodyExcerpt": "1. 공고기간 : 2026. 7. 14.(월) ~ 2026. 8.14.(금) · 2. 접수기간 : 2026. 8. 10.(월) 10:00 ~ 8.14.(금) 18:00 · 2026년 공부의명수 온라인튜터링 2기 참여학생 모집 · 2026년 귀농귀촌 동네작가 모집",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-29",
    "isNew": false,
    "extVer": 32
@@ -1427,7 +1415,6 @@
    "officialUrl": "https://www.iscu.ac.kr/01_aboutcollege/10_01_teachers_view.asp?Board_Id=127&Page=1&PageSize=10&SeqNo=790411",
    "channel": "hibrain",
    "layer": "B",
-   "subjectFrom": "attach",
    "courses": [
     "실기레슨"
    ],
@@ -1489,9 +1476,9 @@
    "subject": null,
    "channel": "edu_seoul",
    "layer": "C",
+   "deadlineFrom": "page",
    "qualification": "여부, 학력사항, 경력정보",
    "bodyExcerpt": "채용계획 사전 공개 · 주소, 사진, 전화번호, 취업지원대상 여부, 학력사항, 경력정보, 자격증 정보, 어학능력정보, 자기소개, 희망근무지, 희망직종 · 경력사항: 기관, 기간, 직종명, 근무부서(업무), 재직중 여부, 주당 근로시간 · 자격증 정보: 자격명, 취득일자, 발급기관",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-29",
    "isNew": false,
    "extVer": 32
@@ -1579,7 +1566,6 @@
    "officialUrl": "https://www.sejong.ac.kr/kor/intro/notice8.do?article.offset=0&articleLimit=10&articleNo=890944&mode=view",
    "channel": "hibrain",
    "layer": "B",
-   "subjectFrom": "attach",
    "courses": [
     "<최근 3년간 실기연구실적물>",
     "최근 3년간 실기연구실적물"
@@ -1605,7 +1591,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
@@ -1613,9 +1599,9 @@
    "subject": null,
    "channel": "edu_seoul",
    "layer": "C",
+   "deadlineFrom": "page",
    "qualification": "여부, 학력사항, 경력정보",
    "bodyExcerpt": "채용계획 사전 공개 · 주소, 사진, 전화번호, 취업지원대상 여부, 학력사항, 경력정보, 자격증 정보, 어학능력정보, 자기소개, 희망근무지, 희망직종 · 구직활동 지원 및 채용 관련 서비스 제공 · 다만, 필수항목에 대한 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다.",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-27",
    "isNew": false,
    "extVer": 32
@@ -1673,8 +1659,8 @@
    "subject": null,
    "channel": "edu_goe",
    "layer": "C",
-   "bodyExcerpt": "교사자격증 소지자, 해당 창의음악교육 분야 초등학교 지도 유경험자 · 대곡초등학교에서 근무하실 창의음악 강사를 아래와 같이 채용하고자 합니다 · 모집부문 및 인원 · 교사자격증 소지자",
    "deadlineFrom": "page",
+   "bodyExcerpt": "교사자격증 소지자, 해당 창의음악교육 분야 초등학교 지도 유경험자 · 대곡초등학교에서 근무하실 창의음악 강사를 아래와 같이 채용하고자 합니다 · 모집부문 및 인원 · 교사자격증 소지자",
    "firstSeen": "2026-07-27",
    "isNew": false,
    "extVer": 32
@@ -1812,16 +1798,15 @@
    "ageGroup": "성인",
    "inst": "현악",
    "instDetails": [
-    "바이올린",
-    "관악"
+    "바이올린"
    ],
    "personnel": "1명 과목 (",
    "subject": null,
    "channel": "edu_seoul",
    "layer": "C",
+   "deadlineFrom": "page",
    "qualification": "여부, 학력사항, 경력정보",
    "bodyExcerpt": "채용계획 사전 공개 · 주소, 사진, 전화번호, 취업지원대상 여부, 학력사항, 경력정보, 자격증 정보, 어학능력정보, 자기소개, 희망근무지, 희망직종 · 구직활동 지원 및 채용 관련 서비스 제공 · 다만, 필수항목에 대한 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다.",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-24",
    "isNew": false,
    "extVer": 32
@@ -1879,11 +1864,11 @@
    "subject": null,
    "channel": "g_gcart",
    "layer": "B",
+   "deadlineFrom": "attachment",
    "positions": [
     "반주자"
    ],
    "bodyExcerpt": "2026년 제2차 육아휴직대체자 블라인드 채용 공고",
-   "deadlineFrom": "attachment",
    "firstSeen": "2026-07-24",
    "isNew": false,
    "extVer": 32
@@ -1911,8 +1896,8 @@
    "subject": null,
    "channel": "ulsan",
    "layer": "B",
-   "bodyExcerpt": "※ 접수처 : 관리동 3층 예술사업과(공휴일 및 평일 중식시간 · ※ 서류접수 기간 : 7. 27(월) ~ 8. 5.(수) · 2026 울산합창 대축제 울산사람「큰 울림」 참가단체 모집 공고",
    "deadlineFrom": "page",
+   "bodyExcerpt": "※ 접수처 : 관리동 3층 예술사업과(공휴일 및 평일 중식시간 · ※ 서류접수 기간 : 7. 27(월) ~ 8. 5.(수) · 2026 울산합창 대축제 울산사람「큰 울림」 참가단체 모집 공고",
    "firstSeen": "2026-07-24",
    "isNew": false,
    "extVer": 32
@@ -1993,7 +1978,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
@@ -2001,9 +1986,9 @@
    "subject": null,
    "channel": "edu_seoul",
    "layer": "C",
+   "deadlineFrom": "page",
    "qualification": "여부, 학력사항, 경력정보",
    "bodyExcerpt": "채용계획 사전 공개 · 주소, 사진, 전화번호, 취업지원대상 여부, 학력사항, 경력정보, 자격증 정보, 어학능력정보, 자기소개, 희망근무지, 희망직종 · 구직활동 지원 및 채용 관련 서비스 제공 · 다만, 필수항목에 대한 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다.",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-24",
    "isNew": false,
    "extVer": 32
@@ -2031,11 +2016,11 @@
    "subject": null,
    "channel": "g_timf",
    "layer": "B",
+   "deadlineFrom": "ocr",
    "positions": [
     "단원"
    ],
    "bodyExcerpt": "신규단원을모집합니다 .",
-   "deadlineFrom": "ocr",
    "firstSeen": "2026-07-21",
    "isNew": false,
    "extVer": 32
@@ -2061,13 +2046,13 @@
    "instDetails": [
     "비올라",
     "오보에",
-    "타악",
-    "피아노"
+    "타악"
    ],
    "personnel": "비올라 부수석 1명 · 오보에 부수석 1명 · 타악기 수석 1명",
    "subject": null,
    "channel": "kbs",
    "layer": "D",
+   "deadlineFrom": "page",
    "recruitParts": [
     {
      "part": "비올라",
@@ -2092,8 +2077,57 @@
    ],
    "auditionDate": "8/17 · 8/23",
    "bodyExcerpt": "교향악단에서 실력있고 열정 넘치는 전문 연주자를 공개 모집합니다 · 자로 모집부문에 타악기가 추가되었습니다 · 모집부문별 채용 예정인원 · 현재 군복무 또는 공익 근무자는 채용 예정일까지 전역 또는 소집해제 상태여야 하며",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-08",
+   "isNew": false,
+   "extVer": 32
+  },
+  {
+   "id": "340d217c42aab8e1",
+   "org": "KBS교향악단",
+   "region": "서울",
+   "source": "kbssymphony.org",
+   "title": "KBS교향악단 신규단원 채용(비올라, 오보에)",
+   "nonMusic": null,
+   "url": "https://www.kbssymphony.org/ko/info/recruit.php?board_code=view&number=29496&page=1",
+   "date": "2026-07-03",
+   "deadline": "2026-08-02",
+   "kind": "단원",
+   "tier": "연주",
+   "obri": false,
+   "certReq": "무관",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "ageGroup": "성인",
+   "inst": "현악",
+   "instDetails": [
+    "비올라",
+    "오보에",
+    "피아노"
+   ],
+   "personnel": "비올라 부수석 1명 · 오보에 부수석 1명",
+   "subject": null,
+   "channel": "kbs",
+   "layer": "D",
+   "recruitParts": [
+    {
+     "part": "비올라",
+     "position": "부수석",
+     "count": "1"
+    },
+    {
+     "part": "오보에",
+     "position": "부수석",
+     "count": "1"
+    }
+   ],
+   "recruitSummary": "비올라 부수석 1명 · 오보에 부수석 1명",
+   "positions": [
+    "부수석"
+   ],
+   "auditionDate": "8/17 · 8/23",
+   "bodyExcerpt": "교향악단에서 실력있고 열정 넘치는 전문 연주자를 공개 모집합니다 · 모집부문별 채용 예정인원 · 현재 군복무 또는 공익 근무자는 채용 예정일까지 전역 또는 소집해제 상태여야 하며 · 입사지원은 채용 홈페이지에서 가능하며 마감 전까지 최종 제출이 완료되어야 합니다",
+   "deadlineFrom": "page",
+   "firstSeen": "2026-08-02",
    "isNew": false,
    "extVer": 32
   }
