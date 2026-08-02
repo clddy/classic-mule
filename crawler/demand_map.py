@@ -9,15 +9,60 @@
 #
 #   python crawler/demand_map.py            # data/demand_map.md 생성
 #   python crawler/demand_map.py --print     # 화면에도 출력
+import csv
 import json
 import os
+import re
 import sys
-from collections import Counter, defaultdict
+from collections import Counter
 from datetime import date
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 ARC = os.path.join(BASE, "data", "archive.json")
 OUT = os.path.join(BASE, "data", "demand_map.md")
+INST_CSV = os.path.join(os.path.dirname(os.path.abspath(__file__)), "institutions.csv")
+
+
+def join_key(name):
+    """조인용 정규화 — 괄호 주석·법인격·공백만 턴다.
+
+    main.py._cov_core 를 쓰면 안 된다. 그건 말미 기관유형어(합창단·교향악단…)까지 떼서
+    '국립합창단'과 '국립오페라단'을 똑같이 '국립'로 눕힌다 — haystack 부분일치 검사용이라
+    그래도 되지만, 조인 키로 쓰면 604개 기관이 250개로 뭉개진다(2026-08-02에 밟음).
+    """
+    return re.sub(r"\([^)]*\)|재단법인|사단법인|\(재\)|\s+", "", name or "")
+
+
+def master():
+    """institutions.csv(실재 확정) → ({조인키: (기관명, 카테고리, 지역)}, {퍼지키: [조인키…]})"""
+    from main import _cov_core
+    exact, fuzzy = {}, {}
+    with open(INST_CSV, encoding="utf-8") as f:
+        for row in csv.reader(f):
+            if not row or row[0].lstrip().startswith("#") or row[0] == "기관명" or len(row) < 8:
+                continue
+            if row[7].strip() != "확정":
+                continue
+            k = join_key(row[0])
+            if len(k) < 3:
+                continue
+            exact[k] = (row[0], row[1], row[3])
+            c = _cov_core(row[0])
+            if len(c) >= 3:
+                fuzzy.setdefault(c, []).append(k)
+    return exact, fuzzy
+
+
+def match(org, exact, fuzzy):
+    """정확일치 우선. 실패하면 퍼지 후보가 **딱 하나일 때만** 인정한다
+    (여럿이면 '국립합창단이냐 국립오페라단이냐'를 알 수 없으므로 포기)."""
+    from main import _cov_core
+    k = join_key(org)
+    if k in exact:
+        return k
+    cands = fuzzy.get(_cov_core(org or ""), [])
+    return cands[0] if len(cands) == 1 else None
 
 
 def load():
@@ -169,6 +214,58 @@ def main():
 
     # 8. 소스 기여 — 어느 원천이 실제로 데이터를 만들고 있나
     L += ["## 9. 수집 원천별 기여", "", table(Counter(txt(i.get("source")) for i in items), n, "원천", limit=25), ""]
+
+    # 9. 기관 명부 결합 — 아카이브(실제 게시)와 institutions.csv(실재 확정 명부)를 붙인다.
+    #    프로필 디렉토리를 열 때 '먼저 알릴 수요측'이 여기서 나온다.
+    try:
+        mst, fuz = master()
+    except Exception as e:
+        mst = None
+        L += [f"_기관 명부 결합 실패: {type(e).__name__}: {e}_", ""]
+    if mst:
+        hit = {}              # 조인키 → 게시 건수
+        unknown = Counter()   # 명부에 없는 게시 기관
+        for it in items:
+            org = txt(it.get("org"), "")
+            if not org:
+                continue
+            k = match(org, mst, fuz)
+            if k:
+                hit[k] = hit.get(k, 0) + 1
+            else:
+                unknown[org] += 1
+        active = sorted(hit.items(), key=lambda kv: -kv[1])
+        L += ["## 10. 기관 명부 결합 (institutions.csv 실재 확정본)", "",
+              f"명부 **{len(mst)}개** 기관 중 관측 기간에 실제로 공고를 낸 곳 **{len(hit)}개** "
+              f"({len(hit) / len(mst) * 100:.0f}%). 나머지는 이 26일간 조용했거나 파서가 못 잡은 것이다.", ""]
+
+        # ① 상시 수요 기관 — 명부에 있고 2건 이상. 디렉토리를 열 때 1순위 통보 대상.
+        L += ["### 상시 수요 기관 (명부 등재 + 2건 이상 게시)", "",
+              "| 기관 | 카테고리 | 지역 | 건수 |", "|---|---|---|---:|"]
+        n_std = 0
+        for core, c in active:
+            if c < 2:
+                continue
+            name, cat, region = mst[core]
+            L.append(f"| {name} | {cat} | {region} | {c} |")
+            n_std += 1
+        L += ["", f"**{n_std}개.** 프로필 디렉토리를 열었을 때 가장 먼저 알려야 할 명단이 이것이다 — "
+                  "반복해서 사람을 구한다는 건 상시 수요가 있다는 뜻이니까.", ""]
+
+        # ② 명부에 없는데 공고를 낸 곳 → 명부 보강 후보 (집계 포털명은 원래 명부에 없다)
+        if unknown:
+            L += ["### 명부에 없는 게시 기관 (명부 보강 후보 상위 25)", "",
+                  table(unknown, sum(unknown.values()), "기관", limit=25), "",
+                  "> 집계 포털(아트인포·아트모아·hibrain)과 교회는 원래 명부 대상이 아니다. "
+                  "그 밖의 이름이 보이면 institutions.csv 누락이다.", ""]
+
+        # ③ 명부에 있는데 조용한 곳 — 수요가 없는 건지 파서가 못 잡는 건지 구분이 필요
+        silent = [v for k, v in mst.items() if k not in hit]
+        by_cat = Counter(c for _, c, _ in silent)
+        L += ["### 관측 기간에 조용했던 명부 기관", "",
+              f"{len(silent)}개. 카테고리별: " + ", ".join(f"{k} {v}" for k, v in by_cat.most_common()), "",
+              "> 여기엔 '진짜 채용이 없었던 곳'과 '파서가 못 잡는 곳'이 섞여 있다. "
+              "헬스체크 baseline과 달리 이건 **한 번도 안 잡힌** 기관이라 baseline이 안 서는 사각지대다.", ""]
 
     md = "\n".join(L)
     with open(OUT, "w", encoding="utf-8") as f:

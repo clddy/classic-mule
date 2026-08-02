@@ -4,6 +4,32 @@ import io, os, re, zipfile, zlib, html
 TESSERACT = r"C:\Program Files\Tesseract-OCR\tesseract.exe"
 TESSDATA = os.path.join(os.path.dirname(os.path.abspath(__file__)), "tessdata")
 
+OCR_MAX_W = 1800     # Tesseract가 안정적으로 읽는 폭 상한
+OCR_TILE_H = 2200    # 세로 조각 높이 (겹침을 둬서 경계에 걸친 줄을 잃지 않는다)
+OCR_OVERLAP = 120
+
+
+def _ocr_tiled(pytesseract, Image, gray):
+    """세로로 긴 인포그래픽은 조각내어 읽는다.
+
+    통영시민오케스트라 공고는 4500×13577px 한 장이었는데, 통째로 넘기면 Tesseract가
+    전부 뭉개 알아볼 수 없는 기호만 뱉었다(2026-07-29 규명 — 화면에는 '접수기간
+    7.20.(월)~8.14.(금)'이 또렷이 보이는데도 마감일을 못 찾았다).
+    폭을 적정선으로 줄이고 세로로 잘라 넘기면 정상적으로 읽힌다.
+    """
+    if gray.width > OCR_MAX_W:      # 폭이 크면 비율 유지하며 축소 (글자가 작아지지 않게 최소한만)
+        h = int(gray.height * OCR_MAX_W / gray.width)
+        gray = gray.resize((OCR_MAX_W, h), Image.LANCZOS)
+    if gray.height <= OCR_TILE_H:
+        return pytesseract.image_to_string(gray, lang="kor+eng")
+    parts, y = [], 0
+    while y < gray.height:
+        box = gray.crop((0, y, gray.width, min(y + OCR_TILE_H, gray.height)))
+        parts.append(pytesseract.image_to_string(box, lang="kor+eng"))
+        y += OCR_TILE_H - OCR_OVERLAP
+    return "\n".join(parts)
+
+
 def ocr_image(data: bytes) -> str:
     """공고문이 이미지로만 게시된 경우 (세종문화회관 등) — 한국어 OCR"""
     try:
@@ -20,7 +46,7 @@ def ocr_image(data: bytes) -> str:
         # 작은 포스터만 확대 (세로로 긴 공고문 원본은 그대로)
         if img.width < 1200 and img.height < 15000:
             img = img.resize((img.width * 2, img.height * 2), Image.LANCZOS)
-        text = pytesseract.image_to_string(img.convert("L"), lang="kor+eng")
+        text = _ocr_tiled(pytesseract, Image, img.convert("L"))
         # OCR 특유의 글자 간 공백 제거: "접 수 마 감" → "접수마감", "7 . 13" → "7.13"
         text = re.sub(r"(?<=[가-힣])[ \t](?=[가-힣])", "", text)
         text = re.sub(r"(?<=\d)[ \t]*\.[ \t]*(?=\d)", ".", text)

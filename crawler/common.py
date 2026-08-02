@@ -358,6 +358,17 @@ INST_DETAILS = [
     ("지휘", "지휘", r"지휘"),
 ]
 
+# 파트를 군 단위로만 밝힌 공고도 태그가 붙어야 한다 — 군산시향은 '접수분야: 피아노,
+# 현악부, 관악부, 타악부'인데 피아노·타악만 태그돼 현악·관악 지원자가 놓쳤다(2026-08-02).
+# '관악'은 목관·금관을 아우르는 말이라 프론트에서 두 군 모두에 매치시킨다.
+INST_GROUP_TERMS = [
+    ("현악", "현악", r"현악(?:부|파트|군|기)?"),
+    ("목관", "목관", r"목관(?:부|파트|군|기)?"),
+    ("금관", "금관", r"금관(?:부|파트|군|기)?"),
+    ("관악", "목관", r"관악(?:부|파트|군|기)?"),
+]
+
+
 def classify_insts(title):
     """제목에서 세부 악기 전부 추출 → (악기군, [세부악기...])"""
     t = re.sub(r"더블 ?베이스|콘트라베이스", "◆DBASS◆", title)
@@ -365,6 +376,11 @@ def classify_insts(title):
     for name, group, pat in INST_DETAILS:
         target = title if name == "더블베이스" else t
         if re.search(pat, target):
+            details.append(name)
+            if group not in groups:
+                groups.append(group)
+    for name, group, pat in INST_GROUP_TERMS:      # 군 단위 표기도 태그로
+        if name not in details and re.search(pat, t):
             details.append(name)
             if group not in groups:
                 groups.append(group)

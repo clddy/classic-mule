@@ -13,14 +13,17 @@ import json
 import os
 from datetime import date
 
-# 보관 필드 — bodyExcerpt·qualification 같은 장문은 뺀다(파일 비대화 방지).
-# 나중에 본문 분석이 필요해지면 그때 필드를 추가하면 되고, 그 시점부터 쌓인다.
+# 보관 필드.
+# bodyExcerpt·qualification 을 넣는 이유(2026-08-02): 마감된 공고는 원문이 죽어 재크롤이
+# 불가능하다. 추출기를 고쳤을 때 과거분에 재적용할 수 있는 유일한 원문 흔적이 이 발췌다.
+# (길이는 200자 안팎이라 파일 비대화 걱정보다 재추출 가능성이 크다)
 KEEP = (
     "id", "org", "region", "source", "channel", "layer",
     "title", "url", "officialUrl",
     "date", "deadline", "deadlineFrom",
     "kind", "tier", "inst", "instDetails", "subject",
     "ageGroup", "obri", "certReq", "degreeReq", "careerReq", "personnel",
+    "bodyExcerpt", "qualification", "positions",
 )
 
 

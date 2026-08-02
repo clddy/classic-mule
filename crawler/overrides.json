@@ -13,6 +13,14 @@
     "verifiedAt": "2026-07-14",
     "verifiedNote": "학원에 직접 확인: 강사 구인 진행 중. 이력서 접수 후 검토를 거쳐 면접."
   },
+  "https://www.artinfokorea.com/jobs/473": {
+    "officialUrl": "https://artcheonan.kr/with/notice/?vid=100",
+    "applyPhone": "041-521-3416",
+    "applyEmail": "rkd0365@korea.kr",
+    "documents": "원서접수 2026.8.12(수)~8.14(금) 방문접수 (우편접수 불가)",
+    "verifiedAt": "2026-08-02",
+    "verifiedNote": "천안문화재단 공지사항에서 원문 확인 — 문화예술과 게시(2026-07-31). 접수는 방문접수만 가능."
+  },
   "_한양대_메모": "한양대 채용포털(portal.hanyang.ac.kr)은 공고 본문이 JS 모달 안에만 있어 크롤 불가 — 자동 수집을 포기하고 사람이 확인한 사실을 여기에 적는다(2026-07-27). 공고가 내려가면 이 항목도 자동으로 무시된다.",
   "https://www.hibrain.net/recruitment/recruits/3591145": {
     "title": "한양대 음악대학 작곡과 강사 채용 (동시대음악·서양음악사2)",

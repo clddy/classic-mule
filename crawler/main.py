@@ -239,13 +239,16 @@ def find_attachments(soup, base_url):
                     cands.append((full, el.get_text(" ", strip=True)))
     return cands[:4]
 
-EXT_VER = 27         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
+EXT_VER = 29         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
                      # 24: work.sen 등록일(게시일) 추출 추가 — date=None이던 승계분을 다시 뽑게
                      # 25: body_text 도입 — 본문을 <header>에 넣는 사이트(대전교육청)의 마감일을
                      #     스스로 날리던 버그 수정. 못 찾았던 항목들을 다시 뽑게 한다.
                      # 26: 자격 라벨쓰레기('경력 경력 학력') 거부 + 본문요약 메뉴·제목중복 제거
                      #     — 승계된 오염 값들을 재추출로 씻어낸다.
                      # 27: 본문요약 OCR 파편 배제(이미지 공고문이 깨져 기호만 남는 줄)
+                     # 28: OCR 타일링 — 세로로 긴 인포그래픽(4500x13577 등)을 조각내 읽는다.
+                     #     통짜로 넘기면 Tesseract가 뭉개 마감일을 통째로 놓쳤다.
+                     # 29: 자격 중복라벨 정리·본문요약 메뉴 제거·악기군(현악부·관악부) 태그
                      # 23: region_from 개편(전남광주통합특별시 반영, 경기 광주시 오분류 수정)
                      #  v18: 대학 강사 초빙 원문 첨부(HWP/XLSX)에서 음악 전공 추출 + 비음악 제외
                      #  v19: 음악 학과/전공 정밀 추출(행사명·전화번호 오염 제거) — 재추출 강제
@@ -333,6 +336,9 @@ def _find_qualification(text):
     # 표의 열 제목만 긁힌 경우('경력 경력 학력') 배제 — 라벨 어휘로만 이뤄진 값은 정보가 아니다
     if re.fullmatch(r"(?:경력|학력|자격|연령|성별|무관|우대|사항|세부내용|및|과|[,·/\s])+", q):
         return None
+    # 표의 '열 제목 + 값'이 나란히 긁혀 라벨이 겹치는 경우: '경력 경력 5년 학력 대학교(4년)'
+    # → 앞의 홀로 선 라벨을 지워 '경력 5년 학력 대학교(4년)'로 읽히게 한다 (2026-08-02 지적)
+    q = re.sub(r"(경력|학력|자격|연령|성별|우대)\s+(?=\1)", "", q)
     return q
 
 def _find_personnel_body(text):
@@ -381,7 +387,9 @@ _EXCERPT_SKIP = re.compile(
     # 게시판 메뉴 항목이 본문으로 긁힌 경우 (경기교육청: '교직원 온라인 채용', '구)자원봉사자모집')
     r"|온라인 ?채용$|^구 ?\)|자원봉사자 ?모집$"
     # 내용 없는 섹션 제목 줄 ('채용방법 및 일정')
-    r"|^(?:채용|모집|지원|접수|전형) ?(?:방법|절차|일정|안내)(?: ?및 ?(?:방법|절차|일정|안내))?$")
+    r"|^(?:채용|모집|지원|접수|전형) ?(?:방법|절차|일정|안내)(?: ?및 ?(?:방법|절차|일정|안내))?$"
+    # 채용 사이트의 사이드 메뉴·표 헤더가 본문으로 긁힌 경우 (광진문화재단 등 gabia 채용 CMS)
+    r"|진행 ?중인 다른|다른 채용 ?공고|채용공고명|담당업무 ?/|장애인 채용 ?희망|우대 ?조건 ?/")
 
 def _body_excerpt_text(text, title=None):
     keep = []
@@ -481,13 +489,14 @@ def _extract_body_details(soup, page_text, item, ry):
         ex = _body_excerpt(soup, title=item.get("title"))
         if ex:
             item["bodyExcerpt"] = ex
-    # 제목에 악기가 없으면 본문에서 악기 탐지 (오케스트라 강사 등 파트별 모집)
-    if not item.get("instDetails"):
-        grp, dets = classify_insts(page_text[:3000])
-        if dets:
-            item["instDetails"] = dets
-            if item.get("inst") in (None, "", "전체", "기타"):
-                item["inst"] = grp
+    # 본문에서 악기 탐지 후 제목에서 뽑은 것과 **합친다**. 예전엔 제목에 악기가 하나라도
+    # 있으면 본문을 안 봤는데, 군산시향처럼 제목엔 악기가 없고 본문 접수분야에 '피아노,
+    # 현악부, 관악부, 타악부'가 있는 공고에서 일부만 태그되는 원인이었다 (2026-08-02).
+    grp, dets = classify_insts(page_text[:3000])
+    if dets:
+        item["instDetails"] = list(dict.fromkeys((item.get("instDetails") or []) + dets))
+        if item.get("inst") in (None, "", "전체", "기타"):
+            item["inst"] = grp
 
 def _body_from_attachments(s, soup, r, item):
     """첨부 공고문(HWP/PDF)에서 본문 상세(자격·인원·요약) 보강 — 마감일 로직과 무관.

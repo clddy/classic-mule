@@ -53,7 +53,7 @@ def _apply(j):
             return "이메일로 지원 ✉", f"mailto:{j['applyEmail']}"
         if j.get("applyPhone"):
             return f"전화 지원 ☎ {j['applyPhone']}", "tel:" + re.sub(r"-", "", j["applyPhone"])
-        return "기관명으로 검색해 지원하세요", None
+        return None, None   # 지원 경로 없음 — 버튼을 만들지 않는다 (main.py가 이런 공고를 걸러낸다)
     return "공고 보러가기 ↗", j.get("url")
 
 
@@ -71,7 +71,7 @@ def _is_fresh(j, today):
 
 def _card(j, today, href):
     st, cls = _status(j, today)
-    tags = [f'<span class="tag src-official">{esc(j.get("org"))}</span>']
+    tags = [f'<span class="tag org">{esc(j.get("org"))}</span>']   # 분류 태그와 색이 겹치지 않게 전용 클래스
     if j.get("tier") and j["tier"] != "미분류":
         tags.append(f'<span class="tag cat">{esc(j["tier"])}</span>')
     for i in (j.get("instDetails") or [])[:3]:
@@ -150,7 +150,7 @@ def _detail_page(j, today):
     st, cls = _status(j, today)
     label, href = _apply(j)
     act = (f'<a class="btn-primary" style="text-decoration:none" href="{esc(href)}" target="_blank" rel="noopener">{esc(label)}</a>'
-           if href else f'<span class="btn-outline" style="cursor:default">{esc(label)}</span>')
+           if href and label else "")   # 지원 경로가 없으면 버튼 자체를 만들지 않는다
     rows = "".join(f"<dt>{esc(k)}</dt><dd>{esc(v)}</dd>" for k, v in _detail_rows(j))
     desc = esc((j.get("bodyExcerpt") or j.get("recruitSummary") or f"{j.get('org','')} {j['title']}")[:150])
     return f"""<!DOCTYPE html>

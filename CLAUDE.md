@@ -71,7 +71,13 @@ Actions 백업 크롤도 같은 파일을 읽어 병합하므로 archive.json은
 - `crawler/backfill_archive.py` — git 히스토리의 official.json 스냅샷을 훑어 과거분 복원.
   여러 번 돌려도 안전(병합). 2026-08-02 84커밋에서 367건 복원.
 - `crawler/demand_map.py` — 아카이브 → `data/demand_map.md`(gitignore, 내부 분석용).
-  악기·지역·직무 수요 분포 + 반복 게시 기관 명부.
+  악기·지역·직무 수요 분포 + 반복 게시 기관 + institutions.csv 결합(상시 수요 기관 명부).
+- `crawler/inst_gap.py` — 악기 미상 큐 → `data/inst_gap.md`(gitignore). 미상을
+  보강대상/전공축/악기무관/범위밖으로 갈라 **손댈 곳만** 남긴다.
+- **기관명 조인에 `_cov_core`를 쓰지 말 것** — 말미 유형어까지 떼서 '국립합창단'과
+  '국립오페라단'이 똑같이 '국립'이 된다(haystack 부분일치 전용). 명부 604개가 250개로
+  뭉개졌다. demand_map.join_key(괄호·법인격만 제거)로 정확일치 후, 퍼지 후보가 유일할
+  때만 인정하는 2단 매칭을 쓴다.
 - 아카이브에는 옛 태그 체계(프로·오브리·교육·취미…)로 굳은 기록이 섞여 있다. 마감된 공고는
   재크롤되지 않아 영원히 옛 값이므로, demand_map.py가 집계 시점에 TIER_MIGRATE·REGION_MIGRATE로
   눕힌다(js/jobs.js와 같은 표). 아카이브 원본은 관측된 그대로 둔다.
