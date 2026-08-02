@@ -128,5 +128,240 @@
   "board_url": "http://www.dctf.or.kr/board/bbs/board.php?bo_table=recruit",
   "label": "채용공고",
   "foundAt": "2026-08-02"
+ },
+ "이화여자대학교": {
+  "board_url": "https://job.ewha.ac.kr/",
+  "label": "인재개발원",
+  "foundAt": "2026-08-02"
+ },
+ "중앙대학교": {
+  "board_url": "http://public.cau.ac.kr/",
+  "label": "공공인재학부",
+  "foundAt": "2026-08-02"
+ },
+ "경희대학교": {
+  "board_url": " http://goodjob.khu.ac.kr/",
+  "label": "미래인재센터",
+  "foundAt": "2026-08-02"
+ },
+ "국민대학교": {
+  "board_url": "https://www.kookmin.ac.kr/comm/menu/user/f4bf28bb9ab0519299e17737ade33d63/content/index.do",
+  "label": "인재상 및 교육목표",
+  "foundAt": "2026-08-02"
+ },
+ "숙명여자대학교": {
+  "board_url": "https://www.sookmyung.ac.kr/kr/research/project-notice.do",
+  "label": "연구공지사항",
+  "foundAt": "2026-08-02"
+ },
+ "성신여자대학교": {
+  "board_url": "https://www.sungshin.ac.kr/main_kor/18962/subview.do",
+  "label": "장학생 모집공고",
+  "foundAt": "2026-08-02"
+ },
+ "세종대학교": {
+  "board_url": "https://www.sejong.ac.kr/kor/college/school-of-global-leadership.do",
+  "label": "글로벌인재학부",
+  "foundAt": "2026-08-02"
+ },
+ "서울신학대학교": {
+  "board_url": "https://www.stu.ac.kr/CmsHome/stu05_01_04.eznic",
+  "label": "미래인재개발센터",
+  "foundAt": "2026-08-02"
+ },
+ "성결대학교": {
+  "board_url": "https://www.sungkyul.ac.kr/skukr/254/subview.do",
+  "label": "예결산공고",
+  "foundAt": "2026-08-02"
+ },
+ "평택대학교": {
+  "board_url": "https://www.ptu.ac.kr/www/407/subview.do",
+  "label": "공지사항",
+  "foundAt": "2026-08-02"
+ },
+ "안양대학교": {
+  "board_url": "https://www.anyang.ac.kr/main/communication/notice.do",
+  "label": "공지사항",
+  "foundAt": "2026-08-02"
+ },
+ "한세대학교": {
+  "board_url": "https://www.hansei.ac.kr/view.do?no=11698",
+  "label": "공지사항",
+  "foundAt": "2026-08-02"
+ },
+ "강원대학교": {
+  "board_url": "https://www.kangwon.ac.kr/ko/bbs/716/list.do",
+  "label": "채용안내",
+  "foundAt": "2026-08-02"
+ },
+ "충북대학교": {
+  "board_url": "https://www.cbnu.ac.kr/www/selectBbsNttList.do?bbsNo=8&key=817&searchCtgry=채용/인사",
+  "label": "채용/인사",
+  "foundAt": "2026-08-02"
+ },
+ "전남대학교": {
+  "board_url": "https://www.jnu.ac.kr/WebApp/web/HOM/COM/Board/board.aspx?boardID=5&cate=13",
+  "label": "채용",
+  "foundAt": "2026-08-02"
+ },
+ "전북대학교": {
+  "board_url": "https://www.jbnu.ac.kr/link.do?link=https%3A//elite.jbnu.ac.kr/elite/index.do",
+  "label": "인재등용관",
+  "foundAt": "2026-08-02"
+ },
+ "원광대학교": {
+  "board_url": "https://www.wku.ac.kr/category/notice/recruit",
+  "label": "채용공고",
+  "foundAt": "2026-08-02"
+ },
+ "우석대학교": {
+  "board_url": "https://career.woosuk.ac.kr/",
+  "label": "채용정보",
+  "foundAt": "2026-08-02"
+ },
+ "목포대학교": {
+  "board_url": "https://www.mokpo.ac.kr/www/311/subview.do",
+  "label": "교내 채용정보",
+  "foundAt": "2026-08-02"
+ },
+ "경북대학교": {
+  "board_url": "https://www.knu.ac.kr/wbbs/wbbs/bbs/btin/list.action?bbs_cde=8&menu_idx=220",
+  "label": "경북대채용",
+  "foundAt": "2026-08-02"
+ },
+ "계명대학교": {
+  "board_url": "https://www.kmu.ac.kr/uni/recruit/main.jsp",
+  "label": "채용안내",
+  "foundAt": "2026-08-02"
+ },
+ "대구가톨릭대학교": {
+  "board_url": "https://www.cu.ac.kr/plaza/notice/recruit",
+  "label": "채용정보",
+  "foundAt": "2026-08-02"
+ },
+ "경성대학교": {
+  "board_url": "http://kscms.ks.ac.kr/kor/CMS/Contents/Contents.do?mCode=MN036",
+  "label": "교육목표 및 인재상",
+  "foundAt": "2026-08-02"
+ },
+ "동아대학교": {
+  "board_url": "https://www.donga.ac.kr/kor/CMS/Contents/Contents.do?mCode=MN010",
+  "label": "교육목표 및 인재상",
+  "foundAt": "2026-08-02"
+ },
+ "동의대학교": {
+  "board_url": "https://www.deu.ac.kr/www/deu-job.do",
+  "label": "채용",
+  "foundAt": "2026-08-02"
+ },
+ "울산대학교": {
+  "board_url": "http://www.ulsan.ac.kr/kor/CMS/Contents/Contents.do?mCode=MN025",
+  "label": "교육목적/인재상",
+  "foundAt": "2026-08-02"
+ },
+ "고신대학교": {
+  "board_url": "https://www.kosin.ac.kr/kr/index.php?pCode=ksurecruit",
+  "label": "채용공고",
+  "foundAt": "2026-08-02"
+ },
+ "경인교육대학교": {
+  "board_url": "https://www.ginue.ac.kr/kor/CMS/Board/Board.do?mCode=MN130",
+  "label": "채용공지",
+  "foundAt": "2026-08-02"
+ },
+ "대구교육대학교": {
+  "board_url": "http://www.dnue.ac.kr/kor/CMS/Board/Board.do?mCode=MN168",
+  "label": "공지사항",
+  "foundAt": "2026-08-02"
+ },
+ "광주교육대학교": {
+  "board_url": "https://www.gnue.ac.kr/index.9is?contentUid=4a9f18ab5c48fe8c015c86267b260235",
+  "label": "행정공고",
+  "foundAt": "2026-08-02"
+ },
+ "대구시립교향악단": {
+  "board_url": "https://www.daeguartscenter.or.kr/index.do?menu_id=00001527",
+  "label": "공지사항 더보기",
+  "foundAt": "2026-08-02"
+ },
+ "인천시립교향악단": {
+  "board_url": "https://www.incheon.go.kr/hrd",
+  "label": "인재개발원",
+  "foundAt": "2026-08-02"
+ },
+ "부천필하모닉오케스트라": {
+  "board_url": "https://www.bucheonphil.or.kr/front/M0000025/article/list.do",
+  "label": "공지사항",
+  "foundAt": "2026-08-02"
+ },
+ "성남시립교향악단": {
+  "board_url": "https://www.snart.or.kr/main/pst/list.do?pst_id=recruit",
+  "label": "채용안내",
+  "foundAt": "2026-08-02"
+ },
+ "춘천시립교향악단": {
+  "board_url": "https://www.chuncheon.go.kr/cityhall/administrative-info/notice-info/recruitment-info/",
+  "label": "채용정보",
+  "foundAt": "2026-08-02"
+ },
+ "강남심포니오케스트라": {
+  "board_url": "https://www.gfac.or.kr/site/main/recruit/accordionList",
+  "label": "채용정보",
+  "foundAt": "2026-08-02"
+ },
+ "국립발레단": {
+  "board_url": "https://www.korean-national-ballet.kr/ko/news/notice/list",
+  "label": "공지사항",
+  "foundAt": "2026-08-02"
+ },
+ "세종시문화재단": {
+  "board_url": "https://www.sjcf.or.kr/empmn/list.do?key=2111060066",
+  "label": "채용공고",
+  "foundAt": "2026-08-02"
+ },
+ "의정부예술의전당": {
+  "board_url": "https://www.uac.or.kr/newuac/community/community_11.php",
+  "label": "공지사항",
+  "foundAt": "2026-08-02"
+ },
+ "성남아트센터": {
+  "board_url": "https://www.snart.or.kr/main/pst/list.do?pst_id=recruit",
+  "label": "채용안내",
+  "foundAt": "2026-08-02"
+ },
+ "고양아람누리": {
+  "board_url": "https://www.artgy.or.kr/CU/CU0101M.aspx",
+  "label": "공지사항",
+  "foundAt": "2026-08-02"
+ },
+ "안산문화예술의전당": {
+  "board_url": "https://www.ansanart.com/lay1/bbs/S1T84C408/A/62/list.do",
+  "label": "채용안내",
+  "foundAt": "2026-08-02"
+ },
+ "대구오페라하우스": {
+  "board_url": "https://www.daeguoperahouse.org/contents/community/page.html?mid=271272277&mode=view&no=94",
+  "label": "대구문화예술진흥원 원장 공개모집 공고",
+  "foundAt": "2026-08-02"
+ },
+ "통영국제음악당": {
+  "board_url": "https://www.timf.org/kr/sub/timf/notice.asp",
+  "label": "공지사항",
+  "foundAt": "2026-08-02"
+ },
+ "온누리교회": {
+  "board_url": "https://www.onnuri.org/notifications",
+  "label": "알림판 »",
+  "foundAt": "2026-08-02"
+ },
+ "금란교회": {
+  "board_url": "https://www.kumnan.org/board_ViZS97",
+  "label": "공지사항",
+  "foundAt": "2026-08-02"
+ },
+ "유니버설발레단": {
+  "board_url": "https://www.universalballet.com/kr/bbs/board.php?bo_table=notice",
+  "label": "공지사항",
+  "foundAt": "2026-08-02"
  }
 }
