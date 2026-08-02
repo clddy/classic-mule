@@ -1264,5 +1264,23 @@
     "url": "https://www.cne.go.kr/boardCnts/list.do?boardID=644&m=020201&s=cne"
    }
   ]
+ },
+ {
+  "id": "daeguart_notice",
+  "name": "대구문화예술회관 공지(시립합창단)",
+  "region": "대구",
+  "board_url": "https://www.daeguartscenter.or.kr/index.do?menu_id=00001527",
+  "board_label": "공지사항",
+  "needs_js": false,
+  "strict": true
+ },
+ {
+  "id": "ansanarts",
+  "name": "안산시립합창단",
+  "region": "경기",
+  "board_url": "https://ansanarts.com/bbs/board.php?bo_table=notice",
+  "board_label": "공지사항",
+  "needs_js": false,
+  "strict": true
  }
 ]
