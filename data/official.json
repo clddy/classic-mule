@@ -1,5 +1,5 @@
 {
- "collectedAt": "2026-08-02 14:56",
+ "collectedAt": "2026-08-02 14:59",
  "sourceCount": 80,
  "okCount": 79,
  "instTotal": 75,
@@ -1092,8 +1092,10 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "전체",
-   "instDetails": [],
+   "inst": "금관",
+   "instDetails": [
+    "튜바"
+   ],
    "personnel": null,
    "subject": "음악학과",
    "officialUrl": "https://www.kangwon.ac.kr/ko/bbs/716/detail.do?pageIndex=1&pageItm=10&pstSn=4965&searchGbn=0&searchOrderSort=0",

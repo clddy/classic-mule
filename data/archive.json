@@ -8634,8 +8634,10 @@
    "deadline": "2026-08-04",
    "kind": "강사",
    "tier": "교육 — 대학",
-   "inst": "전체",
-   "instDetails": [],
+   "inst": "금관",
+   "instDetails": [
+    "튜바"
+   ],
    "subject": "음악학과",
    "ageGroup": "성인",
    "obri": false,
