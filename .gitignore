@@ -18,6 +18,10 @@ data/health.log
 data/health_history.json
 data/run_daily.log
 
+# 수요 지도는 내부 분석 문서 — data/ 는 Pages로 그대로 공개되므로 올리지 않는다.
+# (원본인 data/archive.json 은 자산이라 커밋한다: Actions 백업 크롤도 이걸 읽어 병합해야 한다)
+data/demand_map.md
+
 # 메일 발송 도구는 로컬 전용 (커밋 금지 약속)
 tools/
 # 크롤러 주소 캐시

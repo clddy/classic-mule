@@ -1,0 +1,184 @@
+# 수요 지도 — data/archive.json 을 읽어 "어느 악기·지역·직무에 반복 수요가 있는가"를 낸다.
+#
+# 쓰는 이유: 프로필 디렉토리를 나중에 열 때 어느 세그먼트부터 밀도를 만들지가 승부인데,
+# 그걸 감으로 고르지 않으려고 만든다. 크롤이 이미 80개 기관을 매일 훑고 있으므로
+# 이 데이터는 우리만 가진 것이다.
+#
+# 한계는 리포트 안에 같이 적는다 — 공고로 드러나는 건 '기관 수요'뿐이고,
+# 개인(교수·단장·음악감독)이 지인에게 돌리는 수요는 여기 안 잡힌다.
+#
+#   python crawler/demand_map.py            # data/demand_map.md 생성
+#   python crawler/demand_map.py --print     # 화면에도 출력
+import json
+import os
+import sys
+from collections import Counter, defaultdict
+from datetime import date
+
+BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+ARC = os.path.join(BASE, "data", "archive.json")
+OUT = os.path.join(BASE, "data", "demand_map.md")
+
+
+def load():
+    with open(ARC, encoding="utf-8") as f:
+        return list((json.load(f).get("items") or {}).values())
+
+
+def dedupe(items):
+    """url 이 같으면 같은 공고 — 원본 제목이 미세하게 바뀌면 id 가 갈리기 때문."""
+    by, out = {}, []
+    for it in items:
+        u = it.get("url")
+        if not u:
+            out.append(it)
+            continue
+        old = by.get(u)
+        if old is None:
+            by[u] = it
+        else:  # 더 이른 firstSeen 을 남기고 관측일수는 합산
+            if (it.get("firstSeen") or "9") < (old.get("firstSeen") or "9"):
+                old.update({k: v for k, v in it.items() if k not in ("days",)})
+            old["days"] = max(old.get("days", 1), it.get("days", 1))
+    return out + list(by.values())
+
+
+# 아카이브에는 옛 태그 체계로 수집된 기록이 섞여 있다. 마감돼 사라진 공고는 다시 크롤되지
+# 않으므로 영원히 옛 값으로 남는다 — 집계할 때 같은 세그먼트가 둘로 갈리지 않게 여기서 눕힌다.
+# (화면 쪽 같은 처리: js/jobs.js 의 TIER_MIGRATE·REGION_MIGRATE. 옛 값은 더 늘지 않으므로
+#  이 표는 한 번 고정되면 드리프트하지 않는다.)
+TIER_MIGRATE = {
+    "프로": "연주", "오브리": "연주", "전공·입시": "교육 — 입시·전공",
+    "교육·취미": "교육 — 취미·입문", "대학·전공": "교육 — 대학",
+    "예중·예고": "교육 — 입시·전공", "입문·취미": "교육 — 취미·입문",
+}
+# 2026-07-01 전남광주통합특별시 출범 — 통합 전 수집분 이관
+REGION_MIGRATE = {"광주": "광주·전남", "전남": "광주·전남"}
+
+
+def normalize(items):
+    for it in items:
+        t = it.get("tier")
+        if t in TIER_MIGRATE:
+            if t == "오브리":
+                it["obri"] = True      # 오브리는 '연주'의 하위 필터로 승계
+            it["tier"] = TIER_MIGRATE[t]
+        r = it.get("region")
+        if r in REGION_MIGRATE:
+            it["region"] = REGION_MIGRATE[r]
+    return items
+
+
+def txt(v, default="미상"):
+    """일부 소스는 inst/instDetails 를 리스트로 준다 — 집계 키로 쓰려면 문자열로 눕힌다."""
+    if isinstance(v, (list, tuple)):
+        v = " ".join(str(x) for x in v if x)
+    return str(v).strip() if v not in (None, "", []) else default
+
+
+def month(it):
+    d = it.get("date") or it.get("firstSeen") or ""
+    return d[:7] if len(d) >= 7 else "미상"
+
+
+def lifespan(it):
+    """게시 → 마감까지 며칠. 구직자가 반응할 수 있는 창의 크기."""
+    a, b = it.get("date") or it.get("firstSeen"), it.get("deadline")
+    if not a or not b:
+        return None
+    try:
+        return (date.fromisoformat(b) - date.fromisoformat(a)).days
+    except ValueError:
+        return None
+
+
+def table(counter, total, head=None, limit=None):
+    rows = counter.most_common(limit)
+    w = max([len(str(k)) for k, _ in rows] + [len(head or "")]) if rows else 8
+    out = [f"| {(head or '항목').ljust(w)} | 건수 | 비중 |", f"|{'-' * (w + 2)}|-----:|-----:|"]
+    for k, n in rows:
+        out.append(f"| {str(k).ljust(w)} | {n:4d} | {n / total * 100:4.1f}% |")
+    return "\n".join(out)
+
+
+def main():
+    if not os.path.exists(ARC):
+        print("data/archive.json 이 없다 — crawler/backfill_archive.py 를 먼저 돌릴 것", file=sys.stderr)
+        return 1
+    items = normalize(dedupe(load()))
+    n = len(items)
+    if not n:
+        print("아카이브가 비어 있다", file=sys.stderr)
+        return 1
+
+    days = sorted(it.get("firstSeen") for it in items if it.get("firstSeen"))
+    L = [f"# 포디엄 수요 지도", "",
+         f"생성 {date.today().isoformat()} · 아카이브 공고 **{n}건** · 관측 {days[0]} ~ {days[-1]}", "",
+         "> 공고에 드러나는 것은 **기관 수요**뿐이다. 개인(교수·단장·교회 음악감독)이 지인에게",
+         "> 바로 돌리는 수요는 여기 잡히지 않는다 — 그쪽이 오히려 더 클 수 있다는 걸 전제로 읽을 것.", ""]
+
+    # 1. 월별 유입 — 계절성. 채용은 학기·시즌을 탄다.
+    L += ["## 1. 월별 신규 공고", "", table(Counter(month(i) for i in items), n, "월"), ""]
+
+    # 2. 직무군 — 포디엄이 실제로 어떤 시장을 덮고 있는지
+    n_obri = sum(1 for i in items if i.get("obri"))
+    L += ["## 2. 직무군(tier)", "", table(Counter(txt(i.get("tier"), "미분류") for i in items), n, "직무군"), "",
+          f"이 중 객원·대체(obri) 표시 **{n_obri}건**({n_obri / n * 100:.0f}%). "
+          "공고로 나오는 객원 수요의 규모 — 지인 소개로 도는 몫은 여기 안 잡힌다.", "",
+          "## 3. 직종(kind)", "", table(Counter(txt(i.get("kind")) for i in items), n, "직종"), ""]
+
+    # 3. 악기 — 디렉토리 세그먼트를 고르는 축. 여기가 비면 축 자체가 안 선다.
+    inst = Counter(txt(i.get("inst")) for i in items)
+    vague = inst.get("전체", 0) + inst.get("미상", 0)
+    L += ["## 4. 악기 분류(inst)", "", table(inst, n, "악기"), "",
+          f"**데이터 품질 경고:** 악기가 특정되지 않은 공고가 {vague}건({vague / n * 100:.0f}%)이다. "
+          "이 비율이 높으면 '악기별 수요'는 아직 신뢰할 수 없고, 추출기 보강이 선행돼야 한다.", ""]
+    det = Counter(txt(i["instDetails"]) for i in items if i.get("instDetails"))
+    if det:
+        L += ["### 세부 악기 표기(instDetails, 채워진 것만)", "",
+              table(det, sum(det.values()), "표기", limit=25), ""]
+
+    # 4. 지역 — 밀도는 전국이 아니라 지역 단위로 생긴다
+    L += ["## 5. 지역", "", table(Counter(txt(i.get("region")) for i in items), n, "지역"), ""]
+
+    # 5. 교차 — 실제 세그먼트. "서울 × 연주" 같은 칸이 첫 타깃 후보다.
+    cross = Counter((txt(i.get("region")), txt(i.get("tier"), "미분류")) for i in items)
+    L += ["## 6. 세그먼트 (지역 × 직무군) 상위 20", "",
+          "| 지역 | 직무군 | 건수 |", "|------|--------|-----:|"]
+    for (r, t), c in cross.most_common(20):
+        L.append(f"| {r} | {t} | {c} |")
+    L += ["", "> 디렉토리를 열 때 프로필 밀도를 먼저 만들 칸이 여기 위쪽에 있다.",
+          "> 단, 한 칸의 공고 건수가 두 자리는 돼야 '반복 수요'라고 부를 수 있다.", ""]
+
+    # 6. 반복 게시 기관 — 미래 디렉토리의 '돌아다닐 사람' 후보 명부
+    org = Counter(txt(i.get("org")) for i in items)
+    repeat = Counter({k: v for k, v in org.items() if v >= 2})
+    L += ["## 7. 반복 게시 기관 (2건 이상)", "",
+          f"전체 {len(org)}개 기관 중 **{len(repeat)}개**가 두 번 이상 공고를 냈다.", "",
+          table(repeat, n, "기관", limit=30) if repeat else "_아직 없음 — 관측 기간이 짧다._", "",
+          "> 이 명단이 중요한 이유: 반복해서 사람을 구한다는 건 상시 수요가 있다는 뜻이고,",
+          "> 나중에 프로필 디렉토리를 열었을 때 **먼저 알려야 할 수요측**이 바로 여기다.", ""]
+
+    # 7. 공고 수명 — 구직자가 반응할 수 있는 창
+    spans = sorted(x for x in (lifespan(i) for i in items) if x is not None and 0 <= x <= 365)
+    if spans:
+        mid = spans[len(spans) // 2]
+        L += ["## 8. 공고 수명 (게시 → 마감)", "",
+              f"측정 가능 {len(spans)}건 · 중앙값 **{mid}일** · 최단 {spans[0]}일 · 최장 {spans[-1]}일", "",
+              f"> 중앙값이 {mid}일이면, 알림이 하루만 늦어도 지원 기회의 상당분이 날아간다.", ""]
+
+    # 8. 소스 기여 — 어느 원천이 실제로 데이터를 만들고 있나
+    L += ["## 9. 수집 원천별 기여", "", table(Counter(txt(i.get("source")) for i in items), n, "원천", limit=25), ""]
+
+    md = "\n".join(L)
+    with open(OUT, "w", encoding="utf-8") as f:
+        f.write(md)
+    print(f"생성: data/demand_map.md ({n}건 기준)")
+    if "--print" in sys.argv:
+        print()
+        print(md)
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

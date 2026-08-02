@@ -61,6 +61,21 @@ UI 어휘 금지: 급구·구직·오브리·대타 (교회 상시 포지션은 
   exit 0으로 끝나고 스케줄러는 '성공'이라 보고한다. 단계마다 `$LASTEXITCODE`를 보고, 결과 파일이
   실제로 갱신됐는지까지 확인할 것.
 
+## 공고 아카이브 (2026-08-02 도입)
+
+official.json은 **살아있는 공고 스냅샷**이라 마감된 공고가 매일 사라진다. 수요 분석에 필요한
+건 사라진 것까지 포함한 전량이라 `data/archive.json`에 따로 누적한다(crawler/archive.py,
+main.py 마지막 단계에서 병합). **절대 덮어쓰지 말 것 — 한 번 들어온 id는 지워지지 않는다.**
+Actions 백업 크롤도 같은 파일을 읽어 병합하므로 archive.json은 반드시 커밋된다.
+
+- `crawler/backfill_archive.py` — git 히스토리의 official.json 스냅샷을 훑어 과거분 복원.
+  여러 번 돌려도 안전(병합). 2026-08-02 84커밋에서 367건 복원.
+- `crawler/demand_map.py` — 아카이브 → `data/demand_map.md`(gitignore, 내부 분석용).
+  악기·지역·직무 수요 분포 + 반복 게시 기관 명부.
+- 아카이브에는 옛 태그 체계(프로·오브리·교육·취미…)로 굳은 기록이 섞여 있다. 마감된 공고는
+  재크롤되지 않아 영원히 옛 값이므로, demand_map.py가 집계 시점에 TIER_MIGRATE·REGION_MIGRATE로
+  눕힌다(js/jobs.js와 같은 표). 아카이브 원본은 관측된 그대로 둔다.
+
 ## 크롤 검증 루틴
 
 1. `python crawler/main.py --all` (백그라운드 ~7분, hibrain 포함 전체)

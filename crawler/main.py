@@ -1095,6 +1095,18 @@ def run(force_all=False):
              and musician_relevant(i["title"], i.get("kind", ""), i.get("org", ""))]
     # 대학 전체 강사 초빙 중 첨부 확인 결과 음악 교과목이 전혀 없던 공고는 제외(비음악 확정)
     final = [i for i in final if not i.get("nonMusic")]
+    # 지원할 방법이 하나도 없는 공고는 싣지 않는다 — 집계 포털에서 왔는데 기관 원문도,
+    # 이메일·전화도 못 뽑은 경우다. 포털로는 링크를 내지 않기로 했으므로(CLAUDE.md) 카드에
+    # '기관명으로 검색하세요'라는 빈 안내만 남아 사용자가 할 수 있는 게 없다 (2026-07-29 지적).
+    # 조용히 버리지 않고 로그로 남긴다 — 연락처 추출 규칙을 보강할 재료다.
+    _portal_src = AGGREGATORS + ("hibrain.net",)   # 링크를 내보내지 않기로 한 집계 포털들
+    _dead_end = [i for i in final
+                 if (i.get("source") or "") in _portal_src
+                 and not i.get("officialUrl") and not i.get("applyEmail") and not i.get("applyPhone")]
+    if _dead_end:
+        final = [i for i in final if i not in _dead_end]
+        log(f"지원경로 없음 {len(_dead_end)}건 제외 — "
+            + "; ".join(f"{i.get('org')}/{i['title'][:22]}" for i in _dead_end[:5]))
     # 원본이 삭제된 공고 제거 — 헬스체크(health_check.py)가 2회 연속 404/410으로
     # 확인한 링크 + 묘비(tombstone)에 새겨진 링크를 거른다.
     #
@@ -1203,6 +1215,15 @@ def run(force_all=False):
         f.write("window.CRAWLED = ")
         json.dump(payload, f, ensure_ascii=False)
         f.write(";\n")
+
+    # 아카이브 누적 — official.json 은 살아있는 공고만 남기므로 마감된 공고가 매일
+    # 사라진다. 수요 지도(crawler/demand_map.py)의 원본이 되도록 여기 따로 쌓는다.
+    try:
+        import archive
+        n_arc = archive.merge(BASE, final)
+        log(f"아카이브: 신규 {n_arc}건 · 누적 {len(archive.load(BASE))}건")
+    except Exception as e:
+        log(f"WARN 아카이브 병합 실패: {type(e).__name__}: {e}")
 
     # 정적 렌더링 (검색 봇·JS 실패 대비) — 실패해도 크롤 자체는 성공으로 둔다
     try:
