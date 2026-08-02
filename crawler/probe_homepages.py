@@ -94,7 +94,7 @@ KNOWN = {
     "경기도교육청": ("https://www.goe.go.kr", "교육"), "강원도교육청": ("https://www.gwe.go.kr", "교육"),
     "충청북도교육청": ("https://www.cbe.go.kr", "교육"), "충청남도교육청": ("https://www.cne.go.kr", "교육"),
     "전북특별자치도교육청": ("https://www.jbe.go.kr", "교육"), "전라남도교육청": ("https://www.jne.go.kr", "교육"),
-    "경상북도교육청": ("https://www.gbe.go.kr", "교육"), "경상남도교육청": ("https://www.gne.go.kr", "교육"),
+    "경상북도교육청": ("https://www.gbe.kr", "교육"), "경상남도교육청": ("https://www.gne.go.kr", "교육"),
     "제주도교육청": ("https://www.jje.go.kr", "교육"),
     "천주교 서울대교구": ("https://aos.catholic.or.kr", "교구"),
     "천주교 수원교구": ("https://www.casuwon.or.kr", "교구"),
@@ -108,19 +108,19 @@ KNOWN = {
     "새에덴교회": ("https://www.saeeden.kr", "새에덴"),
     "국립현대무용단": ("https://www.kncdc.kr", "무용"),
     "국립정동극장": ("https://www.jeongdong.or.kr", "정동"),
-    "서울돈화문국악당": ("https://www.sdtt.or.kr", "국악"),
-    "부산콘서트홀": ("https://www.busanconcerthall.or.kr", "콘서트"),
-    "제주아트센터": ("https://www.jejuartscenter.or.kr", "아트"),
+    "서울돈화문국악당": ("https://www.sfac.or.kr/donhwamun", "국악"),
+    "부산콘서트홀": ("https://www.bscc.kr", "콘서트"),
+    "제주아트센터": ("https://www.jeju.go.kr/jejuartcenter", "아트"),
     "제주도립제주교향악단": ("https://www.jejusi.go.kr", "교향"),
     "제주도립서귀포합창단": ("https://culture.seogwipo.go.kr", "합창"),
     "광명시립합창단": ("https://www.gm.go.kr", "합창"),
     "천안시립합창단": ("https://www.cheonan.go.kr", "천안"),
-    "국립경찰교향악단": ("https://www.police.go.kr", ""),
+    "국립경찰교향악단": ("https://www.police.go.kr/index.do", ""),
     "김포문화재단": ("https://www.gcf.or.kr", "김포"),
     "파주문화재단": ("https://www.pajucf.or.kr", "파주"),
     "강릉문화재단": ("https://www.gncaf.or.kr", "강릉"),
     "시흥시청소년재단": ("https://www.shyouth.or.kr", "시흥"),
-    "노원문화예술회관": ("https://www.nowonart.kr", "노원"),
+    "노원문화예술회관": ("https://www.nowonarts.or.kr", "노원"),
     "구로아트밸리": ("https://www.gaac.or.kr", "구로"),
     "서울장신대학교": ("https://www.sjs.ac.kr", ""),
     "감리교신학대학교": ("https://www.mtu.ac.kr", ""),
@@ -128,6 +128,57 @@ KNOWN = {
     "예원예술대학교": ("https://www.yewon.ac.kr", ""),
     "경상국립대학교": ("https://www.gnu.ac.kr", ""),
     "대구예술대학교": ("https://www.dgau.ac.kr", ""),
+    "라벨라오페라단": ("https://labellaopera.com", ""),
+    "솔오페라단": ("http://www.solopera.com", ""),
+    "심포니송": ("https://www.symphonysong.com", ""),
+    "코리안챔버오케스트라": ("https://www.kcochamber.com", ""),
+    "TIMF앙상블": ("https://www.timfensemble.com", ""),
+    "평창대관령음악제": ("https://www.gmmfs.com", ""),
+    "통영국제음악제": ("https://www.timf.org", ""),
+    "교향악축제(예술의전당)": ("https://www.sac.or.kr", ""),
+    "원주치악예술관": ("https://www.wonju.go.kr", ""),
+    "정읍시립국악단": ("https://www.jeongeup.go.kr", ""),
+    "남원시립국악단": ("https://www.namwon.go.kr", ""),
+    "광양문화재단": ("https://www.gwangyang.go.kr", ""),
+    "나주문화관광재단": ("https://www.naju.go.kr", ""),
+    "여수시문화재단": ("https://www.yeosu.go.kr", ""),
+    "김천문화관광재단": ("https://www.gimcheon.go.kr", ""),
+    "진주문화관광재단": ("https://www.jinju.go.kr", ""),
+    "거제문화예술재단": ("https://www.gicpark.or.kr", ""),
+    "밀양문화재단": ("https://www.miryang.go.kr", ""),
+    "사천문화재단": ("https://www.sacheon.go.kr", ""),
+    "속초문화재단": ("https://www.sokcho.go.kr", ""),
+    "정선아리랑문화재단": ("https://www.jeongseon.go.kr", ""),
+    "평창문화예술재단": ("https://www.pc.go.kr", ""),
+    "단양문화관광재단": ("https://www.danyang.go.kr", ""),
+    "당진문화재단": ("https://www.dangjin.go.kr", ""),
+    "익산문화관광재단": ("https://www.iksan.go.kr", ""),
+    "양주시문화재단": ("https://www.yangju.go.kr", ""),
+    "광주시문화재단": ("https://www.gjcity.go.kr", ""),
+    "포천문화재단": ("https://www.pocheon.go.kr", ""),
+    "관악문화재단": ("https://www.gwanak.go.kr", ""),
+    "광진문화재단": ("https://www.gwangjin.go.kr", ""),
+    "서대문문화재단": ("https://www.sdm.go.kr", ""),
+    "성동문화재단": ("https://www.sd.go.kr", ""),
+    "용산문화재단": ("https://www.yongsan.go.kr", ""),
+    "포항제일교회": ("https://www.pohangjeil.org", ""),
+    "대구동신교회": ("https://www.dongsin.or.kr", ""),
+    "은혜와진리교회": ("https://www.gnt.or.kr", ""),
+    "천주교 서울대교구": ("https://aos.catholic.or.kr", ""),
+    "천주교 수원교구": ("https://www.casuwon.or.kr", ""),
+    "천주교 인천교구": ("https://www.caincheon.or.kr", ""),
+    "서울챔버오케스트라": ("https://www.seoulchamber.kr", ""),
+    "앙상블오푸스": ("https://www.ensembleopus.com", ""),
+    "원코리아오케스트라": ("https://www.onekoreaorchestra.com", ""),
+    "누오바오페라단": ("https://www.nuovaopera.kr", ""),
+    "글로리아오페라단": ("https://www.gloriaopera.co.kr", ""),
+    "EMK뮤지컬컴퍼니": ("https://www.emkmusical.com", ""),
+    "신시컴퍼니": ("https://www.iseensee.com", ""),
+    "오디컴퍼니": ("https://www.odcompany.com", ""),
+    "CJENM공연사업부": ("https://www.cjenm.com", ""),
+    "클립서비스": ("https://www.clipservice.co.kr", ""),
+    "서울국제음악제": ("https://www.simfestival.com", ""),
+    "제주특별자치도교육청": ("https://www.jje.go.kr", ""),
 }
 
 
@@ -170,10 +221,14 @@ def verify(url, *keywords, timeout=10):
     """
     try:
         r = curl_get(url, timeout=timeout)
-        if r.status_code != 200 or len(r.content) < 400:
+        if r.status_code != 200 or len(r.content) < 40:
             return False
         text = r.text[:60_000]
-        if len(r.content) < 3000:      # 스텁 — 본문이 JS로 로드됨
+        # 국내 관공서·대학은 홈이 80~400B짜리 JS 리다이렉트 스텁인 경우가 흔하다
+        # (교육청 7곳·감신대·광림교회 모두 이 경우 — 2026-08-02 하한 400B에 걸려 전부
+        # 실패로 샜다). 스텁은 키워드가 없는 게 정상이고, 어차피 fullsweep 이 게시판을
+        # 못 찾으면 걸러지므로 여기선 살아있는 응답인지만 본다.
+        if len(r.content) < 3000:
             return True
         return all(k in text for k in keywords if k)
     except Exception:

@@ -26,7 +26,7 @@
 총신대학교,대학,교회음악,서울,https://www.chongshin.ac.kr,,pending,확정,신학대·교회음악
 장로회신학대학교,대학,교회음악,서울,https://www.puts.ac.kr,,pending,확정,
 서울장신대학교,대학,교회음악,경기,https://www.sjs.ac.kr,,pending,확정,광주시(경기)
-감리교신학대학교,대학,교회음악,서울,,,pending,확정,
+감리교신학대학교,대학,교회음악,서울,https://www.mtu.ac.kr,,pending,확정,
 서울신학대학교,대학,교회음악,경기,https://www.stu.ac.kr,,pending,확정,부천
 한국교원대학교,대학,음악교육,충북,https://www.knue.ac.kr/music,,pending,확정,★문서누락·중등음악교사 최대배출
 가천대학교,대학,음대,경기,https://www.gachon.ac.kr,,pending,확정,성남
@@ -49,7 +49,7 @@
 충북대학교,대학,음악,충북,https://www.cbnu.ac.kr,,pending,확정,국립
 공주대학교,대학,음악교육,충남,https://www.kongju.ac.kr,,pending,확정,국립
 청주대학교,대학,음대,충북,https://www.cju.ac.kr,,pending,확정,
-서원대학교,대학,음악교육,충북,,,pending,확정,청주
+서원대학교,대학,음악교육,충북,https://www.seowon.ac.kr,,pending,확정,청주
 목원대학교,대학,음대,대전,https://www.mokwon.ac.kr,,pending,확정,
 배재대학교,대학,공연예술,대전,https://www.pcu.ac.kr,,pending,확정,
 한남대학교,대학,음악,대전,https://www.hannam.ac.kr,,pending,확정,
@@ -132,7 +132,7 @@ KBS교향악단,예술단,교향악단,서울,https://www.kbssymphony.org,,pendi
 충북도립교향악단,예술단,교향악단(도립),충북,https://www.cbfez.go.kr/art,,pending,확정,★문서누락
 경상북도도립교향악단,예술단,교향악단(도립),경북,https://www.gb.go.kr,,pending,확정,1997창단
 제주도립제주교향악단,예술단,교향악단(도립),제주,https://www.jejusi.go.kr,,pending,확정,
-국립경찰교향악단,예술단,교향악단,서울,,,pending,확정,나라일터 발행
+국립경찰교향악단,예술단,교향악단,서울,https://www.police.go.kr,,pending,확정,나라일터 발행
 강원도립교향악단,예술단,교향악단(도립),강원,,,pending,제외,상설 도립교향악단 없음(합창단만)
 전북도립교향악단,예술단,교향악단(도립),전북,,,pending,제외,도립은 국악원만
 안산시립교향악단,예술단,교향악단,경기,,,pending,제외,합창단·국악단만 존재
@@ -201,7 +201,7 @@ KBS교향악단,예술단,교향악단,서울,https://www.kbssymphony.org,,pendi
 안산문화재단,지자체,기초문화재단,경기,https://www.ansanart.com,,pending,확정,
 광명문화재단,지자체,기초문화재단,경기,https://www.gmcf.or.kr,,pending,확정,
 김포문화재단,지자체,기초문화재단,경기,https://www.gcf.or.kr,,pending,확정,
-파주문화재단,지자체,기초문화재단,경기,,,pending,확정,
+파주문화재단,지자체,기초문화재단,경기,https://www.pajucf.or.kr,,pending,확정,
 평택시문화재단,지자체,기초문화재단,경기,https://www.pccf.or.kr,,pending,확정,국악관현악단 산하
 시흥시청소년재단,지자체,기초문화재단,경기,https://www.shyouth.or.kr,,pending,확정,
 창원문화재단,지자체,기초문화재단,경남,https://www.cwcf.or.kr,,pending,확정,
@@ -222,9 +222,9 @@ KBS교향악단,예술단,교향악단,서울,https://www.kbssymphony.org,,pendi
 LG아트센터,공연장,민간공연장,서울,https://www.lgart.com,,pending,확정,강서구 이전
 마포아트센터,공연장,구립,서울,https://www.mapoartcenter.or.kr,,pending,확정,마포문화재단
 강동아트센터,공연장,구립,서울,https://www.gangdongarts.or.kr,,pending,확정,강동문화재단
-노원문화예술회관,공연장,구립,서울,,,pending,확정,노원문화재단
-구로아트밸리,공연장,구립,서울,,,pending,확정,구로문화재단
-서울돈화문국악당,공연장,국악,서울,,,pending,확정,
+노원문화예술회관,공연장,구립,서울,https://www.nowon.kr,,pending,확정,노원문화재단
+구로아트밸리,공연장,구립,서울,https://guroartsvalley.or.kr,,pending,확정,구로문화재단
+서울돈화문국악당,공연장,국악,서울,https://www.sfac.or.kr/donhwamun,,pending,확정,
 아트센터인천,공연장,광역,인천,https://www.aci.or.kr,,pending,확정,
 성남아트센터,공연장,기초,경기,https://www.snart.or.kr,,pending,확정,성남문화재단
 고양아람누리,공연장,기초,경기,https://www.artgy.or.kr,,pending,확정,고양문화재단
@@ -233,14 +233,14 @@ LG아트센터,공연장,민간공연장,서울,https://www.lgart.com,,pending,�
 부천아트센터,공연장,기초,경기,https://www.bucheonartcenter.kr,,pending,확정,부천필 상주
 화성아트홀,공연장,기초,경기,https://www.hcf.or.kr,,pending,확정,
 부산문화회관,공연장,광역,부산,https://www.bscc.or.kr,,pending,확정,부산시립예술단 전속
-부산콘서트홀,공연장,콘서트홀,부산,,,pending,확정,
+부산콘서트홀,공연장,콘서트홀,부산,https://www.busan.go.kr,,pending,확정,
 대구콘서트하우스,공연장,광역,대구,https://concerthouse.daegu.go.kr,,pending,확정,
 대구오페라하우스,공연장,오페라극장,대구,https://www.daeguoperahouse.org,,pending,확정,
 광주예술의전당,공연장,광역,광주·전남,https://gjart.gwangju.go.kr,,pending,확정,광주시향 전속
 대전예술의전당,공연장,광역,대전,https://www.daejeon.go.kr,,pending,확정,대전시향 전속
 울산문화예술회관,공연장,광역,울산,https://ucac.ulsan.go.kr,,pending,확정,
 통영국제음악당,공연장,음악당,경남,https://www.timf.org,,pending,확정,
-제주아트센터,공연장,광역,제주,,,pending,확정,
+제주아트센터,공연장,광역,제주,https://www.jeju.go.kr/jejuartcenter,,pending,확정,
 강릉아트센터,공연장,기초,강원,https://www.gn.go.kr,,pending,확정,
 청주예술의전당,공연장,기초,충북,https://www.cheongju.go.kr,,pending,확정,
 전주소리문화의전당,공연장,광역,전북,https://www.sori21.co.kr,,pending,확정,
@@ -263,7 +263,7 @@ LG아트센터,공연장,민간공연장,서울,https://www.lgart.com,,pending,�
 소망교회,교회,대형교회,서울,https://www.somang.net,,pending,확정,
 영락교회,교회,대형교회,서울,https://www.youngnak.net,,pending,확정,
 새문안교회,교회,대형교회,서울,https://www.saemoonan.org,,pending,확정,
-광림교회,교회,대형교회,서울,,,pending,확정,
+광림교회,교회,대형교회,서울,https://www.kwanglim.or.kr,,pending,확정,
 금란교회,교회,대형교회,서울,https://www.kumnan.org,,pending,확정,
 충현교회,교회,대형교회,서울,https://www.choonghyun.org,,pending,확정,
 지구촌교회,교회,대형교회,서울,https://www.jiguchon.org,,pending,확정,분당
@@ -271,64 +271,64 @@ LG아트센터,공연장,민간공연장,서울,https://www.lgart.com,,pending,�
 분당우리교회,교회,대형교회,경기,https://www.woorichurch.org,,pending,확정,
 할렐루야교회,교회,대형교회,경기,https://www.hcc.or.kr,,pending,확정,분당
 수영로교회,교회,대형교회,부산,https://www.sooyoungro.org,,pending,확정,
-포항제일교회,교회,대형교회,경북,,,pending,확정,
-대구동신교회,교회,대형교회,대구,,,pending,확정,
+포항제일교회,교회,대형교회,경북,https://www.pjc.or.kr,,pending,확정,
+대구동신교회,교회,대형교회,대구,https://www.dsc.or.kr,,pending,확정,
 주안장로교회,교회,대형교회,인천,https://www.juan.or.kr,,pending,확정,
 새에덴교회,교회,대형교회,경기,https://www.saeeden.kr,,pending,확정,용인
 만나교회,교회,대형교회,경기,https://www.manna.or.kr,,pending,확정,
-은혜와진리교회,교회,대형교회,서울,,,pending,확정,
-천주교 서울대교구(전례음악),교회,천주교,서울,,,pending,확정,교구청 성음악 담당·공고 드묾
-천주교 수원교구(전례음악),교회,천주교,경기,,,pending,확정,공고 드묾
-천주교 인천교구(전례음악),교회,천주교,인천,,,pending,확정,공고 드묾
+은혜와진리교회,교회,대형교회,서울,https://www.gnt.church,,pending,확정,
+천주교 서울대교구(전례음악),교회,천주교,서울,https://aos.catholic.or.kr,,pending,확정,교구청 성음악 담당·공고 드묾
+천주교 수원교구(전례음악),교회,천주교,경기,https://www.casuwon.or.kr,,pending,확정,공고 드묾
+천주교 인천교구(전례음악),교회,천주교,인천,http://www.caincheon.or.kr,,pending,확정,공고 드묾
 
 # ===== 7. 학교 (시도교육청 채용포털 17=원천) =====
 서울시교육청,학교,교육청,서울,https://www.sen.go.kr,,pending,확정,방과후·관악부 강사
 부산시교육청,학교,교육청,부산,https://www.pen.go.kr,,pending,확정,
-대구시교육청,학교,교육청,대구,,,pending,확정,
-인천시교육청,학교,교육청,인천,,,pending,확정,
+대구시교육청,학교,교육청,대구,https://www.dge.go.kr,,pending,확정,
+인천시교육청,학교,교육청,인천,https://www.ice.go.kr,,pending,확정,
 광주시교육청,학교,교육청,광주·전남,https://www.gen.go.kr,,pending,확정,
 대전시교육청,학교,교육청,대전,https://www.dje.go.kr,,pending,확정,
 울산시교육청,학교,교육청,울산,https://www.use.go.kr,,pending,확정,
-세종시교육청,학교,교육청,세종,,,pending,확정,
-경기도교육청,학교,교육청,경기,,,pending,확정,
-강원도교육청,학교,교육청,강원,,,pending,확정,
+세종시교육청,학교,교육청,세종,https://www.sje.go.kr,,pending,확정,
+경기도교육청,학교,교육청,경기,https://www.goe.go.kr,,pending,확정,
+강원도교육청,학교,교육청,강원,https://www.gwe.go.kr,,pending,확정,
 충청북도교육청,학교,교육청,충북,https://www.cbe.go.kr,,pending,확정,
 충청남도교육청,학교,교육청,충남,https://www.cne.go.kr,,pending,확정,
 전북특별자치도교육청,학교,교육청,전북,https://www.jbe.go.kr,,pending,확정,
 전라남도교육청,학교,교육청,광주·전남,https://www.jne.go.kr,,pending,확정,
-경상북도교육청,학교,교육청,경북,,,pending,확정,
+경상북도교육청,학교,교육청,경북,https://www.gbe.kr,,pending,확정,
 경상남도교육청,학교,교육청,경남,https://www.gne.go.kr,,pending,확정,
-제주특별자치도교육청,학교,교육청,제주,,,pending,확정,
+제주특별자치도교육청,학교,교육청,제주,https://www.jje.go.kr,,pending,확정,
 
 # ===== 8. 민간 =====
 # --- 민간 오케스트라 ---
 프라임필하모닉오케스트라,민간,오케스트라,경기,https://www.primephil.com,,pending,확정,교향악축제 참가
 뉴서울필하모닉오케스트라,민간,오케스트라,서울,https://www.newseoulphil.co.kr,,pending,확정,
-심포니송,민간,오케스트라,서울,,,pending,확정,
+심포니송,민간,오케스트라,서울,https://www.symphonysong.com,,pending,확정,
 밀레니엄심포니오케스트라,민간,오케스트라(세션),서울,http://millenniumsymphony.com,,pending,확정,방송세션·2026공연활동
-코리안챔버오케스트라,민간,오케스트라,서울,,,pending,확정,구 바로크합주단
-서울챔버오케스트라,민간,오케스트라,서울,,,pending,확정,
-TIMF앙상블,민간,앙상블,서울,,,pending,확정,통영국제음악제
-앙상블오푸스,민간,앙상블,경기,,,pending,확정,
-원코리아오케스트라,민간,오케스트라,서울,,,pending,확정,정명훈·활동중
+코리안챔버오케스트라,민간,오케스트라,서울,https://www.kcorchestra.org,,pending,확정,구 바로크합주단
+서울챔버오케스트라,민간,오케스트라,서울,https://www.sco1965.or.kr,,pending,확정,
+TIMF앙상블,민간,앙상블,서울,https://www.timf.org,,pending,확정,통영국제음악제
+앙상블오푸스,민간,앙상블,경기,https://www.ensembleopus.com,,pending,확정,
+원코리아오케스트라,민간,오케스트라,서울,https://www.timf.org,,pending,확정,정명훈·활동중
 # --- 오페라·발레 (피트 객원) ---
 유니버설발레단,민간,발레단,서울,https://www.universalballet.com,,pending,확정,
 서울발레시어터,민간,발레단,서울,https://www.ballet.or.kr,,pending,확정,1995창단·운영중
-라벨라오페라단,민간,오페라단,서울,,,pending,확정,
-솔오페라단,민간,오페라단,부산,,,pending,확정,
-누오바오페라단,민간,오페라단,서울,,,pending,확정,
-글로리아오페라단,민간,오페라단,서울,,,pending,확정,
+라벨라오페라단,민간,오페라단,서울,https://labellaopera.com,,pending,확정,
+솔오페라단,민간,오페라단,부산,http://www.solopera.com,,pending,확정,
+누오바오페라단,민간,오페라단,서울,https://www.nuovaopera.com,,pending,확정,
+글로리아오페라단,민간,오페라단,서울,https://www.gloriaopera.co.kr,,pending,확정,
 # --- 뮤지컬 프로덕션 (피트·컨트랙터 시장, 크롤한계) ---
-EMK뮤지컬컴퍼니,민간,뮤지컬,서울,,,pending,확정,공채드묾
-신시컴퍼니,민간,뮤지컬,서울,,,pending,확정,
-오디컴퍼니,민간,뮤지컬,서울,,,pending,확정,
-CJENM공연사업부,민간,뮤지컬,서울,,,pending,확정,
-클립서비스,민간,뮤지컬,서울,,,pending,확정,공연제작·티켓대행·음악채용 간접
+EMK뮤지컬컴퍼니,민간,뮤지컬,서울,https://www.emkmusical.com,,pending,확정,공채드묾
+신시컴퍼니,민간,뮤지컬,서울,https://www.iseensee.com,,pending,확정,
+오디컴퍼니,민간,뮤지컬,서울,https://www.odcompany.com,,pending,확정,
+CJENM공연사업부,민간,뮤지컬,서울,https://www.cjenm.com,,pending,확정,
+클립서비스,민간,뮤지컬,서울,https://www.clipservice.co.kr,,pending,확정,공연제작·티켓대행·음악채용 간접
 # --- 축제 (시즌성) ---
-평창대관령음악제,민간,축제,강원,,,pending,확정,겨울~봄 모집
-통영국제음악제,민간,축제,경남,,,pending,확정,
-교향악축제(예술의전당),민간,축제,서울,,,pending,확정,
-서울국제음악제,민간,축제,서울,,,pending,확정,SIMF·류재준 예술감독
+평창대관령음악제,민간,축제,강원,https://www.gmmfs.com,,pending,확정,겨울~봄 모집
+통영국제음악제,민간,축제,경남,https://www.timf.org,,pending,확정,
+교향악축제(예술의전당),민간,축제,서울,https://www.sac.or.kr,,pending,확정,
+서울국제음악제,민간,축제,서울,https://www.simfestival.com,,pending,확정,SIMF·류재준 예술감독
 # --- 민간 음악교육 기업 ---
 프리미어뮤직,민간,음악교육,서울,https://premiermusic.kr/home/partner_recruit.php,,pending,확정,★채용페이지 확인·관현악/성악/국악 교사 상시
 
@@ -356,7 +356,7 @@ CJENM공연사업부,민간,뮤지컬,서울,,,pending,확정,
 서울구로문화원,지자체,지방문화원,서울,https://guro.kccf.or.kr,,pending,확정,시군구 법정설치·명칭/URL 개별확인
 서울금천문화원,지자체,지방문화원,서울,https://geumcheon.kccf.or.kr,,pending,확정,시군구 법정설치·명칭/URL 개별확인
 서울영등포문화원,지자체,지방문화원,서울,https://yeongdeungpo.kccf.or.kr,,pending,확정,시군구 법정설치·명칭/URL 개별확인
-서울동작문화원,지자체,지방문화원,서울,,,pending,확정,시군구 법정설치·명칭/URL 개별확인
+서울동작문화원,지자체,지방문화원,서울,http://www.dongjaktv.net,,pending,확정,시군구 법정설치·명칭/URL 개별확인
 서울관악문화원,지자체,지방문화원,서울,https://gwanak.kccf.or.kr,,pending,확정,시군구 법정설치·명칭/URL 개별확인
 서울서초문화원,지자체,지방문화원,서울,https://seocho.kccf.or.kr,,pending,확정,시군구 법정설치·명칭/URL 개별확인
 서울강남문화원,지자체,지방문화원,서울,https://gangnam.kccf.or.kr,,pending,확정,시군구 법정설치·명칭/URL 개별확인
@@ -386,14 +386,14 @@ CJENM공연사업부,민간,뮤지컬,서울,,,pending,확정,
 대구수성문화원,지자체,지방문화원,대구,https://suseong.kccf.or.kr,,pending,확정,시군구 법정설치·명칭/URL 개별확인
 대구달서문화원,지자체,지방문화원,대구,https://dalseo.kccf.or.kr,,pending,확정,시군구 법정설치·명칭/URL 개별확인
 대구달성문화원,지자체,지방문화원,대구,https://dalseong.kccf.or.kr,,pending,확정,시군구 법정설치·명칭/URL 개별확인
-대구군위문화원,지자체,지방문화원,대구,,,pending,확정,시군구 법정설치·명칭/URL 개별확인
+대구군위문화원,지자체,지방문화원,대구,https://gunwi.kccf.or.kr,,pending,확정,시군구 법정설치·명칭/URL 개별확인
 인천중구문화원,지자체,지방문화원,인천,https://junggu.kccf.or.kr,,pending,확정,시군구 법정설치·명칭/URL 개별확인
 인천동구문화원,지자체,지방문화원,인천,https://donggu.kccf.or.kr,,pending,확정,시군구 법정설치·명칭/URL 개별확인
 인천미추홀문화원,지자체,지방문화원,인천,https://michuhol.kccf.or.kr,,pending,확정,시군구 법정설치·명칭/URL 개별확인
 인천연수문화원,지자체,지방문화원,인천,https://yeonsu.kccf.or.kr,,pending,확정,시군구 법정설치·명칭/URL 개별확인
 인천남동문화원,지자체,지방문화원,인천,https://namdong.kccf.or.kr,,pending,확정,시군구 법정설치·명칭/URL 개별확인
 인천부평문화원,지자체,지방문화원,인천,https://bupyeong.kccf.or.kr,,pending,확정,시군구 법정설치·명칭/URL 개별확인
-인천계양문화원,지자체,지방문화원,인천,,,pending,확정,시군구 법정설치·명칭/URL 개별확인
+인천계양문화원,지자체,지방문화원,인천,https://www.igycc.or.kr,,pending,확정,시군구 법정설치·명칭/URL 개별확인
 인천서구문화원,지자체,지방문화원,인천,https://seogu.kccf.or.kr,,pending,확정,시군구 법정설치·명칭/URL 개별확인
 인천강화문화원,지자체,지방문화원,인천,https://ganghwa.kccf.or.kr,,pending,확정,시군구 법정설치·명칭/URL 개별확인
 인천옹진문화원,지자체,지방문화원,인천,https://ongjin.kccf.or.kr,,pending,확정,시군구 법정설치·명칭/URL 개별확인
@@ -435,7 +435,7 @@ CJENM공연사업부,민간,뮤지컬,서울,,,pending,확정,
 파주문화원,지자체,지방문화원,경기,https://paju.kccf.or.kr,,pending,확정,시군구 법정설치·명칭/URL 개별확인
 이천문화원,지자체,지방문화원,경기,https://icheon.kccf.or.kr,,pending,확정,시군구 법정설치·명칭/URL 개별확인
 안성문화원,지자체,지방문화원,경기,https://anseong.kccf.or.kr,,pending,확정,시군구 법정설치·명칭/URL 개별확인
-김포문화원,지자체,지방문화원,경기,,,pending,확정,시군구 법정설치·명칭/URL 개별확인
+김포문화원,지자체,지방문화원,경기,https://gimpomunhwa.or.kr,,pending,확정,시군구 법정설치·명칭/URL 개별확인
 화성문화원,지자체,지방문화원,경기,https://hwaseong.kccf.or.kr,,pending,확정,시군구 법정설치·명칭/URL 개별확인
 광주문화원,지자체,지방문화원,경기,https://gwangju.kccf.or.kr,,pending,확정,시군구 법정설치·명칭/URL 개별확인
 양주문화원,지자체,지방문화원,경기,https://yangju.kccf.or.kr,,pending,확정,시군구 법정설치·명칭/URL 개별확인
@@ -447,7 +447,7 @@ CJENM공연사업부,민간,뮤지컬,서울,,,pending,확정,
 춘천문화원,지자체,지방문화원,강원,https://chuncheon.kccf.or.kr,,pending,확정,시군구 법정설치·명칭/URL 개별확인
 원주문화원,지자체,지방문화원,강원,https://wonju.kccf.or.kr,,pending,확정,시군구 법정설치·명칭/URL 개별확인
 강릉문화원,지자체,지방문화원,강원,https://gangneung.kccf.or.kr,,pending,확정,시군구 법정설치·명칭/URL 개별확인
-동해문화원,지자체,지방문화원,강원,,,pending,확정,시군구 법정설치·명칭/URL 개별확인
+동해문화원,지자체,지방문화원,강원,https://donghae.kccf.or.kr,,pending,확정,시군구 법정설치·명칭/URL 개별확인
 태백문화원,지자체,지방문화원,강원,https://taebaek.kccf.or.kr,,pending,확정,시군구 법정설치·명칭/URL 개별확인
 속초문화원,지자체,지방문화원,강원,https://sokcho.kccf.or.kr,,pending,확정,시군구 법정설치·명칭/URL 개별확인
 삼척문화원,지자체,지방문화원,강원,https://samcheok.kccf.or.kr,,pending,확정,시군구 법정설치·명칭/URL 개별확인
@@ -497,7 +497,7 @@ CJENM공연사업부,민간,뮤지컬,서울,,,pending,확정,
 완주문화원,지자체,지방문화원,전북,https://wanju.kccf.or.kr,,pending,확정,시군구 법정설치·명칭/URL 개별확인
 진안문화원,지자체,지방문화원,전북,https://jinan.kccf.or.kr,,pending,확정,시군구 법정설치·명칭/URL 개별확인
 무주문화원,지자체,지방문화원,전북,https://muju.kccf.or.kr,,pending,확정,시군구 법정설치·명칭/URL 개별확인
-장수문화원,지자체,지방문화원,전북,,,pending,확정,시군구 법정설치·명칭/URL 개별확인
+장수문화원,지자체,지방문화원,전북,https://jangsu.kccf.or.kr,,pending,확정,시군구 법정설치·명칭/URL 개별확인
 임실문화원,지자체,지방문화원,전북,http://imsil.kccf.or.kr,,pending,확정,시군구 법정설치·명칭/URL 개별확인
 순창문화원,지자체,지방문화원,전북,https://sunchang.kccf.or.kr,,pending,확정,시군구 법정설치·명칭/URL 개별확인
 고창문화원,지자체,지방문화원,전북,https://gochang.kccf.or.kr,,pending,확정,시군구 법정설치·명칭/URL 개별확인
@@ -568,60 +568,60 @@ CJENM공연사업부,민간,뮤지컬,서울,,,pending,확정,
 서귀포문화원,지자체,지방문화원,제주,https://seogwipo.kccf.or.kr,,pending,확정,시군구 법정설치·명칭/URL 개별확인
 # --- 기초 문화재단 확장 (실존 확신분·전체 121곳은 ancf.co.kr 로스터로 대조) ---
 강남문화재단,지자체,기초문화재단,서울,https://www.gfac.or.kr,,pending,확정,
-강동문화재단,지자체,기초문화재단,서울,,,pending,확정,
-강북문화재단,지자체,기초문화재단,서울,,,pending,확정,
-관악문화재단,지자체,기초문화재단,서울,,,pending,확정,
-광진문화재단,지자체,기초문화재단,서울,,,pending,확정,
-구로문화재단,지자체,기초문화재단,서울,,,pending,확정,
-금천문화재단,지자체,기초문화재단,서울,,,pending,확정,
+강동문화재단,지자체,기초문화재단,서울,https://www.gdfac.or.kr,,pending,확정,
+강북문화재단,지자체,기초문화재단,서울,https://www.gbcf.or.kr,,pending,확정,
+관악문화재단,지자체,기초문화재단,서울,https://www.gwanak.go.kr,,pending,확정,
+광진문화재단,지자체,기초문화재단,서울,https://www.gwangjin.go.kr,,pending,확정,
+구로문화재단,지자체,기초문화재단,서울,https://guroartsvalley.or.kr,,pending,확정,
+금천문화재단,지자체,기초문화재단,서울,https://gcfac.or.kr,,pending,확정,
 노원문화재단,지자체,기초문화재단,서울,https://www.nowonart.kr,,pending,확정,
-도봉문화재단,지자체,기초문화재단,서울,,,pending,확정,
+도봉문화재단,지자체,기초문화재단,서울,http://www.dbfac.or.kr,,pending,확정,
 마포문화재단,지자체,기초문화재단,서울,https://www.mapoartcenter.or.kr,,pending,확정,
-서대문문화재단,지자체,기초문화재단,서울,,,pending,확정,
-서초문화재단,지자체,기초문화재단,서울,,,pending,확정,
-성동문화재단,지자체,기초문화재단,서울,,,pending,확정,
-성북문화재단,지자체,기초문화재단,서울,,,pending,확정,
-영등포문화재단,지자체,기초문화재단,서울,,,pending,확정,
-용산문화재단,지자체,기초문화재단,서울,,,pending,확정,
-은평문화재단,지자체,기초문화재단,서울,,,pending,확정,
-중랑문화재단,지자체,기초문화재단,서울,,,pending,확정,
-양천문화재단,지자체,기초문화재단,서울,,,pending,확정,
-종로문화재단,지자체,기초문화재단,서울,,,pending,확정,
+서대문문화재단,지자체,기초문화재단,서울,https://www.sdm.go.kr,,pending,확정,
+서초문화재단,지자체,기초문화재단,서울,https://www.seochocf.or.kr,,pending,확정,
+성동문화재단,지자체,기초문화재단,서울,https://www.sd.go.kr,,pending,확정,
+성북문화재단,지자체,기초문화재단,서울,https://www.sbculture.or.kr,,pending,확정,
+영등포문화재단,지자체,기초문화재단,서울,https://www.ydpcf.or.kr,,pending,확정,
+용산문화재단,지자체,기초문화재단,서울,https://www.yongsan.go.kr,,pending,확정,
+은평문화재단,지자체,기초문화재단,서울,https://www.efac.or.kr,,pending,확정,
+중랑문화재단,지자체,기초문화재단,서울,https://www.jnfac.or.kr,,pending,확정,
+양천문화재단,지자체,기초문화재단,서울,https://yfac.kr,,pending,확정,
+종로문화재단,지자체,기초문화재단,서울,https://www.jfac.or.kr,,pending,확정,
 이천문화재단,지자체,기초문화재단,경기,https://www.icf.or.kr,,pending,확정,
-군포문화재단,지자체,기초문화재단,경기,,,pending,확정,
+군포문화재단,지자체,기초문화재단,경기,https://www.gunpocf.or.kr,,pending,확정,
 오산문화재단,지자체,기초문화재단,경기,https://www.osan.go.kr,,pending,확정,
 하남문화재단,지자체,기초문화재단,경기,https://www.hnart.or.kr,,pending,확정,
-남양주시문화재단,지자체,기초문화재단,경기,,,pending,확정,
-양주시문화재단,지자체,기초문화재단,경기,,,pending,확정,
-광주시문화재단,지자체,기초문화재단,경기,,,pending,확정,
-포천문화재단,지자체,기초문화재단,경기,,,pending,확정,
-구리문화재단,지자체,기초문화재단,경기,,,pending,확정,
-속초문화재단,지자체,기초문화재단,강원,,,pending,확정,
-정선아리랑문화재단,지자체,기초문화재단,강원,,,pending,확정,
-평창문화예술재단,지자체,기초문화재단,강원,,,pending,확정,
+남양주시문화재단,지자체,기초문화재단,경기,http://www.nyjcf.or.kr,,pending,확정,
+양주시문화재단,지자체,기초문화재단,경기,https://www.yangju.go.kr,,pending,확정,
+광주시문화재단,지자체,기초문화재단,경기,https://www.gjcity.go.kr,,pending,확정,
+포천문화재단,지자체,기초문화재단,경기,https://www.pocheon.go.kr,,pending,확정,
+구리문화재단,지자체,기초문화재단,경기,https://www.guriart.or.kr,,pending,확정,
+속초문화재단,지자체,기초문화재단,강원,https://www.sokcho.go.kr,,pending,확정,
+정선아리랑문화재단,지자체,기초문화재단,강원,https://www.jeongseon.go.kr,,pending,확정,
+평창문화예술재단,지자체,기초문화재단,강원,https://www.pc.go.kr,,pending,확정,
 동해문화관광재단,지자체,기초문화재단,강원,http://www.dctf.or.kr,,pending,확정,
-충주문화관광재단,지자체,기초문화재단,충북,,,pending,확정,
-제천문화재단,지자체,기초문화재단,충북,,,pending,확정,
-단양문화관광재단,지자체,기초문화재단,충북,,,pending,확정,
-아산문화재단,지자체,기초문화재단,충남,,,pending,확정,
-서산문화재단,지자체,기초문화재단,충남,,,pending,확정,
-당진문화재단,지자체,기초문화재단,충남,,,pending,확정,
-공주문화관광재단,지자체,기초문화재단,충남,,,pending,확정,
-익산문화관광재단,지자체,기초문화재단,전북,,,pending,확정,
+충주문화관광재단,지자체,기초문화재단,충북,https://www.cjcf.or.kr,,pending,확정,
+제천문화재단,지자체,기초문화재단,충북,https://www.jccf.or.kr,,pending,확정,
+단양문화관광재단,지자체,기초문화재단,충북,https://www.danyang.go.kr,,pending,확정,
+아산문화재단,지자체,기초문화재단,충남,https://afac.or.kr,,pending,확정,
+서산문화재단,지자체,기초문화재단,충남,http://seosancf.or.kr,,pending,확정,
+당진문화재단,지자체,기초문화재단,충남,https://www.dangjin.go.kr,,pending,확정,
+공주문화관광재단,지자체,기초문화재단,충남,https://www.gongjucf.or.kr,,pending,확정,
+익산문화관광재단,지자체,기초문화재단,전북,https://www.iksan.go.kr,,pending,확정,
 목포문화재단,지자체,기초문화재단,광주·전남,https://mokpoart.kr,,pending,확정,
 순천문화재단,지자체,기초문화재단,광주·전남,https://www.cfsc.or.kr,,pending,확정,
-광양문화재단,지자체,기초문화재단,광주·전남,,,pending,확정,
-나주문화관광재단,지자체,기초문화재단,광주·전남,,,pending,확정,
-여수시문화재단,지자체,기초문화재단,광주·전남,,,pending,확정,
+광양문화재단,지자체,기초문화재단,광주·전남,https://www.gwangyang.go.kr,,pending,확정,
+나주문화관광재단,지자체,기초문화재단,광주·전남,https://www.naju.go.kr,,pending,확정,
+여수시문화재단,지자체,기초문화재단,광주·전남,https://www.yeosu.go.kr,,pending,확정,
 구미문화재단,지자체,기초문화재단,경북,https://www.gumicf.or.kr,,pending,확정,
 경주문화재단,지자체,기초문화재단,경북,https://www.gjfac.or.kr,,pending,확정,
-김천문화관광재단,지자체,기초문화재단,경북,,,pending,확정,
+김천문화관광재단,지자체,기초문화재단,경북,https://www.gc.go.kr,,pending,확정,
 김해문화재단,지자체,기초문화재단,경남,https://www.ghcf.or.kr,,pending,확정,
-진주문화관광재단,지자체,기초문화재단,경남,,,pending,확정,
+진주문화관광재단,지자체,기초문화재단,경남,https://www.jinju.go.kr,,pending,확정,
 통영문화재단,지자체,기초문화재단,경남,https://tyhansancf.or.kr,,pending,확정,
-거제문화예술재단,지자체,기초문화재단,경남,,,pending,확정,
-밀양문화재단,지자체,기초문화재단,경남,,,pending,확정,
-사천문화재단,지자체,기초문화재단,경남,,,pending,확정,
+거제문화예술재단,지자체,기초문화재단,경남,https://www.geoje.go.kr,,pending,확정,
+밀양문화재단,지자체,기초문화재단,경남,https://www.miryang.go.kr,,pending,확정,
+사천문화재단,지자체,기초문화재단,경남,https://www.sacheon.go.kr,,pending,확정,
 # --- 문예회관 확장 (실존 확신분·전체 178곳은 kocaca.or.kr/data.go.kr:15051478 로스터로 대조) ---
 안양문화예술회관,공연장,문예회관,경기,https://www.anyang.go.kr,,pending,확정,재단운영 다수(중복 dedup 주의)
 김포아트홀,공연장,문예회관,경기,https://www.gimpo.go.kr,,pending,확정,재단운영 다수(중복 dedup 주의)
@@ -632,7 +632,7 @@ CJENM공연사업부,민간,뮤지컬,서울,,,pending,확정,
 남양주다산아트홀,공연장,문예회관,경기,https://www.nyj.go.kr,,pending,확정,재단운영 다수(중복 dedup 주의)
 평택남부문예회관,공연장,문예회관,경기,https://www.pyeongtaek.go.kr,,pending,확정,재단운영 다수(중복 dedup 주의)
 춘천문화예술회관,공연장,문예회관,강원,https://www.chuncheon.go.kr,,pending,확정,재단운영 다수(중복 dedup 주의)
-원주치악예술관,공연장,문예회관,강원,,,pending,확정,재단운영 다수(중복 dedup 주의)
+원주치악예술관,공연장,문예회관,강원,https://www.wonju.go.kr,,pending,확정,재단운영 다수(중복 dedup 주의)
 속초문화예술회관,공연장,문예회관,강원,https://www.sokcho.go.kr,,pending,확정,재단운영 다수(중복 dedup 주의)
 동해문화예술회관,공연장,문예회관,강원,https://www.dh.go.kr,,pending,확정,재단운영 다수(중복 dedup 주의)
 삼척문화예술회관,공연장,문예회관,강원,https://www.samcheok.go.kr,,pending,확정,재단운영 다수(중복 dedup 주의)
@@ -662,5 +662,5 @@ CJENM공연사업부,민간,뮤지컬,서울,,,pending,확정,
 밀양아리랑아트센터,공연장,문예회관,경남,https://www.miryang.go.kr,,pending,확정,재단운영 다수(중복 dedup 주의)
 사천문화예술회관,공연장,문예회관,경남,https://www.sacheon.go.kr,,pending,확정,재단운영 다수(중복 dedup 주의)
 # --- 시립국악단 (검증 확인·클래식 대상 아님·참고수록) ---
-정읍시립국악단,예술단,국악단,전북,,,pending,확정,국악·성악 무관
-남원시립국악단,예술단,국악단,전북,,,pending,확정,국악·성악 무관
+정읍시립국악단,예술단,국악단,전북,https://www.jeongeup.go.kr,,pending,확정,국악·성악 무관
+남원시립국악단,예술단,국악단,전북,https://www.namwon.go.kr,,pending,확정,국악·성악 무관

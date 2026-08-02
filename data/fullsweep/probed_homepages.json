@@ -1003,78 +1003,211 @@
   "서귀포문화원": {
    "url": "https://seogwipo.kccf.or.kr",
    "via": "pattern"
+  },
+  "파주문화재단": {
+   "url": "https://www.pajucf.or.kr",
+   "via": "known"
+  },
+  "광림교회": {
+   "url": "https://www.kwanglim.or.kr",
+   "via": "known"
+  },
+  "서원대학교": {
+   "url": "https://www.seowon.ac.kr",
+   "via": "known"
+  },
+  "서울돈화문국악당": {
+   "url": "https://www.sfac.or.kr/donhwamun",
+   "via": "known"
+  },
+  "인천시교육청": {
+   "url": "https://www.ice.go.kr",
+   "via": "known"
+  },
+  "감리교신학대학교": {
+   "url": "https://www.mtu.ac.kr",
+   "via": "known"
+  },
+  "경기도교육청": {
+   "url": "https://www.goe.go.kr",
+   "via": "known"
+  },
+  "제주아트센터": {
+   "url": "https://www.jeju.go.kr/jejuartcenter",
+   "via": "known"
+  },
+  "대구시교육청": {
+   "url": "https://www.dge.go.kr",
+   "via": "known"
+  },
+  "강원도교육청": {
+   "url": "https://www.gwe.go.kr",
+   "via": "known"
+  },
+  "세종시교육청": {
+   "url": "https://www.sje.go.kr",
+   "via": "known"
+  },
+  "경상북도교육청": {
+   "url": "https://www.gbe.kr",
+   "via": "known"
+  },
+  "글로리아오페라단": {
+   "url": "https://www.gloriaopera.co.kr",
+   "via": "known"
+  },
+  "클립서비스": {
+   "url": "https://www.clipservice.co.kr",
+   "via": "known"
+  },
+  "신시컴퍼니": {
+   "url": "https://www.iseensee.com",
+   "via": "known"
+  },
+  "앙상블오푸스": {
+   "url": "https://www.ensembleopus.com",
+   "via": "known"
+  },
+  "심포니송": {
+   "url": "https://www.symphonysong.com",
+   "via": "known"
+  },
+  "CJENM공연사업부": {
+   "url": "https://www.cjenm.com",
+   "via": "known"
+  },
+  "통영국제음악제": {
+   "url": "https://www.timf.org",
+   "via": "known"
+  },
+  "라벨라오페라단": {
+   "url": "https://labellaopera.com",
+   "via": "known"
+  },
+  "교향악축제(예술의전당)": {
+   "url": "https://www.sac.or.kr",
+   "via": "known"
+  },
+  "제주특별자치도교육청": {
+   "url": "https://www.jje.go.kr",
+   "via": "known"
+  },
+  "오디컴퍼니": {
+   "url": "https://www.odcompany.com",
+   "via": "known"
+  },
+  "EMK뮤지컬컴퍼니": {
+   "url": "https://www.emkmusical.com",
+   "via": "known"
+  },
+  "관악문화재단": {
+   "url": "https://www.gwanak.go.kr",
+   "via": "known"
+  },
+  "서대문문화재단": {
+   "url": "https://www.sdm.go.kr",
+   "via": "known"
+  },
+  "광진문화재단": {
+   "url": "https://www.gwangjin.go.kr",
+   "via": "known"
+  },
+  "서울국제음악제": {
+   "url": "https://www.simfestival.com",
+   "via": "known"
+  },
+  "용산문화재단": {
+   "url": "https://www.yongsan.go.kr",
+   "via": "known"
+  },
+  "성동문화재단": {
+   "url": "https://www.sd.go.kr",
+   "via": "known"
+  },
+  "양주시문화재단": {
+   "url": "https://www.yangju.go.kr",
+   "via": "known"
+  },
+  "속초문화재단": {
+   "url": "https://www.sokcho.go.kr",
+   "via": "known"
+  },
+  "광주시문화재단": {
+   "url": "https://www.gjcity.go.kr",
+   "via": "known"
+  },
+  "포천문화재단": {
+   "url": "https://www.pocheon.go.kr",
+   "via": "known"
+  },
+  "평창문화예술재단": {
+   "url": "https://www.pc.go.kr",
+   "via": "known"
+  },
+  "익산문화관광재단": {
+   "url": "https://www.iksan.go.kr",
+   "via": "known"
+  },
+  "광양문화재단": {
+   "url": "https://www.gwangyang.go.kr",
+   "via": "known"
+  },
+  "정선아리랑문화재단": {
+   "url": "https://www.jeongseon.go.kr",
+   "via": "known"
+  },
+  "당진문화재단": {
+   "url": "https://www.dangjin.go.kr",
+   "via": "known"
+  },
+  "평창대관령음악제": {
+   "url": "https://www.gmmfs.com",
+   "via": "known"
+  },
+  "나주문화관광재단": {
+   "url": "https://www.naju.go.kr",
+   "via": "known"
+  },
+  "밀양문화재단": {
+   "url": "https://www.miryang.go.kr",
+   "via": "known"
+  },
+  "원주치악예술관": {
+   "url": "https://www.wonju.go.kr",
+   "via": "known"
+  },
+  "사천문화재단": {
+   "url": "https://www.sacheon.go.kr",
+   "via": "known"
+  },
+  "여수시문화재단": {
+   "url": "https://www.yeosu.go.kr",
+   "via": "known"
+  },
+  "정읍시립국악단": {
+   "url": "https://www.jeongeup.go.kr",
+   "via": "known"
+  },
+  "남원시립국악단": {
+   "url": "https://www.namwon.go.kr",
+   "via": "known"
+  },
+  "진주문화관광재단": {
+   "url": "https://www.jinju.go.kr",
+   "via": "known"
+  },
+  "단양문화관광재단": {
+   "url": "https://www.danyang.go.kr",
+   "via": "known"
   }
  },
  "misses": [
   {
-   "name": "서원대학교",
-   "why": "known_fail",
-   "cat": "대학",
-   "sub": "음악교육",
-   "region": "충북"
-  },
-  {
-   "name": "파주문화재단",
-   "why": "known_fail",
-   "cat": "지자체",
-   "sub": "기초문화재단",
-   "region": "경기"
-  },
-  {
-   "name": "감리교신학대학교",
-   "why": "known_fail",
-   "cat": "대학",
-   "sub": "교회음악",
-   "region": "서울"
-  },
-  {
-   "name": "구로아트밸리",
-   "why": "known_fail",
-   "cat": "공연장",
-   "sub": "구립",
-   "region": "서울"
-  },
-  {
-   "name": "제주아트센터",
-   "why": "known_fail",
-   "cat": "공연장",
-   "sub": "광역",
-   "region": "제주"
-  },
-  {
-   "name": "포항제일교회",
-   "why": "no_candidate",
-   "cat": "교회",
-   "sub": "대형교회",
-   "region": "경북"
-  },
-  {
    "name": "대구동신교회",
-   "why": "no_candidate",
+   "why": "known_fail",
    "cat": "교회",
    "sub": "대형교회",
    "region": "대구"
-  },
-  {
-   "name": "부산콘서트홀",
-   "why": "known_fail",
-   "cat": "공연장",
-   "sub": "콘서트홀",
-   "region": "부산"
-  },
-  {
-   "name": "서울돈화문국악당",
-   "why": "known_fail",
-   "cat": "공연장",
-   "sub": "국악",
-   "region": "서울"
-  },
-  {
-   "name": "은혜와진리교회",
-   "why": "no_candidate",
-   "cat": "교회",
-   "sub": "대형교회",
-   "region": "서울"
   },
   {
    "name": "천주교 서울대교구(전례음악)",
@@ -1098,195 +1231,6 @@
    "region": "인천"
   },
   {
-   "name": "광림교회",
-   "why": "known_fail",
-   "cat": "교회",
-   "sub": "대형교회",
-   "region": "서울"
-  },
-  {
-   "name": "대구시교육청",
-   "why": "known_fail",
-   "cat": "학교",
-   "sub": "교육청",
-   "region": "대구"
-  },
-  {
-   "name": "인천시교육청",
-   "why": "known_fail",
-   "cat": "학교",
-   "sub": "교육청",
-   "region": "인천"
-  },
-  {
-   "name": "경기도교육청",
-   "why": "known_fail",
-   "cat": "학교",
-   "sub": "교육청",
-   "region": "경기"
-  },
-  {
-   "name": "세종시교육청",
-   "why": "known_fail",
-   "cat": "학교",
-   "sub": "교육청",
-   "region": "세종"
-  },
-  {
-   "name": "제주특별자치도교육청",
-   "why": "no_candidate",
-   "cat": "학교",
-   "sub": "교육청",
-   "region": "제주"
-  },
-  {
-   "name": "심포니송",
-   "why": "no_candidate",
-   "cat": "민간",
-   "sub": "오케스트라",
-   "region": "서울"
-  },
-  {
-   "name": "코리안챔버오케스트라",
-   "why": "no_candidate",
-   "cat": "민간",
-   "sub": "오케스트라",
-   "region": "서울"
-  },
-  {
-   "name": "서울챔버오케스트라",
-   "why": "no_candidate",
-   "cat": "민간",
-   "sub": "오케스트라",
-   "region": "서울"
-  },
-  {
-   "name": "TIMF앙상블",
-   "why": "no_candidate",
-   "cat": "민간",
-   "sub": "앙상블",
-   "region": "서울"
-  },
-  {
-   "name": "앙상블오푸스",
-   "why": "no_candidate",
-   "cat": "민간",
-   "sub": "앙상블",
-   "region": "경기"
-  },
-  {
-   "name": "원코리아오케스트라",
-   "why": "no_candidate",
-   "cat": "민간",
-   "sub": "오케스트라",
-   "region": "서울"
-  },
-  {
-   "name": "라벨라오페라단",
-   "why": "no_candidate",
-   "cat": "민간",
-   "sub": "오페라단",
-   "region": "서울"
-  },
-  {
-   "name": "솔오페라단",
-   "why": "no_candidate",
-   "cat": "민간",
-   "sub": "오페라단",
-   "region": "부산"
-  },
-  {
-   "name": "누오바오페라단",
-   "why": "no_candidate",
-   "cat": "민간",
-   "sub": "오페라단",
-   "region": "서울"
-  },
-  {
-   "name": "글로리아오페라단",
-   "why": "no_candidate",
-   "cat": "민간",
-   "sub": "오페라단",
-   "region": "서울"
-  },
-  {
-   "name": "EMK뮤지컬컴퍼니",
-   "why": "no_candidate",
-   "cat": "민간",
-   "sub": "뮤지컬",
-   "region": "서울"
-  },
-  {
-   "name": "신시컴퍼니",
-   "why": "no_candidate",
-   "cat": "민간",
-   "sub": "뮤지컬",
-   "region": "서울"
-  },
-  {
-   "name": "오디컴퍼니",
-   "why": "no_candidate",
-   "cat": "민간",
-   "sub": "뮤지컬",
-   "region": "서울"
-  },
-  {
-   "name": "CJENM공연사업부",
-   "why": "no_candidate",
-   "cat": "민간",
-   "sub": "뮤지컬",
-   "region": "서울"
-  },
-  {
-   "name": "클립서비스",
-   "why": "no_candidate",
-   "cat": "민간",
-   "sub": "뮤지컬",
-   "region": "서울"
-  },
-  {
-   "name": "평창대관령음악제",
-   "why": "no_candidate",
-   "cat": "민간",
-   "sub": "축제",
-   "region": "강원"
-  },
-  {
-   "name": "통영국제음악제",
-   "why": "no_candidate",
-   "cat": "민간",
-   "sub": "축제",
-   "region": "경남"
-  },
-  {
-   "name": "교향악축제(예술의전당)",
-   "why": "no_candidate",
-   "cat": "민간",
-   "sub": "축제",
-   "region": "서울"
-  },
-  {
-   "name": "서울국제음악제",
-   "why": "no_candidate",
-   "cat": "민간",
-   "sub": "축제",
-   "region": "서울"
-  },
-  {
-   "name": "경상북도교육청",
-   "why": "known_fail",
-   "cat": "학교",
-   "sub": "교육청",
-   "region": "경북"
-  },
-  {
-   "name": "강원도교육청",
-   "why": "known_fail",
-   "cat": "학교",
-   "sub": "교육청",
-   "region": "강원"
-  },
-  {
    "name": "노원문화예술회관",
    "why": "known_fail",
    "cat": "공연장",
@@ -1294,11 +1238,88 @@
    "region": "서울"
   },
   {
+   "name": "은혜와진리교회",
+   "why": "known_fail",
+   "cat": "교회",
+   "sub": "대형교회",
+   "region": "서울"
+  },
+  {
+   "name": "코리안챔버오케스트라",
+   "why": "known_fail",
+   "cat": "민간",
+   "sub": "오케스트라",
+   "region": "서울"
+  },
+  {
+   "name": "서울챔버오케스트라",
+   "why": "known_fail",
+   "cat": "민간",
+   "sub": "오케스트라",
+   "region": "서울"
+  },
+  {
+   "name": "TIMF앙상블",
+   "why": "known_fail",
+   "cat": "민간",
+   "sub": "앙상블",
+   "region": "서울"
+  },
+  {
+   "name": "원코리아오케스트라",
+   "why": "known_fail",
+   "cat": "민간",
+   "sub": "오케스트라",
+   "region": "서울"
+  },
+  {
+   "name": "누오바오페라단",
+   "why": "known_fail",
+   "cat": "민간",
+   "sub": "오페라단",
+   "region": "서울"
+  },
+  {
+   "name": "솔오페라단",
+   "why": "known_fail",
+   "cat": "민간",
+   "sub": "오페라단",
+   "region": "부산"
+  },
+  {
+   "name": "부산콘서트홀",
+   "why": "known_fail",
+   "cat": "공연장",
+   "sub": "콘서트홀",
+   "region": "부산"
+  },
+  {
+   "name": "포항제일교회",
+   "why": "known_fail",
+   "cat": "교회",
+   "sub": "대형교회",
+   "region": "경북"
+  },
+  {
    "name": "국립경찰교향악단",
    "why": "known_fail",
    "cat": "예술단",
    "sub": "교향악단",
    "region": "서울"
+  },
+  {
+   "name": "김천문화관광재단",
+   "why": "known_fail",
+   "cat": "지자체",
+   "sub": "기초문화재단",
+   "region": "경북"
+  },
+  {
+   "name": "거제문화예술재단",
+   "why": "known_fail",
+   "cat": "지자체",
+   "sub": "기초문화재단",
+   "region": "경남"
   },
   {
    "name": "서울동작문화원",
@@ -1340,321 +1361,6 @@
    "why": "miss",
    "cat": "지자체",
    "sub": "지방문화원",
-   "region": "전북"
-  },
-  {
-   "name": "강동문화재단",
-   "why": "no_candidate",
-   "cat": "지자체",
-   "sub": "기초문화재단",
-   "region": "서울"
-  },
-  {
-   "name": "강북문화재단",
-   "why": "no_candidate",
-   "cat": "지자체",
-   "sub": "기초문화재단",
-   "region": "서울"
-  },
-  {
-   "name": "관악문화재단",
-   "why": "no_candidate",
-   "cat": "지자체",
-   "sub": "기초문화재단",
-   "region": "서울"
-  },
-  {
-   "name": "광진문화재단",
-   "why": "no_candidate",
-   "cat": "지자체",
-   "sub": "기초문화재단",
-   "region": "서울"
-  },
-  {
-   "name": "구로문화재단",
-   "why": "no_candidate",
-   "cat": "지자체",
-   "sub": "기초문화재단",
-   "region": "서울"
-  },
-  {
-   "name": "금천문화재단",
-   "why": "no_candidate",
-   "cat": "지자체",
-   "sub": "기초문화재단",
-   "region": "서울"
-  },
-  {
-   "name": "도봉문화재단",
-   "why": "no_candidate",
-   "cat": "지자체",
-   "sub": "기초문화재단",
-   "region": "서울"
-  },
-  {
-   "name": "서대문문화재단",
-   "why": "no_candidate",
-   "cat": "지자체",
-   "sub": "기초문화재단",
-   "region": "서울"
-  },
-  {
-   "name": "서초문화재단",
-   "why": "no_candidate",
-   "cat": "지자체",
-   "sub": "기초문화재단",
-   "region": "서울"
-  },
-  {
-   "name": "성동문화재단",
-   "why": "no_candidate",
-   "cat": "지자체",
-   "sub": "기초문화재단",
-   "region": "서울"
-  },
-  {
-   "name": "성북문화재단",
-   "why": "no_candidate",
-   "cat": "지자체",
-   "sub": "기초문화재단",
-   "region": "서울"
-  },
-  {
-   "name": "영등포문화재단",
-   "why": "no_candidate",
-   "cat": "지자체",
-   "sub": "기초문화재단",
-   "region": "서울"
-  },
-  {
-   "name": "용산문화재단",
-   "why": "no_candidate",
-   "cat": "지자체",
-   "sub": "기초문화재단",
-   "region": "서울"
-  },
-  {
-   "name": "은평문화재단",
-   "why": "no_candidate",
-   "cat": "지자체",
-   "sub": "기초문화재단",
-   "region": "서울"
-  },
-  {
-   "name": "중랑문화재단",
-   "why": "no_candidate",
-   "cat": "지자체",
-   "sub": "기초문화재단",
-   "region": "서울"
-  },
-  {
-   "name": "양천문화재단",
-   "why": "no_candidate",
-   "cat": "지자체",
-   "sub": "기초문화재단",
-   "region": "서울"
-  },
-  {
-   "name": "종로문화재단",
-   "why": "no_candidate",
-   "cat": "지자체",
-   "sub": "기초문화재단",
-   "region": "서울"
-  },
-  {
-   "name": "군포문화재단",
-   "why": "no_candidate",
-   "cat": "지자체",
-   "sub": "기초문화재단",
-   "region": "경기"
-  },
-  {
-   "name": "남양주시문화재단",
-   "why": "no_candidate",
-   "cat": "지자체",
-   "sub": "기초문화재단",
-   "region": "경기"
-  },
-  {
-   "name": "양주시문화재단",
-   "why": "no_candidate",
-   "cat": "지자체",
-   "sub": "기초문화재단",
-   "region": "경기"
-  },
-  {
-   "name": "광주시문화재단",
-   "why": "no_candidate",
-   "cat": "지자체",
-   "sub": "기초문화재단",
-   "region": "경기"
-  },
-  {
-   "name": "포천문화재단",
-   "why": "no_candidate",
-   "cat": "지자체",
-   "sub": "기초문화재단",
-   "region": "경기"
-  },
-  {
-   "name": "구리문화재단",
-   "why": "no_candidate",
-   "cat": "지자체",
-   "sub": "기초문화재단",
-   "region": "경기"
-  },
-  {
-   "name": "속초문화재단",
-   "why": "no_candidate",
-   "cat": "지자체",
-   "sub": "기초문화재단",
-   "region": "강원"
-  },
-  {
-   "name": "정선아리랑문화재단",
-   "why": "no_candidate",
-   "cat": "지자체",
-   "sub": "기초문화재단",
-   "region": "강원"
-  },
-  {
-   "name": "평창문화예술재단",
-   "why": "no_candidate",
-   "cat": "지자체",
-   "sub": "기초문화재단",
-   "region": "강원"
-  },
-  {
-   "name": "충주문화관광재단",
-   "why": "no_candidate",
-   "cat": "지자체",
-   "sub": "기초문화재단",
-   "region": "충북"
-  },
-  {
-   "name": "제천문화재단",
-   "why": "no_candidate",
-   "cat": "지자체",
-   "sub": "기초문화재단",
-   "region": "충북"
-  },
-  {
-   "name": "단양문화관광재단",
-   "why": "no_candidate",
-   "cat": "지자체",
-   "sub": "기초문화재단",
-   "region": "충북"
-  },
-  {
-   "name": "아산문화재단",
-   "why": "no_candidate",
-   "cat": "지자체",
-   "sub": "기초문화재단",
-   "region": "충남"
-  },
-  {
-   "name": "서산문화재단",
-   "why": "no_candidate",
-   "cat": "지자체",
-   "sub": "기초문화재단",
-   "region": "충남"
-  },
-  {
-   "name": "당진문화재단",
-   "why": "no_candidate",
-   "cat": "지자체",
-   "sub": "기초문화재단",
-   "region": "충남"
-  },
-  {
-   "name": "공주문화관광재단",
-   "why": "no_candidate",
-   "cat": "지자체",
-   "sub": "기초문화재단",
-   "region": "충남"
-  },
-  {
-   "name": "익산문화관광재단",
-   "why": "no_candidate",
-   "cat": "지자체",
-   "sub": "기초문화재단",
-   "region": "전북"
-  },
-  {
-   "name": "광양문화재단",
-   "why": "no_candidate",
-   "cat": "지자체",
-   "sub": "기초문화재단",
-   "region": "광주·전남"
-  },
-  {
-   "name": "나주문화관광재단",
-   "why": "no_candidate",
-   "cat": "지자체",
-   "sub": "기초문화재단",
-   "region": "광주·전남"
-  },
-  {
-   "name": "여수시문화재단",
-   "why": "no_candidate",
-   "cat": "지자체",
-   "sub": "기초문화재단",
-   "region": "광주·전남"
-  },
-  {
-   "name": "김천문화관광재단",
-   "why": "no_candidate",
-   "cat": "지자체",
-   "sub": "기초문화재단",
-   "region": "경북"
-  },
-  {
-   "name": "진주문화관광재단",
-   "why": "no_candidate",
-   "cat": "지자체",
-   "sub": "기초문화재단",
-   "region": "경남"
-  },
-  {
-   "name": "거제문화예술재단",
-   "why": "no_candidate",
-   "cat": "지자체",
-   "sub": "기초문화재단",
-   "region": "경남"
-  },
-  {
-   "name": "밀양문화재단",
-   "why": "no_candidate",
-   "cat": "지자체",
-   "sub": "기초문화재단",
-   "region": "경남"
-  },
-  {
-   "name": "사천문화재단",
-   "why": "no_candidate",
-   "cat": "지자체",
-   "sub": "기초문화재단",
-   "region": "경남"
-  },
-  {
-   "name": "원주치악예술관",
-   "why": "no_candidate",
-   "cat": "공연장",
-   "sub": "문예회관",
-   "region": "강원"
-  },
-  {
-   "name": "정읍시립국악단",
-   "why": "no_candidate",
-   "cat": "예술단",
-   "sub": "국악단",
-   "region": "전북"
-  },
-  {
-   "name": "남원시립국악단",
-   "why": "no_candidate",
-   "cat": "예술단",
-   "sub": "국악단",
    "region": "전북"
   }
  ]
