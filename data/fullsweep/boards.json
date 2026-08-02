@@ -978,5 +978,35 @@
   "board_url": "https://www.cwcf.or.kr/commu/notice_list.asp?BCATE=BD00001&BSUBCATE=%C3%A4%BF%EB%B0%F8%B0%ED&place_idx=",
   "label": "채용공고",
   "foundAt": "2026-08-02"
+ },
+ "서대문문화재단": {
+  "board_url": "https://www.sdm.go.kr/genre/economic/jobinfo/jobs.do",
+  "label": "채용공고",
+  "foundAt": "2026-08-02"
+ },
+ "속초문화재단": {
+  "board_url": "https://www.sokcho.go.kr/sc/portal/citizen/budgetSystem/noticeboard",
+  "label": "공지사항",
+  "foundAt": "2026-08-02"
+ },
+ "당진문화재단": {
+  "board_url": "https://www.dangjin.go.kr/prog/recruitmentInformation/job/sub03_01/integrationList.do",
+  "label": "구인현황",
+  "foundAt": "2026-08-02"
+ },
+ "속초문화예술회관": {
+  "board_url": "https://www.sokcho.go.kr/sc/portal/citizen/budgetSystem/noticeboard",
+  "label": "공지사항",
+  "foundAt": "2026-08-02"
+ },
+ "동해문화예술회관": {
+  "board_url": "https://www.dh.go.kr/www/selectBbsNttList.do?bbsNo=87&key=478",
+  "label": "고시·공고",
+  "foundAt": "2026-08-02"
+ },
+ "당진문예의전당": {
+  "board_url": "https://www.dangjin.go.kr/prog/recruitmentInformation/job/sub03_01/integrationList.do",
+  "label": "구인현황",
+  "foundAt": "2026-08-02"
  }
 }
