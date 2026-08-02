@@ -13,5 +13,120 @@
   "board_url": "https://www.karts.ac.kr/main/index.do?menuId=090504000010",
   "label": "해외 예술인재 양성",
   "foundAt": "2026-08-02"
+ },
+ "수원시립교향악단": {
+  "board_url": "http://artsuwon.or.kr/?p=49",
+  "label": "공지사항",
+  "foundAt": "2026-08-02"
+ },
+ "원주시립교향악단": {
+  "board_url": "https://www.wonju.go.kr/arts/pr/notice.html?gnb=4&snb=1",
+  "label": "공지사항",
+  "foundAt": "2026-08-02"
+ },
+ "전주시립교향악단": {
+  "board_url": "https://art.jeonju.go.kr/index.9is?contentUid=9be517a8740efe6c0175b13099ac42e1",
+  "label": "공지사항",
+  "foundAt": "2026-08-02"
+ },
+ "군산시립교향악단": {
+  "board_url": "https://www.gunsan.go.kr/gsart/m1950",
+  "label": "오디션 공고",
+  "foundAt": "2026-08-02"
+ },
+ "충남교향악단": {
+  "board_url": "https://www.cpo.or.kr/bbs/BBSMSTR_000000000730/list.do",
+  "label": "공지사항",
+  "foundAt": "2026-08-02"
+ },
+ "경상북도도립교향악단": {
+  "board_url": "https://www.gb.go.kr/Main/job/index.html",
+  "label": "일자리/채용 새창",
+  "foundAt": "2026-08-02"
+ },
+ "서울시합창단": {
+  "board_url": "https://www.sejongpac.or.kr/portal/bbs/B0000062/list.do?menuNo=200333",
+  "label": "공지사항",
+  "foundAt": "2026-08-02"
+ },
+ "안산시립합창단": {
+  "board_url": "https://ansanarts.com/bbs/board.php?bo_table=notice",
+  "label": "공지사항",
+  "foundAt": "2026-08-02"
+ },
+ "구리시립합창단": {
+  "board_url": "https://www.guri.go.kr/www/selectBbsNttList.do?bbsNo=41&key=389",
+  "label": "모집공고",
+  "foundAt": "2026-08-02"
+ },
+ "순천시립합창단": {
+  "board_url": "https://www.suncheon.go.kr/scart/community/0001;jsessionid=50394E110228E6992FCA9F64E08780EE",
+  "label": "공지사항",
+  "foundAt": "2026-08-02"
+ },
+ "안동시립합창단": {
+  "board_url": "https://www.andong.go.kr/arts/contents.do?mId=0503000000",
+  "label": "고시/공고",
+  "foundAt": "2026-08-02"
+ },
+ "대전문화재단": {
+  "board_url": "https://dcaf.or.kr/web/board.do?menuIdx=377",
+  "label": "채용공고",
+  "foundAt": "2026-08-02"
+ },
+ "경기문화재단": {
+  "board_url": "https://www.ggcf.kr/boards/bulletinBoards/articles?category=03",
+  "label": "채용",
+  "foundAt": "2026-08-02"
+ },
+ "화성시문화관광재단": {
+  "board_url": "https://www.hcf.or.kr/hcf/60?chathead=%ED%99%94%EC%84%B1%EC%8B%9C%EB%AC%B8%ED%99%94%EC%9E%AC%EB%8B%A8",
+  "label": "채용",
+  "foundAt": "2026-08-02"
+ },
+ "청주시문화산업진흥재단": {
+  "board_url": "https://cjculture.org/sub.php?code=34",
+  "label": "채용공고",
+  "foundAt": "2026-08-02"
+ },
+ "예술의전당": {
+  "board_url": "https://www.sac.or.kr/site/main/board/academy/list",
+  "label": "아카데미 공지사항",
+  "foundAt": "2026-08-02"
+ },
+ "세종문화회관": {
+  "board_url": "https://www.sejongpac.or.kr/portal/bbs/B0000062/list.do?menuNo=200333",
+  "label": "공지사항",
+  "foundAt": "2026-08-02"
+ },
+ "예술경영지원센터": {
+  "board_url": "https://www.gokams.or.kr/01_news/jobposting_list.aspx",
+  "label": "채용정보",
+  "foundAt": "2026-08-02"
+ },
+ "밀레니엄심포니오케스트라": {
+  "board_url": "http://millenniumsymphony.com/HyAdmin/list.php?bbs_id=bo11",
+  "label": "공지사항",
+  "foundAt": "2026-08-02"
+ },
+ "서울발레시어터": {
+  "board_url": "https://www.ballet.or.kr/Notice",
+  "label": "- Notice : 공지사항",
+  "foundAt": "2026-08-02"
+ },
+ "동해문화관광재단": {
+  "board_url": "http://www.dctf.or.kr/board/bbs/board.php?bo_table=recruit",
+  "label": "채용공고",
+  "foundAt": "2026-08-02"
+ },
+ "순천문화재단": {
+  "board_url": "https://www.cfsc.or.kr/contents/open/open0105.asp?cat=38",
+  "label": "채용",
+  "foundAt": "2026-08-02"
+ },
+ "통영문화재단": {
+  "board_url": "https://tyhansancf.or.kr/notice/notice.html?Ncode=b2",
+  "label": "- 채용공고",
+  "foundAt": "2026-08-02"
  }
 }
