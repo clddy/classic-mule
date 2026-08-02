@@ -1,6 +1,6 @@
 {
  "updatedAt": "2026-08-02",
- "count": 368,
+ "count": 372,
  "items": {
   "f7b1c263744b9ece": {
    "id": "f7b1c263744b9ece",
@@ -8352,8 +8352,10 @@
    "deadline": "2026-08-14",
    "kind": "강사",
    "tier": "교육 — 취미·입문",
-   "inst": "전체",
-   "instDetails": [],
+   "inst": "현악",
+   "instDetails": [
+    "바이올린"
+   ],
    "ageGroup": "성인",
    "obri": false,
    "certReq": "아니오",
@@ -8884,6 +8886,130 @@
    "certReq": "아니오",
    "degreeReq": "무관",
    "careerReq": "미기재",
+   "firstSeen": "2026-08-02",
+   "lastSeen": "2026-08-02",
+   "days": 1
+  },
+  "ddd6789490369cc1": {
+   "id": "ddd6789490369cc1",
+   "org": "천주교 수원교구(성가대·반주)",
+   "region": "경기",
+   "source": "casuwon.or.kr",
+   "channel": "g_casuwon",
+   "layer": "B",
+   "title": "광교2동 본당 성가대 반주 재능기부자 모집",
+   "url": "https://www.casuwon.or.kr/info/recruit/112179",
+   "date": "2026-07-29",
+   "kind": "기타",
+   "tier": "연주",
+   "inst": "건반",
+   "instDetails": [
+    "피아노"
+   ],
+   "ageGroup": "성인",
+   "obri": true,
+   "certReq": "무관",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "bodyExcerpt": "천주교 수원교구 채용공모 · 대상 : 주일 11시 교중미사 반주자",
+   "qualification": "주일 11시 교중미사 반주자 서류 : 이력서, 자기소개서, 본당 신부님 추천서",
+   "positions": [
+    "반주자"
+   ],
+   "firstSeen": "2026-08-02",
+   "lastSeen": "2026-08-02",
+   "days": 1
+  },
+  "14e5fdaa9a8ff120": {
+   "id": "14e5fdaa9a8ff120",
+   "org": "파주문화재단",
+   "region": "경기",
+   "source": "pajucf.or.kr",
+   "channel": "g_pajucf",
+   "layer": "B",
+   "title": "[파주문화재단 공고 제2026-48호] 2026 꿈의 오케스트라 파주 신규 단원 모집 공고(바이올린1, 플룻1) N 2026-07-28",
+   "url": "https://www.pajucf.or.kr/community/notice.php?admin_mode=read&no=426&page=1",
+   "date": "2026-07-28",
+   "deadline": "2026-08-13",
+   "deadlineFrom": "attachment",
+   "kind": "단원",
+   "tier": "교육 — 취미·입문",
+   "inst": "현악",
+   "instDetails": [
+    "바이올린"
+   ],
+   "ageGroup": "성인",
+   "obri": false,
+   "certReq": "아니오",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "personnel": "2개 파트, 총 2명",
+   "bodyExcerpt": "홈페이지 회원 가입 및 관리 · 확인장소 : 해당부서 해당팀",
+   "qualification": "유지·관리, 제한적 본인확인제 시행에 따른 본인확인, 서비스 부정이용 방지, 만 14세 미만 아동의 개인정보",
+   "positions": [
+    "단원"
+   ],
+   "firstSeen": "2026-08-02",
+   "lastSeen": "2026-08-02",
+   "days": 1
+  },
+  "8dfa6130edaedf6f": {
+   "id": "8dfa6130edaedf6f",
+   "org": "대구문화예술회관 공지(시립합창단)",
+   "region": "대구",
+   "source": "daeguartscenter.or.kr",
+   "channel": "g_daeguart_notice",
+   "layer": "B",
+   "title": "2026 대구시립소년소녀합창단 하반기 단원 모집",
+   "url": "https://www.daeguartscenter.or.kr/index.do?menu_id=00001528&menu_link=/icms/bbs/selectBoardArticle.do&bbsId=BBS_00303&nttId=11215",
+   "date": "2026-06-01",
+   "kind": "단원",
+   "tier": "연주",
+   "inst": "성악",
+   "instDetails": [
+    "트롬본",
+    "피아노"
+   ],
+   "ageGroup": "미성년",
+   "obri": false,
+   "certReq": "무관",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "bodyExcerpt": "대구시립국악단 [2026 고교특화형 문화예술프로그램 D-Art 路 공연] · 대구시립교향악단 〈제527회 정기연주회 : 베토벤 에로이카〉 · 대구광역시 시립교향악단 부지휘자 공개모집 심사일정 사전안내 · 시립교향악단 육아휴직 대체근로자(바순) 공개모집 공고",
+   "positions": [
+    "단원"
+   ],
+   "firstSeen": "2026-08-02",
+   "lastSeen": "2026-08-02",
+   "days": 1
+  },
+  "938165ada169e635": {
+   "id": "938165ada169e635",
+   "org": "대구문화예술회관 공지(시립합창단)",
+   "region": "대구",
+   "source": "daeguartscenter.or.kr",
+   "channel": "g_daeguart_notice",
+   "layer": "B",
+   "title": "대구광역시 시립교향악단 부지휘자 공개모집",
+   "url": "https://www.daeguartscenter.or.kr/index.do?menu_id=00001528&menu_link=/icms/bbs/selectBoardArticle.do&bbsId=BBS_00303&nttId=11147",
+   "date": "2026-04-14",
+   "kind": "단원",
+   "tier": "연주",
+   "inst": "지휘",
+   "instDetails": [
+    "지휘",
+    "트롬본",
+    "피아노"
+   ],
+   "ageGroup": "성인",
+   "obri": false,
+   "certReq": "무관",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "bodyExcerpt": "대구시립국악단 [2026 고교특화형 문화예술프로그램 D-Art 路 공연] · 대구시립교향악단 〈제527회 정기연주회 : 베토벤 에로이카〉 · 2026 대구시립소년소녀합창단 하반기 단원 모집 공고 · 시립교향악단 육아휴직 대체근로자(바순) 공개모집 공고",
+   "positions": [
+    "부지휘자"
+   ],
    "firstSeen": "2026-08-02",
    "lastSeen": "2026-08-02",
    "days": 1

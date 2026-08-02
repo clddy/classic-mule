@@ -1,7 +1,7 @@
 {
- "collectedAt": "2026-08-02 18:09",
- "sourceCount": 80,
- "okCount": 79,
+ "collectedAt": "2026-08-02 20:43",
+ "sourceCount": 87,
+ "okCount": 87,
  "instTotal": 75,
  "sources": [
   {
@@ -126,9 +126,9 @@
    "name": "창원문화재단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
-   "kept": 2,
-   "error": "ReadTimeout: HTTPSConnectionPool(host='www.cwcf.or.kr', port=443): Read timed out. (read timeout=20)"
+   "ok": true,
+   "raw": 26,
+   "kept": 2
   },
   {
    "id": "ulsan",
@@ -658,7 +658,7 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
+   "raw": 7,
    "kept": 0
   },
   {
@@ -714,6 +714,69 @@
    "ok": true,
    "raw": 0,
    "kept": 0
+  },
+  {
+   "id": "g_daeguart_notice",
+   "name": "대구문화예술회관 공지(시립합창단)",
+   "layer": "B",
+   "poll": "daily",
+   "ok": true,
+   "raw": 6,
+   "kept": 2
+  },
+  {
+   "id": "g_ansanarts",
+   "name": "안산시립합창단",
+   "layer": "B",
+   "poll": "daily",
+   "ok": true,
+   "raw": 6,
+   "kept": 0
+  },
+  {
+   "id": "g_pajucf",
+   "name": "파주문화재단",
+   "layer": "B",
+   "poll": "daily",
+   "ok": true,
+   "raw": 1,
+   "kept": 1
+  },
+  {
+   "id": "g_timfensemble",
+   "name": "TIMF앙상블·통영시민오케스트라",
+   "layer": "B",
+   "poll": "daily",
+   "ok": true,
+   "raw": 3,
+   "kept": 1
+  },
+  {
+   "id": "g_guriarts",
+   "name": "구리아트홀(시립청소년교향악단)",
+   "layer": "B",
+   "poll": "daily",
+   "ok": true,
+   "raw": 1,
+   "kept": 1
+  },
+  {
+   "id": "g_yeulmaru",
+   "name": "여수예울마루",
+   "layer": "B",
+   "poll": "daily",
+   "ok": true,
+   "raw": 1,
+   "kept": 0
+  },
+  {
+   "id": "g_casuwon",
+   "name": "천주교 수원교구(성가대·반주)",
+   "layer": "B",
+   "poll": "daily",
+   "ok": true,
+   "raw": 1,
+   "kept": 1
   },
   {
    "id": "hibrain",
@@ -1392,6 +1455,43 @@
    "extVer": 32
   },
   {
+   "id": "ddd6789490369cc1",
+   "org": "천주교 수원교구(성가대·반주)",
+   "region": "경기",
+   "source": "casuwon.or.kr",
+   "title": "광교2동 본당 성가대 반주 재능기부자 모집",
+   "nonMusic": null,
+   "url": "https://www.casuwon.or.kr/info/recruit/112179",
+   "date": "2026-07-29",
+   "deadline": null,
+   "kind": "기타",
+   "tier": "연주",
+   "obri": true,
+   "certReq": "무관",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "ageGroup": "성인",
+   "inst": "건반",
+   "instDetails": [
+    "피아노"
+   ],
+   "personnel": null,
+   "subject": null,
+   "channel": "g_casuwon",
+   "layer": "B",
+   "positions": [
+    "반주자"
+   ],
+   "qualification": "주일 11시 교중미사 반주자 서류 : 이력서, 자기소개서, 본당 신부님 추천서",
+   "bodyExcerpt": "천주교 수원교구 채용공모 · 대상 : 주일 11시 교중미사 반주자",
+   "dlHint": [
+    ": 031-263-0651(성당 사무실) 목록가기 교구내 성폭력 피해 접수처 부서전화안내 후원부서안내 부서 웹사이트 수원교구 제1대리구 제2대리구 교구법원 학교"
+   ],
+   "firstSeen": "2026-08-02",
+   "isNew": false,
+   "extVer": 32
+  },
+  {
    "id": "f482b5acbb0bc716",
    "org": "서울사이버대학교",
    "region": "서울",
@@ -1539,6 +1639,41 @@
    "layer": "C",
    "bodyExcerpt": "기간제교원 채용계획 사전공개 · 채용공고 알람신청 · 채용공고 상세보기 테이블",
    "firstSeen": "2026-07-29",
+   "isNew": false,
+   "extVer": 32
+  },
+  {
+   "id": "14e5fdaa9a8ff120",
+   "org": "파주문화재단",
+   "region": "경기",
+   "source": "pajucf.or.kr",
+   "title": "[파주문화재단 공고 제2026-48호] 2026 꿈의 오케스트라 파주 신규 단원 모집 공고(바이올린1, 플룻1) N 2026-07-28",
+   "nonMusic": null,
+   "url": "https://www.pajucf.or.kr/community/notice.php?admin_mode=read&no=426&page=1",
+   "date": "2026-07-28",
+   "deadline": "2026-08-13",
+   "kind": "단원",
+   "tier": "교육 — 취미·입문",
+   "obri": false,
+   "certReq": "아니오",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "ageGroup": "성인",
+   "inst": "현악",
+   "instDetails": [
+    "바이올린"
+   ],
+   "personnel": "2개 파트, 총 2명",
+   "subject": null,
+   "channel": "g_pajucf",
+   "layer": "B",
+   "positions": [
+    "단원"
+   ],
+   "qualification": "유지·관리, 제한적 본인확인제 시행에 따른 본인확인, 서비스 부정이용 방지, 만 14세 미만 아동의 개인정보",
+   "bodyExcerpt": "홈페이지 회원 가입 및 관리 · 확인장소 : 해당부서 해당팀",
+   "deadlineFrom": "attachment",
+   "firstSeen": "2026-08-02",
    "isNew": false,
    "extVer": 32
   },
@@ -1709,8 +1844,10 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "전체",
-   "instDetails": [],
+   "inst": "현악",
+   "instDetails": [
+    "바이올린"
+   ],
    "personnel": null,
    "subject": null,
    "channel": "edu_sje",
@@ -2082,15 +2219,52 @@
    "extVer": 32
   },
   {
-   "id": "340d217c42aab8e1",
-   "org": "KBS교향악단",
-   "region": "서울",
-   "source": "kbssymphony.org",
-   "title": "KBS교향악단 신규단원 채용(비올라, 오보에)",
+   "id": "8dfa6130edaedf6f",
+   "org": "대구문화예술회관 공지(시립합창단)",
+   "region": "대구",
+   "source": "daeguartscenter.or.kr",
+   "title": "2026 대구시립소년소녀합창단 하반기 단원 모집",
    "nonMusic": null,
-   "url": "https://www.kbssymphony.org/ko/info/recruit.php?board_code=view&number=29496&page=1",
-   "date": "2026-07-03",
-   "deadline": "2026-08-02",
+   "url": "https://www.daeguartscenter.or.kr/index.do?menu_id=00001528&menu_link=/icms/bbs/selectBoardArticle.do&bbsId=BBS_00303&nttId=11215",
+   "date": "2026-06-01",
+   "deadline": null,
+   "kind": "단원",
+   "tier": "연주",
+   "obri": false,
+   "certReq": "무관",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "ageGroup": "미성년",
+   "inst": "성악",
+   "instDetails": [
+    "트롬본",
+    "피아노"
+   ],
+   "personnel": null,
+   "subject": null,
+   "channel": "g_daeguart_notice",
+   "layer": "B",
+   "positions": [
+    "단원"
+   ],
+   "auditionDate": "7/23 · 7/20",
+   "contract": "비상임",
+   "bodyExcerpt": "대구시립국악단 [2026 고교특화형 문화예술프로그램 D-Art 路 공연] · 대구시립교향악단 〈제527회 정기연주회 : 베토벤 에로이카〉 · 대구광역시 시립교향악단 부지휘자 공개모집 심사일정 사전안내 · 시립교향악단 육아휴직 대체근로자(바순) 공개모집 공고",
+   "dlHint": null,
+   "firstSeen": "2026-08-02",
+   "isNew": false,
+   "extVer": 32
+  },
+  {
+   "id": "938165ada169e635",
+   "org": "대구문화예술회관 공지(시립합창단)",
+   "region": "대구",
+   "source": "daeguartscenter.or.kr",
+   "title": "대구광역시 시립교향악단 부지휘자 공개모집",
+   "nonMusic": null,
+   "url": "https://www.daeguartscenter.or.kr/index.do?menu_id=00001528&menu_link=/icms/bbs/selectBoardArticle.do&bbsId=BBS_00303&nttId=11147",
+   "date": "2026-04-14",
+   "deadline": null,
    "kind": "단원",
    "tier": "연주",
    "obri": false,
@@ -2098,35 +2272,23 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "현악",
+   "inst": "지휘",
    "instDetails": [
-    "비올라",
-    "오보에",
+    "지휘",
+    "트롬본",
     "피아노"
    ],
-   "personnel": "비올라 부수석 1명 · 오보에 부수석 1명",
+   "personnel": null,
    "subject": null,
-   "channel": "kbs",
-   "layer": "D",
-   "recruitParts": [
-    {
-     "part": "비올라",
-     "position": "부수석",
-     "count": "1"
-    },
-    {
-     "part": "오보에",
-     "position": "부수석",
-     "count": "1"
-    }
-   ],
-   "recruitSummary": "비올라 부수석 1명 · 오보에 부수석 1명",
+   "channel": "g_daeguart_notice",
+   "layer": "B",
    "positions": [
-    "부수석"
+    "부지휘자"
    ],
-   "auditionDate": "8/17 · 8/23",
-   "bodyExcerpt": "교향악단에서 실력있고 열정 넘치는 전문 연주자를 공개 모집합니다 · 모집부문별 채용 예정인원 · 현재 군복무 또는 공익 근무자는 채용 예정일까지 전역 또는 소집해제 상태여야 하며 · 입사지원은 채용 홈페이지에서 가능하며 마감 전까지 최종 제출이 완료되어야 합니다",
-   "deadlineFrom": "page",
+   "auditionDate": "7/23 · 7/20",
+   "contract": "비상임",
+   "bodyExcerpt": "대구시립국악단 [2026 고교특화형 문화예술프로그램 D-Art 路 공연] · 대구시립교향악단 〈제527회 정기연주회 : 베토벤 에로이카〉 · 2026 대구시립소년소녀합창단 하반기 단원 모집 공고 · 시립교향악단 육아휴직 대체근로자(바순) 공개모집 공고",
+   "dlHint": null,
    "firstSeen": "2026-08-02",
    "isNew": false,
    "extVer": 32

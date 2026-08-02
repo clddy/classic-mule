@@ -1282,5 +1282,50 @@
   "board_label": "공지사항",
   "needs_js": false,
   "strict": true
+ },
+ {
+  "id": "pajucf",
+  "name": "파주문화재단",
+  "region": "경기",
+  "board_url": "https://www.pajucf.or.kr/community/notice.php",
+  "board_label": "공지사항",
+  "needs_js": false,
+  "strict": true
+ },
+ {
+  "id": "timfensemble",
+  "name": "TIMF앙상블·통영시민오케스트라",
+  "region": "경남",
+  "board_url": "https://www.timf.org/kr/sub/timf/notice.asp",
+  "board_label": "공지사항",
+  "needs_js": false,
+  "strict": true
+ },
+ {
+  "id": "guriarts",
+  "name": "구리아트홀(시립청소년교향악단)",
+  "region": "경기",
+  "board_url": "https://www.guri.go.kr/www/selectBbsNttList.do?bbsNo=41&key=389",
+  "board_label": "모집공고",
+  "needs_js": false,
+  "strict": true
+ },
+ {
+  "id": "yeulmaru",
+  "name": "여수예울마루",
+  "region": "광주·전남",
+  "board_url": "https://www.yeulmaru.org/community/",
+  "board_label": "공지사항",
+  "needs_js": false,
+  "title_pat": "(연수 ?단원|단원|반주|연주자|오케스트라|합창|악단).{0,12}(모집|채용|공개모집|오디션|위촉)"
+ },
+ {
+  "id": "casuwon",
+  "name": "천주교 수원교구(성가대·반주)",
+  "region": "경기",
+  "board_url": "https://www.casuwon.or.kr/info/recruit",
+  "board_label": "구인구직",
+  "needs_js": false,
+  "title_pat": "(성가대|성가|반주|오르가니스트|지휘|찬양|전례음악).{0,12}(모집|구인|채용|모십니다|구합니다|위촉)"
  }
 ]
