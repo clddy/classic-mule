@@ -100,6 +100,13 @@ def survey(env, limit=None):
     boards = _load(BOARDS, {})
     src_doms = _source_domains()
     results, n_ok = [], 0
+    # Actions(해외 IP)에선 국내 사이트 다수가 hang이라 사이트당 requests 12초 + JS 렌더
+    # 30초 = 최대 40초를 까먹는다 — 604곳이면 90분 워크플로 타임아웃을 넘긴다(2026-08-02
+    # 1차 604 순회가 63분에 절반도 못 가 취소됨). 해외에선 JS 렌더를 생략한다:
+    # 어차피 크로미엄도 같은 TLS 지문 차단에 걸리고, 리눅스 curl(OpenSSL) 우회도 안 된다.
+    fast = env == "actions"
+    if fast:
+        print("(actions 모드: JS 렌더 생략 — 해외 hang 대비 고속 순회)")
     todo = [r for r in rows if r["board"] or r["home"] or r["name"] in boards]
     skipped = len(rows) - len(todo)
     if limit:
@@ -119,7 +126,7 @@ def survey(env, limit=None):
             # 게시판 URL이 없으면 홈에서 탐색 (discovery.board_candidates 재사용)
             if not board_url:
                 html = fetch(s, r["home"])
-                if len(html) < 3000:
+                if len(html) < 3000 and not fast:
                     html = fetch(s, r["home"], use_js=True)
                 if len(html) < 3000:
                     rec["status"] = "home_unreachable"
@@ -142,7 +149,7 @@ def survey(env, limit=None):
                     continue
             # 게시판 방문 → 모집성 게시글 추출
             bhtml = fetch(s, board_url)
-            if not bhtml:
+            if not bhtml and not fast:
                 bhtml = fetch(s, board_url, use_js=True)
             items = extract_items(bhtml, board_url) if bhtml else []
             music = [it for it in items if relevant(it["title"])]
