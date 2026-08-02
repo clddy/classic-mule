@@ -23,13 +23,12 @@ try:
 except Exception:
     pass
 
-import requests
 import urllib3
 urllib3.disable_warnings()
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from common import UA  # noqa: E402
+from common import curl_get  # noqa: E402
 
 CSV = os.path.join(BASE, "crawler", "institutions.csv")
 OUT = os.path.join(BASE, "data", "fullsweep", "probed_homepages.json")
@@ -97,9 +96,9 @@ KNOWN = {
     "전북특별자치도교육청": ("https://www.jbe.go.kr", "교육"), "전라남도교육청": ("https://www.jne.go.kr", "교육"),
     "경상북도교육청": ("https://www.gbe.go.kr", "교육"), "경상남도교육청": ("https://www.gne.go.kr", "교육"),
     "제주도교육청": ("https://www.jje.go.kr", "교육"),
-    "천주교 서울대교구(전례음악)": ("https://aos.catholic.or.kr", "교구"),
-    "천주교 수원교구(전례음악)": ("https://www.casuwon.or.kr", "교구"),
-    "천주교 인천교구(전례음악)": ("https://www.caincheon.or.kr", "교구"),
+    "천주교 서울대교구": ("https://aos.catholic.or.kr", "교구"),
+    "천주교 수원교구": ("https://www.casuwon.or.kr", "교구"),
+    "천주교 인천교구": ("https://www.caincheon.or.kr", "교구"),
     "광림교회": ("https://www.kwanglim.or.kr", "광림"),
     "오륜교회": ("https://www.oryun.org", "오륜"),
     "주안장로교회": ("https://www.juan.or.kr", "주안"),
@@ -115,20 +114,20 @@ KNOWN = {
     "제주도립제주교향악단": ("https://www.jejusi.go.kr", "교향"),
     "제주도립서귀포합창단": ("https://culture.seogwipo.go.kr", "합창"),
     "광명시립합창단": ("https://www.gm.go.kr", "합창"),
-    "천안시립합창단": ("https://www.cfac.or.kr", "합창"),
-    "국립경찰교향악단": ("https://www.police.go.kr", "경찰"),
+    "천안시립합창단": ("https://www.cheonan.go.kr", "천안"),
+    "국립경찰교향악단": ("https://www.police.go.kr", ""),
     "김포문화재단": ("https://www.gcf.or.kr", "김포"),
     "파주문화재단": ("https://www.pajucf.or.kr", "파주"),
     "강릉문화재단": ("https://www.gncaf.or.kr", "강릉"),
     "시흥시청소년재단": ("https://www.shyouth.or.kr", "시흥"),
     "노원문화예술회관": ("https://www.nowonart.kr", "노원"),
     "구로아트밸리": ("https://www.gaac.or.kr", "구로"),
-    "서울장신대학교(교회음악)": ("https://www.sjs.ac.kr", "장신"),
-    "감리교신학대학교(교회음악)": ("https://www.mtu.ac.kr", "감리"),
-    "서원대학교(음악교육)": ("https://www.seowon.ac.kr", "서원"),
-    "예원예술대학교(음악)": ("https://www.yewon.ac.kr", "예원"),
-    "경상국립대학교(음악교육)": ("https://www.gnu.ac.kr", "경상"),
-    "대구예술대학교(음악)": ("https://www.dgau.ac.kr", "예술"),
+    "서울장신대학교": ("https://www.sjs.ac.kr", ""),
+    "감리교신학대학교": ("https://www.mtu.ac.kr", ""),
+    "서원대학교": ("https://www.seowon.ac.kr", ""),
+    "예원예술대학교": ("https://www.yewon.ac.kr", ""),
+    "경상국립대학교": ("https://www.gnu.ac.kr", ""),
+    "대구예술대학교": ("https://www.dgau.ac.kr", ""),
 }
 
 
@@ -162,13 +161,20 @@ def cw_candidates(name, region):
     return core, cands
 
 
-def verify(url, *keywords, timeout=8):
+def verify(url, *keywords, timeout=10):
+    """실접속 검증. requests 가 아니라 curl 을 쓴다 — 파이썬 TLS 지문을 막는 국내
+    관공서 사이트가 있어서(창원 cwcf 사례) requests 만 보면 멀쩡한 곳도 실패로 샌다.
+
+    판정: 200 + 최소 크기 + 키워드. 단 JS 리다이렉트 스텁(3KB 미만)은 키워드가 없는 게
+    정상이라 크기만으로 통과시킨다 — 어차피 fullsweep 이 게시판을 못 찾으면 걸러진다.
+    """
     try:
-        r = requests.get(url, timeout=timeout, verify=False, headers=UA, allow_redirects=True)
-        if r.status_code != 200 or len(r.content) < 800:
+        r = curl_get(url, timeout=timeout)
+        if r.status_code != 200 or len(r.content) < 400:
             return False
-        r.encoding = r.apparent_encoding if r.encoding in (None, "ISO-8859-1") else r.encoding
-        text = r.text[:40_000]
+        text = r.text[:60_000]
+        if len(r.content) < 3000:      # 스텁 — 본문이 JS로 로드됨
+            return True
         return all(k in text for k in keywords if k)
     except Exception:
         return False

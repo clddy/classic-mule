@@ -3,71 +3,1295 @@
   "국립현대무용단": {
    "url": "https://www.kncdc.kr",
    "via": "known"
+  },
+  "광명시립합창단": {
+   "url": "https://www.gm.go.kr",
+   "via": "known"
+  },
+  "제주도립제주교향악단": {
+   "url": "https://www.jejusi.go.kr",
+   "via": "known"
+  },
+  "제주도립서귀포합창단": {
+   "url": "https://culture.seogwipo.go.kr",
+   "via": "known"
+  },
+  "서울장신대학교": {
+   "url": "https://www.sjs.ac.kr",
+   "via": "known"
+  },
+  "경상국립대학교": {
+   "url": "https://www.gnu.ac.kr",
+   "via": "known"
+  },
+  "국립정동극장": {
+   "url": "https://www.jeongdong.or.kr",
+   "via": "known"
+  },
+  "예원예술대학교": {
+   "url": "https://www.yewon.ac.kr",
+   "via": "known"
+  },
+  "시흥시청소년재단": {
+   "url": "https://www.shyouth.or.kr",
+   "via": "known"
+  },
+  "김포문화재단": {
+   "url": "https://www.gcf.or.kr",
+   "via": "known"
+  },
+  "대구예술대학교": {
+   "url": "https://www.dgau.ac.kr",
+   "via": "known"
+  },
+  "부산시교육청": {
+   "url": "https://www.pen.go.kr",
+   "via": "known"
+  },
+  "서울시교육청": {
+   "url": "https://www.sen.go.kr",
+   "via": "known"
+  },
+  "새에덴교회": {
+   "url": "https://www.saeeden.kr",
+   "via": "known"
+  },
+  "강릉문화재단": {
+   "url": "https://www.gncaf.or.kr",
+   "via": "known"
+  },
+  "천안시립합창단": {
+   "url": "https://www.cheonan.go.kr",
+   "via": "known"
+  },
+  "주안장로교회": {
+   "url": "https://www.juan.or.kr",
+   "via": "known"
+  },
+  "할렐루야교회": {
+   "url": "https://www.hcc.or.kr",
+   "via": "known"
+  },
+  "대전시교육청": {
+   "url": "https://www.dje.go.kr",
+   "via": "known"
+  },
+  "충청북도교육청": {
+   "url": "https://www.cbe.go.kr",
+   "via": "known"
+  },
+  "충청남도교육청": {
+   "url": "https://www.cne.go.kr",
+   "via": "known"
+  },
+  "경상남도교육청": {
+   "url": "https://www.gne.go.kr",
+   "via": "known"
+  },
+  "전라남도교육청": {
+   "url": "https://www.jne.go.kr",
+   "via": "known"
+  },
+  "서울용산문화원": {
+   "url": "http://yongsan.kccf.or.kr",
+   "via": "pattern"
+  },
+  "전북특별자치도교육청": {
+   "url": "https://www.jbe.go.kr",
+   "via": "known"
+  },
+  "오륜교회": {
+   "url": "https://www.oryun.org",
+   "via": "known"
+  },
+  "울산시교육청": {
+   "url": "https://www.use.go.kr",
+   "via": "known"
+  },
+  "충현교회": {
+   "url": "https://www.choonghyun.org",
+   "via": "known"
+  },
+  "광주시교육청": {
+   "url": "https://www.gen.go.kr",
+   "via": "known"
+  },
+  "서울종로문화원": {
+   "url": "https://jongno.kccf.or.kr",
+   "via": "pattern"
+  },
+  "서울중구문화원": {
+   "url": "https://junggu.kccf.or.kr",
+   "via": "pattern"
+  },
+  "서울성동문화원": {
+   "url": "https://seongdong.kccf.or.kr",
+   "via": "pattern"
+  },
+  "서울중랑문화원": {
+   "url": "https://jungnang.kccf.or.kr",
+   "via": "pattern"
+  },
+  "서울동대문문화원": {
+   "url": "https://dongdaemun.kccf.or.kr",
+   "via": "pattern"
+  },
+  "서울광진문화원": {
+   "url": "https://gwangjin.kccf.or.kr",
+   "via": "pattern"
+  },
+  "서울성북문화원": {
+   "url": "https://seongbuk.kccf.or.kr",
+   "via": "pattern"
+  },
+  "서울은평문화원": {
+   "url": "https://eunpyeong.kccf.or.kr",
+   "via": "pattern"
+  },
+  "서울강북문화원": {
+   "url": "https://gangbuk.kccf.or.kr",
+   "via": "pattern"
+  },
+  "서울도봉문화원": {
+   "url": "https://dobong.kccf.or.kr",
+   "via": "pattern"
+  },
+  "서울노원문화원": {
+   "url": "https://nowon.kccf.or.kr",
+   "via": "pattern"
+  },
+  "서울서대문문화원": {
+   "url": "https://seodaemun.kccf.or.kr",
+   "via": "pattern"
+  },
+  "서울마포문화원": {
+   "url": "https://mapo.kccf.or.kr",
+   "via": "pattern"
+  },
+  "서울양천문화원": {
+   "url": "https://yangcheon.kccf.or.kr",
+   "via": "pattern"
+  },
+  "부산부산진문화원": {
+   "url": "http://busanjin.kccf.or.kr",
+   "via": "pattern"
+  },
+  "서울강서문화원": {
+   "url": "https://gangseo.kccf.or.kr",
+   "via": "pattern"
+  },
+  "서울구로문화원": {
+   "url": "https://guro.kccf.or.kr",
+   "via": "pattern"
+  },
+  "서울금천문화원": {
+   "url": "https://geumcheon.kccf.or.kr",
+   "via": "pattern"
+  },
+  "서울영등포문화원": {
+   "url": "https://yeongdeungpo.kccf.or.kr",
+   "via": "pattern"
+  },
+  "서울강남문화원": {
+   "url": "https://gangnam.kccf.or.kr",
+   "via": "pattern"
+  },
+  "서울관악문화원": {
+   "url": "https://gwanak.kccf.or.kr",
+   "via": "pattern"
+  },
+  "서울서초문화원": {
+   "url": "https://seocho.kccf.or.kr",
+   "via": "pattern"
+  },
+  "서울송파문화원": {
+   "url": "https://songpa.kccf.or.kr",
+   "via": "pattern"
+  },
+  "서울강동문화원": {
+   "url": "https://gangdong.kccf.or.kr",
+   "via": "pattern"
+  },
+  "부산영도문화원": {
+   "url": "https://yeongdo.kccf.or.kr",
+   "via": "pattern"
+  },
+  "부산동래문화원": {
+   "url": "https://dongnae.kccf.or.kr",
+   "via": "pattern"
+  },
+  "부산중구문화원": {
+   "url": "https://junggu.kccf.or.kr",
+   "via": "pattern"
+  },
+  "부산서구문화원": {
+   "url": "https://seogu.kccf.or.kr",
+   "via": "pattern"
+  },
+  "부산남구문화원": {
+   "url": "https://namgu.kccf.or.kr",
+   "via": "pattern"
+  },
+  "부산동구문화원": {
+   "url": "https://donggu.kccf.or.kr",
+   "via": "pattern"
+  },
+  "부산북구문화원": {
+   "url": "https://bukgu.kccf.or.kr",
+   "via": "pattern"
+  },
+  "부산사하문화원": {
+   "url": "https://saha.kccf.or.kr",
+   "via": "pattern"
+  },
+  "부산해운대문화원": {
+   "url": "https://haeundae.kccf.or.kr",
+   "via": "pattern"
+  },
+  "부산강서문화원": {
+   "url": "https://gangseo.kccf.or.kr",
+   "via": "pattern"
+  },
+  "부산금정문화원": {
+   "url": "https://geumjeong.kccf.or.kr",
+   "via": "pattern"
+  },
+  "부산연제문화원": {
+   "url": "https://yeonje.kccf.or.kr",
+   "via": "pattern"
+  },
+  "부산수영문화원": {
+   "url": "https://suyeong.kccf.or.kr",
+   "via": "pattern"
+  },
+  "부산기장문화원": {
+   "url": "https://gijang.kccf.or.kr",
+   "via": "pattern"
+  },
+  "부산사상문화원": {
+   "url": "https://sasang.kccf.or.kr",
+   "via": "pattern"
+  },
+  "대구동구문화원": {
+   "url": "https://donggu.kccf.or.kr",
+   "via": "pattern"
+  },
+  "대구중구문화원": {
+   "url": "https://junggu.kccf.or.kr",
+   "via": "pattern"
+  },
+  "대구서구문화원": {
+   "url": "https://seogu.kccf.or.kr",
+   "via": "pattern"
+  },
+  "대구남구문화원": {
+   "url": "https://namgu.kccf.or.kr",
+   "via": "pattern"
+  },
+  "대구북구문화원": {
+   "url": "https://bukgu.kccf.or.kr",
+   "via": "pattern"
+  },
+  "대구수성문화원": {
+   "url": "https://suseong.kccf.or.kr",
+   "via": "pattern"
+  },
+  "대구달서문화원": {
+   "url": "https://dalseo.kccf.or.kr",
+   "via": "pattern"
+  },
+  "대구달성문화원": {
+   "url": "https://dalseong.kccf.or.kr",
+   "via": "pattern"
+  },
+  "인천중구문화원": {
+   "url": "https://junggu.kccf.or.kr",
+   "via": "pattern"
+  },
+  "인천연수문화원": {
+   "url": "https://yeonsu.kccf.or.kr",
+   "via": "pattern"
+  },
+  "인천동구문화원": {
+   "url": "https://donggu.kccf.or.kr",
+   "via": "pattern"
+  },
+  "인천미추홀문화원": {
+   "url": "https://michuhol.kccf.or.kr",
+   "via": "pattern"
+  },
+  "인천남동문화원": {
+   "url": "https://namdong.kccf.or.kr",
+   "via": "pattern"
+  },
+  "인천부평문화원": {
+   "url": "https://bupyeong.kccf.or.kr",
+   "via": "pattern"
+  },
+  "인천서구문화원": {
+   "url": "https://seogu.kccf.or.kr",
+   "via": "pattern"
+  },
+  "인천강화문화원": {
+   "url": "https://ganghwa.kccf.or.kr",
+   "via": "pattern"
+  },
+  "광주동구문화원": {
+   "url": "https://donggu.kccf.or.kr",
+   "via": "pattern"
+  },
+  "인천옹진문화원": {
+   "url": "https://ongjin.kccf.or.kr",
+   "via": "pattern"
+  },
+  "광주서구문화원": {
+   "url": "https://seogu.kccf.or.kr",
+   "via": "pattern"
+  },
+  "광주남구문화원": {
+   "url": "https://namgu.kccf.or.kr",
+   "via": "pattern"
+  },
+  "광주북구문화원": {
+   "url": "https://bukgu.kccf.or.kr",
+   "via": "pattern"
+  },
+  "광주광산문화원": {
+   "url": "https://gwangsan.kccf.or.kr",
+   "via": "pattern"
+  },
+  "대전중구문화원": {
+   "url": "https://junggu.kccf.or.kr",
+   "via": "pattern"
+  },
+  "대전동구문화원": {
+   "url": "https://donggu.kccf.or.kr",
+   "via": "pattern"
+  },
+  "대전서구문화원": {
+   "url": "https://seogu.kccf.or.kr",
+   "via": "pattern"
+  },
+  "대전유성문화원": {
+   "url": "https://yuseong.kccf.or.kr",
+   "via": "pattern"
+  },
+  "울산남구문화원": {
+   "url": "https://namgu.kccf.or.kr",
+   "via": "pattern"
+  },
+  "울산중구문화원": {
+   "url": "https://junggu.kccf.or.kr",
+   "via": "pattern"
+  },
+  "대전대덕문화원": {
+   "url": "https://daedeok.kccf.or.kr",
+   "via": "pattern"
+  },
+  "울산동구문화원": {
+   "url": "https://donggu.kccf.or.kr",
+   "via": "pattern"
+  },
+  "울산북구문화원": {
+   "url": "https://bukgu.kccf.or.kr",
+   "via": "pattern"
+  },
+  "세종문화원": {
+   "url": "https://sejong.kccf.or.kr",
+   "via": "pattern"
+  },
+  "울산울주문화원": {
+   "url": "https://ulju.kccf.or.kr",
+   "via": "pattern"
+  },
+  "수원문화원": {
+   "url": "https://suwon.kccf.or.kr",
+   "via": "pattern"
+  },
+  "성남문화원": {
+   "url": "https://seongnam.kccf.or.kr",
+   "via": "pattern"
+  },
+  "의정부문화원": {
+   "url": "https://uijeongbu.kccf.or.kr",
+   "via": "pattern"
+  },
+  "안양문화원": {
+   "url": "https://anyang.kccf.or.kr",
+   "via": "pattern"
+  },
+  "부천문화원": {
+   "url": "https://bucheon.kccf.or.kr",
+   "via": "pattern"
+  },
+  "광명문화원": {
+   "url": "https://gwangmyeong.kccf.or.kr",
+   "via": "pattern"
+  },
+  "평택문화원": {
+   "url": "https://pyeongtaek.kccf.or.kr",
+   "via": "pattern"
+  },
+  "동두천문화원": {
+   "url": "https://dongducheon.kccf.or.kr",
+   "via": "pattern"
+  },
+  "안산문화원": {
+   "url": "https://ansan.kccf.or.kr",
+   "via": "pattern"
+  },
+  "고양문화원": {
+   "url": "https://goyang.kccf.or.kr",
+   "via": "pattern"
+  },
+  "과천문화원": {
+   "url": "https://gwacheon.kccf.or.kr",
+   "via": "pattern"
+  },
+  "구리문화원": {
+   "url": "https://guri.kccf.or.kr",
+   "via": "pattern"
+  },
+  "시흥문화원": {
+   "url": "https://siheung.kccf.or.kr",
+   "via": "pattern"
+  },
+  "남양주문화원": {
+   "url": "https://namyangju.kccf.or.kr",
+   "via": "pattern"
+  },
+  "오산문화원": {
+   "url": "https://osan.kccf.or.kr",
+   "via": "pattern"
+  },
+  "군포문화원": {
+   "url": "https://gunpo.kccf.or.kr",
+   "via": "pattern"
+  },
+  "의왕문화원": {
+   "url": "https://uiwang.kccf.or.kr",
+   "via": "pattern"
+  },
+  "하남문화원": {
+   "url": "https://hanam.kccf.or.kr",
+   "via": "pattern"
+  },
+  "용인문화원": {
+   "url": "https://yongin.kccf.or.kr",
+   "via": "pattern"
+  },
+  "파주문화원": {
+   "url": "https://paju.kccf.or.kr",
+   "via": "pattern"
+  },
+  "이천문화원": {
+   "url": "https://icheon.kccf.or.kr",
+   "via": "pattern"
+  },
+  "안성문화원": {
+   "url": "https://anseong.kccf.or.kr",
+   "via": "pattern"
+  },
+  "화성문화원": {
+   "url": "https://hwaseong.kccf.or.kr",
+   "via": "pattern"
+  },
+  "양주문화원": {
+   "url": "https://yangju.kccf.or.kr",
+   "via": "pattern"
+  },
+  "광주문화원": {
+   "url": "https://gwangju.kccf.or.kr",
+   "via": "pattern"
+  },
+  "포천문화원": {
+   "url": "https://pocheon.kccf.or.kr",
+   "via": "pattern"
+  },
+  "여주문화원": {
+   "url": "https://yeoju.kccf.or.kr",
+   "via": "pattern"
+  },
+  "연천문화원": {
+   "url": "https://yeoncheon.kccf.or.kr",
+   "via": "pattern"
+  },
+  "가평문화원": {
+   "url": "https://gapyeong.kccf.or.kr",
+   "via": "pattern"
+  },
+  "양평문화원": {
+   "url": "https://yangpyeong.kccf.or.kr",
+   "via": "pattern"
+  },
+  "춘천문화원": {
+   "url": "https://chuncheon.kccf.or.kr",
+   "via": "pattern"
+  },
+  "원주문화원": {
+   "url": "https://wonju.kccf.or.kr",
+   "via": "pattern"
+  },
+  "강릉문화원": {
+   "url": "https://gangneung.kccf.or.kr",
+   "via": "pattern"
+  },
+  "태백문화원": {
+   "url": "https://taebaek.kccf.or.kr",
+   "via": "pattern"
+  },
+  "속초문화원": {
+   "url": "https://sokcho.kccf.or.kr",
+   "via": "pattern"
+  },
+  "삼척문화원": {
+   "url": "https://samcheok.kccf.or.kr",
+   "via": "pattern"
+  },
+  "홍천문화원": {
+   "url": "https://hongcheon.kccf.or.kr",
+   "via": "pattern"
+  },
+  "횡성문화원": {
+   "url": "https://hoengseong.kccf.or.kr",
+   "via": "pattern"
+  },
+  "영월문화원": {
+   "url": "https://yeongwol.kccf.or.kr",
+   "via": "pattern"
+  },
+  "평창문화원": {
+   "url": "https://pyeongchang.kccf.or.kr",
+   "via": "pattern"
+  },
+  "정선문화원": {
+   "url": "https://jeongseon.kccf.or.kr",
+   "via": "pattern"
+  },
+  "철원문화원": {
+   "url": "https://cheorwon.kccf.or.kr",
+   "via": "pattern"
+  },
+  "화천문화원": {
+   "url": "https://hwacheon.kccf.or.kr",
+   "via": "pattern"
+  },
+  "양구문화원": {
+   "url": "https://yanggu.kccf.or.kr",
+   "via": "pattern"
+  },
+  "인제문화원": {
+   "url": "https://inje.kccf.or.kr",
+   "via": "pattern"
+  },
+  "강원고성문화원": {
+   "url": "https://goseong.kccf.or.kr",
+   "via": "pattern"
+  },
+  "청주문화원": {
+   "url": "https://cheongju.kccf.or.kr",
+   "via": "pattern"
+  },
+  "제천문화원": {
+   "url": "https://jecheon.kccf.or.kr",
+   "via": "pattern"
+  },
+  "양양문화원": {
+   "url": "https://yangyang.kccf.or.kr",
+   "via": "pattern"
+  },
+  "충주문화원": {
+   "url": "https://chungju.kccf.or.kr",
+   "via": "pattern"
+  },
+  "옥천문화원": {
+   "url": "https://okcheon.kccf.or.kr",
+   "via": "pattern"
+  },
+  "보은문화원": {
+   "url": "https://boeun.kccf.or.kr",
+   "via": "pattern"
+  },
+  "영동문화원": {
+   "url": "https://yeongdong.kccf.or.kr",
+   "via": "pattern"
+  },
+  "증평문화원": {
+   "url": "https://jeungpyeong.kccf.or.kr",
+   "via": "pattern"
+  },
+  "진천문화원": {
+   "url": "https://jincheon.kccf.or.kr",
+   "via": "pattern"
+  },
+  "괴산문화원": {
+   "url": "https://goesan.kccf.or.kr",
+   "via": "pattern"
+  },
+  "음성문화원": {
+   "url": "https://eumseong.kccf.or.kr",
+   "via": "pattern"
+  },
+  "천안문화원": {
+   "url": "https://cheonan.kccf.or.kr",
+   "via": "pattern"
+  },
+  "공주문화원": {
+   "url": "https://gongju.kccf.or.kr",
+   "via": "pattern"
+  },
+  "보령문화원": {
+   "url": "https://boryeong.kccf.or.kr",
+   "via": "pattern"
+  },
+  "아산문화원": {
+   "url": "https://asan.kccf.or.kr",
+   "via": "pattern"
+  },
+  "단양문화원": {
+   "url": "https://danyang.kccf.or.kr",
+   "via": "pattern"
+  },
+  "서산문화원": {
+   "url": "https://seosan.kccf.or.kr",
+   "via": "pattern"
+  },
+  "논산문화원": {
+   "url": "https://nonsan.kccf.or.kr",
+   "via": "pattern"
+  },
+  "계룡문화원": {
+   "url": "https://gyeryong.kccf.or.kr",
+   "via": "pattern"
+  },
+  "당진문화원": {
+   "url": "https://dangjin.kccf.or.kr",
+   "via": "pattern"
+  },
+  "금산문화원": {
+   "url": "https://geumsan.kccf.or.kr",
+   "via": "pattern"
+  },
+  "부여문화원": {
+   "url": "https://buyeo.kccf.or.kr",
+   "via": "pattern"
+  },
+  "청양문화원": {
+   "url": "https://cheongyang.kccf.or.kr",
+   "via": "pattern"
+  },
+  "서천문화원": {
+   "url": "https://seocheon.kccf.or.kr",
+   "via": "pattern"
+  },
+  "홍성문화원": {
+   "url": "https://hongseong.kccf.or.kr",
+   "via": "pattern"
+  },
+  "예산문화원": {
+   "url": "https://yesan.kccf.or.kr",
+   "via": "pattern"
+  },
+  "태안문화원": {
+   "url": "https://taean.kccf.or.kr",
+   "via": "pattern"
+  },
+  "전주문화원": {
+   "url": "https://jeonju.kccf.or.kr",
+   "via": "pattern"
+  },
+  "임실문화원": {
+   "url": "http://imsil.kccf.or.kr",
+   "via": "pattern"
+  },
+  "군산문화원": {
+   "url": "https://gunsan.kccf.or.kr",
+   "via": "pattern"
+  },
+  "익산문화원": {
+   "url": "https://iksan.kccf.or.kr",
+   "via": "pattern"
+  },
+  "정읍문화원": {
+   "url": "https://jeongeup.kccf.or.kr",
+   "via": "pattern"
+  },
+  "김제문화원": {
+   "url": "https://gimje.kccf.or.kr",
+   "via": "pattern"
+  },
+  "남원문화원": {
+   "url": "https://namwon.kccf.or.kr",
+   "via": "pattern"
+  },
+  "완주문화원": {
+   "url": "https://wanju.kccf.or.kr",
+   "via": "pattern"
+  },
+  "진안문화원": {
+   "url": "https://jinan.kccf.or.kr",
+   "via": "pattern"
+  },
+  "무주문화원": {
+   "url": "https://muju.kccf.or.kr",
+   "via": "pattern"
+  },
+  "순창문화원": {
+   "url": "https://sunchang.kccf.or.kr",
+   "via": "pattern"
+  },
+  "고창문화원": {
+   "url": "https://gochang.kccf.or.kr",
+   "via": "pattern"
+  },
+  "목포문화원": {
+   "url": "https://mokpo.kccf.or.kr",
+   "via": "pattern"
+  },
+  "여수문화원": {
+   "url": "https://yeosu.kccf.or.kr",
+   "via": "pattern"
+  },
+  "부안문화원": {
+   "url": "https://buan.kccf.or.kr",
+   "via": "pattern"
+  },
+  "순천문화원": {
+   "url": "https://suncheon.kccf.or.kr",
+   "via": "pattern"
+  },
+  "나주문화원": {
+   "url": "https://naju.kccf.or.kr",
+   "via": "pattern"
+  },
+  "광양문화원": {
+   "url": "https://gwangyang.kccf.or.kr",
+   "via": "pattern"
+  },
+  "담양문화원": {
+   "url": "https://damyang.kccf.or.kr",
+   "via": "pattern"
+  },
+  "곡성문화원": {
+   "url": "https://gokseong.kccf.or.kr",
+   "via": "pattern"
+  },
+  "구례문화원": {
+   "url": "https://gurye.kccf.or.kr",
+   "via": "pattern"
+  },
+  "고흥문화원": {
+   "url": "https://goheung.kccf.or.kr",
+   "via": "pattern"
+  },
+  "보성문화원": {
+   "url": "https://boseong.kccf.or.kr",
+   "via": "pattern"
+  },
+  "장흥문화원": {
+   "url": "https://jangheung.kccf.or.kr",
+   "via": "pattern"
+  },
+  "강진문화원": {
+   "url": "https://gangjin.kccf.or.kr",
+   "via": "pattern"
+  },
+  "화순문화원": {
+   "url": "https://hwasun.kccf.or.kr",
+   "via": "pattern"
+  },
+  "해남문화원": {
+   "url": "https://haenam.kccf.or.kr",
+   "via": "pattern"
+  },
+  "영암문화원": {
+   "url": "https://yeongam.kccf.or.kr",
+   "via": "pattern"
+  },
+  "무안문화원": {
+   "url": "https://muan.kccf.or.kr",
+   "via": "pattern"
+  },
+  "함평문화원": {
+   "url": "https://hampyeong.kccf.or.kr",
+   "via": "pattern"
+  },
+  "영광문화원": {
+   "url": "https://yeonggwang.kccf.or.kr",
+   "via": "pattern"
+  },
+  "장성문화원": {
+   "url": "https://jangseong.kccf.or.kr",
+   "via": "pattern"
+  },
+  "완도문화원": {
+   "url": "https://wando.kccf.or.kr",
+   "via": "pattern"
+  },
+  "진도문화원": {
+   "url": "https://jindo.kccf.or.kr",
+   "via": "pattern"
+  },
+  "신안문화원": {
+   "url": "https://sinan.kccf.or.kr",
+   "via": "pattern"
+  },
+  "포항문화원": {
+   "url": "https://pohang.kccf.or.kr",
+   "via": "pattern"
+  },
+  "경주문화원": {
+   "url": "https://gyeongju.kccf.or.kr",
+   "via": "pattern"
+  },
+  "김천문화원": {
+   "url": "https://gimcheon.kccf.or.kr",
+   "via": "pattern"
+  },
+  "안동문화원": {
+   "url": "https://andong.kccf.or.kr",
+   "via": "pattern"
+  },
+  "구미문화원": {
+   "url": "https://gumi.kccf.or.kr",
+   "via": "pattern"
+  },
+  "영주문화원": {
+   "url": "https://yeongju.kccf.or.kr",
+   "via": "pattern"
+  },
+  "영천문화원": {
+   "url": "https://yeongcheon.kccf.or.kr",
+   "via": "pattern"
+  },
+  "상주문화원": {
+   "url": "https://sangju.kccf.or.kr",
+   "via": "pattern"
+  },
+  "문경문화원": {
+   "url": "https://mungyeong.kccf.or.kr",
+   "via": "pattern"
+  },
+  "의성문화원": {
+   "url": "https://uiseong.kccf.or.kr",
+   "via": "pattern"
+  },
+  "경산문화원": {
+   "url": "https://gyeongsan.kccf.or.kr",
+   "via": "pattern"
+  },
+  "청송문화원": {
+   "url": "https://cheongsong.kccf.or.kr",
+   "via": "pattern"
+  },
+  "영양문화원": {
+   "url": "https://yeongyang.kccf.or.kr",
+   "via": "pattern"
+  },
+  "영덕문화원": {
+   "url": "https://yeongdeok.kccf.or.kr",
+   "via": "pattern"
+  },
+  "청도문화원": {
+   "url": "https://cheongdo.kccf.or.kr",
+   "via": "pattern"
+  },
+  "고령문화원": {
+   "url": "https://goryeong.kccf.or.kr",
+   "via": "pattern"
+  },
+  "칠곡문화원": {
+   "url": "https://chilgok.kccf.or.kr",
+   "via": "pattern"
+  },
+  "성주문화원": {
+   "url": "https://seongju.kccf.or.kr",
+   "via": "pattern"
+  },
+  "예천문화원": {
+   "url": "https://yecheon.kccf.or.kr",
+   "via": "pattern"
+  },
+  "울진문화원": {
+   "url": "https://uljin.kccf.or.kr",
+   "via": "pattern"
+  },
+  "울릉문화원": {
+   "url": "https://ulleung.kccf.or.kr",
+   "via": "pattern"
+  },
+  "의령문화원": {
+   "url": "http://uiryeong.kccf.or.kr",
+   "via": "pattern"
+  },
+  "창원문화원": {
+   "url": "https://changwon.kccf.or.kr",
+   "via": "pattern"
+  },
+  "진주문화원": {
+   "url": "https://jinju.kccf.or.kr",
+   "via": "pattern"
+  },
+  "통영문화원": {
+   "url": "https://tongyeong.kccf.or.kr",
+   "via": "pattern"
+  },
+  "봉화문화원": {
+   "url": "https://bonghwa.kccf.or.kr",
+   "via": "pattern"
+  },
+  "함양문화원": {
+   "url": "http://hamyang.kccf.or.kr",
+   "via": "pattern"
+  },
+  "거창문화원": {
+   "url": "http://geochang.kccf.or.kr",
+   "via": "pattern"
+  },
+  "사천문화원": {
+   "url": "https://sacheon.kccf.or.kr",
+   "via": "pattern"
+  },
+  "김해문화원": {
+   "url": "https://gimhae.kccf.or.kr",
+   "via": "pattern"
+  },
+  "밀양문화원": {
+   "url": "https://miryang.kccf.or.kr",
+   "via": "pattern"
+  },
+  "거제문화원": {
+   "url": "https://geoje.kccf.or.kr",
+   "via": "pattern"
+  },
+  "양산문화원": {
+   "url": "https://yangsan.kccf.or.kr",
+   "via": "pattern"
+  },
+  "경남고성문화원": {
+   "url": "https://goseong.kccf.or.kr",
+   "via": "pattern"
+  },
+  "남해문화원": {
+   "url": "https://namhae.kccf.or.kr",
+   "via": "pattern"
+  },
+  "함안문화원": {
+   "url": "https://haman.kccf.or.kr",
+   "via": "pattern"
+  },
+  "창녕문화원": {
+   "url": "https://changnyeong.kccf.or.kr",
+   "via": "pattern"
+  },
+  "하동문화원": {
+   "url": "https://hadong.kccf.or.kr",
+   "via": "pattern"
+  },
+  "산청문화원": {
+   "url": "https://sancheong.kccf.or.kr",
+   "via": "pattern"
+  },
+  "합천문화원": {
+   "url": "https://hapcheon.kccf.or.kr",
+   "via": "pattern"
+  },
+  "제주시문화원": {
+   "url": "https://jeju.kccf.or.kr",
+   "via": "pattern"
+  },
+  "서귀포문화원": {
+   "url": "https://seogwipo.kccf.or.kr",
+   "via": "pattern"
   }
  },
  "misses": [
   {
-   "name": "대구예술대학교",
-   "why": "no_candidate",
-   "cat": "대학",
-   "sub": "음악",
-   "region": "경북"
-  },
-  {
-   "name": "예원예술대학교",
-   "why": "no_candidate",
-   "cat": "대학",
-   "sub": "음악",
-   "region": "전북"
-  },
-  {
-   "name": "감리교신학대학교",
-   "why": "no_candidate",
-   "cat": "대학",
-   "sub": "교회음악",
-   "region": "서울"
-  },
-  {
-   "name": "서울장신대학교",
-   "why": "no_candidate",
-   "cat": "대학",
-   "sub": "교회음악",
-   "region": "경기"
-  },
-  {
-   "name": "경상국립대학교",
-   "why": "no_candidate",
-   "cat": "대학",
-   "sub": "음악교육",
-   "region": "경남"
-  },
-  {
    "name": "서원대학교",
-   "why": "no_candidate",
+   "why": "known_fail",
    "cat": "대학",
    "sub": "음악교육",
    "region": "충북"
   },
   {
-   "name": "광명시립합창단",
+   "name": "파주문화재단",
    "why": "known_fail",
-   "cat": "예술단",
-   "sub": "합창단",
+   "cat": "지자체",
+   "sub": "기초문화재단",
    "region": "경기"
   },
   {
-   "name": "제주도립제주교향악단",
+   "name": "감리교신학대학교",
    "why": "known_fail",
-   "cat": "예술단",
-   "sub": "교향악단(도립)",
+   "cat": "대학",
+   "sub": "교회음악",
+   "region": "서울"
+  },
+  {
+   "name": "구로아트밸리",
+   "why": "known_fail",
+   "cat": "공연장",
+   "sub": "구립",
+   "region": "서울"
+  },
+  {
+   "name": "제주아트센터",
+   "why": "known_fail",
+   "cat": "공연장",
+   "sub": "광역",
    "region": "제주"
   },
   {
-   "name": "천안시립합창단",
+   "name": "포항제일교회",
+   "why": "no_candidate",
+   "cat": "교회",
+   "sub": "대형교회",
+   "region": "경북"
+  },
+  {
+   "name": "대구동신교회",
+   "why": "no_candidate",
+   "cat": "교회",
+   "sub": "대형교회",
+   "region": "대구"
+  },
+  {
+   "name": "부산콘서트홀",
    "why": "known_fail",
-   "cat": "예술단",
-   "sub": "합창단",
-   "region": "충남"
+   "cat": "공연장",
+   "sub": "콘서트홀",
+   "region": "부산"
+  },
+  {
+   "name": "서울돈화문국악당",
+   "why": "known_fail",
+   "cat": "공연장",
+   "sub": "국악",
+   "region": "서울"
+  },
+  {
+   "name": "은혜와진리교회",
+   "why": "no_candidate",
+   "cat": "교회",
+   "sub": "대형교회",
+   "region": "서울"
+  },
+  {
+   "name": "천주교 서울대교구(전례음악)",
+   "why": "no_candidate",
+   "cat": "교회",
+   "sub": "천주교",
+   "region": "서울"
+  },
+  {
+   "name": "천주교 수원교구(전례음악)",
+   "why": "no_candidate",
+   "cat": "교회",
+   "sub": "천주교",
+   "region": "경기"
+  },
+  {
+   "name": "천주교 인천교구(전례음악)",
+   "why": "no_candidate",
+   "cat": "교회",
+   "sub": "천주교",
+   "region": "인천"
+  },
+  {
+   "name": "광림교회",
+   "why": "known_fail",
+   "cat": "교회",
+   "sub": "대형교회",
+   "region": "서울"
+  },
+  {
+   "name": "대구시교육청",
+   "why": "known_fail",
+   "cat": "학교",
+   "sub": "교육청",
+   "region": "대구"
+  },
+  {
+   "name": "인천시교육청",
+   "why": "known_fail",
+   "cat": "학교",
+   "sub": "교육청",
+   "region": "인천"
+  },
+  {
+   "name": "경기도교육청",
+   "why": "known_fail",
+   "cat": "학교",
+   "sub": "교육청",
+   "region": "경기"
+  },
+  {
+   "name": "세종시교육청",
+   "why": "known_fail",
+   "cat": "학교",
+   "sub": "교육청",
+   "region": "세종"
+  },
+  {
+   "name": "제주특별자치도교육청",
+   "why": "no_candidate",
+   "cat": "학교",
+   "sub": "교육청",
+   "region": "제주"
+  },
+  {
+   "name": "심포니송",
+   "why": "no_candidate",
+   "cat": "민간",
+   "sub": "오케스트라",
+   "region": "서울"
+  },
+  {
+   "name": "코리안챔버오케스트라",
+   "why": "no_candidate",
+   "cat": "민간",
+   "sub": "오케스트라",
+   "region": "서울"
+  },
+  {
+   "name": "서울챔버오케스트라",
+   "why": "no_candidate",
+   "cat": "민간",
+   "sub": "오케스트라",
+   "region": "서울"
+  },
+  {
+   "name": "TIMF앙상블",
+   "why": "no_candidate",
+   "cat": "민간",
+   "sub": "앙상블",
+   "region": "서울"
+  },
+  {
+   "name": "앙상블오푸스",
+   "why": "no_candidate",
+   "cat": "민간",
+   "sub": "앙상블",
+   "region": "경기"
+  },
+  {
+   "name": "원코리아오케스트라",
+   "why": "no_candidate",
+   "cat": "민간",
+   "sub": "오케스트라",
+   "region": "서울"
+  },
+  {
+   "name": "라벨라오페라단",
+   "why": "no_candidate",
+   "cat": "민간",
+   "sub": "오페라단",
+   "region": "서울"
+  },
+  {
+   "name": "솔오페라단",
+   "why": "no_candidate",
+   "cat": "민간",
+   "sub": "오페라단",
+   "region": "부산"
+  },
+  {
+   "name": "누오바오페라단",
+   "why": "no_candidate",
+   "cat": "민간",
+   "sub": "오페라단",
+   "region": "서울"
+  },
+  {
+   "name": "글로리아오페라단",
+   "why": "no_candidate",
+   "cat": "민간",
+   "sub": "오페라단",
+   "region": "서울"
+  },
+  {
+   "name": "EMK뮤지컬컴퍼니",
+   "why": "no_candidate",
+   "cat": "민간",
+   "sub": "뮤지컬",
+   "region": "서울"
+  },
+  {
+   "name": "신시컴퍼니",
+   "why": "no_candidate",
+   "cat": "민간",
+   "sub": "뮤지컬",
+   "region": "서울"
+  },
+  {
+   "name": "오디컴퍼니",
+   "why": "no_candidate",
+   "cat": "민간",
+   "sub": "뮤지컬",
+   "region": "서울"
+  },
+  {
+   "name": "CJENM공연사업부",
+   "why": "no_candidate",
+   "cat": "민간",
+   "sub": "뮤지컬",
+   "region": "서울"
+  },
+  {
+   "name": "클립서비스",
+   "why": "no_candidate",
+   "cat": "민간",
+   "sub": "뮤지컬",
+   "region": "서울"
+  },
+  {
+   "name": "평창대관령음악제",
+   "why": "no_candidate",
+   "cat": "민간",
+   "sub": "축제",
+   "region": "강원"
+  },
+  {
+   "name": "통영국제음악제",
+   "why": "no_candidate",
+   "cat": "민간",
+   "sub": "축제",
+   "region": "경남"
+  },
+  {
+   "name": "교향악축제(예술의전당)",
+   "why": "no_candidate",
+   "cat": "민간",
+   "sub": "축제",
+   "region": "서울"
+  },
+  {
+   "name": "서울국제음악제",
+   "why": "no_candidate",
+   "cat": "민간",
+   "sub": "축제",
+   "region": "서울"
+  },
+  {
+   "name": "경상북도교육청",
+   "why": "known_fail",
+   "cat": "학교",
+   "sub": "교육청",
+   "region": "경북"
+  },
+  {
+   "name": "강원도교육청",
+   "why": "known_fail",
+   "cat": "학교",
+   "sub": "교육청",
+   "region": "강원"
+  },
+  {
+   "name": "노원문화예술회관",
+   "why": "known_fail",
+   "cat": "공연장",
+   "sub": "구립",
+   "region": "서울"
   },
   {
    "name": "국립경찰교향악단",
@@ -77,11 +1301,361 @@
    "region": "서울"
   },
   {
-   "name": "제주도립서귀포합창단",
-   "why": "known_fail",
+   "name": "서울동작문화원",
+   "why": "miss",
+   "cat": "지자체",
+   "sub": "지방문화원",
+   "region": "서울"
+  },
+  {
+   "name": "대구군위문화원",
+   "why": "miss",
+   "cat": "지자체",
+   "sub": "지방문화원",
+   "region": "대구"
+  },
+  {
+   "name": "인천계양문화원",
+   "why": "miss",
+   "cat": "지자체",
+   "sub": "지방문화원",
+   "region": "인천"
+  },
+  {
+   "name": "김포문화원",
+   "why": "miss",
+   "cat": "지자체",
+   "sub": "지방문화원",
+   "region": "경기"
+  },
+  {
+   "name": "동해문화원",
+   "why": "miss",
+   "cat": "지자체",
+   "sub": "지방문화원",
+   "region": "강원"
+  },
+  {
+   "name": "장수문화원",
+   "why": "miss",
+   "cat": "지자체",
+   "sub": "지방문화원",
+   "region": "전북"
+  },
+  {
+   "name": "강동문화재단",
+   "why": "no_candidate",
+   "cat": "지자체",
+   "sub": "기초문화재단",
+   "region": "서울"
+  },
+  {
+   "name": "강북문화재단",
+   "why": "no_candidate",
+   "cat": "지자체",
+   "sub": "기초문화재단",
+   "region": "서울"
+  },
+  {
+   "name": "관악문화재단",
+   "why": "no_candidate",
+   "cat": "지자체",
+   "sub": "기초문화재단",
+   "region": "서울"
+  },
+  {
+   "name": "광진문화재단",
+   "why": "no_candidate",
+   "cat": "지자체",
+   "sub": "기초문화재단",
+   "region": "서울"
+  },
+  {
+   "name": "구로문화재단",
+   "why": "no_candidate",
+   "cat": "지자체",
+   "sub": "기초문화재단",
+   "region": "서울"
+  },
+  {
+   "name": "금천문화재단",
+   "why": "no_candidate",
+   "cat": "지자체",
+   "sub": "기초문화재단",
+   "region": "서울"
+  },
+  {
+   "name": "도봉문화재단",
+   "why": "no_candidate",
+   "cat": "지자체",
+   "sub": "기초문화재단",
+   "region": "서울"
+  },
+  {
+   "name": "서대문문화재단",
+   "why": "no_candidate",
+   "cat": "지자체",
+   "sub": "기초문화재단",
+   "region": "서울"
+  },
+  {
+   "name": "서초문화재단",
+   "why": "no_candidate",
+   "cat": "지자체",
+   "sub": "기초문화재단",
+   "region": "서울"
+  },
+  {
+   "name": "성동문화재단",
+   "why": "no_candidate",
+   "cat": "지자체",
+   "sub": "기초문화재단",
+   "region": "서울"
+  },
+  {
+   "name": "성북문화재단",
+   "why": "no_candidate",
+   "cat": "지자체",
+   "sub": "기초문화재단",
+   "region": "서울"
+  },
+  {
+   "name": "영등포문화재단",
+   "why": "no_candidate",
+   "cat": "지자체",
+   "sub": "기초문화재단",
+   "region": "서울"
+  },
+  {
+   "name": "용산문화재단",
+   "why": "no_candidate",
+   "cat": "지자체",
+   "sub": "기초문화재단",
+   "region": "서울"
+  },
+  {
+   "name": "은평문화재단",
+   "why": "no_candidate",
+   "cat": "지자체",
+   "sub": "기초문화재단",
+   "region": "서울"
+  },
+  {
+   "name": "중랑문화재단",
+   "why": "no_candidate",
+   "cat": "지자체",
+   "sub": "기초문화재단",
+   "region": "서울"
+  },
+  {
+   "name": "양천문화재단",
+   "why": "no_candidate",
+   "cat": "지자체",
+   "sub": "기초문화재단",
+   "region": "서울"
+  },
+  {
+   "name": "종로문화재단",
+   "why": "no_candidate",
+   "cat": "지자체",
+   "sub": "기초문화재단",
+   "region": "서울"
+  },
+  {
+   "name": "군포문화재단",
+   "why": "no_candidate",
+   "cat": "지자체",
+   "sub": "기초문화재단",
+   "region": "경기"
+  },
+  {
+   "name": "남양주시문화재단",
+   "why": "no_candidate",
+   "cat": "지자체",
+   "sub": "기초문화재단",
+   "region": "경기"
+  },
+  {
+   "name": "양주시문화재단",
+   "why": "no_candidate",
+   "cat": "지자체",
+   "sub": "기초문화재단",
+   "region": "경기"
+  },
+  {
+   "name": "광주시문화재단",
+   "why": "no_candidate",
+   "cat": "지자체",
+   "sub": "기초문화재단",
+   "region": "경기"
+  },
+  {
+   "name": "포천문화재단",
+   "why": "no_candidate",
+   "cat": "지자체",
+   "sub": "기초문화재단",
+   "region": "경기"
+  },
+  {
+   "name": "구리문화재단",
+   "why": "no_candidate",
+   "cat": "지자체",
+   "sub": "기초문화재단",
+   "region": "경기"
+  },
+  {
+   "name": "속초문화재단",
+   "why": "no_candidate",
+   "cat": "지자체",
+   "sub": "기초문화재단",
+   "region": "강원"
+  },
+  {
+   "name": "정선아리랑문화재단",
+   "why": "no_candidate",
+   "cat": "지자체",
+   "sub": "기초문화재단",
+   "region": "강원"
+  },
+  {
+   "name": "평창문화예술재단",
+   "why": "no_candidate",
+   "cat": "지자체",
+   "sub": "기초문화재단",
+   "region": "강원"
+  },
+  {
+   "name": "충주문화관광재단",
+   "why": "no_candidate",
+   "cat": "지자체",
+   "sub": "기초문화재단",
+   "region": "충북"
+  },
+  {
+   "name": "제천문화재단",
+   "why": "no_candidate",
+   "cat": "지자체",
+   "sub": "기초문화재단",
+   "region": "충북"
+  },
+  {
+   "name": "단양문화관광재단",
+   "why": "no_candidate",
+   "cat": "지자체",
+   "sub": "기초문화재단",
+   "region": "충북"
+  },
+  {
+   "name": "아산문화재단",
+   "why": "no_candidate",
+   "cat": "지자체",
+   "sub": "기초문화재단",
+   "region": "충남"
+  },
+  {
+   "name": "서산문화재단",
+   "why": "no_candidate",
+   "cat": "지자체",
+   "sub": "기초문화재단",
+   "region": "충남"
+  },
+  {
+   "name": "당진문화재단",
+   "why": "no_candidate",
+   "cat": "지자체",
+   "sub": "기초문화재단",
+   "region": "충남"
+  },
+  {
+   "name": "공주문화관광재단",
+   "why": "no_candidate",
+   "cat": "지자체",
+   "sub": "기초문화재단",
+   "region": "충남"
+  },
+  {
+   "name": "익산문화관광재단",
+   "why": "no_candidate",
+   "cat": "지자체",
+   "sub": "기초문화재단",
+   "region": "전북"
+  },
+  {
+   "name": "광양문화재단",
+   "why": "no_candidate",
+   "cat": "지자체",
+   "sub": "기초문화재단",
+   "region": "광주·전남"
+  },
+  {
+   "name": "나주문화관광재단",
+   "why": "no_candidate",
+   "cat": "지자체",
+   "sub": "기초문화재단",
+   "region": "광주·전남"
+  },
+  {
+   "name": "여수시문화재단",
+   "why": "no_candidate",
+   "cat": "지자체",
+   "sub": "기초문화재단",
+   "region": "광주·전남"
+  },
+  {
+   "name": "김천문화관광재단",
+   "why": "no_candidate",
+   "cat": "지자체",
+   "sub": "기초문화재단",
+   "region": "경북"
+  },
+  {
+   "name": "진주문화관광재단",
+   "why": "no_candidate",
+   "cat": "지자체",
+   "sub": "기초문화재단",
+   "region": "경남"
+  },
+  {
+   "name": "거제문화예술재단",
+   "why": "no_candidate",
+   "cat": "지자체",
+   "sub": "기초문화재단",
+   "region": "경남"
+  },
+  {
+   "name": "밀양문화재단",
+   "why": "no_candidate",
+   "cat": "지자체",
+   "sub": "기초문화재단",
+   "region": "경남"
+  },
+  {
+   "name": "사천문화재단",
+   "why": "no_candidate",
+   "cat": "지자체",
+   "sub": "기초문화재단",
+   "region": "경남"
+  },
+  {
+   "name": "원주치악예술관",
+   "why": "no_candidate",
+   "cat": "공연장",
+   "sub": "문예회관",
+   "region": "강원"
+  },
+  {
+   "name": "정읍시립국악단",
+   "why": "no_candidate",
    "cat": "예술단",
-   "sub": "합창단(도립)",
-   "region": "제주"
+   "sub": "국악단",
+   "region": "전북"
+  },
+  {
+   "name": "남원시립국악단",
+   "why": "no_candidate",
+   "cat": "예술단",
+   "sub": "국악단",
+   "region": "전북"
   }
  ]
 }
