@@ -42,15 +42,20 @@ jobs:
       - name: 전체 순회 실행
         run: python crawler/fullsweep.py --env actions
 
+      # 순회가 도는 동안(30~60분) main에 다른 커밋이 쌓이면 push가 거부된다 —
+      # 2026-08-02 첫 604 순회가 정확히 이걸로 죽었다. 커밋을 먼저 만들고
+      # rebase+push를 재시도 루프로 돈다.
       - name: 결과 커밋
         run: |
           git config user.name "podium-sweep"
           git config user.email "ohmjin3141@naver.com"
-          git pull --rebase origin main || true
           git add data/fullsweep/
           if git diff --cached --quiet; then
-            echo "변경 없음"
-          else
-            git commit -m "fullsweep: Actions 순회 $(date +%F)"
-            git push origin main
+            echo "변경 없음"; exit 0
           fi
+          git commit -m "fullsweep: Actions 순회 $(date +%F)"
+          for i in 1 2 3; do
+            git pull --rebase origin main && git push origin main && exit 0
+            echo "push 재시도 $i"; sleep 10
+          done
+          exit 1
