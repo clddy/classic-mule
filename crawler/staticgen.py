@@ -73,7 +73,7 @@ def _card(j, today, href):
     st, cls = _status(j, today)
     tags = [f'<span class="tag org">{esc(j.get("org"))}</span>']   # 분류 태그와 색이 겹치지 않게 전용 클래스
     if j.get("tier") and j["tier"] != "미분류":
-        tags.append(f'<span class="tag cat">{esc(j["tier"])}</span>')
+        tags.append(f'<span class="tag src-official">{esc(j["tier"])}</span>')   # 구분은 검정 통일
     for i in (j.get("instDetails") or [])[:3]:
         tags.append(f'<span class="tag inst">{esc(i)}</span>')
     tags.append(f'<span class="tag {cls}">{esc(st)}</span>')
@@ -189,7 +189,7 @@ def _detail_page(j, today):
 <div class="page-head"><div class="container">
   <div class="top-row">
     <span class="tag src-official">{esc(j.get('org'))}</span>
-    {f'<span class="tag cat">{esc(j["tier"])}</span>' if j.get('tier') and j['tier'] != '미분류' else ''}
+    {f'<span class="tag src-official">{esc(j["tier"])}</span>' if j.get('tier') and j['tier'] != '미분류' else ''}
     <span class="tag {cls}">{esc(st)}</span>
   </div>
   <h1 style="font-size:1.35rem;margin-top:8px">{esc(j['title'])}</h1>

@@ -456,7 +456,10 @@ details[open] > .filter-summary::after { content: " −"; }
 /* 중립 */
 .tag.cat  { background: var(--wash); color: var(--ink-soft); }
 .tag.pos  { background: transparent; color: var(--ink-soft); border: 1px solid var(--line); }
-.tag.inst { background: var(--claret-tint); color: var(--claret-deep); }
+/* 악기·악기군 — 한 섹터는 한 색 (2026-08-02). 초록 '채움'을 쓰는 이유: 옅은 초록으로
+   두면 상태 태그의 '접수중'(green-tint)과 배경·글자가 완전히 같아져 섹터가 구분되지
+   않는다. 명도로 갈라 악기=진한 초록, 상태=옅은 초록으로 둔다. */
+.tag.inst { background: var(--green); color: var(--ivory); }
 /* 상태 — 초록(접수/판매중) */
 .tag.dd-open, .tag.type-offer, .tag.ok { background: var(--green-tint); color: var(--green); }
 /* 상태 — 클라레(마감임박·급구·NEW) */

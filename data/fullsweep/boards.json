@@ -578,5 +578,400 @@
   "board_url": "https://www.sacheon.go.kr/economy/00279/00281.web",
   "label": "구인게시판",
   "foundAt": "2026-08-02"
+ },
+ "감리교신학대학교": {
+  "board_url": "https://www.mtu.ac.kr/mtu/board/list.do?mId=165",
+  "label": "모집/채용(교직원)",
+  "foundAt": "2026-08-02"
+ },
+ "서원대학교": {
+  "board_url": "https://www.seowon.ac.kr/seowon/438/subview.do",
+  "label": "채용공고",
+  "foundAt": "2026-08-02"
+ },
+ "대구예술대학교": {
+  "board_url": "https://www.dgau.ac.kr/notice_rec",
+  "label": "채용공고",
+  "foundAt": "2026-08-02"
+ },
+ "제주도립제주교향악단": {
+  "board_url": "https://www.jejusi.go.kr/information/intro/recruit.do?_csrf=76692f8a-a9d2-4299-972b-b32ed5843b30",
+  "label": "채용공고",
+  "foundAt": "2026-08-02"
+ },
+ "국립경찰교향악단": {
+  "board_url": "https://www.police.go.kr/user/bbs/BD_selectBbsList.do?q_bbsCode=1004",
+  "label": "채용공고",
+  "foundAt": "2026-08-02"
+ },
+ "광명시립합창단": {
+  "board_url": "https://www.gm.go.kr/pt/user/bbs/BD_selectBbsList.do?q_bbsCode=2034&q_clCode=1",
+  "label": "시험/채용공고",
+  "foundAt": "2026-08-02"
+ },
+ "천안시립합창단": {
+  "board_url": "https://www.cheonan.go.kr/prog/saeolGosi/GOSI_05/kor/sub02_02_02_01/list.do",
+  "label": "채용공고",
+  "foundAt": "2026-08-02"
+ },
+ "국립정동극장": {
+  "board_url": "https://www.jeongdong.or.kr/portal/bbs/B0000240/list.do?menuNo=200005",
+  "label": "알림마당",
+  "foundAt": "2026-08-02"
+ },
+ "김포문화재단": {
+  "board_url": "https://www.gcf.or.kr/main/pst/list.do?pst_id=notice",
+  "label": "알림/소통",
+  "foundAt": "2026-08-02"
+ },
+ "파주문화재단": {
+  "board_url": "https://www.pajucf.or.kr/community/notice.php",
+  "label": "알림마당",
+  "foundAt": "2026-08-02"
+ },
+ "강릉문화재단": {
+  "board_url": "https://www.gncaf.or.kr/ko/community/notice",
+  "label": "공지사항",
+  "foundAt": "2026-08-02"
+ },
+ "노원문화예술회관": {
+  "board_url": "https://www.nowon.kr/www/user/bbs/BD_selectBbsList.do?q_bbsCode=1067",
+  "label": "아동청소년 알림",
+  "foundAt": "2026-08-02"
+ },
+ "구로아트밸리": {
+  "board_url": "https://guroartsvalley.or.kr/user/board/boardDefaultView.do?menuCode=mn011801&boardId=13010&index=0",
+  "label": "구로문화재단 공무직 공개채용 모집공고",
+  "foundAt": "2026-08-02"
+ },
+ "부산콘서트홀": {
+  "board_url": "https://www.busan.go.kr/depart/jobgonji01",
+  "label": "채용정보 go",
+  "foundAt": "2026-08-02"
+ },
+ "오륜교회": {
+  "board_url": "https://www.oryun.org/life/?menu=241",
+  "label": "공지사항",
+  "foundAt": "2026-08-02"
+ },
+ "천주교 서울대교구(전례음악)": {
+  "board_url": "https://aos.catholic.or.kr/inform",
+  "label": "교구 알림",
+  "foundAt": "2026-08-02"
+ },
+ "천주교 수원교구(전례음악)": {
+  "board_url": "https://www.casuwon.or.kr/info/recruit",
+  "label": "채용공모",
+  "foundAt": "2026-08-02"
+ },
+ "서울시교육청": {
+  "board_url": "https://work.sen.go.kr/work/index.do",
+  "label": "구인구직",
+  "foundAt": "2026-08-02"
+ },
+ "부산시교육청": {
+  "board_url": "https://www.pen.go.kr/main/na/ntt/selectNttList.do?mi=31659&bbsId=2282",
+  "label": "소식·채용",
+  "foundAt": "2026-08-02"
+ },
+ "대구시교육청": {
+  "board_url": "https://www.dge.go.kr/main/na/ntt/selectNttList.do?mi=10057&bbsId=3879",
+  "label": "사립학교사무직원채용",
+  "foundAt": "2026-08-02"
+ },
+ "인천시교육청": {
+  "board_url": "https://www.ice.go.kr/ice/na/ntt/selectNttList.do?mi=12030&bbsId=1972",
+  "label": "인재추천",
+  "foundAt": "2026-08-02"
+ },
+ "광주시교육청": {
+  "board_url": "https://www.gen.go.kr/xboard/board.php?tbnum=32",
+  "label": "구인구직",
+  "foundAt": "2026-08-02"
+ },
+ "대전시교육청": {
+  "board_url": "https://www.dje.go.kr/boardCnts/list.do?boardID=10539&m=030201&s=dje",
+  "label": "구인·구직",
+  "foundAt": "2026-08-02"
+ },
+ "울산시교육청": {
+  "board_url": "https://www.use.go.kr/user/bbs/BD_selectBbsList.do?q_bbsSn=1918",
+  "label": "교육공무직채용시험",
+  "foundAt": "2026-08-02"
+ },
+ "경기도교육청": {
+  "board_url": "https://www.goe.go.kr/recruit/main.do",
+  "label": "구인구직홈페이지",
+  "foundAt": "2026-08-02"
+ },
+ "충청남도교육청": {
+  "board_url": "https://www.cne.go.kr/boardCnts/list.do?boardID=642&m=020201&s=cne",
+  "label": "채용공고/희망",
+  "foundAt": "2026-08-02"
+ },
+ "전북특별자치도교육청": {
+  "board_url": "https://www.jbe.go.kr/index.jbe?menuCd=DOM_000000103004006000",
+  "label": "학교/기관별 채용공고",
+  "foundAt": "2026-08-02"
+ },
+ "전라남도교육청": {
+  "board_url": "https://www.jne.go.kr/jgemain/na/ntt/selectNttList.do?mi=2102&bbsId=1103",
+  "label": "채용정보",
+  "foundAt": "2026-08-02"
+ },
+ "경상북도교육청": {
+  "board_url": "https://www.gbe.kr/main/na/ntt/selectNttList.do?mi=3542&bbsId=1885",
+  "label": "교육공무직원 채용시험",
+  "foundAt": "2026-08-02"
+ },
+ "경상남도교육청": {
+  "board_url": "https://www.gne.go.kr/user/bbs/BD_selectBbsList.do?q_bbsSn=1254",
+  "label": "교육공무직원 채용시험",
+  "foundAt": "2026-08-02"
+ },
+ "제주특별자치도교육청": {
+  "board_url": "https://www.jje.go.kr/index.jje?menuCd=DOM_000000103003000000",
+  "label": "채용·시험정보",
+  "foundAt": "2026-08-02"
+ },
+ "심포니송": {
+  "board_url": "https://www.symphonysong.com/symphonysong/386/subview.do",
+  "label": "모집공고",
+  "foundAt": "2026-08-02"
+ },
+ "TIMF앙상블": {
+  "board_url": "https://www.timf.org/kr/sub/timf/notice.asp",
+  "label": "공지사항",
+  "foundAt": "2026-08-02"
+ },
+ "원코리아오케스트라": {
+  "board_url": "https://www.timf.org/kr/sub/timf/notice.asp",
+  "label": "공지사항",
+  "foundAt": "2026-08-02"
+ },
+ "신시컴퍼니": {
+  "board_url": "https://www.iseensee.com/Home/Community/Notice.aspx",
+  "label": "공지사항",
+  "foundAt": "2026-08-02"
+ },
+ "통영국제음악제": {
+  "board_url": "https://www.timf.org/kr/sub/timf/notice.asp",
+  "label": "공지사항",
+  "foundAt": "2026-08-02"
+ },
+ "교향악축제(예술의전당)": {
+  "board_url": "https://www.sac.or.kr/site/main/board/academy/list",
+  "label": "아카데미 공지사항",
+  "foundAt": "2026-08-02"
+ },
+ "서울종로문화원": {
+  "board_url": "http://xn--2o2bi6co4o4ubcz4a.kr/bbs/board.php?bo_table=sub0502",
+  "label": "공지사항",
+  "foundAt": "2026-08-02"
+ },
+ "서울동작문화원": {
+  "board_url": "http://www.dongjaktv.net/board/board.aspx?g=10000001",
+  "label": "공지사항",
+  "foundAt": "2026-08-02"
+ },
+ "인천계양문화원": {
+  "board_url": "https://www.igycc.or.kr/community/notice.jsp",
+  "label": "공지사항",
+  "foundAt": "2026-08-02"
+ },
+ "광주문화원": {
+  "board_url": "http://gjccf.kr/bbs/board.php?bo_table=0402",
+  "label": "학교예술강사지원사업 공지사항",
+  "foundAt": "2026-08-02"
+ },
+ "정읍문화원": {
+  "board_url": "http://jeculture.or.kr/bbs/board.php?bo_table=notice",
+  "label": "- 공지사항",
+  "foundAt": "2026-08-02"
+ },
+ "함평문화원": {
+  "board_url": "http://hpcc.or.kr/archive/notice",
+  "label": "공지사항",
+  "foundAt": "2026-08-02"
+ },
+ "거제문화원": {
+  "board_url": "http://geoje055.cafe24.com/bbs/board.php?bo_table=06_01",
+  "label": "공지사항",
+  "foundAt": "2026-08-02"
+ },
+ "의령문화원": {
+  "board_url": "http://uiryeong.kccf.or.kr/html/sub06/sub0601.php",
+  "label": "공지사항",
+  "foundAt": "2026-08-02"
+ },
+ "함양문화원": {
+  "board_url": "http://hamyang.kccf.or.kr/bbs/board.php?bo_table=notice",
+  "label": "공지사항",
+  "foundAt": "2026-08-02"
+ },
+ "거창문화원": {
+  "board_url": "http://geochang.kccf.or.kr/html/community/notice.php",
+  "label": "공지사항",
+  "foundAt": "2026-08-02"
+ },
+ "강북문화재단": {
+  "board_url": "https://www.gbcf.or.kr/load.asp?subPage=510",
+  "label": "공지사항",
+  "foundAt": "2026-08-02"
+ },
+ "관악문화재단": {
+  "board_url": "https://www.gwanak.go.kr/site/gwanak/ex/bbsNew/List.do?typeCode=4",
+  "label": "채용공고",
+  "foundAt": "2026-08-02"
+ },
+ "광진문화재단": {
+  "board_url": "https://www.gwangjin.go.kr/portal/bbs/B0000004/list.do?menuNo=200193",
+  "label": "채용정보",
+  "foundAt": "2026-08-02"
+ },
+ "구로문화재단": {
+  "board_url": "https://guroartsvalley.or.kr/user/board/boardDefaultView.do?menuCode=mn011801&boardId=13010&index=0",
+  "label": "구로문화재단 공무직 공개채용 모집공고",
+  "foundAt": "2026-08-02"
+ },
+ "서초문화재단": {
+  "board_url": "https://www.seochocf.or.kr/site/main/archive/post/category/공지사항?metaCode1=RECRUIT",
+  "label": "채용공고",
+  "foundAt": "2026-08-02"
+ },
+ "성동문화재단": {
+  "board_url": "https://www.sd.go.kr/main/selectBbsNttList.do?bbsNo=185&key=1474&",
+  "label": "채용공고",
+  "foundAt": "2026-08-02"
+ },
+ "성북문화재단": {
+  "board_url": "https://www.sbculture.or.kr/culture/bbs/BMSR00034/list.do?menuNo=500348",
+  "label": "채용공고",
+  "foundAt": "2026-08-02"
+ },
+ "영등포문화재단": {
+  "board_url": "https://www.ydpcf.or.kr/board.do?bid=3",
+  "label": "채용공고",
+  "foundAt": "2026-08-02"
+ },
+ "용산문화재단": {
+  "board_url": "https://yedu.yongsan.go.kr/pms/board/list.do?boardidn=1024&sitecdv=S0000500&decorator=user27EdTotal&menucdv=04010000",
+  "label": "알림마당",
+  "foundAt": "2026-08-02"
+ },
+ "양천문화재단": {
+  "board_url": "https://yfac.kr/main/contents.do?a_num=78696582",
+  "label": "채용공고",
+  "foundAt": "2026-08-02"
+ },
+ "종로문화재단": {
+  "board_url": "https://www.jfac.or.kr/site/main/archive/post/category/채용정보",
+  "label": "채용정보",
+  "foundAt": "2026-08-02"
+ },
+ "남양주시문화재단": {
+  "board_url": "http://www.nyjcf.or.kr/www/25",
+  "label": "채용공고",
+  "foundAt": "2026-08-02"
+ },
+ "양주시문화재단": {
+  "board_url": "https://www.yangju.go.kr/www/selectBbsNttList.do?bbsNo=21&key=216",
+  "label": "시험,채용정보",
+  "foundAt": "2026-08-02"
+ },
+ "포천문화재단": {
+  "board_url": "https://www.pocheon.go.kr/www/selectEminwonList.do?key=3717&notAncmtSeCode=05",
+  "label": "채용공고",
+  "foundAt": "2026-08-02"
+ },
+ "평창문화예술재단": {
+  "board_url": "https://www.pc.go.kr/portal/participation/participation-openplace/participation-openplace-guin",
+  "label": "구인구직",
+  "foundAt": "2026-08-02"
+ },
+ "제천문화재단": {
+  "board_url": "https://www.jccf.or.kr/bbs/board.php?bo_table=w6_3",
+  "label": "인사채용",
+  "foundAt": "2026-08-02"
+ },
+ "단양문화관광재단": {
+  "board_url": "https://www.danyang.go.kr/dy21/981",
+  "label": "채용공고(타기관)",
+  "foundAt": "2026-08-02"
+ },
+ "서산문화재단": {
+  "board_url": "http://seosancf.or.kr/index.php?MenuID=17",
+  "label": "공지사항",
+  "foundAt": "2026-08-02"
+ },
+ "나주문화관광재단": {
+  "board_url": "https://www.naju.go.kr/www/administration/notice/recruit_news_new",
+  "label": "채용정보",
+  "foundAt": "2026-08-02"
+ },
+ "여수시문화재단": {
+  "board_url": "https://www.yeosu.go.kr/www/govt/news/recruit",
+  "label": "시험·채용공고",
+  "foundAt": "2026-08-02"
+ },
+ "김천문화관광재단": {
+  "board_url": "https://www.gc.go.kr/injae/main.do",
+  "label": "인재양성재단",
+  "foundAt": "2026-08-02"
+ },
+ "진주문화관광재단": {
+  "board_url": "https://www.jinju.go.kr/00130/02730/06660.web",
+  "label": "채용공고",
+  "foundAt": "2026-08-02"
+ },
+ "사천문화재단": {
+  "board_url": "https://www.sacheon.go.kr/economy/00279/00281.web",
+  "label": "구인게시판",
+  "foundAt": "2026-08-02"
+ },
+ "원주치악예술관": {
+  "board_url": "https://www.wonju.go.kr/www/contents.do?key=311&",
+  "label": "인재육성",
+  "foundAt": "2026-08-02"
+ },
+ "정읍시립국악단": {
+  "board_url": "https://www.jeongeup.go.kr/buseo/index.jeongeup?menuCd=DOM_000001010000000000",
+  "label": "인재양성과",
+  "foundAt": "2026-08-02"
+ },
+ "남원시립국악단": {
+  "board_url": "https://www.namwon.go.kr/index.do?menuUid=ff8080818e3beff0018e4076a5e00076",
+  "label": "시험채용",
+  "foundAt": "2026-08-02"
+ },
+ "가천대학교": {
+  "board_url": "https://www.gachon.ac.kr/kor/7965/subview.do",
+  "label": "채용/구매",
+  "foundAt": "2026-08-02"
+ },
+ "공주대학교": {
+  "board_url": "https://www.kongju.ac.kr/KNU/16917/subview.do",
+  "label": "채용소식",
+  "foundAt": "2026-08-02"
+ },
+ "제주대학교": {
+  "board_url": "https://www.jejunu.ac.kr/ara/noticesurvey/outEvent.htm?act=view&seq=278841",
+  "label": "공지사항",
+  "foundAt": "2026-08-02"
+ },
+ "진주교육대학교": {
+  "board_url": "http://www.cue.ac.kr/kor/CMS/Board/Board.do?mCode=MN297",
+  "label": "채용공지",
+  "foundAt": "2026-08-02"
+ },
+ "안양문화예술재단": {
+  "board_url": "https://ayac.or.kr:443/base/menu/baseView?menuLevel=1&menuNo=6",
+  "label": "알림",
+  "foundAt": "2026-08-02"
+ },
+ "창원문화재단": {
+  "board_url": "https://www.cwcf.or.kr/commu/notice_list.asp?BCATE=BD00001&BSUBCATE=%C3%A4%BF%EB%B0%F8%B0%ED&place_idx=",
+  "label": "채용공고",
+  "foundAt": "2026-08-02"
  }
 }
