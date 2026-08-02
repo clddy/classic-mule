@@ -1,0 +1,61 @@
+{
+ "env": "local",
+ "date": "2026-08-02",
+ "master": 604,
+ "visited": 5,
+ "no_url": 548,
+ "ok": 3,
+ "results": [
+  {
+   "name": "서울대학교",
+   "cat": "대학",
+   "region": "서울",
+   "status": "ok",
+   "board_url": "https://music.snu.ac.kr/notice",
+   "rows": 3,
+   "music": 0,
+   "sample": [
+    "[입학] [수시] 2027학년도 대학 신입학생 수시모집 음악대학 실기곡목 안내(추가: 2026.7.31.(금",
+    "[입학] [정시] 2026학년도 대학 신입학생 정시모집 음악대학 작곡과(작곡·지휘전공) 1,2차 실기고사 기",
+    "[입학] [대학원] 2026학년도 대학원 후기모집 합격자 안내사항"
+   ]
+  },
+  {
+   "name": "연세대학교",
+   "cat": "대학",
+   "region": "서울",
+   "status": "ok",
+   "board_url": "https://music.yonsei.ac.kr/music/notice1.do",
+   "rows": 3,
+   "music": 2,
+   "sample": [
+    "자라섬재즈페스티벌 대학생 자원활동가 모집(~7/31)",
+    "휴먼인러브 힐링음악회 ‘뷰티풀 데이’ 재능나눔 모집(~6/28)"
+   ]
+  },
+  {
+   "name": "한국예술종합학교",
+   "cat": "대학",
+   "region": "서울",
+   "status": "ok",
+   "board_url": "https://www.karts.ac.kr/main/index.do?menuId=090504000010",
+   "rows": 1,
+   "music": 1,
+   "sample": [
+    "클린교수채용신고센터"
+   ]
+  },
+  {
+   "name": "한국교원대학교",
+   "cat": "대학",
+   "region": "충북",
+   "status": "home_unreachable"
+  },
+  {
+   "name": "국립심포니오케스트라",
+   "cat": "예술단",
+   "region": "서울",
+   "status": "no_board_found"
+  }
+ ]
+}

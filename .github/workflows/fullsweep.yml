@@ -1,0 +1,56 @@
+name: 포디엄 전체 순회 (서베이)
+
+# institutions.csv 확정 명부 전체를 방문해 상태를 기록하는 관측 전용 잡 (2026-08-02).
+# 크롤(crawl.yml)과 완전 분리 — official.json 에 아무것도 섞지 않는다.
+# 로컬에서도 같은 스크립트를 돌려 sweep-local.json 을 만들고,
+#   python crawler/fullsweep.py --compare
+# 로 비교하면 (1) 해외 IP 사각 지도 (2) 80소스 커버리지 공백이 나온다.
+# 수동 실행 전용 — 매일 돌 이유가 없는 무거운 순회라 스케줄을 걸지 않는다.
+on:
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: podium-fullsweep
+  cancel-in-progress: false
+
+jobs:
+  sweep:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    env:
+      TZ: Asia/Seoul
+      PYTHONIOENCODING: utf-8
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: 파이썬 패키지 설치
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Playwright 크롬 설치 (JS 렌더 게시판용)
+        run: python -m playwright install --with-deps chromium
+
+      - name: 전체 순회 실행
+        run: python crawler/fullsweep.py --env actions
+
+      - name: 결과 커밋
+        run: |
+          git config user.name "podium-sweep"
+          git config user.email "ohmjin3141@naver.com"
+          git pull --rebase origin main || true
+          git add data/fullsweep/
+          if git diff --cached --quiet; then
+            echo "변경 없음"
+          else
+            git commit -m "fullsweep: Actions 순회 $(date +%F)"
+            git push origin main
+          fi

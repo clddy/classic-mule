@@ -1,0 +1,17 @@
+{
+ "서울대학교": {
+  "board_url": "https://music.snu.ac.kr/notice",
+  "label": "공지 · 알림",
+  "foundAt": "2026-08-02"
+ },
+ "연세대학교": {
+  "board_url": "https://music.yonsei.ac.kr/music/notice1.do",
+  "label": "공지사항",
+  "foundAt": "2026-08-02"
+ },
+ "한국예술종합학교": {
+  "board_url": "https://www.karts.ac.kr/main/index.do?menuId=090504000010",
+  "label": "해외 예술인재 양성",
+  "foundAt": "2026-08-02"
+ }
+}
