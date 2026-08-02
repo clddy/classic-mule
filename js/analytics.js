@@ -13,7 +13,7 @@
 // filter_use/filter_empty 가 특히 중요하다: 공고(공급)는 크롤로 다 아는데,
 // 사람들이 무엇을 찾는지(수요)는 여기에만 찍힌다. '비올라로 걸렀는데 0건'은
 // 프로필 디렉토리가 채워야 할 칸을 정확히 가리킨다.
-window.PODIUM_GA_ID = "";   // ← GA4 발급 후 여기에 (예: "G-ABC123XYZ")
+window.PODIUM_GA_ID = "G-BYYPBWD5DH";   // GA4 측정 ID (2026-08-02 발급, podiumclassical.kr)
 
 (function () {
   var ID = window.PODIUM_GA_ID;
