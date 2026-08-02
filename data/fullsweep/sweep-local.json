@@ -2,9 +2,9 @@
  "env": "local",
  "date": "2026-08-02",
  "master": 604,
- "visited": 163,
- "no_url": 441,
- "ok": 73,
+ "visited": 260,
+ "no_url": 344,
+ "ok": 116,
  "results": [
   {
    "name": "서울대학교",
@@ -125,6 +125,22 @@
    "status": "no_board_found"
   },
   {
+   "name": "상명대학교(서울)",
+   "cat": "대학",
+   "region": "서울",
+   "status": "ok",
+   "board_url": "https://www.smu.ac.kr/kor/intro/recruitment.do",
+   "rows": 6,
+   "music": 5,
+   "sample": [
+    "[기타채용] 상명대학교(서울) 미래교육원 웹툰·만화예술전공 시간강사 채용 공고",
+    "모집_교과목_강의계획서_및_지원자_제출_서류.zip",
+    "[직원채용] 상명대학교(천안) 교수학습혁신센터 계약직원(연구원) 채용 공고",
+    "[기타채용] 상명대학교(서울) 학생생활관(행복기숙사) 행정조교 채용 공고",
+    "[기타채용] 상명대학교(서울) 대학원 및 문화기술대학원 뮤직테크놀로지학과 행정조교 채용 공고"
+   ]
+  },
+  {
    "name": "세종대학교",
    "cat": "대학",
    "region": "서울",
@@ -134,6 +150,28 @@
    "music": 1,
    "sample": [
     "계열별 통합모집(유형2)"
+   ]
+  },
+  {
+   "name": "서경대학교",
+   "cat": "대학",
+   "region": "서울",
+   "status": "no_board_found"
+  },
+  {
+   "name": "삼육대학교",
+   "cat": "대학",
+   "region": "서울",
+   "status": "ok",
+   "board_url": "https://www.syu.ac.kr/university-square/notice/job-offer/",
+   "rows": 6,
+   "music": 6,
+   "sample": [
+    "[아이젝스] IT 기술 엔지니어 채용~8/3(월)",
+    "[토스] Merchandising Associate(주니어 MD) 채용~7/26(일)",
+    "한국금융연수원 2026년 사무보조 아르바이트 모집~7/23(목) 조기 마감됨",
+    "더유제약 26년 의원영업 신입사원 특채 채용~7/22(수)",
+    "[토스페이먼츠] 계약직 채용~7/11(토)"
    ]
   },
   {
@@ -160,6 +198,12 @@
    "sample": [
     "클린교수채용신고센터"
    ]
+  },
+  {
+   "name": "총신대학교",
+   "cat": "대학",
+   "region": "서울",
+   "status": "no_board_found"
   },
   {
    "name": "장로회신학대학교",
@@ -192,7 +236,25 @@
    "status": "no_board_found"
   },
   {
+   "name": "단국대학교(죽전)",
+   "cat": "대학",
+   "region": "경기",
+   "status": "ok",
+   "board_url": "https://www.dankook.ac.kr/web/kor/public-service",
+   "rows": 1,
+   "music": 0,
+   "sample": [
+    "업무추진비 내역 공고"
+   ]
+  },
+  {
    "name": "수원대학교",
+   "cat": "대학",
+   "region": "경기",
+   "status": "no_board_found"
+  },
+  {
+   "name": "용인대학교",
    "cat": "대학",
    "region": "경기",
    "status": "no_board_found"
@@ -215,6 +277,20 @@
     "2025학년도 성결신학원 감사보고서 공고",
     "2025학년도 성결신학원 합산 재무제표 공고",
     "2025학년도 성결신학원 법인회계 결산 공고"
+   ]
+  },
+  {
+   "name": "협성대학교",
+   "cat": "대학",
+   "region": "경기",
+   "status": "ok",
+   "board_url": "https://www.uhs.ac.kr/uhs/963/subview.do",
+   "rows": 6,
+   "music": 0,
+   "sample": [
+    "2025년 학교법인 삼일학원 결산공고",
+    "2026년 학교법인 삼일학원 예산공고",
+    "2024년 학교법인 삼일학원 결산공고"
    ]
   },
   {
@@ -279,6 +355,18 @@
    ]
   },
   {
+   "name": "가톨릭관동대학교",
+   "cat": "대학",
+   "region": "강원",
+   "status": "no_board_found"
+  },
+  {
+   "name": "강릉원주대학교",
+   "cat": "대학",
+   "region": "강원",
+   "status": "no_board_found"
+  },
+  {
    "name": "충남대학교",
    "cat": "대학",
    "region": "대전",
@@ -306,6 +394,18 @@
    "status": "no_board_found"
   },
   {
+   "name": "청주대학교",
+   "cat": "대학",
+   "region": "충북",
+   "status": "ok",
+   "board_url": "https://www.cju.ac.kr/www/selectBbsNttList.do?bbsNo=882&key=4579&",
+   "rows": 6,
+   "music": 1,
+   "sample": [
+    "2026-2학기 전임교원 특별채용 공고문"
+   ]
+  },
+  {
    "name": "목원대학교",
    "cat": "대학",
    "region": "대전",
@@ -324,6 +424,47 @@
    "status": "no_board_found"
   },
   {
+   "name": "침례신학대학교",
+   "cat": "대학",
+   "region": "대전",
+   "status": "ok",
+   "board_url": "https://job.kbtus.ac.kr/job/CMS/Board/Board.do?mCode=MN014",
+   "rows": 2,
+   "music": 2,
+   "sample": [
+    "교원채용 자주묻는질문",
+    "취업진로 및 교원채용"
+   ]
+  },
+  {
+   "name": "단국대학교(천안)",
+   "cat": "대학",
+   "region": "충남",
+   "status": "ok",
+   "board_url": "https://www.dankook.ac.kr/web/kor/public-service",
+   "rows": 1,
+   "music": 0,
+   "sample": [
+    "업무추진비 내역 공고"
+   ]
+  },
+  {
+   "name": "상명대학교(천안)",
+   "cat": "대학",
+   "region": "충남",
+   "status": "ok",
+   "board_url": "https://www.smu.ac.kr/kor/intro/recruitment.do",
+   "rows": 6,
+   "music": 5,
+   "sample": [
+    "[기타채용] 상명대학교(서울) 미래교육원 웹툰·만화예술전공 시간강사 채용 공고",
+    "모집_교과목_강의계획서_및_지원자_제출_서류.zip",
+    "[직원채용] 상명대학교(천안) 교수학습혁신센터 계약직원(연구원) 채용 공고",
+    "[기타채용] 상명대학교(서울) 학생생활관(행복기숙사) 행정조교 채용 공고",
+    "[기타채용] 상명대학교(서울) 대학원 및 문화기술대학원 뮤직테크놀로지학과 행정조교 채용 공고"
+   ]
+  },
+  {
    "name": "백석대학교",
    "cat": "대학",
    "region": "충남",
@@ -340,6 +481,18 @@
    "cat": "대학",
    "region": "충남",
    "status": "no_board_found"
+  },
+  {
+   "name": "건국대학교(글로컬)",
+   "cat": "대학",
+   "region": "충북",
+   "status": "ok",
+   "board_url": "https://www.kku.ac.kr/cms/FR_CON/index.do?MENU_ID=1910",
+   "rows": 1,
+   "music": 1,
+   "sample": [
+    "2025학년도 2학기 전임교원 공개채용"
+   ]
   },
   {
    "name": "전남대학교",
@@ -421,6 +574,20 @@
    "cat": "대학",
    "region": "전북",
    "status": "no_board_found"
+  },
+  {
+   "name": "동신대학교",
+   "cat": "대학",
+   "region": "광주·전남",
+   "status": "ok",
+   "board_url": "https://www.dsu.ac.kr/kr/index.php?pCode=jobnews",
+   "rows": 3,
+   "music": 3,
+   "sample": [
+    "[한국남동발전(주)] 2026년 한국남동발전(주) 체험형인턴 채용(~7...",
+    "[광주광역시청소년성문화센터] 인력채용 공고(~8.3)",
+    "[경상북도개발공사] 신입직원 채용(사무직, 기술직) (~8.14)"
+   ]
   },
   {
    "name": "경북대학교",
@@ -617,11 +784,9 @@
    "region": "광주·전남",
    "status": "ok",
    "board_url": "https://www.gnue.ac.kr/index.9is?contentUid=4a9f18ab5c48fe8c015c86267b260235",
-   "rows": 6,
-   "music": 1,
-   "sample": [
-    "2026년도 제4회 국가공무원(공업8~9급) 전입(지방공무원 경력경쟁채용) 모집 공고"
-   ]
+   "rows": 0,
+   "music": 0,
+   "sample": []
   },
   {
    "name": "전주교육대학교",
@@ -784,6 +949,25 @@
    "status": "home_unreachable"
   },
   {
+   "name": "마산시립교향악단",
+   "cat": "예술단",
+   "region": "경남",
+   "inSources": true,
+   "status": "home_unreachable"
+  },
+  {
+   "name": "과천시립교향악단",
+   "cat": "예술단",
+   "region": "경기",
+   "status": "ok",
+   "board_url": "https://www.gccity.go.kr/portal/saeol/gosi/list.do?seCode=05&mId=0301030100",
+   "rows": 1,
+   "music": 0,
+   "sample": [
+    "2011~2021 입찰공고 내역"
+   ]
+  },
+  {
    "name": "양주시립교향악단",
    "cat": "예술단",
    "region": "경기",
@@ -873,6 +1057,19 @@
    "cat": "예술단",
    "region": "경북",
    "status": "no_board_found"
+  },
+  {
+   "name": "경산시립교향악단",
+   "cat": "예술단",
+   "region": "경북",
+   "status": "ok",
+   "board_url": "https://www.gbgs.go.kr/open_content/ko/page.do?mnu_uid=2162&",
+   "rows": 6,
+   "music": 2,
+   "sample": [
+    "2026년 용성면 공중화장실 관리 기간제근로자 채용",
+    "2026년 경산시 농업기술센터(휴일 유기동물보호소 사양관리 및 청소) 기간제 근로자 채용 공고"
+   ]
   },
   {
    "name": "충남교향악단",
@@ -1123,6 +1320,12 @@
    ]
   },
   {
+   "name": "울산문화재단",
+   "cat": "지자체",
+   "region": "울산",
+   "status": "no_board_found"
+  },
+  {
    "name": "세종시문화재단",
    "cat": "지자체",
    "region": "세종",
@@ -1152,9 +1355,109 @@
    ]
   },
   {
+   "name": "강원문화재단",
+   "cat": "지자체",
+   "region": "강원",
+   "status": "no_board_found"
+  },
+  {
+   "name": "충북문화재단",
+   "cat": "지자체",
+   "region": "충북",
+   "status": "home_unreachable"
+  },
+  {
+   "name": "충남문화재단",
+   "cat": "지자체",
+   "region": "충남",
+   "status": "no_board_found"
+  },
+  {
+   "name": "전북문화관광재단",
+   "cat": "지자체",
+   "region": "전북",
+   "status": "no_board_found"
+  },
+  {
+   "name": "전남문화재단",
+   "cat": "지자체",
+   "region": "광주·전남",
+   "status": "no_board_found"
+  },
+  {
+   "name": "경북문화재단",
+   "cat": "지자체",
+   "region": "경북",
+   "status": "no_board_found"
+  },
+  {
+   "name": "경남문화예술진흥원",
+   "cat": "지자체",
+   "region": "경남",
+   "status": "ok",
+   "board_url": "https://www.gcaf.or.kr/bbs/board.php?bo_table=sub3_8",
+   "rows": 6,
+   "music": 1,
+   "sample": [
+    "[2026-251호]2026년 제5차 직원(정규직) 채용 공고"
+   ]
+  },
+  {
    "name": "제주문화예술재단",
    "cat": "지자체",
    "region": "제주",
+   "status": "no_board_found"
+  },
+  {
+   "name": "성남문화재단",
+   "cat": "지자체",
+   "region": "경기",
+   "inSources": true,
+   "status": "ok",
+   "board_url": "https://www.snart.or.kr/main/pst/list.do?pst_id=recruit",
+   "rows": 6,
+   "music": 2,
+   "sample": [
+    "(성남시 통합채용)필기시험 장소 및 응시자 준수사항 공고",
+    "성남아트센터 공연장안내원 모집공고(~8/4)"
+   ]
+  },
+  {
+   "name": "수원문화재단",
+   "cat": "지자체",
+   "region": "경기",
+   "status": "no_board_found"
+  },
+  {
+   "name": "고양문화재단",
+   "cat": "지자체",
+   "region": "경기",
+   "inSources": true,
+   "status": "ok",
+   "board_url": "https://www.artgy.or.kr/CU/CU0101M.aspx",
+   "rows": 6,
+   "music": 2,
+   "sample": [
+    "고양문화재단 제작연극 <당진, 겨울나무 손 잡고 봄 꽃.> 오디션 공고문",
+    "2026년 3차 고양문화재단 기간제 직원 채용 공고"
+   ]
+  },
+  {
+   "name": "부천문화재단",
+   "cat": "지자체",
+   "region": "경기",
+   "status": "ok",
+   "board_url": "https://www.bcf.or.kr:443/base/board/list?boardManagementNo=25&menuLevel=2&menuNo=86",
+   "rows": 6,
+   "music": 1,
+   "sample": [
+    "[교육] 자녀와 함께 듣는 교양 교육  <예술 그리고, 이야기> 8월 신청자 모집"
+   ]
+  },
+  {
+   "name": "안양문화예술재단",
+   "cat": "지자체",
+   "region": "경기",
    "status": "no_board_found"
   },
   {
@@ -1193,6 +1496,20 @@
    ]
   },
   {
+   "name": "안산문화재단",
+   "cat": "지자체",
+   "region": "경기",
+   "inSources": true,
+   "status": "ok",
+   "board_url": "https://www.ansanart.com/lay1/bbs/S1T84C408/A/62/list.do",
+   "rows": 6,
+   "music": 2,
+   "sample": [
+    "2026년 안산시 공공기관 통합채용 하반기 정기채용 계획 공고(안산문화재단)",
+    "2026년 안산문화재단 기간제근로자 모집 공고(미화, 미술행정_육아휴직대체, 안산국제거리극축제 공연PD, 장"
+   ]
+  },
+  {
    "name": "광명문화재단",
    "cat": "지자체",
    "region": "경기",
@@ -1205,6 +1522,13 @@
    "status": "no_board_found"
   },
   {
+   "name": "창원문화재단",
+   "cat": "지자체",
+   "region": "경남",
+   "inSources": true,
+   "status": "home_unreachable"
+  },
+  {
    "name": "청주시문화산업진흥재단",
    "cat": "지자체",
    "region": "충북",
@@ -1215,6 +1539,51 @@
    "music": 1,
    "sample": [
     "[공고번호-2026-0389호] 기간제근로자 채용 공고(뮤지엄숍)"
+   ]
+  },
+  {
+   "name": "천안문화재단",
+   "cat": "지자체",
+   "region": "충남",
+   "inSources": true,
+   "status": "ok",
+   "board_url": "https://www.cfac.or.kr/bbs/board.php?bo_table=job",
+   "rows": 6,
+   "music": 2,
+   "sample": [
+    "[2026-126호] 천안문화재단 2026년 제5차 직원 경력경쟁채용 공고",
+    "[2026-124호] 천안문화재단 2026년 제4차 직원(기간제) 채용 재공고"
+   ]
+  },
+  {
+   "name": "전주문화재단",
+   "cat": "지자체",
+   "region": "전북",
+   "status": "no_board_found"
+  },
+  {
+   "name": "포항문화재단",
+   "cat": "지자체",
+   "region": "경북",
+   "inSources": true,
+   "status": "no_board_found"
+  },
+  {
+   "name": "원주문화재단",
+   "cat": "지자체",
+   "region": "강원",
+   "status": "home_unreachable"
+  },
+  {
+   "name": "춘천문화재단",
+   "cat": "지자체",
+   "region": "강원",
+   "status": "ok",
+   "board_url": "https://www.cccf.or.kr/home/community",
+   "rows": 1,
+   "music": 0,
+   "sample": [
+    "[공고문] 2026 합케이스 우수콘텐츠 선정 결과.pdf"
    ]
   },
   {
@@ -1280,6 +1649,12 @@
    "status": "home_unreachable"
   },
   {
+   "name": "아트센터인천",
+   "cat": "공연장",
+   "region": "인천",
+   "status": "no_board_found"
+  },
+  {
    "name": "성남아트센터",
    "cat": "공연장",
    "region": "경기",
@@ -1322,6 +1697,32 @@
    ]
   },
   {
+   "name": "수원SK아트리움",
+   "cat": "공연장",
+   "region": "경기",
+   "status": "no_board_found"
+  },
+  {
+   "name": "부천아트센터",
+   "cat": "공연장",
+   "region": "경기",
+   "status": "home_unreachable"
+  },
+  {
+   "name": "화성아트홀",
+   "cat": "공연장",
+   "region": "경기",
+   "inSources": true,
+   "status": "ok",
+   "board_url": "https://www.hcf.or.kr/hcf/60?chathead=%ED%99%94%EC%84%B1%EC%8B%9C%EB%AC%B8%ED%99%94%EC%9E%AC%EB%8B%A8",
+   "rows": 6,
+   "music": 2,
+   "sample": [
+    "2026년 (재)화성시문화관광재단 전시기획팀 하반기 기간제근로자(전시장코디네이터) 채용 응시현황 및 채용과정",
+    "2026년 제1회 (재)화성시문화관광재단 직원 채용 차순위자 임용(2차)"
+   ]
+  },
+  {
    "name": "부산문화회관",
    "cat": "공연장",
    "region": "부산",
@@ -1355,6 +1756,20 @@
    "status": "no_board_found"
   },
   {
+   "name": "대전예술의전당",
+   "cat": "공연장",
+   "region": "대전",
+   "status": "ok",
+   "board_url": "https://www.daejeon.go.kr/drh/MediaList.do?notiType=NOTI_05&menuSeq=2563",
+   "rows": 4,
+   "music": 3,
+   "sample": [
+    "기부금품모집등록현황",
+    "대전관광공사 엑스포과학공원 기간제근로자 채용 공고",
+    "대전관광공사 본사옥 단시간근로자 채용 공고"
+   ]
+  },
+  {
    "name": "울산문화예술회관",
    "cat": "공연장",
    "region": "울산",
@@ -1378,9 +1793,42 @@
    ]
   },
   {
+   "name": "강릉아트센터",
+   "cat": "공연장",
+   "region": "강원",
+   "status": "no_board_found"
+  },
+  {
+   "name": "청주예술의전당",
+   "cat": "공연장",
+   "region": "충북",
+   "status": "no_board_found"
+  },
+  {
+   "name": "전주소리문화의전당",
+   "cat": "공연장",
+   "region": "전북",
+   "status": "ok",
+   "board_url": "https://www.sori21.co.kr/site/1/menu/66/board/15/posts",
+   "rows": 5,
+   "music": 0,
+   "sample": [
+    "2026 한국소리문화의전당 유아문화예술교육 <소리터? 놀이터!> 참여 유아교육기관 선정 발표(추가 모집)",
+    "2026년 유아문화예술교육 코디네이터 채용 최종 합격자 발표",
+    "2026년 문화예술교육사 채용 최종 합격자 발표"
+   ]
+  },
+  {
    "name": "김해문화의전당",
    "cat": "공연장",
    "region": "경남",
+   "status": "home_unreachable"
+  },
+  {
+   "name": "창원성산아트홀",
+   "cat": "공연장",
+   "region": "경남",
+   "inSources": true,
    "status": "home_unreachable"
   },
   {
@@ -1491,6 +1939,30 @@
    ]
   },
   {
+   "name": "지구촌교회",
+   "cat": "교회",
+   "region": "서울",
+   "status": "home_unreachable"
+  },
+  {
+   "name": "분당우리교회",
+   "cat": "교회",
+   "region": "경기",
+   "status": "no_board_found"
+  },
+  {
+   "name": "수영로교회",
+   "cat": "교회",
+   "region": "부산",
+   "status": "no_board_found"
+  },
+  {
+   "name": "만나교회",
+   "cat": "교회",
+   "region": "경기",
+   "status": "no_board_found"
+  },
+  {
    "name": "프라임필하모닉오케스트라",
    "cat": "민간",
    "region": "경기",
@@ -1550,6 +2022,67 @@
    "status": "no_board_found"
   },
   {
+   "name": "강남문화재단",
+   "cat": "지자체",
+   "region": "서울",
+   "inSources": true,
+   "status": "ok",
+   "board_url": "https://www.gfac.or.kr/site/main/recruit/accordionList",
+   "rows": 6,
+   "music": 4,
+   "sample": [
+    "채용지원 2026년 2차 직원채용 계약직(사서) 지원페이지 2026-05-28 ~ 2026-06-05 마감",
+    "채용지원 2026년 2차 직원채용 계약직(일반행정) 지원페이지 2026-05-28 ~ 2026-06-05 마",
+    "채용지원 2026년 2차 직원채용 휴직대체계약직 (8급 상당)_일반행정 지원페이지 2026-05-28 ~ 2",
+    "채용지원 2026년 2차 직원채용 전문계약직 (7급 상당)_ 일반행정 지원페이지 2026-05-28 ~ 20"
+   ]
+  },
+  {
+   "name": "노원문화재단",
+   "cat": "지자체",
+   "region": "서울",
+   "status": "home_unreachable"
+  },
+  {
+   "name": "마포문화재단",
+   "cat": "지자체",
+   "region": "서울",
+   "status": "no_board_found"
+  },
+  {
+   "name": "이천문화재단",
+   "cat": "지자체",
+   "region": "경기",
+   "status": "no_board_found"
+  },
+  {
+   "name": "오산문화재단",
+   "cat": "지자체",
+   "region": "경기",
+   "status": "ok",
+   "board_url": "https://main.kotsa.or.kr/portal/contents.do?menuCode=04050200",
+   "rows": 2,
+   "music": 1,
+   "sample": [
+    "인사·채용 비리신고"
+   ]
+  },
+  {
+   "name": "하남문화재단",
+   "cat": "지자체",
+   "region": "경기",
+   "status": "ok",
+   "board_url": "https://www.hnart.or.kr/artcenter/selectBbsNttList.do?bbsNo=1&key=219",
+   "rows": 6,
+   "music": 4,
+   "sample": [
+    "기부금 모집 및 사용현황",
+    "2026년 제3회 직원 채용과정 공개",
+    "2026년 제4회 직원채용 시행계획 공고 핫이슈",
+    "2026년 제4회 직원채용 채용기준 사전공개"
+   ]
+  },
+  {
    "name": "동해문화관광재단",
    "cat": "지자체",
    "region": "강원",
@@ -1583,6 +2116,30 @@
    ]
   },
   {
+   "name": "구미문화재단",
+   "cat": "지자체",
+   "region": "경북",
+   "status": "home_unreachable"
+  },
+  {
+   "name": "경주문화재단",
+   "cat": "지자체",
+   "region": "경북",
+   "status": "home_unreachable"
+  },
+  {
+   "name": "김해문화재단",
+   "cat": "지자체",
+   "region": "경남",
+   "status": "ok",
+   "board_url": "https://www.ghcf.or.kr/board/board02",
+   "rows": 1,
+   "music": 0,
+   "sample": [
+    "평가위원회 결과공고"
+   ]
+  },
+  {
    "name": "통영문화재단",
    "cat": "지자체",
    "region": "경남",
@@ -1596,6 +2153,363 @@
     "[공고 제2026-85호] (재)통영문화재단 임원 공개모집 공고",
     "[공고 제2026-84호] (재)통영문화재단 직원 채용 공고",
     "[공고 제2026-63호] (재)통영문화재단 단시간근로자 채용 공고"
+   ]
+  },
+  {
+   "name": "안양문화예술회관",
+   "cat": "공연장",
+   "region": "경기",
+   "status": "no_board_found"
+  },
+  {
+   "name": "김포아트홀",
+   "cat": "공연장",
+   "region": "경기",
+   "status": "ok",
+   "board_url": "https://www.gimpo.go.kr/portal/selectBbsNttList.do?bbsNo=298&key=1297",
+   "rows": 3,
+   "music": 1,
+   "sample": [
+    "제54회 경기도공예품대전 개최 모집 공고"
+   ]
+  },
+  {
+   "name": "이천아트홀",
+   "cat": "공연장",
+   "region": "경기",
+   "status": "ok",
+   "board_url": "https://www.icheon.go.kr/search/front/Search.jsp?qt=채용공고",
+   "rows": 6,
+   "music": 4,
+   "sample": [
+    "[대표포털] 채용 공고 이천소식 > 채용 정보 > 채용 공고",
+    "[기업지원일자리] 타기관 고시/ 공고 일자리 > 공공/타기관 채용 정보 > 타기관 고시/ 공고",
+    "이천시가족센터 아이돌봄지원사업(전담인력, 회계, 사례관리) 채용 공고",
+    "2026년 농지전수조사 기간제 근로자 채용 공고"
+   ]
+  },
+  {
+   "name": "오산문화예술회관",
+   "cat": "공연장",
+   "region": "경기",
+   "status": "ok",
+   "board_url": "https://main.kotsa.or.kr/portal/contents.do?menuCode=04050200",
+   "rows": 2,
+   "music": 1,
+   "sample": [
+    "인사·채용 비리신고"
+   ]
+  },
+  {
+   "name": "군포문화예술회관",
+   "cat": "공연장",
+   "region": "경기",
+   "status": "ok",
+   "board_url": "https://www.gunpo.go.kr/www/selectEminwonNoticeList.do?key=3899&Not_ancmt_se_code=05&list_gubun=N&ofr_pageSize=10&notAncmtSeCd=05",
+   "rows": 4,
+   "music": 2,
+   "sample": [
+    "인터넷접수(통합예약 행사/모집)",
+    "통합채용정보공개시스템"
+   ]
+  },
+  {
+   "name": "구리아트홀",
+   "cat": "공연장",
+   "region": "경기",
+   "inSources": true,
+   "status": "ok",
+   "board_url": "https://www.guri.go.kr/www/selectBbsNttList.do?bbsNo=41&key=389",
+   "rows": 6,
+   "music": 4,
+   "sample": [
+    "2026년 제12회 구리시 사회조사 조사원 모집공고",
+    "2026년 하반기 구리시립청소년교향악단 단원 모집 공고(지역무관)",
+    "구리시청소년재단(사무국) 장애인 기간제 근로자 채용 공고",
+    "구리시청소년재단(사무국) 행정사무-기간제 직원 공개채용 공고"
+   ]
+  },
+  {
+   "name": "남양주다산아트홀",
+   "cat": "공연장",
+   "region": "경기",
+   "status": "home_unreachable"
+  },
+  {
+   "name": "평택남부문예회관",
+   "cat": "공연장",
+   "region": "경기",
+   "status": "no_board_found"
+  },
+  {
+   "name": "춘천문화예술회관",
+   "cat": "공연장",
+   "region": "강원",
+   "status": "ok",
+   "board_url": "https://www.chuncheon.go.kr/cityhall/administrative-info/notice-info/recruitment-info/",
+   "rows": 6,
+   "music": 6,
+   "sample": [
+    "2026년 춘천시 공무직(환경미화원) 채용 체력인증 합격기준 안내",
+    "춘천시 공무직 직원 채용 체력시험 변경 안내(2026년 시행)",
+    "2026년 제9회 춘천시 한시임기제공무원(대체인력뱅크) 채용 공고 (간호)",
+    "2026년 제9회 춘천시 임기제공무원 채용 공고(목공체험장 운영, 불법주정차 단속)",
+    "2026년 제2회 춘천시의회 임기제공무원 채용 공고"
+   ]
+  },
+  {
+   "name": "속초문화예술회관",
+   "cat": "공연장",
+   "region": "강원",
+   "status": "no_board_found"
+  },
+  {
+   "name": "동해문화예술회관",
+   "cat": "공연장",
+   "region": "강원",
+   "status": "no_board_found"
+  },
+  {
+   "name": "삼척문화예술회관",
+   "cat": "공연장",
+   "region": "강원",
+   "status": "home_unreachable"
+  },
+  {
+   "name": "충주문화회관",
+   "cat": "공연장",
+   "region": "충북",
+   "status": "no_board_found"
+  },
+  {
+   "name": "제천예술의전당",
+   "cat": "공연장",
+   "region": "충북",
+   "status": "ok",
+   "board_url": "https://www.jecheon.go.kr/www/contents.do?key=1237",
+   "rows": 1,
+   "music": 0,
+   "sample": [
+    "(구)고시공고(~2020.1.20)"
+   ]
+  },
+  {
+   "name": "서산문화회관",
+   "cat": "공연장",
+   "region": "충남",
+   "status": "ok",
+   "board_url": "http://chungnam.work.go.kr/seosan/main.do",
+   "rows": 1,
+   "music": 0,
+   "sample": [
+    "당진시, 제2기 스마트팜 창업 실습교육 교육생 모집"
+   ]
+  },
+  {
+   "name": "당진문예의전당",
+   "cat": "공연장",
+   "region": "충남",
+   "status": "home_unreachable"
+  },
+  {
+   "name": "보령문화예술회관",
+   "cat": "공연장",
+   "region": "충남",
+   "status": "ok",
+   "board_url": "https://www.brcn.go.kr/cop/bbs/BBSMSTR_000000001341/selectBoardList.do",
+   "rows": 6,
+   "music": 6,
+   "sample": [
+    "육군 제32보병사단 공무직근로자(조리원) 채용공고(~8.2.)",
+    "2026년 제3회 교육공무직원(시설관리,조리실무사,미화원) 채용 공고",
+    "충청북도해양교육원 기간제 교육공무직원 채용 공고",
+    "2026년 제2회 서울특별시교육청학생교육원 교육공무직원 채용 공고(조리실무사)",
+    "2026년 보령시체육회 요트스포츠클럽 지도자 채용 공고"
+   ]
+  },
+  {
+   "name": "익산예술의전당",
+   "cat": "공연장",
+   "region": "전북",
+   "status": "no_board_found"
+  },
+  {
+   "name": "군산예술의전당",
+   "cat": "공연장",
+   "region": "전북",
+   "inSources": true,
+   "status": "no_board_found"
+  },
+  {
+   "name": "정읍사예술회관",
+   "cat": "공연장",
+   "region": "전북",
+   "status": "ok",
+   "board_url": "https://www.jeongeup.go.kr/buseo/index.jeongeup?menuCd=DOM_000001010000000000",
+   "rows": 3,
+   "music": 0,
+   "sample": [
+    "2026년 평생학습관 하반기 수강생 모집 안내",
+    "2026년 청년취업시험준비반 민간위탁운영 종합성과평가 결과 공고",
+    "2026년도 정읍장학숙 입사생 수시모집(대학생, 재수생 및 휴학생, 취업준비생)"
+   ]
+  },
+  {
+   "name": "남원춘향문화예술회관",
+   "cat": "공연장",
+   "region": "전북",
+   "status": "ok",
+   "board_url": "https://www.namwon.go.kr/index.do?menuUid=ff8080818e3beff0018e4076a5e00076",
+   "rows": 6,
+   "music": 3,
+   "sample": [
+    "2026년 노인일자리 및 사회활동 지원사업 참여자 추가모집 공고",
+    "2026년 도시녹지관리원 재모집 공고",
+    "이백면행정복지센터 하계 방역소독 기간제근로자 채용 공고"
+   ]
+  },
+  {
+   "name": "김제문화예술회관",
+   "cat": "공연장",
+   "region": "전북",
+   "status": "ok",
+   "board_url": "https://www.gimje.go.kr/index.gimje?menuCd=DOM_000000104004000000",
+   "rows": 6,
+   "music": 3,
+   "sample": [
+    "2026년 김제시 실내수영장 기간제근로자(수상안전요원) 채용 공고",
+    "2026년 지역특화 농업기술정보 DB화 구축 기간제근로자 채용 공고",
+    "2026년 제3단계 공공근로사업 참여자 추가모집 공고"
+   ]
+  },
+  {
+   "name": "여수예울마루(GS칼텍스)",
+   "cat": "공연장",
+   "region": "광주·전남",
+   "status": "ok",
+   "board_url": "https://www.yeulmaru.org/community/",
+   "rows": 5,
+   "music": 1,
+   "sample": [
+    "GS칼텍스 예울마루 (추경)예술기반 청년일자리(연수단원) 채용 공고 예술사업팀 2026-06-17 조회수 :"
+   ]
+  },
+  {
+   "name": "순천문화예술회관",
+   "cat": "공연장",
+   "region": "광주·전남",
+   "inSources": true,
+   "status": "ok",
+   "board_url": "https://www.suncheon.go.kr/kr/news/0005",
+   "rows": 6,
+   "music": 4,
+   "sample": [
+    "2026년 숲길관리정비반 기간제근로자 채용 공고",
+    "2026년 조곡동 농지 전수조사 업무보조 기간제근로자 채용 공고",
+    "순천시 가축방역팀 기간제근로자 채용 공고",
+    "2026년 제1회 순천시 공무직(무기계약)근로자 채용시험 사전 안내"
+   ]
+  },
+  {
+   "name": "광양문화예술회관",
+   "cat": "공연장",
+   "region": "광주·전남",
+   "status": "no_board_found"
+  },
+  {
+   "name": "나주문화예술회관",
+   "cat": "공연장",
+   "region": "광주·전남",
+   "status": "ok",
+   "board_url": "https://www.naju.go.kr/www/administration/notice/recruit_news_new",
+   "rows": 6,
+   "music": 2,
+   "sample": [
+    "채용공고 순위하락 6",
+    "2026년 지방세입 체납관리단(기간제 근로자) 결원채용 공고"
+   ]
+  },
+  {
+   "name": "구미문화예술회관",
+   "cat": "공연장",
+   "region": "경북",
+   "status": "no_board_found"
+  },
+  {
+   "name": "경주예술의전당",
+   "cat": "공연장",
+   "region": "경북",
+   "status": "home_unreachable"
+  },
+  {
+   "name": "안동문화예술의전당",
+   "cat": "공연장",
+   "region": "경북",
+   "inSources": true,
+   "status": "no_board_found"
+  },
+  {
+   "name": "김천문화예술회관",
+   "cat": "공연장",
+   "region": "경북",
+   "status": "home_unreachable"
+  },
+  {
+   "name": "문경문화예술회관",
+   "cat": "공연장",
+   "region": "경북",
+   "status": "no_board_found"
+  },
+  {
+   "name": "진주경남문화예술회관",
+   "cat": "공연장",
+   "region": "경남",
+   "status": "no_board_found"
+  },
+  {
+   "name": "통영시민문화회관",
+   "cat": "공연장",
+   "region": "경남",
+   "status": "ok",
+   "board_url": "https://www.tongyeong.go.kr/00852/00853/00860.web",
+   "rows": 1,
+   "music": 0,
+   "sample": [
+    "자체/타기관 고시공고"
+   ]
+  },
+  {
+   "name": "거제문화예술회관",
+   "cat": "공연장",
+   "region": "경남",
+   "status": "home_unreachable"
+  },
+  {
+   "name": "양산문화예술회관",
+   "cat": "공연장",
+   "region": "경남",
+   "status": "home_unreachable"
+  },
+  {
+   "name": "밀양아리랑아트센터",
+   "cat": "공연장",
+   "region": "경남",
+   "status": "no_board_found"
+  },
+  {
+   "name": "사천문화예술회관",
+   "cat": "공연장",
+   "region": "경남",
+   "status": "ok",
+   "board_url": "https://www.sacheon.go.kr/economy/00279/00281.web",
+   "rows": 6,
+   "music": 6,
+   "sample": [
+    "최강배달 라이더 모집",
+    "⛔️공유다//라이더님모집⛔️",
+    "(주3일 목금토)저녁실장님 모집 (여성분)",
+    "라이더 모집 ((투잡프리야간환영))",
+    "곤양어르신학교 운전원 채용공고(남녀무관)"
    ]
   }
  ]

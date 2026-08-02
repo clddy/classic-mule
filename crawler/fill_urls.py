@@ -33,6 +33,13 @@ def main():
     dry = "--dry-run" in sys.argv
     seeds = {norm(k): v for k, v in json.load(open(SEEDS, encoding="utf-8")).items()
              if not k.startswith("_")}
+    # 프로버(probe_homepages.py)가 실접속 검증까지 마친 발견분 — 시드보다 신뢰도가 높다
+    probed = os.path.join(os.path.dirname(HERE), "data", "fullsweep", "probed_homepages.json")
+    try:
+        for k, v in json.load(open(probed, encoding="utf-8"))["found"].items():
+            seeds[norm(k)] = v["url"]
+    except (FileNotFoundError, json.JSONDecodeError, KeyError):
+        pass
     out_lines, filled, backlog = [], [], 0
     with open(CSV_PATH, encoding="utf-8", newline="") as f:
         for line in f:

@@ -9,7 +9,7 @@ from common import (new_session, get, relevant, extract_deadline, deadline_from_
                     classify_insts, find_subject, find_music_subjects, find_music_courses,
                     classify_kind, classify_tier, is_obri, cert_required, degree_req, career_req, age_group,
                     region_from, EXCLUDE, compact_title, music_only_title, body_text,
-                    insts_from_recruit_text)
+                    insts_from_recruit_text, tls_blocked, curl_get)
 from sources import SOURCES
 from institutions import INSTITUTIONS
 import attach
@@ -539,7 +539,8 @@ def _body_from_attachments(s, soup, r, item):
         if item.get("bodyExcerpt"):
             break
         try:
-            fr = s.get(furl, timeout=30, verify=False, headers={"Referer": item["url"]})
+            fr = (curl_get(furl, referer=item["url"], timeout=30) if tls_blocked(furl)
+                  else s.get(furl, timeout=30, verify=False, headers={"Referer": item["url"]}))
             if fr.status_code != 200 or not (200 < len(fr.content) < 20_000_000):
                 continue
             cd = fr.headers.get("Content-Disposition", "")
@@ -896,8 +897,9 @@ def enrich_deadline(s, item, allow_render=True, details_only=False):
             return
         for furl, fname in find_attachments(soup, r.url):
             try:
-                # 일부 CMS(부천 등)는 Referer 없으면 다운로드 거부
-                fr = s.get(furl, timeout=30, verify=False, headers={"Referer": item["url"]})
+                # 일부 CMS(부천 등)는 Referer 없으면 다운로드 거부. TLS 차단 호스트는 curl 우회
+                fr = (curl_get(furl, referer=item["url"], timeout=30) if tls_blocked(furl)
+                      else s.get(furl, timeout=30, verify=False, headers={"Referer": item["url"]}))
                 if fr.status_code != 200 or not (200 < len(fr.content) < 20_000_000):
                     continue
                 cd = fr.headers.get("Content-Disposition", "")
@@ -1034,7 +1036,8 @@ def _ensure_raw_attachments(final, cap=25):
                     break
             for furl, fname in atts[:rawstore.MAX_ATTACH]:
                 try:
-                    fr = s.get(furl, timeout=30, verify=False, headers={"Referer": it["url"]})
+                    fr = (curl_get(furl, referer=it["url"], timeout=30) if tls_blocked(furl)
+                          else s.get(furl, timeout=30, verify=False, headers={"Referer": it["url"]}))
                     if fr.status_code != 200 or not (200 < len(fr.content) < 20_000_000):
                         continue
                     cd = fr.headers.get("Content-Disposition", "")

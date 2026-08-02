@@ -1,5 +1,5 @@
 # 공통 유틸: 세션, 날짜/분류 추출
-import re, hashlib, time
+import os, re, hashlib, time
 import requests
 import urllib3
 from bs4 import BeautifulSoup
@@ -16,6 +16,46 @@ def new_session():
     s.headers.update(UA)
     return s
 
+# 파이썬(OpenSSL)·크로미엄(BoringSSL) TLS 지문을 차단하는 호스트 — 같은 UA로도 응답을
+# 안 주고 매달아 둔다(read timeout). 윈도우 curl(Schannel TLS)만 통과함을 확인
+# (2026-08-02 cwcf: requests 40초 hang / playwright 30초 hang / curl 0.26초 200).
+# 국내 관공서 보안장비가 윈도우 TLS 스택을 허용목록으로 쓰는 것으로 보인다.
+# 이 호스트는 get()이 시스템 curl 서브프로세스로 투명하게 우회한다.
+# ※ 리눅스(Actions)의 curl은 OpenSSL이라 우회가 안 됨 — 국내 PC 크롤이 주력인 이유 하나 추가.
+TLS_BLOCKED_HOSTS = ("cwcf.or.kr",)
+_CURL = r"C:\Windows\System32\curl.exe"
+
+def tls_blocked(url):
+    return any(h in (url or "") for h in TLS_BLOCKED_HOSTS)
+
+class _BypassResponse:
+    """curl 우회 결과를 requests.Response 처럼 보이게 하는 최소 껍데기 —
+    호출부(r.text·r.status_code·r.url·r.content)가 구분 없이 쓰도록."""
+    def __init__(self, url, content, encoding=None):
+        self.url = url
+        self.content = content or b""
+        self.status_code = 200 if content else 599
+        self.headers = {}
+        if not encoding:  # euc-kr 구형 ASP(cwcf 등) 대응 — 메타 태그로 판별
+            head = self.content[:2000].lower()
+            encoding = "euc-kr" if (b"euc-kr" in head or b"ks_c_5601" in head) else "utf-8"
+        self.encoding = encoding
+        self.text = self.content.decode(encoding, "replace")
+
+def curl_get(url, referer=None, timeout=25, encoding=None):
+    """Schannel TLS 우회 GET (윈도우 curl.exe). 실패 시 빈 599 응답."""
+    import subprocess
+    if not os.path.exists(_CURL):
+        return _BypassResponse(url, b"")
+    args = [_CURL, "-s", "-L", "-k", "-m", str(timeout), "-A", UA["User-Agent"], url]
+    if referer:
+        args += ["-e", referer]
+    try:
+        p = subprocess.run(args, capture_output=True, timeout=timeout + 10)
+        return _BypassResponse(url, p.stdout if p.returncode == 0 else b"", encoding)
+    except Exception:
+        return _BypassResponse(url, b"")
+
 def get(s, url, encoding=None, retries=2, **kw):
     """GET + 네트워크 오류 재시도.
 
@@ -24,6 +64,8 @@ def get(s, url, encoding=None, retries=2, **kw):
     재시도가 없으면 이런 딸꾹질 한 번에 그 소스의 하루치 수집이 통째로 날아간다.
     HTTP 상태코드는 호출부가 판단하므로 여기선 연결·타임아웃 계열만 재시도한다.
     """
+    if tls_blocked(url):
+        return curl_get(url, referer=(kw.get("headers") or {}).get("Referer"), encoding=encoding)
     last = None
     for attempt in range(retries + 1):
         try:

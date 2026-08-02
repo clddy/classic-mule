@@ -237,7 +237,8 @@ def parse_sejongpac(s):
 
 # ---------- 16. 창원문화재단(창원시향) ----------
 def parse_cwcf(s):
-    get(s, "https://www.cwcf.or.kr/main/main.asp")  # 세션 쿠키 확보
+    # 2026-08-02부터 cwcf가 파이썬 TLS 지문을 차단한다(윈도우 curl만 통과) —
+    # common.get()이 TLS_BLOCKED_HOSTS 를 보고 curl 로 투명하게 우회하므로 코드는 평범하게 쓴다.
     r = get(s, "https://www.cwcf.or.kr/commu/notice_list.asp?BCATE=BD00001",
             encoding="euc-kr", headers={"Referer": "https://www.cwcf.or.kr/main/main.asp"})
     items = []

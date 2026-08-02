@@ -1,0 +1,87 @@
+{
+ "found": {
+  "국립현대무용단": {
+   "url": "https://www.kncdc.kr",
+   "via": "known"
+  }
+ },
+ "misses": [
+  {
+   "name": "대구예술대학교",
+   "why": "no_candidate",
+   "cat": "대학",
+   "sub": "음악",
+   "region": "경북"
+  },
+  {
+   "name": "예원예술대학교",
+   "why": "no_candidate",
+   "cat": "대학",
+   "sub": "음악",
+   "region": "전북"
+  },
+  {
+   "name": "감리교신학대학교",
+   "why": "no_candidate",
+   "cat": "대학",
+   "sub": "교회음악",
+   "region": "서울"
+  },
+  {
+   "name": "서울장신대학교",
+   "why": "no_candidate",
+   "cat": "대학",
+   "sub": "교회음악",
+   "region": "경기"
+  },
+  {
+   "name": "경상국립대학교",
+   "why": "no_candidate",
+   "cat": "대학",
+   "sub": "음악교육",
+   "region": "경남"
+  },
+  {
+   "name": "서원대학교",
+   "why": "no_candidate",
+   "cat": "대학",
+   "sub": "음악교육",
+   "region": "충북"
+  },
+  {
+   "name": "광명시립합창단",
+   "why": "known_fail",
+   "cat": "예술단",
+   "sub": "합창단",
+   "region": "경기"
+  },
+  {
+   "name": "제주도립제주교향악단",
+   "why": "known_fail",
+   "cat": "예술단",
+   "sub": "교향악단(도립)",
+   "region": "제주"
+  },
+  {
+   "name": "천안시립합창단",
+   "why": "known_fail",
+   "cat": "예술단",
+   "sub": "합창단",
+   "region": "충남"
+  },
+  {
+   "name": "국립경찰교향악단",
+   "why": "known_fail",
+   "cat": "예술단",
+   "sub": "교향악단",
+   "region": "서울"
+  },
+  {
+   "name": "제주도립서귀포합창단",
+   "why": "known_fail",
+   "cat": "예술단",
+   "sub": "합창단(도립)",
+   "region": "제주"
+  }
+ ]
+}
