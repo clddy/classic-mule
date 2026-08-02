@@ -171,12 +171,16 @@ def compare():
         if r.get("status") == "ok" and r.get("rows", 0) > 0 and a and (
                 a.get("status") != "ok" or a.get("rows", 0) == 0):
             print(f"  {n}: 로컬 {r.get('rows')}건 / Actions {a.get('status')} {a.get('rows', 0)}건")
-    print("\n== 순회에서 음악성 게시글이 나왔는데 official.json에 그 기관이 없음 → 커버리지 공백 후보 ==")
-    off = _load(os.path.join(BASE, "data", "official.json"), {"items": []})
-    orgs = {it.get("org", "") for it in off["items"]}
+    # 대조 상대는 official(살아있는 것만)이 아니라 archive(전량 누적)다 — official로 대조하면
+    # '수집됐다가 마감돼 빠진' 공고가 전부 공백으로 오탐된다 (2026-08-02 첫 비교에서 4건 중
+    # 3건이 이 오탐이었다: 안동 첼로 강사·순천 신입단원은 정상 수집분, 밀레니엄은 270일 컷오프).
+    print("\n== 순회에서 음악성 게시글이 나왔는데 아카이브에 그 기관이 전무 → 커버리지 공백 후보 ==")
+    arc = _load(os.path.join(BASE, "data", "archive.json"), {"items": {}})
+    orgs = {v.get("org", "") for v in arc["items"].values()}
     for n, r in L.items():
         if r.get("music", 0) > 0 and not any(n[:4] in o for o in orgs):
             print(f"  {n} ({r.get('music')}건): {'; '.join(r.get('sample', [])[:2])}")
+    print("\n※ 여기 남는 것도 '옛 공고'일 수 있다 — 게시일을 확인하고 소스를 붙일 것.")
     return 0
 
 

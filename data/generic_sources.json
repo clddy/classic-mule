@@ -1039,9 +1039,9 @@
   "id": "wonju",
   "name": "원주시립교향악단·합창단",
   "region": "강원",
-  "board_url": "https://www.wonju.go.kr/www/contents.do?key=311&",
-  "board_label": "인재육성",
-  "needs_js": true,
+  "board_url": "https://www.wonju.go.kr/arts/pr/notice.html?gnb=4&snb=1",
+  "board_label": "시립예술단 공지",
+  "needs_js": false,
   "sample": [
    {
     "title": "서류(필기)합격자 및 면접시험 공고",
