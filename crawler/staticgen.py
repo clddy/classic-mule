@@ -149,7 +149,12 @@ def _jsonld(j):
 def _detail_page(j, today):
     st, cls = _status(j, today)
     label, href = _apply(j)
-    act = (f'<a class="btn-primary" style="text-decoration:none" href="{esc(href)}" target="_blank" rel="noopener">{esc(label)}</a>'
+    # 계측: 검색 유입이 처음 닿는 페이지가 여기다 — 원문 이동 클릭(data-ev)이
+    # '포디엄을 보고 지원했다'의 유일한 증거가 된다 (js/analytics.js 위임 클릭)
+    _dest = "mail" if (href or "").startswith("mailto:") else "tel" if (href or "").startswith("tel:") else "official"
+    _ev = "contact_click" if _dest in ("mail", "tel") else "job_outbound"
+    act = (f'<a class="btn-primary" style="text-decoration:none" href="{esc(href)}" target="_blank" rel="noopener" '
+           f'data-ev="{_ev}" data-evl="{esc(j.get("org") or "")}|{j["id"]}|{_dest}">{esc(label)}</a>'
            if href and label else "")   # 지원 경로가 없으면 버튼 자체를 만들지 않는다
     rows = "".join(f"<dt>{esc(k)}</dt><dd>{esc(v)}</dd>" for k, v in _detail_rows(j))
     desc = esc((j.get("bodyExcerpt") or j.get("recruitSummary") or f"{j.get('org','')} {j['title']}")[:150])
@@ -173,6 +178,7 @@ def _detail_page(j, today):
   <meta property="og:locale" content="ko_KR">
   <meta name="twitter:card" content="summary_large_image">
   <link rel="stylesheet" href="../css/style.css?v=10">
+  <script src="../js/analytics.js?v=1" defer></script>
   <script type="application/ld+json">{_jsonld(j)}</script>
 </head>
 <body>

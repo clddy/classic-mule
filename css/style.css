@@ -334,6 +334,9 @@ details[open] > .filter-summary::after { content: " −"; }
 }
 .chip:hover { border-color: var(--ink); color: var(--ink); }
 .chip.on { background: var(--ink); color: var(--ivory); border-color: var(--ink); }
+/* '현악 전체'처럼 악기군을 통째로 고르는 칩 — 개별 악기 칩과 한눈에 구분되게 */
+.chip.group { border-style: dashed; font-weight: 600; }
+.chip.group.on { border-style: solid; }
 .filter-reset {
   width: 100%;
   margin-top: 4px;
@@ -466,6 +469,9 @@ details[open] > .filter-summary::after { content: " −"; }
 /* 구분·구직 */
 .tag.type-seek { background: transparent; color: var(--ink-soft); border: 1px solid var(--line); }
 .tag.src-official { background: var(--ink); color: var(--ivory); }
+/* 수집 원천 기관명 — 출처 라벨이라 분류 태그(연주=src-official 검정)와 색이 겹치면 안 된다.
+   같은 검정을 쓰던 탓에 '군산시립교향악단'과 '연주'가 한 덩어리로 보였다 (2026-08-02) */
+.tag.org { background: var(--ivory); color: var(--ink); border: 1px solid var(--ink); font-weight: 600; }
 .tag.src-community { background: transparent; color: var(--ink); border: 1px solid var(--ink); }
 /* 예시(목데이터) — 노란 경고색으로 실데이터와 확실히 구분 */
 .tag.sample { background: #f6e58d; color: #6b5900; font-weight: 700; }

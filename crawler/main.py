@@ -8,10 +8,12 @@ from common import (new_session, get, relevant, extract_deadline, deadline_from_
                     musician_relevant, parse_recruit_table, summarize_recruit, find_position,
                     classify_insts, find_subject, find_music_subjects, find_music_courses,
                     classify_kind, classify_tier, is_obri, cert_required, degree_req, career_req, age_group,
-                    region_from, EXCLUDE, compact_title, music_only_title, body_text)
+                    region_from, EXCLUDE, compact_title, music_only_title, body_text,
+                    insts_from_recruit_text)
 from sources import SOURCES
 from institutions import INSTITUTIONS
 import attach
+import rawstore
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # podium/
 OUT = os.path.join(BASE, "data", "official.json")
@@ -239,7 +241,8 @@ def find_attachments(soup, base_url):
                     cands.append((full, el.get_text(" ", strip=True)))
     return cands[:4]
 
-EXT_VER = 29         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
+EXT_VER = 32         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
+                     # v32(2026-08-02): 모집분야 구획 악기 추출(insts_from_recruit_text) + 원문 보관층
                      # 24: work.sen 등록일(게시일) 추출 추가 — date=None이던 승계분을 다시 뽑게
                      # 25: body_text 도입 — 본문을 <header>에 넣는 사이트(대전교육청)의 마감일을
                      #     스스로 날리던 버그 수정. 못 찾았던 항목들을 다시 뽑게 한다.
@@ -249,6 +252,8 @@ EXT_VER = 29         # 마감일 추출기 버전 — 올리면 이전 수집의
                      # 28: OCR 타일링 — 세로로 긴 인포그래픽(4500x13577 등)을 조각내 읽는다.
                      #     통짜로 넘기면 Tesseract가 뭉개 마감일을 통째로 놓쳤다.
                      # 29: 자격 중복라벨 정리·본문요약 메뉴 제거·악기군(현악부·관악부) 태그
+                     # 30: 대학 전공 추출에 원문 본문 포함(첨부가 웹뷰어인 대학 대응)
+                     # 31: 본문요약을 정보 가치순으로 선별(상투구 배제), 기타(guitar) 강사 제외
                      # 23: region_from 개편(전남광주통합특별시 반영, 경기 광주시 오분류 수정)
                      #  v18: 대학 강사 초빙 원문 첨부(HWP/XLSX)에서 음악 전공 추출 + 비음악 제외
                      #  v19: 음악 학과/전공 정밀 추출(행사명·전화번호 오염 제거) — 재추출 강제
@@ -389,7 +394,10 @@ _EXCERPT_SKIP = re.compile(
     # 내용 없는 섹션 제목 줄 ('채용방법 및 일정')
     r"|^(?:채용|모집|지원|접수|전형) ?(?:방법|절차|일정|안내)(?: ?및 ?(?:방법|절차|일정|안내))?$"
     # 채용 사이트의 사이드 메뉴·표 헤더가 본문으로 긁힌 경우 (광진문화재단 등 gabia 채용 CMS)
-    r"|진행 ?중인 다른|다른 채용 ?공고|채용공고명|담당업무 ?/|장애인 채용 ?희망|우대 ?조건 ?/")
+    r"|진행 ?중인 다른|다른 채용 ?공고|채용공고명|담당업무 ?/|장애인 채용 ?희망|우대 ?조건 ?/"
+    # 알맹이 없는 공문 상투구 — 어느 공고에나 있어 요약 자리를 낭비한다 (2026-08-02 김포여중)
+    r"|다음과 같이 (?:공고|모집|채용|알려)|공고하고자|채용 ?계획을|위와 같이 ?공고"
+    r"|^내국인으로서|^채용 ?(?:응시 )?자격$|^모집 ?세부 ?사항$|^응모 ?자격$|^채용 ?분야$")
 
 def _body_excerpt_text(text, title=None):
     keep = []
@@ -421,17 +429,47 @@ def _body_excerpt_text(text, title=None):
         if any(k[:16] == ln[:16] for k in keep):
             continue
         keep.append(ln)
-        if len(keep) >= 4:
-            break
-    return " · ".join(keep)[:240] if keep else None
+    if not keep:
+        return None
+    # 앞에서부터 4줄을 자르면 '채용 계획을 다음과 같이 공고하고자 합니다' 같은 도입부만
+    # 실린다 — 김포여중은 강사료(시간 4만원)·운영조건·접수 이메일이 본문에 다 있는데도
+    # 껍데기만 요약됐다(2026-08-02 지적). 그래서 '지원자가 궁금해할 사실'이 든 줄에 점수를
+    # 매겨 상위 4줄만 남기고, 읽기 순서는 원문 그대로 되돌린다.
+    ranked = sorted(keep, key=lambda l: (-_line_value(l), keep.index(l)))[:4]
+    picked = [l for l in keep if l in ranked]
+    return " · ".join(picked)[:240]
+
+
+def _line_value(ln):
+    """요약 줄의 정보 가치 — 금액·연락처·기간·인원처럼 지원 판단에 쓰이는 사실일수록 높다."""
+    v = 0
+    if re.search(r"\d[\d,]*\s*원", ln):                       v += 3   # 강사료·급여
+    if re.search(r"[\w.+-]+@[\w.-]+|\d{2,4}-\d{3,4}-\d{4}", ln): v += 3   # 이메일·전화
+    if re.search(r"20\d{2}\s*[.\-년]|\d{1,2}\s*월\s*\d{1,2}", ln): v += 2   # 날짜
+    if re.search(r"주\s*\d+\s*회|\d+\s*시간|\d+\s*주\b|\d+\s*개반", ln):   v += 2   # 시수·운영조건
+    if re.search(r"\d+\s*명", ln):                            v += 2   # 인원
+    if re.search(r"자격증|학위|전공자|경력\s*\d|이상\s*(?:취득|소지)", ln): v += 2   # 자격 요건
+    if re.search(r"[:：]", ln):                               v += 1   # 라벨형(값이 붙어 있음)
+    return v
 
 def _body_excerpt(soup, title=None):
     return _body_excerpt_text(soup.get_text("\n", strip=True), title=title)
+
+def _merge_insts(item, grp, dets):
+    """추출된 악기를 기존 태그와 합친다 — 제목 추출분을 지우지 않는다(악기명 보존 원칙)."""
+    if not dets:
+        return
+    item["instDetails"] = list(dict.fromkeys((item.get("instDetails") or []) + dets))
+    if item.get("inst") in (None, "", "전체", "기타") and grp:
+        item["inst"] = grp
 
 def _apply_details_from_text(text, item, want_excerpt=True):
     """평문 본문(페이지/첨부/OCR)에서 자격·인원·객원필드·요약을 채운다 (없는 것만)"""
     if not text:
         return
+    # 모집분야 구획에서 악기 추출 — 제목엔 '예능단원'뿐이고 파트가 첨부 공고표에만 있는
+    # 공고(대전시향 등)가 악기 미상의 최대 원인이었다 (2026-08-02, 163건 중 161건).
+    _merge_insts(item, *insts_from_recruit_text(text))
     if not item.get("qualification"):
         q = _find_qualification(text)
         if q:
@@ -492,11 +530,7 @@ def _extract_body_details(soup, page_text, item, ry):
     # 본문에서 악기 탐지 후 제목에서 뽑은 것과 **합친다**. 예전엔 제목에 악기가 하나라도
     # 있으면 본문을 안 봤는데, 군산시향처럼 제목엔 악기가 없고 본문 접수분야에 '피아노,
     # 현악부, 관악부, 타악부'가 있는 공고에서 일부만 태그되는 원인이었다 (2026-08-02).
-    grp, dets = classify_insts(page_text[:3000])
-    if dets:
-        item["instDetails"] = list(dict.fromkeys((item.get("instDetails") or []) + dets))
-        if item.get("inst") in (None, "", "전체", "기타"):
-            item["inst"] = grp
+    _merge_insts(item, *classify_insts(page_text[:3000]))
 
 def _body_from_attachments(s, soup, r, item):
     """첨부 공고문(HWP/PDF)에서 본문 상세(자격·인원·요약) 보강 — 마감일 로직과 무관.
@@ -511,7 +545,9 @@ def _body_from_attachments(s, soup, r, item):
             cd = fr.headers.get("Content-Disposition", "")
             m = re.search(r"filename\*?=(?:UTF-8'')?\"?([^\";]+)", cd)
             name = m.group(1) if m else (fname or furl)
-            _apply_details_from_text(attach.extract_any(name, fr.content), item)
+            atext = attach.extract_any(name, fr.content)
+            rawstore.stash(item.get("id"), "attach", atext, name=name)
+            _apply_details_from_text(atext, item)
         except Exception:
             continue
 
@@ -736,12 +772,18 @@ def _music_from_origin(s, item):
             cd = fr.headers.get("Content-Disposition", "")
             m = re.search(r"filename\*?=(?:UTF-8'')?\"?([^\";]+)", cd)
             name = m.group(1) if m else (fname or furl)
-            texts.append(attach.extract_any(name, fr.content))
+            atext = attach.extract_any(name, fr.content)
+            rawstore.stash(item.get("id"), "attach", atext, name=name)
+            texts.append(atext)
         except Exception:
             continue
         if len(texts) >= 6:
             break
-    blob = "\n".join(texts)
+    # 첨부를 못 열어도 원문 본문에 초빙 분야가 적힌 대학이 많다 — 목원대는 첨부가 웹뷰어
+    # (v.mokwon.ac.kr/View/...)라 다운로드 링크가 아예 없었지만, 본문에 '음악대학
+    # 공연콘텐츠학부(성악전공·뮤지컬전공…)'이 그대로 있었다. 첨부만 보던 탓에 전공을
+    # 놓치고 '자동확인 불가'로 눕혔다 (2026-08-02 지적).
+    blob = "\n".join(texts + [body_text(r.text)]).strip()
     subs = find_music_subjects(blob)
     if subs:
         item["subject"] = " · ".join(subs)
@@ -753,6 +795,27 @@ def _music_from_origin(s, item):
         item["nonMusic"] = True
     else:
         item["musicUnverified"] = True
+
+
+def _apply_overrides(items, verbose=False):
+    """사람이 직접 확인한 사실(전화·메일 회신, 손수 찾은 원문 링크)을 크롤 결과 위에 덮어쓴다.
+    crawler/overrides.json — URL 키라 제목이 바뀌어도 안정적이고, 공고가 내려가면 자동 무시된다."""
+    ov_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "overrides.json")
+    if not os.path.exists(ov_path):
+        return
+    try:
+        with open(ov_path, encoding="utf-8") as f:
+            overrides = {k: v for k, v in json.load(f).items() if not k.startswith("_")}
+        n_ov = 0
+        for it in items:
+            ov = overrides.get(it.get("url")) or overrides.get(it.get("officialUrl") or "")
+            if ov:
+                it.update(ov)
+                n_ov += 1
+        if verbose and n_ov:
+            log(f"확인정보 병합: {n_ov}건 (overrides.json)")
+    except Exception as e:
+        log(f"WARN overrides.json 병합 실패: {e}")
 
 
 def _dl_hints(text):
@@ -787,6 +850,8 @@ def enrich_deadline(s, item, allow_render=True, details_only=False):
         # 본문 텍스트는 body_text로 뽑는다 — soup에서 헤더를 직접 지우면 본문을 <header>에
         # 넣는 사이트(대전교육청)의 내용을 통째로 날린다. soup 자체는 첨부·이미지 탐색에 계속 쓰므로 보존.
         page_text = body_text(r.text)
+        # 원문 보관층: 페이지 본문을 txt로 저장 (추출기 개선 시 재추출의 원본 — rawstore.py)
+        rawstore.stash(item.get("id"), "page", page_text, url=item.get("url"), title=item.get("title"))
         # 집계 포털 항목: 원문이 있으면 원문을 검증(죽은 링크 차단 + 진짜 마감일),
         # 원문이 없는 직접게시글이면 지원 연락처를 본문에서 확보한다.
         if item.get("source") in AGGREGATORS:
@@ -839,6 +904,7 @@ def enrich_deadline(s, item, allow_render=True, details_only=False):
                 m = re.search(r"filename\*?=(?:UTF-8'')?\"?([^\";]+)", cd)
                 name = m.group(1) if m else (fname or furl)
                 atext = attach.extract_any(name, fr.content)
+                rawstore.stash(item.get("id"), "attach", atext, name=name)
                 _apply_details_from_text(atext, item)  # 첨부 공고문에서 자격·인원·요약
                 dl = extract_deadline(atext, ref_year=ry)
                 if dl:
@@ -855,6 +921,7 @@ def enrich_deadline(s, item, allow_render=True, details_only=False):
                     _ocr_used += 1
                     data = blob if blob else s.get(src_url, timeout=30, verify=False).content
                     otext = attach.ocr_image(data)
+                    rawstore.stash(item.get("id"), "attach", otext, name=f"ocr:{src_url.rsplit('/', 1)[-1][:40]}")
                     _apply_details_from_text(otext, item)  # 이미지 공고문에서 자격·인원·요약
                     dl = extract_deadline(otext, ref_year=ry)
                     if dl:
@@ -931,6 +998,58 @@ def track_deadline_misses(final):
         json.dump(cur, f, ensure_ascii=False, indent=1)
     if cur:
         log(f"마감 미확인 {len(cur)}건 추적 중 (이번에 보고 {len(due)}건) → deadline_misses.json")
+
+
+def _ensure_raw_attachments(final, cap=25):
+    """원문 보관층 보완 패스 — 첨부를 아직 저장하지 못한 공고를 한 번씩 마저 긁는다.
+
+    enrich_deadline은 마감일이 페이지에서 바로 나오면 첨부를 열지 않고 돌아간다(효율).
+    그 결과 악기·파트가 첨부 공고표에만 있는 공고(대전시향 '예능단원')는 원문 보관층에
+    첨부가 안 쌓이고 악기 미상으로 남는다. 여기서 전 공고의 본문+첨부를 빠짐없이 저장한다.
+
+    저장은 불변 누적이라 공고당 평생 한 번이다 — tried 마커(rawstore.RETRY_DAYS)로
+    실패 재시도도 며칠에 한 번으로 묶는다. cap은 크롤 시간 방어(며칠에 걸쳐 수렴).
+    """
+    todo = [it for it in final
+            if it.get("id") and it.get("url")
+            and it.get("source") != "hibrain.net"           # 로그인 게이트 — 익명 재방문 무의미
+            and not rawstore.has_attach(it["id"])
+            and not rawstore.tried_recently(it["id"])]
+    if not todo:
+        return 0
+    s = new_session()
+    done = 0
+    for it in todo[:cap]:
+        iid = it["id"]
+        try:
+            r = get(s, it["url"])
+            if r.status_code != 200:
+                rawstore.mark_tried(iid)
+                continue
+            rawstore.stash(iid, "page", body_text(r.text), url=it["url"], title=it.get("title"))
+            atts = []
+            for parser in ("lxml", "html.parser"):   # 대형 페이지 lxml 앵커 누락 폴백
+                atts = find_attachments(BeautifulSoup(r.text, parser), r.url)
+                if atts:
+                    break
+            for furl, fname in atts[:rawstore.MAX_ATTACH]:
+                try:
+                    fr = s.get(furl, timeout=30, verify=False, headers={"Referer": it["url"]})
+                    if fr.status_code != 200 or not (200 < len(fr.content) < 20_000_000):
+                        continue
+                    cd = fr.headers.get("Content-Disposition", "")
+                    m = re.search(r"filename\*?=(?:UTF-8'')?\"?([^\";]+)", cd)
+                    name = m.group(1) if m else (fname or furl)
+                    rawstore.stash(iid, "attach", attach.extract_any(name, fr.content), name=name)
+                except Exception:
+                    continue
+            rawstore.mark_tried(iid)
+            done += 1
+        except Exception:
+            rawstore.mark_tried(iid)
+    if len(todo) > cap:
+        log(f"원문 보관: 이번 회차 {cap}건까지 — 남은 {len(todo) - cap}건은 다음 크롤에서")
+    return done
 
 
 # ---------- 메인 ----------
@@ -1104,6 +1223,11 @@ def run(force_all=False):
              and musician_relevant(i["title"], i.get("kind", ""), i.get("org", ""))]
     # 대학 전체 강사 초빙 중 첨부 확인 결과 음악 교과목이 전혀 없던 공고는 제외(비음악 확정)
     final = [i for i in final if not i.get("nonMusic")]
+    # 사람이 찾아 넣은 사실(overrides.json)을 **지원경로 판정 전에** 먼저 얹는다.
+    # 순서가 반대면, 원문 링크를 손수 찾아 넣어도 그 공고가 이미 제외된 뒤라 되살아나지
+    # 못한다 — 천안시립교향악단이 실제로 그랬다 (2026-08-02). 아래 최종 단계에서 한 번 더
+    # 병합하는 것은 그대로 둔다(그때는 분류 재적용 뒤 값을 덮어쓰는 게 목적).
+    _apply_overrides(final)
     # 지원할 방법이 하나도 없는 공고는 싣지 않는다 — 집계 포털에서 왔는데 기관 원문도,
     # 이메일·전화도 못 뽑은 경우다. 포털로는 링크를 내지 않기로 했으므로(CLAUDE.md) 카드에
     # '기관명으로 검색하세요'라는 빈 안내만 남아 사용자가 할 수 있는 게 없다 (2026-07-29 지적).
@@ -1153,6 +1277,13 @@ def run(force_all=False):
             log(f"DROP 원본 삭제(연속 404): {g.get('org')} / {(g.get('title') or '')[:40]}")
     with open(tomb_path, "w", encoding="utf-8") as f:
         json.dump(tombs, f, ensure_ascii=False, indent=1)
+    # 원문 보관층 보완 — 전 공고의 본문+첨부를 txt로 확보 (공고당 평생 한 번)
+    try:
+        n_raw = _ensure_raw_attachments(final)
+        if n_raw:
+            log(f"원문 보관: {n_raw}건 본문+첨부 수집")
+    except Exception as e:
+        log(f"WARN 원문 보관 실패: {type(e).__name__}: {e}")
     for it in final:
         old = prev_by_id.get(it["id"])
         it["firstSeen"] = old.get("firstSeen", today.isoformat()) if old else today.isoformat()
@@ -1183,6 +1314,11 @@ def run(force_all=False):
             subj = find_subject(it["title"])
             if subj:
                 it["subject"] = subj
+        # 악기 재추출 — 원문 보관층(txt) 위에서 매 크롤 최신 추출기로 다시 뽑는다.
+        # 승계(extVer) 경로와 무관하게 자기치유되므로, 추출기를 고치면 다음 크롤에서
+        # 과거 저장분까지 소급 적용된다 (이 구조가 없어서 미상 161건이 회복 불가였다).
+        if not it.get("instDetails"):
+            _merge_insts(it, *insts_from_recruit_text(rawstore.all_text(it["id"])))
     # 제외 규칙은 소스 파싱 때만 걸린다 — 규칙을 새로 넣어도(수시모집 등 입시 공지)
     # 이미 수집·승계된 항목이 살아남는 문제 방지: 최신 EXCLUDE를 전체에 재적용
     n0 = len(final)
@@ -1192,22 +1328,7 @@ def run(force_all=False):
     n_unclass = sum(1 for it in final if it["tier"] == "미분류")
     if n_unclass:
         log(f"미분류 큐: {n_unclass}건 — {'; '.join(it['title'][:24] for it in final if it['tier'] == '미분류')}")
-    # 사람이 직접 확인한 사실(전화·메일 회신) 병합 — 자동 추출값 위에 덮어씀 (crawler/overrides.json, URL 키)
-    ov_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "overrides.json")
-    if os.path.exists(ov_path):
-        try:
-            with open(ov_path, encoding="utf-8") as f:
-                overrides = {k: v for k, v in json.load(f).items() if not k.startswith("_")}
-            n_ov = 0
-            for it in final:
-                ov = overrides.get(it.get("url")) or overrides.get(it.get("officialUrl") or "")
-                if ov:
-                    it.update(ov)
-                    n_ov += 1
-            if n_ov:
-                log(f"확인정보 병합: {n_ov}건 (overrides.json)")
-        except Exception as e:
-            log(f"WARN overrides.json 병합 실패: {e}")
+    _apply_overrides(final, verbose=True)
     final.sort(key=lambda x: (x.get("date") or x["firstSeen"]), reverse=True)
 
     payload = {
@@ -1224,6 +1345,14 @@ def run(force_all=False):
         f.write("window.CRAWLED = ")
         json.dump(payload, f, ensure_ascii=False)
         f.write(";\n")
+
+    # 원문 보관층 디스크 반영 — 크롤 중 stash된 본문·첨부 텍스트를 data/raw/에 병합 저장
+    try:
+        n_flushed = rawstore.flush()
+        if n_flushed:
+            log(f"원문 보관: {n_flushed}개 파일 저장/갱신 (data/raw/)")
+    except Exception as e:
+        log(f"WARN 원문 보관 저장 실패: {type(e).__name__}: {e}")
 
     # 아카이브 누적 — official.json 은 살아있는 공고만 남기므로 마감된 공고가 매일
     # 사라진다. 수요 지도(crawler/demand_map.py)의 원본이 되도록 여기 따로 쌓는다.

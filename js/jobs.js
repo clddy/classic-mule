@@ -102,6 +102,21 @@ const INST_GROUPS = [
   ["그 외", ["타악", "피아노", "하프", "지휘"]],
   ["성악", ["소프라노", "메조소프라노", "알토", "테너", "바리톤", "베이스(성악)"]],
 ];
+// 악기군을 통째로 고르는 칩('현악 전체'). 공고가 '현악부'라고만 밝힌 경우도, 개별 악기만
+// 적힌 경우도 함께 걸린다 (2026-08-02 군산시향 — 접수분야가 '현악부·관악부'였다).
+// '그 외'는 타악·피아노·하프·지휘를 묶은 편의 분류라 군으로 고를 대상이 아니다.
+const GROUPABLE = ["현악", "목관", "금관", "성악"];
+const GROUP_MEMBERS = Object.fromEntries(INST_GROUPS);
+// 공고 하나가 필터 선택(개별 악기 + 군)에 걸리는가
+function instMatches(insts, sel) {
+  return [...sel].some(v => {
+    if (!GROUPABLE.includes(v)) return insts.includes(v);        // 개별 악기
+    if (insts.includes(v)) return true;                          // 군 이름이 그대로 태그됨
+    if ((GROUP_MEMBERS[v] || []).some(i => insts.includes(i))) return true;  // 그 군의 악기 보유
+    // '관악부'는 목관·금관을 아우른다 — 둘 중 무엇을 골랐든 걸리게
+    return (v === "목관" || v === "금관") && insts.includes("관악");
+  });
+}
 // 2026-07-01 전남광주통합특별시 출범 — 전남·광주가 한 광역단체가 됐다. crawler/common.py와 같은 표기.
 const REGION_LIST = ["서울", "경기", "인천", "강원", "대전", "세종", "충북", "충남",
   "대구", "경북", "부산", "울산", "경남", "광주·전남", "전북", "제주", "기타"];
@@ -113,6 +128,22 @@ const STATUSES = ["접수중", "마감임박", "기한 미정", "마감"];
 // 기본 정렬은 마감 임박순 — '언제까지 지원 가능한가'가 이 보드의 1차 정보다 (2026-07-23)
 const state = { tab: "전체", tiers: new Set(), bands: new Set(), insts: new Set(), regions: new Set(), status: new Set(), provided: new Set(), newOnly: false, obri: false, noCert: false, noCareer: false, query: "", sort: "deadline" };
 const $ = (s) => document.querySelector(s);
+
+// ---------- 계측 (js/analytics.js 의 pdEvent — GA 미설정이면 전부 no-op) ----------
+// filter_use/filter_empty 가 핵심이다: 공고(공급)는 크롤로 다 알지만, 방문자가 무엇을
+// 찾는지(수요)는 여기에만 찍힌다. '비올라 0건' = 디렉토리가 채워야 할 칸.
+window.pdEvent = window.pdEvent || function () {};   // analytics.js 미로드 시에도 본기능 보호
+let _curJob = null;      // 상세 모달의 현재 공고 — 원문 이동 클릭을 공고에 귀속시키는 용도
+let _filterTimer = null; // 칩 연타 중 스팸 방지 (마지막 상태만 800ms 뒤 1회 보고)
+function reportFilter(count) {
+  clearTimeout(_filterTimer);
+  _filterTimer = setTimeout(() => {
+    const p = { tiers: [...state.tiers].join("|"), insts: [...state.insts].join("|"),
+                regions: [...state.regions].join("|"), q: state.query || "", results: count };
+    if (p.tiers || p.insts || p.regions || p.q)   // 필터 없는 기본 화면은 잡음이라 안 찍는다
+      pdEvent(count ? "filter_use" : "filter_empty", p);
+  }, 800);
+}
 
 // 상태 어휘 통일: 사용자가 알고 싶은 건 '지금 지원 가능한가'와 '언제까지인가' 둘뿐.
 //  · D-day 카운트는 임박(7일 이내)했을 때만 — D-167 같은 숫자는 정보가 아니라 소음
@@ -156,6 +187,7 @@ function renderInstChips() {
   const el = $("#filter-inst");
   el.innerHTML = INST_GROUPS.map(([g, list]) => `
     <div class="inst-group"><span class="inst-group-label">${g}</span>
+      ${GROUPABLE.includes(g) ? `<button class="chip group${state.insts.has(g) ? " on" : ""}" data-v="${g}">${g} 전체</button>` : ""}
       ${list.map(v => `<button class="chip${state.insts.has(v) ? " on" : ""}" data-v="${v}">${v}</button>`).join("")}
     </div>`).join("");
   el.querySelectorAll(".chip").forEach(c => c.addEventListener("click", () => {
@@ -178,9 +210,7 @@ function filtered() {
     if (state.noCert && j.certReq === "예") return false;          // 교원자격증 불필요한 자리만
     if (state.noCareer && j.careerReq !== "무관") return false;    // 경력 무관인 자리만
     if (state.bands.size && !state.bands.has(j.band)) return false;
-    if (state.insts.size) {
-      if (!j.insts.length || ![...state.insts].some(v => j.insts.includes(v))) return false;
-    }
+    if (state.insts.size && !instMatches(j.insts || [], state.insts)) return false;
     if (state.regions.size && !state.regions.has(regionOf(j))) return false;
     if (state.status.size && !state.status.has(statusOf(j).key)) return false;
     if (state.provided.size && !/제공/.test(j.instProvided || "")) return false;
@@ -226,19 +256,11 @@ const sortFns = {
   concert: (a, b) => (concertNum(a) - concertNum(b)) || byDeadline(a, b),
 };
 
-// 원천 기관명 태그 — [공식] 대신 어느 기관에서 수집했는지를 그대로 보여준다 (커버리지가 곧 제품)
-const SRC_ORG = {
-  "sejongpac.or.kr": "세종문화회관", "gojobs.go.kr": "나라일터", "goe.go.kr": "경기도교육청",
-  "work.sen.go.kr": "서울시교육청", "kbssymphony.org": "KBS교향악단",
-  "cjob.co.kr": "기독정보넷",
-  "ice.go.kr": "인천교육청", "pen.go.kr": "부산교육청", "gwe.go.kr": "강원교육청",
-  "jbe.go.kr": "전북교육청", "jje.go.kr": "제주교육청", "sje.go.kr": "세종교육청",
-  "jne.go.kr": "전남교육청", "gbe.kr": "경북교육청", "cbe.go.kr": "충북교육청",
-  "gne.go.kr": "경남교육청", "dje.go.kr": "대전교육청", "bscc.or.kr": "부산문화회관",
-  "cwcf.or.kr": "창원문화재단", "gunsan.go.kr": "군산시", "music.snu.ac.kr": "서울대 음대",
-  "seoulphil.or.kr": "서울시향", "artsuwon.or.kr": "수원시립예술단",
-};
-const srcOrgTag = j => SRC_ORG[j.source] || sourceLabel(j) || "";
+// 카드 맨 앞 태그는 **공고를 낸 기관의 풀네임**(j.org)이다 — '군산시립교향악단'이지
+// '군산시'(도메인 맵)나 'naruart000.gabia.io'(도메인 폴백)가 아니다. 2026-08-02 지시:
+// 도메인 기반 맵은 표기가 제각각이고 처음 보는 소스에선 호스트명이 그대로 새어나왔다.
+// org는 크롤러가 소스마다 정확히 채우므로 그걸 단일 출처로 삼는다.
+const srcOrgTag = j => j.org || "";
 
 function cardHTML(j) {
   const st = statusOf(j);
@@ -268,12 +290,14 @@ function cardHTML(j) {
     ? `<div class="program-line"><b>연주곡</b>${j.program}</div>` : "";
   if (j.src === "공식") {
     const orgTag = srcOrgTag(j);
+    // 기관명은 맨 앞 태그로만 — meta에 또 넣으면 같은 이름이 두 번 나온다
+    const metaNoOrg = meta.replace(`<span>${j.org}</span>`, "");
     return `
     <article class="job-card${st.key === "마감" ? " closed" : ""}" data-okey="${j.key}" tabindex="0" role="button" aria-haspopup="dialog">
-      <div class="top-row">${orgTag ? `<span class="tag src-official">${orgTag}</span>` : ""}${tags}</div>
+      <div class="top-row">${orgTag ? `<span class="tag org">${orgTag}</span>` : ""}${tags}</div>
       <h3>${j.title}</h3>
       ${program}
-      <div class="meta">${meta}</div>
+      <div class="meta">${metaNoOrg}</div>
       <div class="source-line"><span>${srcLine(j)}</span><span>눌러서 상세보기</span></div>
     </article>`;
   }
@@ -317,6 +341,7 @@ function renderList() {
   }
   html += rest.map(cardHTML).join("");
   el.innerHTML = html;
+  reportFilter(list.length);
   // 키보드 사용자: 카드는 Tab으로 이동, Enter·Space로 연다 (마우스 클릭과 동일 동작)
   const openCard = card => card.dataset.okey ? openOfficial(card.dataset.okey) : openDetail(+card.dataset.cid);
   el.querySelectorAll(".job-card").forEach(card => {
@@ -458,6 +483,9 @@ function actReset(act) {
 function openOfficial(key) {
   const j = OFFICIAL_ITEMS.find(x => x.key === key);
   if (!j) return;
+  _curJob = j;
+  pdEvent("job_view", { job_id: j.key, tier: j.tier || "", inst: (j.insts || [])[0] || "",
+                        region: regionOf(j), org: j.org || "" });
   const st = statusOf(j);
   $("#detail-tags").innerHTML = `
     <span class="tag ${TIER_CLS[j.tier] || "cat"}">${j.tier}</span>
@@ -492,9 +520,10 @@ function openOfficial(key) {
       act.textContent = `전화 지원 ☎ ${j.applyPhone}`;
       act.href = `tel:${j.applyPhone.replace(/-/g, "")}`;
     } else {
-      // 연락처도 원문도 없는 드문 경우 — 포털(수집 URL)로는 절대 내보내지 않는다 (2026-07-23).
-      // 링크 없이 검색 안내만 남긴다.
-      act.textContent = "기관명으로 검색해 지원하세요";
+      // 원문도 연락처도 없으면 지원할 방법이 없다 — 크롤러가 이런 공고를 아예 싣지 않지만
+      // (main.py의 '지원경로 없음' 필터), 옛 캐시가 남은 브라우저를 위해 버튼을 숨긴다.
+      // '기관명으로 검색하세요'라는 안내는 사용자에게 아무 도움이 안 돼 폐기했다(2026-08-02).
+      act.style.display = "none";
     }
   } else {
     act.textContent = "공고 보러가기 ↗";
@@ -508,6 +537,9 @@ function openDetail(cid) {
   const j = USER_POSTS.find(x => x.cid === cid) || COMMUNITY_ITEMS.find(x => x.cid === cid);
   if (!j) return;
   if (j.type !== "구인") return;   // v2.0: 종료된 게시판의 레거시 글은 열지 않음 (데이터는 보존)
+  _curJob = j;
+  pdEvent("job_view", { job_id: j.key || ("c" + cid), tier: j.tier || "", inst: (j.insts || [])[0] || "",
+                        region: regionOf(j), org: j.org || "직접등록" });
   $("#detail-tags").innerHTML = `
     ${j.sample ? `<span class="tag sample">예시</span>` : ""}
     ${j.mine ? `<span class="tag mine">내 공고</span>` : ""}
@@ -586,5 +618,16 @@ document.addEventListener("DOMContentLoaded", () => {
     if ((e.key === "Enter" || e.key === " ") && !e.currentTarget.getAttribute("href")) {
       e.preventDefault(); e.currentTarget.click();
     }
+  });
+  // 원문/지원 이동 계측 — '포디엄을 보고 지원했다'를 증명하는 유일한 데이터.
+  // dest: official(기관 원문) / mail·tel(포털 직접게시 지원) / url(자체 게시판)
+  $("#detail-action").addEventListener("click", (e) => {
+    if (!_curJob) return;
+    const href = e.currentTarget.getAttribute("href") || "";
+    if (!href) return;   // 삭제·안내 버튼은 이동이 아니다
+    const dest = href.startsWith("mailto:") ? "mail" : href.startsWith("tel:") ? "tel"
+               : (href === _curJob.officialUrl ? "official" : "url");
+    pdEvent(dest === "mail" || dest === "tel" ? "contact_click" : "job_outbound",
+            { job_id: _curJob.key || "", dest, org: _curJob.org || "" });
   });
 });

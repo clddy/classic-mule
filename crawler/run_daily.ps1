@@ -56,6 +56,10 @@ if ($LASTEXITCODE -ne 0) {
 & $PY crawler\export_sources_md.py
 if ($LASTEXITCODE -ne 0) { Note "warn: export_sources_md.py 종료코드 $LASTEXITCODE (계속 진행)" }
 
+# 방문 데이터 수집 (GA4) — 미설정이면 스스로 스킵하므로 실패해도 크롤에 영향 없음
+& $PY crawler\traffic.py
+if ($LASTEXITCODE -ne 0) { Note "warn: traffic.py 종료코드 $LASTEXITCODE (계속 진행)" }
+
 # main.py가 0으로 끝났어도 결과 파일이 실제로 갱신됐는지 확인한다
 if ((Get-Item C:\ohai\podium\data\official.json).LastWriteTime -lt (Get-Date).AddHours(-2)) {
     Alert "official.json이 갱신되지 않았다 (종료코드는 0)"
@@ -64,8 +68,12 @@ if ((Get-Item C:\ohai\podium\data\official.json).LastWriteTime -lt (Get-Date).Ad
 
 # 정적 산출물(staticgen)까지 함께 커밋해야 검색 봇용 목록·공고 페이지가 갱신된다 —
 # data/ 만 넣던 탓에 로컬 크롤로는 p/·jobs.html·sitemap이 낡은 채로 남았다 (2026-07-29)
-git add data/ p/ jobs.html index.html sitemap.xml robots.txt
-$changed = git status --porcelain data/ p/ jobs.html index.html sitemap.xml robots.txt
+#
+# crawler/ 도 함께 커밋한다 (2026-08-02): 크롤러 코드 수정이 자동 커밋 경로에 없어서
+# attach.py OCR 수정이 7일간 로컬에만 있었고, 그동안 Actions 백업 크롤(PC 꺼진 날)은
+# 커밋된 낡은 추출기로 돌았다. 비밀은 .gitignore(crawler/.env·쿠키·캐시)가 걸러준다.
+git add data/ p/ crawler/ jobs.html index.html sitemap.xml robots.txt
+$changed = git status --porcelain data/ p/ crawler/ jobs.html index.html sitemap.xml robots.txt
 if ($changed) {
     $today = Get-Date -Format 'yyyy-MM-dd'
     git -c user.name="ohmjin" -c user.email="ohmjin3141@naver.com" commit -m "auto: crawl $today"

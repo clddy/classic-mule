@@ -218,6 +218,8 @@
 </footer>
 
 <a class="feedback-fab" href="mailto:ohmjin3141@naver.com?subject=%ED%8F%AC%EB%94%94%EC%97%84%20%EC%97%B0%EC%8A%B5%EC%8B%A4%20%ED%94%BC%EB%93%9C%EB%B0%B1">피드백 보내기</a>
+<script src="js/analytics.js?v=1"></script>
+<script src="js/feedback.js?v=1"></script>
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
@@ -584,7 +586,7 @@ function cardPublic(r, i){
     ${apply?`<div class="apply-line">신청: ${esc(apply)}</div>`:""}
     <div class="meta">${r.addr?`<span>${esc(r.addr)}</span>`:""}${phone?`<span>문의 ${esc(phone)}</span>`:""}${r.hours?`<span>${esc(String(r.hours).replace(/\s*\d{2}:\d{2}(:\d{2})?/g,""))}</span>`:""}</div>
     <div class="modal-actions" style="margin-top:10px;justify-content:flex-start">
-      ${r.booking_url?`<a class="btn-primary" href="${esc(r.booking_url)}" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="text-decoration:none;font-size:0.82rem;padding:7px 14px">신청 페이지로 →</a>`:""}
+      ${r.booking_url?`<a class="btn-primary" href="${esc(r.booking_url)}" target="_blank" rel="noopener" onclick="event.stopPropagation()" data-ev="practice_outbound" data-evl="${esc(r.name||'')}" style="text-decoration:none;font-size:0.82rem;padding:7px 14px">신청 페이지로 →</a>`:""}
     </div>
     <div class="source-line"><span>${esc(r.notes||"")}</span><span>${r.src?esc(r.src)+" · ":""}확인 ${esc(r.verified||"-")}</span></div>
   </article>`;
@@ -625,7 +627,7 @@ function cardInstant(r, i){
     <h3>${esc(r.name)} ${r.reviews?`<span style="font-weight:400;font-size:0.8rem;color:var(--ink-soft)">⭐ 후기 ${r.reviews} · ♥ ${r.likes}</span>`:""}</h3>
     <div class="price-line">${priceHtml}</div>
     <div class="spec-grid">${specs}</div>
-    ${/^https?:/.test(r.bookTo||"") ? `<div class="modal-actions" style="margin-top:10px;justify-content:flex-start"><a class="btn-primary" href="${esc(r.bookTo)}" target="_blank" rel="noopener" onclick="event.stopPropagation()" style="text-decoration:none;font-size:0.82rem;padding:7px 14px">예약 페이지로 →</a></div>` : ""}
+    ${/^https?:/.test(r.bookTo||"") ? `<div class="modal-actions" style="margin-top:10px;justify-content:flex-start"><a class="btn-primary" href="${esc(r.bookTo)}" target="_blank" rel="noopener" onclick="event.stopPropagation()" data-ev="practice_outbound" data-evl="${esc(r.name||'')}" style="text-decoration:none;font-size:0.82rem;padding:7px 14px">예약 페이지로 →</a></div>` : ""}
     <div class="source-line"><span>${esc(r.notes||"")}</span>${r.src?`<span>출처 <span class="src">${esc(r.src)}</span> · 확인 ${esc(r.verified||"")}</span>`:""}</div>
   </article>`;
 }
@@ -718,7 +720,7 @@ function updateMap(){
       + (r.addr ? `<br><span style="color:#666">${esc(r.addr)}</span>` : "")
       + (o ? `<br>선택 지역에서 약 ${distKm(o,c).toFixed(1)}km` : "")
       + (exact ? "" : `<br><span style="color:#999">※ 구 중심 근사 위치</span>`)
-      + (r.booking_url ? `<br><a href="${esc(r.booking_url)}" target="_blank" rel="noopener">예약 페이지 ↗</a>` : ""));
+      + (r.booking_url ? `<br><a href="${esc(r.booking_url)}" target="_blank" rel="noopener" data-ev="practice_outbound" data-evl="${esc(r.name||'')}">예약 페이지 ↗</a>` : ""));
     m.addTo(MARKERS); pts.push(pos);
   });
   if (pts.length) MAP.fitBounds(L.latLngBounds(pts).pad(0.2));
@@ -765,7 +767,7 @@ function openRoom(r){
   const delHtml = r.mine ? `<button class="btn-outline" id="rm-del">삭제</button>` : "";
   const tel = (r.bookTo || r.phone || "").match(/0\d{1,2}-?\d{3,4}-?\d{4}/);
   $("#rm-actions").innerHTML = (isPub || r.booking_url)
-    ? `${delHtml}<a class="btn-primary" href="${esc(r.booking_url)}" target="_blank" rel="noopener" style="text-decoration:none">${isPub?"예약 페이지 가기":"원문 보기"} ↗</a>`
+    ? `${delHtml}<a class="btn-primary" href="${esc(r.booking_url)}" target="_blank" rel="noopener" data-ev="practice_outbound" data-evl="${esc(r.name||'')}" style="text-decoration:none">${isPub?"예약 페이지 가기":"원문 보기"} ↗</a>`
     : /^https?:/.test(r.bookTo || "")
     ? `${delHtml}<a class="btn-primary" href="${esc(r.bookTo)}" target="_blank" rel="noopener" style="text-decoration:none">예약 페이지 가기 ↗</a>`
     : delHtml || "";

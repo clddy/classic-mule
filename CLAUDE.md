@@ -61,6 +61,23 @@ UI 어휘 금지: 급구·구직·오브리·대타 (교회 상시 포지션은 
   exit 0으로 끝나고 스케줄러는 '성공'이라 보고한다. 단계마다 `$LASTEXITCODE`를 보고, 결과 파일이
   실제로 갱신됐는지까지 확인할 것.
 
+## 데이터 3층 구조 (2026-08-02 확립)
+
+**원문(raw) → 전량 누적(archive) → 게시(official)**. 문제를 하나하나 좇지 않고 층으로 잡는다.
+
+- `data/raw/<id>.json` — **원문 보관층**(crawler/rawstore.py). 공고의 페이지 본문+첨부 전부를
+  txt로 저장. 불변 누적(공고당 평생 한 번), 마감돼 원문이 죽어도 재추출 가능. 크롤 중 stash →
+  마지막에 flush. `_ensure_raw_attachments`가 첨부 안 열린 공고(마감일이 페이지에서 바로 나온
+  경우)를 회차당 25건씩 마저 긁는다. **악기 재추출은 매 크롤 이 층 위에서 자기치유** —
+  추출기를 고치면 다음 크롤에서 과거 저장분까지 소급된다.
+- 악기 추출은 2단: 제목(classify_insts) + 모집분야 구획(insts_from_recruit_text, 구획
+  머리말 없으면 침묵 — 오디션 곡목을 악기로 오인하지 않기 위함). EXT_VER 32.
+- 계측: js/analytics.js (GA4, `PODIUM_GA_ID` 한 곳 기입, 비면 전부 no-op).
+  이벤트 사전은 analytics.js 머리말 — traffic.py와 이름을 맞춘다. crawler/traffic.py가
+  매일 어제치를 data/traffic.json에 누적(gitignore, 미설정 시 자동 스킵).
+- run_daily.ps1이 crawler/도 커밋한다 — 코드가 로컬에만 쌓여 Actions가 낡은 추출기로
+  돌던 사고(attach.py 7일) 방지.
+
 ## 공고 아카이브 (2026-08-02 도입)
 
 official.json은 **살아있는 공고 스냅샷**이라 마감된 공고가 매일 사라진다. 수요 분석에 필요한

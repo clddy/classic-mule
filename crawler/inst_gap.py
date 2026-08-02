@@ -16,11 +16,15 @@ import json
 import os
 import re
 import sys
+try:
+    sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+except Exception:
+    pass
 from collections import Counter
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from common import classify_insts  # noqa: E402
+from common import classify_insts, _MUSIC_STRONG  # noqa: E402
 
 ARC = os.path.join(BASE, "data", "archive.json")
 OUT = os.path.join(BASE, "data", "inst_gap.md")
@@ -38,7 +42,9 @@ OUT_OF_SCOPE = re.compile(r"무용|발레|한국무용|현대무용|미술관|�
 def bucket(it):
     t = (it.get("title") or "") + " " + (it.get("org") or "")
     kind = it.get("kind") or ""
-    if OUT_OF_SCOPE.search(t):
+    # '(음악, 연극영화, 종교)' 같은 혼합 표기는 음악 교원 채용이 포함된 공고라 수집이 맞다
+    # (common.py _MUSIC_STRONG 주석과 같은 논리) — 범위밖으로 오판하지 않는다 (2026-08-02).
+    if OUT_OF_SCOPE.search(t) and not _MUSIC_STRONG.search(it.get("title") or ""):
         return "범위밖"
     if kind in ("직원",) or NO_INST.search(t):
         return "악기무관"

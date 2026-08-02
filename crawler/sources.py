@@ -823,7 +823,10 @@ EDU_PORTALS = [
 # ---------- 소스 레지스트리 ----------
 # layer: A 전국집계 / B 지역슈퍼노드 / C 도메인집계 / D 원천
 # poll:  daily / weekly(days=요일 0=월) / seasonal(months=[..], 시즌엔 daily)
-def S(sid, name, fn, domain, layer, poll="weekly", days=(0, 2, 4), months=None):
+# 2026-08-02 전 소스 daily 전환: 공고 수명 중앙값이 7일(수요 지도)이라 주 2~3회 방문은
+# 최대 3~4일 지연 = 지원 창 절반 손실. 전체 크롤이 ~7분이라 매일 돌아도 부담 없음.
+# weekly 게이팅(should_run)은 남겨둠 — 소스가 수백 개로 늘면 되살릴 수 있게.
+def S(sid, name, fn, domain, layer, poll="daily", days=(0, 2, 4), months=None):
     return {"id": sid, "name": name, "fn": fn, "domain": domain,
             "layer": layer, "poll": poll, "days": tuple(days),
             "months": tuple(months) if months else None}
@@ -838,40 +841,40 @@ SOURCES = [
     S("cjob",      "기독정보넷(교회 반주)",  parse_cjob,     "cjob.co.kr",        "C", "daily"),
     S("gne",       "경남교육청 방과후강사",  parse_gne,      "gne.go.kr",         "C", "daily"),
     # B. 지역 슈퍼노드 — 주 2~3회
-    S("ggac",      "경기아트센터(경기필)",   parse_ggac,     "ggac.or.kr",        "B", "weekly", (1, 4)),
-    S("incheon",   "인천문화예술회관",       parse_incheon,  "incheon.go.kr",     "B", "weekly", (0, 3)),
-    S("daegu",     "대구문화예술회관(시향)", parse_daegu,    "daeguartscenter.or.kr", "B", "weekly", (0, 3)),
-    S("bscc",      "부산문화회관(시립예술단)", parse_bscc,   "bscc.or.kr",        "B", "weekly", (0, 3)),
-    S("artsuwon",  "수원시립예술단",         parse_artsuwon, "artsuwon.or.kr",    "B", "weekly", (1, 4)),
-    S("snart",     "성남문화재단",           parse_snart,    "snart.or.kr",       "B", "weekly", (0, 3)),
-    S("sejongpac", "세종문화회관(서울시예술단)", parse_sejongpac, "sejongpac.or.kr", "B", "weekly", (1, 4)),
-    S("cwcf",      "창원문화재단",           parse_cwcf,     "cwcf.or.kr",        "B", "weekly", (0, 3)),
-    S("ulsan",     "울산문화예술회관",       parse_ulsan,    "ucac.ulsan.go.kr",  "B", "weekly", (1, 4)),
+    S("ggac",      "경기아트센터(경기필)",   parse_ggac,     "ggac.or.kr",        "B", "daily", (1, 4)),
+    S("incheon",   "인천문화예술회관",       parse_incheon,  "incheon.go.kr",     "B", "daily", (0, 3)),
+    S("daegu",     "대구문화예술회관(시향)", parse_daegu,    "daeguartscenter.or.kr", "B", "daily", (0, 3)),
+    S("bscc",      "부산문화회관(시립예술단)", parse_bscc,   "bscc.or.kr",        "B", "daily", (0, 3)),
+    S("artsuwon",  "수원시립예술단",         parse_artsuwon, "artsuwon.or.kr",    "B", "daily", (1, 4)),
+    S("snart",     "성남문화재단",           parse_snart,    "snart.or.kr",       "B", "daily", (0, 3)),
+    S("sejongpac", "세종문화회관(서울시예술단)", parse_sejongpac, "sejongpac.or.kr", "B", "daily", (1, 4)),
+    S("cwcf",      "창원문화재단",           parse_cwcf,     "cwcf.or.kr",        "B", "daily", (0, 3)),
+    S("ulsan",     "울산문화예술회관",       parse_ulsan,    "ucac.ulsan.go.kr",  "B", "daily", (1, 4)),
     # D. 원천 — 주 2~3회
-    S("seoulphil", "서울시립교향악단",       parse_seoulphil, "seoulphil.or.kr",  "D", "weekly", (0, 2, 4)),
-    S("kbs",       "KBS교향악단",            parse_kbs,      "kbssymphony.org",   "D", "weekly", (0, 2, 4)),
-    S("knso",      "국립심포니오케스트라",    parse_knso,     "knso.or.kr",        "D", "weekly", (0, 2, 4)),
-    S("bucheonphil", "부천필하모닉",         parse_bucheonphil, "bucheonphil.or.kr", "D", "weekly", (1, 4)),
-    S("dpo",       "대전시립교향악단",       parse_dpo,      "dpo.artdj.kr",      "D", "weekly", (1, 4)),
-    S("gso",       "광주시립교향악단",       parse_gso,      "gjart.gwangju.go.kr", "D", "weekly", (1, 4)),
-    S("natopera",  "국립오페라단",           parse_natopera, "nationalopera.org", "D", "weekly", (1, 4)),
-    S("natchorus", "국립합창단",             parse_natchorus, "nationalchorus.or.kr", "D", "weekly", (0, 3)),
-    S("jeonju",    "전주시(시립예술단)",     parse_jeonju,   "jeonju.go.kr",      "D", "weekly", (2,)),
-    S("sac",       "예술의전당",             parse_sac,      "sac.or.kr",         "D", "weekly", (2,)),
-    S("phcf",      "포항문화재단(시립교향악단)", parse_phcf,   "phcf.or.kr",        "D", "weekly", (1, 4)),
+    S("seoulphil", "서울시립교향악단",       parse_seoulphil, "seoulphil.or.kr",  "D", "daily", (0, 2, 4)),
+    S("kbs",       "KBS교향악단",            parse_kbs,      "kbssymphony.org",   "D", "daily", (0, 2, 4)),
+    S("knso",      "국립심포니오케스트라",    parse_knso,     "knso.or.kr",        "D", "daily", (0, 2, 4)),
+    S("bucheonphil", "부천필하모닉",         parse_bucheonphil, "bucheonphil.or.kr", "D", "daily", (1, 4)),
+    S("dpo",       "대전시립교향악단",       parse_dpo,      "dpo.artdj.kr",      "D", "daily", (1, 4)),
+    S("gso",       "광주시립교향악단",       parse_gso,      "gjart.gwangju.go.kr", "D", "daily", (1, 4)),
+    S("natopera",  "국립오페라단",           parse_natopera, "nationalopera.org", "D", "daily", (1, 4)),
+    S("natchorus", "국립합창단",             parse_natchorus, "nationalchorus.or.kr", "D", "daily", (0, 3)),
+    S("jeonju",    "전주시(시립예술단)",     parse_jeonju,   "jeonju.go.kr",      "D", "daily", (2,)),
+    S("sac",       "예술의전당",             parse_sac,      "sac.or.kr",         "D", "daily", (2,)),
+    S("phcf",      "포항문화재단(시립교향악단)", parse_phcf,   "phcf.or.kr",        "D", "daily", (1, 4)),
 ]
 
 # 시도교육청 방과후/강사 포털 (config 기반) — 도메인 집계 노드, 주 2회
 for _ep in EDU_PORTALS:
-    SOURCES.append(S(_ep["id"], _ep["name"], _make_edu_parser(_ep), _ep["source"], "C", "weekly", (1, 4)))
+    SOURCES.append(S(_ep["id"], _ep["name"], _make_edu_parser(_ep), _ep["source"], "C", "daily", (1, 4)))
 # 경기(POST)·강원·전북·대전 교육청 손파서
-SOURCES.append(S("edu_goe", "경기교육청(방과후·강사)", parse_goe, "goe.go.kr", "C", "weekly", (1, 4)))
-SOURCES.append(S("edu_gwe", "강원교육청(학교 채용)", parse_gwe, "gwe.go.kr", "C", "weekly", (1, 4)))
-SOURCES.append(S("edu_jbe", "전북교육청(학교 채용)", parse_jbe, "jbe.go.kr", "C", "weekly", (1, 4)))
-SOURCES.append(S("edu_dje", "대전교육청(학교 채용)", parse_dje, "dje.go.kr", "C", "weekly", (1, 4)))
+SOURCES.append(S("edu_goe", "경기교육청(방과후·강사)", parse_goe, "goe.go.kr", "C", "daily", (1, 4)))
+SOURCES.append(S("edu_gwe", "강원교육청(학교 채용)", parse_gwe, "gwe.go.kr", "C", "daily", (1, 4)))
+SOURCES.append(S("edu_jbe", "전북교육청(학교 채용)", parse_jbe, "jbe.go.kr", "C", "daily", (1, 4)))
+SOURCES.append(S("edu_dje", "대전교육청(학교 채용)", parse_dje, "dje.go.kr", "C", "daily", (1, 4)))
 # na/ntt 공통 벤더 교육청 (인천·전남·경북·세종)
 for _nb in NA_NTT_BOARDS:
-    SOURCES.append(S(_nb["id"], _nb["name"], _make_nantt_parser(_nb), _nb["dom"], "C", "weekly", (1, 4)))
+    SOURCES.append(S(_nb["id"], _nb["name"], _make_nantt_parser(_nb), _nb["dom"], "C", "daily", (1, 4)))
 
 # ---------- 자동 발견 소스 (discovery.py 산출물) ----------
 _GENERIC_PAT = re.compile(r"모집|채용|공고|초빙|오디션|강사")
@@ -923,7 +926,7 @@ if os.path.exists(_GS_PATH):
         with open(_GS_PATH, encoding="utf-8") as _f:
             for _e in json.load(_f):
                 SOURCES.append(S("g_" + _e["id"], _e["name"], _make_generic_parser(_e),
-                                 urlparse(_e["board_url"]).netloc, "B", "weekly", (1, 4)))
+                                 urlparse(_e["board_url"]).netloc, "B", "daily", (1, 4)))
     except Exception:
         pass
 
@@ -931,7 +934,7 @@ if os.path.exists(_GS_PATH):
 try:
     from sources_hibrain import parse_hibrain
     SOURCES.append(S("hibrain", "하이브레인넷(대학 음악채용)", parse_hibrain,
-                     "hibrain.net", "B", "weekly", (1, 4)))
+                     "hibrain.net", "B", "daily", (1, 4)))
 except Exception:
     pass
 
