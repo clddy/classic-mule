@@ -59,19 +59,9 @@
   "label": "모집공고",
   "foundAt": "2026-08-02"
  },
- "순천시립합창단": {
-  "board_url": "https://www.suncheon.go.kr/scart/community/0001;jsessionid=50394E110228E6992FCA9F64E08780EE",
-  "label": "공지사항",
-  "foundAt": "2026-08-02"
- },
  "안동시립합창단": {
   "board_url": "https://www.andong.go.kr/arts/contents.do?mId=0503000000",
   "label": "고시/공고",
-  "foundAt": "2026-08-02"
- },
- "대전문화재단": {
-  "board_url": "https://dcaf.or.kr/web/board.do?menuIdx=377",
-  "label": "채용공고",
   "foundAt": "2026-08-02"
  },
  "경기문화재단": {
@@ -114,11 +104,6 @@
   "label": "- Notice : 공지사항",
   "foundAt": "2026-08-02"
  },
- "동해문화관광재단": {
-  "board_url": "http://www.dctf.or.kr/board/bbs/board.php?bo_table=recruit",
-  "label": "채용공고",
-  "foundAt": "2026-08-02"
- },
  "순천문화재단": {
   "board_url": "https://www.cfsc.or.kr/contents/open/open0105.asp?cat=38",
   "label": "채용",
@@ -127,6 +112,21 @@
  "통영문화재단": {
   "board_url": "https://tyhansancf.or.kr/notice/notice.html?Ncode=b2",
   "label": "- 채용공고",
+  "foundAt": "2026-08-02"
+ },
+ "순천시립합창단": {
+  "board_url": "https://www.suncheon.go.kr/scart/community/0001;jsessionid=50394E110228E6992FCA9F64E08780EE",
+  "label": "공지사항",
+  "foundAt": "2026-08-02"
+ },
+ "대전문화재단": {
+  "board_url": "https://dcaf.or.kr/web/board.do?menuIdx=377",
+  "label": "채용공고",
+  "foundAt": "2026-08-02"
+ },
+ "동해문화관광재단": {
+  "board_url": "http://www.dctf.or.kr/board/bbs/board.php?bo_table=recruit",
+  "label": "채용공고",
   "foundAt": "2026-08-02"
  }
 }
