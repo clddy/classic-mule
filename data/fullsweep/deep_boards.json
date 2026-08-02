@@ -1,0 +1,79 @@
+{
+ "새문안교회": {
+  "board_url": "https://www.saemoonan.org/Board/View.aspx?boardID=NOW_BOARD1&idx=3193&ctgID=317",
+  "label": "소식>제10기 봉사훈련원 훈련생 모집",
+  "rows": 7,
+  "music": 1,
+  "sample": [
+   "새문안교회음악교육원 수강생 모집 (2026년 2학기)"
+  ],
+  "cat": "교회"
+ },
+ "할렐루야교회": {
+  "board_url": "https://www.hcc.or.kr/share_002_07_list.do",
+  "label": "교우소식>공지사항",
+  "rows": 2,
+  "music": 1,
+  "sample": [
+   "일본어예배부 봉사자 모집"
+  ],
+  "cat": "교회"
+ },
+ "영락교회": {
+  "board_url": "https://www.youngnak.net/news/board/",
+  "label": "영락소식",
+  "rows": 4,
+  "music": 2,
+  "sample": [
+   "국제예배 찬양대원 모집",
+   "자유인예배 찬양대원 모집"
+  ],
+  "cat": "교회"
+ },
+ "분당우리교회": {
+  "board_url": "https://www.woorichurch.org/modu/s_board/list.asp?board_seq=10&lef=09&sublef=undefined",
+  "label": "경조부게시판>공지게시판",
+  "rows": 2,
+  "music": 0,
+  "sample": [
+   "[안내] 2026년 2학기 사역훈련 모집",
+   "[모임] 2026년 청소년부서 여름수련회 안전관리 봉사자 모집"
+  ],
+  "cat": "교회"
+ },
+ "소망교회": {
+  "board_url": "https://www.somang.net/community/notice",
+  "label": "관용경로/community/notice",
+  "rows": 1,
+  "music": 0,
+  "sample": [
+   "'새움지구' 구역원 모집"
+  ],
+  "cat": "교회"
+ },
+ "한국문화예술교육진흥원(아르떼)": {
+  "board_url": "https://www.arte.or.kr/information/notice/Notice_BoardList.do",
+  "label": "공지사항",
+  "rows": 9,
+  "music": 3,
+  "sample": [
+   "2026 꿈의 오케스트라 상위 모델 개발 프로젝트-꿈의 오케스트라 \"다음\" 참여 졸업단원 모집(~8.10.)",
+   "2026 꿈의 전통예술단 기획형 프로그램 참여단원 모집 안내",
+   "2026 꿈의 예술단 음악 분야 마스터클래스 참여단원 모집"
+  ],
+  "cat": "공공기관"
+ },
+ "EMK뮤지컬컴퍼니": {
+  "board_url": "https://www.emkmusical.com/board/notice",
+  "label": "관용경로/board/notice",
+  "rows": 16,
+  "music": 0,
+  "sample": [
+   "[모집] EMK뮤지컬컴퍼니 전략기획팀/경영기획팀 직원 채용공고",
+   "2027 EMK PRODUCTION <프랑켄슈타인> 오디션 공지",
+   "2027 EMK PRODUCTION <몬테크리스토> 오디션 공지 (완료)",
+   "2026 EMK PRODUCTION <엘리자벳> 토드 오디션 공지"
+  ],
+  "cat": "민간"
+ }
+}
