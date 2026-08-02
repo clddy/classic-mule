@@ -143,6 +143,14 @@ def survey(env, limit=None):
             rec["status"] = f"error:{type(e).__name__}"
             print(f"  [{i}/{len(todo)}] ✘ {r['name']} {type(e).__name__}")
         results.append(rec)
+        # 20곳마다 중간 저장 — 순회가 길어져 타임아웃·중단돼도 지금까지의 발견(게시판
+        # 캐시·결과)을 잃지 않는다. 재실행하면 캐시 덕에 탐색을 건너뛰어 빠르게 따라잡는다.
+        if i % 20 == 0:
+            _save(os.path.join(DIR, f"sweep-{env}.json"),
+                  {"env": env, "date": date.today().isoformat(), "partial": True,
+                   "master": len(rows), "visited": i, "no_url": skipped,
+                   "ok": n_ok, "results": results})
+            _save(BOARDS, boards)
         time.sleep(0.5)   # 정중한 순회 — 남의 서버다
 
     doc = {"env": env, "date": date.today().isoformat(),
