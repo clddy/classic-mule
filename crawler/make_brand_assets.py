@@ -33,11 +33,13 @@ def make_og():
     word = "포디엄"
     wb = d.textbbox((0, 0), word, font=wf)
     ww = wb[2] - wb[0]
-    dot_r = 20
+    dot_r = 10
+    dot_bottom = 380          # 글자 밑선에 맞춰 아래를 고정 (크기를 바꿔도 안 뜸)
     total = ww + 34 + dot_r * 2
     x0 = (W - total) / 2
     d.text((x0 - wb[0], 205), word, font=wf, fill=INK)
-    d.ellipse([x0 + ww + 30, 340, x0 + ww + 30 + dot_r * 2, 340 + dot_r * 2], fill=CLARET)
+    dot_x = x0 + ww + 30
+    d.ellipse([dot_x, dot_bottom - dot_r * 2, dot_x + dot_r * 2, dot_bottom], fill=CLARET)
     # 태그라인
     center(d, W / 2, 400, "클래식 음악인을 위한 공고 집약 플랫폼", f(SANS, 40), INK_SOFT)
     center(d, W / 2, 470, "전국 교향악단·교육청·대학·교회 채용 공고 · 매일 자동 수집", f(SANS, 27), INK_SOFT)
