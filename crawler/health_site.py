@@ -7,7 +7,7 @@ from datetime import date, timedelta
 
 import requests
 
-BASE = "https://clddy.github.io/classic-mule"
+BASE = "https://podiumclassical.kr"
 
 # 데이터 파일 하나가 깨지면 그 페이지 전체가 빈 화면이 된다 — 치명적이라 개별 확인.
 DATA_FILES = [

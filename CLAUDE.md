@@ -6,7 +6,8 @@
 UI 어휘 금지: 급구·구직·오브리·대타 (교회 상시 포지션은 '교회' 카테고리).
 내비는 구인구직|연습실|소개 3개. lessons/market/community.html은 리다이렉트 스텁 — 되살리지 말 것.
 
-배포: GitHub Pages (clddy.github.io/classic-mule). **사이트에 보이는 변경은 커밋+푸시까지가 한 작업 단위.**
+배포: GitHub Pages, 커스텀 도메인 **https://podiumclassical.kr** (2026-08-02 연결, CNAME 파일).
+옛 주소 clddy.github.io/classic-mule 은 자동 리다이렉트됨. **사이트에 보이는 변경은 커밋+푸시까지가 한 작업 단위.**
 
 마감 미확인 공고: 화면엔 '기한 미정'(임시 라벨)으로만 표시하고 — '기한 확인필요' 어휘 금지 —
 크롤러가 회차마다 재시도한다. 3회차까지 못 찾으면 텔레그램으로 사용자에게 보고

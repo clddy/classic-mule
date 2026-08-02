@@ -40,7 +40,7 @@ jobs:
       - name: 오늘 이미 수집됐는지 확인
         id: guard
         run: |
-          LIVE=$(curl -sf https://clddy.github.io/classic-mule/data/official.json \
+          LIVE=$(curl -sf https://podiumclassical.kr/data/official.json \
                  | python -c "import json,sys;print((json.load(sys.stdin).get('collectedAt') or '')[:10])" 2>/dev/null || echo "")
           TODAY=$(date +%F)
           if [ "$LIVE" = "$TODAY" ]; then

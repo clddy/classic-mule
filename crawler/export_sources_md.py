@@ -48,7 +48,7 @@ def main():
         "",
         f"- 수집 시각: **{data.get('collectedAt', '-')}** · 소스 **{data.get('okCount', 0)}/{data.get('sourceCount', 0)}** 응답 · 공고 **{len(items)}건**",
         f"- 마감 확보: **{sum(1 for i in items if i.get('deadline'))}건** · 상시 **{sum(1 for i in items if i.get('deadlineNote') == '상시')}건**",
-        "- 라이브: https://clddy.github.io/classic-mule/ · 저장소: https://github.com/clddy/classic-mule",
+        "- 라이브: https://podiumclassical.kr/ · 저장소: https://github.com/clddy/classic-mule",
         "",
         "## 소스 목록",
         "",

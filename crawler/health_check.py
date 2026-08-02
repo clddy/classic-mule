@@ -31,7 +31,7 @@ HISTORY = DATA / "health_history.json"
 LOG = DATA / "health.log"
 # 크롤이 GitHub Actions로 옮겨간 뒤(2026-07-25) 진실의 원천은 배포된 데이터다 —
 # 로컬 official.json은 git pull 전까지 낡은 채로 남는다.
-LIVE_JSON = "https://clddy.github.io/classic-mule/data/official.json"
+LIVE_JSON = "https://podiumclassical.kr/data/official.json"
 
 KEEP_DAYS = 45      # 소스별 히스토리 보관 개수
 MIN_SAMPLES = 5     # baseline을 신뢰하는 데 필요한 최소 '정상 관측' 수

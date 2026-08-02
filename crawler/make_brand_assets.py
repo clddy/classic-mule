@@ -41,7 +41,7 @@ def make_og():
     # 태그라인
     center(d, W / 2, 400, "클래식 음악인을 위한 공고 집약 플랫폼", f(SANS, 40), INK_SOFT)
     center(d, W / 2, 470, "전국 교향악단·교육청·대학·교회 채용 공고 · 매일 자동 수집", f(SANS, 27), INK_SOFT)
-    center(d, W / 2, 545, "clddy.github.io/classic-mule", f(SANS, 24), CLARET)
+    center(d, W / 2, 545, "podiumclassical.kr", f(SANS, 24), CLARET)
     img.save(os.path.join(BASE, "og-image.png"))
     print("og-image.png 생성 (1200x630)")
 

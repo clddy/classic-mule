@@ -19,7 +19,7 @@ import sys
 from datetime import date
 
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # podium/
-SITE = "https://clddy.github.io/classic-mule"
+SITE = "https://podiumclassical.kr"
 # js/jobs.js PORTAL_RE와 같은 목록 — 두 곳이 어긋나면 한쪽에서만 포털 링크가 샌다
 PORTAL_RE = re.compile(r"artinfokorea|artmore|hibrain|jobkorea|saramin|albamon|cleaneye|gojobs|work\.go\.kr/portal", re.I)
 
