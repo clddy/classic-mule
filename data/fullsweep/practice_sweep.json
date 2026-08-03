@@ -1,0 +1,2744 @@
+{
+ "date": "2026-08-03",
+ "src": "eshare.go.kr",
+ "count": 304,
+ "dropped": 320,
+ "items": {
+  "DK24D623861": {
+   "name": "음악연습실",
+   "addr": "경기 연천군 전곡읍 전영로 11",
+   "sido": "경기",
+   "free": false,
+   "cls": "일반강의실",
+   "bookTo": "https://share.gg.go.kr/facilityListO/view?instiCode=1310004&facilityId=F0004&eshare=1",
+   "kw": "연습실"
+  },
+  "EE18Q3726698": {
+   "name": "영도문화예술회관 제4연습실",
+   "addr": "부산 영도구 함지로79번길 6 (동삼동)",
+   "sido": "부산",
+   "free": false,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "",
+   "kw": "연습실"
+  },
+  "DK24D623081": {
+   "name": "오정생활문화센터 개인연습실 2",
+   "addr": "경기 부천시 오정구 성오로 172",
+   "sido": "경기",
+   "free": true,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "https://bcf.or.kr/bcc/rental/select?siteKind=3&menuLevel=3&menuNo=104",
+   "kw": "연습실"
+  },
+  "DK24D623697": {
+   "name": "군포시생활문화센터 (마루연습실)",
+   "addr": "경기 군포시 수리산로 112",
+   "sido": "경기",
+   "free": false,
+   "cls": "일반강의실",
+   "bookTo": "https://www.gunpocf.or.kr/cf/lease/leaseSchdul/100003",
+   "kw": "연습실"
+  },
+  "EE18Q3602623": {
+   "name": "영도문화예술회관 제3연습실",
+   "addr": "부산 영도구 함지로79번길 6 (동삼동)",
+   "sido": "부산",
+   "free": false,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "",
+   "kw": "연습실"
+  },
+  "DK24D623080": {
+   "name": "오정생활문화센터 개인연습실 3",
+   "addr": "경기 부천시 오정구 성오로 172",
+   "sido": "경기",
+   "free": true,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "https://bcf.or.kr/bcc/rental/select?siteKind=3&menuLevel=3&menuNo=104",
+   "kw": "연습실"
+  },
+  "DK24D623655": {
+   "name": "군포시생활문화센터 (밴드연습실)",
+   "addr": "경기 군포시 수리산로 112",
+   "sido": "경기",
+   "free": false,
+   "cls": "일반강의실",
+   "bookTo": "https://www.gunpocf.or.kr/cf/lease/leaseSchdul/100003",
+   "kw": "연습실"
+  },
+  "DK24D623695": {
+   "name": "군포시생활문화센터 (개인연습실1)",
+   "addr": "경기 군포시 수리산로 112",
+   "sido": "경기",
+   "free": false,
+   "cls": "일반강의실",
+   "bookTo": "https://www.gunpocf.or.kr/cf/lease/leaseSchdul/100003",
+   "kw": "연습실"
+  },
+  "DK24D624318": {
+   "name": "연습실 별님",
+   "addr": "경기 과천시 통영로 5",
+   "sido": "경기",
+   "free": false,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "https://www.gcart.or.kr/kr/rental/rentalApply.do?facilityIdx=9",
+   "kw": "연습실"
+  },
+  "DK24D624320": {
+   "name": "연습실 햇님",
+   "addr": "경기 과천시 통영로 5",
+   "sido": "경기",
+   "free": false,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "https://www.gcart.or.kr/kr/rental/rentalApply.do?facilityIdx=7",
+   "kw": "연습실"
+  },
+  "DK24D624372": {
+   "name": "안산문화재단 합창연습실",
+   "addr": "경기 안산시 단원구 화랑로 312",
+   "sido": "경기",
+   "free": false,
+   "cls": "일반강의실",
+   "bookTo": "https://share.gg.go.kr/facilityListO/view?instiCode=B552978&facilityId=F0010&eshare=1",
+   "kw": "연습실"
+  },
+  "EE18Q3359092": {
+   "name": "영도문화예술회관 제2연습실",
+   "addr": "부산 영도구 함지로79번길 6 (동삼동)",
+   "sido": "부산",
+   "free": false,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "",
+   "kw": "연습실"
+  },
+  "DF09N0308901": {
+   "name": "빛고을시민문화관 소연습실",
+   "addr": "전남광주통합특별시 남구 천변좌로338번길 7",
+   "sido": "전남광주통합특별시",
+   "free": false,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "",
+   "kw": "연습실"
+  },
+  "DK24D622561": {
+   "name": "본부사옥 연습실",
+   "addr": "경기도 수원시 팔달구 인계로 178",
+   "sido": "경기도",
+   "free": false,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "https://members.ggcf.kr/facilities",
+   "kw": "연습실"
+  },
+  "DK24D623047": {
+   "name": "부천공연예술연습공간 대연습실2",
+   "addr": "경기 부천시 부일로 365",
+   "sido": "경기",
+   "free": false,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "https://www.bcf.or.kr/base/rental/select?menuLevel=2&menuNo=60",
+   "kw": "연습실"
+  },
+  "DK24D623079": {
+   "name": "오정생활문화센터 개인연습실 4",
+   "addr": "경기 부천시 오정구 성오로 172",
+   "sido": "경기",
+   "free": true,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "https://bcf.or.kr/bcc/rental/select?siteKind=3&menuLevel=3&menuNo=104",
+   "kw": "연습실"
+  },
+  "DK24D623090": {
+   "name": "소사생활문화센터 개인연습실 3",
+   "addr": "경기 부천시 경인옛로 73",
+   "sido": "경기",
+   "free": true,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "https://bcf.or.kr/bcc/rental/select?siteKind=4&menuLevel=3&menuNo=105",
+   "kw": "연습실"
+  },
+  "DK24D623509": {
+   "name": "공연동 연습실1",
+   "addr": "경기 안산시 단원구 화랑로 312",
+   "sido": "경기",
+   "free": false,
+   "cls": "일반강의실",
+   "bookTo": "https://www.ansanart.com/lay2/S1T65C308/contents.do",
+   "kw": "연습실"
+  },
+  "DK24D623661": {
+   "name": "군포문화예술회관 (연습실A)",
+   "addr": "경기 군포시 고산로 599",
+   "sido": "경기",
+   "free": false,
+   "cls": "일반강의실",
+   "bookTo": "https://www.gunpocf.or.kr/cf/lease/leaseSchdul/100002",
+   "kw": "연습실"
+  },
+  "DK24D623694": {
+   "name": "군포시생활문화센터 (개인연습실2)",
+   "addr": "경기 군포시 수리산로 112",
+   "sido": "경기",
+   "free": false,
+   "cls": "일반강의실",
+   "bookTo": "https://www.gunpocf.or.kr/cf/lease/leaseSchdul/100003",
+   "kw": "연습실"
+  },
+  "DK24D623969": {
+   "name": "마두청소년수련관 2층 연습실(꼬물)",
+   "addr": "경기 고양시 일산동구 일산로 220",
+   "sido": "경기",
+   "free": false,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "https://www.gcyf.or.kr/md/bbs/content.php?co_id=madoo_02_3",
+   "kw": "연습실"
+  },
+  "DK24D624005": {
+   "name": "연천 수레울아트홀 대연습실",
+   "addr": "경기 연천군 연천읍 문화로 150",
+   "sido": "경기",
+   "free": false,
+   "cls": "일반강의실",
+   "bookTo": "https://share.gg.go.kr/facilityListO/view?instiCode=1310002&facilityId=F0013&eshare=1",
+   "kw": "연습실"
+  },
+  "DK24D624319": {
+   "name": "연습실 달님",
+   "addr": "경기 과천시 통영로 5",
+   "sido": "경기",
+   "free": false,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "https://www.gcart.or.kr/kr/rental/rentalApply.do?facilityIdx=8",
+   "kw": "연습실"
+  },
+  "BA10A0008455": {
+   "name": "수영구 생활문화센터 밴드연습실",
+   "addr": "부산 수영구 광안해변로 219 (광안동)",
+   "sido": "부산",
+   "free": false,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "http://www.suyeong.go.kr/board/list.suyeong?boardId=BBS_0000173&menuCd=DOM_000001802008008000&contentsSid=1987&cpath=%2Freserve",
+   "kw": "연습실"
+  },
+  "BA10A0008459": {
+   "name": "수영구 생활문화센터 마루연습실",
+   "addr": "부산 수영구 광안해변로 219 (광안동)",
+   "sido": "부산",
+   "free": false,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "https://www.suyeong.go.kr/reserve/index.suyeong?menuCd=DOM_000001802008014000",
+   "kw": "연습실"
+  },
+  "EE17O0006763": {
+   "name": "남산골문화센터 음악연습실",
+   "addr": "강원 원주시 향교길 77 (명륜동)",
+   "sido": "강원",
+   "free": false,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "https://www.allwcf.kr/place/place_list.php",
+   "kw": "연습실"
+  },
+  "EE18Q3105018": {
+   "name": "영도문화예술회관 제1연습실",
+   "addr": "부산 영도구 함지로79번길 6 (동삼동)",
+   "sido": "부산",
+   "free": false,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "",
+   "kw": "연습실"
+  },
+  "DF09M4902127": {
+   "name": "빛고을시민문화관 대연습실",
+   "addr": "전남광주통합특별시 남구 천변좌로338번길 7 (구동)",
+   "sido": "전남광주통합특별시",
+   "free": false,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "",
+   "kw": "연습실"
+  },
+  "DF09M5118533": {
+   "name": "빛고을시민문화관 중연습실",
+   "addr": "전남광주통합특별시 남구 천변좌로338번길 7 (구동)",
+   "sido": "전남광주통합특별시",
+   "free": false,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "",
+   "kw": "연습실"
+  },
+  "DI13O4259166": {
+   "name": "양산문화예술회관 연습실",
+   "addr": "경상남도 양산시 중앙로 39-1",
+   "sido": "경상남도",
+   "free": false,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "https://www.yssisul.or.kr/stms/art/rentalinfo#",
+   "kw": "연습실"
+  },
+  "DI13P0249492": {
+   "name": "쌍벽루아트홀 연습실",
+   "addr": "경상남도 양산시 신기강변로 26",
+   "sido": "경상남도",
+   "free": false,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "https://www.yssisul.or.kr/stms/art/rentalinfo#",
+   "kw": "연습실"
+  },
+  "DK24D623045": {
+   "name": "부천공연예술연습공간 중연습실2",
+   "addr": "경기 부천시 부일로 365",
+   "sido": "경기",
+   "free": false,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "https://www.bcf.or.kr/base/rental/select?menuLevel=2&menuNo=60",
+   "kw": "연습실"
+  },
+  "DK24D623046": {
+   "name": "부천공연예술연습공간 중연습실1",
+   "addr": "경기 부천시 부일로 365",
+   "sido": "경기",
+   "free": false,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "https://www.bcf.or.kr/base/rental/select?menuLevel=2&menuNo=60",
+   "kw": "연습실"
+  },
+  "DK24D623070": {
+   "name": "도당예술마당 소연습실2",
+   "addr": "경기 부천시 부천로 360",
+   "sido": "경기",
+   "free": true,
+   "cls": "다목적실",
+   "bookTo": "https://bcf.or.kr/bcc/rental/select?siteKind=1&menuLevel=3&menuNo=102",
+   "kw": "연습실"
+  },
+  "DK24D623078": {
+   "name": "오정생활문화센터 개인연습실 5",
+   "addr": "경기 부천시 오정구 성오로 172",
+   "sido": "경기",
+   "free": true,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "https://bcf.or.kr/bcc/rental/select?siteKind=3&menuLevel=3&menuNo=104",
+   "kw": "연습실"
+  },
+  "DK24D623086": {
+   "name": "오정생활문화센터 밴드연습실",
+   "addr": "경기 부천시 오정구 성오로 172",
+   "sido": "경기",
+   "free": true,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "https://bcf.or.kr/bcc/rental/select?siteKind=3&menuLevel=3&menuNo=104",
+   "kw": "연습실"
+  },
+  "DK24D623089": {
+   "name": "오정생활문화센터 대연습실 1",
+   "addr": "경기 부천시 오정구 성오로 172",
+   "sido": "경기",
+   "free": true,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "https://bcf.or.kr/bcc/rental/select?siteKind=3&menuLevel=3&menuNo=104",
+   "kw": "연습실"
+  },
+  "DK24D623092": {
+   "name": "소사생활문화센터 개인연습실 1",
+   "addr": "경기 부천시 경인옛로 73",
+   "sido": "경기",
+   "free": true,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "https://bcf.or.kr/bcc/rental/select?siteKind=4&menuLevel=3&menuNo=105",
+   "kw": "연습실"
+  },
+  "DK24D623096": {
+   "name": "소사생활문화센터 어쿠스틱연습실",
+   "addr": "경기 부천시 경인옛로 73",
+   "sido": "경기",
+   "free": true,
+   "cls": "일반강의실",
+   "bookTo": "https://bcf.or.kr/bcc/rental/select?siteKind=4&menuLevel=3&menuNo=105",
+   "kw": "연습실"
+  },
+  "DK24D623656": {
+   "name": "군포시생활문화센터 (어쿠스틱연습실)",
+   "addr": "경기 군포시 수리산로 112",
+   "sido": "경기",
+   "free": false,
+   "cls": "일반강의실",
+   "bookTo": "https://www.gunpocf.or.kr/cf/lease/leaseSchdul/100003",
+   "kw": "연습실"
+  },
+  "DK24D623660": {
+   "name": "군포문화예술회관 (연습실B)",
+   "addr": "경기 군포시 고산로 599",
+   "sido": "경기",
+   "free": false,
+   "cls": "일반강의실",
+   "bookTo": "https://www.gunpocf.or.kr/cf/lease/leaseSchdul/100002",
+   "kw": "연습실"
+  },
+  "BA10A0006642": {
+   "name": "동구청소년수련관 1층(노래연습실)",
+   "addr": "전남광주통합특별시 동구 의재로43번길 27-3 (학동)",
+   "sido": "전남광주통합특별시",
+   "free": false,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "",
+   "kw": "연습실"
+  },
+  "CB01N002873": {
+   "name": "407호(밴드연습실C)",
+   "addr": "경기도 화성시 동탄순환대로20길 6",
+   "sido": "경기도",
+   "free": false,
+   "cls": "일반강의실",
+   "bookTo": "https://yeyak.hscity.go.kr/facilityDetail.do?facilityIdx=295",
+   "kw": "연습실"
+  },
+  "CB01N002875": {
+   "name": "409호(밴드연습실S)",
+   "addr": "경기도 화성시 동탄순환대로20길 6",
+   "sido": "경기도",
+   "free": false,
+   "cls": "일반강의실",
+   "bookTo": "https://yeyak.hscity.go.kr/facilityDetail.do?facilityIdx=297",
+   "kw": "연습실"
+  },
+  "CB01N002877": {
+   "name": "411호(밴드연습실M)",
+   "addr": "경기도 화성시 동탄순환대로20길 6",
+   "sido": "경기도",
+   "free": false,
+   "cls": "일반강의실",
+   "bookTo": "https://yeyak.hscity.go.kr/facilityDetail.do?facilityIdx=299",
+   "kw": "연습실"
+  },
+  "CB01N002884": {
+   "name": "505호(개인연습실-높은도)",
+   "addr": "경기도 화성시 동탄순환대로20길 6",
+   "sido": "경기도",
+   "free": false,
+   "cls": "일반강의실",
+   "bookTo": "https://yeyak.hscity.go.kr/facilityDetail.do?facilityIdx=306",
+   "kw": "연습실"
+  },
+  "CB01N002885": {
+   "name": "506호(개인연습실-시)",
+   "addr": "경기도 화성시 동탄순환대로20길 6",
+   "sido": "경기도",
+   "free": false,
+   "cls": "일반강의실",
+   "bookTo": "https://yeyak.hscity.go.kr/facilityDetail.do?facilityIdx=307",
+   "kw": "연습실"
+  },
+  "CB01N002886": {
+   "name": "507호(개인연습실-라)",
+   "addr": "경기도 화성시 동탄순환대로20길 6",
+   "sido": "경기도",
+   "free": false,
+   "cls": "일반강의실",
+   "bookTo": "https://yeyak.hscity.go.kr/facilityDetail.do?facilityIdx=308",
+   "kw": "연습실"
+  },
+  "CB01N002887": {
+   "name": "508호(개인연습실-솔)",
+   "addr": "경기도 화성시 동탄순환대로20길 6",
+   "sido": "경기도",
+   "free": false,
+   "cls": "일반강의실",
+   "bookTo": "https://yeyak.hscity.go.kr/facilityDetail.do?facilityIdx=309",
+   "kw": "연습실"
+  },
+  "CB01N002888": {
+   "name": "509호(개인연습실-파)",
+   "addr": "경기도 화성시 동탄순환대로20길 6",
+   "sido": "경기도",
+   "free": false,
+   "cls": "일반강의실",
+   "bookTo": "https://yeyak.hscity.go.kr/facilityDetail.do?facilityIdx=310",
+   "kw": "연습실"
+  },
+  "CB01N002889": {
+   "name": "510호(개인연습실-미)",
+   "addr": "경기도 화성시 동탄순환대로20길 6",
+   "sido": "경기도",
+   "free": false,
+   "cls": "일반강의실",
+   "bookTo": "https://yeyak.hscity.go.kr/facilityDetail.do?facilityIdx=311",
+   "kw": "연습실"
+  },
+  "CB01N002890": {
+   "name": "511호(개인연습실-레)",
+   "addr": "경기도 화성시 동탄순환대로20길 6",
+   "sido": "경기도",
+   "free": false,
+   "cls": "일반강의실",
+   "bookTo": "https://yeyak.hscity.go.kr/facilityDetail.do?facilityIdx=312",
+   "kw": "연습실"
+  },
+  "CB01N002891": {
+   "name": "512호(개인연습실-도)",
+   "addr": "경기도 화성시 동탄순환대로20길 6",
+   "sido": "경기도",
+   "free": false,
+   "cls": "일반강의실",
+   "bookTo": "https://yeyak.hscity.go.kr/facilityDetail.do?facilityIdx=313",
+   "kw": "연습실"
+  },
+  "EE17N1950932": {
+   "name": "댄싱공연장 연습실",
+   "addr": "강원 원주시 단구로 170 (명륜동)",
+   "sido": "강원",
+   "free": false,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "https://www.allwcf.kr/place/place_list.php",
+   "kw": "연습실"
+  },
+  "CB01N002876": {
+   "name": "410호(밴드연습실U)",
+   "addr": "경기도 화성시 동탄순환대로20길 6",
+   "sido": "경기도",
+   "free": false,
+   "cls": "일반강의실",
+   "bookTo": "https://yeyak.hscity.go.kr/facilityDetail.do?facilityIdx=298",
+   "kw": "연습실"
+  },
+  "EE17O1024754": {
+   "name": "원주생활문화센터 연습실",
+   "addr": "강원 원주시 원일로 139 (일산동)",
+   "sido": "강원",
+   "free": false,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "https://www.allwcf.kr/place/place_list.php",
+   "kw": "연습실"
+  },
+  "CF08N0635268": {
+   "name": "인천공연예술연습공간 대연습실",
+   "addr": "인천 미추홀구 도화동 620-24",
+   "sido": "인천",
+   "free": false,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "https://appci.ifac.or.kr/",
+   "kw": "연습실"
+  },
+  "CF08O0827344": {
+   "name": "인천공연예술연습공간 중연습실",
+   "addr": "인천 미추홀구 도화동 620-24",
+   "sido": "인천",
+   "free": false,
+   "cls": "기타",
+   "bookTo": "https://appci.ifac.or.kr/",
+   "kw": "연습실"
+  },
+  "BA10A0012937": {
+   "name": "고창전통문화공간 야외(연습실)",
+   "addr": "전북특별자치도 고창군 고창읍 모양성로 13",
+   "sido": "전북특별자치도",
+   "free": false,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "https://www.gochang.go.kr/art/index.gochang",
+   "kw": "연습실"
+  },
+  "CF09J2738130": {
+   "name": "생활문화센터 칠통마당 연습실1",
+   "addr": "인천광역시 제물포구 해안동1가 1-5",
+   "sido": "인천광역시",
+   "free": true,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "https://ifac.or.kr/7tong/",
+   "kw": "연습실"
+  },
+  "CF09J3021146": {
+   "name": "생활문화센터 칠통마당 연습실2",
+   "addr": "인천광역시 제물포구 해안동1가 1-5",
+   "sido": "인천광역시",
+   "free": true,
+   "cls": "회의실",
+   "bookTo": "https://ifac.or.kr/7tong/",
+   "kw": "연습실"
+  },
+  "DF10M1921057": {
+   "name": "창4동주민센터 공연연습실",
+   "addr": "서울 도봉구 노해로 390 (창동)",
+   "sido": "서울",
+   "free": false,
+   "cls": "기타",
+   "bookTo": "",
+   "kw": "연습실"
+  },
+  "CF10U3252933": {
+   "name": "개항장 문화마당 생활문화센터 1층 소연습실",
+   "addr": "인천광역시 제물포구 차이나타운로59번길 15 (선린동)",
+   "sido": "인천광역시",
+   "free": true,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "",
+   "kw": "연습실"
+  },
+  "CF10U3903641": {
+   "name": "개항장 문화마당 생활문화센터 2층 대연습실",
+   "addr": "인천광역시 제물포구 차이나타운로59번길 15 (선린동)",
+   "sido": "인천광역시",
+   "free": true,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "",
+   "kw": "연습실"
+  },
+  "BB06N3615896": {
+   "name": "가좌청소년센터 공연연습실1",
+   "addr": "인천광역시 서해구 원적로7번길 12",
+   "sido": "인천광역시",
+   "free": true,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "",
+   "kw": "연습실"
+  },
+  "BC03R3647808": {
+   "name": "광주광역시용봉청소년문화의집(노래연습실)",
+   "addr": "전남광주통합특별시 북구 비엔날레로 135 (용봉동)",
+   "sido": "전남광주통합특별시",
+   "free": false,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "",
+   "kw": "연습실"
+  },
+  "BA10A0001901": {
+   "name": "성남문화의집 1층(연습실)",
+   "addr": "경기 성남시 수정구 산성대로215번길 7 (신흥동)",
+   "sido": "경기",
+   "free": true,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "",
+   "kw": "연습실"
+  },
+  "CF16O2933608": {
+   "name": "신등면복지회관 본관1층 연습실",
+   "addr": "경남 산청군 신등면 신차로 500-3",
+   "sido": "경남",
+   "free": false,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "",
+   "kw": "연습실"
+  },
+  "BA10A0003688": {
+   "name": "웅양면복지회관 동아리 연습실",
+   "addr": "경남 거창군 웅양면 웅양로 1443-6",
+   "sido": "경남",
+   "free": true,
+   "cls": "기타",
+   "bookTo": "",
+   "kw": "연습실"
+  },
+  "DK24D623048": {
+   "name": "부천공연예술연습공간 대연습실1",
+   "addr": "경기 부천시 부일로 365",
+   "sido": "경기",
+   "free": false,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "https://www.bcf.or.kr/base/rental/select?menuLevel=2&menuNo=60",
+   "kw": "연습실"
+  },
+  "DK24D623071": {
+   "name": "도당예술마당 소연습실1",
+   "addr": "경기 부천시 부천로 360",
+   "sido": "경기",
+   "free": true,
+   "cls": "다목적실",
+   "bookTo": "https://bcf.or.kr/bcc/rental/select?siteKind=1&menuLevel=3&menuNo=102",
+   "kw": "연습실"
+  },
+  "DK24D623072": {
+   "name": "도당예술마당 대연습실",
+   "addr": "경기 부천시 부천로 360",
+   "sido": "경기",
+   "free": true,
+   "cls": "다목적실",
+   "bookTo": "https://bcf.or.kr/bcc/rental/select?siteKind=1&menuLevel=3&menuNo=102",
+   "kw": "연습실"
+  },
+  "BA10A0004219": {
+   "name": "경남문화예술회관 지하1층(연습실-대)",
+   "addr": "경남 진주시 강남로 215 (칠암동)",
+   "sido": "경남",
+   "free": false,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "",
+   "kw": "연습실"
+  },
+  "DK24D623082": {
+   "name": "오정생활문화센터 개인연습실 1",
+   "addr": "경기 부천시 오정구 성오로 172",
+   "sido": "경기",
+   "free": true,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "https://bcf.or.kr/bcc/rental/select?siteKind=3&menuLevel=3&menuNo=104",
+   "kw": "연습실"
+  },
+  "DK24D623087": {
+   "name": "오정생활문화센터 어쿠스틱 연습실",
+   "addr": "경기 부천시 오정구 성오로 172",
+   "sido": "경기",
+   "free": true,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "https://bcf.or.kr/bcc/rental/select?siteKind=3&menuLevel=3&menuNo=104",
+   "kw": "연습실"
+  },
+  "DK24D623088": {
+   "name": "오정생활문화센터 대연습실 2",
+   "addr": "경기 부천시 오정구 성오로 172",
+   "sido": "경기",
+   "free": true,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "https://bcf.or.kr/bcc/rental/select?siteKind=3&menuLevel=3&menuNo=104",
+   "kw": "연습실"
+  },
+  "BA10A0004220": {
+   "name": "경남문화예술회관 지하1층(연습실-소)",
+   "addr": "경남 진주시 강남로 215 (칠암동)",
+   "sido": "경남",
+   "free": false,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "",
+   "kw": "연습실"
+  },
+  "DK24D623091": {
+   "name": "소사생활문화센터 개인연습실 2",
+   "addr": "경기 부천시 경인옛로 73",
+   "sido": "경기",
+   "free": true,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "https://bcf.or.kr/bcc/rental/select?siteKind=4&menuLevel=3&menuNo=105",
+   "kw": "연습실"
+  },
+  "DK24D623094": {
+   "name": "소사생활문화센터 밴드연습실",
+   "addr": "경기 부천시 경인옛로 73",
+   "sido": "경기",
+   "free": true,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "https://bcf.or.kr/bcc/rental/select?siteKind=4&menuLevel=3&menuNo=105",
+   "kw": "연습실"
+  },
+  "DK24D623095": {
+   "name": "소사생활문화센터 두드림연습실",
+   "addr": "경기 부천시 경인옛로 73",
+   "sido": "경기",
+   "free": true,
+   "cls": "일반강의실",
+   "bookTo": "https://bcf.or.kr/bcc/rental/select?siteKind=4&menuLevel=3&menuNo=105",
+   "kw": "연습실"
+  },
+  "CJ14I5401210": {
+   "name": "청송군 남관생활문화센터 연습실 1",
+   "addr": "경북 청송군 부남면 부남로 14",
+   "sido": "경북",
+   "free": true,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "",
+   "kw": "연습실"
+  },
+  "BA10A0006433": {
+   "name": "광주광역시원당산청소년문화의집 지하1층(악기연습실)",
+   "addr": "전남광주통합특별시 광산구 장덕로96번길 15 (장덕동)",
+   "sido": "전남광주통합특별시",
+   "free": true,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "",
+   "kw": "연습실"
+  },
+  "CJ15J4453170": {
+   "name": "청송군 남관생활문화센터 연습실 2",
+   "addr": "경북 청송군 부남면 부남로 14",
+   "sido": "경북",
+   "free": true,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "",
+   "kw": "연습실"
+  },
+  "CJ15J4534747": {
+   "name": "청송군 남관생활문화센터 연습실 3",
+   "addr": "경북 청송군 부남면 부남로 14",
+   "sido": "경북",
+   "free": true,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "",
+   "kw": "연습실"
+  },
+  "CJ15J4616648": {
+   "name": "청송군 남관생활문화센터 연습실 4",
+   "addr": "경북 청송군 부남면 부남로 14",
+   "sido": "경북",
+   "free": true,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "",
+   "kw": "연습실"
+  },
+  "CJ15J4857020": {
+   "name": "청송군 남관생활문화센터 음악연습실",
+   "addr": "경북 청송군 부남면 부남로 14",
+   "sido": "경북",
+   "free": true,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "",
+   "kw": "연습실"
+  },
+  "CJ15O4650004": {
+   "name": "1인 악기연습실",
+   "addr": "세종특별자치시 마음로 284 (고운동)",
+   "sido": "세종특별자치시",
+   "free": true,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "",
+   "kw": "연습실"
+  },
+  "DB10T1334950": {
+   "name": "아르코공연연습센터 연습실",
+   "addr": "경북 포항시 북구 중앙로 373 (덕수동)",
+   "sido": "경북",
+   "free": false,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "https://culturalspace.phcf.or.kr/arko/subMain.do",
+   "kw": "연습실"
+  },
+  "CB01N002874": {
+   "name": "408호(밴드연습실I)",
+   "addr": "경기도 화성시 동탄순환대로20길 6",
+   "sido": "경기도",
+   "free": false,
+   "cls": "일반강의실",
+   "bookTo": "https://yeyak.hscity.go.kr/facilityDetail.do?facilityIdx=296",
+   "kw": "연습실"
+  },
+  "DD11Q5045520": {
+   "name": "남구생활문화센터(방음연습실)",
+   "addr": "전남광주통합특별시 남구 봉선로 208 (봉선동)",
+   "sido": "전남광주통합특별시",
+   "free": false,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "http://nglcc.kr/bbs/content.php?co_id=0206",
+   "kw": "연습실"
+  },
+  "DE18N1441669": {
+   "name": "문화예술회관 연습실",
+   "addr": "강원특별자치도 태백시 고원로 203 (황지동)",
+   "sido": "강원특별자치도",
+   "free": false,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "https://www.taebaek.go.kr/www/contents.do?key=495",
+   "kw": "연습실"
+  },
+  "EF27P2704571": {
+   "name": "부산시민공원 문화예술촌 연습실1",
+   "addr": "부산광역시 부산진구 시민공원로 73",
+   "sido": "부산광역시",
+   "free": false,
+   "cls": "기타",
+   "bookTo": "",
+   "kw": "연습실"
+  },
+  "EF01J5335375": {
+   "name": "[관악청년청]연습실(관악청년청 홈페이지 이용)",
+   "addr": "서울 관악구 남부순환로 1759 (봉천동)",
+   "sido": "서울",
+   "free": false,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "https://www.checkin-gwanak.or.kr/core/?cid=12&muid=6",
+   "kw": "연습실"
+  },
+  "GB20P5746843": {
+   "name": "광산구민회관 3층 연습실(노닐마당)",
+   "addr": "전남광주통합특별시 광산구 상무대로 265 (소촌동)",
+   "sido": "전남광주통합특별시",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "",
+   "kw": "연습실"
+  },
+  "GB24N3814732": {
+   "name": "가좌청소년센터 공연연습실2",
+   "addr": "인천 서해구 원적로7번길 12 (가좌동)",
+   "sido": "인천",
+   "free": true,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "",
+   "kw": "연습실"
+  },
+  "GK09C823238": {
+   "name": "음악연습실2",
+   "addr": "경기 이천시 애련정로 29",
+   "sido": "경기",
+   "free": false,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "https://share.gg.go.kr/facilityListO/view?instiCode=1180020&facilityId=F0007&eshare=1",
+   "kw": "연습실"
+  },
+  "GL04O4606340": {
+   "name": "광산 아르코공연연습센터 대연습실",
+   "addr": "전남광주통합특별시 광산구 소촌로85번길 14-9",
+   "sido": "전남광주통합특별시",
+   "free": false,
+   "cls": "공연프로그램",
+   "bookTo": "",
+   "kw": "연습실"
+  },
+  "GL19J0535928": {
+   "name": "광산 아르코공연연습센터 중연습실",
+   "addr": "전남광주통합특별시 광산구 소촌로85번길 14-9",
+   "sido": "전남광주통합특별시",
+   "free": false,
+   "cls": "공연프로그램",
+   "bookTo": "",
+   "kw": "연습실"
+  },
+  "HA02C829118": {
+   "name": "중랑생활문화센터 다목적연습실",
+   "addr": "서울특별시 중랑구 공릉로2길 8-4, 2층 207호",
+   "sido": "서울특별시",
+   "free": true,
+   "cls": "회의실",
+   "bookTo": "https://yeyak.seoul.go.kr/web/reservation/selectReservView.do?rsv_svc_id=S251216095253476502",
+   "kw": "연습실"
+  },
+  "HA06C830185": {
+   "name": "구로구 천왕역 버들마을활력소 개인연습실",
+   "addr": "서울특별시 구로구 오리로 지하 1154(오류동)",
+   "sido": "서울특별시",
+   "free": false,
+   "cls": "회의실",
+   "bookTo": "https://yeyak.seoul.go.kr/web/reservation/selectReservView.do?rsv_svc_id=S260105141933856808",
+   "kw": "연습실"
+  },
+  "HA06C830186": {
+   "name": "구로구 천왕역 버들마을활력소 동아리연습실",
+   "addr": "서울특별시 구로구 오리로 지하 1154(오류동)",
+   "sido": "서울특별시",
+   "free": false,
+   "cls": "회의실",
+   "bookTo": "https://yeyak.seoul.go.kr/web/reservation/selectReservView.do?rsv_svc_id=S260105142306267090",
+   "kw": "연습실"
+  },
+  "HC03N2252267": {
+   "name": "청주산단 복합문화센터 연습실",
+   "addr": "충북 청주시 흥덕구 공단로126번길 51 (송정동)",
+   "sido": "충북",
+   "free": true,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "",
+   "kw": "연습실"
+  },
+  "HC28D850067": {
+   "name": "고산생활문화센터 연습실2",
+   "addr": "경기 광주시 태봉로 193",
+   "sido": "경기",
+   "free": true,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "https://glcc.nsart.or.kr/M000216/S001/fw/rental/gosanSpaceList.do",
+   "kw": "연습실"
+  },
+  "HC28D850068": {
+   "name": "고산생활문화센터 연습실1",
+   "addr": "경기 광주시 태봉로 193",
+   "sido": "경기",
+   "free": true,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "https://glcc.nsart.or.kr/M000216/S001/fw/rental/gosanSpaceList.do",
+   "kw": "연습실"
+  },
+  "HC28D850076": {
+   "name": "고산생활문화센터 연습실3",
+   "addr": "경기 광주시 태봉로 193",
+   "sido": "경기",
+   "free": true,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "https://glcc.nsart.or.kr/M000216/S001/fw/rental/gosanSpaceList.do",
+   "kw": "연습실"
+  },
+  "FI06D716172": {
+   "name": "경기창작캠퍼스 합주실",
+   "addr": "경기 안산시 단원구 선감로 101-19",
+   "sido": "경기",
+   "free": false,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "https://members.ggcf.kr/facilities?orgs%5B%5D=8&start_dt=&end_dt=&usages%5B%5D=4",
+   "kw": "연습실"
+  },
+  "GH30D819594": {
+   "name": "동두천 생활문화센터 밴드실",
+   "addr": "경기 동두천시 동두천로 314",
+   "sido": "경기",
+   "free": false,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "https://share.gg.go.kr/facilityListO/view?instiCode=1280006&facilityId=F0006&eshare=1",
+   "kw": "연습실"
+  },
+  "AA02A0000045": {
+   "name": "음악공간",
+   "addr": "경기도 시흥시 비둘기공원7길 22",
+   "sido": "경기도",
+   "free": false,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "https://share.siheung.go.kr/space/view.do?space_no=207&searchCategory=2&searchDetailCategory=16&key=306000",
+   "kw": "연습실"
+  },
+  "AA02A0000110": {
+   "name": "전체 합주실",
+   "addr": "경기도 시흥시 군자로534번길 68",
+   "sido": "경기도",
+   "free": false,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "https://share.siheung.go.kr/space/view.do?space_no=325&searchCategory=2&searchDetailCategory=16&key=306000",
+   "kw": "연습실"
+  },
+  "BJ08I1028720": {
+   "name": "울산음악창작소",
+   "addr": "울산 중구 중앙1길 16 (성남동)",
+   "sido": "울산",
+   "free": false,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "https://www.junggu.ulsan.kr/tour/index.ulsan?menuCd=DOM_000000117000000000",
+   "kw": "연습실"
+  },
+  "DI08U3205505": {
+   "name": "북상면행정복지센터 2층 음악실",
+   "addr": "경남 거창군 북상면 덕유월성로 2315",
+   "sido": "경남",
+   "free": true,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "",
+   "kw": "연습실"
+  },
+  "EB24Q2713866": {
+   "name": "통영12스쿨플랫폼 음악실 413호",
+   "addr": "경남 통영시 도남로 193 (도남동)",
+   "sido": "경남",
+   "free": false,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "",
+   "kw": "연습실"
+  },
+  "EB24Q2837025": {
+   "name": "통영12스쿨플랫폼 음악실 415호",
+   "addr": "경남 통영시 도남로 193 (도남동)",
+   "sido": "경남",
+   "free": false,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "",
+   "kw": "연습실"
+  },
+  "EB24Q3659973": {
+   "name": "통영12스쿨플랫폼 음악실 507호",
+   "addr": "경남 통영시 도남로 193 (도남동)",
+   "sido": "경남",
+   "free": false,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "",
+   "kw": "연습실"
+  },
+  "EB24Q3759529": {
+   "name": "통영12스쿨플랫폼 음악실 509호",
+   "addr": "경남 통영시 도남로 193 (도남동)",
+   "sido": "경남",
+   "free": false,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "",
+   "kw": "연습실"
+  },
+  "EB24Q3920971": {
+   "name": "통영12스쿨플랫폼 음악실 513호",
+   "addr": "경남 통영시 도남로 193 (도남동)",
+   "sido": "경남",
+   "free": false,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "",
+   "kw": "연습실"
+  },
+  "EB24Q4018757": {
+   "name": "통영12스쿨플랫폼 음악실 515호",
+   "addr": "경남 통영시 도남로 193 (도남동)",
+   "sido": "경남",
+   "free": false,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "",
+   "kw": "연습실"
+  },
+  "EH07P3755667": {
+   "name": "아르코공연연습센터@금정",
+   "addr": "부산 금정구 체육공원로 7 (구서동)",
+   "sido": "부산",
+   "free": false,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "http://www.gjfac.org/gjfac/template.php?midx=314",
+   "kw": "연습실"
+  },
+  "FB21J5330664": {
+   "name": "옥주골창작소",
+   "addr": "전남광주통합특별시 진도군 진도읍 성내리 46-16",
+   "sido": "전남광주통합특별시",
+   "free": true,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "",
+   "kw": "연습실"
+  },
+  "FA11D698475": {
+   "name": "합주실 B┃ 포천음악창작소",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": false,
+   "cls": "주민편의시설 등",
+   "bookTo": "https://share.gg.go.kr/facilityListO/view?instiCode=1240025&facilityId=F0003&eshare=1",
+   "kw": "합주실"
+  },
+  "FA11D698476": {
+   "name": "합주실 A┃ 포천음악창작소",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": false,
+   "cls": "주민편의시설 등",
+   "bookTo": "https://share.gg.go.kr/facilityListO/view?instiCode=1240025&facilityId=F0002&eshare=1",
+   "kw": "합주실"
+  },
+  "CB01N002868": {
+   "name": "403호(밴드합주실)",
+   "addr": "경기도 화성시 동탄순환대로20길 6",
+   "sido": "경기도",
+   "free": false,
+   "cls": "일반강의실",
+   "bookTo": "https://yeyak.hscity.go.kr/facilityDetail.do?facilityIdx=271",
+   "kw": "합주실"
+  },
+  "BA10A0008599": {
+   "name": "40계단문화관 3층(음악실)",
+   "addr": "부산 중구 동광길 49 (동광동5가)",
+   "sido": "부산",
+   "free": true,
+   "cls": "공연장·전시장",
+   "bookTo": "",
+   "kw": "음악실"
+  },
+  "CF10Q0606118": {
+   "name": "화명2동 생활문화센터 음악실",
+   "addr": "부산 북구 양달로 58 (화명동)",
+   "sido": "부산",
+   "free": true,
+   "cls": "문화·운동교실",
+   "bookTo": "",
+   "kw": "음악실"
+  },
+  "BA05A0448670": {
+   "name": "X-밴드 안테나 지향장치 (APM) 지상모델(DM)",
+   "addr": "대전광역시 유성구 과학로 169-84 (어은동) 45",
+   "sido": "대전광역시",
+   "free": false,
+   "cls": "전기/전자",
+   "bookTo": "https://www.zeus.go.kr/eshare/read/Z-NTIS-0051251?cloudId=200702080244",
+   "kw": "밴드"
+  },
+  "FE09T4931895": {
+   "name": "호스밴드",
+   "addr": "서울 중구 장충단로8길 22 (장충동1가)",
+   "sido": "서울",
+   "free": true,
+   "cls": "기타 공구·기계·기기",
+   "bookTo": "",
+   "kw": "밴드"
+  },
+  "CD01O4207166": {
+   "name": "과학어군탐지기 200 kHz 스프리트빔 와이드 밴드 트랜시버",
+   "addr": "경상남도 통영시 통영해안로 2 경상대학교",
+   "sido": "경상남도",
+   "free": false,
+   "cls": "기타",
+   "bookTo": "https://www.zeus.go.kr/eshare/read/Z-202007235201?cloudId=201806110281",
+   "kw": "밴드"
+  },
+  "BA05A0432646": {
+   "name": "플리트브로드밴드 위성 안테나",
+   "addr": "부산광역시 영도구 해양로15번길 18 (청학동) 330-9",
+   "sido": "부산광역시",
+   "free": false,
+   "cls": "전기/전자",
+   "bookTo": "https://www.zeus.go.kr/eshare/read/Z-NTIS-0061643?cloudId=200910151677",
+   "kw": "밴드"
+  },
+  "CF01P1138972": {
+   "name": "밴드 엑시테이션 주사 탐침 현미경",
+   "addr": "서울특별시 용산구 청파로47길 100 (청파동2가) 53-12",
+   "sido": "서울특별시",
+   "free": false,
+   "cls": "기타",
+   "bookTo": "https://www.zeus.go.kr/eshare/read/Z-201712262962?cloudId=201806110281",
+   "kw": "밴드"
+  },
+  "BA05A0404558": {
+   "name": "밴드쏘",
+   "addr": "울산광역시 중구 종가로 55 한국생산기술연구원",
+   "sido": "울산광역시",
+   "free": false,
+   "cls": "기계가공/시험",
+   "bookTo": "https://www.zeus.go.kr/eshare/read/Z-201812094286?cloudId=201806110281",
+   "kw": "밴드"
+  },
+  "BA05A0402436": {
+   "name": "X-밴드 주파수 하향변환기",
+   "addr": "대전광역시 유성구 과학로 169-84 (어은동) 한국항공우주연구원",
+   "sido": "대전광역시",
+   "free": false,
+   "cls": "전기/전자",
+   "bookTo": "https://www.zeus.go.kr/eshare/read/Z-201812095747?cloudId=201806110281",
+   "kw": "밴드"
+  },
+  "GG22B815501": {
+   "name": "유아 흡연위해예방 놀이형 체험관 ‘노담밴드의 연주회 가는 길’",
+   "addr": "경기 성남시 분당구 분당수서로 501 (정자동)",
+   "sido": "경기",
+   "free": false,
+   "cls": "전시실",
+   "bookTo": "https://test.nosmokeguide.go.kr/child/client/business-info/play",
+   "kw": "밴드"
+  },
+  "BA05A0407028": {
+   "name": "베이스밴드 발생기 및 채널 에뮬레이터",
+   "addr": "대전광역시 유성구 가정로 218 (가정동) 161",
+   "sido": "대전광역시",
+   "free": false,
+   "cls": "전기/전자",
+   "bookTo": "https://www.zeus.go.kr/eshare/read/Z-201812098666?cloudId=201806110281",
+   "kw": "밴드"
+  },
+  "FJ23Q1940396": {
+   "name": "화개면 주민자치 프로그램(밴드)",
+   "addr": "경남 하동군 화개면 쌍계로 28",
+   "sido": "경남",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "",
+   "kw": "밴드"
+  },
+  "BA05A0435184": {
+   "name": "클램프밴드",
+   "addr": "대전광역시 유성구 과학로 169-84 (어은동) 한국항공우주연구원",
+   "sido": "대전광역시",
+   "free": false,
+   "cls": "기계가공/시험",
+   "bookTo": "https://www.zeus.go.kr/eshare/read/Z-NTIS-0059777?cloudId=200702080244",
+   "kw": "밴드"
+  },
+  "BA05A0402668": {
+   "name": "금속소재 절단용 밴드쏘",
+   "addr": "부산광역시 부산진구 엄광로 176 동의대학교",
+   "sido": "부산광역시",
+   "free": false,
+   "cls": "기계가공/시험",
+   "bookTo": "https://www.zeus.go.kr/eshare/read/Z-201812095955?cloudId=201806110281",
+   "kw": "밴드"
+  },
+  "BA05A0407819": {
+   "name": "X-밴드 주파수 상향변환기",
+   "addr": "대전광역시 유성구 과학로 169-84 (어은동) 한국항공우주연구원",
+   "sido": "대전광역시",
+   "free": false,
+   "cls": "전기/전자",
+   "bookTo": "https://www.zeus.go.kr/eshare/read/Z-201812097771?cloudId=201806110281",
+   "kw": "밴드"
+  },
+  "BA05A0424029": {
+   "name": "베이스밴드 벡터 신호 분석기",
+   "addr": "대전광역시 유성구 가정로 218 (가정동) 161",
+   "sido": "대전광역시",
+   "free": false,
+   "cls": "전기/전자",
+   "bookTo": "https://www.zeus.go.kr/eshare/read/Z-NTIS-0006811?cloudId=201806110281",
+   "kw": "밴드"
+  },
+  "BA05A0414727": {
+   "name": "밴드쏘머신",
+   "addr": "충청남도 천안시 서북구 입장면 양대기로길 89 한국생산기술연구원",
+   "sido": "충청남도",
+   "free": false,
+   "cls": "물리적측정",
+   "bookTo": "https://www.zeus.go.kr/eshare/read/Z-201901246198?cloudId=200702080248",
+   "kw": "밴드"
+  },
+  "BA05A0417930": {
+   "name": "브로드밴드 하이 게인 혼 안테나",
+   "addr": "경기도 김포시 양촌읍 황금3로7번길 112 주식회사 아이씨알",
+   "sido": "경기도",
+   "free": false,
+   "cls": "전기/전자",
+   "bookTo": "https://www.zeus.go.kr/eshare/read/Z-201903227835?cloudId=201806110281",
+   "kw": "밴드"
+  },
+  "BA05A0451933": {
+   "name": "듀얼밴드 무선 트래픽 인가 장치",
+   "addr": "경기도 안양시 동안구 벌말로 112 (관양동) 864-7",
+   "sido": "경기도",
+   "free": false,
+   "cls": "전기/전자",
+   "bookTo": "https://www.zeus.go.kr/eshare/read/Z-NTIS-0034354?cloudId=201005034593",
+   "kw": "밴드"
+  },
+  "EJ24P5742660": {
+   "name": "평생학습-성전면 밴드",
+   "addr": "전남광주통합특별시 강진군 강진읍 영랑로1길 10",
+   "sido": "전남광주통합특별시",
+   "free": true,
+   "cls": "기타프로그램",
+   "bookTo": "",
+   "kw": "밴드"
+  },
+  "BA05A0417476": {
+   "name": "트리로그 브로드 밴드 안테나(RRA)",
+   "addr": "경기도 김포시 양촌읍 황금3로7번길 112 주식회사",
+   "sido": "경기도",
+   "free": false,
+   "cls": "전기/전자",
+   "bookTo": "https://www.zeus.go.kr/eshare/read/Z-201903227882?cloudId=201806110281",
+   "kw": "밴드"
+  },
+  "BA05A0417873": {
+   "name": "브로드밴드 앰프",
+   "addr": "경기도 김포시 양촌읍 황금3로7번길 112 주식회사",
+   "sido": "경기도",
+   "free": false,
+   "cls": "전기/전자",
+   "bookTo": "https://www.zeus.go.kr/eshare/read/Z-201903227841?cloudId=201806110281",
+   "kw": "밴드"
+  },
+  "BA05A0419783": {
+   "name": "트리로그 브로드 밴드 안테나(RRA)",
+   "addr": "경기도 김포시 양촌읍 황금3로7번길 112 주식회사",
+   "sido": "경기도",
+   "free": false,
+   "cls": "전기/전자",
+   "bookTo": "https://www.zeus.go.kr/eshare/read/Z-201904088490?cloudId=201812170482",
+   "kw": "밴드"
+  },
+  "BA05A0420146": {
+   "name": "브로드밴드 앰프",
+   "addr": "경기도 김포시 양촌읍 황금3로7번길 112 주식회사",
+   "sido": "경기도",
+   "free": false,
+   "cls": "전기/전자",
+   "bookTo": "https://www.zeus.go.kr/eshare/read/Z-201904088446?cloudId=201812170482",
+   "kw": "밴드"
+  },
+  "BA05A0433107": {
+   "name": "플리트브로드밴드 터미널",
+   "addr": "부산광역시 영도구 해양로15번길 18 (청학동) 330-9",
+   "sido": "부산광역시",
+   "free": false,
+   "cls": "데이터처리",
+   "bookTo": "https://www.zeus.go.kr/eshare/read/Z-NTIS-0061647?cloudId=200910151677",
+   "kw": "밴드"
+  },
+  "BA05A0436534": {
+   "name": "휴대용 옥타브밴드 소음측정기",
+   "addr": "충청북도 청주시 청원구 오창읍 양청3길 73 654-1",
+   "sido": "충청북도",
+   "free": false,
+   "cls": "물리적측정",
+   "bookTo": "https://www.zeus.go.kr/eshare/read/Z-NTIS-0057135?cloudId=201806110281",
+   "kw": "밴드"
+  },
+  "BA05A0454254": {
+   "name": "밴드실러",
+   "addr": "전남광주통합특별시 완도군 완도읍 농공단지4길 21-7 991",
+   "sido": "전남광주통합특별시",
+   "free": false,
+   "cls": "화합물전처리/분석",
+   "bookTo": "https://www.zeus.go.kr/eshare/read/Z-NTIS-0026396?cloudId=201101208363",
+   "kw": "밴드"
+  },
+  "BA05A0429120": {
+   "name": "밴드씰러",
+   "addr": "경상북도 안동시 경동로 1486-18 (송천동) 1319-84",
+   "sido": "경상북도",
+   "free": false,
+   "cls": "기계가공/시험",
+   "bookTo": "https://www.zeus.go.kr/eshare/read/Z-NTIS-0014609?cloudId=201101036121",
+   "kw": "밴드"
+  },
+  "BA05A0445751": {
+   "name": "밴드실러&쉬링크머신",
+   "addr": "충청남도 논산시 대학로 121 (내동) 26번지",
+   "sido": "충청남도",
+   "free": false,
+   "cls": "기계가공/시험",
+   "bookTo": "https://www.zeus.go.kr/eshare/read/Z-NTIS-0041669?cloudId=201806110281",
+   "kw": "밴드"
+  },
+  "BA05A0445974": {
+   "name": "밴드씰러",
+   "addr": "경상북도 안동시 풍산읍 산업단지길 88 1139",
+   "sido": "경상북도",
+   "free": false,
+   "cls": "기계가공/시험",
+   "bookTo": "https://www.zeus.go.kr/eshare/read/Z-NTIS-0038581?cloudId=201101036121",
+   "kw": "밴드"
+  },
+  "BA05A0431654": {
+   "name": "밴드실링기",
+   "addr": "전북특별자치도 전주시 덕진구 원장동길 111-18 (장동) 452-69",
+   "sido": "전북특별자치도",
+   "free": false,
+   "cls": "화합물전처리/분석",
+   "bookTo": "https://www.zeus.go.kr/eshare/read/Z-NTIS-0011139?cloudId=201806110281",
+   "kw": "밴드"
+  },
+  "BA05A0435149": {
+   "name": "단일패키지 멀티밴드 지상시험지원장치(CEU)",
+   "addr": "대전광역시 유성구 과학로 169-84 한국항공우주연구원 탑재체전자팀",
+   "sido": "대전광역시",
+   "free": false,
+   "cls": "광학/전자영상",
+   "bookTo": "https://www.zeus.go.kr/eshare/read/Z-NTIS-0061776?cloudId=200702080244",
+   "kw": "밴드"
+  },
+  "BA05A0436745": {
+   "name": "인피니밴드 네트워크 스위치",
+   "addr": "대전광역시 유성구 대학로 245 제2전산실",
+   "sido": "대전광역시",
+   "free": false,
+   "cls": "데이터처리",
+   "bookTo": "https://www.zeus.go.kr/eshare/read/Z-NTIS-0058649?cloudId=200704180001",
+   "kw": "밴드"
+  },
+  "BA05A0420026": {
+   "name": "브로드-밴드 혼 안테나",
+   "addr": "경기도 김포시 양촌읍 황금3로7번길 112 주식회사 아이씨알",
+   "sido": "경기도",
+   "free": false,
+   "cls": "전기/전자",
+   "bookTo": "https://www.zeus.go.kr/eshare/read/Z-201904088457?cloudId=201812170482",
+   "kw": "밴드"
+  },
+  "BA05A0420180": {
+   "name": "밴드 쏘우",
+   "addr": "경기도 성남시 중원구 둔촌대로 474 (주)진우테크",
+   "sido": "경기도",
+   "free": false,
+   "cls": "기계가공/시험",
+   "bookTo": "https://www.zeus.go.kr/eshare/read/Z-201910152298?cloudId=201806110281",
+   "kw": "밴드"
+  },
+  "BA05A0417707": {
+   "name": "브로드-밴드 혼 안테나",
+   "addr": "경기도 김포시 양촌읍 황금3로7번길 112 주식회사 아이씨알",
+   "sido": "경기도",
+   "free": false,
+   "cls": "전기/전자",
+   "bookTo": "https://www.zeus.go.kr/eshare/read/Z-201903227859?cloudId=201806110281",
+   "kw": "밴드"
+  },
+  "BA05A0428269": {
+   "name": "밴드나이프스플리팅머신",
+   "addr": "부산광역시 부산진구 당감서로 152 (당감동) 786-50번지",
+   "sido": "부산광역시",
+   "free": false,
+   "cls": "기계가공/시험",
+   "bookTo": "https://www.zeus.go.kr/eshare/read/Z-NTIS-0009050?cloudId=201806110281",
+   "kw": "밴드"
+  },
+  "BA05A0467047": {
+   "name": "밴드나이프",
+   "addr": "충청남도 금산군 복수면 복수공단길 62 115-4",
+   "sido": "충청남도",
+   "free": false,
+   "cls": "기계가공/시험",
+   "bookTo": "https://www.zeus.go.kr/eshare/read/Z-NTIS-0023670?cloudId=201101198221",
+   "kw": "밴드"
+  },
+  "BA05A0419641": {
+   "name": "밴드쏘우",
+   "addr": "경기도 성남시 중원구 둔촌대로 474 (주)진우테크",
+   "sido": "경기도",
+   "free": false,
+   "cls": "기계가공/시험",
+   "bookTo": "https://www.zeus.go.kr/eshare/read/Z-201910151715?cloudId=201806110281",
+   "kw": "밴드"
+  },
+  "BA05A0419957": {
+   "name": "브로드밴드 하이 게인 혼 안테나",
+   "addr": "경기도 김포시 양촌읍 황금3로7번길 112 주식회사 아이씨알",
+   "sido": "경기도",
+   "free": false,
+   "cls": "전기/전자",
+   "bookTo": "https://www.zeus.go.kr/eshare/read/Z-201904088443?cloudId=201812170482",
+   "kw": "밴드"
+  },
+  "BA05A0432219": {
+   "name": "밴드소",
+   "addr": "경기도 안산시 단원구 신원로 79 (성곡동) 635-7",
+   "sido": "경기도",
+   "free": false,
+   "cls": "기계가공/시험",
+   "bookTo": "https://www.zeus.go.kr/eshare/read/Z-NTIS-0016298?cloudId=200910141454",
+   "kw": "밴드"
+  },
+  "BA05A0433116": {
+   "name": "Ku밴드 믹서&리미터조립체 전용시험장비",
+   "addr": "경기도 수원시 권선구 산업로155번길 100 (주)엘트로닉스",
+   "sido": "경기도",
+   "free": false,
+   "cls": "전기/전자",
+   "bookTo": "https://www.zeus.go.kr/eshare/read/Z-NTIS-0062577?cloudId=201004273506",
+   "kw": "밴드"
+  },
+  "BA05A0445440": {
+   "name": "엘티이 알에프 알알엠 밴드 추가",
+   "addr": "경기도 안산시 상록구 해안로 723 (사동) 1271-12",
+   "sido": "경기도",
+   "free": false,
+   "cls": "전기/전자",
+   "bookTo": "https://www.zeus.go.kr/eshare/read/Z-NTIS-0041123?cloudId=200709140118",
+   "kw": "밴드"
+  },
+  "BA05A0447541": {
+   "name": "5와트 에스밴드 데이터 트랜스미터",
+   "addr": "경상남도 사천시 사남면 공단1로 78 802번지",
+   "sido": "경상남도",
+   "free": false,
+   "cls": "데이터처리",
+   "bookTo": "https://www.zeus.go.kr/eshare/read/Z-NTIS-0038455?cloudId=200910211999",
+   "kw": "밴드"
+  },
+  "BA05A0447687": {
+   "name": "에스 밴드 리시버",
+   "addr": "경상남도 사천시 사남면 공단1로 78 802번지",
+   "sido": "경상남도",
+   "free": false,
+   "cls": "전기/전자",
+   "bookTo": "https://www.zeus.go.kr/eshare/read/Z-NTIS-0038379?cloudId=200910211999",
+   "kw": "밴드"
+  },
+  "BA05A0456378": {
+   "name": "울트라와이드밴드소스",
+   "addr": "전남광주통합특별시 북구 첨단벤처로108번길 9 (월출동)",
+   "sido": "전남광주통합특별시",
+   "free": false,
+   "cls": "광학/전자영상",
+   "bookTo": "https://www.zeus.go.kr/eshare/read/Z-NTIS-0023710?cloudId=201806110281",
+   "kw": "밴드"
+  },
+  "BA05A0418409": {
+   "name": "멀티밴드 Tunable Laser 광원 발생기",
+   "addr": "전남광주통합특별시 북구 첨단과기로176번길 11 한국전자통신연구원",
+   "sido": "전남광주통합특별시",
+   "free": false,
+   "cls": "광학/전자영상",
+   "bookTo": "https://www.zeus.go.kr/eshare/read/Z-201907160877?cloudId=201806110281",
+   "kw": "밴드"
+  },
+  "GF27J4313705": {
+   "name": "유아 흡연위해예방 놀이형 체험관 ‘노담밴드의 연주회 가는 길’",
+   "addr": "경기 성남시 분당구 분당수서로 501 (정자동)",
+   "sido": "경기",
+   "free": true,
+   "cls": "전시실",
+   "bookTo": "https://test.nosmokeguide.go.kr/child/client/business-info/play",
+   "kw": "밴드"
+  },
+  "BA05A0435578": {
+   "name": "원박스 펨토초 레이저 시스템(밴드가변 극초단 펄스 레이저 시스템)",
+   "addr": "전남광주통합특별시 북구 첨단과기로 123 (오룡동) 1",
+   "sido": "전남광주통합특별시",
+   "free": false,
+   "cls": "광학/전자영상",
+   "bookTo": "https://www.zeus.go.kr/eshare/read/Z-NTIS-0060962?cloudId=200702080187",
+   "kw": "밴드"
+  },
+  "BA05A0428641": {
+   "name": "S 밴드 파장가변 광원",
+   "addr": "전남광주통합특별시 북구 첨단벤처로108번길 9 (월출동)",
+   "sido": "전남광주통합특별시",
+   "free": false,
+   "cls": "광학/전자영상",
+   "bookTo": "https://www.zeus.go.kr/eshare/read/Z-NTIS-0010039?cloudId=201806110281",
+   "kw": "밴드"
+  },
+  "DJ14N1613942": {
+   "name": "백운1동(오카리나마을밴드교실)",
+   "addr": "전남광주통합특별시 남구 독립로54번길 20 (백운동)",
+   "sido": "전남광주통합특별시",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "",
+   "kw": "밴드"
+  },
+  "DK24D623725": {
+   "name": "도시락(락밴드실)",
+   "addr": "경기 의정부시 새말로 40",
+   "sido": "경기",
+   "free": true,
+   "cls": "일반강의실",
+   "bookTo": "https://www.uiyouth.or.kr/center/search/reservePlaceList.ui",
+   "kw": "밴드"
+  },
+  "HB26J2530851": {
+   "name": "배방청소년자유공간 비트 ON-밴드실 신청하기",
+   "addr": "충남 아산시 배방읍 모산로 140-12",
+   "sido": "충남",
+   "free": true,
+   "cls": "기타연습창작공간",
+   "bookTo": "https://www.bbyouth.or.kr/sub/facility/lease/3",
+   "kw": "밴드"
+  },
+  "EJ28U4125254": {
+   "name": "실버밴드동아리",
+   "addr": "서울 성북구 보국문로 106-1 (정릉동)",
+   "sido": "서울",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "",
+   "kw": "밴드"
+  },
+  "DK24D623341": {
+   "name": "아람마당(밴드마당)",
+   "addr": "경기 고양시 일산동구 중앙로 1286",
+   "sido": "경기",
+   "free": false,
+   "cls": "다목적실",
+   "bookTo": "https://www.gymadang.or.kr",
+   "kw": "밴드"
+  },
+  "HE18O853653": {
+   "name": "밴드 쏘 (SHARPMAX MBS1400)",
+   "addr": "경기 수원시 권선구 서둔로 166",
+   "sido": "경기",
+   "free": true,
+   "cls": "농·어·축산업 기계·장비",
+   "bookTo": "https://share.gg.go.kr/goods/view?id=42235&eshare=1",
+   "kw": "밴드"
+  },
+  "EF10D635795": {
+   "name": "충전 밴드쏘",
+   "addr": "경기 고양시 덕양구 고양대로 1695",
+   "sido": "경기",
+   "free": false,
+   "cls": "기타 공구·기계·기기",
+   "bookTo": "https://share.gg.go.kr/goods/view?id=11161&eshare=1",
+   "kw": "밴드"
+  },
+  "HD02E850283": {
+   "name": "[26년 제2기] 세라밴드",
+   "addr": "경기 의왕시 찬우물길 11",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=50673&eshare=1",
+   "kw": "밴드"
+  },
+  "HD14E850918": {
+   "name": "[26년 제2기]세라밴드",
+   "addr": "경기 의왕시 안양판교로 232",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=50607&eshare=1",
+   "kw": "밴드"
+  },
+  "HC21E849737": {
+   "name": "[고천동] 건강밴드",
+   "addr": "경기 의왕시 사천로 11",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=50387&eshare=1",
+   "kw": "밴드"
+  },
+  "HD10E850718": {
+   "name": "세라밴드",
+   "addr": "경기 의왕시 갈미로 71",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=51229&eshare=1",
+   "kw": "밴드"
+  },
+  "HG25E858210": {
+   "name": "세라밴드",
+   "addr": "경기 의왕시 갈미로 71",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=58330&eshare=1",
+   "kw": "밴드"
+  },
+  "DJ26Q3122960": {
+   "name": "단밀면사무소 행복학습센터 밴드교실",
+   "addr": "경북 의성군 단밀면 도안로 1674-7",
+   "sido": "경북",
+   "free": false,
+   "cls": "교양/학습프로그램",
+   "bookTo": "",
+   "kw": "밴드"
+  },
+  "GK28N0704371": {
+   "name": "손목가드 자석밴드",
+   "addr": "서울 성북구 길음로 92 (길음동)",
+   "sido": "서울",
+   "free": false,
+   "cls": "생활공구",
+   "bookTo": "",
+   "kw": "밴드"
+  },
+  "GK28N3516219": {
+   "name": "손목가드 자석밴드",
+   "addr": "서울 성북구 화랑로 152 (상월곡동)",
+   "sido": "서울",
+   "free": false,
+   "cls": "생활공구",
+   "bookTo": "",
+   "kw": "밴드"
+  },
+  "GG22N1240788": {
+   "name": "아산시청소년교육문화센터 2025년 아산 유스밴드 신규단원 모집",
+   "addr": "충남 아산시 시민로 500 (권곡동)",
+   "sido": "충남",
+   "free": true,
+   "cls": "체험프로그램",
+   "bookTo": "http://www.smartyouth.or.kr/main/index.php?m_cd=59&b_id=20250123189776702",
+   "kw": "밴드"
+  },
+  "DJ12M2935091": {
+   "name": "남상면 감악산밴드 교실",
+   "addr": "경남 거창군 남상면 인평길 36",
+   "sido": "경남",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "",
+   "kw": "밴드"
+  },
+  "BK05K000127": {
+   "name": "김해청소년문화의집 밴드실",
+   "addr": "경상남도 김해시 가락로176번길 3 (구산동)",
+   "sido": "경상남도",
+   "free": false,
+   "cls": "회의실",
+   "bookTo": "http://www.gimhae.go.kr/yes/05562/05727/05839.web?amode=view&idx=174",
+   "kw": "밴드"
+  },
+  "EG13C637193": {
+   "name": "[중구교육지원센터] 밴드룸",
+   "addr": "서울특별시 중구 다산로38길 85(신당동)",
+   "sido": "서울특별시",
+   "free": true,
+   "cls": "주민편의시설 등",
+   "bookTo": "https://yeyak.seoul.go.kr/web/reservation/selectReservView.do?rsv_svc_id=S230712184836438706",
+   "kw": "밴드"
+  },
+  "DJ13K1134618": {
+   "name": "손목가드자석밴드",
+   "addr": "서울 성북구 오패산로 96 (하월곡동)",
+   "sido": "서울",
+   "free": false,
+   "cls": "생활공구",
+   "bookTo": "",
+   "kw": "밴드"
+  },
+  "HF02I2824320": {
+   "name": "[대관] Two Pianos, One Dialogue - 두 대의 피아노, 하나의 음악",
+   "addr": "경남 진주시 강남로 215 (칠암동)",
+   "sido": "경남",
+   "free": true,
+   "cls": "공연프로그램",
+   "bookTo": "https://artcenter.gyeongnam.go.kr/concert/concertView.do?CONCERT_ID=CM0001575&sdate=20261101&type=month",
+   "kw": "피아노"
+  },
+  "EJ17R3924983": {
+   "name": "이동식디지털피아노",
+   "addr": "전남광주통합특별시 광산구 단전1길 14 (하남동)",
+   "sido": "전남광주통합특별시",
+   "free": false,
+   "cls": "물품·기타",
+   "bookTo": "https://www.gwangsan.go.kr/share/cnrsCmdtyList.do?pageId=share19",
+   "kw": "피아노"
+  },
+  "CF10U3202674": {
+   "name": "춤추는 뽀로로피아노",
+   "addr": "전남광주통합특별시 남구 양림로 73 (양림동)",
+   "sido": "전남광주통합특별시",
+   "free": false,
+   "cls": "육아용품",
+   "bookTo": "https://blog.naver.com/namgulib08/222840427455",
+   "kw": "피아노"
+  },
+  "FJ10M5931277": {
+   "name": "피아노",
+   "addr": "강원특별자치도 태백시 황지로 75 (황지동)",
+   "sido": "강원특별자치도",
+   "free": true,
+   "cls": "교양/학습프로그램",
+   "bookTo": "",
+   "kw": "피아노"
+  },
+  "HG16D857415": {
+   "name": "두 대의 피아노로 들여다보는 전쟁, 그리고 인간",
+   "addr": "인천 남동구 예술로 149",
+   "sido": "인천",
+   "free": false,
+   "cls": "공연프로그램",
+   "bookTo": "https://www.incheon.go.kr/res/RE050101/pblprfrDspyView?resveProgrmSeCode=C&resveGroupSn=5&progrmSn=10935",
+   "kw": "피아노"
+  },
+  "HB20E847405": {
+   "name": "성인피아노E_봄학기[사회교육_상록]",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=48016&eshare=1",
+   "kw": "피아노"
+  },
+  "HG17E857667": {
+   "name": "성인피아노A(8월)_여름학기(사회교육)",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=58085&eshare=1",
+   "kw": "피아노"
+  },
+  "HB11E846351": {
+   "name": "성인피아노C(실용반주과정)[2월]_겨울학기[사회교육_상록]",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=46047&eshare=1",
+   "kw": "피아노"
+  },
+  "HB11E846596": {
+   "name": "코딩특강(아두이노초음파피아노)_겨울특강[사회교육_단원]",
+   "addr": "경기 안산시 단원구 화정천서로 369",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=44965&eshare=1",
+   "kw": "피아노"
+  },
+  "HE14E852930": {
+   "name": "토요피아노D_여름학기[사회교육]",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=53549&eshare=1",
+   "kw": "피아노"
+  },
+  "HC20E849502": {
+   "name": "(4~5월)성인피아노D_봄학기[사회교육_상록]",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=50376&eshare=1",
+   "kw": "피아노"
+  },
+  "HC20E849503": {
+   "name": "(4~5월)성인피아노E_봄학기[사회교육_상록]",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=50375&eshare=1",
+   "kw": "피아노"
+  },
+  "HC19E849242": {
+   "name": "(4~5월)토요피아노B_봄학기[사회교육_상록]",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=50188&eshare=1",
+   "kw": "피아노"
+  },
+  "HD16E851308": {
+   "name": "(4~5월)청소년피아노A_봄학기[사회교육_상록]",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=50187&eshare=1",
+   "kw": "피아노"
+  },
+  "HB11E846350": {
+   "name": "성인피아노B(실용반주과정)[2월]_겨울학기[사회교육_상록]",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=46048&eshare=1",
+   "kw": "피아노"
+  },
+  "HB11E846353": {
+   "name": "성인피아노D[2월]_겨울학기[사회교육_상록]",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=46046&eshare=1",
+   "kw": "피아노"
+  },
+  "HB11E846362": {
+   "name": "토요피아노D[2월]_겨울학기[사회교육_상록]",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=46036&eshare=1",
+   "kw": "피아노"
+  },
+  "HB20E847400": {
+   "name": "성인피아노A_봄학기[사회교육_상록]",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=48020&eshare=1",
+   "kw": "피아노"
+  },
+  "HB20E847420": {
+   "name": "토요피아노B_봄학기[사회교육_상록]",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=48000&eshare=1",
+   "kw": "피아노"
+  },
+  "HB20E847421": {
+   "name": "토요피아노C_겨울학기[사회교육_상록]",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=47999&eshare=1",
+   "kw": "피아노"
+  },
+  "HB20E847423": {
+   "name": "토요피아노E_봄학기[사회교육_상록]",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=47997&eshare=1",
+   "kw": "피아노"
+  },
+  "HF20E855982": {
+   "name": "성인피아노C(7,8월)__여름학기(사회교육)",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=56209&eshare=1",
+   "kw": "피아노"
+  },
+  "HB20E847424": {
+   "name": "청소년피아노A_봄학기[사회교육_상록]",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=47996&eshare=1",
+   "kw": "피아노"
+  },
+  "HC20E849499": {
+   "name": "(4~5월)성인피아노A_봄학기[사회교육_상록]",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=50377&eshare=1",
+   "kw": "피아노"
+  },
+  "HB11E846363": {
+   "name": "청소년피아노A[2월]_겨울학기[사회교육_상록]",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=46034&eshare=1",
+   "kw": "피아노"
+  },
+  "HE14E852928": {
+   "name": "토요피아노B_여름학기[사회교육]",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=53551&eshare=1",
+   "kw": "피아노"
+  },
+  "HG17E857668": {
+   "name": "성인피아노C(8월)_여름학기(사회교육)",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=58084&eshare=1",
+   "kw": "피아노"
+  },
+  "HG17E857680": {
+   "name": "토요피아노A(8월)_여름학기(사회교육)",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=58072&eshare=1",
+   "kw": "피아노"
+  },
+  "HD16E851121": {
+   "name": "(사회교육)[5월]청소년피아노A_봄학기",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=51992&eshare=1",
+   "kw": "피아노"
+  },
+  "HB11E846721": {
+   "name": "토요피아노B[1월~2월]_겨울학기[사회교육_상록]",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=44480&eshare=1",
+   "kw": "피아노"
+  },
+  "HB11E846722": {
+   "name": "토요피아노E[1월~2월]_겨울학기[사회교육_상록]",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=44479&eshare=1",
+   "kw": "피아노"
+  },
+  "HG02E856636": {
+   "name": "소극장_한별피아노학원(8/29)[대관수입_단원]",
+   "addr": "경기 안산시 단원구 화정천서로 369",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=56469&eshare=1",
+   "kw": "피아노"
+  },
+  "HB20E847404": {
+   "name": "성인피아노D_봄학기[사회교육_상록]",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=48017&eshare=1",
+   "kw": "피아노"
+  },
+  "HF20E855981": {
+   "name": "성인피아노A(7,8월)_여름학기(사회교육)",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=56210&eshare=1",
+   "kw": "피아노"
+  },
+  "HF20E855983": {
+   "name": "성인피아노E(7,8월)_여름학기(사회교육)",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=56208&eshare=1",
+   "kw": "피아노"
+  },
+  "HF20E855990": {
+   "name": "토요피아노A(7,8월)_여름학기[사회교육]",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=56198&eshare=1",
+   "kw": "피아노"
+  },
+  "HF20E855992": {
+   "name": "토요피아노E(7,8월)_여름학기[사회교육]",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=56196&eshare=1",
+   "kw": "피아노"
+  },
+  "HF20E855993": {
+   "name": "청소년피아노A(7,8월)_여름학기[사회교육]",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=56195&eshare=1",
+   "kw": "피아노"
+  },
+  "HF03E854579": {
+   "name": "소극장_한별피아노학원(7/2)[대관수입_단원]",
+   "addr": "경기 안산시 단원구 화정천서로 369",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=54719&eshare=1",
+   "kw": "피아노"
+  },
+  "HE14E852801": {
+   "name": "성인피아노A_여름학기(사회교육)",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=53699&eshare=1",
+   "kw": "피아노"
+  },
+  "HE14E852802": {
+   "name": "성인피아노B_여름학기(사회교육)",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=53698&eshare=1",
+   "kw": "피아노"
+  },
+  "HE14E852803": {
+   "name": "성인피아노C__여름학기(사회교육)",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=53697&eshare=1",
+   "kw": "피아노"
+  },
+  "HE14E852805": {
+   "name": "성인피아노E_여름학기(사회교육)",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=53694&eshare=1",
+   "kw": "피아노"
+  },
+  "HE14E852927": {
+   "name": "토요피아노A_여름학기[사회교육]",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=53552&eshare=1",
+   "kw": "피아노"
+  },
+  "HE14E852929": {
+   "name": "토요피아노C_여름학기[사회교육]",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=53550&eshare=1",
+   "kw": "피아노"
+  },
+  "HE14E852931": {
+   "name": "토요피아노E_여름학기[사회교육]",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=53548&eshare=1",
+   "kw": "피아노"
+  },
+  "HE14E852932": {
+   "name": "청소년피아노A_여름학기[사회교육]",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=53547&eshare=1",
+   "kw": "피아노"
+  },
+  "HD22E851788": {
+   "name": "(사회교육)[5월]토요피아노C_봄학기",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=52399&eshare=1",
+   "kw": "피아노"
+  },
+  "HG17E857669": {
+   "name": "성인피아노E(8월)_여름학기(사회교육)",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=58083&eshare=1",
+   "kw": "피아노"
+  },
+  "HG17E857681": {
+   "name": "토요피아노D(8월)_여름학기(사회교육)",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=58071&eshare=1",
+   "kw": "피아노"
+  },
+  "HG17E857682": {
+   "name": "토요피아노E(8월)_여름학기(사회교육)",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=58070&eshare=1",
+   "kw": "피아노"
+  },
+  "HG17E857683": {
+   "name": "청소년피아노A(8월)_여름학기(사회교육)",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=58069&eshare=1",
+   "kw": "피아노"
+  },
+  "HD16E851111": {
+   "name": "(사회교육)[5월]성인피아노A_봄학기",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=52003&eshare=1",
+   "kw": "피아노"
+  },
+  "HD16E851112": {
+   "name": "(사회교육)[5월]성인피아노D_봄학기",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=52002&eshare=1",
+   "kw": "피아노"
+  },
+  "HD16E851113": {
+   "name": "(사회교육)[5월]성인피아노E_봄학기",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=52001&eshare=1",
+   "kw": "피아노"
+  },
+  "HB11E846483": {
+   "name": "소극장_이레피아노(2/27)[대관수입_단원]",
+   "addr": "경기 안산시 단원구 화정천서로 369",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=45558&eshare=1",
+   "kw": "피아노"
+  },
+  "HB11E846484": {
+   "name": "소극장_한별피아노학원(2/28)[대관수입_단원]",
+   "addr": "경기 안산시 단원구 화정천서로 369",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=45557&eshare=1",
+   "kw": "피아노"
+  },
+  "HB11E846718": {
+   "name": "성인피아노A(실용반주과정)[1월~2월]_겨울학기[사회교육_상록]",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=44492&eshare=1",
+   "kw": "피아노"
+  },
+  "HF24E856303": {
+   "name": "소극장_박진영피아노전문학원(7/24)[대관수입_단원]",
+   "addr": "경기 안산시 단원구 화정천서로 369",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=56280&eshare=1",
+   "kw": "피아노"
+  },
+  "HB20E847419": {
+   "name": "토요피아노A_봄학기[사회교육_상록]",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=48001&eshare=1",
+   "kw": "피아노"
+  },
+  "HF20E855991": {
+   "name": "토요피아노D(7,8월)_여름학기[사회교육]",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=56197&eshare=1",
+   "kw": "피아노"
+  },
+  "HB20E847422": {
+   "name": "토요피아노D_봄학기[사회교육_상록]",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=47998&eshare=1",
+   "kw": "피아노"
+  },
+  "EE10K0155920": {
+   "name": "레일피아노(남광주역)",
+   "addr": "전남광주통합특별시 동구 제봉로 지하 1 (학동)",
+   "sido": "전남광주통합특별시",
+   "free": true,
+   "cls": "행사·공연장비 용품",
+   "bookTo": "",
+   "kw": "피아노"
+  },
+  "HB20E847401": {
+   "name": "성인피아노B_봄학기[사회교육_상록]",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=48019&eshare=1",
+   "kw": "피아노"
+  },
+  "GC10O0743229": {
+   "name": "[대관]유키 구라모토 25주년 기념 피아노콘서트",
+   "addr": "경남 진주시 강남로 215 (칠암동)",
+   "sido": "경남",
+   "free": false,
+   "cls": "공연프로그램",
+   "bookTo": "https://artcenter.gyeongnam.go.kr/concert/concertView.do?CONCERT_ID=CM0001330&sdate=&edate=&type=list",
+   "kw": "피아노"
+  },
+  "GC10O0109576": {
+   "name": "[기획]백혜선 피아노 리사이틀",
+   "addr": "경남 진주시 강남로 215 (칠암동)",
+   "sido": "경남",
+   "free": false,
+   "cls": "공연프로그램",
+   "bookTo": "https://artcenter.gyeongnam.go.kr/concert/concertView.do?CONCERT_ID=CM0001327&sdate=&edate=&type=list",
+   "kw": "피아노"
+  },
+  "EJ18M3910873": {
+   "name": "청소면 주민자치 프로그램(전자피아노)",
+   "addr": "충남 보령시 청소면 청소큰길 167",
+   "sido": "충남",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "",
+   "kw": "피아노"
+  },
+  "EE10J5811756": {
+   "name": "레일피아노(상무역)",
+   "addr": "전남광주통합특별시 서구 상무대로 지하 777 (마륵동)",
+   "sido": "전남광주통합특별시",
+   "free": true,
+   "cls": "행사·공연장비 용품",
+   "bookTo": "",
+   "kw": "피아노"
+  },
+  "EE23J1224116": {
+   "name": "[피셔프라이스] 4in1 스텝  앤 플레이 피아노",
+   "addr": "대구 달성군 화원읍 비슬로512길 66",
+   "sido": "대구",
+   "free": true,
+   "cls": "물품·기타",
+   "bookTo": "",
+   "kw": "피아노"
+  },
+  "EE23J3550159": {
+   "name": "[미미월드] 뽀로로 드럼 피아노",
+   "addr": "대구 달성군 화원읍 비슬로512길 66",
+   "sido": "대구",
+   "free": true,
+   "cls": "물품·기타",
+   "bookTo": "",
+   "kw": "피아노"
+  },
+  "CJ13R1231126": {
+   "name": "[주영이앤씨] 콩순이 멜로디 피아노",
+   "addr": "대구 달성군 화원읍 비슬로512길 66",
+   "sido": "대구",
+   "free": true,
+   "cls": "물품·기타",
+   "bookTo": "https://dstoy.co.kr",
+   "kw": "피아노"
+  },
+  "GL09P0226754": {
+   "name": "전자피아노[137X12X39.5cm](화정4동) F120",
+   "addr": "전남광주통합특별시 서구 염화로31번길 15 (화정동)",
+   "sido": "전남광주통합특별시",
+   "free": false,
+   "cls": "물품·기타",
+   "bookTo": "",
+   "kw": "피아노"
+  },
+  "CJ15K4822133": {
+   "name": "콩순이 피아노(화정2동)F49",
+   "addr": "전남광주통합특별시 서구 화운로 94 (화정동, 유니버시아드 힐스테이트 1단지)",
+   "sido": "전남광주통합특별시",
+   "free": false,
+   "cls": "생활·의료용품",
+   "bookTo": "",
+   "kw": "피아노"
+  },
+  "FH09Q5355733": {
+   "name": "화곡8동 주민센터 공연연습장",
+   "addr": "서울 강서구 곰달래로25길 45 (화곡동)",
+   "sido": "서울",
+   "free": true,
+   "cls": "기타",
+   "bookTo": "",
+   "kw": "공연연습"
+  },
+  "FB29I3813176": {
+   "name": "중앙선 1942 안동역 D&T 공유연습실",
+   "addr": "경북 안동시 경동로 684 (운흥동)",
+   "sido": "경북",
+   "free": true,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "",
+   "kw": "공연연습"
+  },
+  "FK14J2657076": {
+   "name": "<모두의 연습실> 1호점",
+   "addr": "서울 강서구 화곡로18길 14-5 (화곡동)",
+   "sido": "서울",
+   "free": true,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "https://www.1388.go.kr/sfi/YTOSP_SC_SSU_02?id=476&BBS=00000",
+   "kw": "공연연습"
+  },
+  "FK14J3230197": {
+   "name": "<모두의 연습실> 2호점",
+   "addr": "서울 강서구 공항대로42길 23-19 (내발산동)",
+   "sido": "서울",
+   "free": true,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "https://map.naver.com/p/search/%EA%B0%95%EC%84%9C%EC%B2%AD%EC%86%8C%EB%85%84%ED%9A%8C%EA%B4%80/place/12306896?c=15.00,0,0,0,dh&isCorrectAnswer=true",
+   "kw": "공연연습"
+  },
+  "FI06D716173": {
+   "name": "경기창작캠퍼스 개인연습실",
+   "addr": "경기 안산시 단원구 선감로 101-19",
+   "sido": "경기",
+   "free": false,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "https://members.ggcf.kr/facilities?orgs%5B%5D=8&start_dt=&end_dt=&usages%5B%5D=4",
+   "kw": "공연연습"
+  },
+  "EK19D675187": {
+   "name": "음악역1939 연습실(T-STATION)",
+   "addr": "경기 가평군 가평읍 석봉로 100",
+   "sido": "경기",
+   "free": false,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "https://share.gg.go.kr/facilityListO/view?instiCode=1290001&facilityId=F0005&eshare=1",
+   "kw": "공연연습"
+  },
+  "FA11D698480": {
+   "name": "녹음실┃ 포천음악창작소",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": false,
+   "cls": "주민편의시설 등",
+   "bookTo": "https://share.gg.go.kr/facilityListO/view?instiCode=1240025&facilityId=F0001&eshare=1",
+   "kw": "음악창작소"
+  },
+  "HE14E852919": {
+   "name": "[포천음악창작소] 6월 리코더 프로그램",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=53563&eshare=1",
+   "kw": "음악창작소"
+  },
+  "HE14E852921": {
+   "name": "[포천음악창작소] 6월 바이올린 프로그램",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=53561&eshare=1",
+   "kw": "음악창작소"
+  },
+  "HE14E852922": {
+   "name": "[포천음악창작소] 6월 플루트 프로그램",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=53559&eshare=1",
+   "kw": "음악창작소"
+  },
+  "HG16E857553": {
+   "name": "[포천음악창작소] 8월 오카리나",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=57846&eshare=1",
+   "kw": "음악창작소"
+  },
+  "HD15E851031": {
+   "name": "[포천음악창작소] 5월 바이올린 프로그램",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=51654&eshare=1",
+   "kw": "음악창작소"
+  },
+  "HC13E848609": {
+   "name": "[포천음악창작소] 4월 인공지능(AI) 작곡 프로그램",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=49512&eshare=1",
+   "kw": "음악창작소"
+  },
+  "HC13E848608": {
+   "name": "[포천음악창작소] 4월 전자드럼 프로그램",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=49513&eshare=1",
+   "kw": "음악창작소"
+  },
+  "HG17E857730": {
+   "name": "[포천음악창작소] 8월 보컬레슨(대중가요)",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=57963&eshare=1",
+   "kw": "음악창작소"
+  },
+  "HC13E848610": {
+   "name": "[포천음악창작소] 4월 보컬레슨 프로그램(청년)",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=49511&eshare=1",
+   "kw": "음악창작소"
+  },
+  "HE14E852917": {
+   "name": "[포천음악창작소] 6월 청년 보컬레슨 프로그램 B",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=53566&eshare=1",
+   "kw": "음악창작소"
+  },
+  "HD15E851032": {
+   "name": "[포천음악창작소] 5월 청년 보컬레슨 프로그램 B",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=51653&eshare=1",
+   "kw": "음악창작소"
+  },
+  "HF17E855684": {
+   "name": "[포천음악창작소] 7월 보컬레슨(대중가요)",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=55793&eshare=1",
+   "kw": "음악창작소"
+  },
+  "HF17E855685": {
+   "name": "[포천음악창작소] 7월 전자드럼",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=55790&eshare=1",
+   "kw": "음악창작소"
+  },
+  "HF17E855686": {
+   "name": "[포천음악창작소] 7월 바이올린",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=55788&eshare=1",
+   "kw": "음악창작소"
+  },
+  "HE29E854373": {
+   "name": "[포천음악창작소] 6월 전자드럼 프로그램(추가모집)",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=54627&eshare=1",
+   "kw": "음악창작소"
+  },
+  "HE14E852918": {
+   "name": "[포천음악창작소] 6월 청년 보컬레슨 프로그램 A",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=53564&eshare=1",
+   "kw": "음악창작소"
+  },
+  "HE14E852920": {
+   "name": "[포천음악창작소] 6월 전자드럼 프로그램",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=53562&eshare=1",
+   "kw": "음악창작소"
+  },
+  "HD30E852077": {
+   "name": "[포천음악창작소] 5월 바이올린 프로그램(추가모집)",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=52725&eshare=1",
+   "kw": "음악창작소"
+  },
+  "HD30E852078": {
+   "name": "[포천음악창작소] 5월 가곡 클래스(추가모집)",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=52724&eshare=1",
+   "kw": "음악창작소"
+  },
+  "HD30E852079": {
+   "name": "[포천음악창작소] 5월 녹음실 운용 기초 프로그램 B(추가모집)",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=52723&eshare=1",
+   "kw": "음악창작소"
+  },
+  "HD30E852080": {
+   "name": "[포천음악창작소] 5월 녹음실 운용 기초 프로그램 A(추가모집)",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=52722&eshare=1",
+   "kw": "음악창작소"
+  },
+  "HD30E852081": {
+   "name": "[포천음악창작소] 5월 전자드럼 프로그램(추가모집)",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=52721&eshare=1",
+   "kw": "음악창작소"
+  },
+  "HD15E851028": {
+   "name": "[포천음악창작소] 5월 모이면 음악이된다",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=51663&eshare=1",
+   "kw": "음악창작소"
+  },
+  "HD15E851033": {
+   "name": "[포천음악창작소] 5월 청년 보컬레슨 프로그램 A",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=51651&eshare=1",
+   "kw": "음악창작소"
+  },
+  "HD15E851034": {
+   "name": "[포천음악창작소] 5월 가곡 클래스",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=51640&eshare=1",
+   "kw": "음악창작소"
+  },
+  "HD15E851035": {
+   "name": "[포천음악창작소] 5월 녹음실 운용 기초 프로그램 B",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=51635&eshare=1",
+   "kw": "음악창작소"
+  },
+  "HD15E851036": {
+   "name": "[포천음악창작소] 5월 녹음실 운용 기초 프로그램 A",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=51628&eshare=1",
+   "kw": "음악창작소"
+  },
+  "HD15E851037": {
+   "name": "[포천음악창작소] 5월 전자드럼 프로그램",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=51625&eshare=1",
+   "kw": "음악창작소"
+  },
+  "HE29E854375": {
+   "name": "[포천음악창작소] 6월 바이올린 프로그램(추가모집)",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=54625&eshare=1",
+   "kw": "음악창작소"
+  },
+  "HG17E857731": {
+   "name": "[포천음악창작소] 8월 전자드럼",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=57962&eshare=1",
+   "kw": "음악창작소"
+  },
+  "HG17E857749": {
+   "name": "[포천음악창작소] 8월 바이올린",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=57941&eshare=1",
+   "kw": "음악창작소"
+  },
+  "HC13E848600": {
+   "name": "[포천음악창작소] 4월 모이면 음악이된다",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=49541&eshare=1",
+   "kw": "음악창작소"
+  }
+ }
+}
