@@ -226,6 +226,7 @@
 <script src="data/practice-public.js?v=20260716d"></script>
 <script src="data/practice-seed.js?v=20260716d"></script>
 <script src="data/practice-yeyak.js?v=20260716d"></script>
+<script src="data/practice-eshare.js?v=20260802"></script>
 <script src="data/practice-instant.js?v=20260716d"></script>
 <script src="data/practice-coords.js?v=20260716d"></script>
 <script>
@@ -328,7 +329,12 @@ const _yeyak = ((window.YEYAK_ROOMS || {}).items || [])
     instruments: r.instruments || [],
     verified: (window.YEYAK_ROOMS || {}).fetched,
   }));
-const PUBLIC_ALL = [..._curated, ..._seed, ..._yeyak];
+// 공유누리(전국 공공자원 통합) — 시설 단위로 묶인 수집분. 카드를 누르면 방 목록(rooms)이 열린다.
+const _pubNames = new Set([..._seedNames, ..._yeyak.map(r => _normName(r.name))]);
+const _eshare = ((window.ESHARE_ROOMS || {}).items || [])
+  .filter(r => !_pubNames.has(_normName(r.name)))
+  .map(r => ({ ...r, cat: "public", instruments: [] }));
+const PUBLIC_ALL = [..._curated, ..._seed, ..._yeyak, ..._eshare];
 
 // 즉시예약(민간) — 프로토타입 수집분. 실서비스에서는 호스트 직접 등록으로 대체한다.
 const INSTANT_ALL = (window.INSTANT_ROOMS || []).map(r => ({ ...r, cat: "instant" }));
@@ -758,6 +764,13 @@ function openRoom(r){
       ["출처", r.src?`${r.src} (확인 ${r.verified||"-"})`:null],
       ["남은 자리", r.slots!==undefined?(r.slots>0?`${r.slots}자리`:"만실 (대기 등록 가능)"):null],
     ].filter(([k,v])=>v).map(([k,v])=>`<dt>${k}</dt><dd>${esc(v)}</dd>`).join("");
+  // 시설 단위로 묶인 항목(공유누리)은 방 목록을 펼친다 — 방마다 예약처가 다르다
+  if (isPub && r.rooms && r.rooms.length){
+    $("#rm-meta").innerHTML += `<dt>방 목록</dt><dd>` + r.rooms.map(rm =>
+      `${esc(rm.name)} <span style="color:var(--ink-soft);font-size:0.85em">(${rm.free?"무료":"유료"})</span>`
+      + (/^https?:/.test(rm.bookTo||"") ? ` — <a href="${esc(rm.bookTo)}" target="_blank" rel="noopener" data-ev="practice_outbound" data-evl="${esc(r.name)}|${esc(rm.name)}">예약 ↗</a>` : "")
+    ).join("<br>") + `</dd>`;
+  }
   $("#rm-intro").textContent = r.notes || "";
   $("#rm-instant-only").style.display = isPub ? "none" : "";
   const note = $("#rm-public-note");

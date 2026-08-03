@@ -68,6 +68,8 @@ if ((Get-Date).DayOfWeek -eq 'Monday') {
     if ($LASTEXITCODE -ne 0) { Note "warn: practice_yeyak.py 종료코드 $LASTEXITCODE (계속 진행)" }
     & $PY crawler\practice_sweep.py
     if ($LASTEXITCODE -ne 0) { Note "warn: practice_sweep.py 종료코드 $LASTEXITCODE (계속 진행)" }
+    & $PY crawler\build_practice_eshare.py
+    if ($LASTEXITCODE -ne 0) { Note "warn: build_practice_eshare.py 종료코드 $LASTEXITCODE (계속 진행)" }
 }
 
 # main.py가 0으로 끝났어도 결과 파일이 실제로 갱신됐는지 확인한다
