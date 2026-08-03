@@ -80,6 +80,7 @@ button { font-family: inherit; cursor: pointer; }
 .logo {
   font-family: var(--serif);
   font-size: 1.5rem;
+  font-weight: 700;
   color: var(--ink);
   letter-spacing: -0.01em;
   line-height: 1;
@@ -168,7 +169,8 @@ button { font-family: inherit; cursor: pointer; }
 .hero h1 {
   font-family: var(--serif);
   font-size: clamp(2.1rem, 5vw, 3.1rem);
-  font-weight: 400;
+  /* 명조는 크게 쓸수록 획이 가늘어 보인다 — 고운바탕으로 바꾸니 제목이 얄쌍해져 700으로 (2026-08-03) */
+  font-weight: 700;
   line-height: 1.28;
   letter-spacing: -0.01em;
   margin-bottom: 22px;
@@ -197,7 +199,7 @@ button { font-family: inherit; cursor: pointer; }
 .section-title {
   font-family: var(--serif);
   font-size: 1.55rem;
-  font-weight: 400;
+  font-weight: 700;
   color: var(--ink);
   margin-bottom: 6px;
 }
@@ -253,7 +255,7 @@ button { font-family: inherit; cursor: pointer; }
 .page-head h1 {
   font-family: var(--serif);
   font-size: 1.9rem;
-  font-weight: 400;
+  font-weight: 700;
   color: var(--ink);
   margin-bottom: 8px;
 }
