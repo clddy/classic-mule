@@ -1,6 +1,6 @@
 {
  "updatedAt": "2026-08-03",
- "count": 377,
+ "count": 379,
  "items": {
   "f7b1c263744b9ece": {
    "id": "f7b1c263744b9ece",
@@ -5379,7 +5379,7 @@
    "deadlineFrom": "page",
    "kind": "단원",
    "tier": "연주",
-   "inst": "타악",
+   "inst": "전체",
    "instDetails": [
     "타악",
     "피아노",
@@ -6505,8 +6505,7 @@
    "tier": "교육 — 취미·입문",
    "inst": "현악",
    "instDetails": [
-    "바이올린",
-    "관악"
+    "바이올린"
    ],
    "ageGroup": "성인",
    "obri": false,
@@ -6726,7 +6725,7 @@
    "deadlineFrom": "page",
    "kind": "강사",
    "tier": "교육 — 취미·입문",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
@@ -8030,8 +8029,7 @@
    "tier": "교육 — 취미·입문",
    "inst": "현악",
    "instDetails": [
-    "현악",
-    "관악"
+    "현악"
    ],
    "ageGroup": "성인",
    "obri": false,
@@ -8469,7 +8467,7 @@
    "deadlineFrom": "page",
    "kind": "강사",
    "tier": "교육 — 취미·입문",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
@@ -8555,7 +8553,7 @@
    "deadlineFrom": "page",
    "kind": "단원",
    "tier": "연주",
-   "inst": "현악",
+   "inst": "전체",
    "instDetails": [
     "현악"
    ],
@@ -8636,7 +8634,7 @@
    "deadline": "2026-08-04",
    "kind": "강사",
    "tier": "교육 — 대학",
-   "inst": "금관",
+   "inst": "전체",
    "instDetails": [
     "튜바"
    ],
@@ -8743,7 +8741,7 @@
    "deadlineFrom": "page",
    "kind": "강사",
    "tier": "교육 — 취미·입문",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
@@ -9032,8 +9030,7 @@
    "tier": "교육 — 대학",
    "inst": "현악",
    "instDetails": [
-    "바이올린",
-    "관악"
+    "바이올린"
    ],
    "ageGroup": "성인",
    "obri": false,
@@ -9148,6 +9145,62 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "personnel": "1명 과목 체육(음악줄넘기) 채용",
+   "firstSeen": "2026-08-03",
+   "lastSeen": "2026-08-03",
+   "days": 1
+  },
+  "2895cba59850fdbe": {
+   "id": "2895cba59850fdbe",
+   "org": "정천중학교(경기교육청)",
+   "region": "경기",
+   "source": "goe.go.kr",
+   "channel": "edu_goe",
+   "layer": "C",
+   "title": "기간제교사(음악) 채용",
+   "url": "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=54741",
+   "date": "2026-08-03",
+   "deadline": "2026-08-05",
+   "deadlineFrom": "page",
+   "kind": "기타",
+   "tier": "교육 — 취미·입문",
+   "inst": "목관",
+   "instDetails": [
+    "관악"
+   ],
+   "ageGroup": "성인",
+   "obri": false,
+   "certReq": "예",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "personnel": "1명 과목 음악 채용",
+   "bodyExcerpt": "채용기간 및 과목 · 교원 자격증 소지자 · 급 정교사 자격증 소유시 사본제출 · 기간제교사 채용절차 및 방법",
+   "qualification": "경력 신입 학력",
+   "firstSeen": "2026-08-03",
+   "lastSeen": "2026-08-03",
+   "days": 1
+  },
+  "96477c49029d1bdf": {
+   "id": "96477c49029d1bdf",
+   "org": "경기대학교",
+   "region": "서울",
+   "source": "hibrain.net",
+   "channel": "hibrain",
+   "layer": "B",
+   "title": "경기대학교 겸임 및 초빙교수 모집 (3차)",
+   "url": "https://www.hibrain.net/recruitment/recruits/3592625",
+   "officialUrl": "https://www.kyonggi.ac.kr/www/selectBbsNttView.do?bbsNo=683&key=5142&nttNo=625101&pageUnit=10&searchCnd=all",
+   "date": "2026-08-01",
+   "deadline": "2026-08-05",
+   "kind": "교수",
+   "tier": "교육 — 대학",
+   "inst": "전체",
+   "instDetails": [],
+   "subject": "음악과",
+   "ageGroup": "성인",
+   "obri": false,
+   "certReq": "아니오",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
    "firstSeen": "2026-08-03",
    "lastSeen": "2026-08-03",
    "days": 1

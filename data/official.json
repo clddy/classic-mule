@@ -1,5 +1,5 @@
 {
- "collectedAt": "2026-08-03 12:49",
+ "collectedAt": "2026-08-03 13:29",
  "sourceCount": 87,
  "okCount": 87,
  "instTotal": 75,
@@ -128,7 +128,7 @@
    "poll": "daily",
    "ok": true,
    "raw": 26,
-   "kept": 2
+   "kept": 0
   },
   {
    "id": "ulsan",
@@ -253,8 +253,8 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 4,
-   "kept": 3
+   "raw": 5,
+   "kept": 4
   },
   {
    "id": "edu_gwe",
@@ -784,8 +784,8 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 18,
-   "kept": 17
+   "raw": 19,
+   "kept": 18
   }
  ],
  "items": [
@@ -808,15 +808,46 @@
    "ageGroup": "성인",
    "inst": "현악",
    "instDetails": [
-    "바이올린",
-    "관악"
+    "바이올린"
    ],
    "personnel": "보조 1명",
    "subject": null,
    "channel": "edu_seoul",
    "layer": "C",
+   "deadlineFrom": "page",
    "qualification": "여부, 학력사항, 경력정보",
    "bodyExcerpt": "채용계획 사전 공개 · 주소, 사진, 전화번호, 취업지원대상 여부, 학력사항, 경력정보, 자격증 정보, 어학능력정보, 자기소개, 희망근무지, 희망직종 · 구직활동 지원 및 채용 관련 서비스 제공 · 다만, 필수항목에 대한 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다.",
+   "firstSeen": "2026-08-03",
+   "isNew": true,
+   "extVer": 33
+  },
+  {
+   "id": "2895cba59850fdbe",
+   "org": "정천중학교(경기교육청)",
+   "region": "경기",
+   "source": "goe.go.kr",
+   "title": "기간제교사(음악) 채용",
+   "nonMusic": null,
+   "url": "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=54741",
+   "date": "2026-08-03",
+   "deadline": "2026-08-05",
+   "kind": "기타",
+   "tier": "교육 — 취미·입문",
+   "obri": false,
+   "certReq": "예",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "ageGroup": "성인",
+   "inst": "목관",
+   "instDetails": [
+    "관악"
+   ],
+   "personnel": "1명 과목 음악 채용",
+   "subject": null,
+   "channel": "edu_goe",
+   "layer": "C",
+   "qualification": "경력 신입 학력",
+   "bodyExcerpt": "채용기간 및 과목 · 교원 자격증 소지자 · 급 정교사 자격증 소유시 사본제출 · 기간제교사 채용절차 및 방법",
    "deadlineFrom": "page",
    "firstSeen": "2026-08-03",
    "isNew": true,
@@ -901,8 +932,8 @@
    "subject": null,
    "channel": "g_edu_jje",
    "layer": "B",
-   "bodyExcerpt": "모집 분야 및 인원",
    "deadlineFrom": "page",
+   "bodyExcerpt": "모집 분야 및 인원",
    "firstSeen": "2026-08-03",
    "isNew": true,
    "extVer": 33
@@ -931,7 +962,6 @@
    "officialUrl": "https://apps.ks.ac.kr/eprofappl/eprofappl/",
    "channel": "hibrain",
    "layer": "B",
-   "subjectFrom": "attach",
    "courses": [
     "음악교사 및 음악치료사",
     "음악 및 음악치료경험",
@@ -941,6 +971,42 @@
    ],
    "firstSeen": "2026-08-02",
    "isNew": true,
+   "extVer": 33
+  },
+  {
+   "id": "96477c49029d1bdf",
+   "org": "경기대학교",
+   "region": "서울",
+   "source": "hibrain.net",
+   "title": "경기대학교 겸임 및 초빙교수 모집 (3차)",
+   "nonMusic": null,
+   "url": "https://www.hibrain.net/recruitment/recruits/3592625",
+   "date": "2026-08-01",
+   "deadline": "2026-08-05",
+   "kind": "교수",
+   "tier": "교육 — 대학",
+   "obri": false,
+   "certReq": "아니오",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "ageGroup": "성인",
+   "inst": "전체",
+   "instDetails": [],
+   "personnel": null,
+   "subject": "음악과",
+   "officialUrl": "https://www.kyonggi.ac.kr/www/selectBbsNttView.do?bbsNo=683&key=5142&nttNo=625101&pageUnit=10&searchCnd=all",
+   "channel": "hibrain",
+   "layer": "B",
+   "subjectFrom": "attach",
+   "courses": [
+    "관광문화대학 실용음악학과 2",
+    "전공실기",
+    "Latin&Jazz앙상블",
+    "어드밴스드보컬&세션앙상블",
+    "전공실기4(캡스톤디자인)"
+   ],
+   "firstSeen": "2026-08-03",
+   "isNew": false,
    "extVer": 33
   },
   {
@@ -968,14 +1034,14 @@
    "subject": null,
    "channel": "artinfo",
    "layer": "A",
+   "deadlineFrom": "page",
    "positions": [
     "상임지휘자"
    ],
    "bodyExcerpt": "참신하고 유능한 천안시립교향악단 예술감독 겸 상임지휘자를 붙임과 같이 모집합니다. · 모집기간 : 2026. 7. 31.(금) ~ 8. 14.(금) · 원서접수: 2026. 8. 12.(수)~ 8.14.(금) 방문접수(우편접수 불가) · 모집분야: 예술감독(상임지휘자) 1명",
-   "deadlineFrom": "page",
-   "officialUrl": "https://artcheonan.kr/with/notice/?vid=100",
-   "applyPhone": "041-521-3416",
    "applyEmail": "rkd0365@korea.kr",
+   "applyPhone": "041-521-3416",
+   "officialUrl": "https://artcheonan.kr/with/notice/?vid=100",
    "documents": "원서접수 2026.8.12(수)~8.14(금) 방문접수 (우편접수 불가)",
    "verifiedAt": "2026-08-02",
    "verifiedNote": "천안문화재단 공지사항에서 원문 확인 — 문화예술과 게시(2026-07-31). 접수는 방문접수만 가능.",
@@ -1009,11 +1075,10 @@
    "subject": null,
    "channel": "artinfo",
    "layer": "A",
-   "applyEmail": "anointed77@hanmail.net",
-   "bodyExcerpt": "모집파트: 테너 또는 베이스",
-   "dlHint": null,
    "deadlineNote": "상시",
    "auditionDate": "오디션 없음 — 담임목사 면접만",
+   "bodyExcerpt": "모집파트: 테너 또는 베이스",
+   "applyEmail": "anointed77@hanmail.net",
    "documents": "이력서 이메일 접수 (핸드폰 번호 필히 기재)",
    "verifiedAt": "2026-07-14",
    "verifiedNote": "교회에 직접 확인: 지원자가 없어 계속 모집 중. 오디션 없이 담임목사 면접만 진행.",
@@ -1047,14 +1112,10 @@
    "subject": null,
    "channel": "artinfo",
    "layer": "A",
-   "applyEmail": "songhyun1128@naver.com",
+   "deadlineNote": "상시",
    "qualification": "연령: 35세 ~ 50세 학력: 성악 전공 석사 졸업 이상",
    "bodyExcerpt": "성악 전문 강사님을 모집합니다. · 우대: 교육 및 연주 경력자 환영,",
-   "dlHint": [
-    ". 근무시간 오전 10시~12시 또는 오후 7~8시 근무 예정 ​ 📄  제출 서류 이력서, 최종학력증명서, 연주 영상 ​ 📩 접수 및 문의 이메일: songhyu",
-    "무 예정 ​ 📄  제출 서류 이력서, 최종학력증명서, 연주 영상 ​ 📩 접수 및 문의 이메일: songhyun1128@naver.com ​ 📍 문자 문의: 010"
-   ],
-   "deadlineNote": "상시",
+   "applyEmail": "songhyun1128@naver.com",
    "documents": "이력서 이메일 접수 → 검토 후 면접",
    "verifiedAt": "2026-07-14",
    "verifiedNote": "학원에 직접 확인: 강사 구인 진행 중. 이력서 접수 후 검토를 거쳐 면접.",
@@ -1087,11 +1148,11 @@
    "subject": null,
    "channel": "artinfo",
    "layer": "A",
-   "applyEmail": "pavarotti7801@hanmail.net",
-   "applyPhone": "010-4772-5362",
    "positions": [
     "반주자"
    ],
+   "applyEmail": "pavarotti7801@hanmail.net",
+   "applyPhone": "010-4772-5362",
    "dlHint": null,
    "firstSeen": "2026-07-15",
    "isNew": false,
@@ -1114,7 +1175,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
@@ -1122,9 +1183,9 @@
    "subject": null,
    "channel": "edu_seoul",
    "layer": "C",
+   "deadlineFrom": "page",
    "qualification": "여부, 학력사항, 경력정보",
    "bodyExcerpt": "1. 채용분야 및 채용 예정인원: 음악교사 1명( 4-6학년 음악 정규교과 수업) · 2. 계약기간: 2026. 9. 1.(화) ～ 2027. 2. 28.(일) · 3. 보수및 근무시간 : 시간당 25,000원(주당 24시간4-6학년 음악 정규교과 수업) · o 제출방법: e-mail 접수( hwaranges@sen.go.kr )",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-31",
    "isNew": false,
    "extVer": 33
@@ -1207,7 +1268,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "미성년",
-   "inst": "현악",
+   "inst": "전체",
    "instDetails": [
     "현악"
    ],
@@ -1215,13 +1276,13 @@
    "subject": null,
    "channel": "g_i_gurigokr",
    "layer": "B",
+   "deadlineFrom": "page",
    "positions": [
     "단원"
    ],
    "contract": "기간제",
    "qualification": "지역무관/초등학교 3학년 ~ 대학생(구리시 거주 및 구리시 소재 학교 재학생 가산점 부여) 4",
    "bodyExcerpt": "2. 모집기간 : 2026. 8. 3.(월) ~ 8. 19.(수), 09:00~18:00 · 4. 모집인원 : 0명 · 5. 접수장소 : 구리시청 문화예술과(☎031-550-2550) · 붙임 2026년 구리시립청소년교향악단 모집공고 공고문 1부. 끝.",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-31",
    "isNew": false,
    "extVer": 33
@@ -1250,7 +1311,6 @@
    "officialUrl": "https://www.cje.ac.kr/web/board/brdDetail.do?menu_cd=000209&num=95112",
    "channel": "hibrain",
    "layer": "B",
-   "subjectFrom": "attach",
    "firstSeen": "2026-07-31",
    "isNew": false,
    "extVer": 33
@@ -1272,7 +1332,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "금관",
+   "inst": "전체",
    "instDetails": [
     "튜바"
    ],
@@ -1281,7 +1341,6 @@
    "officialUrl": "https://www.kangwon.ac.kr/ko/bbs/716/detail.do?pageIndex=1&pageItm=10&pstSn=4965&searchGbn=0&searchOrderSort=0",
    "channel": "hibrain",
    "layer": "B",
-   "subjectFrom": "attach",
    "courses": [
     "튜바전공실기"
    ],
@@ -1313,7 +1372,6 @@
    "officialUrl": "https://www.changwon.ac.kr/kor/na/ntt/selectNttInfo.do?mi=10177&nttSn=1424125",
    "channel": "hibrain",
    "layer": "B",
-   "subjectFrom": "attach",
    "courses": [
     "통합창원시도시인문학의 이해",
     "전공실기4(관타현악)",
@@ -1349,7 +1407,6 @@
    "officialUrl": "https://www.bnue.ac.kr/board/detail/community01_04/44502",
    "channel": "hibrain",
    "layer": "B",
-   "subjectFrom": "attach",
    "firstSeen": "2026-07-31",
    "isNew": false,
    "extVer": 33
@@ -1379,8 +1436,8 @@
    "subject": null,
    "channel": "edu_seoul",
    "layer": "C",
-   "bodyExcerpt": "주소, 사진, 전화번호, 취업지원대상 여부, 학력사항, 경력정보, 자격증 정보, 어학능력정보, 자기소개, 희망근무지, 희망직종 · 2. 모집 인원: 바이올린 지도강사 1명 · 가. 계약 기간: 2026년 8월 18일~ 2026년 12월 31일 (2026학년도 2학기) · 가. 해당 분야(악기)학과 졸업자, 교원자격증 소지자, 강좌 관련 자격증 소지자 중 1가지 이상에 해당하는 자",
    "deadlineFrom": "page",
+   "bodyExcerpt": "주소, 사진, 전화번호, 취업지원대상 여부, 학력사항, 경력정보, 자격증 정보, 어학능력정보, 자기소개, 희망근무지, 희망직종 · 2. 모집 인원: 바이올린 지도강사 1명 · 가. 계약 기간: 2026년 8월 18일~ 2026년 12월 31일 (2026학년도 2학기) · 가. 해당 분야(악기)학과 졸업자, 교원자격증 소지자, 강좌 관련 자격증 소지자 중 1가지 이상에 해당하는 자",
    "firstSeen": "2026-07-31",
    "isNew": false,
    "extVer": 33
@@ -1402,7 +1459,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
@@ -1410,9 +1467,9 @@
    "subject": null,
    "channel": "edu_seoul",
    "layer": "C",
+   "deadlineFrom": "page",
    "qualification": "여부, 학력사항, 경력정보",
    "bodyExcerpt": "주소, 사진, 전화번호, 취업지원대상 여부, 학력사항, 경력정보, 자격증 정보, 어학능력정보, 자기소개, 희망근무지, 희망직종 · 고덕중학교 시간강사(국어, 가정, 음악, 미술 과목별 1명) 채용 공고 · 1. 채용 기간: 2026. 8. 18. ~ 2027. 1. 6. · 2. 접수 기간: 2026. 7. 30. ~ 2026. 8. 4.",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-31",
    "isNew": false,
    "extVer": 33
@@ -1441,7 +1498,6 @@
    "officialUrl": "https://www.cntu.ac.kr/board.es?act=view&bid=0011&list_no=33474&mid=a20601080000&nPage=1&tag=",
    "channel": "hibrain",
    "layer": "B",
-   "subjectFrom": "attach",
    "courses": [
     "전공실기",
     "◦전공 : 피아노"
@@ -1469,16 +1525,15 @@
    "ageGroup": "성인",
    "inst": "현악",
    "instDetails": [
-    "현악",
-    "관악"
+    "현악"
    ],
    "personnel": null,
    "subject": null,
    "channel": "edu_seoul",
    "layer": "C",
+   "deadlineFrom": "page",
    "qualification": "여부, 학력사항, 경력정보",
    "bodyExcerpt": "채용계획 사전 공개 · 주소, 사진, 전화번호, 취업지원대상 여부, 학력사항, 경력정보, 자격증 정보, 어학능력정보, 자기소개, 희망근무지, 희망직종 · 구직활동 지원 및 채용 관련 서비스 제공 · 다만, 필수항목에 대한 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다.",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-29",
    "isNew": false,
    "extVer": 33
@@ -1500,7 +1555,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "타악",
+   "inst": "전체",
    "instDetails": [
     "타악",
     "피아노",
@@ -1511,10 +1566,10 @@
    "subject": null,
    "channel": "g_i_gunsangokr",
    "layer": "B",
+   "deadlineFrom": "page",
    "auditionDate": "8/2",
    "contract": "비상임",
    "bodyExcerpt": "1. 공고기간 : 2026. 7. 14.(월) ~ 2026. 8.14.(금) · 2. 접수기간 : 2026. 8. 10.(월) 10:00 ~ 8.14.(금) 18:00 · 2026년 공부의명수 온라인튜터링 2기 참여학생 모집 · 2026년 귀농귀촌 동네작가 모집",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-29",
    "isNew": false,
    "extVer": 33
@@ -1580,39 +1635,9 @@
    "officialUrl": "https://www.iscu.ac.kr/01_aboutcollege/10_01_teachers_view.asp?Board_Id=127&Page=1&PageSize=10&SeqNo=790411",
    "channel": "hibrain",
    "layer": "B",
-   "subjectFrom": "attach",
    "courses": [
     "실기레슨"
    ],
-   "firstSeen": "2026-07-29",
-   "isNew": false,
-   "extVer": 33
-  },
-  {
-   "id": "1db94cb6f795ae80",
-   "org": "창원문화재단(시립예술단)",
-   "region": "경남",
-   "source": "cwcf.or.kr",
-   "title": "「2026 창원문화재단 기록자료 관리지원」 사진영상 촬영관리 분야 채용",
-   "nonMusic": null,
-   "url": "https://www.cwcf.or.kr/commu/notice_view.asp?skey=&sword=&BCATE=BD00001&BSUBCATE=&place_idx=&page=1&idx=22971&bidx=2061",
-   "date": "2026-07-28",
-   "deadline": "2026-08-07",
-   "kind": "기타",
-   "tier": "미분류",
-   "obri": false,
-   "certReq": "무관",
-   "degreeReq": "무관",
-   "careerReq": "미기재",
-   "ageGroup": "성인",
-   "inst": "전체",
-   "instDetails": [],
-   "personnel": "P Copyright © 2008~2020 ",
-   "subject": null,
-   "channel": "cwcf",
-   "layer": "B",
-   "bodyExcerpt": "▪사진 및 영상 편집프로그램 활용 자격증 소지자 · 나. 근무기간: 2026. 8. 18. ~ 2026. 12. 31.(약 4개월) ※ 2년 이내 재계약 가능 · 라. 보수수준: 2026년 최저임금 적용(시간급 10,320원) 및 기타 수당 별도 · 가. 접수기간: 2026. 7. 29(수) ~ 8. 7.(금) 16:00 도착분에 한함.",
-   "deadlineFrom": "attachment",
    "firstSeen": "2026-07-29",
    "isNew": false,
    "extVer": 33
@@ -1642,9 +1667,9 @@
    "subject": null,
    "channel": "edu_seoul",
    "layer": "C",
+   "deadlineFrom": "page",
    "qualification": "여부, 학력사항, 경력정보",
    "bodyExcerpt": "채용계획 사전 공개 · 주소, 사진, 전화번호, 취업지원대상 여부, 학력사항, 경력정보, 자격증 정보, 어학능력정보, 자기소개, 희망근무지, 희망직종 · 경력사항: 기관, 기간, 직종명, 근무부서(업무), 재직중 여부, 주당 근로시간 · 자격증 정보: 자격명, 취득일자, 발급기관",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-29",
    "isNew": false,
    "extVer": 33
@@ -1703,12 +1728,12 @@
    "subject": null,
    "channel": "g_pajucf",
    "layer": "B",
+   "deadlineFrom": "attachment",
    "positions": [
     "단원"
    ],
    "qualification": "유지·관리, 제한적 본인확인제 시행에 따른 본인확인, 서비스 부정이용 방지, 만 14세 미만 아동의 개인정보",
    "bodyExcerpt": "홈페이지 회원 가입 및 관리 · 확인장소 : 해당부서 해당팀",
-   "deadlineFrom": "attachment",
    "firstSeen": "2026-08-02",
    "isNew": false,
    "extVer": 33
@@ -1737,7 +1762,6 @@
    "officialUrl": "https://www.sejong.ac.kr/kor/intro/notice8.do?article.offset=0&articleLimit=10&articleNo=890944&mode=view",
    "channel": "hibrain",
    "layer": "B",
-   "subjectFrom": "attach",
    "courses": [
     "<최근 3년간 실기연구실적물>",
     "최근 3년간 실기연구실적물"
@@ -1799,8 +1823,8 @@
    "subject": null,
    "channel": "edu_goe",
    "layer": "C",
-   "bodyExcerpt": "교사자격증 소지자, 해당 창의음악교육 분야 초등학교 지도 유경험자 · 대곡초등학교에서 근무하실 창의음악 강사를 아래와 같이 채용하고자 합니다 · 모집부문 및 인원 · 교사자격증 소지자",
    "deadlineFrom": "page",
+   "bodyExcerpt": "교사자격증 소지자, 해당 창의음악교육 분야 초등학교 지도 유경험자 · 대곡초등학교에서 근무하실 창의음악 강사를 아래와 같이 채용하고자 합니다 · 모집부문 및 인원 · 교사자격증 소지자",
    "firstSeen": "2026-07-27",
    "isNew": false,
    "extVer": 33
@@ -1863,39 +1887,6 @@
    "extVer": 33
   },
   {
-   "id": "5ff261551a46881f",
-   "org": "창원문화재단(시립예술단)",
-   "region": "경남",
-   "source": "cwcf.or.kr",
-   "title": "창원공예오픈스튜디오 공예공간 기록 프로젝트 <산단사이 2기> 모집 공..",
-   "nonMusic": null,
-   "url": "https://www.cwcf.or.kr/commu/notice_view.asp?skey=&sword=&BCATE=BD00001&BSUBCATE=&place_idx=&page=1&idx=22848&bidx=2058",
-   "date": "2026-07-24",
-   "deadline": null,
-   "kind": "기타",
-   "tier": "미분류",
-   "obri": false,
-   "certReq": "무관",
-   "degreeReq": "무관",
-   "careerReq": "미기재",
-   "ageGroup": "성인",
-   "inst": "전체",
-   "instDetails": [],
-   "personnel": "P Copyright © 2008~2020 ",
-   "subject": null,
-   "channel": "cwcf",
-   "layer": "B",
-   "bodyExcerpt": "[모집 및 행사] [접수마감] 엘리자베스 랭그리터 3·15아트홀 기획전 작가 방문 이벤트",
-   "qualification": "사항 및 수상경력 (해당 시)",
-   "dlHint": [
-    "보동의서(양식).hwp [81]공고문.jpg 이전글 [모집 및 행사] [접수마감] 엘리자베스 랭그리터 3·15아트홀 기획전 작가 방문 이벤트 다음글 [공지사항]",
-    "의서(양식).hwp [81]공고문.jpg 이전글 [모집 및 행사] [접수마감] 엘리자베스 랭그리터 3·15아트홀 기획전 작가 방문 이벤트 다음글 [공지사항] 진해"
-   ],
-   "firstSeen": "2026-07-24",
-   "isNew": false,
-   "extVer": 33
-  },
-  {
    "id": "f4f13b8f6ac5a27c",
    "org": "예일초등학교(서울시교육청)",
    "region": "서울",
@@ -1914,16 +1905,15 @@
    "ageGroup": "성인",
    "inst": "현악",
    "instDetails": [
-    "바이올린",
-    "관악"
+    "바이올린"
    ],
    "personnel": "1명 과목 (",
    "subject": null,
    "channel": "edu_seoul",
    "layer": "C",
+   "deadlineFrom": "page",
    "qualification": "여부, 학력사항, 경력정보",
    "bodyExcerpt": "채용계획 사전 공개 · 주소, 사진, 전화번호, 취업지원대상 여부, 학력사항, 경력정보, 자격증 정보, 어학능력정보, 자기소개, 희망근무지, 희망직종 · 구직활동 지원 및 채용 관련 서비스 제공 · 다만, 필수항목에 대한 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다.",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-24",
    "isNew": false,
    "extVer": 33
@@ -1981,11 +1971,11 @@
    "subject": null,
    "channel": "g_gcart",
    "layer": "B",
+   "deadlineFrom": "attachment",
    "positions": [
     "반주자"
    ],
    "bodyExcerpt": "2026년 제2차 육아휴직대체자 블라인드 채용 공고",
-   "deadlineFrom": "attachment",
    "firstSeen": "2026-07-24",
    "isNew": false,
    "extVer": 33
@@ -2013,8 +2003,8 @@
    "subject": null,
    "channel": "ulsan",
    "layer": "B",
-   "bodyExcerpt": "※ 접수처 : 관리동 3층 예술사업과(공휴일 및 평일 중식시간 · ※ 서류접수 기간 : 7. 27(월) ~ 8. 5.(수) · 2026 울산합창 대축제 울산사람「큰 울림」 참가단체 모집 공고",
    "deadlineFrom": "page",
+   "bodyExcerpt": "※ 접수처 : 관리동 3층 예술사업과(공휴일 및 평일 중식시간 · ※ 서류접수 기간 : 7. 27(월) ~ 8. 5.(수) · 2026 울산합창 대축제 울산사람「큰 울림」 참가단체 모집 공고",
    "firstSeen": "2026-07-24",
    "isNew": false,
    "extVer": 33
@@ -2036,7 +2026,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
@@ -2044,9 +2034,9 @@
    "subject": null,
    "channel": "edu_seoul",
    "layer": "C",
+   "deadlineFrom": "page",
    "qualification": "여부, 학력사항, 경력정보",
    "bodyExcerpt": "채용계획 사전 공개 · 주소, 사진, 전화번호, 취업지원대상 여부, 학력사항, 경력정보, 자격증 정보, 어학능력정보, 자기소개, 희망근무지, 희망직종 · 구직활동 지원 및 채용 관련 서비스 제공 · 다만, 필수항목에 대한 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다.",
-   "deadlineFrom": "page",
    "firstSeen": "2026-07-24",
    "isNew": false,
    "extVer": 33
@@ -2074,11 +2064,11 @@
    "subject": null,
    "channel": "g_timf",
    "layer": "B",
+   "deadlineFrom": "ocr",
    "positions": [
     "단원"
    ],
    "bodyExcerpt": "신규단원을모집합니다 .",
-   "deadlineFrom": "ocr",
    "firstSeen": "2026-07-21",
    "isNew": false,
    "extVer": 33
