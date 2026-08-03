@@ -177,7 +177,8 @@ def _detail_page(j, today):
   <meta property="og:image" content="{SITE}/og-image.png">
   <meta property="og:locale" content="ko_KR">
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="../css/style.css?v=10">
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Cormorant:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css?v=12">
   <script src="../js/analytics.js?v=1" defer></script>
   <script type="application/ld+json">{_jsonld(j)}</script>
 </head>

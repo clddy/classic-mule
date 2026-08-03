@@ -28,18 +28,12 @@ def make_og():
     d = ImageDraw.Draw(img)
     d.rectangle([0, 0, W, 12], fill=CLARET)              # 상단 클라레 바
     d.rectangle([0, H - 12, W, H], fill=CLARET)          # 하단 클라레 바
-    # 워드마크: "포디엄" + 클라레 점
+    # 워드마크: "포디엄" (2026-08-03 사용자 지시로 뒤의 클라레 점 제거 — 공유 카드에서
+    # 점이 과하게 커 보였다. 웹 로고의 작은 점은 그대로 둔다.)
     wf = f(SERIF, 150)
     word = "포디엄"
     wb = d.textbbox((0, 0), word, font=wf)
-    ww = wb[2] - wb[0]
-    dot_r = 10
-    dot_bottom = 380          # 글자 밑선에 맞춰 아래를 고정 (크기를 바꿔도 안 뜸)
-    total = ww + 34 + dot_r * 2
-    x0 = (W - total) / 2
-    d.text((x0 - wb[0], 205), word, font=wf, fill=INK)
-    dot_x = x0 + ww + 30
-    d.ellipse([dot_x, dot_bottom - dot_r * 2, dot_x + dot_r * 2, dot_bottom], fill=CLARET)
+    d.text(((W - (wb[2] - wb[0])) / 2 - wb[0], 205), word, font=wf, fill=INK)
     # 태그라인
     center(d, W / 2, 400, "클래식 음악인을 위한 공고 집약 플랫폼", f(SANS, 40), INK_SOFT)
     center(d, W / 2, 470, "전국 교향악단·교육청·대학·교회 채용 공고 · 매일 자동 수집", f(SANS, 27), INK_SOFT)

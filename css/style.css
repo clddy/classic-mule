@@ -25,9 +25,12 @@
   --shadow: 0 1px 2px rgba(27,25,23,0.05);
 
   /* 폰트 롤 */
-  --serif: "Song Myung", "Nanum Myeongjo", serif;
+  /* 제목용 명조 — og 이미지(윈도우 '바탕')와 같은 계열로 맞춘 것. 공유 카드에서 본 글씨와
+     사이트 제목이 달라 보이면 브랜드가 둘로 읽힌다 (2026-08-03). Song Myung은 굵고 각진
+     디스플레이 명조라 바탕체와 인상이 달랐다. */
+  --serif: "Gowun Batang", "Nanum Myeongjo", "Batang", serif;
   --sans:  "Pretendard", -apple-system, BlinkMacSystemFont, "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
-  --latin: "Cormorant", "Song Myung", serif;
+  --latin: "Cormorant", "Gowun Batang", serif;
 
   /* 레거시 별칭 — 인라인 스타일 호환 */
   --navy: var(--ink);
