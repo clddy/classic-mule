@@ -116,7 +116,7 @@ application/json POST 필수 — 폼 POST는 415)로 키워드 8개를 훑어 �
 data/fullsweep/practice_sweep.json에 기록(관측 전용). `--compare`가 시드 대비 공백을 낸다.
 2026-08-02 첫 순회: 304곳 채택, 기존 미등재 284곳 — **사이트 게시(승격)는 별도 결정** (지역
 정규화·중복 정리 필요). 항목의 osdScrUrl이 지자체 원문 예약처 딥링크라 링크 원칙과 맞다.
-practice_yeyak(서울)·practice_sweep은 run_daily가 **월요일마다** 돌린다.
+practice_yeyak(서울)·practice_sweep·build_practice_eshare는 run_daily가 **매일** 돌린다(2026-08-03 사용자 지시, 이전엔 월요일만).
 시드 URL 정합성은 verify_urls.check 재사용 — 2026-08-02 검증에서 죽은 링크 4곳 수정
 (symc·bscf 경로 변경, 레드콘 도메인 사망→운영기관 페이지, 종로 사이트 불능→링크 제거).
 

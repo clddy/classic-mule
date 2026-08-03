@@ -60,17 +60,16 @@ if ($LASTEXITCODE -ne 0) { Note "warn: export_sources_md.py 종료코드 $LASTEX
 & $PY crawler\traffic.py
 if ($LASTEXITCODE -ne 0) { Note "warn: traffic.py 종료코드 $LASTEXITCODE (계속 진행)" }
 
-# 연습실 수집 — 서울 yeyak + 공유누리 전국 순회. 시설 변동은 공고보다 느려 주 1회(월)만.
-# (2026-08-02 이식: yeyak이 스케줄에 안 들어가 3주 낡은 채 방치돼 있었다)
-if ((Get-Date).DayOfWeek -eq 'Monday') {
-    Note "연습실 수집 (주간)"
-    & $PY crawler\practice_yeyak.py
-    if ($LASTEXITCODE -ne 0) { Note "warn: practice_yeyak.py 종료코드 $LASTEXITCODE (계속 진행)" }
-    & $PY crawler\practice_sweep.py
-    if ($LASTEXITCODE -ne 0) { Note "warn: practice_sweep.py 종료코드 $LASTEXITCODE (계속 진행)" }
-    & $PY crawler\build_practice_eshare.py
-    if ($LASTEXITCODE -ne 0) { Note "warn: build_practice_eshare.py 종료코드 $LASTEXITCODE (계속 진행)" }
-}
+# 연습실 수집 — 서울 yeyak + 공유누리 전국 순회 + 시설 묶음 재생성.
+# 2026-08-03 사용자 지시로 매일 실행 (수분 수준이라 부담 없음).
+# (2026-08-02 이식 당시 yeyak이 스케줄에 안 들어가 3주 낡은 채 방치돼 있었다)
+Note "연습실 수집"
+& $PY crawler\practice_yeyak.py
+if ($LASTEXITCODE -ne 0) { Note "warn: practice_yeyak.py 종료코드 $LASTEXITCODE (계속 진행)" }
+& $PY crawler\practice_sweep.py
+if ($LASTEXITCODE -ne 0) { Note "warn: practice_sweep.py 종료코드 $LASTEXITCODE (계속 진행)" }
+& $PY crawler\build_practice_eshare.py
+if ($LASTEXITCODE -ne 0) { Note "warn: build_practice_eshare.py 종료코드 $LASTEXITCODE (계속 진행)" }
 
 # main.py가 0으로 끝났어도 결과 파일이 실제로 갱신됐는지 확인한다
 if ((Get-Item C:\ohai\podium\data\official.json).LastWriteTime -lt (Get-Date).AddHours(-2)) {
