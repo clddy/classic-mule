@@ -1002,7 +1002,7 @@ def track_deadline_misses(final):
         log(f"마감 미확인 {len(cur)}건 추적 중 (이번에 보고 {len(due)}건) → deadline_misses.json")
 
 
-def _ensure_raw_attachments(final, cap=25):
+def _ensure_raw_attachments(final, cap=50):
     """원문 보관층 보완 패스 — 첨부를 아직 저장하지 못한 공고를 한 번씩 마저 긁는다.
 
     enrich_deadline은 마감일이 페이지에서 바로 나오면 첨부를 열지 않고 돌아간다(효율).

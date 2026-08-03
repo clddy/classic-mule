@@ -111,7 +111,8 @@ def main():
         # 같은 시설명이 다른 도시에 있을 수 있다 — 주소 앞 두 토큰으로 구분
         key = (_norm(fac), " ".join((v.get("addr") or "").split()[:2]))
         f = facs.setdefault(key, {"name": fac, "region": sido,
-                                  "addr": v.get("addr") or "", "rooms": []})
+                                  "addr": v.get("addr") or "", "rooms": [],
+                                  "la": v.get("la"), "lo": v.get("lo")})
         f["rooms"].append({"name": room or "연습실", "free": bool(v.get("free")),
                            "bookTo": v.get("bookTo") or ""})
 
@@ -127,6 +128,7 @@ def main():
         items.append({
             "name": f["name"], "category": "public", "region": f["region"],
             "addr": f["addr"],
+            "lat": f.get("la"), "lng": f.get("lo"),   # 공유누리 실좌표 — 지도에 근사 아닌 정좌표
             "price": price, "free": n_free == len(rooms),
             "spaces": f"연습실 {len(rooms)}실" if len(rooms) > 1 else (rooms[0]["name"] if rooms[0]["name"] != "연습실" else ""),
             "booking_url": rooms[0]["bookTo"],

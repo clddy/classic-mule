@@ -40,7 +40,7 @@ API = PORTAL + "/UserPortal/Upc/UpcMapSrchResult/indexSrchResult.do"
 KEYWORDS = ["연습실", "합주실", "음악연습", "음악실", "밴드", "피아노", "공연연습", "음악창작소"]
 # yeyak 과 같은 필터 — 무용·체육·회의실류 배제
 MUSIC_OK = re.compile(r"연습실|합주|음악|피아노|밴드|공연연습|창작소")
-MUSIC_NO = re.compile(r"댄스|무용|발레|골프|스크린|체육|운동|요가|필라테스|회의|세미나|강의실$"
+MUSIC_NO = re.compile(r"댄스|댄싱|무용|발레|골프|스크린|체육|운동|요가|필라테스|회의|세미나|강의실$"
                       r"|스터디|미술|공예|도예|목공|요리|바둑")
 
 
@@ -77,6 +77,8 @@ def sweep():
                     "free": it.get("freeYnNm") == "Y",
                     "cls": it.get("rsrcClsNm") or "",
                     "bookTo": it.get("osdScrUrl") or "",   # 지자체 원문 예약처 딥링크
+                    # 좌표가 공짜로 온다 — 지도에 '구 중심 근사'가 아니라 실좌표로 찍힌다 (2026-08-03)
+                    "la": it.get("laVal"), "lo": it.get("loVal"),
                     "kw": kw,
                 }
             got += len(items)
