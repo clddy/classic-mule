@@ -108,6 +108,18 @@ Actions 백업 크롤도 같은 파일을 읽어 병합하므로 archive.json은
   재크롤되지 않아 영원히 옛 값이므로, demand_map.py가 집계 시점에 TIER_MIGRATE·REGION_MIGRATE로
   눕힌다(js/jobs.js와 같은 표). 아카이브 원본은 관측된 그대로 둔다.
 
+## 연습실(Layer 2) 파이프라인 (2026-08-02 이식)
+
+공고 쪽과 같은 원리 — **채널로 수렴**: 개별 시설이 아니라 **공유누리(eshare.go.kr, 행안부
+전국 공공자원 통합)**를 돈다. crawler/practice_sweep.py가 지도검색 JSON API(세션 쿠키 +
+application/json POST 필수 — 폼 POST는 415)로 키워드 8개를 훑어 전국 공공 연습실을
+data/fullsweep/practice_sweep.json에 기록(관측 전용). `--compare`가 시드 대비 공백을 낸다.
+2026-08-02 첫 순회: 304곳 채택, 기존 미등재 284곳 — **사이트 게시(승격)는 별도 결정** (지역
+정규화·중복 정리 필요). 항목의 osdScrUrl이 지자체 원문 예약처 딥링크라 링크 원칙과 맞다.
+practice_yeyak(서울)·practice_sweep은 run_daily가 **월요일마다** 돌린다.
+시드 URL 정합성은 verify_urls.check 재사용 — 2026-08-02 검증에서 죽은 링크 4곳 수정
+(symc·bscf 경로 변경, 레드콘 도메인 사망→운영기관 페이지, 종로 사이트 불능→링크 제거).
+
 ## 크롤 검증 루틴
 
 1. `python crawler/main.py --all` (백그라운드 ~7분, hibrain 포함 전체)

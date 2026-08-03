@@ -105,7 +105,7 @@ window.SEED_ROOMS = [
    "성악·앙상블가능",
    "타악가능"
   ],
-  "booking_url": "https://symc.or.kr/rental",
+  "booking_url": "https://symc.or.kr/reservation/01.php",
   "src": "symc.or.kr",
   "notes": "소리지음 — 합주실·개인실기실·합창실·레코딩스튜디오·블랙박스. 양천구 남부순환로 657. 월~토 09~21시,  일 10~17시. 청소년 할인·일반인 부가세 10% 추가",
   "rentalVerified": true,
@@ -707,9 +707,7 @@ window.SEED_ROOMS = [
   "instruments": [
    "성악·앙상블가능"
   ],
-  "booking_url": "https://www.ijongno.co.kr/fmcs/41",
-  "src": "ijongno.co.kr",
-  "notes": "종로구시설관리공단 통합예약 시스템",
+  "notes": "종로구시설관리공단 통합예약 시스템 · 사이트 리다이렉트 루프로 접속 불가(2026-08-02) — 전화 문의로 안내",
   "rentalVerified": true,
   "verified": "2026-07-12"
  },
@@ -750,9 +748,9 @@ window.SEED_ROOMS = [
    "타악가능",
    "성악·앙상블가능"
   ],
-  "booking_url": "https://www.redcon.kr/",
-  "src": "redcon.kr",
-  "notes": "녹음편집실·연습실·커뮤니티라운지·교육실. 음악인 무료 이용(작년 185건 대여). 평일 운영(주말·공휴일 휴무). 전주 덕진구 소리로 31 · 063-282-2388",
+  "booking_url": "https://www.jcon.or.kr/board/index.php?pageId=C000000008",
+  "src": "jcon.or.kr",
+  "notes": "녹음편집실·연습실·커뮤니티라운지·교육실. 음악인 무료 이용(작년 185건 대여). 평일 운영(주말·공휴일 휴무). 전주 덕진구 소리로 31 · 063-282-2388 · redcon.kr 사망 — 운영기관(전북콘텐츠융합진흥원) 사업 페이지로 대체(2026-08-02)",
   "rentalVerified": true,
   "verified": "2026-07-12"
  },
@@ -1055,8 +1053,8 @@ window.SEED_ROOMS = [
    "성악·앙상블가능",
    "대편성가능"
   ],
-  "booking_url": "https://www.bscf.or.kr/pspace/contents.do?mId=0100000000",
-  "src": "bscf.or.kr",
+  "booking_url": "https://pspace.bscf.or.kr/pspace/main.do",
+  "src": "pspace.bscf.or.kr",
   "notes": "부산문화재단 5층. 감만창의문화촌 인근(2호선 못골역). 온라인 예약. 부산문화재단 대관 051-745-7237",
   "rentalVerified": true,
   "verified": "2026-07-12"
