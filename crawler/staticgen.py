@@ -178,7 +178,7 @@ def _detail_page(j, today):
   <meta property="og:locale" content="ko_KR">
   <meta name="twitter:card" content="summary_large_image">
   <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Cormorant:wght@500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="../css/style.css?v=13">
+  <link rel="stylesheet" href="../css/style.css?v=14">
   <script src="../js/analytics.js?v=1" defer></script>
   <script type="application/ld+json">{_jsonld(j)}</script>
 </head>
@@ -195,7 +195,7 @@ def _detail_page(j, today):
   </div>
   <h1 style="font-size:1.35rem;margin-top:8px">{esc(j['title'])}</h1>
 </div></div>
-<main class="container" style="padding:20px 16px 40px;max-width:720px">
+<main class="container" style="padding-block:20px 40px;max-width:720px">
   <dl class="detail-meta">{rows}</dl>
   <div class="modal-actions" style="margin-top:20px">{act}
     <a class="btn-outline" style="text-decoration:none" href="../jobs.html">전체 공고 보기</a></div>

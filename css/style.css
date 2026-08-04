@@ -3,6 +3,8 @@
    고운 종이 · 잉크 · 공연장 벨벳 클라레. 단일 라이트 테마(의도된 선택).
    ============================================================ */
 :root {
+  /* 페이지 좌우 여백 — 이 한 값이 전 페이지 컨테이너를 지배한다 (모바일은 아래 미디어쿼리) */
+  --gutter: 24px;
   /* 종이와 잉크 */
   --ivory: #fbfaf7;        /* 페이지 바탕 (고운 종이) */
   --paper: #ffffff;        /* 카드·표면 */
@@ -60,7 +62,12 @@ button { font-family: inherit; cursor: pointer; }
 :focus-visible { outline: 2px solid var(--claret); outline-offset: 2px; }
 .tnum { font-variant-numeric: tabular-nums; }
 
-.container { max-width: 1060px; margin: 0 auto; padding: 0 24px; }
+/* 좌우 여백은 --gutter 한 곳에서만 정한다. 페이지마다 따로 손대면 화면 폭이 바뀔 때
+   어긋난 곳이 반드시 생긴다 (2026-08-04 워크오더).
+   padding-inline을 쓰는 이유: 상하 padding을 따로 주는 규칙(.board-layout 등)이
+   shorthand로 좌우까지 0으로 덮어버리는 사고를 막는다 — 실제로 그래서 모바일에서
+   필터 칩·카드가 화면 왼쪽 끝에 붙어 있었다. */
+.container { max-width: 1060px; margin: 0 auto; padding-inline: var(--gutter); }
 
 /* ---------- 헤더 (종이색 + 헤어라인) ---------- */
 .site-header {
@@ -95,7 +102,10 @@ button { font-family: inherit; cursor: pointer; }
   color: var(--claret);
   margin-left: 3px;
 }
-.main-nav { display: flex; gap: 2px; flex: 1; }
+.main-nav { display: flex; gap: 2px; flex: 1;
+  /* 플렉스 자식도 기본 min-width가 auto라 좁은 화면에서 헤더 컨테이너를 밀고 나간다
+     — .board-layout > * 와 같은 함정 (2026-08-04) */
+  min-width: 0; }
 .main-nav a {
   padding: 6px 12px;
   font-size: 0.9rem;
@@ -280,9 +290,13 @@ button { font-family: inherit; cursor: pointer; }
   display: grid;
   grid-template-columns: 214px 1fr;
   gap: 30px;
-  padding: 28px 0 96px;
+  /* 좌우는 건드리지 않는다 — .container의 --gutter가 담당 (shorthand로 쓰면 덮어쓴다) */
+  padding-block: 28px 96px;
   align-items: start;
 }
+/* 그리드 자식은 기본 min-width가 auto라 '안에 든 것보다 작아지지 못한다' — 좁은 화면에서
+   필터 사이드바가 컨테이너를 밀고 나가 오른쪽 여백을 1px까지 먹었다 (2026-08-04). */
+.board-layout > * { min-width: 0; }
 
 /* ---------- 필터 사이드바 ---------- */
 .filters {
@@ -712,7 +726,7 @@ details[open] > .filter-summary::after { content: " −"; }
 /* ---------- 피드백 버튼 ---------- */
 .feedback-fab {
   position: fixed;
-  right: 22px; bottom: 22px;
+  right: var(--gutter); bottom: 22px;   /* 본문 여백과 같은 기준선 */
   background: var(--claret);
   color: #fff;
   border-radius: 2px;
@@ -726,6 +740,10 @@ details[open] > .filter-summary::after { content: " −"; }
 .feedback-fab:hover { background: var(--claret-deep); transform: translateY(-2px); }
 
 /* ---------- 반응형 ---------- */
+/* 좁은 화면에서 24px은 본문 폭을 과하게 먹는다 — 18px로 좁히되 16px 아래로는 안 간다 */
+@media (max-width: 480px) {
+  :root { --gutter: 18px; }
+}
 @media (max-width: 860px) {
   .card-grid { grid-template-columns: repeat(2, 1fr); }
   .board-layout { grid-template-columns: 1fr; }
