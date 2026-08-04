@@ -1,7 +1,7 @@
 {
- "date": "2026-08-03",
+ "date": "2026-08-04",
  "src": "eshare.go.kr",
- "count": 303,
+ "count": 302,
  "dropped": 322,
  "items": {
   "DK24D623861": {
@@ -1995,17 +1995,6 @@
    "lo": 126.97689571963,
    "kw": "밴드"
   },
-  "HD10E850718": {
-   "name": "세라밴드",
-   "addr": "경기 의왕시 갈미로 71",
-   "sido": "경기",
-   "free": false,
-   "cls": "건강/체육프로그램",
-   "bookTo": "https://share.gg.go.kr/lecture/view?id=51229&eshare=1",
-   "la": 37.378283962037,
-   "lo": 126.97559670442,
-   "kw": "밴드"
-  },
   "HG25E858210": {
    "name": "세라밴드",
    "addr": "경기 의왕시 갈미로 71",
@@ -2919,6 +2908,17 @@
    "lo": 126.848330353668,
    "kw": "공연연습"
   },
+  "EK19D675187": {
+   "name": "음악역1939 연습실(T-STATION)",
+   "addr": "경기 가평군 가평읍 석봉로 100",
+   "sido": "경기",
+   "free": false,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "https://share.gg.go.kr/facilityListO/view?instiCode=1290001&facilityId=F0005&eshare=1",
+   "la": 37.82529067993164,
+   "lo": 127.51290130615234,
+   "kw": "공연연습"
+  },
   "FB29I3813176": {
    "name": "중앙선 1942 안동역 D&T 공유연습실",
    "addr": "경북 안동시 경동로 684 (운흥동)",
@@ -2928,6 +2928,17 @@
    "bookTo": "",
    "la": 36.5627063939235,
    "lo": 128.732933952556,
+   "kw": "공연연습"
+  },
+  "FI06D716173": {
+   "name": "경기창작캠퍼스 개인연습실",
+   "addr": "경기 안산시 단원구 선감로 101-19",
+   "sido": "경기",
+   "free": false,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "https://members.ggcf.kr/facilities?orgs%5B%5D=8&start_dt=&end_dt=&usages%5B%5D=4",
+   "la": 37.22731018066406,
+   "lo": 126.63249969482422,
    "kw": "공연연습"
   },
   "FK14J2657076": {
@@ -2950,28 +2961,6 @@
    "bookTo": "https://map.naver.com/p/search/%EA%B0%95%EC%84%9C%EC%B2%AD%EC%86%8C%EB%85%84%ED%9A%8C%EA%B4%80/place/12306896?c=15.00,0,0,0,dh&isCorrectAnswer=true",
    "la": 37.5564791214086,
    "lo": 126.844285960325,
-   "kw": "공연연습"
-  },
-  "FI06D716173": {
-   "name": "경기창작캠퍼스 개인연습실",
-   "addr": "경기 안산시 단원구 선감로 101-19",
-   "sido": "경기",
-   "free": false,
-   "cls": "공방·공작실·공연연습실",
-   "bookTo": "https://members.ggcf.kr/facilities?orgs%5B%5D=8&start_dt=&end_dt=&usages%5B%5D=4",
-   "la": 37.22731018066406,
-   "lo": 126.63249969482422,
-   "kw": "공연연습"
-  },
-  "EK19D675187": {
-   "name": "음악역1939 연습실(T-STATION)",
-   "addr": "경기 가평군 가평읍 석봉로 100",
-   "sido": "경기",
-   "free": false,
-   "cls": "공방·공작실·공연연습실",
-   "bookTo": "https://share.gg.go.kr/facilityListO/view?instiCode=1290001&facilityId=F0005&eshare=1",
-   "la": 37.82529067993164,
-   "lo": 127.51290130615234,
    "kw": "공연연습"
   },
   "FA11D698480": {

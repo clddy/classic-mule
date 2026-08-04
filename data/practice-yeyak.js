@@ -1,5 +1,5 @@
 window.YEYAK_ROOMS = {
- "fetched": "2026-08-03",
+ "fetched": "2026-08-04",
  "items": [
   {
    "name": "구로구 천왕역 버들마을활력소 개인연습실",
