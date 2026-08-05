@@ -1,17 +1,25 @@
 {
+ "https://www.timf.org/kr/sub/timf/notice.asp?mode=view&bid=1&s_type=&s_keyword=&s_cate=&idx=3800&page=1": {
+  "firstSeen": "2026-08-05",
+  "tries": 1,
+  "reported": false,
+  "lastTry": "2026-08-05",
+  "title": "2026 모두의 오케스트라 페스티벌 참가 오케스트라 모집",
+  "org": "통영국제음악재단"
+ },
  "https://www.daeguartscenter.or.kr/index.do?menu_id=00001528&menu_link=/icms/bbs/selectBoardArticle.do&bbsId=BBS_00303&nttId=11215": {
   "firstSeen": "2026-08-02",
-  "tries": 3,
+  "tries": 4,
   "reported": true,
-  "lastTry": "2026-08-04",
+  "lastTry": "2026-08-05",
   "title": "2026 대구시립소년소녀합창단 하반기 단원 모집",
   "org": "대구문화예술회관 공지(시립합창단)"
  },
  "https://www.daeguartscenter.or.kr/index.do?menu_id=00001528&menu_link=/icms/bbs/selectBoardArticle.do&bbsId=BBS_00303&nttId=11147": {
   "firstSeen": "2026-08-02",
-  "tries": 3,
+  "tries": 4,
   "reported": true,
-  "lastTry": "2026-08-04",
+  "lastTry": "2026-08-05",
   "title": "대구광역시 시립교향악단 부지휘자 공개모집",
   "org": "대구문화예술회관 공지(시립합창단)"
  }
