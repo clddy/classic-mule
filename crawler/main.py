@@ -4,8 +4,8 @@ from datetime import date, datetime, timedelta
 from bs4 import BeautifulSoup
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from common import (new_session, get, relevant, extract_deadline, deadline_from_title,
-                    musician_relevant, parse_recruit_table, summarize_recruit, find_position,
+from common import (new_session, get, relevant, extract_deadline, priority_deadlines, deadline_from_title,
+                    musician_relevant, youth_member, parse_recruit_table, summarize_recruit, find_position,
                     classify_insts, find_subject, find_music_subjects, find_music_courses,
                     classify_kind, classify_tier, is_obri, cert_required, degree_req, career_req, age_group,
                     region_from, EXCLUDE, compact_title, music_only_title, body_text,
@@ -241,7 +241,7 @@ def find_attachments(soup, base_url):
                     cands.append((full, el.get_text(" ", strip=True)))
     return cands[:4]
 
-EXT_VER = 36         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
+EXT_VER = 37         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
                      # v32(2026-08-02): 모집분야 구획 악기 추출(insts_from_recruit_text) + 원문 보관층
                      # 24: work.sen 등록일(게시일) 추출 추가 — date=None이던 승계분을 다시 뽑게
                      # 25: body_text 도입 — 본문을 <header>에 넣는 사이트(대전교육청)의 마감일을
@@ -801,11 +801,13 @@ def _music_from_origin(s, item):
 def _refill_from_raw(items, today):
     """요약·마감이 빈 공고를 원문 보관층(data/raw)에서 되살린다 — 네트워크 없이.
 
-    상세 방문은 소스당 MAX_DETAIL_PER_SOURCE(20)로 묶여 있다. 소스가 커지면 뒤쪽
-    공고는 아예 방문되지 못해 마감·요약이 빈 채로 남는다 — 수집이 31→96건으로 늘자
-    마감 확보율이 84%→11%로 주저앉은 게 이 때문이다(2026-08-07 규명. 추출기 문제가
-    아니라 예산 문제였다). raw 층은 이럴 때 쓰라고 쌓아둔 것이라, 이미 받아둔 본문에
-    추출기를 다시 돌려 메운다. 추출 규칙을 고치면 과거분에도 이 경로로 소급된다.
+    상세 방문은 소스당 MAX_DETAIL_PER_SOURCE(20)로 묶여 있어 뒤쪽 공고가 방문되지 못하는
+    일이 있다. raw 층은 그럴 때 쓰라고 쌓아둔 것이라, 이미 받아둔 본문에 추출기를 다시
+    돌려 메운다. 추출 규칙을 고치면 과거분에도 이 경로로 소급된다.
+
+    (2026-08-07 정정: 마감 확보율이 84%→11%로 떨어진 것을 '방문 예산 부족'으로 적었었는데
+     틀렸다. 마감 없는 67건 전부 실제로 방문돼 있었다 — 진짜 원인은 모집단 변화로,
+     마감일이 원래 없는 교회 상시 공고가 대거 들어온 것이었다.)
     """
     n_ex = n_dl = 0
     for it in items:
@@ -833,6 +835,49 @@ def _refill_from_raw(items, today):
                 n_dl += 1
     if n_ex or n_dl:
         log(f"원문 보관층에서 복구: 요약 {n_ex}건 · 마감 {n_dl}건")
+
+
+def _drop_expired(items, today):
+    """접수가 끝난 공고를 내린다 — ① 아는 마감일이 지났거나 ② 원문에 지난 마감이 확정 표기된 것.
+
+    마감일을 못 뽑은 공고는 화면에 '기한 미정'으로 남는데, 그중 상당수는 마감일이 없는 게
+    아니라 **이미 끝난** 것이었다 — 2026-08-07 점검에서 게시중 95건 중 51건이 그랬고
+    제목에 '(마감)'이 박힌 것, 1년도 더 지난 2025-04 공고까지 섞여 있었다.
+    _refill_from_raw 가 '지난 날짜는 앉히지 않는다'로 버린 뒤 아무도 줍지 않은 자리다.
+
+    오탐이 곧 살아있는 공고 삭제라 근거를 세 겹으로 조인다:
+     ① '원서접수·접수기간·남은기간' 같은 확정 어휘 윈도에서 나온 날짜만 본다(폴백 금지).
+     ② 후보가 셋 이상으로 갈리면 상세 페이지에 남의 공고 목록이 섞인 것으로 보고 보류한다.
+     ③ 자기 게시일보다 이른 마감일은 남의 날짜다 — 보류.
+    보류한 것은 종전대로 '기한 미정'으로 남으니, 판단이 서지 않을 때의 기본값은 '그대로 둠'이다.
+    """
+    gone = []
+    for it in items:
+        # 이미 마감일을 아는데 그게 지났으면 그대로 내린다. 소스별 수집 구간에도 같은 필터가
+        # 있지만 거긴 승계 경로가 비켜 간다 — 양현고 시간강사 공고가 마감 7-29 인 채로
+        # 8-07 화면에 남아 있었다 (2026-08-07).
+        if it.get("deadline"):
+            if it["deadline"] < today.isoformat():
+                it["expiredOn"] = it["deadline"]
+                gone.append(it)
+            continue
+        if it.get("deadlineNote") == "상시":
+            continue
+        cands = priority_deadlines(rawstore.all_text(it.get("id")), ref_year=_ref_year(it))
+        if not cands or len(cands) > 2:
+            continue
+        dl = max(cands)
+        if dl >= today.isoformat():
+            continue
+        if it.get("date") and dl < it["date"]:
+            continue
+        it["expiredOn"] = dl
+        gone.append(it)
+    if gone:
+        items[:] = [i for i in items if "expiredOn" not in i]
+        log(f"접수 종료 확인 {len(gone)}건 제외 — "
+            + "; ".join(f"{i['expiredOn']} {i['title'][:20]}" for i in gone[:5]))
+    return gone
 
 
 def _apply_overrides(items, verbose=False):
@@ -1261,8 +1306,12 @@ def run(force_all=False):
         seen.add(it["id"])
         uniq.append(it)
     final = dedup(uniq)
-    # 승계 경로로 들어온 항목까지 포함해 음악인 대상 필터를 최종 일괄 적용
+    # 승계 경로로 들어온 항목까지 포함해 음악인 대상 필터를 최종 일괄 적용.
+    # youth_member 도 여기서 다시 본다 — relevant()는 수집 시점에만 도는데, 이미 실려 있던
+    # 공고는 승계로 들어와 그 관문을 통과하지 않는다. 규칙을 새로 넣은 날 기존 분이 그대로
+    # 남는 이유가 이것이다 (구리시립청소년교향악단, 2026-08-07).
     final = [i for i in final if not i.get("nonMusic")
+             and not youth_member(i["title"])
              and musician_relevant(i["title"], i.get("kind", ""), i.get("org", ""))]
     # 대학 전체 강사 초빙 중 첨부 확인 결과 음악 교과목이 전혀 없던 공고는 제외(비음악 확정)
     final = [i for i in final if not i.get("nonMusic")]
@@ -1272,6 +1321,9 @@ def run(force_all=False):
     # 못한다 — 천안시립교향악단이 실제로 그랬다 (2026-08-02). 아래 최종 단계에서 한 번 더
     # 병합하는 것은 그대로 둔다(그때는 분류 재적용 뒤 값을 덮어쓰는 게 목적).
     _apply_overrides(final)
+    # 마감이 지난 게 원문에 확정 표기된 공고를 내린다. overrides 뒤에 두는 이유는,
+    # 사람이 손수 넣은 마감일이 있으면 그쪽이 우선이고 여기 판정은 아예 건너뛰기 때문이다.
+    _drop_expired(final, today)
     # 지원할 방법이 하나도 없는 공고는 싣지 않는다 — 집계 포털에서 왔는데 기관 원문도,
     # 이메일·전화도 못 뽑은 경우다. 포털로는 링크를 내지 않기로 했으므로(CLAUDE.md) 카드에
     # '기관명으로 검색하세요'라는 빈 안내만 남아 사용자가 할 수 있는 게 없다 (2026-07-29 지적).

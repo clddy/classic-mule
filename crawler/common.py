@@ -119,7 +119,17 @@ NOYEAR_RANGE = re.compile(
     r"(?<![\d.])(\d{1,2})\s*[./월]\s*(\d{1,2})[^~∼～\d]{0,20}[~∼～]\s*(\d{1,2})\s*[./월]\s*(\d{1,2})")
 # "7. 13.(월) 18:00까지", "6월 7일(일) 자정까지" — 연도 생략 단일
 NOYEAR_KKAJI = re.compile(
-    r"(?<![\d.])(\d{1,2})\s*[./월]\s*(\d{1,2})\s*일?\s*\.?\s*(?:\([^)]{1,4}\))?[^0-9]{0,14}까지")
+    r"(?<![\d.])(\d{1,2})\s*[./월]\s*(\d{1,2})\s*일?\s*\.?\s*(?:\([^)]{1,4}\))?"
+    # 날짜와 '까지' 사이에 시각이 낀 형태. 아래 [^0-9] 필러는 숫자를 못 넘어서
+    # 주석이 예시로 든 "7. 13.(월) 18:00까지"조차 실제로는 못 읽고 있었다 (2026-08-07 규명).
+    r"(?:[^0-9]{0,6}\d{1,2}\s*[:시]\s*\d{0,2}\s*분?)?"
+    r"[^0-9]{0,14}까지")
+# "모집마감 8.31.(월) 18:00" — '~'도 '까지'도 없이 마감 낱말 뒤에 날짜만 오는 표기.
+# 포스터/이미지 공고가 이 꼴을 즐겨 쓰는데 위 두 패턴이 전부 비켜 가서 마감일을 통째로
+# 놓쳤다 (2026-08-07 통영국제음악재단 포스터, 사용자 지적).
+# 뒤에 ':' 나 '배·명'이 붙으면 경쟁률·인원이지 날짜가 아니므로 배제한다("2.5:1", "1.5배수").
+NOYEAR_BARE = re.compile(
+    r"(?:마감|기한)\s*[:\-]?\s*(?<![\d.])(\d{1,2})\s*[./]\s*(\d{1,2})(?![\d.]*\s*(?:배|명|:))")
 
 def _valid(y, mo, d):
     return 1 <= int(mo) <= 12 and 1 <= int(d) <= 31
@@ -168,6 +178,13 @@ def _window_deadline(window, ref_year):
     m = NOYEAR_KKAJI.search(window)
     if m:
         return _mk(ref_year, m.group(1), m.group(2))
+    # 7) "마감 M.D" (맨 뒤 수단 — 다른 패턴이 전부 실패했을 때만)
+    #    윈도 앞머리로 제한한다. 키워드에서 멀어질수록 '마감'과 무관한 숫자를 물 위험이 커진다.
+    m = NOYEAR_BARE.search(window[:60])
+    if m:
+        c = _mk(ref_year, m.group(1), m.group(2))
+        if c:
+            return c
     return None
 
 # 게시판 CMS가 본문 아래 붙이는 '이전글/다음글·목록·페이징' 영역의 클래스 이름들.
@@ -231,9 +248,45 @@ def body_text(html_or_soup, parser="lxml"):
 # 남은기간: 기독정보넷 상세의 "남은기간 2026-05-31 23:59:59 까지" 대응
 _KW_PRIORITY = re.compile(r"원서 ?접수|접수 ?기간|접수 ?기한|접수 ?마감|서류 ?접수|지원 ?기간|응시원서|남은 ?기간")
 _KW_FALLBACK = re.compile(r"접수|마감|기한|제출|지원서|모집 ?기간")
+# 게시판 목록이 본문 뒤에 딸려 들어온 자리 — 여기를 넘어가면 '남의 공고 날짜'다.
+# 군산시립교향악단 공고는 자기 접수기간이 "접수기간 : 2"에서 잘려 있어서, 윈도가
+# 옆 목록의 '군산시가족센터 신규직원 26.07.28'까지 넘어가 그 날짜를 물었다 (2026-08-07).
+_LIST_SEP = re.compile(r"\s\|\s|시험/채용|채용/시험|더보기|목록보기")
 
-def extract_deadline(text, ref_year=None):
-    """본문에서 접수 마감일 추출 — '원서접수/접수기간' 윈도를 최우선으로"""
+
+def _is_attach_name(text, pos):
+    """"응시원서.hwp" 처럼 키워드 바로 뒤가 확장자면 첨부파일명이지 본문이 아니다."""
+    return bool(re.match(r"\s*[_\-]?\s*\.(hwpx?|pdf|docx?|xlsx?|zip)", text[pos:pos + 8], re.I))
+
+def priority_deadlines(text, ref_year=None):
+    """확정 어휘(원서접수·접수기간·남은기간…) 윈도에서 찾은 마감일 후보 **전부**.
+
+    지난 날짜를 근거로 공고를 내릴 때 쓴다. 후보가 여럿으로 갈리면 그 페이지엔 남의 공고
+    목록이 섞였다는 뜻이므로(군산시립교향악단 상세에 시청 채용공고 목록이 통째로 딸려
+    온다 — 2026-08-07), 개수를 감추지 않고 그대로 넘겨 호출부가 보류를 고르게 한다.
+    """
+    if not text:
+        return []
+    from datetime import date as _d
+    ref_year = ref_year or _d.today().year
+    text = re.sub(r"\s+", " ", text)
+    out = []
+    for kw in _KW_PRIORITY.finditer(text):
+        if _is_attach_name(text, kw.end()):
+            continue
+        c = _window_deadline(_LIST_SEP.split(text[kw.start(): kw.start() + 300], 1)[0], ref_year)
+        if c and c not in out:
+            out.append(c)
+    return sorted(out)
+
+
+def extract_deadline(text, ref_year=None, priority_only=False):
+    """본문에서 접수 마감일 추출 — '원서접수/접수기간' 윈도를 최우선으로
+
+    priority_only=True 면 '원서접수·접수기간·남은기간' 같은 확정 어휘 윈도만 본다.
+    지난 날짜를 근거로 공고를 **내릴 때** 쓰는 모드다 — 여기서의 오탐은 살아있는 공고를
+    지우는 것이라, 리허설·공연일을 물 수 있는 폭넓은 폴백 키워드를 아예 끈다.
+    """
     if not text:
         return None
     from datetime import date as _d
@@ -246,9 +299,14 @@ def extract_deadline(text, ref_year=None):
     for kw in _KW_PRIORITY.finditer(text):
         if _is_filename(kw):
             continue
-        c = _window_deadline(text[kw.start(): kw.start() + 300], ref_year)
+        win = text[kw.start(): kw.start() + 300]
+        if priority_only:
+            win = _LIST_SEP.split(win, 1)[0]
+        c = _window_deadline(win, ref_year)
         if c:
             return c
+    if priority_only:
+        return None
     best = None
     for kw in _KW_FALLBACK.finditer(text):
         if _is_filename(kw):
@@ -309,7 +367,24 @@ _HIRE_ROLE = re.compile(
     r"단원|강사|반주|지휘|교원|교수|연주자|악장|수석|성악가|객원|교습|레슨|트레이너"
     r"|사무국|직원|스태프|음악감독|코치|상근|위촉\s*(?:연주|단원)")
 
+# 아동·청소년 '단원' 모집은 채용이 아니라 참여다 — 시립소년소녀합창단 지원서가 <소속> <학교
+# 학년 반>을 적어 내게 돼 있다(2026-08-07 통영시립소년소녀합창단). '단원'이 _HIRE_ROLE 보호
+# 어휘라 아래 참가자 규칙으로는 절대 안 걸려서 따로 둔다.
+# 같은 단체의 지도자·지휘자·반주자 모집은 진짜 채용이므로 '단원'일 때만 건다.
+_YOUTH_MEMBER = re.compile(
+    r"(?:소년소녀|어린이|유소년|청소년|주니어|키즈)\s*"
+    r"(?:합창단|오케스트라|국악단|무용단|관현악단|교향악단|앙상블)?[^,·\n]{0,6}?"
+    r"(?:신규\s*|신입\s*)?단원\s*(?:모집|선발|모심)")
+
+
+def youth_member(title):
+    """아동·청소년 '단원' 모집인가 — 채용이 아니라 참여."""
+    return bool(_YOUTH_MEMBER.search(title or ""))
+
+
 def relevant(title):
+    if youth_member(title):
+        return False
     # 참가자/수강생 모집인데 채용 직무가 없으면 구인 아님 → 제외
     if _PARTICIPANT.search(title) and not _HIRE_ROLE.search(title):
         return False

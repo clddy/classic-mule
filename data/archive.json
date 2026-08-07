@@ -147,7 +147,7 @@
    "url": "https://gjart.gwangju.go.kr/gso/cmd.do?opencode=pg_0501&boper=view&bnum=9623&&pnum=&ffield=&fval=",
    "deadline": "2026-01-29",
    "kind": "단원",
-   "inst": "현악",
+   "inst": "전체",
    "firstSeen": "2026-07-07",
    "lastSeen": "2026-08-07",
    "days": 3,
@@ -1974,7 +1974,7 @@
    "bodyExcerpt": "모시는분 반주자 - 지역 경기 - 등록일 2026-02-10 - 남은기간 0000-00-00 00:00:00 · 탑동감리교회 드럼반주자&레슨강사 모집합니다. · 용호남교회 피아노 반주자 모집 건반 연주자와 일렉키타 연주자를 모십니다(찬양팀) 주일 피아노 반주자 모십니다.",
    "ageGroup": "성인",
    "obri": true,
-   "certReq": "무관",
+   "certReq": "아니오",
    "degreeReq": "무관",
    "careerReq": "미기재",
    "backfill": true
@@ -5621,7 +5621,7 @@
    "deadlineFrom": "raw",
    "kind": "단원",
    "tier": "연주",
-   "inst": "타악",
+   "inst": "전체",
    "instDetails": [
     "타악",
     "피아노",
@@ -10120,7 +10120,7 @@
    "deadlineFrom": "title",
    "kind": "단원",
    "tier": "연주",
-   "inst": "현악",
+   "inst": "전체",
    "instDetails": [
     "첼로",
     "피아노"
@@ -10149,7 +10149,7 @@
    "deadline": "2026-08-10",
    "kind": "교수",
    "tier": "교육 — 대학",
-   "inst": "금관",
+   "inst": "전체",
    "instDetails": [
     "호른"
    ],
@@ -10490,7 +10490,7 @@
    "url": "https://www.gunsan.go.kr/gsart/m1950/view/9830024?",
    "kind": "객원·대체",
    "tier": "연주",
-   "inst": "현악",
+   "inst": "전체",
    "instDetails": [
     "더블베이스",
     "바이올린",
@@ -10518,7 +10518,7 @@
    "url": "https://www.gunsan.go.kr/gsart/m1950/view/9828504?",
    "kind": "단원",
    "tier": "연주",
-   "inst": "현악",
+   "inst": "전체",
    "instDetails": [
     "바이올린",
     "플루트",
@@ -10570,7 +10570,7 @@
    "url": "https://www.gunsan.go.kr/gsart/m1950/view/1504933?",
    "kind": "단원",
    "tier": "연주",
-   "inst": "타악",
+   "inst": "전체",
    "instDetails": [
     "타악",
     "현악",
@@ -10746,7 +10746,7 @@
    "date": "2026-06-26",
    "kind": "강사",
    "tier": "교육 — 대학",
-   "inst": "현악",
+   "inst": "전체",
    "instDetails": [
     "더블베이스",
     "첼로",
