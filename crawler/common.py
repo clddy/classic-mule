@@ -174,6 +174,7 @@ def _window_deadline(window, ref_year):
 # 사이트마다 이름이 다르지만 어휘는 몇 개로 수렴한다 (navi/prev/next/paging…).
 _NAVI_CLS = re.compile(r"(?:txt-)?navi|prev[-_]?next|next[-_]?prev|board[-_]?nav|article[-_]?nav"
                        r"|paging|pagination|pager", re.I)
+NAVI_MAX_CHARS = 400   # 이 길이를 넘으면 네비가 아니라 본문 래퍼로 보고 손대지 않는다
 
 
 def strip_navi(soup):
@@ -188,8 +189,14 @@ def strip_navi(soup):
     navi = [t for t in soup.find_all(attrs={"class": True})
             if _NAVI_CLS.search(" ".join(t.get("class") or []))]
     for tag in navi:
-        if tag.parent is not None:      # 조상이 먼저 지워졌으면 건너뛴다
-            tag.decompose()
+        if tag.parent is None:          # 조상이 먼저 지워졌으면 건너뛴다
+            continue
+        # ★ 길면 건드리지 않는다. 이전글·다음글 줄은 짧다(제목 한둘). 클래스 이름만 보고
+        #   지웠더니 본문을 감싼 래퍼까지 날아가 요약 채움률이 87%→6%로 무너졌다
+        #   (2026-08-07, 연세대 div.txt-navi-wrap이 본문 영역까지 감싸고 있었다).
+        if len(tag.get_text(" ", strip=True)) > NAVI_MAX_CHARS:
+            continue
+        tag.decompose()
     return soup
 
 
@@ -291,7 +298,12 @@ _PARTICIPANT = re.compile(
     r"|관람객|관객\s*모집|수강생|수강\s*신청|교육생\s*모집|아카데미\s*(?:생|수강)"
     r"|동아리원\s*모집|모니터(?:단|링)|평가단|명예\s*기자|해설사\s*양성|양성\s*과정"
     r"|영재\s*선발|학생\s*여러분|재능 ?있는 ?학생"
-    r"|참가\s*단체")   # 영재교육원 '학생 선발'·합창제 '참가단체'는 구인이 아님
+    r"|참가\s*단체"     # 영재교육원 '학생 선발'·합창제 '참가단체'는 구인이 아님
+    # 사람이 아니라 '단체'를 부르는 공고 — 페스티벌에 나올 오케스트라·합창단을 모으는 것이라
+    # 연주자 개인이 지원할 자리가 아니다 (2026-08-07 통영 '모두의 오케스트라 페스티벌 참가
+    # 오케스트라 모집'). 흔한 유형은 아니지만 개인 공고와 섞이면 헛걸음을 만든다.
+    r"|참가\s*(?:오케스트라|합창단|앙상블|밴드|팀)"
+    r"|(?:오케스트라|합창단|앙상블|동호회|단체)\s*모집(?!\s*공고문)")
 # 위 참가자 신호가 있어도 실제 '채용 직무'가 함께 있으면 구인이므로 보호(예: 체험단 강사 모집)
 _HIRE_ROLE = re.compile(
     r"단원|강사|반주|지휘|교원|교수|연주자|악장|수석|성악가|객원|교습|레슨|트레이너"

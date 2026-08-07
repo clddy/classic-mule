@@ -40,8 +40,7 @@ def _status(j, today):
     # 정적 목록과 JS 렌더가 다른 배지를 보여준다)
     if diff <= 3:
         return (f"D-{diff}", "dd-soon")
-    if diff > 30:
-        return ("상시·장기", "dd-open")
+    # 마감이 멀어도 '상시'가 아니다 — 날짜가 있으면 날짜를 보여준다 (js/jobs.js와 같은 규칙)
     return (f"접수중 (~{int(dl[5:7])}.{int(dl[8:10])})", "dd-open")
 
 

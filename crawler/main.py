@@ -241,7 +241,7 @@ def find_attachments(soup, base_url):
                     cands.append((full, el.get_text(" ", strip=True)))
     return cands[:4]
 
-EXT_VER = 34         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
+EXT_VER = 36         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
                      # v32(2026-08-02): 모집분야 구획 악기 추출(insts_from_recruit_text) + 원문 보관층
                      # 24: work.sen 등록일(게시일) 추출 추가 — date=None이던 승계분을 다시 뽑게
                      # 25: body_text 도입 — 본문을 <header>에 넣는 사이트(대전교육청)의 마감일을
@@ -798,6 +798,43 @@ def _music_from_origin(s, item):
         item["musicUnverified"] = True
 
 
+def _refill_from_raw(items, today):
+    """요약·마감이 빈 공고를 원문 보관층(data/raw)에서 되살린다 — 네트워크 없이.
+
+    상세 방문은 소스당 MAX_DETAIL_PER_SOURCE(20)로 묶여 있다. 소스가 커지면 뒤쪽
+    공고는 아예 방문되지 못해 마감·요약이 빈 채로 남는다 — 수집이 31→96건으로 늘자
+    마감 확보율이 84%→11%로 주저앉은 게 이 때문이다(2026-08-07 규명. 추출기 문제가
+    아니라 예산 문제였다). raw 층은 이럴 때 쓰라고 쌓아둔 것이라, 이미 받아둔 본문에
+    추출기를 다시 돌려 메운다. 추출 규칙을 고치면 과거분에도 이 경로로 소급된다.
+    """
+    n_ex = n_dl = 0
+    for it in items:
+        raw = rawstore.load(it.get("id"))
+        page = (raw or {}).get("page")
+        if not page:
+            continue
+        if not it.get("bodyExcerpt"):
+            # 보관된 본문은 공백으로 이어붙인 한 덩어리다 — 줄 단위로 고르는 요약기가
+            # 쓰도록 문장 끝·구분점에서 줄을 나눠 준다.
+            lines = re.sub(r"(?<=[.。!?])\s+|\s*·\s*|\s{2,}", "\n", page)
+            ex = _body_excerpt_text(lines, title=it.get("title"))
+            if ex:
+                it["bodyExcerpt"] = ex
+                n_ex += 1
+        if not it.get("deadline") and it.get("deadlineNote") != "상시":
+            # 마감은 첨부까지 훑는다 — 공고문이 이미지 한 장뿐이고 본문엔 인사말만 있는
+            # 경우가 흔하다. 통영시민오케스트라는 OCR 텍스트에 '접수기간 7.20~8.14'가
+            # 멀쩡히 저장돼 있는데 본문만 보느라 놓쳤다 (2026-08-07).
+            dl = extract_deadline(rawstore.all_text(it["id"]), ref_year=_ref_year(it))
+            # 지난 날짜를 마감으로 앉히면 멀쩡한 공고가 '마감'으로 사라진다 — 오늘 이후만
+            if dl and dl >= today.isoformat():
+                it["deadline"] = dl
+                it["deadlineFrom"] = "raw"
+                n_dl += 1
+    if n_ex or n_dl:
+        log(f"원문 보관층에서 복구: 요약 {n_ex}건 · 마감 {n_dl}건")
+
+
 def _apply_overrides(items, verbose=False):
     """사람이 직접 확인한 사실(전화·메일 회신, 손수 찾은 원문 링크)을 크롤 결과 위에 덮어쓴다.
     crawler/overrides.json — URL 키라 제목이 바뀌어도 안정적이고, 공고가 내려가면 자동 무시된다."""
@@ -1229,6 +1266,7 @@ def run(force_all=False):
              and musician_relevant(i["title"], i.get("kind", ""), i.get("org", ""))]
     # 대학 전체 강사 초빙 중 첨부 확인 결과 음악 교과목이 전혀 없던 공고는 제외(비음악 확정)
     final = [i for i in final if not i.get("nonMusic")]
+    _refill_from_raw(final, today)
     # 사람이 찾아 넣은 사실(overrides.json)을 **지원경로 판정 전에** 먼저 얹는다.
     # 순서가 반대면, 원문 링크를 손수 찾아 넣어도 그 공고가 이미 제외된 뒤라 되살아나지
     # 못한다 — 천안시립교향악단이 실제로 그랬다 (2026-08-02). 아래 최종 단계에서 한 번 더

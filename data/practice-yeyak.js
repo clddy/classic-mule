@@ -1,5 +1,5 @@
 window.YEYAK_ROOMS = {
- "fetched": "2026-08-06",
+ "fetched": "2026-08-07",
  "items": [
   {
    "name": "(대관 주말) 모둠연습실1",
