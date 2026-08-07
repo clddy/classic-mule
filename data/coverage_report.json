@@ -337,8 +337,8 @@
  ],
  "master": {
   "total": 604,
-  "covered": 9,
-  "gapCount": 595,
+  "covered": 10,
+  "gapCount": 594,
   "byCategory": {
    "대학": {
     "total": 77,
@@ -358,7 +358,7 @@
    },
    "공연장": {
     "total": 69,
-    "covered": 2
+    "covered": 3
    },
    "공공기관": {
     "total": 5,
@@ -3272,11 +3272,6 @@
     "name": "김제문화예술회관",
     "cat": "공연장",
     "region": "전북"
-   },
-   {
-    "name": "여수예울마루(GS칼텍스)",
-    "cat": "공연장",
-    "region": "광주·전남"
    },
    {
     "name": "순천문화예술회관",

@@ -871,6 +871,13 @@ def _fix_org_from_title(items):
         if not org or name in org or org in name:
             continue
         it["orgBoard"], it["org"] = org, name
+        # 게시판이 뽑는 곳이 아니면 게시판에서 따온 지역도 못 믿는다 — '제주 신라호텔'이
+        # 연세대 게시판 때문에 서울로, 천안시립교향악단이 서울로 떠 있었다.
+        # 다만 제목에서 **구체적 지역이 나올 때만** 덮는다. '기타'로 떨어지면 게시판 쪽이
+        # 오히려 맞다(함양제일고 → 경남을 '기타'로 지워 버릴 뻔했다).
+        rg = region_from(it["title"]) or region_from(name)
+        if rg and rg != "기타" and rg != it.get("region"):
+            it["regionBoard"], it["region"] = it.get("region"), rg
         fixed.append(it)
     if fixed:
         log(f"기관명 정정 {len(fixed)}건 (게시판 주인 → 실제 모집 기관) — "

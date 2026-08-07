@@ -1,6 +1,6 @@
 {
  "updatedAt": "2026-08-07",
- "count": 1129,
+ "count": 1130,
  "items": {
   "f7b1c263744b9ece": {
    "id": "f7b1c263744b9ece",
@@ -9801,7 +9801,7 @@
   "f2218434566f0c14": {
    "id": "f2218434566f0c14",
    "org": "천안시립교향악단",
-   "region": "서울",
+   "region": "충남",
    "source": "music.yonsei.ac.kr",
    "channel": "g_i_musicyonseiackr",
    "layer": "B",
@@ -10109,7 +10109,7 @@
   "c77e3c382e39bb28": {
    "id": "c77e3c382e39bb28",
    "org": "제주 신라호텔",
-   "region": "서울",
+   "region": "제주",
    "source": "music.yonsei.ac.kr",
    "channel": "g_i_musicyonseiackr",
    "layer": "B",
@@ -28156,6 +28156,29 @@
    "backfill": true,
    "date": "2003-12-18",
    "dateApprox": true
+  },
+  "f413c569577a0579": {
+   "id": "f413c569577a0579",
+   "org": "여수예울마루",
+   "region": "광주·전남",
+   "source": "yeulmaru.org",
+   "channel": "g_yeulmaru",
+   "layer": "B",
+   "title": "GS칼텍스 예울마루 (추경)예술기반 청년일자리(연수단원) 채용 공고 예술사업팀 2026-06-17 조회수 : 770",
+   "url": "https://www.yeulmaru.org/community/v/3174/?&p=1&keyword=",
+   "date": "2026-06-17",
+   "kind": "단원",
+   "tier": "연주",
+   "inst": "전체",
+   "instDetails": [],
+   "ageGroup": "성인",
+   "obri": false,
+   "certReq": "무관",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "firstSeen": "2026-08-07",
+   "lastSeen": "2026-08-07",
+   "days": 1
   }
  }
 }
