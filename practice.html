@@ -218,7 +218,7 @@
 </footer>
 
 <a class="feedback-fab" href="mailto:ohmjin3141@naver.com?subject=%ED%8F%AC%EB%94%94%EC%97%84%20%EC%97%B0%EC%8A%B5%EC%8B%A4%20%ED%94%BC%EB%93%9C%EB%B0%B1">피드백 보내기</a>
-<script src="js/analytics.js?v=3"></script>
+<script src="js/analytics.js?v=4"></script>
 <script src="js/feedback.js?v=1"></script>
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
@@ -252,9 +252,11 @@ function reportSpaceFilter(count){
       sp_cond: [...st.cond].join("|"), sp_query: (st.q || "").slice(0,90),
       sp_sort: st.sort || "", sp_results: count,
     };
-    if (p.sp_cat || p.sp_allow || p.sp_equip || p.sp_regions || p.sp_price ||
-        p.sp_ptype || p.sp_elig || p.sp_cond || p.sp_query)
-      pdEvent(count ? "space_filter" : "space_empty", p);
+    const on = p.sp_cat || p.sp_allow || p.sp_equip || p.sp_regions || p.sp_price ||
+               p.sp_ptype || p.sp_elig || p.sp_cond || p.sp_query;
+    // 빈 값은 빼고 보낸다 — 빈 문자열도 GA4 카디널리티를 먹고 리포트를 지저분하게 한다
+    for (const k in p) if (p[k] === "" || p[k] == null) delete p[k];
+    if (on) pdEvent(count ? "space_filter" : "space_empty", p);
   }, 800);
 }
 // 시설 컨텍스트 — 상세 열람·예약처 이동에 공통으로 싣는다
