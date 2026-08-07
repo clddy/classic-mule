@@ -204,7 +204,9 @@ function statusOf(j) {
     const cn = concertNum(j);                       // 연주일(YYYYMMDD 정수) — 없으면 Infinity
     if (cn !== Infinity && j.src !== "공식") {
       const s = String(cn); base = `${s.slice(0,4)}-${s.slice(4,6)}-${s.slice(6,8)}`; kind = "연주일";
-    } else if (j.deadlineText === "상시") {
+    } else if (j.deadlineText === "상시" || j.obri) {
+      // 교회 반주·지휘·솔리스트는 '사람 구해질 때까지' 열려 있는 자리다 — 마감일이 원문에
+      // 없는 게 정상이라 '기한 미정'(찾는 중)이 아니라 '상시'로 적는 게 정직하다 (2026-08-07).
       return { key: "접수중", label: "상시", cls: "dd-open", dday: 9000 };
     } else {
       // '확인필요'는 사용자에게 내보이지 않는다 — 크롤러가 찾을 때까지의 임시 표기만.
@@ -214,8 +216,11 @@ function statusOf(j) {
   const diff = Math.round((new Date(base) - new Date(TODAY)) / 86400000);
   if (diff < 0) return { key: "마감", label: "마감", cls: "dd-closed", dday: 9999 };
   if (diff === 0) return { key: "마감임박", label: kind === "연주일" ? "오늘 연주" : "오늘 마감", cls: "dd-soon", dday: 0 };
-  if (diff <= 7) return { key: "마감임박", label: `${kind} D-${diff}`, cls: "dd-soon", dday: diff };
-  if (diff > 30) return { key: "접수중", label: "상시·장기", cls: "dd-open", dday: diff };
+  // D-day는 사흘 안쪽에서만 — 그 전엔 날짜가 더 쓸모 있다(언제까지인지 눈으로 확인하는 것과
+  // 며칠 남았는지 아는 것은 다른 체감이라, 상세의 '마감 날짜'와 이 배지는 중복이 아니다).
+  // 'D-3'만 적는다 — '지원 마감 D-3'은 배지에 넣기엔 말이 길다 (2026-08-07 지시).
+  if (diff <= 3) return { key: "마감임박", label: kind === "연주일" ? `연주 D-${diff}` : `D-${diff}`, cls: "dd-soon", dday: diff };
+  // 마감이 멀어도 '상시'가 아니다 — 날짜가 있으면 날짜를 보여준다 ('상시·장기' 라벨 폐기, 2026-08-07)
   return { key: "접수중", label: `접수중 (~${+base.slice(5,7)}.${+base.slice(8,10)})`, cls: "dd-open", dday: diff };
 }
 

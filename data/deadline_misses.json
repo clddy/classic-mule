@@ -39,14 +39,6 @@
   "title": "광주광역시립교향악단 비상임단원 공개모집 변경",
   "org": "광주시립교향악단"
  },
- "https://gjart.gwangju.go.kr/gso/cmd.do?opencode=pg_0501&boper=view&bnum=9135&&pnum=&ffield=&fval=": {
-  "firstSeen": "2026-08-07",
-  "tries": 1,
-  "reported": false,
-  "lastTry": "2026-08-07",
-  "title": "광주광역시립교향악단 비상임단원 공개모집",
-  "org": "광주시립교향악단"
- },
  "http://nationalchorus.or.kr/notice-2/?vid=715": {
   "firstSeen": "2026-08-07",
   "tries": 1,
@@ -111,30 +103,6 @@
   "title": "군산시립합창단 기간제 비상임단원 공개모집",
   "org": "군산시립합창단"
  },
- "https://www.timf.org/kr/sub/timf/notice.asp?mode=view&bid=1&s_type=&s_keyword=&s_cate=&idx=3800&page=1": {
-  "firstSeen": "2026-08-05",
-  "tries": 3,
-  "reported": true,
-  "lastTry": "2026-08-07",
-  "title": "2026 모두의 오케스트라 페스티벌 참가 오케스트라 모집",
-  "org": "통영국제음악재단"
- },
- "https://www.pajucf.or.kr/community/notice.php?admin_mode=read&no=426&page=1": {
-  "firstSeen": "2026-08-07",
-  "tries": 1,
-  "reported": false,
-  "lastTry": "2026-08-07",
-  "title": "[파주문화재단 공고 제2026-48호] 2026 꿈의 오케스트라 파주 신규 단원 모집 공고(바이올린1, 플룻1) 2026-07-28",
-  "org": "파주문화재단"
- },
- "https://www.gcart.or.kr/kr/commu/recruitView.do?bbsIdx=1852&pageIndex=1&searchCondition=&searchKeyword=": {
-  "firstSeen": "2026-08-07",
-  "tries": 1,
-  "reported": false,
-  "lastTry": "2026-08-07",
-  "title": "과천시립예술단(소년소녀합창단) 반주자 공개채용",
-  "org": "고양문화재단(고양시립합창단)"
- },
  "https://www.ulsan.go.kr/ucac/art/page.do?mnu_code=mnu003001&bod_sn=217&cmd=2": {
   "firstSeen": "2026-08-07",
   "tries": 1,
@@ -150,14 +118,6 @@
   "lastTry": "2026-08-07",
   "title": "안동문화예술의전당 꿈의 오케스트라 안동 (기초반) 첼로 강사 모집",
   "org": "안동시립합창단"
- },
- "https://www.timf.org/kr/sub/timf/notice.asp?mode=view&bid=1&s_type=&s_keyword=&s_cate=&idx=3788&page=1": {
-  "firstSeen": "2026-08-07",
-  "tries": 1,
-  "reported": false,
-  "lastTry": "2026-08-07",
-  "title": "2026 통영시민오케스트라 신규단원 모집",
-  "org": "통영국제음악재단"
  },
  "https://www.timf.org/kr/sub/timf/notice.asp?mode=view&bid=1&s_type=&s_keyword=&s_cate=&idx=3781&page=1": {
   "firstSeen": "2026-08-07",

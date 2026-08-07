@@ -76,7 +76,7 @@
    "title": "2026 대전시립교향악단 예능단원 공개채용",
    "url": "https://dpo.artdj.kr/dpo/?a_idx=06_01&kf=sub&kw=&bo=dpo_news&p=1&ku=7564&mo=view",
    "kind": "단원",
-   "inst": "전체",
+   "inst": "현악",
    "firstSeen": "2026-07-07",
    "lastSeen": "2026-08-07",
    "days": 3,
@@ -112,7 +112,7 @@
    "url": "https://gjart.gwangju.go.kr/gso/cmd.do?opencode=pg_0501&boper=view&bnum=9981&&pnum=&ffield=&fval=",
    "deadline": "2026-06-18",
    "kind": "객원·대체",
-   "inst": "전체",
+   "inst": "현악",
    "firstSeen": "2026-07-07",
    "lastSeen": "2026-08-07",
    "days": 3,
@@ -147,7 +147,7 @@
    "url": "https://gjart.gwangju.go.kr/gso/cmd.do?opencode=pg_0501&boper=view&bnum=9623&&pnum=&ffield=&fval=",
    "deadline": "2026-01-29",
    "kind": "단원",
-   "inst": "전체",
+   "inst": "현악",
    "firstSeen": "2026-07-07",
    "lastSeen": "2026-08-07",
    "days": 3,
@@ -2694,7 +2694,7 @@
    "deadlineFrom": "attachment",
    "kind": "단원",
    "tier": "연주",
-   "inst": "전체",
+   "inst": "현악",
    "instDetails": [
     "더블베이스",
     "바이올린",
@@ -3116,7 +3116,7 @@
    "deadlineFrom": "page",
    "kind": "강사",
    "tier": "교육 — 취미·입문",
-   "inst": "전체",
+   "inst": "타악",
    "instDetails": [
     "타악"
    ],
@@ -5584,7 +5584,7 @@
    "deadlineFrom": "raw",
    "kind": "단원",
    "tier": "연주",
-   "inst": "전체",
+   "inst": "타악",
    "instDetails": [
     "타악",
     "피아노",
@@ -6529,7 +6529,7 @@
     "단원"
    ],
    "deadline": "2026-08-14",
-   "deadlineFrom": "ocr"
+   "deadlineFrom": "raw"
   },
   "86eef6863741bfab": {
    "id": "86eef6863741bfab",
@@ -7095,7 +7095,7 @@
    "url": "https://www.gcart.or.kr/kr/commu/recruitView.do?bbsIdx=1852&pageIndex=1&searchCondition=&searchKeyword=",
    "date": "2026-07-24",
    "deadline": "2026-08-07",
-   "deadlineFrom": "attachment",
+   "deadlineFrom": "raw",
    "kind": "반주",
    "tier": "연주",
    "inst": "건반",
@@ -9966,7 +9966,7 @@
    "url": "https://www.pajucf.or.kr/community/notice.php?admin_mode=read&no=426&page=1",
    "date": "2026-07-28",
    "deadline": "2026-08-13",
-   "deadlineFrom": "attachment",
+   "deadlineFrom": "raw",
    "kind": "단원",
    "tier": "교육 — 취미·입문",
    "inst": "현악",
@@ -10083,7 +10083,7 @@
    "deadlineFrom": "title",
    "kind": "단원",
    "tier": "연주",
-   "inst": "전체",
+   "inst": "현악",
    "instDetails": [
     "첼로",
     "피아노"
@@ -10112,7 +10112,7 @@
    "deadline": "2026-08-10",
    "kind": "교수",
    "tier": "교육 — 대학",
-   "inst": "전체",
+   "inst": "금관",
    "instDetails": [
     "호른"
    ],
@@ -10189,7 +10189,7 @@
    "url": "https://gjart.gwangju.go.kr/gso/cmd.do?opencode=pg_0501&boper=view&bnum=9143&&pnum=&ffield=&fval=",
    "kind": "객원·대체",
    "tier": "연주",
-   "inst": "전체",
+   "inst": "현악",
    "instDetails": [
     "첼로",
     "클라리넷",
@@ -10447,7 +10447,7 @@
    "url": "https://www.gunsan.go.kr/gsart/m1950/view/9830024?",
    "kind": "객원·대체",
    "tier": "연주",
-   "inst": "전체",
+   "inst": "현악",
    "instDetails": [
     "더블베이스",
     "바이올린",
@@ -10475,7 +10475,7 @@
    "url": "https://www.gunsan.go.kr/gsart/m1950/view/9828504?",
    "kind": "단원",
    "tier": "연주",
-   "inst": "전체",
+   "inst": "현악",
    "instDetails": [
     "바이올린",
     "플루트",
@@ -10527,7 +10527,7 @@
    "url": "https://www.gunsan.go.kr/gsart/m1950/view/1504933?",
    "kind": "단원",
    "tier": "연주",
-   "inst": "전체",
+   "inst": "타악",
    "instDetails": [
     "타악",
     "현악",
@@ -10703,7 +10703,7 @@
    "date": "2026-06-26",
    "kind": "강사",
    "tier": "교육 — 대학",
-   "inst": "전체",
+   "inst": "현악",
    "instDetails": [
     "더블베이스",
     "첼로",
@@ -10827,7 +10827,7 @@
    "date": "2026-04-30",
    "kind": "단원",
    "tier": "연주",
-   "inst": "전체",
+   "inst": "현악",
    "instDetails": [
     "바이올린",
     "첼로"
@@ -10927,7 +10927,7 @@
    "date": "2026-04-10",
    "kind": "단원",
    "tier": "연주",
-   "inst": "전체",
+   "inst": "현악",
    "instDetails": [
     "비올라",
     "클라리넷",
