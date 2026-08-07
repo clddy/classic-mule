@@ -33,3 +33,6 @@ crawler/.addr_ok.json
 
 # 텔레그램 토큰이 저장소 안으로 새지 않도록 (번들 notify.py의 로컬 폴백 후보)
 crawler/config.json
+
+# GA4 서비스 계정 키 — 자격증명은 절대 커밋 금지 (traffic.py가 .env 경유로 읽음)
+crawler/ga4-sa.json
