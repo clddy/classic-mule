@@ -13,7 +13,12 @@
 // filter_use/filter_empty 가 특히 중요하다: 공고(공급)는 크롤로 다 아는데,
 // 사람들이 무엇을 찾는지(수요)는 여기에만 찍힌다. '비올라로 걸렀는데 0건'은
 // 프로필 디렉토리가 채워야 할 칸을 정확히 가리킨다.
-window.PODIUM_GA_ID = "G-BYYPBWD5DH";   // GA4 측정 ID (2026-08-02 발급, podiumclassical.kr)
+// GA4 측정 ID (2026-08-02 발급, podiumclassical.kr).
+// ⚠ 2026-08-06: 여기 'G-BYYPBWD5DH'(Y)로 한 글자 오타가 있어 나흘간 수집이 0이었다.
+// GA는 존재하지 않는 측정 ID로 온 요청도 오류 없이 버린다 — 브라우저 네트워크 탭에
+// /g/collect 200이 보여도 그것만으로는 정상이라는 증거가 못 된다. Admin API로
+// 스트림의 measurement_id와 대조하는 것이 유일한 확인법.
+window.PODIUM_GA_ID = "G-BVYPBWD5DH";
 
 (function () {
   var ID = window.PODIUM_GA_ID;
