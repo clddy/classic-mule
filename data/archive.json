@@ -140,7 +140,7 @@
   },
   "0b2bcc0c1875def6": {
    "id": "0b2bcc0c1875def6",
-   "org": "광주시립교향악단",
+   "org": "광주광역시립교향악단",
    "region": "광주·전남",
    "source": "gjart.gwangju.go.kr",
    "title": "광주광역시립교향악단 신규단원 공개모집",
@@ -3114,7 +3114,7 @@
   },
   "ab76a676120cd5fc": {
    "id": "ab76a676120cd5fc",
-   "org": "경남 학교 방과후(교육청 포털)",
+   "org": "경남관광고등학교",
    "region": "경남",
    "source": "gne.go.kr",
    "channel": "gne",
@@ -3170,7 +3170,7 @@
   },
   "ac7d08c3a9acc618": {
    "id": "ac7d08c3a9acc618",
-   "org": "경남 학교 방과후(교육청 포털)",
+   "org": "함양제일고등학교",
    "region": "경남",
    "source": "gne.go.kr",
    "channel": "gne",
@@ -6541,7 +6541,7 @@
   },
   "4ab6131bb9721cf5": {
    "id": "4ab6131bb9721cf5",
-   "org": "통영국제음악재단",
+   "org": "통영시민오케스트라",
    "region": "경남",
    "source": "timf.org",
    "channel": "g_timf",
@@ -6653,7 +6653,7 @@
   },
   "0e48dcb9f7b816cf": {
    "id": "0e48dcb9f7b816cf",
-   "org": "경남 학교 방과후(교육청 포털)",
+   "org": "화정초등학교",
    "region": "경남",
    "source": "gne.go.kr",
    "channel": "gne",
@@ -7123,7 +7123,7 @@
   },
   "7e0fe0d79a04c8bc": {
    "id": "7e0fe0d79a04c8bc",
-   "org": "고양문화재단(고양시립합창단)",
+   "org": "과천시립예술단",
    "region": "경기",
    "source": "gcart.or.kr",
    "channel": "g_gcart",
@@ -9222,7 +9222,7 @@
   },
   "938165ada169e635": {
    "id": "938165ada169e635",
-   "org": "대구문화예술회관 공지(시립합창단)",
+   "org": "대구광역시 시립교향악단",
    "region": "대구",
    "source": "daeguartscenter.or.kr",
    "channel": "g_daeguart_notice",
@@ -9800,7 +9800,7 @@
   },
   "f2218434566f0c14": {
    "id": "f2218434566f0c14",
-   "org": "연세대학교",
+   "org": "천안시립교향악단",
    "region": "서울",
    "source": "music.yonsei.ac.kr",
    "channel": "g_i_musicyonseiackr",
@@ -10108,7 +10108,7 @@
   },
   "c77e3c382e39bb28": {
    "id": "c77e3c382e39bb28",
-   "org": "연세대학교",
+   "org": "제주 신라호텔",
    "region": "서울",
    "source": "music.yonsei.ac.kr",
    "channel": "g_i_musicyonseiackr",
@@ -10455,7 +10455,7 @@
   },
   "bedac6648415995b": {
    "id": "bedac6648415995b",
-   "org": "대전교육청(학교 채용)",
+   "org": "대전선암초등학교",
    "region": "대전",
    "source": "dje.go.kr",
    "channel": "edu_dje",
@@ -10637,7 +10637,7 @@
   },
   "5fae0da2b09724ca": {
    "id": "5fae0da2b09724ca",
-   "org": "통영국제음악재단",
+   "org": "통영시립소년소녀합창단",
    "region": "경남",
    "source": "timf.org",
    "channel": "g_timf",
@@ -10736,7 +10736,7 @@
   },
   "273f37b66262b5fb": {
    "id": "273f37b66262b5fb",
-   "org": "광주교육청(구인)",
+   "org": "조선대학교여자중학교",
    "region": "광주·전남",
    "source": "gen.go.kr",
    "channel": "g_edu_gen",
@@ -10887,7 +10887,7 @@
   },
   "abb97b13daebc000": {
    "id": "abb97b13daebc000",
-   "org": "경남 학교 방과후(교육청 포털)",
+   "org": "함양제일고등학교",
    "region": "경남",
    "source": "gne.go.kr",
    "channel": "gne",
