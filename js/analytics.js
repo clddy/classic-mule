@@ -22,7 +22,34 @@ window.PODIUM_GA_ID = "G-BVYPBWD5DH";
 
 (function () {
   var ID = window.PODIUM_GA_ID;
-  var enabled = ID && /^G-[A-Z0-9]+$/.test(ID) && location.protocol.indexOf("http") === 0;
+
+  // ---------- 자기 트래픽 제외 (2026-08-06) ----------
+  // 운영자가 확인하러 들어온 기록이 섞이면 방문자가 적을수록 비율이 통째로 왜곡된다.
+  // GA4 콘솔의 IP 필터만으로는 부족하다 — 집 IP는 바뀌고, 밖에서 폰으로 보면 안 걸린다.
+  // 그래서 기기 단위 스위치를 같이 둔다: ?pd_optout=1 로 켜고, ?pd_optout=0 으로 푼다.
+  // (localStorage 라 그 브라우저에서 영구 유지 — IP가 바뀌어도 계속 제외된다)
+  var optout = false;
+  try {
+    var m = location.search.match(/[?&]pd_optout=([01])/);
+    if (m) localStorage.setItem("podium_ga_optout", m[1]);
+    optout = localStorage.getItem("podium_ga_optout") === "1";
+  } catch (e) { /* 사생활 보호 모드 등에서 localStorage 차단 — 계측은 계속 */ }
+
+  // 개발용 접속(로컬 프리뷰·사설망·file://)은 언제나 제외. 실측정 ID가 붙은 뒤로는
+  // localhost 테스트도 실제 데이터를 오염시킨다.
+  var h = location.hostname;
+  var isDev = location.protocol === "file:" ||
+              /^(localhost|127\.|0\.0\.0\.0|::1|192\.168\.|10\.|172\.(1[6-9]|2\d|3[01])\.)/.test(h);
+
+  var enabled = ID && /^G-[A-Z0-9]+$/.test(ID) &&
+                location.protocol.indexOf("http") === 0 && !isDev && !optout;
+  // 제외 상태를 눈으로 확인할 수 있게 (운영자 전용 — 일반 방문자는 볼 일이 없다)
+  if (optout || isDev) {
+    try { console.info("[포디엄] 계측 제외됨 —", optout ? "이 기기 제외 설정" : "개발용 접속"); } catch (e) {}
+  }
+  window.podiumTrackingStatus = function () {
+    return { enabled: enabled, optout: optout, isDev: isDev, id: ID };
+  };
 
   // 계측 꺼짐이어도 pdEvent 는 항상 존재해야 한다 — 호출부가 가드 없이 쓰도록
   window.dataLayer = window.dataLayer || [];

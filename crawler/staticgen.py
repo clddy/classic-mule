@@ -36,8 +36,10 @@ def _status(j, today):
         return ("마감", "dd-closed")
     if diff == 0:
         return ("오늘 마감", "dd-soon")
-    if diff <= 7:
-        return (f"지원 마감 D-{diff}", "dd-soon")
+    # D-day는 사흘 안쪽에서만, 표기는 'D-3'만 (js/jobs.js statusOf와 같은 규칙 — 어긋나면
+    # 정적 목록과 JS 렌더가 다른 배지를 보여준다)
+    if diff <= 3:
+        return (f"D-{diff}", "dd-soon")
     if diff > 30:
         return ("상시·장기", "dd-open")
     return (f"접수중 (~{int(dl[5:7])}.{int(dl[8:10])})", "dd-open")
@@ -210,7 +212,7 @@ def _detail_page(j, today):
   <meta name="twitter:card" content="summary_large_image">
   <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Cormorant:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css?v=14">
-  <script src="../js/analytics.js?v=3" defer></script>
+  <script src="../js/analytics.js?v=5" defer></script>
   <script type="application/ld+json">{_jsonld(j)}</script>
 </head>
 <body>
