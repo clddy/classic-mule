@@ -146,6 +146,22 @@ def _jsonld(j):
     return json.dumps(d, ensure_ascii=False)
 
 
+def _dday_bucket(j, today):
+    """마감까지 남은 기간을 구간으로. js/jobs.js ddayBucket과 같은 규칙 — 같이 고칠 것."""
+    dl = j.get("deadline")
+    if not dl:
+        return "상시" if j.get("deadlineNote") == "상시" or j.get("obri") else "미정"
+    try:
+        d = (date.fromisoformat(dl) - today).days
+    except ValueError:
+        return "미정"
+    if d < 0: return "마감"
+    if d <= 3: return "D0-3"
+    if d <= 7: return "D4-7"
+    if d <= 30: return "D8-30"
+    return "D30+"
+
+
 def _detail_page(j, today):
     st, cls = _status(j, today)
     label, href = _apply(j)
@@ -153,8 +169,23 @@ def _detail_page(j, today):
     # '포디엄을 보고 지원했다'의 유일한 증거가 된다 (js/analytics.js 위임 클릭)
     _dest = "mail" if (href or "").startswith("mailto:") else "tel" if (href or "").startswith("tel:") else "official"
     _ev = "contact_click" if _dest in ("mail", "tel") else "job_outbound"
+    # 파라미터 전량을 data-evp(JSON)로 — 검색 유입이 처음 닿는 페이지라 여기서의 이동이
+    # '포디엄 보고 지원했다'의 유일한 증거다. 목록(jobs.js jobParams)과 키 이름을 맞춘다.
+    _ins = j.get("instDetails") or []
+    _p = {k: v for k, v in {
+        "job_id": "o" + j["id"], "job_tier": j.get("tier"), "job_kind": j.get("kind"),
+        "job_inst": (_ins[0] if _ins else j.get("inst")), "job_insts": "|".join(_ins)[:90],
+        "job_region": j.get("region"), "job_org": (j.get("org") or "")[:90],
+        "job_source": j.get("source"), "job_dday": _dday_bucket(j, today),
+        "job_cert": j.get("certReq"), "job_career": j.get("careerReq"),
+        "job_degree": j.get("degreeReq"), "job_age": j.get("ageGroup"),
+        "job_subject": (j.get("subject") or "")[:90],
+        "job_obri": "예" if j.get("obri") else None,
+        "job_new": "예" if _is_fresh(j, today) else None,
+        "dest": _dest, "page_area": "detail",
+    }.items() if v}
     act = (f'<a class="btn-primary" style="text-decoration:none" href="{esc(href)}" target="_blank" rel="noopener" '
-           f'data-ev="{_ev}" data-evl="{esc(j.get("org") or "")}|{j["id"]}|{_dest}">{esc(label)}</a>'
+           f'data-ev="{_ev}" data-evp="{esc(json.dumps(_p, ensure_ascii=False))}">{esc(label)}</a>'
            if href and label else "")   # 지원 경로가 없으면 버튼 자체를 만들지 않는다
     rows = "".join(f"<dt>{esc(k)}</dt><dd>{esc(v)}</dd>" for k, v in _detail_rows(j))
     desc = esc((j.get("bodyExcerpt") or j.get("recruitSummary") or f"{j.get('org','')} {j['title']}")[:150])
@@ -179,7 +210,7 @@ def _detail_page(j, today):
   <meta name="twitter:card" content="summary_large_image">
   <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Cormorant:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css?v=14">
-  <script src="../js/analytics.js?v=2" defer></script>
+  <script src="../js/analytics.js?v=3" defer></script>
   <script type="application/ld+json">{_jsonld(j)}</script>
 </head>
 <body>

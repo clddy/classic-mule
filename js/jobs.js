@@ -138,12 +138,58 @@ const $ = (s) => document.querySelector(s);
 window.pdEvent = window.pdEvent || function () {};   // analytics.js 미로드 시에도 본기능 보호
 let _curJob = null;      // 상세 모달의 현재 공고 — 원문 이동 클릭을 공고에 귀속시키는 용도
 let _filterTimer = null; // 칩 연타 중 스팸 방지 (마지막 상태만 800ms 뒤 1회 보고)
+
+// 공고 컨텍스트 — 조회·이동 이벤트에 공통으로 실어 보낸다 (GA4 맞춤 측정기준과 1:1).
+// 값은 100자 제한이 있으므로 잘라 보내고, 빈 값은 아예 넣지 않는다(빈 문자열도 카디널리티를 먹는다).
+// 마감일을 '날짜'가 아니라 '구간'으로 보내는 이유: 알림 발송 타이밍을 정하려면
+// "D-3일 때 클릭이 몰리는가"를 알아야지 특정 날짜의 클릭은 의미가 없다.
+function ddayBucket(j) {
+  if (!j.deadline) return j.deadlineText === "상시" || j.obri ? "상시" : "미정";
+  const d = Math.round((new Date(j.deadline) - new Date(TODAY)) / 86400000);
+  if (d < 0) return "마감";
+  if (d <= 3) return "D0-3";
+  if (d <= 7) return "D4-7";
+  if (d <= 30) return "D8-30";
+  return "D30+";
+}
+function jobParams(j, extra) {
+  const p = {
+    job_id: j.key || "",
+    job_tier: j.tier || "",
+    job_kind: j.band || "",
+    job_inst: (j.insts || [])[0] || (j.group || ""),
+    job_insts: (j.insts || []).join("|").slice(0, 90),
+    job_region: regionOf(j),
+    job_org: (j.org || "").slice(0, 90),
+    job_source: j.source || "",
+    job_status: statusOf(j).key,
+    job_dday: ddayBucket(j),
+    job_cert: j.certReq || "",
+    job_career: j.careerReq || "",
+    job_degree: j.degreeReq || "",
+    job_age: j.ageGroup || "",
+    job_subject: (j.subject || "").slice(0, 90),
+    job_obri: j.obri ? "예" : "아니오",
+    job_new: isFresh(j) ? "예" : "아니오",
+  };
+  for (const k in p) if (!p[k]) delete p[k];
+  return Object.assign(p, extra || {});
+}
+
 function reportFilter(count) {
   clearTimeout(_filterTimer);
   _filterTimer = setTimeout(() => {
-    const p = { tiers: [...state.tiers].join("|"), insts: [...state.insts].join("|"),
-                regions: [...state.regions].join("|"), q: state.query || "", results: count };
-    if (p.tiers || p.insts || p.regions || p.q)   // 필터 없는 기본 화면은 잡음이라 안 찍는다
+    const p = {
+      f_tiers: [...state.tiers].join("|"), f_bands: [...state.bands].join("|"),
+      f_insts: [...state.insts].join("|"), f_regions: [...state.regions].join("|"),
+      f_status: [...state.status].join("|"), f_query: (state.query || "").slice(0, 90),
+      f_sort: state.sort || "", f_results: count,
+      // 토글 필터도 수요 신호다 — '경력 무관만' 켜는 사람이 많으면 진입장벽이 실제 장벽이라는 뜻
+      f_toggles: [state.newOnly && "NEW", state.obri && "교회", state.noCert && "무자격",
+                  state.noCareer && "경력무관"].filter(Boolean).join("|"),
+    };
+    // 필터 없는 기본 화면은 잡음이라 안 찍는다 (정렬·토글만 바꾼 것도 신호로 인정)
+    if (p.f_tiers || p.f_bands || p.f_insts || p.f_regions || p.f_status || p.f_query || p.f_toggles)
       pdEvent(count ? "filter_use" : "filter_empty", p);
   }, 800);
 }
@@ -487,8 +533,7 @@ function openOfficial(key) {
   const j = OFFICIAL_ITEMS.find(x => x.key === key);
   if (!j) return;
   _curJob = j;
-  pdEvent("job_view", { job_id: j.key, tier: j.tier || "", inst: (j.insts || [])[0] || "",
-                        region: regionOf(j), org: j.org || "" });
+  pdEvent("job_view", jobParams(j));
   const st = statusOf(j);
   $("#detail-tags").innerHTML = `
     <span class="tag ${TIER_CLS[j.tier] || "cat"}">${j.tier}</span>
@@ -541,8 +586,7 @@ function openDetail(cid) {
   if (!j) return;
   if (j.type !== "구인") return;   // v2.0: 종료된 게시판의 레거시 글은 열지 않음 (데이터는 보존)
   _curJob = j;
-  pdEvent("job_view", { job_id: j.key || ("c" + cid), tier: j.tier || "", inst: (j.insts || [])[0] || "",
-                        region: regionOf(j), org: j.org || "직접등록" });
+  pdEvent("job_view", jobParams(j, { job_id: j.key || ("c" + cid), job_source: "직접등록" }));
   $("#detail-tags").innerHTML = `
     ${j.sample ? `<span class="tag sample">예시</span>` : ""}
     ${j.mine ? `<span class="tag mine">내 공고</span>` : ""}
@@ -630,7 +674,10 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!href) return;   // 삭제·안내 버튼은 이동이 아니다
     const dest = href.startsWith("mailto:") ? "mail" : href.startsWith("tel:") ? "tel"
                : (href === _curJob.officialUrl ? "official" : "url");
+    // 이동 이벤트에도 공고 컨텍스트 전량을 실어 보낸다 — '어떤 성격의 공고가 실제
+    // 지원으로 이어지는가'는 job_id만 있으면 나중에 조인해야 알 수 있지만,
+    // 파라미터로 실어두면 GA 리포트에서 바로 쪼개 볼 수 있다.
     pdEvent(dest === "mail" || dest === "tel" ? "contact_click" : "job_outbound",
-            { job_id: _curJob.key || "", dest, org: _curJob.org || "" });
+            jobParams(_curJob, { dest }));
   });
 });

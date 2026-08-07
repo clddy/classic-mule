@@ -241,7 +241,7 @@ def find_attachments(soup, base_url):
                     cands.append((full, el.get_text(" ", strip=True)))
     return cands[:4]
 
-EXT_VER = 33         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
+EXT_VER = 34         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
                      # v32(2026-08-02): 모집분야 구획 악기 추출(insts_from_recruit_text) + 원문 보관층
                      # 24: work.sen 등록일(게시일) 추출 추가 — date=None이던 승계분을 다시 뽑게
                      # 25: body_text 도입 — 본문을 <header>에 넣는 사이트(대전교육청)의 마감일을
@@ -848,6 +848,9 @@ def enrich_deadline(s, item, allow_render=True, details_only=False):
         if r.status_code != 200:
             return
         soup = BeautifulSoup(r.text, "lxml")
+        # 이전글·다음글 영역을 먼저 걷어낸다 — 이 soup는 본문 요약(_body_excerpt)에도 쓰이므로,
+        # 안 지우면 다른 공고 제목이 요약에 실린다 (2026-08-04 연세대 사례)
+        strip_navi(soup)
         # 본문 텍스트는 body_text로 뽑는다 — soup에서 헤더를 직접 지우면 본문을 <header>에
         # 넣는 사이트(대전교육청)의 내용을 통째로 날린다. soup 자체는 첨부·이미지 탐색에 계속 쓰므로 보존.
         page_text = body_text(r.text)

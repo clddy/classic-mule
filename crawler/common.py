@@ -170,6 +170,29 @@ def _window_deadline(window, ref_year):
         return _mk(ref_year, m.group(1), m.group(2))
     return None
 
+# 게시판 CMS가 본문 아래 붙이는 '이전글/다음글·목록·페이징' 영역의 클래스 이름들.
+# 사이트마다 이름이 다르지만 어휘는 몇 개로 수렴한다 (navi/prev/next/paging…).
+_NAVI_CLS = re.compile(r"(?:txt-)?navi|prev[-_]?next|next[-_]?prev|board[-_]?nav|article[-_]?nav"
+                       r"|paging|pagination|pager", re.I)
+
+
+def strip_navi(soup):
+    """이전글·다음글·페이징 영역을 지운다 (본문을 읽기 전 공통 전처리).
+
+    이 영역은 '다른 공고의 제목'을 본문인 척 끼워 넣는다 — 연세대 음대 공고 요약에
+    엉뚱한 '강남생활문화축제 동호회 모집'이 실렸다(2026-08-04, div.txt-navi-wrap).
+    거기 붙은 날짜가 마감일로 잘못 잡힐 위험도 함께 없앤다.
+    본문 요약과 마감일 추출이 서로 다른 soup를 쓰므로 양쪽에서 이 함수를 호출한다.
+    """
+    # 먼저 대상을 모아둔다 — 순회 중에 지우면 이미 사라진 자식 태그를 다시 만져 터진다
+    navi = [t for t in soup.find_all(attrs={"class": True})
+            if _NAVI_CLS.search(" ".join(t.get("class") or []))]
+    for tag in navi:
+        if tag.parent is not None:      # 조상이 먼저 지워졌으면 건너뛴다
+            tag.decompose()
+    return soup
+
+
 def body_text(html_or_soup, parser="lxml"):
     """공고 페이지에서 본문 텍스트 추출 — 크롬(헤더·푸터·내비)만 걷어내고 본문은 지킨다.
 
@@ -184,6 +207,7 @@ def body_text(html_or_soup, parser="lxml"):
     soup = html_or_soup if isinstance(html_or_soup, BeautifulSoup) else BeautifulSoup(html_or_soup, parser)
     for tag in soup(["script", "style"]):
         tag.decompose()
+    strip_navi(soup)
     full = soup.get_text(" ", strip=True)
     chrome = soup(["header", "footer", "nav"])
     if not chrome:

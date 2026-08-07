@@ -218,7 +218,7 @@
 </footer>
 
 <a class="feedback-fab" href="mailto:ohmjin3141@naver.com?subject=%ED%8F%AC%EB%94%94%EC%97%84%20%EC%97%B0%EC%8A%B5%EC%8B%A4%20%ED%94%BC%EB%93%9C%EB%B0%B1">피드백 보내기</a>
-<script src="js/analytics.js?v=2"></script>
+<script src="js/analytics.js?v=3"></script>
 <script src="js/feedback.js?v=1"></script>
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
@@ -235,6 +235,39 @@
 // 공공 = 실데이터 (큐레이션 practice-public.js + 서울시 공공서비스예약 practice-yeyak.js).
 // 민간 = 호스트 직접 등록 원칙 (타 플랫폼 크롤 금지). 등록 예시 1건은 참고용(sample).
 const esc = s => String(s ?? "").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+
+// ---------- 계측 (js/analytics.js 의 pdEvent — GA 미설정이면 no-op) ----------
+// 연습실은 지금까지 예약처 이동만 찍고 필터를 안 찍었다(2026-08-06 보강).
+// '타악 허용 + 서울 = 0건' 같은 조합이야말로 이 페이지의 존재 이유를 검증하는 신호다.
+window.pdEvent = window.pdEvent || function(){};
+let _spFilterTimer = null;
+function reportSpaceFilter(count){
+  clearTimeout(_spFilterTimer);
+  _spFilterTimer = setTimeout(()=>{
+    const p = {
+      sp_cat: [...st.cat].join("|"), sp_allow: [...st.allow].join("|"),
+      sp_equip: [...st.equip].join("|"), sp_regions: [...st.region].join("|"),
+      sp_district: st.district || "", sp_price: [...st.price].join("|"),
+      sp_ptype: [...st.ptype].join("|"), sp_elig: [...st.elig].join("|"),
+      sp_cond: [...st.cond].join("|"), sp_query: (st.q || "").slice(0,90),
+      sp_sort: st.sort || "", sp_results: count,
+    };
+    if (p.sp_cat || p.sp_allow || p.sp_equip || p.sp_regions || p.sp_price ||
+        p.sp_ptype || p.sp_elig || p.sp_cond || p.sp_query)
+      pdEvent(count ? "space_filter" : "space_empty", p);
+  }, 800);
+}
+// 시설 컨텍스트 — 상세 열람·예약처 이동에 공통으로 싣는다
+function spaceParams(r, extra){
+  const p = {
+    sp_name: (r.name || "").slice(0,90), sp_cat: r.cat || "",
+    sp_region: regionTagOf(r), sp_free: (r.free || r.price === "무료") ? "무료" : "유료",
+    sp_rooms: r.rooms ? String(r.rooms.length) : "1",
+    sp_src: r.src || "",
+  };
+  for (const k in p) if (!p[k]) delete p[k];
+  return Object.assign(p, extra || {});
+}
 
 // 등록 예시(민간) — 호스트가 어떤 정보를 채우면 되는지 참고용
 const SAMPLE_INSTANT = [{
@@ -592,7 +625,7 @@ function cardPublic(r, i){
     ${apply?`<div class="apply-line">신청: ${esc(apply)}</div>`:""}
     <div class="meta">${r.addr?`<span>${esc(r.addr)}</span>`:""}${phone?`<span>문의 ${esc(phone)}</span>`:""}${r.hours?`<span>${esc(String(r.hours).replace(/\s*\d{2}:\d{2}(:\d{2})?/g,""))}</span>`:""}</div>
     <div class="modal-actions" style="margin-top:10px;justify-content:flex-start">
-      ${r.booking_url?`<a class="btn-primary" href="${esc(r.booking_url)}" target="_blank" rel="noopener" onclick="event.stopPropagation()" data-ev="practice_outbound" data-evl="${esc(r.name||'')}" style="text-decoration:none;font-size:0.82rem;padding:7px 14px">신청 페이지로 →</a>`:""}
+      ${r.booking_url?`<a class="btn-primary" href="${esc(r.booking_url)}" target="_blank" rel="noopener" onclick="event.stopPropagation()" data-ev="practice_outbound" data-evp='${esc(JSON.stringify(spaceParams(r,{sp_dest:"apply"})))}' style="text-decoration:none;font-size:0.82rem;padding:7px 14px">신청 페이지로 →</a>`:""}
     </div>
     <div class="source-line"><span>${esc(r.notes||"")}</span><span>${r.src?esc(r.src)+" · ":""}확인 ${esc(r.verified||"-")}</span></div>
   </article>`;
@@ -633,7 +666,7 @@ function cardInstant(r, i){
     <h3>${esc(r.name)} ${r.reviews?`<span style="font-weight:400;font-size:0.8rem;color:var(--ink-soft)">⭐ 후기 ${r.reviews} · ♥ ${r.likes}</span>`:""}</h3>
     <div class="price-line">${priceHtml}</div>
     <div class="spec-grid">${specs}</div>
-    ${/^https?:/.test(r.bookTo||"") ? `<div class="modal-actions" style="margin-top:10px;justify-content:flex-start"><a class="btn-primary" href="${esc(r.bookTo)}" target="_blank" rel="noopener" onclick="event.stopPropagation()" data-ev="practice_outbound" data-evl="${esc(r.name||'')}" style="text-decoration:none;font-size:0.82rem;padding:7px 14px">예약 페이지로 →</a></div>` : ""}
+    ${/^https?:/.test(r.bookTo||"") ? `<div class="modal-actions" style="margin-top:10px;justify-content:flex-start"><a class="btn-primary" href="${esc(r.bookTo)}" target="_blank" rel="noopener" onclick="event.stopPropagation()" data-ev="practice_outbound" data-evp='${esc(JSON.stringify(spaceParams(r,{sp_dest:"book"})))}' style="text-decoration:none;font-size:0.82rem;padding:7px 14px">예약 페이지로 →</a></div>` : ""}
     <div class="source-line"><span>${esc(r.notes||"")}</span>${r.src?`<span>출처 <span class="src">${esc(r.src)}</span> · 확인 ${esc(r.verified||"")}</span>`:""}</div>
   </article>`;
 }
@@ -692,6 +725,7 @@ function render(){
     const body = encodeURIComponent("연습실 수요 신호\n" + JSON.stringify(cond, null, 1));
     location.href = `mailto:ohmjin3141@naver.com?subject=${encodeURIComponent("[포디엄] 연습실 수요 신호")}&body=${body}`;
   });
+  reportSpaceFilter(CUR.length);
   document.querySelectorAll("#room-list .job-card").forEach(card=>{
     card.addEventListener("click", ()=>openRoom(CUR[+card.dataset.i]));
   });
@@ -734,6 +768,7 @@ function updateMap(){
 
 // ---------- 상세 모달 ----------
 function openRoom(r){
+  pdEvent("space_view", spaceParams(r));
   const isPub = r.cat === "public";
   const ax = axesOf(r);
   $("#rm-tags").innerHTML = `${catBadge(r)} ${priceBadge(r)}<span class="tag cat">${esc(r.region)}</span>${[...ax.allow, ...ax.equip].map(x=>`<span class="tag pos">${x}</span>`).join("")}${isPub&&r.verified?`<span class="tag inst">✓ ${esc(r.verified)} 확인</span>`:""}`;
@@ -768,7 +803,7 @@ function openRoom(r){
   if (isPub && r.rooms && r.rooms.length){
     $("#rm-meta").innerHTML += `<dt>방 목록</dt><dd>` + r.rooms.map(rm =>
       `${esc(rm.name)} <span style="color:var(--ink-soft);font-size:0.85em">(${rm.free?"무료":"유료"})</span>`
-      + (/^https?:/.test(rm.bookTo||"") ? ` — <a href="${esc(rm.bookTo)}" target="_blank" rel="noopener" data-ev="practice_outbound" data-evl="${esc(r.name)}|${esc(rm.name)}">예약 ↗</a>` : "")
+      + (/^https?:/.test(rm.bookTo||"") ? ` — <a href="${esc(rm.bookTo)}" target="_blank" rel="noopener" data-ev="practice_outbound" data-evp='${esc(JSON.stringify(spaceParams(r,{sp_dest:"room",sp_room:rm.name})))}'>예약 ↗</a>` : "")
     ).join("<br>") + `</dd>`;
   }
   $("#rm-intro").textContent = r.notes || "";
@@ -780,7 +815,7 @@ function openRoom(r){
   const delHtml = r.mine ? `<button class="btn-outline" id="rm-del">삭제</button>` : "";
   const tel = (r.bookTo || r.phone || "").match(/0\d{1,2}-?\d{3,4}-?\d{4}/);
   $("#rm-actions").innerHTML = (isPub || r.booking_url)
-    ? `${delHtml}<a class="btn-primary" href="${esc(r.booking_url)}" target="_blank" rel="noopener" data-ev="practice_outbound" data-evl="${esc(r.name||'')}" style="text-decoration:none">${isPub?"예약 페이지 가기":"원문 보기"} ↗</a>`
+    ? `${delHtml}<a class="btn-primary" href="${esc(r.booking_url)}" target="_blank" rel="noopener" data-ev="practice_outbound" data-evp='${esc(JSON.stringify(spaceParams(r,{sp_dest:"modal"})))}' style="text-decoration:none">${isPub?"예약 페이지 가기":"원문 보기"} ↗</a>`
     : /^https?:/.test(r.bookTo || "")
     ? `${delHtml}<a class="btn-primary" href="${esc(r.bookTo)}" target="_blank" rel="noopener" style="text-decoration:none">예약 페이지 가기 ↗</a>`
     : delHtml || "";
