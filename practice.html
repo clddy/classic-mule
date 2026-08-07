@@ -20,7 +20,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Cormorant:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
-  <link rel="stylesheet" href="css/style.css?v=14">
+  <link rel="stylesheet" href="css/style.css?v=15">
   <style>
     .room-photo { height:110px; border-radius:8px; background:var(--wash); display:flex; align-items:flex-end; justify-content:flex-end; padding:8px; margin-bottom:10px; }
     .photo-count { font-size:0.7rem; background:rgba(0,0,0,0.45); color:#fff; border-radius:4px; padding:2px 7px; }
@@ -235,6 +235,18 @@
 // 공공 = 실데이터 (큐레이션 practice-public.js + 서울시 공공서비스예약 practice-yeyak.js).
 // 민간 = 호스트 직접 등록 원칙 (타 플랫폼 크롤 금지). 등록 예시 1건은 참고용(sample).
 const esc = s => String(s ?? "").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+// 가격 표기 통일 — '시간 4천원'처럼 단위가 흐리면 얼마인지 한눈에 안 들어온다.
+// 시간 단가는 언제나 '시간당 N,NNN원' 한 형태로만 쓴다 (2026-08-08 사용자 지시).
+// hourly 는 만원 단위로 저장돼 있다(0.4 = 4,000원).
+const hourlyTxt = h => `시간당 ${Math.round(h * 10000).toLocaleString("ko-KR")}원`;
+// 수집분 price 문자열도 같은 어휘로 맞춘다.
+//   '시간 1,000~6,000원' → '시간당 1,000원~6,000원'
+// 범위는 양쪽 다 '원'을 붙인다 — 앞 숫자에 단위가 없으면 그게 금액인지 시간인지 안 보인다.
+const priceTxt = p => String(p ?? "")
+  .replace(/^\s*시간\s+(?=\d)/, "시간당 ")
+  .replace(/([\d,]+)\s*~\s*([\d,]+)\s*원/g, "$1원~$2원")
+  // 시드에 '15,000원/시간', '20,000원/시간대' 꼴도 섞여 있다 — 같은 어순으로 눕힌다
+  .replace(/^\s*([\d,]+)\s*원\s*\/\s*시간대?\s*$/, "시간당 $1원");
 
 // ---------- 계측 (js/analytics.js 의 pdEvent — GA 미설정이면 no-op) ----------
 // 연습실은 지금까지 예약처 이동만 찍고 필터를 안 찍었다(2026-08-06 보강).
@@ -636,8 +648,8 @@ function cardPublic(r, i){
 function cardInstant(r, i){
   // 가격: 호스트 등록분(월/시간 단가) 또는 수집분(price 문자열) 둘 다 지원
   const priceHtml = (r.monthly || r.hourly)
-    ? `${r.monthly?`월 ${r.monthly}만원`:""} ${r.hourly?`<span class="per">· 시간 ${Math.round(r.hourly*10)}천원</span>`:""} <span class="per">(최소 ${r.minHours||1}시간)${r.nego?" · 협의가능":""}</span>`
-    : `${esc(r.price||"요금 확인")} <span class="per">(최소 ${r.minHours||1}시간)</span>`;
+    ? `${r.monthly?`월 ${r.monthly}만원`:""} ${r.hourly?`<span class="per">· ${hourlyTxt(r.hourly)}</span>`:""} <span class="per">(최소 ${r.minHours||1}시간)${r.nego?" · 협의가능":""}</span>`
+    : `${esc(priceTxt(r.price)||"요금 확인")} <span class="per">(최소 ${r.minHours||1}시간)</span>`;
   // 위치는 '역에서 도보 몇 분'이 실제 제약 — 악기 들고 이동하는 사람 기준
   const stationTxt = r.walkMin ? `${esc(r.station||"")} 도보 ${r.walkMin}분` : esc(r.station||"");
   const specs = [
@@ -780,10 +792,10 @@ function openRoom(r){
     if (r.photoUrl){ $("#rm-photo").style.background = `url('${r.photoUrl.replace(/'/g,"")}') center/cover`; $("#rm-photo").innerHTML = ""; }
     else { $("#rm-photo").style.background = ""; $("#rm-photo").innerHTML = `<span class="photo-count">사진 ${r.photos||0}장</span>`; }
   }
-  $("#rm-price").innerHTML = isPub ? esc(r.price)
-    : `${r.monthly?`월 ${r.monthly}만원`:""} <span class="per">${r.hourly?`· 시간 ${Math.round(r.hourly*10)}천원`:""} (최소 ${r.minHours||1}시간)${r.nego?" · 협의가능":""}</span>`;
+  $("#rm-price").innerHTML = isPub ? esc(priceTxt(r.price))
+    : `${r.monthly?`월 ${r.monthly}만원`:""} <span class="per">${r.hourly?`· ${hourlyTxt(r.hourly)}`:""} (최소 ${r.minHours||1}시간)${r.nego?" · 협의가능":""}</span>`;
   $("#rm-meta").innerHTML = isPub ? [
-      ["주소", r.addr], ["공간", r.spaces], ["이용요금", r.price],
+      ["주소", r.addr], ["공간", r.spaces], ["이용요금", priceTxt(r.price)],
       ["선정 방법", r.selection], ["신청 방법", r.apply_method], ["접수", fmtApply(r)],
       ["이용 대상", r.eligibility], ["운영·이용", r.hours], ["문의", phoneOf(r)],
       ["확인일", r.verified],

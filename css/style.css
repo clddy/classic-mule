@@ -44,6 +44,12 @@
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 html { -webkit-text-size-adjust: 100%; }
+/* 스크롤바가 나타났다 사라질 때 본문 폭이 흔들리지 않게 자리를 미리 비워 둔다.
+   좌측 필터를 펼치면 페이지가 길어져 스크롤바가 생기고, 그만큼(약 15px) 좁아진 폭 때문에
+   필터 칩이 한 줄 3개에서 2개로 다시 접혔다 (2026-08-08 제보).
+   scrollbar-gutter: stable 로도 되지만 실측해 보니 내용이 짧아지면 자리를 놓는다
+   (2026-08-08 확인: 1265 → 1280). overflow-y: scroll 은 어느 브라우저에서나 확실하다. */
+html { overflow-y: scroll; }
 body {
   font-family: var(--sans);
   background: var(--ivory);
