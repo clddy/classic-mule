@@ -1,0 +1,14 @@
+name = "podium-feedback"
+main = "src/worker.js"
+compatibility_date = "2026-08-08"
+
+# KV 네임스페이스 — 아래 id 는 `npx wrangler kv namespace create FEEDBACK` 가 찍어 주는
+# 값으로 바꿔 넣는다. id 는 비밀이 아니다(계정 없이는 못 읽는다).
+[[kv_namespaces]]
+binding = "FEEDBACK"
+id = "PUT_KV_ID_HERE"
+
+# 비밀값은 여기 적지 않는다. 커밋되기 때문이다.
+#   npx wrangler secret put ADMIN_KEY
+#   npx wrangler secret put TELEGRAM_BOT_TOKEN
+#   npx wrangler secret put TELEGRAM_CHAT_ID

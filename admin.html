@@ -1,0 +1,97 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 검색엔진에 노출하지 않는다. 열쇠로 막혀 있지만 목록에 뜰 이유가 없다. -->
+<meta name="robots" content="noindex, nofollow">
+<title>피드백 수신함 — 포디엄</title>
+<link rel="stylesheet" href="css/style.css?v=15">
+<style>
+  .adm { max-width: 720px; margin: 0 auto; padding: 28px var(--gutter, 24px) 80px; }
+  .adm h1 { font-size: 1.3rem; margin: 0 0 18px; }
+  .adm .key-row { display: flex; gap: 8px; margin-bottom: 20px; }
+  .adm input[type=password] { flex: 1; min-width: 0; padding: 9px 12px; border-radius: 10px;
+    border: 1px solid rgba(128,128,128,.45); background: transparent; color: inherit; font: inherit; }
+  .adm button { padding: 9px 16px; border-radius: 999px; border: 1px solid rgba(128,128,128,.45);
+    background: transparent; color: inherit; font: inherit; cursor: pointer; }
+  .adm .empty { text-align: center; opacity: .6; padding: 60px 0; line-height: 1.7; }
+  .fb-item { border: 1px solid rgba(128,128,128,.3); border-radius: 12px; padding: 14px 16px;
+    margin-bottom: 12px; }
+  .fb-item.unread { border-left: 3px solid var(--claret, #7a1f2b); }
+  .fb-item .meta { font-size: .78rem; opacity: .6; display: flex; gap: 10px; flex-wrap: wrap;
+    margin-bottom: 8px; }
+  .fb-item .body { white-space: pre-wrap; line-height: 1.6; word-break: break-word; }
+  .fb-item .act { margin-top: 10px; }
+  .fb-item .act button { font-size: .8rem; padding: 5px 12px; }
+</style>
+
+<div class="adm">
+  <h1>피드백 수신함</h1>
+
+  <div class="key-row">
+    <input type="password" id="key" placeholder="관리자 열쇠" autocomplete="current-password">
+    <button id="load">열기</button>
+  </div>
+
+  <div id="out"><div class="empty">열쇠를 넣고 <b>열기</b>를 누르세요.</div></div>
+</div>
+
+<script>
+// 배포 후 workers.dev 주소로 바꾼다 (feedback/README.md 참고).
+const API = "";
+
+const $ = s => document.querySelector(s);
+const esc = s => String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+
+// 열쇠는 이 브라우저에만 남는다 — 사이트 소스에는 들어가지 않는다.
+$("#key").value = localStorage.getItem("podium_admin_key") || "";
+
+function fmt(at) {
+  try {
+    const d = new Date(at);
+    return `${d.getMonth() + 1}.${d.getDate()} ${String(d.getHours()).padStart(2, "0")}:${String(d.getMinutes()).padStart(2, "0")}`;
+  } catch { return at; }
+}
+
+function render(items) {
+  const out = $("#out");
+  if (!items.length) {
+    out.innerHTML = '<div class="empty">아직 받은 메시지가 없습니다.</div>';
+    return;
+  }
+  const unread = items.filter(i => !i.read).length;
+  out.innerHTML =
+    `<div class="meta" style="margin-bottom:14px;opacity:.7;font-size:.85rem">전체 ${items.length}건 · 안 읽음 ${unread}건</div>` +
+    items.map(i => `
+      <div class="fb-item ${i.read ? "" : "unread"}">
+        <div class="meta"><span>${fmt(i.at)}</span><span>${esc(i.page || "")}</span></div>
+        <div class="body">${esc(i.message)}</div>
+        <div class="act"><button data-k="${esc(i._key)}" data-read="${i.read ? 1 : 0}">
+          ${i.read ? "안 읽음으로" : "읽음 처리"}</button></div>
+      </div>`).join("");
+
+  out.querySelectorAll(".act button").forEach(b => b.addEventListener("click", async () => {
+    const path = b.dataset.read === "1" ? "unread" : "read";
+    b.disabled = true;
+    await fetch(`${API}/api/${path}?key=${encodeURIComponent($("#key").value)}&k=${encodeURIComponent(b.dataset.k)}`,
+                { method: "POST" });
+    load();
+  }));
+}
+
+async function load() {
+  const key = $("#key").value.trim();
+  if (!key) return;
+  localStorage.setItem("podium_admin_key", key);
+  $("#out").innerHTML = '<div class="empty">불러오는 중…</div>';
+  try {
+    const r = await fetch(`${API}/api/list?key=${encodeURIComponent(key)}`);
+    const d = await r.json();
+    if (!d.ok) { $("#out").innerHTML = `<div class="empty">${esc(d.error || "열지 못했습니다")}</div>`; return; }
+    render(d.items || []);
+  } catch {
+    $("#out").innerHTML = '<div class="empty">서버에 닿지 못했습니다.</div>';
+  }
+}
+
+$("#load").addEventListener("click", load);
+$("#key").addEventListener("keydown", e => { if (e.key === "Enter") load(); });
+</script>

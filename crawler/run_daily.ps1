@@ -92,6 +92,12 @@ if ($changed) {
     git push origin main
     if ($LASTEXITCODE -ne 0) { Alert "푸시 실패 — 사이트에 반영 안 됨"; exit 1 }
     Note "크롤 완료 · 커밋+푸시됨"
+
+    # 구글에 '이 공고 바뀌었다/내렸다'를 직접 알린다. 푸시 뒤에 두는 이유는, 구글이
+    # 통보를 받고 바로 가지러 오는데 그때 새 페이지가 올라가 있어야 하기 때문이다.
+    # 자격증명이 없으면 스스로 건너뛰므로 실패로 치지 않는다.
+    & $PY "$PSScriptRoot\gindex.py"
+    if ($LASTEXITCODE -ne 0) { Note "warn: gindex.py 종료코드 $LASTEXITCODE (계속 진행)" }
 } else {
     Note "크롤 완료 · 데이터 변경 없음"
 }

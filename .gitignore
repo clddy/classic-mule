@@ -36,3 +36,7 @@ crawler/config.json
 
 # GA4 서비스 계정 키 — 자격증명은 절대 커밋 금지 (traffic.py가 .env 경유로 읽음)
 crawler/ga4-sa.json
+# 구글 클라우드 서비스 계정 키(Indexing API 등) — 폴더째 제외
+crawler/.secrets/
+# 구글 Indexing API 통보 기록 (로컬 상태)
+data/gindex_state.json

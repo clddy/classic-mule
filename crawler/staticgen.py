@@ -284,7 +284,8 @@ def generate(base=BASE):
         f.write("".join(f"<url><loc>{u}</loc><lastmod>{lastmod}</lastmod></url>\n" for u in urls))
         f.write("</urlset>\n")
     with open(os.path.join(base, "robots.txt"), "w", encoding="utf-8") as f:
-        f.write(f"User-agent: *\nAllow: /\nSitemap: {SITE}/sitemap.xml\n")
+        # admin.html 은 열쇠로 막혀 있지만 검색결과에 뜰 이유가 없다 (sitemap 목록에도 없다).
+        f.write(f"User-agent: *\nAllow: /\nDisallow: /admin.html\nSitemap: {SITE}/sitemap.xml\n")
     return len(items)
 
 
