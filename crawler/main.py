@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import (new_session, get, relevant, extract_deadline, priority_deadlines, deadline_from_title,
-                    musician_relevant, youth_member, parse_recruit_table, summarize_recruit, find_position,
+                    musician_relevant, youth_member, participant_only, parse_recruit_table, summarize_recruit, find_position,
                     classify_insts, find_subject, find_music_subjects, find_music_courses,
                     classify_kind, classify_tier, is_obri, cert_required, degree_req, career_req, age_group,
                     region_from, EXCLUDE, compact_title, music_only_title, body_text,
@@ -241,7 +241,7 @@ def find_attachments(soup, base_url):
                     cands.append((full, el.get_text(" ", strip=True)))
     return cands[:4]
 
-EXT_VER = 37         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
+EXT_VER = 38         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
                      # v32(2026-08-02): 모집분야 구획 악기 추출(insts_from_recruit_text) + 원문 보관층
                      # 24: work.sen 등록일(게시일) 추출 추가 — date=None이던 승계분을 다시 뽑게
                      # 25: body_text 도입 — 본문을 <header>에 넣는 사이트(대전교육청)의 마감일을
@@ -828,6 +828,11 @@ def _refill_from_raw(items, today):
             # 경우가 흔하다. 통영시민오케스트라는 OCR 텍스트에 '접수기간 7.20~8.14'가
             # 멀쩡히 저장돼 있는데 본문만 보느라 놓쳤다 (2026-08-07).
             dl = extract_deadline(rawstore.all_text(it["id"]), ref_year=_ref_year(it))
+            # 제목에만 마감이 적힌 공고('…모집(~8/14)')는 본문 규칙으로 안 잡힌다.
+            # 수집 때는 deadline_from_title 이 봤지만 재추출 경로엔 그 단계가 없었다.
+            if not dl:
+                dl = deadline_from_title((raw or {}).get("title") or it.get("title") or "",
+                                         ref_year=_ref_year(it))
             # 지난 날짜를 마감으로 앉히면 멀쩡한 공고가 '마감'으로 사라진다 — 오늘 이후만
             if dl and dl >= today.isoformat():
                 it["deadline"] = dl
@@ -885,6 +890,41 @@ def _fix_org_from_title(items):
     return fixed
 
 
+# 게시판이 스스로 붙인 접수 상태. '접수중·접수전'과 헷갈리지 않게 마감 어휘만 건다.
+_BOARD_CLOSED = re.compile(r"(?:채용|접수|모집)\s*상태\s*[:\s]*(?:마감|종료)")
+
+
+def _span_days(a, b):
+    """두 ISO 날짜 사이 일수 — 마감일 후보들이 얼마나 흩어져 있는지 재는 데 쓴다."""
+    try:
+        return abs((date.fromisoformat(b) - date.fromisoformat(a)).days)
+    except (ValueError, TypeError):
+        return 0
+
+
+def _drop_reposts(items):
+    """같은 기관이 같은 제목으로 여러 번 올린 재공고는 최신 것만 남긴다.
+
+    학교들은 사람이 안 구해지면 같은 공고를 다시 올린다. 게시글 번호가 달라 URL도 id도
+    달라서 기존 중복 제거로는 안 걸린다 — 함양제일고 관악부 강사 채용이 4월분·5월분
+    두 건으로 나란히 떠 있었다 (2026-08-08 버그 브리핑).
+    지원자에게는 같은 자리 하나이므로 최신 회차만 남기는 게 맞다.
+    """
+    best = {}
+    for it in items:
+        k = ((it.get("org") or "").strip(), (it.get("title") or "").strip())
+        cur = best.get(k)
+        if cur is None or (it.get("date") or "") > (cur.get("date") or ""):
+            best[k] = it
+    keep = set(id(v) for v in best.values())
+    dropped = [i for i in items if id(i) not in keep]
+    if dropped:
+        items[:] = [i for i in items if id(i) in keep]
+        log(f"재공고 중복 {len(dropped)}건 정리 — "
+            + "; ".join(f"{i.get('org')}/{i['title'][:20]}" for i in dropped[:3]))
+    return dropped
+
+
 def _drop_expired(items, today):
     """접수가 끝난 공고를 내린다 — ① 아는 마감일이 지났거나 ② 원문에 지난 마감이 확정 표기된 것.
 
@@ -893,14 +933,26 @@ def _drop_expired(items, today):
     제목에 '(마감)'이 박힌 것, 1년도 더 지난 2025-04 공고까지 섞여 있었다.
     _refill_from_raw 가 '지난 날짜는 앉히지 않는다'로 버린 뒤 아무도 줍지 않은 자리다.
 
-    오탐이 곧 살아있는 공고 삭제라 근거를 세 겹으로 조인다:
+    오탐이 곧 살아있는 공고 삭제라 근거를 겹으로 조인다:
+     ⓪ 게시판이 스스로 '접수상태: 마감'이라 적어 뒀으면 그게 제일 확실하다 — 날짜를 캘 것도 없다.
      ① '원서접수·접수기간·남은기간' 같은 확정 어휘 윈도에서 나온 날짜만 본다(폴백 금지).
-     ② 후보가 셋 이상으로 갈리면 상세 페이지에 남의 공고 목록이 섞인 것으로 보고 보류한다.
+     ② 후보들이 한 달 넘게 흩어져 있으면 남의 공고 목록이 섞인 것으로 보고 보류한다.
      ③ 자기 게시일보다 이른 마감일은 남의 날짜다 — 보류.
     보류한 것은 종전대로 '기한 미정'으로 남으니, 판단이 서지 않을 때의 기본값은 '그대로 둠'이다.
     """
     gone = []
     for it in items:
+        if it.get("deadlineNote") == "상시":
+            continue
+        raw = rawstore.all_text(it.get("id"))
+        # ⓪ 게시판이 스스로 붙인 상태값. 경남교육청은 상세에 '채용상태 마감', 목록에
+        # '접수상태 접수중/접수전/마감'을 적어 둔다 — 우리 날짜 추출보다 이쪽이 정확하다.
+        # 실제로 화정초·경남관광고는 우리가 2027-02-28 같은 엉뚱한 마감일을 붙여 뒀는데
+        # 게시판은 진작 '마감'이었다 (2026-08-08 버그 브리핑).
+        if raw and _BOARD_CLOSED.search(raw):
+            it["expiredOn"] = it.get("deadline") or "게시판:마감"
+            gone.append(it)
+            continue
         # 이미 마감일을 아는데 그게 지났으면 그대로 내린다. 소스별 수집 구간에도 같은 필터가
         # 있지만 거긴 승계 경로가 비켜 간다 — 양현고 시간강사 공고가 마감 7-29 인 채로
         # 8-07 화면에 남아 있었다 (2026-08-07).
@@ -909,10 +961,13 @@ def _drop_expired(items, today):
                 it["expiredOn"] = it["deadline"]
                 gone.append(it)
             continue
-        if it.get("deadlineNote") == "상시":
-            continue
-        cands = priority_deadlines(rawstore.all_text(it.get("id")), ref_year=_ref_year(it))
-        if not cands or len(cands) > 2:
+        cands = priority_deadlines(raw, ref_year=_ref_year(it))
+        # 후보 개수로 가르던 것을 '흩어진 정도'로 바꾼다. 같은 공고가 접수기간·서류마감처럼
+        # 며칠 사이 날짜를 여럿 갖는 건 정상인데, 개수만 세면 그런 멀쩡한 공고까지 보류됐다
+        # (조선대여중은 6-25·26·29 세 개가 전부 같은 공고의 날짜였다).
+        # 반대로 군산시립교향악단 상세엔 시청 채용공고 목록이 통째로 딸려 와 2024~2026이
+        # 뒤섞이는데, 그건 한 달 기준에서 확실히 걸린다.
+        if not cands or _span_days(cands[0], cands[-1]) > 30:
             continue
         dl = max(cands)
         if dl >= today.isoformat():
@@ -1359,7 +1414,7 @@ def run(force_all=False):
     # 공고는 승계로 들어와 그 관문을 통과하지 않는다. 규칙을 새로 넣은 날 기존 분이 그대로
     # 남는 이유가 이것이다 (구리시립청소년교향악단, 2026-08-07).
     final = [i for i in final if not i.get("nonMusic")
-             and not youth_member(i["title"])
+             and not youth_member(i["title"]) and not participant_only(i["title"])
              and musician_relevant(i["title"], i.get("kind", ""), i.get("org", ""))]
     # 대학 전체 강사 초빙 중 첨부 확인 결과 음악 교과목이 전혀 없던 공고는 제외(비음악 확정)
     final = [i for i in final if not i.get("nonMusic")]
@@ -1375,6 +1430,7 @@ def run(force_all=False):
     # 마감이 지난 게 원문에 확정 표기된 공고를 내린다. overrides 뒤에 두는 이유는,
     # 사람이 손수 넣은 마감일이 있으면 그쪽이 우선이고 여기 판정은 아예 건너뛰기 때문이다.
     _drop_expired(final, today)
+    _drop_reposts(final)
     # 지원할 방법이 하나도 없는 공고는 싣지 않는다 — 집계 포털에서 왔는데 기관 원문도,
     # 이메일·전화도 못 뽑은 경우다. 포털로는 링크를 내지 않기로 했으므로(CLAUDE.md) 카드에
     # '기관명으로 검색하세요'라는 빈 안내만 남아 사용자가 할 수 있는 게 없다 (2026-07-29 지적).

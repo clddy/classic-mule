@@ -113,10 +113,16 @@ def flush():
 
 
 def all_text(iid):
-    """저장된 원문 전체를 하나의 문자열로 — 재추출용"""
+    """저장된 원문 전체를 하나의 문자열로 — 재추출용.
+
+    제목을 맨 앞에 붙인다. 제목에만 마감이 적힌 공고가 흔한데('…모집(~8/14)'),
+    본문·첨부만 이어 붙이던 탓에 재추출 경로에서는 그 정보가 통째로 없는 셈이었다
+    (2026-08-08 사용자 지적). 수집 당시에는 deadline_from_title 이 따로 봤지만,
+    나중에 추출 규칙을 고쳐 소급 적용할 때는 아무도 제목을 보지 않았다.
+    """
     doc = load(iid)
     if not doc:
         return ""
-    parts = [doc.get("page") or ""]
+    parts = [doc.get("title") or "", doc.get("page") or ""]
     parts += [a.get("text") or "" for a in doc.get("attach") or []]
     return "\n".join(p for p in parts if p)

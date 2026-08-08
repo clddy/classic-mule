@@ -62,9 +62,12 @@ def check_deploy(rep, doc):
         live = requests.get(f"{BASE}/data/official.json", timeout=25).json()
     except Exception:
         return
+    # collectedAt은 "2026-08-08 15:30" 꼴이라 날짜만 떼서 쓴다. 안 떼면 fromisoformat이
+    # 터지는데, 이 줄은 '배포본이 로컬보다 낡았을 때'만 도달한다 — 즉 푸시 실패를 알려야
+    # 하는 바로 그 순간에만 죽어서 '사이트 점검 자체가 실패'로 뭉개졌다 (2026-08-08).
     live_at, local_at = live.get("collectedAt"), doc.get("collectedAt")
     if live_at and local_at and live_at < local_at:
-        gap = (date.fromisoformat(local_at) - date.fromisoformat(live_at)).days
+        gap = (date.fromisoformat(local_at[:10]) - date.fromisoformat(live_at[:10])).days
         sev = "HIGH" if gap >= 2 else "MED"
         rep.add(sev, "배포",
                 f"배포된 데이터가 {live_at} (로컬 {local_at}, {gap}일 뒤처짐) — 커밋·푸시 실패 의심")

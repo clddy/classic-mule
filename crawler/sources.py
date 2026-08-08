@@ -296,9 +296,22 @@ def parse_gne(s):
                 or not re.search(r"모집|채용|초빙|공고", title)):
             continue
         seen.add(title)
+        # 목록 행이 접수기간과 접수상태를 그대로 들고 있다. 상세의 첨부(공고문 hwp)는
+        # 라온케이업로드 컴포넌트를 거쳐야만 받아지는 구조라 우리가 못 여는데, 그 탓에
+        # 마감일을 상세 본문에서 캐다가 '계약기간' 종료일을 물어 화정초 공고에 2027-02-28이
+        # 박혔었다. 목록에 답이 있으니 상세를 뒤질 이유가 없다 (2026-08-08).
+        # 끝난 공고를 여기서 걸러내지는 않는다 — 파서는 게시판에 있는 그대로 보고하고,
+        # 거르는 일은 하류(_drop_expired)에 맡긴다. 파서가 거르면 수집량이 0으로 떨어져
+        # 헬스체크의 '파서 깨짐' 신호와 구분이 안 된다 (2026-08-08 실제로 오탐이 떴다).
+        row = a.find_parent("tr") or a.find_parent("li")
+        rtxt = row.get_text(" ", strip=True) if row else ""
+        dl = None
+        p = re.search(r"접수기간\s*[\d.]{8,10}\s*~\s*(\d{4})\.(\d{1,2})\.(\d{1,2})", rtxt)
+        if p:
+            dl = f"{p.group(1)}-{int(p.group(2)):02d}-{int(p.group(3)):02d}"
         # 개별 공고 상세 URL(regSn) — 포털 검색목록이 아니라 원문으로 링크
         items.append(make_item("경남 학교 방과후(교육청 포털)", "기타", "gne.go.kr",
-                               title, GNE_DETAIL + m.group(1), date=_row_date(a)))
+                               title, GNE_DETAIL + m.group(1), date=_row_date(a), deadline=dl))
     return items
 
 # ---------- 20. 아트모아 (문체부·예술경영지원센터 일자리 포털) ----------

@@ -1,145 +1,81 @@
 {
- "https://gjart.gwangju.go.kr/gso/cmd.do?opencode=pg_0501&boper=view&bnum=9623&&pnum=&ffield=&fval=": {
-  "firstSeen": "2026-08-07",
-  "tries": 1,
-  "reported": false,
-  "lastTry": "2026-08-07",
-  "title": "광주광역시립교향악단 신규단원 공개모집",
-  "org": "광주광역시립교향악단"
- },
- "http://nationalchorus.or.kr/notice-2/?vid=715": {
-  "firstSeen": "2026-08-07",
-  "tries": 1,
-  "reported": false,
-  "lastTry": "2026-08-07",
-  "title": "[공지] 2026(하) 합창 아카데미_ 울림의 미학, 하나 되는 소리 모집",
-  "org": "국립합창단"
- },
  "https://www.gunsan.go.kr/gsart/m1950/view/9830024?": {
   "firstSeen": "2026-08-07",
-  "tries": 1,
+  "tries": 2,
   "reported": false,
-  "lastTry": "2026-08-07",
+  "lastTry": "2026-08-08",
   "title": "군산시립교향악단 비상임단원 모집",
   "org": "군산시립교향악단"
  },
  "https://www.gunsan.go.kr/gsart/m1950/view/9828504?": {
   "firstSeen": "2026-08-07",
-  "tries": 1,
+  "tries": 2,
   "reported": false,
-  "lastTry": "2026-08-07",
+  "lastTry": "2026-08-08",
   "title": "썬데이 피크닉 콘서트 어린이연주자 오디션 지원자 모집",
   "org": "군산시립교향악단"
  },
  "https://www.gunsan.go.kr/gsart/m1950/view/1808229?": {
   "firstSeen": "2026-08-07",
-  "tries": 1,
+  "tries": 2,
   "reported": false,
-  "lastTry": "2026-08-07",
+  "lastTry": "2026-08-08",
   "title": "교향악단 정기연주회 객원지휘자 및 협연자 오디션",
   "org": "군산시립교향악단"
  },
  "https://www.gunsan.go.kr/gsart/m1950/view/1504933?": {
   "firstSeen": "2026-08-07",
-  "tries": 1,
+  "tries": 2,
   "reported": false,
-  "lastTry": "2026-08-07",
+  "lastTry": "2026-08-08",
   "title": "군산시립교향악단 제159회 정기연주회 [송년음악회] 시민연주자 모집",
   "org": "군산시립교향악단"
  },
  "https://www.ballet.or.kr/Notice/?q=YToxOntzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&bmode=view&idx=122396471&t=board": {
   "firstSeen": "2026-08-07",
-  "tries": 1,
+  "tries": 2,
   "reported": false,
-  "lastTry": "2026-08-07",
+  "lastTry": "2026-08-08",
   "title": "마이 에뚜왈 : 신입 단원 모집",
   "org": "서울발레시어터"
  },
  "https://www.gb.go.kr/Main/culture/page.do?mnu_uid=15644&BD_CODE=bbs_gongji&cmd=2&B_NUM=508130101&B_STEP=508130100&V_NUM=": {
   "firstSeen": "2026-08-07",
-  "tries": 1,
+  "tries": 2,
   "reported": false,
-  "lastTry": "2026-08-07",
+  "lastTry": "2026-08-08",
   "title": "경상북도 도립예술단 지휘자, 예능단원, 사무원 모집",
   "org": "경상북도 도립예술단"
  },
  "https://www.gunsan.go.kr/gsart/m1949/view/9830028?": {
   "firstSeen": "2026-08-07",
-  "tries": 1,
+  "tries": 2,
   "reported": false,
-  "lastTry": "2026-08-07",
+  "lastTry": "2026-08-08",
   "title": "군산시립합창단 기간제 비상임단원 공개모집",
   "org": "군산시립합창단"
  },
  "https://www.timf.org/kr/sub/timf/notice.asp?mode=view&bid=1&s_type=&s_keyword=&s_cate=&idx=3781&page=1": {
   "firstSeen": "2026-08-07",
-  "tries": 1,
+  "tries": 2,
   "reported": false,
-  "lastTry": "2026-08-07",
+  "lastTry": "2026-08-08",
   "title": "통영시립소년소녀합창단 합창지도자 모집",
   "org": "통영시립소년소녀합창단"
  },
  "https://www.gen.go.kr/xboard/board.php?mode=view&number=457400&tbnum=32&sCat=0&page=1&keyset=&searchword=": {
   "firstSeen": "2026-08-07",
-  "tries": 1,
+  "tries": 2,
   "reported": false,
-  "lastTry": "2026-08-07",
+  "lastTry": "2026-08-08",
   "title": "조선대학교여자중학교 학생오케스트라 운영 위탁강사 채용",
   "org": "조선대학교여자중학교"
  },
- "https://www.yeulmaru.org/community/v/3174/?&p=1&keyword=": {
-  "firstSeen": "2026-08-07",
-  "tries": 1,
-  "reported": false,
-  "lastTry": "2026-08-07",
-  "title": "GS칼텍스 예울마루 (추경)예술기반 청년일자리(연수단원) 채용 공고 예술사업팀 2026-06-17 조회수 : 770",
-  "org": "여수예울마루"
- },
- "https://www.gne.go.kr/works/user/recruitment/BD_recruitmentDetail.do?regSn=1808997": {
-  "firstSeen": "2026-08-07",
-  "tries": 1,
-  "reported": false,
-  "lastTry": "2026-08-07",
-  "title": "함양제일고등학교 학생 오케스트라 관악부 강사 채용",
-  "org": "함양제일고등학교"
- },
- "https://www.gne.go.kr/works/user/recruitment/BD_recruitmentDetail.do?regSn=1808543": {
-  "firstSeen": "2026-08-07",
-  "tries": 1,
-  "reported": false,
-  "lastTry": "2026-08-07",
-  "title": "함양제일고등학교 학생 오케스트라 관악부 강사 채용",
-  "org": "함양제일고등학교"
- },
- "https://www.gne.go.kr/works/user/recruitment/BD_recruitmentDetail.do?regSn=1808444": {
-  "firstSeen": "2026-08-07",
-  "tries": 1,
-  "reported": false,
-  "lastTry": "2026-08-07",
-  "title": "진주 거점 오케스트라 타악기 외부강사 모집",
-  "org": "경남 학교 방과후(교육청 포털)"
- },
- "https://ansanarts.com/notice/108": {
-  "firstSeen": "2026-08-07",
-  "tries": 1,
-  "reported": false,
-  "lastTry": "2026-08-07",
-  "title": "안산시립합창단 교육사업 '안산뮤직아카데미IX' 모집 안내",
-  "org": "안산시립합창단"
- },
- "https://www.gne.go.kr/works/user/recruitment/BD_recruitmentDetail.do?regSn=1808375": {
-  "firstSeen": "2026-08-07",
-  "tries": 1,
-  "reported": false,
-  "lastTry": "2026-08-07",
-  "title": "방과후학교(오케스트라) 강사 모집",
-  "org": "경남 학교 방과후(교육청 포털)"
- },
  "https://www.daeguartscenter.or.kr/index.do?menu_id=00001528&menu_link=/icms/bbs/selectBoardArticle.do&bbsId=BBS_00303&nttId=11147": {
   "firstSeen": "2026-08-02",
-  "tries": 6,
+  "tries": 7,
   "reported": true,
-  "lastTry": "2026-08-07",
+  "lastTry": "2026-08-08",
   "title": "대구광역시 시립교향악단 부지휘자 공개모집",
   "org": "대구광역시 시립교향악단"
  }

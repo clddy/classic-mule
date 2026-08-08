@@ -250,10 +250,15 @@ def check_fields(rep, items):
             ex = bad[0].get("id", "?")
             rep.add("HIGH", "필드",
                     f"{label}({f}) 비어있는 공고 {len(bad)}/{len(items)}건 (예: {ex}) — 구조 변경 신호")
-    nd = [i for i in items if not i.get("deadline")]
-    if len(nd) / len(items) > 0.4:
+    # 상시 모집(교회 반주자 등)은 원래 마감일이 없는 공고다 — 분모에 넣으면 정상인 걸
+    # 추출 실패로 센다. 2026-08-08 브리핑의 '45%'가 그랬다(25건 중 7건이 상시였다).
+    # 실제로 손댈 것만 세도록 상시를 양쪽에서 뺀다.
+    dated = [i for i in items if not i.get("obri") and i.get("deadlineNote") != "상시"]
+    nd = [i for i in dated if not i.get("deadline")]
+    if dated and len(nd) / len(dated) > 0.4:
         rep.add("MED", "필드",
-                f"마감일 없는 공고 {len(nd)}/{len(items)}건 ({round(len(nd) / len(items) * 100)}%) — 마감 추출기 확인")
+                f"마감일 없는 공고 {len(nd)}/{len(dated)}건 ({round(len(nd) / len(dated) * 100)}%, 상시 제외) "
+                "— 마감 추출기 확인")
 
 
 _BROKEN_CHARS = "�□﻿"    # 대체문자 · 흰 사각형 · BOM
@@ -403,9 +408,15 @@ def check_links(rep, items, hist, today):
 
 
 def requests_head(url):
-    """HEAD → 막히면 GET. 상태코드만 돌려준다."""
+    """HEAD → 실패하면 GET으로 재확인. 상태코드만 돌려준다.
+
+    **4xx는 전부 GET으로 다시 본다.** HEAD에만 404를 주는 서버가 실제로 있다 —
+    기독정보넷(cjob)이 그렇다(HEAD 404 / GET 200). 404를 곧이곧대로 믿었더니 멀쩡한
+    교회 공고 전부가 '죽은 링크'로 기록됐고, 크롤러가 그 기록을 보고 교회 카테고리를
+    통째로 지웠다 (2026-08-08). 링크가 죽었다는 판정은 GET으로 확인된 것만 인정한다.
+    """
     r = requests.head(url, headers=UA, timeout=15, allow_redirects=True)
-    if r.status_code in (403, 405, 501):     # HEAD를 안 받는 서버 → GET으로 재확인
+    if r.status_code >= 400:
         r = requests.get(url, headers=UA, timeout=20, allow_redirects=True, stream=True)
         r.close()
     return r.status_code
