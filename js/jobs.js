@@ -491,6 +491,20 @@ function metaRows(j) {
   if (j.auditionDate) rows.push(["오디션", cleanVal(j.auditionDate)]);
   if (j.contract) rows.push(["계약", cleanVal(j.contract)]);
   if (okPay(j.pay)) rows.push(["페이", cleanVal(j.pay)]);
+  // 공고문이 '라벨 : 값'으로 적어 둔 근무 조건 (crawler/common.extract_fields).
+  // 본문 발췌보다 이쪽이 먼저다 — 지원 여부를 가르는 건 결국 이 숫자들이다.
+  if (j.duty) rows.push(["담당 업무", cleanVal(j.duty)]);
+  if (j.workPeriod) rows.push(["근무 기간", cleanVal(j.workPeriod)]);
+  if (j.workHours) rows.push(["근무 시간", cleanVal(j.workHours)]);
+  if (j.workPlace) rows.push(["근무지", cleanVal(j.workPlace)]);
+  // 연주 공고는 '근무'가 아니라 '공연' 어휘를 쓴다 (호텔 장기공연 등)
+  if (j.perfPeriod) rows.push(["공연 기간", cleanVal(j.perfPeriod)]);
+  if (j.perfPlace) rows.push(["공연 장소", cleanVal(j.perfPlace)]);
+  if (j.perfSchedule) rows.push(["공연 스케줄", cleanVal(j.perfSchedule)]);
+  if (j.teamComp) rows.push(["팀 구성", cleanVal(j.teamComp)]);
+  if (j.dayOff) rows.push(["휴일", cleanVal(j.dayOff)]);
+  if (j.contact) rows.push(["연락처", cleanVal(j.contact)]);
+  if (j.ageLimit) rows.push(["나이", cleanVal(j.ageLimit)]);
   // 리허설 횟수 + 회당 환산 (연주자가 시간당 효율로 판단)
   if (j.rehearsalCount) {
     const rw = cleanVal(j.rehearsalWhen || j.when);
@@ -514,15 +528,18 @@ function metaRows(j) {
   return rows.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join("");
 }
 
-// 하단 간단 요약: 자유서술 발췌에서 잡음 제거 후 최대 3줄
-const EXCERPT_NOISE = /채용 ?비리|비리 ?신고|신고 ?센터|공공기관 채용|청탁|개인정보|저작권|이용약관|고객센터|자주 ?묻는|FAQ|바로가기|로그인|회원가입|단장 ?공개|용역|평가위원|입찰|\.(?:pdf|hwpx?|jpe?g|png|zip)/i;
+// 상세 창 아래쪽 — **본문 발췌는 더 이상 쓰지 않는다.**
+//
+// 예전엔 본문에서 문장 세 줄을 골라 실었다. 그런데 게시판마다 본문에 딸려 오는 것이 달라서
+// 개인정보 동의표('이용 목적: 구직활동 지원…', '보유기간: 회원 탈퇴 시까지'), 페이지 꼬리
+// ('콘텐츠 관리부서 … 만족 하십니까?'), 잘린 항목값('접수기간 : 2026.'), 게시판 내부 필드
+// ('남은기간 0000-00-00 00:00:00')가 계속 새로 올라왔다. 잡음 목록을 늘려도 소스가 늘면
+// 새 잡음이 또 나온다 — 규칙을 더해 이길 싸움이 아니다 (2026-08-08 사용자 지시로 폐지).
+//
+// 이제 상세 창은 '이름 붙여 뽑은 사실'만 보여준다. 사실이 적으면 빈 채로 두고 원문으로
+// 보낸다 — 틀린 정보를 채우는 것보다 적게 보여주는 편이 신뢰를 지킨다.
 function shortSummary(j) {
-  const tp = (j.title || "").replace(/\s+/g, "").slice(0, 14);
-  const segs = (j.bodyExcerpt || "").split(/\s*·\s*/)
-    .map(s => cleanVal(s))
-    .filter(s => s && s.length >= 6 && !EXCERPT_NOISE.test(s)
-      && s.replace(/\s+/g, "").slice(0, 14) !== tp);   // 제목 반복 줄 제거
-  return segs.slice(0, 3).join("\n");
+  return "";
 }
 
 // 액션 버튼은 앵커다(휠클릭·Ctrl+클릭으로 새 탭, 우클릭 링크 복사).
@@ -550,8 +567,11 @@ function openOfficial(key) {
     ${isFresh(j) ? `<span class="tag urgent">NEW</span>` : ""}`;
   $("#detail-title").textContent = j.title;
   $("#detail-meta").innerHTML = metaRows(j);
-  // 하단: 간단한 요약(최대 3줄) — 없으면 비움
-  $("#detail-body").textContent = shortSummary(j);
+  // 하단: 뽑아낸 사실이 적으면 원문으로 안내한다. 본문을 억지로 요약해 채우지 않는다
+  // — 그 자리에 게시판 잡음이 실려 왔던 게 문제였다 (shortSummary 머리말 참고).
+  const factCount = (metaRows(j).match(/<dt/g) || []).length;
+  $("#detail-body").textContent = factCount >= 4 ? ""
+    : "공고에서 확인된 항목이 적습니다. 자세한 조건은 원문을 확인해 주세요.";
   const act = $("#detail-action");
   // 링크 원칙: 집계 포털(아트인포·아트모아)로는 절대 내보내지 않는다.
   //  - 기관 원문(officialUrl)이 있으면 그 페이지로 이동

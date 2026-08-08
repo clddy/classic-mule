@@ -1,5 +1,5 @@
 {
- "collectedAt": "2026-08-08 18:06",
+ "collectedAt": "2026-08-08 20:50",
  "sourceCount": 87,
  "okCount": 87,
  "instTotal": 75,
@@ -762,7 +762,7 @@
   },
   {
    "id": "g_yeulmaru",
-   "name": "여수예울마루",
+   "name": "GS칼텍스 예울마루",
    "layer": "B",
    "poll": "daily",
    "ok": true,
@@ -794,7 +794,7 @@
    "org": "교회(기독정보넷)",
    "region": "기타",
    "source": "cjob.co.kr",
-   "title": "[교회 반주자 모집] 함께 예배를 섬겨주실 반주자님을 모십니다",
+   "title": "함께 예배를 섬겨주실 반주자님을 모십니다",
    "nonMusic": null,
    "url": "https://www.cjob.co.kr/bbs/board.php?bo_table=offerIG&wr_id=7784&c_jikjong=2&page=1",
    "date": null,
@@ -814,11 +814,12 @@
    "subject": null,
    "channel": "cjob",
    "layer": "C",
-   "deadlineFrom": "raw",
+   "duty": "주일예배 찬송가 및 예배 반주, 성가대 찬양 반주, 성가대 연습 반주",
    "bodyExcerpt": "모시는분 반주자 - 지역 경기 - 등록일 2026-08-07 - 남은기간 2026-09-18 23:59:59 · 탑동감리교회 드럼반주자&레슨강사 모집합니다. · 용호남교회 피아노 반주자 모집 건반 연주자와 일렉키타 연주자를 모십니다(찬양팀) 주일 피아노 반주자 모십니다.",
+   "deadlineFrom": "raw",
    "firstSeen": "2026-08-08",
    "isNew": true,
-   "extVer": 38
+   "extVer": 48
   },
   {
    "id": "eaeb280d06303328",
@@ -848,7 +849,7 @@
    "bodyExcerpt": "모시는분 반주자 - 지역 인천 - 등록일 2026-07-15 - 남은기간 0000-00-00 00:00:00 · 홈페이지 주소 : 없음 (유튜브만 있음) 8. · 모집 내용 : 주일 대예배와 금요일 저녁 예배 반주자를 모집합니다. · 기타 : 신디 연주 가능, 집회 및 기도회 연주 가능하신 반주자(단기 모집입니다.",
    "firstSeen": "2026-08-08",
    "isNew": true,
-   "extVer": 38
+   "extVer": 48
   },
   {
    "id": "b2e199e32140e0ed",
@@ -875,11 +876,11 @@
    "subject": null,
    "channel": "cjob",
    "layer": "C",
-   "deadlineFrom": "raw",
    "bodyExcerpt": "모시는분 반주자 - 지역 전북 - 등록일 2026-07-03 - 남은기간 2026-12-31 23:59:59 · 용호남교회 피아노 반주자 모집 건반 연주자와 일렉키타 연주자를 모십니다(찬양팀) 주일 피아노 반주자 모십니다.",
+   "deadlineFrom": "raw",
    "firstSeen": "2026-08-08",
    "isNew": true,
-   "extVer": 38
+   "extVer": 48
   },
   {
    "id": "42db74da2bf23ef9",
@@ -909,7 +910,7 @@
    "bodyExcerpt": "모시는분 반주자 - 지역 부산 - 등록일 2026-05-29 - 남은기간 0000-00-00 00:00:00 · 탑동감리교회 드럼반주자&레슨강사 모집합니다.",
    "firstSeen": "2026-08-08",
    "isNew": true,
-   "extVer": 38
+   "extVer": 48
   },
   {
    "id": "5fbc7e4eb4f8d92d",
@@ -936,11 +937,11 @@
    "subject": null,
    "channel": "cjob",
    "layer": "C",
-   "deadlineFrom": "raw",
    "bodyExcerpt": "모시는분 반주자 - 지역 경기 - 등록일 2026-05-20 - 남은기간 2026-12-31 23:59:59 · 탑동감리교회 드럼반주자&레슨강사 모집합니다. · 용호남교회 피아노 반주자 모집 건반 연주자와 일렉키타 연주자를 모십니다(찬양팀) 피아노 반주자를 모십니다.",
+   "deadlineFrom": "raw",
    "firstSeen": "2026-08-08",
    "isNew": true,
-   "extVer": 38
+   "extVer": 48
   },
   {
    "id": "c355fe34995919a9",
@@ -970,7 +971,7 @@
    "bodyExcerpt": "모시는분 반주자 - 지역 - 등록일 2026-03-20 - 남은기간 0000-00-00 00:00:00 · 탑동감리교회 드럼반주자&레슨강사 모집합니다. · 용호남교회 피아노 반주자 모집 건반 연주자와 일렉키타 연주자를 모십니다(찬양팀) 주일 피아노 반주자 모십니다.",
    "firstSeen": "2026-08-08",
    "isNew": true,
-   "extVer": 38
+   "extVer": 48
   },
   {
    "id": "d43e73d204b36b0f",
@@ -1000,7 +1001,7 @@
    "bodyExcerpt": "모시는분 반주자 - 지역 경기 - 등록일 2026-02-25 - 남은기간 0000-00-00 00:00:00 · 탑동감리교회 드럼반주자&레슨강사 모집합니다. · 용호남교회 피아노 반주자 모집 건반 연주자와 일렉키타 연주자를 모십니다(찬양팀) 주일 피아노 반주자 모십니다.",
    "firstSeen": "2026-08-08",
    "isNew": true,
-   "extVer": 38
+   "extVer": 48
   },
   {
    "id": "cff2801e45a9ec79",
@@ -1030,7 +1031,7 @@
    "bodyExcerpt": "모시는분 반주자 - 지역 경기 - 등록일 2026-02-10 - 남은기간 0000-00-00 00:00:00 · 탑동감리교회 드럼반주자&레슨강사 모집합니다. · 용호남교회 피아노 반주자 모집 건반 연주자와 일렉키타 연주자를 모십니다(찬양팀) 주일 피아노 반주자 모십니다.",
    "firstSeen": "2026-08-08",
    "isNew": true,
-   "extVer": 38
+   "extVer": 48
   },
   {
    "id": "5662c679dbaca9e1",
@@ -1060,14 +1061,14 @@
    "bodyExcerpt": "모시는분 반주자 - 지역 경북 - 등록일 2025-09-21 - 남은기간 0000-00-00 00:00:00 · 탑동감리교회 드럼반주자&레슨강사 모집합니다. · 용호남교회 피아노 반주자 모집 건반 연주자와 일렉키타 연주자를 모십니다(찬양팀) 주일 피아노 반주자 모십니다.",
    "firstSeen": "2026-08-08",
    "isNew": true,
-   "extVer": 38
+   "extVer": 48
   },
   {
    "id": "7ce95c69d4831c71",
    "org": "서울예술고등학교(서울시교육청)",
    "region": "서울",
    "source": "work.sen.go.kr",
-   "title": "서울예술고등학교 전일제강사 초빙 공고(바이올린)",
+   "title": "[서울예고] 전일제강사 초빙",
    "nonMusic": null,
    "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=107226",
    "date": "2026-08-07",
@@ -1087,18 +1088,19 @@
    "subject": null,
    "channel": "edu_seoul",
    "layer": "C",
+   "workHours": "주 5일, 전일제 근무",
+   "bodyExcerpt": "다만, 필수항목에 대한 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다. · 제공 목적: 구직활동 지원 및 채용업무 처리 라. · 보유 및 이용 기간: 회원 탈퇴 시까지(2년) 마. · 다만, 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다.",
    "deadlineFrom": "raw",
-   "bodyExcerpt": "이용 목적: 구직활동 지원 및 채용 관련 서비스 제공 다. · 보유기간: 회원 탈퇴 시까지(2년) 라. · 제공받는자: 각급기관 채용담당자 나. · 제공 목적: 구직활동 지원 및 채용업무 처리 라.",
    "firstSeen": "2026-08-07",
    "isNew": true,
-   "extVer": 38
+   "extVer": 48
   },
   {
    "id": "b39269c7bf804d83",
-   "org": "서울당중초등학교",
+   "org": "서울특별시남부교육지원청 학교통합지원과(서울시교육청)",
    "region": "서울",
    "source": "work.sen.go.kr",
-   "title": "서울당중초등학교 기간제교원(1학년 창체·3학년 ·5학년 음악) 채용계획",
+   "title": "[서울당중초] 기간제교원(1학년 창체·3학년 ·5학년 음악) 채용계획",
    "nonMusic": null,
    "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=107339",
    "date": "2026-08-07",
@@ -1116,19 +1118,20 @@
    "subject": null,
    "channel": "edu_seoul",
    "layer": "C",
-   "deadlineFrom": "raw",
+   "pay": "「공무원보수규정」 제8조에 따라 산정된 호봉의 봉급을 지급하되, 고정급으로 한다.(계약에 따른다.)단, 「기간제교원 봉급에 관한 예규」 제3조에 따라 정교사(1급)등의 자격변동 시 재산정 라",
+   "workHours": "전일제 근무 마. 후생복지: 건강보험, 고용보험, 산재보험, 국민연금 가입 바. 복무: 원칙적으로 계약에 의하되, 교원 복무사항 등을 준용",
    "bodyExcerpt": "서울개웅초등학교, 서울금천초등학교, 서울당중초등학교, 서울문교초등학교, 서울영문초등학교에서 기간제교원(초등)을 채용합니다. · 관내 공립학교의 채용업무 경감을 위하여 공고 및 응시원서 접수 등의 업무를 서울남부교육지원청 학교통합지원과에서 지원(대행) 합니다.",
-   "orgBoard": "서울특별시남부교육지원청 학교통합지원과(서울시교육청)",
+   "deadlineFrom": "raw",
    "firstSeen": "2026-08-08",
    "isNew": true,
-   "extVer": 38
+   "extVer": 48
   },
   {
    "id": "4f0d888e1f8a5413",
    "org": "충암중학교(서울시교육청)",
    "region": "서울",
    "source": "work.sen.go.kr",
-   "title": "충암중학교 휴직 대체 기간제 교원 채용 공고(음악)",
+   "title": "[충암중] 휴직 대체 기간제 교원 채용 공고(음악)",
    "nonMusic": null,
    "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=107300",
    "date": "2026-08-07",
@@ -1146,18 +1149,21 @@
    "subject": null,
    "channel": "edu_seoul",
    "layer": "C",
+   "pay": "「공무원보수규정」 제8조에 따라 산정된 호봉의 봉급을 지급하되, 고정급으로 한다.(계약에 따른다.)마",
+   "workPeriod": "2026. 8. 14. ~ 2027. 2. 28. 라",
+   "workHours": "전일제 근무 바. 후생복지: 건강보험, 고용보험, 산재보험, 국민연금 가입 사. 복무: 원칙적으로 계약에 의하되, 교원복무사항 등을 준용",
+   "bodyExcerpt": "다만, 필수항목에 대한 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다. · 제공 목적: 구직활동 지원 및 채용업무 처리 라. · 보유 및 이용 기간: 회원 탈퇴 시까지(2년) 마. · 다만, 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다.",
    "deadlineFrom": "raw",
-   "bodyExcerpt": "이용 목적: 구직활동 지원 및 채용 관련 서비스 제공 다. · 보유기간: 회원 탈퇴 시까지(2년) 라. · 제공받는자: 각급기관 채용담당자 나. · 제공 목적: 구직활동 지원 및 채용업무 처리 라.",
    "firstSeen": "2026-08-07",
    "isNew": true,
-   "extVer": 38
+   "extVer": 48
   },
   {
    "id": "dc95d860e0a42457",
    "org": "상일미디어고등학교(서울시교육청)",
    "region": "서울",
    "source": "work.sen.go.kr",
-   "title": "상일미디어고등학교 신규 기간제교원 채용 공고(음악 시간강사)",
+   "title": "[상일미디어고] 신규 기간제교원 채용 공고(음악 시간강사)",
    "nonMusic": null,
    "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=107307",
    "date": "2026-08-07",
@@ -1175,18 +1181,20 @@
    "subject": null,
    "channel": "edu_seoul",
    "layer": "C",
+   "workPeriod": "2026. 8. 18.∼ 2026. 9. 16. 라",
+   "workHours": "전일제 근무 마. 후생복지: 건강보험, 고용보험, 산재보험, 국민연금 가입 바. 복무: 원칙적으로 계약에 의하되, 교원복무사항 등을 준용",
+   "bodyExcerpt": "다만, 필수항목에 대한 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다. · 제공 목적: 구직활동 지원 및 채용업무 처리 라. · 보유 및 이용 기간: 회원 탈퇴 시까지(2년) 마. · 다만, 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다.",
    "deadlineFrom": "raw",
-   "bodyExcerpt": "이용 목적: 구직활동 지원 및 채용 관련 서비스 제공 다. · 보유기간: 회원 탈퇴 시까지(2년) 라. · 제공받는자: 각급기관 채용담당자 나. · 제공 목적: 구직활동 지원 및 채용업무 처리 라.",
    "firstSeen": "2026-08-07",
    "isNew": true,
-   "extVer": 38
+   "extVer": 48
   },
   {
    "id": "675f5e426fe69966",
    "org": "서울고현초등학교(서울시교육청)",
    "region": "서울",
    "source": "work.sen.go.kr",
-   "title": "(고현초) 교과전담(6학년 , 음악) 기간제교사 채용",
+   "title": "[서울고현초] 교과전담(6학년 , 음악) 기간제교사 채용",
    "nonMusic": null,
    "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=107211",
    "date": "2026-08-07",
@@ -1204,18 +1212,21 @@
    "subject": null,
    "channel": "edu_seoul",
    "layer": "C",
+   "pay": "「공무원보수규정」 제8 捤獥 汤捯 氠瑢 기간제교원 채용 공고 2026학년도 서울고현초등학교 기간제교원 채용 계획을 다음과 같이 공고합니다. 2026년 8월 7일 서울고현초등학교장 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━",
+   "workPeriod": "2026.08.19.~2026.09.23.(1개월 5일)라. 업무: 6학년 과학, 음악 교과전담교사(1명)마",
+   "workHours": "전일제 근무(08:30~16:30), 아침 방역활동을 위한 유연근무 실시 가능 바",
+   "bodyExcerpt": "다만, 필수항목에 대한 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다. · 제공 목적: 구직활동 지원 및 채용업무 처리 라. · 보유 및 이용 기간: 회원 탈퇴 시까지(2년) 마. · 다만, 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다.",
    "deadlineFrom": "raw",
-   "bodyExcerpt": "이용 목적: 구직활동 지원 및 채용 관련 서비스 제공 다. · 보유기간: 회원 탈퇴 시까지(2년) 라. · 제공받는자: 각급기관 채용담당자 나. · 제공 목적: 구직활동 지원 및 채용업무 처리 라.",
    "firstSeen": "2026-08-07",
    "isNew": true,
-   "extVer": 38
+   "extVer": 48
   },
   {
    "id": "938ce36eeb4d1e74",
    "org": "매원중학교(경기교육청)",
    "region": "경기",
    "source": "goe.go.kr",
-   "title": "[매원중]2026학년도 기간제교원 채용(음악)",
+   "title": "[매원중] 기간제교원 채용(음악)",
    "nonMusic": null,
    "url": "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=55210",
    "date": "2026-08-07",
@@ -1233,18 +1244,18 @@
    "subject": null,
    "channel": "edu_goe",
    "layer": "C",
-   "deadlineFrom": "raw",
    "bodyExcerpt": "채용 권자 : 매원중학교장 나 . · 채용 방식 : 공개 채용 다 . · 채용교과 및 계약 기간 교과 인원 기간 비 고 음악 1 2026. · 채용 응시 자격 : 내국인으로서 채용 분야 교원자격증 소지자 자세한 내용은 첨부된 공고문을 확인해 주시기 바랍니다.",
+   "deadlineFrom": "raw",
    "firstSeen": "2026-08-07",
    "isNew": true,
-   "extVer": 38
+   "extVer": 48
   },
   {
    "id": "accd06da18aa4208",
    "org": "서정초등학교(경기교육청)",
    "region": "경기",
    "source": "goe.go.kr",
-   "title": "2026 서정초 동아리(합창, 메이커) 협력강사 모집",
+   "title": "[서정초] 동아리(합창, 메이커) 협력강사 모집",
    "nonMusic": null,
    "url": "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=55302",
    "date": "2026-08-07",
@@ -1262,18 +1273,19 @@
    "subject": null,
    "channel": "edu_goe",
    "layer": "C",
-   "deadlineFrom": "raw",
+   "pay": "시간당 40,000원 - 4대 보험(국민연금 , 건강보험 , 고용보험 , 산재보험)중 산재보험만 학교에서 가입 다",
    "bodyExcerpt": "인원 : 분야별 1 명 다 . · 보수 : 시간당 40,000 원 - 4 대 보험 ( 국민연금 , 건강보험 , 고용보험 , 산재보험 ) 중 산재보험만 학교에서 가입 다 . · 접수기간 : 2026.8.8.( 토 ) ~ 8.12.( 수 ) 14 시 나 . · ※ 제출기간 : 2026.8.18.( 화 ) 까지 미제출 시 본교 근무 포기로 간주하고 차순위자 채용할 수 있음 .",
+   "deadlineFrom": "raw",
    "firstSeen": "2026-08-07",
    "isNew": true,
-   "extVer": 38
+   "extVer": 48
   },
   {
    "id": "bedac6648415995b",
-   "org": "대전선암초등학교",
+   "org": "대전교육청(학교 채용)",
    "region": "대전",
    "source": "dje.go.kr",
-   "title": "대전선암초등학교 계약제교원(기간제교사-음악)채용_...",
+   "title": "[대전선암초] 계약제교원(기간제교사-음악)채용",
    "nonMusic": null,
    "url": "https://www.dje.go.kr/boardCnts/view.do?boardID=54&boardSeq=3360697&lev=0&s=dje&m=030202",
    "date": "2026-08-07",
@@ -1291,12 +1303,11 @@
    "subject": null,
    "channel": "edu_dje",
    "layer": "C",
-   "deadlineFrom": "raw",
    "bodyExcerpt": "구직 기간제교사 학교인력 채용공고 산학겸임.강사.명예교사신청 연수",
-   "orgBoard": "대전교육청(학교 채용)",
+   "deadlineFrom": "raw",
    "firstSeen": "2026-08-07",
    "isNew": true,
-   "extVer": 38
+   "extVer": 48
   },
   {
    "id": "6c5d2c56c02eb700",
@@ -1315,7 +1326,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "전체",
+   "inst": "현악",
    "instDetails": [
     "더블베이스",
     "바이올린",
@@ -1326,10 +1337,11 @@
    "subject": null,
    "channel": "g_i_gunsangokr",
    "layer": "B",
+   "workHours": "플루트(수석 대행): 월 평균 27시간 - 트롬본, 더블베이스, 바이올린 : 월 평균 40시간",
    "bodyExcerpt": "공고기간 : 2026. · 콘텐츠 관리부서 예술의전당관리과 시설운영계 담당전화 063-454-5529 최근수정일 2025-02-06 홈페이지 개선의견 열람하신 정보에 대해 만족 하십니까? · 모집기간 : 2026. · 모집인원 : 8명3.",
    "firstSeen": "2026-08-07",
    "isNew": true,
-   "extVer": 38
+   "extVer": 48
   },
   {
    "id": "fe31963548111aed",
@@ -1348,7 +1360,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "미성년",
-   "inst": "전체",
+   "inst": "현악",
    "instDetails": [
     "바이올린",
     "플루트",
@@ -1361,7 +1373,7 @@
    "bodyExcerpt": "공고기간 : 2026. · 접수기간 : 2026. · 콘텐츠 관리부서 예술의전당관리과 시설운영계 담당전화 063-454-5529 최근수정일 2025-02-06 홈페이지 개선의견 열람하신 정보에 대해 만족 하십니까? · 모집기간 : 2026.",
    "firstSeen": "2026-08-07",
    "isNew": true,
-   "extVer": 38
+   "extVer": 48
   },
   {
    "id": "bb53aac65cd02c60",
@@ -1391,7 +1403,7 @@
    "bodyExcerpt": "콘텐츠 관리부서 예술의전당관리과 시설운영계 담당전화 063-454-5529 최근수정일 2025-02-06 홈페이지 개선의견 열람하신 정보에 대해 만족 하십니까? · 모집기간 : 2026. · 모집인원 : 8명3. · 회원 가입 등록 기간 : 2026.",
    "firstSeen": "2026-08-07",
    "isNew": true,
-   "extVer": 38
+   "extVer": 48
   },
   {
    "id": "fc4fd1f0d720dc8e",
@@ -1410,7 +1422,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "전체",
+   "inst": "타악",
    "instDetails": [
     "타악",
     "현악",
@@ -1423,7 +1435,7 @@
    "bodyExcerpt": "콘텐츠 관리부서 예술의전당관리과 시설운영계 담당전화 063-454-5529 최근수정일 2025-02-06 홈페이지 개선의견 열람하신 정보에 대해 만족 하십니까? · 모집기간 : 2026. · 모집인원 : 8명3. · 회원 가입 등록 기간 : 2026.",
    "firstSeen": "2026-08-07",
    "isNew": true,
-   "extVer": 38
+   "extVer": 48
   },
   {
    "id": "6d3ca4c6fee816ea",
@@ -1450,7 +1462,7 @@
    "layer": "B",
    "firstSeen": "2026-08-07",
    "isNew": true,
-   "extVer": 38
+   "extVer": 48
   },
   {
    "id": "9ae19f1a33f2ae8b",
@@ -1477,17 +1489,18 @@
    "subject": null,
    "channel": "artinfo",
    "layer": "A",
-   "deadlineFrom": "raw",
+   "duty": "교향악단 공연기획, 작품선정, 관람객 유치 방안등 공연전반 - 교향악단 단원의 기량향상, 연습일정 등 관리 및 업무 전반",
    "bodyExcerpt": "모집기간 : 2026. · 14.(금) - 원서접수: 2026. · 모집분야 및 인원 모집분야: 예술감독(상임지휘자) 1명 2.",
-   "applyEmail": "rkd0365@korea.kr",
-   "applyPhone": "041-521-3416",
+   "deadlineFrom": "raw",
    "officialUrl": "https://artcheonan.kr/with/notice/?vid=100",
+   "applyPhone": "041-521-3416",
+   "applyEmail": "rkd0365@korea.kr",
    "documents": "원서접수 2026.8.12(수)~8.14(금) 방문접수 (우편접수 불가)",
    "verifiedAt": "2026-08-02",
    "verifiedNote": "천안문화재단 공지사항에서 원문 확인 — 문화예술과 게시(2026-07-31). 접수는 방문접수만 가능.",
    "firstSeen": "2026-08-02",
    "isNew": false,
-   "extVer": 38
+   "extVer": 48
   },
   {
    "id": "a680faac61c874bf",
@@ -1518,7 +1531,7 @@
    "bodyExcerpt": "※ 교향악단 예능단원 지원자께서는 경상북도 도립예술단 홈페이지를 통해 과제 악보를 다운받으시기 바랍니다.",
    "firstSeen": "2026-08-07",
    "isNew": false,
-   "extVer": 38
+   "extVer": 48
   },
   {
    "id": "589603f9a406569d",
@@ -1547,14 +1560,14 @@
    "bodyExcerpt": "11.(목) ○ 접수기간 : 2026.",
    "firstSeen": "2026-08-07",
    "isNew": false,
-   "extVer": 38
+   "extVer": 48
   },
   {
    "id": "9b608a09b88d4e76",
    "org": "안양예술고등학교(경기교육청)",
    "region": "경기",
    "source": "goe.go.kr",
-   "title": "안양예술고등학교 음악과 전공 주간실기 강사 추가채용 공고(드럼)",
+   "title": "[안양예고] 음악과 전공 주간실기 강사 추가채용",
    "nonMusic": null,
    "url": "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=55071",
    "date": "2026-08-06",
@@ -1572,18 +1585,18 @@
    "subject": null,
    "channel": "edu_goe",
    "layer": "C",
-   "deadlineFrom": "raw",
    "bodyExcerpt": "전공분야의 학사학위 이상 소지자 ※ 응시자격 제한 1) ⌜ 교육공무원법 ⌟ 제 10 조의 3( 채용의 제한 ) 제 1 항에 해당하는 자 . · 기간 : 2026. · 전형일정 구분 일정 비고 원서접수 2026. · 10.( 월 ) 11:30 까지 방문 , 우편접수 中 택 1 서류심사 2026.",
-   "firstSeen": "2026-08-06",
+   "deadlineFrom": "raw",
+   "firstSeen": "2026-08-08",
    "isNew": false,
-   "extVer": 38
+   "extVer": 48
   },
   {
    "id": "ba9397b7c7e3dd16",
    "org": "인천교육청(학교 채용)",
    "region": "인천",
    "source": "ice.go.kr",
-   "title": "[재공고] 2026 하반기 서부 학교문화예술교육 악기(예술) 강사 모집",
+   "title": "재공고 하반기 서부 학교문화예술교육 악기(예술) 강사 모집",
    "nonMusic": null,
    "url": "https://www.ice.go.kr/ice/na/ntt/selectNttInfo.do?nttSn=3380213&mi=10997&bbsId=1981",
    "date": "2026-08-06",
@@ -1618,11 +1631,11 @@
    "bodyExcerpt": "기간제교원 채용계획 사전공개 · 채용공고 알람신청 · 채용공고 상세보기 테이블 · 해당 분야 전공자 또는 관련 자격증 보유자",
    "firstSeen": "2026-08-06",
    "isNew": false,
-   "extVer": 38
+   "extVer": 48
   },
   {
    "id": "c77e3c382e39bb28",
-   "org": "제주 신라호텔",
+   "org": "에이디엔노뜨",
    "region": "제주",
    "source": "music.yonsei.ac.kr",
    "title": "제주 신라호텔 연주자 모집 공고(~8/9)",
@@ -1637,21 +1650,29 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "전체",
+   "inst": "현악",
    "instDetails": [
     "첼로",
+    "플루트",
     "피아노"
    ],
-   "personnel": null,
+   "personnel": "O명",
    "subject": null,
    "channel": "g_i_musicyonseiackr",
    "layer": "B",
    "deadlineFrom": "title",
+   "pay": "월 300만 원",
+   "perfPeriod": "2026년 12월 1일 ~ 2027년 2월 28일(3개월 장기공연)",
+   "perfPlace": "제주 신라호텔 라운지&바",
+   "perfSchedule": "주 6일 공연(일 4타임 / 타임당 40분)",
+   "teamComp": "2인 남녀 듀오 팀 구성 예정",
+   "dayOff": "화, 수 중 휴일 지정 예정",
+   "hiringOrg": "에이디엔노뜨",
    "orgBoard": "연세대학교",
    "regionBoard": "서울",
    "firstSeen": "2026-08-06",
    "isNew": false,
-   "extVer": 38
+   "extVer": 48
   },
   {
    "id": "452356fca71829a0",
@@ -1670,7 +1691,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "전체",
+   "inst": "금관",
    "instDetails": [
     "호른"
    ],
@@ -1679,13 +1700,14 @@
    "officialUrl": "https://www.mokpo.ac.kr/www/311/subview.do?enc=Zm5jdDF8QEB8JTJGYmJzJTJGd3d3JTJGMTUwJTJGMTczMjgzJTJGYXJ0Y2xWaWV3LmRvJTNGcGFnZSUzRDElMjZzcmNoQ29sdW1uJTNEJTI2c3JjaFdyZCUzRCUyNmJic0NsU2VxJTNEJTI2YmJzT3BlbldyZFNlcSUzRCUyNnJnc0JnbmRlU3RyJTNEJTI2cmdzRW5kZGVTdHIlM0QlMjZpc1ZpZXdNaW5lJTNEZmFsc2UlMjZwYXNzd29yZCUzRCUyNg%3D%3D",
    "channel": "hibrain",
    "layer": "B",
+   "subjectFrom": "attach",
    "courses": [
     "전공실기VIII",
     "º 호른 전공(클래식)"
    ],
    "firstSeen": "2026-08-06",
    "isNew": false,
-   "extVer": 38
+   "extVer": 48
   },
   {
    "id": "e585a3428c07e3b8",
@@ -1714,14 +1736,16 @@
    "bodyExcerpt": "1. 채용 과목: 음악 1명 · 2. 채용 기간: 2026. 9. 1.(화)~2027. 4. 30.(금), 8개월 · 7 제출 서류 및 전형 방법: 방문 접수, · 2026. 9. 1.자 강원특별자치도교육청특수교육원 기간제교사 채용 공고",
    "firstSeen": "2026-08-05",
    "isNew": false,
-   "extVer": 38
+   "extVer": 48,
+   "pay": "「 공무원보수규정 」 제 8조에 따라 산정된 호봉의 봉급을 지급하되 , 고정급으로 함 5복무 사항 : 원칙적으로 계약에 의하되 , 교원복무사항 등을 준용 6채용 공고 및 원서",
+   "workHours": "1일 8시간을 원칙으로 하며, 교원의 근무 시간과 동일 4"
   },
   {
    "id": "142a902f302653e2",
    "org": "월촌중학교(서울시교육청)",
    "region": "서울",
    "source": "work.sen.go.kr",
-   "title": "월촌중학교 기간제교원 채용 공고(음악)",
+   "title": "[월촌중] 기간제교원 채용 공고(음악)",
    "nonMusic": null,
    "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=107017",
    "date": "2026-08-04",
@@ -1739,18 +1763,21 @@
    "subject": null,
    "channel": "edu_seoul",
    "layer": "C",
+   "pay": "「공무원보수규정」 제8조에 따라 산정된 호봉의 봉급을 지급하되, 고정급으로 한다.(계약에 따른다.)단, 「기간제교원 봉급에 관한 예규」 제3조에 따라 정교사(1급)등의 자격변동 시 재산정 마",
+   "workPeriod": "위표와 같음. 라",
+   "workHours": "전일제 근무 바. 후생복지: 건강보험, 고용보험, 산재보험, 국민연금 가입 사. 복무: 원칙적으로 계약에 의하되, 교원 복무사항 등을 준용",
+   "bodyExcerpt": "다만, 필수항목에 대한 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다. · 제공 목적: 구직활동 지원 및 채용업무 처리 라. · 보유 및 이용 기간: 회원 탈퇴 시까지(2년) 마. · 다만, 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다.",
    "deadlineFrom": "raw",
-   "bodyExcerpt": "이용 목적: 구직활동 지원 및 채용 관련 서비스 제공 다. · 보유기간: 회원 탈퇴 시까지(2년) 라. · 제공받는자: 각급기관 채용담당자 나. · 제공 목적: 구직활동 지원 및 채용업무 처리 라.",
    "firstSeen": "2026-08-07",
    "isNew": false,
-   "extVer": 38
+   "extVer": 48
   },
   {
    "id": "7e67abaa43e684a5",
    "org": "해성국제컨벤션고등학교(서울시교육청)",
    "region": "서울",
    "source": "work.sen.go.kr",
-   "title": "해성국제컨벤션고 협력강사 채용 공고(음악과 문화 1명)",
+   "title": "[해성국제컨벤션고] 협력강사 채용 공고(음악과 문화 1명)",
    "nonMusic": null,
    "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=107035",
    "date": "2026-08-04",
@@ -1768,18 +1795,18 @@
    "subject": null,
    "channel": "edu_seoul",
    "layer": "C",
+   "bodyExcerpt": "다만, 필수항목에 대한 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다. · 제공 목적: 구직활동 지원 및 채용업무 처리 라. · 보유 및 이용 기간: 회원 탈퇴 시까지(2년) 마. · 다만, 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다.",
    "deadlineFrom": "raw",
-   "bodyExcerpt": "이용 목적: 구직활동 지원 및 채용 관련 서비스 제공 다. · 보유기간: 회원 탈퇴 시까지(2년) 라. · 제공받는자: 각급기관 채용담당자 나. · 제공 목적: 구직활동 지원 및 채용업무 처리 라.",
    "firstSeen": "2026-08-04",
    "isNew": false,
-   "extVer": 38
+   "extVer": 48
   },
   {
    "id": "834aa6e0e8fb4e35",
    "org": "해성국제컨벤션고등학교(서울시교육청)",
    "region": "서울",
    "source": "work.sen.go.kr",
-   "title": "해성국제컨벤션고 협력강사 채용 공고(음악 감상과 비평 1명)",
+   "title": "[해성국제컨벤션고] 협력강사 채용 공고(음악 감상과 비평 1명)",
    "nonMusic": null,
    "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=107034",
    "date": "2026-08-04",
@@ -1797,44 +1824,11 @@
    "subject": null,
    "channel": "edu_seoul",
    "layer": "C",
-   "bodyExcerpt": "이용 목적: 구직활동 지원 및 채용 관련 서비스 제공 다. · 보유기간: 회원 탈퇴 시까지(2년) 라. · 제공받는자: 각급기관 채용담당자 나. · 제공 목적: 구직활동 지원 및 채용업무 처리 라.",
+   "bodyExcerpt": "다만, 필수항목에 대한 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다. · 제공 목적: 구직활동 지원 및 채용업무 처리 라. · 보유 및 이용 기간: 회원 탈퇴 시까지(2년) 마. · 다만, 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다.",
    "deadlineFrom": "raw",
    "firstSeen": "2026-08-08",
    "isNew": false,
-   "extVer": 38
-  },
-  {
-   "id": "f2218434566f0c14",
-   "org": "천안시립교향악단",
-   "region": "충남",
-   "source": "music.yonsei.ac.kr",
-   "title": "천안시립교향악단 예술감독(상임지휘자) 모집(~8/14)",
-   "nonMusic": null,
-   "url": "https://music.yonsei.ac.kr/music/notice1.do?mode=view&articleNo=475942&article.offset=0&articleLimit=10",
-   "date": "2026-08-04",
-   "deadline": "2026-08-14",
-   "kind": "지휘",
-   "tier": "연주",
-   "obri": false,
-   "certReq": "무관",
-   "degreeReq": "무관",
-   "careerReq": "미기재",
-   "ageGroup": "성인",
-   "inst": "지휘",
-   "instDetails": [
-    "지휘"
-   ],
-   "personnel": null,
-   "subject": null,
-   "channel": "g_i_musicyonseiackr",
-   "layer": "B",
-   "deadlineFrom": "title",
-   "bodyExcerpt": "공고기간 : 2026. · 원서접수 : 2026. · 접수장소 : 천안시청 문화예술과 (11층, 예술진흥팀) 라. · 접수방법 : 근무시간 내 방문 접수 (우편접수 불가) * 자세한 내용은 붙임파일 참고 바랍니다.",
-   "orgBoard": "연세대학교",
-   "regionBoard": "서울",
-   "firstSeen": "2026-08-04",
-   "isNew": false,
-   "extVer": 38
+   "extVer": 48
   },
   {
    "id": "edcd1f8a1163e5ab",
@@ -1860,20 +1854,21 @@
    "officialUrl": "https://www.gnue.ac.kr/planweb/board/view.9is?boardUid=4a9f18ab5cf30bb3015cf67b6f0702b8&contentUid=4a9f18ab5c48fe8c015c86267b260235&dataUid=4a9f18ab5ea9092f015eb81025a12642&layoutUid=&nttId=9016564&portalBoardId=BBSMSTR_000000000566",
    "channel": "hibrain",
    "layer": "B",
+   "subjectFrom": "attach",
    "courses": [
     "음악교육",
     "*실기과목의 경우"
    ],
    "firstSeen": "2026-08-04",
    "isNew": false,
-   "extVer": 38
+   "extVer": 48
   },
   {
    "id": "1c3f7021c8613ca5",
    "org": "제주교육청(채용·시험)",
    "region": "제주",
    "source": "jje.go.kr",
-   "title": "삼양초 특수학급 방과후 프로그램 (음악) 외부 강사 모집",
+   "title": "[삼양초] 특수학급 방과후 프로그램 (음악) 외부 강사 모집",
    "nonMusic": null,
    "url": "https://www.jje.go.kr/board/view.jje?boardId=BBS_0000507&menuCd=DOM_000000103003009000&orderBy=REGISTER_DATE DESC&paging=ok&startPage=1&dataSid=1476635",
    "date": "2026-08-03",
@@ -1895,14 +1890,14 @@
    "bodyExcerpt": "모집 분야 및 인원",
    "firstSeen": "2026-08-03",
    "isNew": false,
-   "extVer": 38
+   "extVer": 48
   },
   {
    "id": "ba538191e3f65442",
    "org": "통영국제음악재단",
    "region": "경남",
    "source": "timf.org",
-   "title": "2026 꿈의 오케스트라 통영 하반기 신규 단원 모집(~9.17.)",
+   "title": "꿈의 오케스트라 통영 하반기 신규 단원 모집(~9.17.)",
    "nonMusic": null,
    "url": "https://www.timf.org/kr/sub/timf/notice.asp?mode=view&bid=1&s_type=&s_keyword=&s_cate=&idx=3796&page=1",
    "date": "2026-07-31",
@@ -1923,7 +1918,7 @@
    "deadlineFrom": "title",
    "firstSeen": "2026-07-31",
    "isNew": false,
-   "extVer": 38
+   "extVer": 48
   },
   {
    "id": "75b0e58f4b8192e4",
@@ -1942,7 +1937,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "전체",
+   "inst": "타악",
    "instDetails": [
     "타악",
     "피아노",
@@ -1953,11 +1948,11 @@
    "subject": null,
    "channel": "g_i_gunsangokr",
    "layer": "B",
-   "deadlineFrom": "raw",
    "bodyExcerpt": "공고기간 : 2026. · 접수기간 : 2026. · 콘텐츠 관리부서 예술의전당관리과 시설운영계 담당전화 063-454-5529 최근수정일 2025-02-06 홈페이지 개선의견 열람하신 정보에 대해 만족 하십니까? · 모집기간 : 2026.",
+   "deadlineFrom": "raw",
    "firstSeen": "2026-07-29",
    "isNew": false,
-   "extVer": 38
+   "extVer": 48
   },
   {
    "id": "ddd6789490369cc1",
@@ -1986,14 +1981,14 @@
    "layer": "B",
    "firstSeen": "2026-08-02",
    "isNew": false,
-   "extVer": 38
+   "extVer": 48
   },
   {
    "id": "ba73b6b1fbdcb18a",
    "org": "파주문화재단",
    "region": "경기",
    "source": "pajucf.or.kr",
-   "title": "[파주문화재단 공고 제2026-48호] 2026 꿈의 오케스트라 파주 신규 단원 모집 공고(바이올린1, 플룻1) 2026-07-28",
+   "title": "파주문화재단 꿈의 오케스트라 신규 단원 모집",
    "nonMusic": null,
    "url": "https://www.pajucf.or.kr/community/notice.php?admin_mode=read&no=426&page=1",
    "date": "2026-07-28",
@@ -2007,24 +2002,25 @@
    "ageGroup": "성인",
    "inst": "현악",
    "instDetails": [
-    "바이올린"
+    "바이올린",
+    "플루트"
    ],
-   "personnel": null,
+   "personnel": "2개 파트, 총 2명 氠瑢 모집파트 모집인원 바이올린 1명 플룻 1명",
    "subject": null,
    "channel": "g_pajucf",
    "layer": "B",
-   "deadlineFrom": "raw",
    "bodyExcerpt": "홈페이지 회원 가입 및 관리 회원 가입 의사 확인, 회원제 서비스 제공에 따른 본인 식별 · 인증, 회원자격 유지 · 개인영상정보의 확인 방법 및 장소에 관한 사항 - 확인 방법: 영상정보 관리담당자(접근권한자)의 안내에 따라 신청 후 본 기관을 방문하시면 확인할 수 있습니다. · 확인장소 : 해당부서 해당팀 6.",
+   "deadlineFrom": "raw",
    "firstSeen": "2026-08-05",
    "isNew": false,
-   "extVer": 38
+   "extVer": 48
   },
   {
    "id": "f6aa2aa67ffa4f82",
    "org": "한솔중학교(세종교육청)",
    "region": "세종",
    "source": "sje.go.kr",
-   "title": "한솔중학교 방과후학교 프로그램 개인위탁 외부강사 모집 공고(기악합주)",
+   "title": "[한솔중] 방과후학교 프로그램 개인위탁 외부강사 모집 공고(기악합주)",
    "nonMusic": null,
    "url": "https://www.sje.go.kr/sje/na/ntt/selectNttInfo.do?nttSn=3070633&mi=52132&bbsId=108",
    "date": "2026-07-27",
@@ -2047,14 +2043,15 @@
    "bodyExcerpt": "모집 분야 및 인원 · 모집 세부 사항 · 2학기 계약제교원[도덕윤리(일반사회, 지리 지원 가능)] 채용 4차 공고 · 2026학년도 학교자율장학 수업참관지ㅐ원 시간강사 채용",
    "firstSeen": "2026-07-29",
    "isNew": false,
-   "extVer": 38
+   "extVer": 48,
+   "workPeriod": "2026.8.31.(월)∼ 2027.1.22.(금)(단 , 방과후학교 예정 시간(시수)범위 내로 하며 , 학사 일정상 단축될 수 있음)2)수당 : 1시간당(45분 기준)50,000원 3)"
   },
   {
    "id": "f1b923041a2add95",
    "org": "서울하늘초등학교(서울시교육청)",
    "region": "서울",
    "source": "work.sen.go.kr",
-   "title": "(서울하늘초) 1~2학년 스마트체육 음악줄넘기 강사 채용",
+   "title": "[서울하늘초] 1~2학년 스마트체육 음악줄넘기 강사 채용",
    "nonMusic": null,
    "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=105917",
    "date": "2026-07-20",
@@ -2068,22 +2065,22 @@
    "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
-   "personnel": null,
+   "personnel": "1명 라. 보 수 : 232만원",
    "subject": null,
    "channel": "edu_seoul",
    "layer": "C",
+   "bodyExcerpt": "다만, 필수항목에 대한 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다. · 제공 목적: 구직활동 지원 및 채용업무 처리 라. · 보유 및 이용 기간: 회원 탈퇴 시까지(2년) 마. · 다만, 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다.",
    "deadlineFrom": "raw",
-   "bodyExcerpt": "이용 목적: 구직활동 지원 및 채용 관련 서비스 제공 다. · 보유기간: 회원 탈퇴 시까지(2년) 라. · 제공받는자: 각급기관 채용담당자 나. · 제공 목적: 구직활동 지원 및 채용업무 처리 라.",
    "firstSeen": "2026-07-24",
    "isNew": false,
-   "extVer": 38
+   "extVer": 48
   },
   {
    "id": "4ab6131bb9721cf5",
    "org": "통영시민오케스트라",
    "region": "경남",
    "source": "timf.org",
-   "title": "2026 통영시민오케스트라 신규단원 모집",
+   "title": "통영시민오케스트라 신규단원 모집",
    "nonMusic": null,
    "url": "https://www.timf.org/kr/sub/timf/notice.asp?mode=view&bid=1&s_type=&s_keyword=&s_cate=&idx=3788&page=1",
    "date": "2026-07-20",
@@ -2105,7 +2102,7 @@
    "orgBoard": "통영국제음악재단",
    "firstSeen": "2026-07-21",
    "isNew": false,
-   "extVer": 38
+   "extVer": 48
   },
   {
    "id": "5fae0da2b09724ca",
@@ -2133,14 +2130,14 @@
    "orgBoard": "통영국제음악재단",
    "firstSeen": "2026-08-07",
    "isNew": false,
-   "extVer": 38
+   "extVer": 48
   },
   {
    "id": "08982b2dad9606e0",
    "org": "서울하늘초등학교(서울시교육청)",
    "region": "서울",
    "source": "work.sen.go.kr",
-   "title": "(서울하늘초) 5~6학년 스마트체육 음악줄넘기 강사 채용",
+   "title": "[서울하늘초] 5~6학년 스마트체육 음악줄넘기 강사 채용",
    "nonMusic": null,
    "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=105014",
    "date": "2026-07-10",
@@ -2154,34 +2151,35 @@
    "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
-   "personnel": null,
+   "personnel": "1명 마. 보 수 : 408만원",
    "subject": null,
    "channel": "edu_seoul",
    "layer": "C",
-   "bodyExcerpt": "이용 목적: 구직활동 지원 및 채용 관련 서비스 제공 다. · 보유기간: 회원 탈퇴 시까지(2년) 라. · 제공받는자: 각급기관 채용담당자 나. · 제공 목적: 구직활동 지원 및 채용업무 처리 라.",
+   "ageLimit": "제한 없음 나. 국가공무원법 제33조에 의한 결격사유가 없는 자 다. 채용분야별 자격요건을 갖춘 자(해당분야 전공자 및 자격증 소지자)",
+   "bodyExcerpt": "다만, 필수항목에 대한 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다. · 제공 목적: 구직활동 지원 및 채용업무 처리 라. · 보유 및 이용 기간: 회원 탈퇴 시까지(2년) 마. · 다만, 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다.",
    "deadlineFrom": "raw",
    "firstSeen": "2026-08-08",
    "isNew": false,
-   "extVer": 38
+   "extVer": 48
   },
   {
    "id": "273f37b66262b5fb",
-   "org": "조선대학교여자중학교",
+   "org": "학생오케스트라",
    "region": "광주·전남",
    "source": "gen.go.kr",
-   "title": "조선대학교여자중학교 학생오케스트라 운영 위탁강사 채용",
+   "title": "[조선대여중] 학생오케스트라 운영 위탁강사 채용",
    "nonMusic": null,
    "url": "https://www.gen.go.kr/xboard/board.php?mode=view&number=457400&tbnum=32&sCat=0&page=1&keyset=&searchword=",
    "date": "2026-06-26",
    "deadline": null,
    "kind": "강사",
-   "tier": "교육 — 대학",
+   "tier": "미분류",
    "obri": false,
    "certReq": "예",
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "전체",
+   "inst": "현악",
    "instDetails": [
     "더블베이스",
     "첼로",
@@ -2195,36 +2193,7 @@
    "orgBoard": "광주교육청(구인)",
    "firstSeen": "2026-08-07",
    "isNew": false,
-   "extVer": 38
-  },
-  {
-   "id": "701a8afdc1336fcf",
-   "org": "여수예울마루",
-   "region": "광주·전남",
-   "source": "yeulmaru.org",
-   "title": "GS칼텍스 예울마루 (추경)예술기반 청년일자리(연수단원) 채용 공고 예술사업팀 2026-06-17 조회수 : 775",
-   "nonMusic": null,
-   "url": "https://www.yeulmaru.org/community/v/3174/?&p=1&keyword=",
-   "date": "2026-06-17",
-   "deadline": "2026-08-08",
-   "kind": "단원",
-   "tier": "연주",
-   "obri": false,
-   "certReq": "무관",
-   "degreeReq": "무관",
-   "careerReq": "미기재",
-   "ageGroup": "성인",
-   "inst": "전체",
-   "instDetails": [],
-   "personnel": null,
-   "subject": null,
-   "channel": "g_yeulmaru",
-   "layer": "B",
-   "deadlineFrom": "raw",
-   "bodyExcerpt": "폐강 기준 수강 정원의 50% 미만일 경우 (*30명 정원 강좌 : 15명 미만 시/20명 정원 강좌 : 10명 미만 시) 2. · GS 칼텍스 예울마루는 한국문화예술위원회의 「 2026 년 문화예술연수단원 지원사업 」 일환으로 아래와 같이 문화예술 연수단원을 모집합니다 . · 근무조건 • 급여 : 2,299,000 원 ( 세전 ) * 주휴수당 포함 , 4 대보험 및 세금 포함 ( 중식 제공 ) • 근무 기간 : 2026. ·",
-   "firstSeen": "2026-08-08",
-   "isNew": false,
-   "extVer": 38
+   "extVer": 48
   },
   {
    "id": "938165ada169e635",
@@ -2255,7 +2224,7 @@
    "orgBoard": "대구문화예술회관 공지(시립합창단)",
    "firstSeen": "2026-08-02",
    "isNew": false,
-   "extVer": 38
+   "extVer": 48
   }
  ]
 }

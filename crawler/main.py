@@ -5,11 +5,11 @@ from bs4 import BeautifulSoup
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import (new_session, get, relevant, extract_deadline, priority_deadlines, deadline_from_title,
-                    musician_relevant, youth_member, participant_only, parse_recruit_table, summarize_recruit, find_position,
+                    musician_relevant, youth_member, participant_only, school_title, parse_recruit_table, summarize_recruit, find_position,
                     classify_insts, find_subject, find_music_subjects, find_music_courses,
                     classify_kind, classify_tier, is_obri, cert_required, degree_req, career_req, age_group,
                     region_from, EXCLUDE, compact_title, music_only_title, body_text,
-                    insts_from_recruit_text, tls_blocked, curl_get)
+                    insts_from_recruit_text, tls_blocked, curl_get, extract_fields)
 from sources import SOURCES
 from institutions import INSTITUTIONS
 import attach
@@ -241,7 +241,7 @@ def find_attachments(soup, base_url):
                     cands.append((full, el.get_text(" ", strip=True)))
     return cands[:4]
 
-EXT_VER = 38         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
+EXT_VER = 48         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
                      # v32(2026-08-02): 모집분야 구획 악기 추출(insts_from_recruit_text) + 원문 보관층
                      # 24: work.sen 등록일(게시일) 추출 추가 — date=None이던 승계분을 다시 뽑게
                      # 25: body_text 도입 — 본문을 <header>에 넣는 사이트(대전교육청)의 마감일을
@@ -388,6 +388,11 @@ _EXCERPT_SKIP = re.compile(
     r"|최종 ?합격|합격자|불합격|합격 ?발표|채용 ?결과|선정 ?결과|낙찰|입찰 ?결과|계약 ?체결|티켓|추가 ?오픈"
     r"|채용 ?비리|비리 ?신고|신고 ?센터|공공기관 채용|청탁|개인정보|저작권|이용약관|고객센터"
     r"|용역|평가위원|단장 ?공개"
+    # 개인정보 수집·이용 동의표. '개인정보'라는 낱말이 표 제목에만 있고 각 줄에는 없어서
+    # 기존 규칙을 통과해 요약에 실렸다 — '이용 목적: 구직활동 지원 및…', '보유기간: 회원
+    # 탈퇴 시까지(2년)', '제공받는자: 각급기관 채용담당자' (2026-08-08 사용자 지적).
+    # 지원자에게 아무 정보도 주지 않는 줄이다.
+    r"|이용 ?목적|보유 ?기간|제공받는 ?자|수집 ?항목|수집·?이용|제3자 ?제공|동의 ?여부|처리 ?방침"
     r"|\[채용공고\]|\[공지\]|\[입찰\]|\[결과\]|\[알림\]"
     # 게시판 메뉴 항목이 본문으로 긁힌 경우 (경기교육청: '교직원 온라인 채용', '구)자원봉사자모집')
     r"|온라인 ?채용$|^구 ?\)|자원봉사자 ?모집$"
@@ -809,12 +814,37 @@ def _refill_from_raw(items, today):
      틀렸다. 마감 없는 67건 전부 실제로 방문돼 있었다 — 진짜 원인은 모집단 변화로,
      마감일이 원래 없는 교회 상시 공고가 대거 들어온 것이었다.)
     """
-    n_ex = n_dl = 0
+    n_ex = n_dl = n_fd = 0
     for it in items:
         raw = rawstore.load(it.get("id"))
         page = (raw or {}).get("page")
         if not page:
             continue
+        # 급여·근무기간·근무시간·담당업무·나이 — 공고문이 '라벨 : 값'으로 적어 둔 것을 항목으로
+        # 세운다. 본문 발췌는 문장을 골라 오는 것이라 조건을 한눈에 보기 어렵다
+        # (2026-08-08 사용자 가이던스).
+        fields = extract_fields(rawstore.all_text(it["id"]))
+        if fields:
+            for k, v in fields.items():
+                # 파서가 채운 값이 있으면 그쪽이 우선. 단 setdefault 는 키가 None 으로 이미
+                # 있으면 그냥 넘어간다 — make_item 이 personnel 을 None 으로 만들어 두기
+                # 때문에 '모집 인원: O명'이 영영 안 실렸다 (2026-08-08).
+                if not it.get(k):
+                    it[k] = v
+            n_fd += 1
+            # 공고문이 '구인 회사명'을 직접 밝혔으면 그게 고용주다. 게시판 주인도, 제목 맨 앞
+            # 이름도 아니다 — 제주 신라호텔 공고는 연세대 게시판에 올라왔고 제목은 호텔
+            # 이름으로 시작하지만, 실제로 뽑는 곳은 에이디엔노뜨이고 호텔은 공연 장소다.
+            ho = fields.get("hiringOrg")
+            if ho and 2 <= len(ho) <= 30 and ho != it.get("org"):
+                it["orgBoard"] = it.get("org")
+                it["org"] = ho
+                # 게시판이 고용주가 아니면 게시판에서 따온 지역도 못 믿는다. _fix_org_from_title
+                # 에도 같은 보정이 있지만 이 항목은 거기서 건너뛰므로 여기서 해 준다 —
+                # 안 하면 제주 신라호텔 공고가 연세대 게시판 때문에 서울로 남는다.
+                rg = region_from(f"{it.get('title','')} {fields.get('perfPlace','')}")
+                if rg and rg != "기타" and rg != it.get("region"):
+                    it["regionBoard"], it["region"] = it.get("region"), rg
         if not it.get("bodyExcerpt"):
             # 보관된 본문은 공백으로 이어붙인 한 덩어리다 — 줄 단위로 고르는 요약기가
             # 쓰도록 문장 끝·구분점에서 줄을 나눠 준다.
@@ -838,8 +868,8 @@ def _refill_from_raw(items, today):
                 it["deadline"] = dl
                 it["deadlineFrom"] = "raw"
                 n_dl += 1
-    if n_ex or n_dl:
-        log(f"원문 보관층에서 복구: 요약 {n_ex}건 · 마감 {n_dl}건")
+    if n_ex or n_dl or n_fd:
+        log(f"원문 보관층에서 복구: 요약 {n_ex}건 · 마감 {n_dl}건 · 조건항목 {n_fd}건")
 
 
 # 제목 맨 앞에 박힌 기관명. 게시판 주인이 아니라 **실제 뽑는 곳**이다.
@@ -867,6 +897,10 @@ def _fix_org_from_title(items):
     """
     fixed = []
     for it in items:
+        # 공고문이 '구인 회사명'을 밝혀 이미 기관을 정한 항목은 건드리지 않는다. 제목 맨 앞은
+        # 공연 장소일 수 있다 — 제주 신라호텔 공고의 고용주는 에이디엔노뜨다 (2026-08-08).
+        if it.get("hiringOrg"):
+            continue
         m = _ORG_IN_TITLE.match(it.get("title") or "")
         if not m:
             continue
@@ -902,6 +936,51 @@ def _span_days(a, b):
         return 0
 
 
+# 게시판이 목록 칸 너비에 맞춰 제목을 잘라 놓은 흔적
+_TRUNCATED = re.compile(r"(?:_+|\.{2,}|…|·{2,})\s*$")
+# 잘린 제목의 뒤를 상세 원문에서 이어 붙일 때, 여기서 멈춘다 (게시판 표의 다음 칸)
+_TITLE_TAIL = ("작성일", "등록일", "게시일", "조회", "작성자", "분류", "공유", "프린트",
+               "첨부", "담당부서", "채용여부", "연락처")
+
+
+def _repair_titles(items):
+    """게시판에서 잘려 온 제목의 뒤를 상세 원문에서 되찾는다.
+
+    목록의 제목 칸은 너비가 정해져 있어 긴 제목이 '…' 이나 '_' 로 끊긴다. 우리는 그 목록
+    글자를 그대로 제목으로 삼아 왔기 때문에 카드에도 잘린 채 실렸다
+    ('대전선암초등학교 계약제교원(기간제교사-음악)채용_...' — 2026-08-08 사용자 지적).
+    상세 페이지에는 온전한 제목이 있으므로, 잘린 앞부분을 실마리로 찾아 뒤를 잇는다.
+    """
+    fixed = 0
+    for it in items:
+        t = (it.get("title") or "").strip()
+        if not _TRUNCATED.search(t):
+            continue
+        page = (rawstore.load(it.get("id")) or {}).get("page") or ""
+        if not page:
+            continue
+        stem = _TRUNCATED.sub("", t).strip()
+        if len(stem) < 8:
+            continue
+        page1 = re.sub(r"\s+", " ", page)
+        i = page1.find(stem)
+        if i < 0:
+            continue
+        end = len(page1)
+        for w in _TITLE_TAIL:                      # 제목 뒤에 오는 표의 다음 칸에서 끊는다
+            j = page1.find(w, i + len(stem))
+            if j > 0:
+                end = min(end, j)
+        full = page1[i:min(end, i + len(stem) + 40)].strip()
+        if len(full) > len(stem) + 1:
+            it["title"] = compact_title(music_only_title(full))
+            it["title"] = school_title(it["title"], it.get("org"))
+            fixed += 1
+    if fixed:
+        log(f"잘린 제목 복원 {fixed}건")
+    return fixed
+
+
 def _drop_reposts(items):
     """같은 기관이 같은 제목으로 여러 번 올린 재공고는 최신 것만 남긴다.
 
@@ -910,9 +989,16 @@ def _drop_reposts(items):
     두 건으로 나란히 떠 있었다 (2026-08-08 버그 브리핑).
     지원자에게는 같은 자리 하나이므로 최신 회차만 남기는 게 맞다.
     """
+    # 같은 자리인데 제목 끝에 마감 표기만 다르게 붙은 경우가 있다 — 천안시립교향악단
+    # 예술감독 공고가 '…모집' 과 '…모집(~8/14)' 두 건으로 떴다(하나는 대학 게시판 경유).
+    # 비교할 때는 그 표기와 공백을 지운 뒤 견준다 (2026-08-08).
+    def _key_title(t):
+        t = re.sub(r"[(（]\s*[~∼]\s*[\d./]+\s*[)）]", "", t or "")
+        return re.sub(r"\s+", "", t)
+
     best = {}
     for it in items:
-        k = ((it.get("org") or "").strip(), (it.get("title") or "").strip())
+        k = ((it.get("org") or "").strip(), _key_title(it.get("title")))
         cur = best.get(k)
         if cur is None or (it.get("date") or "") > (cur.get("date") or ""):
             best[k] = it
@@ -1419,6 +1505,7 @@ def run(force_all=False):
     # 대학 전체 강사 초빙 중 첨부 확인 결과 음악 교과목이 전혀 없던 공고는 제외(비음악 확정)
     final = [i for i in final if not i.get("nonMusic")]
     _refill_from_raw(final, today)
+    _repair_titles(final)
     # 게시판 주인이 아니라 실제 뽑는 기관을 org로. overrides 앞에 두어 사람이 손수 넣은
     # 기관명이 있으면 그쪽이 최종적으로 이기게 한다.
     _fix_org_from_title(final)
@@ -1508,6 +1595,9 @@ def run(force_all=False):
         it["obri"] = is_obri(it["title"], it.get("org", ""))
         # 제목 정리도 순수 함수 — 압축 규칙(compact_title)을 승계 항목에 최신 로직으로 재적용
         it["title"] = compact_title(music_only_title(it["title"]))
+        # 학교 약칭도 여기서 함께 재적용한다 — 승계로 들어온 항목은 수집 시점의 규칙만
+        # 거쳤으므로, 이걸 빼면 규칙을 새로 넣은 날 기존 분이 옛 제목으로 남는다.
+        it["title"] = school_title(it["title"], it.get("org"))
         # 자격 필드 — 본문(자격·요약)까지 반영해 정확도 향상
         qtext = " ".join(str(it.get(f, "") or "") for f in ("title", "qualification", "bodyExcerpt", "recruitSummary"))
         it["certReq"] = cert_required(it["tier"], it["title"], qtext)
