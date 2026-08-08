@@ -12,3 +12,7 @@ id = "9cef89cc702c4ae6acdc27b81b87842a"
 #   npx wrangler secret put ADMIN_KEY
 #   npx wrangler secret put TELEGRAM_BOT_TOKEN
 #   npx wrangler secret put TELEGRAM_CHAT_ID
+
+# 미리보기 URL(*-podium-feedback...)은 만들지 않는다. 같은 코드가 여러 주소로 열려 있을
+# 이유가 없고, 그 주소들은 CORS 허용 목록에도 없어 혼란만 준다.
+preview_urls = false

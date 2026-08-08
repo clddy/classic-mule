@@ -30,7 +30,7 @@ function cors(origin) {
   return {
     "Access-Control-Allow-Origin": allow,
     "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
-    "Access-Control-Allow-Headers": "Content-Type",
+    "Access-Control-Allow-Headers": "Content-Type, X-Admin-Key",
     "Access-Control-Max-Age": "86400",
   };
 }
@@ -57,17 +57,27 @@ async function ipHash(ip) {
   return [...new Uint8Array(buf)].slice(0, 8).map(b => b.toString(16).padStart(2, "0")).join("");
 }
 
+// 보낸 결과를 짧은 문자열로 돌려준다. 예전엔 실패를 통째로 삼켰는데, 그러면 알림이
+// 안 올 때 원인을 볼 방법이 없다 — 토큰이 틀린 건지 대화방 id가 틀린 건지, 아니면
+// 애초에 호출조차 안 된 건지 구분이 안 됐다 (2026-08-08).
+// 피드백 저장은 이미 끝난 뒤라 여기서 실패해도 흐름은 막지 않는다.
 async function notifyTelegram(env, item) {
-  if (!env.TELEGRAM_BOT_TOKEN || !env.TELEGRAM_CHAT_ID) return;
+  if (!env.TELEGRAM_BOT_TOKEN) return "토큰 없음";
+  if (!env.TELEGRAM_CHAT_ID) return "대화방 id 없음";
   const text = `📮 포디엄 피드백\n\n${item.message}\n\n— ${item.page || "?"}`;
   try {
-    await fetch(`https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN}/sendMessage`, {
+    const r = await fetch(`https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN}/sendMessage`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ chat_id: env.TELEGRAM_CHAT_ID, text }),
     });
+    const d = await r.json().catch(() => ({}));
+    if (d && d.ok) return "ok";
+    // 텔레그램이 돌려주는 사유를 그대로 남긴다("chat not found", "Unauthorized" 등).
+    // 토큰 자체는 여기 안 실린다.
+    return `실패: ${d.description || r.status}`;
   } catch (e) {
-    // 텔레그램이 죽어도 피드백 저장은 이미 끝났다 — 삼키고 넘어간다
+    return `실패: ${e.name}`;
   }
 }
 
@@ -109,14 +119,38 @@ async function submit(req, env, origin) {
   // 키를 '역순 타임스탬프'로 만들어 KV 목록이 최신순으로 나오게 한다.
   // KV list는 키 오름차순만 주는데, 큰 수에서 뺀 값을 쓰면 최신이 앞에 온다.
   const rev = (9999999999999 - Date.now()).toString().padStart(13, "0");
+  // 알림 결과를 항목에 함께 적어 둔다 — 관리자 페이지에서 '텔레그램이 안 갔다'를 볼 수 있게.
+  item.tg = await notifyTelegram(env, item);
   await env.FEEDBACK.put(`fb:${rev}:${item.id}`, JSON.stringify(item));
-
-  await notifyTelegram(env, item);
   return json({ ok: true }, 200, origin);
 }
 
-async function list(url, env, origin) {
-  if (!keyOk(url.searchParams.get("key"), env.ADMIN_KEY)) {
+// 열쇠는 헤더로 받는다. 주소창(쿼리스트링)에 실으면 브라우저 기록·중간 로그에 그대로 남는다.
+function adminKey(req, url) {
+  return req.headers.get("X-Admin-Key") || url.searchParams.get("key") || "";
+}
+
+
+async function diag(req, url, env, origin) {
+  if (!keyOk(adminKey(req, url), env.ADMIN_KEY)) {
+    return json({ ok: false, error: "열쇠가 맞지 않습니다" }, 401, origin);
+  }
+  const out = { hasToken: !!env.TELEGRAM_BOT_TOKEN, hasChatId: !!env.TELEGRAM_CHAT_ID };
+  if (env.TELEGRAM_BOT_TOKEN) {
+    // 어느 봇인지 확인 — 토큰이 다른 봇의 것이면 여기서 이름이 다르게 나온다
+    try {
+      const r = await fetch(`https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN}/getMe`);
+      const d = await r.json();
+      out.bot = d.ok ? `@${d.result.username}` : `실패: ${d.description}`;
+    } catch (e) { out.bot = `실패: ${e.name}`; }
+  }
+  out.send = await notifyTelegram(env, { message: "진단 발송 — 이 메시지가 보이면 알림 경로 정상", page: "/diag" });
+  return json({ ok: true, ...out }, 200, origin);
+}
+
+
+async function list(req, url, env, origin) {
+  if (!keyOk(adminKey(req, url), env.ADMIN_KEY)) {
     return json({ ok: false, error: "열쇠가 맞지 않습니다" }, 401, origin);
   }
   const res = await env.FEEDBACK.list({ prefix: "fb:", limit: 200 });
@@ -128,8 +162,8 @@ async function list(url, env, origin) {
   return json({ ok: true, items }, 200, origin);
 }
 
-async function mark(url, env, origin, read) {
-  if (!keyOk(url.searchParams.get("key"), env.ADMIN_KEY)) {
+async function mark(req, url, env, origin, read) {
+  if (!keyOk(adminKey(req, url), env.ADMIN_KEY)) {
     return json({ ok: false, error: "열쇠가 맞지 않습니다" }, 401, origin);
   }
   const k = url.searchParams.get("k");
@@ -149,9 +183,10 @@ export default {
     if (req.method === "OPTIONS") return new Response(null, { status: 204, headers: cors(origin) });
 
     if (url.pathname === "/api/feedback" && req.method === "POST") return submit(req, env, origin);
-    if (url.pathname === "/api/list" && req.method === "GET") return list(url, env, origin);
-    if (url.pathname === "/api/read" && req.method === "POST") return mark(url, env, origin, true);
-    if (url.pathname === "/api/unread" && req.method === "POST") return mark(url, env, origin, false);
+    if (url.pathname === "/api/list" && req.method === "GET") return list(req, url, env, origin);
+    if (url.pathname === "/api/diag" && req.method === "GET") return diag(req, url, env, origin);
+    if (url.pathname === "/api/read" && req.method === "POST") return mark(req, url, env, origin, true);
+    if (url.pathname === "/api/unread" && req.method === "POST") return mark(req, url, env, origin, false);
 
     return json({ ok: false, error: "없는 경로" }, 404, origin);
   },

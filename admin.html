@@ -29,7 +29,9 @@
   <div class="key-row">
     <input type="password" id="key" placeholder="관리자 열쇠" autocomplete="current-password">
     <button id="load">열기</button>
+    <button id="diag" title="텔레그램 알림 경로 점검">알림 점검</button>
   </div>
+  <div id="diagout" style="font-size:.85rem;opacity:.75;margin:-8px 0 16px"></div>
 
   <div id="out"><div class="empty">열쇠를 넣고 <b>열기</b>를 누르세요.</div></div>
 </div>
@@ -43,6 +45,9 @@ const esc = s => String(s ?? "").replace(/&/g, "&amp;").replace(/</g, "&lt;").re
 
 // 열쇠는 이 브라우저에만 남는다 — 사이트 소스에는 들어가지 않는다.
 $("#key").value = localStorage.getItem("podium_admin_key") || "";
+
+// 열쇠는 헤더로 보낸다. 주소창에 실으면 브라우저 기록과 중간 로그에 그대로 남는다.
+const hdr = () => ({ "X-Admin-Key": $("#key").value.trim() });
 
 function fmt(at) {
   try {
@@ -62,7 +67,8 @@ function render(items) {
     `<div class="meta" style="margin-bottom:14px;opacity:.7;font-size:.85rem">전체 ${items.length}건 · 안 읽음 ${unread}건</div>` +
     items.map(i => `
       <div class="fb-item ${i.read ? "" : "unread"}">
-        <div class="meta"><span>${fmt(i.at)}</span><span>${esc(i.page || "")}</span></div>
+        <div class="meta"><span>${fmt(i.at)}</span><span>${esc(i.page || "")}</span>
+          ${i.tg && i.tg !== "ok" ? `<span style="color:#b00">알림 ${esc(i.tg)}</span>` : ""}</div>
         <div class="body">${esc(i.message)}</div>
         <div class="act"><button data-k="${esc(i._key)}" data-read="${i.read ? 1 : 0}">
           ${i.read ? "안 읽음으로" : "읽음 처리"}</button></div>
@@ -71,8 +77,8 @@ function render(items) {
   out.querySelectorAll(".act button").forEach(b => b.addEventListener("click", async () => {
     const path = b.dataset.read === "1" ? "unread" : "read";
     b.disabled = true;
-    await fetch(`${API}/api/${path}?key=${encodeURIComponent($("#key").value)}&k=${encodeURIComponent(b.dataset.k)}`,
-                { method: "POST" });
+    await fetch(`${API}/api/${path}?k=${encodeURIComponent(b.dataset.k)}`,
+                { method: "POST", headers: hdr() });
     load();
   }));
 }
@@ -83,7 +89,7 @@ async function load() {
   localStorage.setItem("podium_admin_key", key);
   $("#out").innerHTML = '<div class="empty">불러오는 중…</div>';
   try {
-    const r = await fetch(`${API}/api/list?key=${encodeURIComponent(key)}`);
+    const r = await fetch(`${API}/api/list`, { headers: hdr() });
     const d = await r.json();
     if (!d.ok) { $("#out").innerHTML = `<div class="empty">${esc(d.error || "열지 못했습니다")}</div>`; return; }
     render(d.items || []);
@@ -91,6 +97,19 @@ async function load() {
     $("#out").innerHTML = '<div class="empty">서버에 닿지 못했습니다.</div>';
   }
 }
+
+// 알림이 안 올 때 어디가 막혔는지 보기 위한 점검 — 봇이 누구인지, 보내기가 되는지.
+$("#diag").addEventListener("click", async () => {
+  const o = $("#diagout");
+  if (!$("#key").value.trim()) { o.textContent = "열쇠를 먼저 넣어 주세요."; return; }
+  o.textContent = "점검 중…";
+  try {
+    const d = await (await fetch(`${API}/api/diag`, { headers: hdr() })).json();
+    if (!d.ok) { o.textContent = d.error || "점검 실패"; return; }
+    o.textContent = `봇 ${d.bot || "?"} · 토큰 ${d.hasToken ? "있음" : "없음"}`
+      + ` · 대화방 ${d.hasChatId ? "있음" : "없음"} · 발송 ${d.send}`;
+  } catch { o.textContent = "서버에 닿지 못했습니다."; }
+});
 
 $("#load").addEventListener("click", load);
 $("#key").addEventListener("keydown", e => { if (e.key === "Enter") load(); });
