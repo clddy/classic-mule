@@ -1,7 +1,7 @@
 {
- "date": "2026-08-07",
+ "date": "2026-08-08",
  "src": "eshare.go.kr",
- "count": 300,
+ "count": 301,
  "dropped": 322,
  "items": {
   "DK24D623086": {
@@ -1918,6 +1918,17 @@
    "lo": 127.007018448235,
    "kw": "밴드"
   },
+  "DK24D623341": {
+   "name": "아람마당(밴드마당)",
+   "addr": "경기 고양시 일산동구 중앙로 1286",
+   "sido": "경기",
+   "free": false,
+   "cls": "다목적실",
+   "bookTo": "https://www.gymadang.or.kr",
+   "la": 37.66147994995117,
+   "lo": 126.77439880371094,
+   "kw": "밴드"
+  },
   "HG25E858210": {
    "name": "세라밴드",
    "addr": "경기 의왕시 갈미로 71",
@@ -1973,15 +1984,15 @@
    "lo": 126.97689571963,
    "kw": "밴드"
   },
-  "DK24D623341": {
-   "name": "아람마당(밴드마당)",
-   "addr": "경기 고양시 일산동구 중앙로 1286",
+  "HH08E859040": {
+   "name": "[26년 제3기] 세라밴드",
+   "addr": "경기 의왕시 찬우물길 11",
    "sido": "경기",
    "free": false,
-   "cls": "다목적실",
-   "bookTo": "https://www.gymadang.or.kr",
-   "la": 37.66147994995117,
-   "lo": 126.77439880371094,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=58484&eshare=1",
+   "la": 37.353600058729,
+   "lo": 126.97152265434,
    "kw": "밴드"
   },
   "HE18O853653": {
@@ -2138,17 +2149,6 @@
    "lo": 128.991507044156,
    "kw": "피아노"
   },
-  "HG16D857415": {
-   "name": "두 대의 피아노로 들여다보는 전쟁, 그리고 인간",
-   "addr": "인천 남동구 예술로 149",
-   "sido": "인천",
-   "free": false,
-   "cls": "공연프로그램",
-   "bookTo": "https://www.incheon.go.kr/res/RE050101/pblprfrDspyView?resveProgrmSeCode=C&resveGroupSn=5&progrmSn=10935",
-   "la": 37.4475889154018,
-   "lo": 126.700055774871,
-   "kw": "피아노"
-  },
   "HE14E852801": {
    "name": "성인피아노A_여름학기(사회교육)",
    "addr": "경기 안산시 상록구 삼일로 696",
@@ -2167,6 +2167,28 @@
    "free": false,
    "cls": "건강/체육프로그램",
    "bookTo": "https://share.gg.go.kr/lecture/view?id=46034&eshare=1",
+   "la": 37.326275367734,
+   "lo": 126.8535055695,
+   "kw": "피아노"
+  },
+  "HG16D857415": {
+   "name": "두 대의 피아노로 들여다보는 전쟁, 그리고 인간",
+   "addr": "인천 남동구 예술로 149",
+   "sido": "인천",
+   "free": false,
+   "cls": "공연프로그램",
+   "bookTo": "https://www.incheon.go.kr/res/RE050101/pblprfrDspyView?resveProgrmSeCode=C&resveGroupSn=5&progrmSn=10935",
+   "la": 37.4475889154018,
+   "lo": 126.700055774871,
+   "kw": "피아노"
+  },
+  "HB20E847422": {
+   "name": "토요피아노D_봄학기[사회교육_상록]",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=47998&eshare=1",
    "la": 37.326275367734,
    "lo": 126.8535055695,
    "kw": "피아노"
@@ -2343,17 +2365,6 @@
    "free": false,
    "cls": "건강/체육프로그램",
    "bookTo": "https://share.gg.go.kr/lecture/view?id=47999&eshare=1",
-   "la": 37.326275367734,
-   "lo": 126.8535055695,
-   "kw": "피아노"
-  },
-  "HB20E847422": {
-   "name": "토요피아노D_봄학기[사회교육_상록]",
-   "addr": "경기 안산시 상록구 삼일로 696",
-   "sido": "경기",
-   "free": false,
-   "cls": "건강/체육프로그램",
-   "bookTo": "https://share.gg.go.kr/lecture/view?id=47998&eshare=1",
    "la": 37.326275367734,
    "lo": 126.8535055695,
    "kw": "피아노"
