@@ -40,3 +40,6 @@ crawler/ga4-sa.json
 crawler/.secrets/
 # 구글 Indexing API 통보 기록 (로컬 상태)
 data/gindex_state.json
+
+# wrangler 로컬 캐시 (계정 정보·빌드 산출물) — 저장소에 들어갈 이유가 없다
+feedback/.wrangler/
