@@ -6,7 +6,7 @@ compatibility_date = "2026-08-08"
 # 값으로 바꿔 넣는다. id 는 비밀이 아니다(계정 없이는 못 읽는다).
 [[kv_namespaces]]
 binding = "FEEDBACK"
-id = "PUT_KV_ID_HERE"
+id = "9cef89cc702c4ae6acdc27b81b87842a"
 
 # 비밀값은 여기 적지 않는다. 커밋되기 때문이다.
 #   npx wrangler secret put ADMIN_KEY

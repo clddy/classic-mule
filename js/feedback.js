@@ -8,7 +8,7 @@
 (function () {
   // 배포 후 workers.dev 주소로 바꾼다 (feedback/README.md 참고).
   // 비워 두면 폼을 띄우지 않고 예전 mailto 동작으로 물러난다 — 배포 전에도 사이트는 멀쩡하다.
-  var API = "";
+  var API = "https://podium-feedback.ohmjin314.workers.dev";
 
   var STYLE = [
     ".fb-back{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:9998;display:flex;",
