@@ -61,15 +61,22 @@ async function ipHash(ip) {
 // 안 올 때 원인을 볼 방법이 없다 — 토큰이 틀린 건지 대화방 id가 틀린 건지, 아니면
 // 애초에 호출조차 안 된 건지 구분이 안 됐다 (2026-08-08).
 // 피드백 저장은 이미 끝난 뒤라 여기서 실패해도 흐름은 막지 않는다.
+// 붙여넣을 때 따옴표·쉼표·줄바꿈이 딸려 들어가는 일이 잦다. 그대로 두면 텔레그램이
+// 'Not Found'를 돌려주는데, 그 메시지만 봐서는 토큰이 틀린 건지 알 길이 없다.
+const clean = v => String(v || "").trim().replace(/^["'`]|["',`]+$/g, "").trim();
+
+
 async function notifyTelegram(env, item) {
-  if (!env.TELEGRAM_BOT_TOKEN) return "토큰 없음";
-  if (!env.TELEGRAM_CHAT_ID) return "대화방 id 없음";
+  const TOKEN = clean(env.TELEGRAM_BOT_TOKEN);
+  const CHAT = clean(env.TELEGRAM_CHAT_ID);
+  if (!TOKEN) return "토큰 없음";
+  if (!CHAT) return "대화방 id 없음";
   const text = `📮 포디엄 피드백\n\n${item.message}\n\n— ${item.page || "?"}`;
   try {
-    const r = await fetch(`https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN}/sendMessage`, {
+    const r = await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ chat_id: env.TELEGRAM_CHAT_ID, text }),
+      body: JSON.stringify({ chat_id: CHAT, text }),
     });
     const d = await r.json().catch(() => ({}));
     if (d && d.ok) return "ok";
@@ -139,7 +146,7 @@ async function diag(req, url, env, origin) {
   if (env.TELEGRAM_BOT_TOKEN) {
     // 어느 봇인지 확인 — 토큰이 다른 봇의 것이면 여기서 이름이 다르게 나온다
     try {
-      const r = await fetch(`https://api.telegram.org/bot${env.TELEGRAM_BOT_TOKEN}/getMe`);
+      const r = await fetch(`https://api.telegram.org/bot${clean(env.TELEGRAM_BOT_TOKEN)}/getMe`);
       const d = await r.json();
       out.bot = d.ok ? `@${d.result.username}` : `실패: ${d.description}`;
     } catch (e) { out.bot = `실패: ${e.name}`; }
