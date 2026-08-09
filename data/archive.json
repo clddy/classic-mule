@@ -5621,7 +5621,7 @@
    "deadlineFrom": "raw",
    "kind": "단원",
    "tier": "연주",
-   "inst": "타악",
+   "inst": "전체",
    "instDetails": [
     "타악",
     "피아노",
@@ -10129,7 +10129,7 @@
    "deadlineFrom": "title",
    "kind": "단원",
    "tier": "연주",
-   "inst": "현악",
+   "inst": "전체",
    "instDetails": [
     "첼로",
     "플루트",
@@ -10167,7 +10167,7 @@
    "deadline": "2026-08-10",
    "kind": "교수",
    "tier": "교육 — 대학",
-   "inst": "금관",
+   "inst": "전체",
    "instDetails": [
     "호른"
    ],
