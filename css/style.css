@@ -452,6 +452,10 @@ details[open] > .filter-summary::after { content: " −"; }
   font-variant-numeric: tabular-nums;
 }
 .job-card .meta .pay { color: var(--claret); font-weight: 600; }
+/* 어떤 값이 들어와도 카드 밖으로 밀고 나가지 않게 한다. 데이터 쪽에서 거르는 게 먼저지만,
+   거기서 놓친 한 건이 화면 전체를 무너뜨리면 안 된다 — 급여에 hwp 추출 부스러기가 섞인
+   512px 짜리 문자열 하나가 375px 화면에 가로 스크롤 176px를 만들었다 (2026-08-09). */
+.job-card .meta > * { min-width: 0; overflow-wrap: anywhere; }
 /* 객원 프로그램(연주곡) 라인 */
 .job-card .program-line {
   font-size: 0.82rem;

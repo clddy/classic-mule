@@ -1209,6 +1209,11 @@ def extract_fields(text):
         # 연도만 남은 값은 아무 정보도 주지 않으므로 아예 싣지 않는다 (2026-08-08 지적).
         if re.fullmatch(r"20\d{2}\.?|\d{1,2}\.?|[\d.\-/~\s]{0,7}", val):
             continue
+        # hwp 추출이 깨지면 한자 부스러기가 섞여 나온다 — '제8 捤獥 汤捯 氠瑢 기간제교원'.
+        # 국내 공고에 한자가 여러 자 이어 나오는 일은 없으므로 그런 값은 버린다.
+        # (2026-08-09: 이 값이 급여로 실려 375px 화면을 512px 로 밀어냈다)
+        if len(re.findall(r"[一-鿿]", val)) >= 2:
+            continue
         if 2 <= len(val) <= 140:
             out[key] = val
     return out
