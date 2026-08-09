@@ -241,7 +241,7 @@ def find_attachments(soup, base_url):
                     cands.append((full, el.get_text(" ", strip=True)))
     return cands[:4]
 
-EXT_VER = 51         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
+EXT_VER = 54         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
                      # v32(2026-08-02): 모집분야 구획 악기 추출(insts_from_recruit_text) + 원문 보관층
                      # 24: work.sen 등록일(게시일) 추출 추가 — date=None이던 승계분을 다시 뽑게
                      # 25: body_text 도입 — 본문을 <header>에 넣는 사이트(대전교육청)의 마감일을
@@ -537,12 +537,20 @@ def _extract_body_details(soup, page_text, item, ry):
     # 현악부, 관악부, 타악부'가 있는 공고에서 일부만 태그되는 원인이었다 (2026-08-02).
     _merge_insts(item, *classify_insts(page_text[:3000]))
 
+# 한 공고에서 열어 볼 첨부 수. 예전엔 '본문 요약이 채워지면 멈춤'이었는데, 그러면 첫 파일
+# 하나만 읽고 끝난다 — 통영시립소년소녀합창단은 File#1 이 응시원서 서식이라 거기서 멈췄고
+# 정작 마감일이 든 File#2 '공고문(합창지도자).pdf' 를 열지도 않았다 (2026-08-09).
+MAX_ATTACH_PER_ITEM = 4
+
+
 def _body_from_attachments(s, soup, r, item):
     """첨부 공고문(HWP/PDF)에서 본문 상세(자격·인원·요약) 보강 — 마감일 로직과 무관.
     본문이 첨부에만 있는 집계·게시판(cwcf·bscc 등) 대응."""
-    for furl, fname in find_attachments(soup, r.url):
-        if item.get("bodyExcerpt"):
-            break
+    # 공고문처럼 보이는 파일을 먼저 연다. 첨부 목록의 순서는 기관 마음이라, 응시원서 서식이
+    # 1번이고 공고문이 2번인 곳이 흔하다 — 통영시립소년소녀합창단이 그랬다.
+    files = sorted(find_attachments(soup, r.url),
+                   key=lambda fn: 0 if re.search(r"공고|모집|채용", fn[1] or "") else 1)
+    for furl, fname in files[:MAX_ATTACH_PER_ITEM]:
         try:
             fr = (curl_get(furl, referer=item["url"], timeout=30) if tls_blocked(furl)
                   else s.get(furl, timeout=30, verify=False, headers={"Referer": item["url"]}))
@@ -1324,7 +1332,12 @@ def _ensure_raw_attachments(final, cap=50):
     todo = [it for it in final
             if it.get("id") and it.get("url")
             and it.get("source") != "hibrain.net"           # 로그인 게이트 — 익명 재방문 무의미
-            and not rawstore.has_attach(it["id"])
+            # 첨부가 하나라도 있으면 통과시키던 것을 고친다. 첨부가 여럿인 공고에서 우리가
+            # 첫 파일만 받아 둔 경우가 있는데, 하필 그게 응시원서 서식이면 마감일이 든
+            # 공고문을 영영 못 연다 — 통영시립소년소녀합창단이 그랬다 (2026-08-09).
+            # 그래서 '마감을 아직 모르는 공고'는 첨부가 있어도 한 번 더 들러 나머지를 받는다.
+            and (not rawstore.has_attach(it["id"])
+                 or (not it.get("deadline") and it.get("deadlineNote") != "상시"))
             and not rawstore.tried_recently(it["id"])]
     if not todo:
         return 0
@@ -1607,6 +1620,13 @@ def run(force_all=False):
         n_raw = _ensure_raw_attachments(final)
         if n_raw:
             log(f"원문 보관: {n_raw}건 본문+첨부 수집")
+            # 방금 받아 온 공고문을 이번 회차에 바로 쓴다. 이 보완 패스가 마감 추출보다
+            # 뒤에 있어서, 예전엔 새로 받은 첨부가 다음 크롤에서야 반영됐다 — 통영
+            # 합창지도자는 공고문 PDF를 받고도 하루를 더 '기한 미정'으로 있었다 (2026-08-09).
+            _refill_from_raw(final, today)
+            gone_late = _drop_expired(final, today)
+            if gone_late:
+                log(f"  └ 새로 받은 공고문으로 {len(gone_late)}건 추가 정리")
     except Exception as e:
         log(f"WARN 원문 보관 실패: {type(e).__name__}: {e}")
     for it in final:

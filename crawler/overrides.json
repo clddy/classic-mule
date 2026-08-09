@@ -1,38 +1,46 @@
 {
-  "_설명": "사람이 직접 확인한 사실을 크롤 결과 위에 덮어쓰는 파일. URL을 키로 매칭(제목이 바뀌어도 안정). 크롤이 돌 때마다 최종 단계에서 병합되므로 재크롤에도 살아남는다. 공고가 목록에서 사라지면 자동으로 무시됨.",
-  "https://www.artinfokorea.com/jobs/467": {
-    "deadlineNote": "상시",
-    "auditionDate": "오디션 없음 — 담임목사 면접만",
-    "documents": "이력서 이메일 접수 (핸드폰 번호 필히 기재)",
-    "verifiedAt": "2026-07-14",
-    "verifiedNote": "교회에 직접 확인: 지원자가 없어 계속 모집 중. 오디션 없이 담임목사 면접만 진행."
-  },
-  "https://www.artinfokorea.com/jobs/466": {
-    "deadlineNote": "상시",
-    "documents": "이력서 이메일 접수 → 검토 후 면접",
-    "verifiedAt": "2026-07-14",
-    "verifiedNote": "학원에 직접 확인: 강사 구인 진행 중. 이력서 접수 후 검토를 거쳐 면접."
-  },
-  "https://www.artinfokorea.com/jobs/473": {
-    "officialUrl": "https://artcheonan.kr/with/notice/?vid=100",
-    "applyPhone": "041-521-3416",
-    "applyEmail": "rkd0365@korea.kr",
-    "documents": "원서접수 2026.8.12(수)~8.14(금) 방문접수 (우편접수 불가)",
-    "verifiedAt": "2026-08-02",
-    "verifiedNote": "천안문화재단 공지사항에서 원문 확인 — 문화예술과 게시(2026-07-31). 접수는 방문접수만 가능."
-  },
-  "_한양대_메모": "한양대 채용포털(portal.hanyang.ac.kr)은 공고 본문이 JS 모달 안에만 있어 크롤 불가 — 자동 수집을 포기하고 사람이 확인한 사실을 여기에 적는다(2026-07-27). 공고가 내려가면 이 항목도 자동으로 무시된다.",
-  "https://www.hibrain.net/recruitment/recruits/3591145": {
-    "title": "한양대 음악대학 작곡과 강사 채용 (동시대음악·서양음악사2)",
-    "org": "한양대학교 음악대학 작곡과",
-    "subject": "작곡과",
-    "courses": ["동시대음악", "서양음악사2"],
-    "recruitSummary": "2026학년도 후반기 4차 강사(Teaching Fellow) — 2026-2학기 담당, 16주 강의 중 참여교수 지도 하에 4주 담당",
-    "qualification": "석사학위를 소지하고 한양대 박사과정에 재학 중인 자 (휴학생·수료자 포함, 제적생·영구수료자 불가). 학문후속세대 강의 기회 제공 프로그램이라 자격 요건이 제한됨",
-    "applyPhone": "02-2220-1222",
-    "applyEmail": "buingold@hanyang.ac.kr",
-    "documents": "문의: 서울 음악대학 RC 행정팀",
-    "verifiedAt": "2026-07-27",
-    "verifiedNote": "채용포털에서 직접 확인: 2026년도 후반기 4차 초빙, 초빙구분 강사. 접수 마감일은 포털에 표기되지 않아 행정팀 문의 필요."
-  }
+ "_설명": "사람이 직접 확인한 사실을 크롤 결과 위에 덮어쓰는 파일. URL을 키로 매칭(제목이 바뀌어도 안정). 크롤이 돌 때마다 최종 단계에서 병합되므로 재크롤에도 살아남는다. 공고가 목록에서 사라지면 자동으로 무시됨.",
+ "https://www.artinfokorea.com/jobs/467": {
+  "deadlineNote": "상시",
+  "auditionDate": "오디션 없음 — 담임목사 면접만",
+  "documents": "이력서 이메일 접수 (핸드폰 번호 필히 기재)",
+  "verifiedAt": "2026-07-14",
+  "verifiedNote": "교회에 직접 확인: 지원자가 없어 계속 모집 중. 오디션 없이 담임목사 면접만 진행."
+ },
+ "https://www.artinfokorea.com/jobs/466": {
+  "deadlineNote": "상시",
+  "documents": "이력서 이메일 접수 → 검토 후 면접",
+  "verifiedAt": "2026-07-14",
+  "verifiedNote": "학원에 직접 확인: 강사 구인 진행 중. 이력서 접수 후 검토를 거쳐 면접."
+ },
+ "https://www.artinfokorea.com/jobs/473": {
+  "officialUrl": "https://artcheonan.kr/with/notice/?vid=100",
+  "applyPhone": "041-521-3416",
+  "applyEmail": "rkd0365@korea.kr",
+  "documents": "원서접수 2026.8.12(수)~8.14(금) 방문접수 (우편접수 불가)",
+  "verifiedAt": "2026-08-02",
+  "verifiedNote": "천안문화재단 공지사항에서 원문 확인 — 문화예술과 게시(2026-07-31). 접수는 방문접수만 가능."
+ },
+ "_한양대_메모": "한양대 채용포털(portal.hanyang.ac.kr)은 공고 본문이 JS 모달 안에만 있어 크롤 불가 — 자동 수집을 포기하고 사람이 확인한 사실을 여기에 적는다(2026-07-27). 공고가 내려가면 이 항목도 자동으로 무시된다.",
+ "https://www.hibrain.net/recruitment/recruits/3591145": {
+  "title": "한양대 음악대학 작곡과 강사 채용 (동시대음악·서양음악사2)",
+  "org": "한양대학교 음악대학 작곡과",
+  "subject": "작곡과",
+  "courses": [
+   "동시대음악",
+   "서양음악사2"
+  ],
+  "recruitSummary": "2026학년도 후반기 4차 강사(Teaching Fellow) — 2026-2학기 담당, 16주 강의 중 참여교수 지도 하에 4주 담당",
+  "qualification": "석사학위를 소지하고 한양대 박사과정에 재학 중인 자 (휴학생·수료자 포함, 제적생·영구수료자 불가). 학문후속세대 강의 기회 제공 프로그램이라 자격 요건이 제한됨",
+  "applyPhone": "02-2220-1222",
+  "applyEmail": "buingold@hanyang.ac.kr",
+  "documents": "문의: 서울 음악대학 RC 행정팀",
+  "verifiedAt": "2026-07-27",
+  "verifiedNote": "채용포털에서 직접 확인: 2026년도 후반기 4차 초빙, 초빙구분 강사. 접수 마감일은 포털에 표기되지 않아 행정팀 문의 필요."
+ },
+ "https://www.daeguartscenter.or.kr/index.do?menu_id=00001528&menu_link=/icms/bbs/selectBoardArticle.do&bbsId=BBS_00303&nttId=11147": {
+  "deadline": "2026-06-09",
+  "verifiedAt": "2026-08-09",
+  "verifiedNote": "대구문화예술회관 공지 목록에 「대구시립교향악단 부지휘자 공개모집 최종 합격자 안내 공고 2026.06.09」가 올라와 있음 — 이미 채용이 끝난 자리. 이 사이트는 공고별 직접 주소가 없어(어떤 형태로 요청해도 목록 페이지만 나옴) 링크로 확인이 안 되므로 사람이 목록에서 확인해 기록함."
+ }
 }

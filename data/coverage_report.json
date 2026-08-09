@@ -1,8 +1,8 @@
 {
  "date": "2026-08-09",
  "total": 75,
- "covered": 4,
- "gapCount": 71,
+ "covered": 3,
+ "gapCount": 72,
  "gaps": [
   {
    "name": "서울시립교향악단",
@@ -38,6 +38,11 @@
    "name": "대전시립교향악단",
    "type": "교향악단",
    "region": "대전"
+  },
+  {
+   "name": "대구시립교향악단",
+   "type": "교향악단",
+   "region": "대구"
   },
   {
    "name": "광주시립교향악단",
