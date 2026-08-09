@@ -112,6 +112,20 @@ def flush():
     return saved
 
 
+def attach_text(iid):
+    """첨부(공고문)만 이어 붙인다.
+
+    마감일은 웹페이지보다 첨부 공고문이 정확하다. 게시판 상세 페이지는 그 사이트의 다른
+    공고 목록을 함께 실어 오는 곳이 많아, 본문부터 훑으면 남의 날짜를 먼저 문다 —
+    군산시립교향악단 공고는 시청의 채용공고 목록이 딸려 와 2026-07-28(남의 공고)을 물었고,
+    첨부 공고문만 보면 제 날짜인 2026-06-11 이 바로 나온다 (2026-08-09).
+    """
+    doc = load(iid)
+    if not doc:
+        return ""
+    return "\n".join(a.get("text") or "" for a in (doc.get("attach") or []) if a.get("text"))
+
+
 def all_text(iid):
     """저장된 원문 전체를 하나의 문자열로 — 재추출용.
 

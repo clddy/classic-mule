@@ -1,8 +1,8 @@
 {
  "date": "2026-08-09",
  "total": 75,
- "covered": 5,
- "gapCount": 70,
+ "covered": 4,
+ "gapCount": 71,
  "gaps": [
   {
    "name": "서울시립교향악단",
@@ -163,6 +163,11 @@
    "name": "고양시립예술단",
    "type": "예술단",
    "region": "경기"
+  },
+  {
+   "name": "경상북도립예술단",
+   "type": "예술단",
+   "region": "경북"
   },
   {
    "name": "국립발레단",

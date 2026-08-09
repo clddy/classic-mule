@@ -241,7 +241,7 @@ def find_attachments(soup, base_url):
                     cands.append((full, el.get_text(" ", strip=True)))
     return cands[:4]
 
-EXT_VER = 49         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
+EXT_VER = 51         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
                      # v32(2026-08-02): 모집분야 구획 악기 추출(insts_from_recruit_text) + 원문 보관층
                      # 24: work.sen 등록일(게시일) 추출 추가 — date=None이던 승계분을 다시 뽑게
                      # 25: body_text 도입 — 본문을 <header>에 넣는 사이트(대전교육청)의 마감일을
@@ -857,7 +857,11 @@ def _refill_from_raw(items, today):
             # 마감은 첨부까지 훑는다 — 공고문이 이미지 한 장뿐이고 본문엔 인사말만 있는
             # 경우가 흔하다. 통영시민오케스트라는 OCR 텍스트에 '접수기간 7.20~8.14'가
             # 멀쩡히 저장돼 있는데 본문만 보느라 놓쳤다 (2026-08-07).
-            dl = extract_deadline(rawstore.all_text(it["id"]), ref_year=_ref_year(it))
+            # 첨부 공고문을 먼저 본다 — 게시판 상세는 그 사이트의 다른 공고 목록을 달고
+            # 오는 곳이 많아 본문부터 훑으면 남의 날짜를 문다 (rawstore.attach_text 머리말).
+            cands = _raw_deadlines(it)
+            dl = max(cands) if cands else extract_deadline(rawstore.all_text(it["id"]),
+                                                           ref_year=_ref_year(it))
             # 제목에만 마감이 적힌 공고('…모집(~8/14)')는 본문 규칙으로 안 잡힌다.
             # 수집 때는 deadline_from_title 이 봤지만 재추출 경로엔 그 단계가 없었다.
             if not dl:
@@ -941,6 +945,35 @@ _TRUNCATED = re.compile(r"(?:_+|\.{2,}|…|·{2,})\s*$")
 # 잘린 제목의 뒤를 상세 원문에서 이어 붙일 때, 여기서 멈춘다 (게시판 표의 다음 칸)
 _TITLE_TAIL = ("작성일", "등록일", "게시일", "조회", "작성자", "분류", "공유", "프린트",
                "첨부", "담당부서", "채용여부", "연락처")
+
+
+def _posted_date(it):
+    """믿을 수 있는 게시일만 돌려준다.
+
+    집계 포털은 자기가 그 글을 실은 날을 게시일로 준다 — 아트인포가 넘긴 경상북도
+    도립예술단 공고의 '게시 2026-08-06'은 우리가 수집한 날이고, 실제 원서접수는 6월이었다.
+    이 값을 '마감일이 게시일보다 이르면 남의 날짜' 판정에 쓰면, 정작 끝난 공고가
+    계속 '기한 미정'으로 남는다 (2026-08-09).
+    """
+    return None if (it.get("source") or "") in AGGREGATORS else it.get("date")
+
+
+def _raw_deadlines(it):
+    """이 공고의 마감일 후보 — 첨부 공고문을 먼저 보되, 게시일보다 이른 값은 물리친다.
+
+    첨부가 본문보다 정확하다(게시판 상세는 남의 공고 목록을 달고 온다). 다만 첨부에 지난
+    회차 서식이 섞여 있는 곳도 있어서, 첨부값이 자기 게시일보다 이르면 그건 이 공고의
+    날짜가 아니다 — 예울마루는 첨부에 2025-02 문서가 붙어 있어 본문의 제 날짜(2026-06-24)를
+    밀어냈다 (2026-08-09).
+    """
+    ry, posted = _ref_year(it), _posted_date(it)
+    for text in (rawstore.attach_text(it.get("id")), rawstore.all_text(it.get("id"))):
+        cands = priority_deadlines(text, ref_year=ry)
+        if cands and (not posted or max(cands) >= posted):
+            return cands
+    # 어느 쪽도 게시일 검사를 통과하지 못하면 첨부 → 본문 순으로 있는 대로 돌려준다
+    return (priority_deadlines(rawstore.attach_text(it.get("id")), ref_year=ry)
+            or priority_deadlines(rawstore.all_text(it.get("id")), ref_year=ry))
 
 
 def _repair_titles(items):
@@ -1047,7 +1080,9 @@ def _drop_expired(items, today):
                 it["expiredOn"] = it["deadline"]
                 gone.append(it)
             continue
-        cands = priority_deadlines(raw, ref_year=_ref_year(it))
+        # 여기서도 첨부 공고문이 먼저다. 본문에는 남의 공고 날짜가 섞여 후보가 흩어지고,
+        # 그러면 '판단 보류'로 빠져 끝난 공고가 계속 남는다.
+        cands = _raw_deadlines(it)
         # 후보 개수로 가르던 것을 '흩어진 정도'로 바꾼다. 같은 공고가 접수기간·서류마감처럼
         # 며칠 사이 날짜를 여럿 갖는 건 정상인데, 개수만 세면 그런 멀쩡한 공고까지 보류됐다
         # (조선대여중은 6-25·26·29 세 개가 전부 같은 공고의 날짜였다).
@@ -1058,7 +1093,7 @@ def _drop_expired(items, today):
         dl = max(cands)
         if dl >= today.isoformat():
             continue
-        if it.get("date") and dl < it["date"]:
+        if _posted_date(it) and dl < _posted_date(it):
             continue
         it["expiredOn"] = dl
         gone.append(it)
