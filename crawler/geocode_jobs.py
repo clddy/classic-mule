@@ -104,18 +104,34 @@ def _geocode(q):
     return hit
 
 
-def _fmt_addr(display, name):
-    """Nominatim 표기를 한국식 주소 순서로 뒤집는다.
+def _fmt_addr(display, name=""):
+    """Nominatim 표기에서 **도로명주소**만 골라 낸다.
 
-    '세종초등학교, 군자로, 군자동, 광진구, 서울특별시, 05001, 대한민국'
-      → '서울특별시 광진구 군자동 군자로'
-    (맨 앞 기관명은 카드에 이미 있으므로 뺀다. 우편번호·국가명도 뺀다.)
+    도로명주소는 '시도 + 시군구 + 도로명 + 건물번호'다. 동(법정동·행정동)은 들어가지 않는다.
+    예전엔 통째로 뒤집어 붙였더니 동이 끼어들어 실제와 달라졌다 —
+      '월촌중학교, 31, 목동서로, 목동, 목5동, 양천구, 서울특별시, 07984, 대한민국'
+      전: '서울특별시 양천구 목5동 목동 목동서로 31'   (동이 둘이나 끼었다)
+      후: '서울특별시 양천구 목동서로 31'              (2026-08-10 사용자 지적)
+    도로명을 못 찾으면 동까지 넣은 지번식 표기로 물러난다 — 없는 것보다는 낫다.
     """
     parts = [p.strip() for p in (display or "").split(",") if p.strip()]
     parts = [p for p in parts if p != "대한민국" and not re.fullmatch(r"\d{5}", p)]
-    if parts and parts[0].startswith(name[:4]):
-        parts = parts[1:]
-    return " ".join(reversed(parts))
+    if parts and name and parts[0].startswith(name[:3]):
+        parts = parts[1:]                      # 맨 앞 기관명 — 카드에 이미 있다
+
+    sido = next((p for p in parts if re.search(r"(특별시|광역시|특별자치시|특별자치도|도)$", p)), "")
+    # 시군구는 시도를 뺀 것 중 마지막(=상위) 것. '수원시 장안구'처럼 둘이면 둘 다 쓴다.
+    sgg = [p for p in parts if p != sido and re.search(r"(시|군|구)$", p)]
+    road = next((p for p in parts if re.search(r"(로|길)$", p)), "")
+    num = ""
+    if road:
+        i = parts.index(road)
+        # 건물번호는 도로명 바로 앞에 온다 (Nominatim 은 좁은 것부터 나열한다)
+        if i > 0 and re.fullmatch(r"\d+(-\d+)?", parts[i - 1]):
+            num = parts[i - 1]
+    if sido and road:
+        return " ".join(x for x in [sido, *reversed(sgg[:2]), road, num] if x)
+    return " ".join(reversed(parts))           # 도로명이 없으면 있는 대로
 
 
 def _region_ok(hit, region):
@@ -144,6 +160,34 @@ def _from_master():
     except FileNotFoundError:
         pass
     return out
+
+
+def reformat(verbose=True):
+    """이미 찾아 둔 곳의 주소 표기만 다시 만든다 — 재조회 없이 캐시의 원본으로.
+
+    표기 규칙을 고쳤을 때 220곳을 다시 물어보면 4시간이 걸린다. 원본(display)은 캐시에
+    남아 있으므로 그것으로 다시 찍어 낸다 (2026-08-10).
+    """
+    coords = _load(OUT, {})
+    disp = {}
+    for q, v in cache.items():
+        if isinstance(v, dict) and v.get("display"):
+            # 질의는 '서울특별시 월촌중학교' 처럼 시도가 붙어 있다 — 이름만 남겨 대조한다
+            disp.setdefault(q.split(" ")[-1], v["display"])
+            disp.setdefault(q, v["display"])
+    n = 0
+    for name, rec in coords.items():
+        d = disp.get(name)
+        if not d:
+            continue
+        new = _fmt_addr(d, name)
+        if new and new != rec.get("addr"):
+            rec["addr"] = new
+            n += 1
+    _save(coords)
+    if verbose:
+        print(f"[geocode_jobs] 주소 표기 재정리 {n}곳 / 전체 {len(coords)}곳")
+    return n
 
 
 def run(limit=40, verbose=True, items=None, master=False):
@@ -212,5 +256,8 @@ if __name__ == "__main__":
     ap = argparse.ArgumentParser()
     ap.add_argument("--master", action="store_true", help="기관 명부 전체를 훑는다(초벌 채우기)")
     ap.add_argument("--limit", type=int, default=40, help="이번 실행에서 조회할 최대 곳 수")
+    ap.add_argument("--reformat", action="store_true", help="재조회 없이 주소 표기만 다시 만든다")
     a = ap.parse_args()
+    if a.reformat:
+        sys.exit(0 if reformat() >= 0 else 1)
     sys.exit(0 if run(limit=a.limit, master=a.master) >= 0 else 1)

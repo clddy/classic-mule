@@ -241,7 +241,7 @@ def find_attachments(soup, base_url):
                     cands.append((full, el.get_text(" ", strip=True)))
     return cands[:4]
 
-EXT_VER = 60         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
+EXT_VER = 61         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
                      # v32(2026-08-02): 모집분야 구획 악기 추출(insts_from_recruit_text) + 원문 보관층
                      # 24: work.sen 등록일(게시일) 추출 추가 — date=None이던 승계분을 다시 뽑게
                      # 25: body_text 도입 — 본문을 <header>에 넣는 사이트(대전교육청)의 마감일을
@@ -996,6 +996,46 @@ _EXTRACTED_FIELDS = ("pay", "courses", "subject", "qualification", "bodyExcerpt"
                      "teamComp", "dayOff", "ageLimit", "contact", "hiringOrg")
 
 
+# 뽑아낸 값이 '수상해 보이는' 신호들. 화면에 나가기 전에 우리가 먼저 잡기 위한 것이다.
+# 그동안은 사용자가 카드를 눈으로 보고 알려 줘야 알았다 — 그건 탐지가 아니다 (2026-08-10).
+_SUSPECT = [
+    ("다른 항목이 딸려옴", re.compile(r"(?:후생복지|복무|제출서류|접수방법|전형|우대사항|문의처)\s*[:：]")),
+    ("항목기호 섞임",     re.compile(r"\s[가나다라마바사아자차]\.\s")),
+    ("참조 문구",         re.compile(r"(?:위\s*표|상기|붙임|별첨|공고문)\s*(?:와|과)?\s*(?:같|참조)")),
+    ("한자 부스러기",     re.compile(r"[一-鿿]{2,}")),
+    ("법령 인용",         re.compile(r"보수규정|예규|제\s*\d+\s*조")),
+]
+_QC_FIELDS = ("pay", "workPeriod", "workHours", "workPlace", "duty", "ageLimit",
+              "perfPeriod", "perfPlace", "perfSchedule", "teamComp", "dayOff",
+              "personnel", "contact", "addr", "qualification")
+
+
+def _qc_fields(items):
+    """수상한 값을 찾아 비우고 로그로 남긴다.
+
+    규칙을 아무리 다듬어도 게시판이 늘면 새로운 꼴이 나온다. 그때 화면에 실려 나가는 대신
+    여기서 걸러 두고, 무엇이 걸렸는지 남겨 다음 규칙의 재료로 쓴다.
+    길이 상한도 함께 본다 — 카드에서 읽히지 않는 값은 없느니만 못하다.
+    """
+    hits = []
+    for it in items:
+        for f in _QC_FIELDS:
+            v = it.get(f)
+            if not isinstance(v, str) or not v:
+                continue
+            why = next((name for name, pat in _SUSPECT if pat.search(v)), None)
+            if not why and len(v) > 90:
+                why = f"너무 김({len(v)}자)"
+            if why:
+                hits.append((f, why, it.get("title", "")[:22], v[:46]))
+                it.pop(f, None)
+    if hits:
+        log(f"수상한 값 {len(hits)}건 제거:")
+        for f, why, title, v in hits[:8]:
+            log(f"   [{f}] {why} — {title} · {v}")
+    return hits
+
+
 def _attach_coords(items):
     """주소를 안 적은 공고에 기관 이름으로 찾아 둔 위치를 붙인다(crawler/geocode_jobs.py).
 
@@ -1663,6 +1703,7 @@ def run(force_all=False):
             log(f"기관 위치 새로 조회 {n_new}곳")
     except Exception as e:
         log(f"WARN 위치 조회 건너뜀: {type(e).__name__}: {e}")
+    _qc_fields(final)          # 수상한 값은 화면에 나가기 전에 우리가 먼저 거른다
     n_geo = _attach_coords(final)
     if n_geo:
         log(f"기관 이름으로 찾은 위치 {n_geo}건 연결")
