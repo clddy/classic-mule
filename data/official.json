@@ -1,5 +1,5 @@
 {
- "collectedAt": "2026-08-11 03:15",
+ "collectedAt": "2026-08-11 03:38",
  "sourceCount": 87,
  "okCount": 87,
  "instTotal": 75,
@@ -819,7 +819,7 @@
    "deadlineFrom": "raw",
    "firstSeen": "2026-08-10",
    "isNew": true,
-   "extVer": 61
+   "extVer": 62
   },
   {
    "id": "24f5f952c1d46922",
@@ -851,7 +851,7 @@
    "deadlineFrom": "raw",
    "firstSeen": "2026-08-10",
    "isNew": true,
-   "extVer": 61
+   "extVer": 62
   },
   {
    "id": "33eff7cbadc5df28",
@@ -887,7 +887,7 @@
    "addrFrom": "geo",
    "firstSeen": "2026-08-10",
    "isNew": true,
-   "extVer": 61
+   "extVer": 62
   },
   {
    "id": "ece500b805beb60f",
@@ -916,7 +916,7 @@
    "deadlineFrom": "raw",
    "firstSeen": "2026-08-10",
    "isNew": true,
-   "extVer": 61
+   "extVer": 62
   },
   {
    "id": "20127745c2d6b638",
@@ -950,7 +950,7 @@
    "addrFrom": "geo",
    "firstSeen": "2026-08-10",
    "isNew": true,
-   "extVer": 61
+   "extVer": 62
   },
   {
    "id": "e74332d0cc55b1b5",
@@ -975,6 +975,7 @@
    "subject": null,
    "channel": "edu_goe",
    "layer": "C",
+   "workHours": "전일제 근무",
    "bodyExcerpt": "채용분야 및 기간 과목 인원 채용 기간 채용방법 비고 음악 1 2026. · 채용 응시 자격 : 내국인으로서 채용 분야 교원자격증 소지자 2. · 자격 : 해당 교과 교원 자격증 소지자 ( 실기교사 교원자격증 제외 ) 다 . · 기간 : 2026.",
    "deadlineFrom": "raw",
    "addr": "경기도 안산시 단원구 단원로",
@@ -983,7 +984,7 @@
    "addrFrom": "geo",
    "firstSeen": "2026-08-10",
    "isNew": true,
-   "extVer": 61
+   "extVer": 62
   },
   {
    "id": "b94318471e1c87c7",
@@ -1016,7 +1017,7 @@
    "addrFrom": "geo",
    "firstSeen": "2026-08-10",
    "isNew": true,
-   "extVer": 61
+   "extVer": 62
   },
   {
    "id": "38cc755b26242172",
@@ -1049,7 +1050,7 @@
    "addrFrom": "geo",
    "firstSeen": "2026-08-10",
    "isNew": true,
-   "extVer": 61
+   "extVer": 62
   },
   {
    "id": "f21c15f1cea76e99",
@@ -1082,7 +1083,7 @@
    "addrFrom": "geo",
    "firstSeen": "2026-08-10",
    "isNew": true,
-   "extVer": 61
+   "extVer": 62
   },
   {
    "id": "11d675c2b02da15f",
@@ -1112,7 +1113,7 @@
    "deadlineFrom": "raw",
    "firstSeen": "2026-08-10",
    "isNew": true,
-   "extVer": 61
+   "extVer": 62
   },
   {
    "id": "7e329dd22b52f11e",
@@ -1138,7 +1139,7 @@
    "channel": "edu_jbe",
    "layer": "C",
    "workHours": "전일제 근무(1일 8시간)",
-   "ageLimit": "제한 없음 교원자격증 소지자: 중등학교 정교사 영어 임용 우선순위: 아래의 표를 따름 우선순위 내용 1순위",
+   "ageLimit": "제한 없음",
    "bodyExcerpt": "공고에 ‘채용의 제한’ 부분 명시 2. · 서류접수 방법 : 전자우편 중심 3. · 지침 [붙임 2] 기간제교원 채용 공고(예시) 다운로드 지침",
    "addr": "전북특별자치도 전주시 덕진구 세병로",
    "lat": 35.8799349,
@@ -1146,7 +1147,7 @@
    "addrFrom": "geo",
    "firstSeen": "2026-08-10",
    "isNew": true,
-   "extVer": 61
+   "extVer": 62
   },
   {
    "id": "9f6e1a9c65f4d62a",
@@ -1171,8 +1172,9 @@
    "layer": "C",
    "firstSeen": "2026-08-10",
    "isNew": true,
+   "hiringOrg": "인천광역시교육청대상명 : 인천광역시교육청(https://www.ice.go.kr)",
    "bodyExcerpt": "초등교사 자격증 소지자 나 . · 공고 / 접수 : 2026. · 채용방법 : 1 차 - 서류심사 , 2 차 - 면접으로 채용 나 . · 2 차 전형 예정 : 2026.",
-   "extVer": 61
+   "extVer": 62
   },
   {
    "id": "a8c984e07534f04e",
@@ -1202,7 +1204,7 @@
    "bodyExcerpt": "채용 채용/시험정보 학교인력채용 등록중..",
    "firstSeen": "2026-08-10",
    "isNew": true,
-   "extVer": 61
+   "extVer": 62
   },
   {
    "id": "44536ef2f7672aab",
@@ -1235,7 +1237,7 @@
    "addrFrom": "geo",
    "firstSeen": "2026-08-10",
    "isNew": true,
-   "extVer": 61
+   "extVer": 62
   },
   {
    "id": "253d58760ca9741e",
@@ -1267,7 +1269,7 @@
    "addrFrom": "geo",
    "firstSeen": "2026-08-10",
    "isNew": true,
-   "extVer": 61,
+   "extVer": 62,
    "subject": "피아노"
   },
   {
@@ -1302,7 +1304,7 @@
    "bodyExcerpt": "모시는분 반주자 - 지역 경기 - 등록일 2026-08-07 - 남은기간 2026-09-18 23:59:59 · 탑동감리교회 드럼반주자&레슨강사 모집합니다. · 용호남교회 피아노 반주자 모집 건반 연주자와 일렉키타 연주자를 모십니다(찬양팀) 주일 피아노 반주자 모십니다.",
    "firstSeen": "2026-08-08",
    "isNew": false,
-   "extVer": 61
+   "extVer": 62
   },
   {
    "id": "4f0d888e1f8a5413",
@@ -1337,7 +1339,7 @@
    "addrFrom": "geo",
    "firstSeen": "2026-08-07",
    "isNew": false,
-   "extVer": 61
+   "extVer": 62
   },
   {
    "id": "dc95d860e0a42457",
@@ -1372,7 +1374,7 @@
    "addrFrom": "geo",
    "firstSeen": "2026-08-07",
    "isNew": false,
-   "extVer": 61
+   "extVer": 62
   },
   {
    "id": "accd06da18aa4208",
@@ -1406,7 +1408,7 @@
    "addrFrom": "geo",
    "firstSeen": "2026-08-07",
    "isNew": false,
-   "extVer": 61
+   "extVer": 62
   },
   {
    "id": "bedac6648415995b",
@@ -1433,7 +1435,7 @@
    "firstSeen": "2026-08-07",
    "isNew": false,
    "bodyExcerpt": "구직 기간제교사 학교인력 채용공고 산학겸임.강사.명예교사신청 연수",
-   "extVer": 61
+   "extVer": 62
   },
   {
    "id": "6d3ca4c6fee816ea",
@@ -1460,7 +1462,7 @@
    "layer": "B",
    "firstSeen": "2026-08-07",
    "isNew": false,
-   "extVer": 61
+   "extVer": 62
   },
   {
    "id": "9ae19f1a33f2ae8b",
@@ -1498,7 +1500,7 @@
    "verifiedNote": "천안문화재단 공지사항에서 원문 확인 — 문화예술과 게시(2026-07-31). 접수는 방문접수만 가능.",
    "firstSeen": "2026-08-02",
    "isNew": false,
-   "extVer": 61
+   "extVer": 62
   },
   {
    "id": "e585a3428c07e3b8",
@@ -1526,7 +1528,7 @@
    "isNew": false,
    "workHours": "1일 8시간을 원칙으로 하며, 교원의 근무 시간과 동일 4",
    "bodyExcerpt": "채용이 완료된 학교에서는 채용문의에 대한 불필요한 민원 발생을 미연에 방지하고자 \"채용여부\"를 반드시 \"채용완료\"로 수정하여 주시기 바랍니다. · 구인공고시 채용 마감일자를 반드시 기재하여 주시기 바랍니다. · 채용 과목: 음악 1명 2. · 채용 기간: 2026.",
-   "extVer": 61
+   "extVer": 62
   },
   {
    "id": "142a902f302653e2",
@@ -1560,7 +1562,7 @@
    "addrFrom": "geo",
    "firstSeen": "2026-08-07",
    "isNew": false,
-   "extVer": 61
+   "extVer": 62
   },
   {
    "id": "1c3f7021c8613ca5",
@@ -1587,7 +1589,7 @@
    "firstSeen": "2026-08-03",
    "isNew": false,
    "ageLimit": "만 62세 미만으로 직무수행의 결격사유나 학생 지도 시 건강에 이상이 없는",
-   "extVer": 61
+   "extVer": 62
   },
   {
    "id": "ba538191e3f65442",
@@ -1615,7 +1617,7 @@
    "deadlineFrom": "title",
    "firstSeen": "2026-07-31",
    "isNew": false,
-   "extVer": 61
+   "extVer": 62
   },
   {
    "id": "75b0e58f4b8192e4",
@@ -1641,7 +1643,7 @@
     "현악",
     "관악"
    ],
-   "personnel": "1명(비상임이사 1명)",
+   "personnel": "8명3",
    "subject": null,
    "channel": "g_i_gunsangokr",
    "layer": "B",
@@ -1650,7 +1652,7 @@
    "deadlineFrom": "raw",
    "firstSeen": "2026-07-29",
    "isNew": false,
-   "extVer": 61
+   "extVer": 62
   },
   {
    "id": "ddd6789490369cc1",
@@ -1679,7 +1681,7 @@
    "layer": "B",
    "firstSeen": "2026-08-02",
    "isNew": false,
-   "extVer": 61
+   "extVer": 62
   },
   {
    "id": "ba73b6b1fbdcb18a",
@@ -1711,7 +1713,7 @@
    "deadlineFrom": "raw",
    "firstSeen": "2026-08-05",
    "isNew": false,
-   "extVer": 61
+   "extVer": 62
   },
   {
    "id": "f6aa2aa67ffa4f82",
@@ -1742,8 +1744,9 @@
    "lat": 36.4751555,
    "lng": 127.2554103,
    "addrFrom": "geo",
+   "workPeriod": "2026.8.31.(월)∼ 2027.1.22.(금)(단 , 방과후학교 예정 시간(시수)범위 내로 하며 , 학사 일정상 단축될 수 있음)2)",
    "bodyExcerpt": "공고 기간 : 2026.7.27.( 월 ) ∼ 8.14.( 금 ) 나 . · 서류 접수 : 2026.7.27.( 월 ) ∼ 8.14.( 금 ) 다 . · 접수 장소 : 한솔중학교 1 층 교무실 교무행정사에게 방문 제출 ※ 우편 접수 시 2026.8.14.( 금 ) 11:00 까지 도착분에 한하여 인정함 . · 등록일시 : 2026/02/04 10:25 자료관리자 : (교육공무직원) 노사정책과",
-   "extVer": 61
+   "extVer": 62
   },
   {
    "id": "f1b923041a2add95",
@@ -1774,7 +1777,7 @@
    "deadlineFrom": "raw",
    "firstSeen": "2026-07-24",
    "isNew": false,
-   "extVer": 61
+   "extVer": 62
   },
   {
    "id": "4ab6131bb9721cf5",
@@ -1803,7 +1806,7 @@
    "orgBoard": "통영국제음악재단",
    "firstSeen": "2026-07-21",
    "isNew": false,
-   "extVer": 61
+   "extVer": 62
   },
   {
    "id": "08982b2dad9606e0",
@@ -1834,12 +1837,12 @@
    "deadlineFrom": "raw",
    "firstSeen": "2026-08-11",
    "isNew": false,
-   "extVer": 61
+   "extVer": 62
   },
   {
    "id": "b2e199e32140e0ed",
    "org": "남양교회",
-   "region": "기타",
+   "region": "전북",
    "source": "cjob.co.kr",
    "title": "[남양교회] 반주자와 농촌지역에서 전도해 주실분 모십니다.",
    "nonMusic": null,
@@ -1865,10 +1868,12 @@
    "pay": "20만원",
    "denomination": "예장 합동",
    "documents": "이력서",
+   "addr": "전북 김제시 황산면 남산로 334",
+   "regionBoard": "기타",
    "bodyExcerpt": "모시는분 반주자 - 지역 전북 - 등록일 2026-07-03 - 남은기간 2026-12-31 23:59:59 · 용호남교회 피아노 반주자 모집 건반 연주자와 일렉키타 연주자를 모십니다(찬양팀) 주일 피아노 반주자 모십니다.",
    "firstSeen": "2026-08-08",
    "isNew": false,
-   "extVer": 61
+   "extVer": 62
   },
   {
    "id": "5fbc7e4eb4f8d92d",
@@ -1903,7 +1908,7 @@
    "bodyExcerpt": "모시는분 반주자 - 지역 경기 - 등록일 2026-05-20 - 남은기간 2026-12-31 23:59:59 · 탑동감리교회 드럼반주자&레슨강사 모집합니다. · 용호남교회 피아노 반주자 모집 건반 연주자와 일렉키타 연주자를 모십니다(찬양팀) 피아노 반주자를 모십니다.",
    "firstSeen": "2026-08-08",
    "isNew": false,
-   "extVer": 61
+   "extVer": 62
   }
  ]
 }

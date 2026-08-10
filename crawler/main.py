@@ -241,7 +241,7 @@ def find_attachments(soup, base_url):
                     cands.append((full, el.get_text(" ", strip=True)))
     return cands[:4]
 
-EXT_VER = 61         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
+EXT_VER = 62         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
                      # v32(2026-08-02): 모집분야 구획 악기 추출(insts_from_recruit_text) + 원문 보관층
                      # 24: work.sen 등록일(게시일) 추출 추가 — date=None이던 승계분을 다시 뽑게
                      # 25: body_text 도입 — 본문을 <header>에 넣는 사이트(대전교육청)의 마감일을
@@ -1003,8 +1003,12 @@ _SUSPECT = [
     ("항목기호 섞임",     re.compile(r"\s[가나다라마바사아자차]\.\s")),
     ("참조 문구",         re.compile(r"(?:위\s*표|상기|붙임|별첨|공고문)\s*(?:와|과)?\s*(?:같|참조)")),
     ("한자 부스러기",     re.compile(r"[一-鿿]{2,}")),
-    ("법령 인용",         re.compile(r"보수규정|예규|제\s*\d+\s*조")),
 ]
+# 법령 인용은 통째로 버리지 않고 그 앞까지만 남긴다 — '만 34세 이하(1991.1.1. 이후 출생자)
+# (* 청년고용촉진특별법 제2조 준용)' 에서 앞부분은 지원자에게 필요한 정보다 (2026-08-11).
+# (급여만 예외로 통째로 버린다 — 거기 법령만 있으면 금액을 알 수 없어 쓸모가 0이다)
+_LAW_CITE = re.compile(r"\s*\(?\s*[*※]?\s*[「『]?[가-힣]{2,20}(?:법|규정|예규|조례|지침)[」』]?\s*"
+                       r"제?\s*\d+\s*조.*$")
 _QC_FIELDS = ("pay", "workPeriod", "workHours", "workPlace", "duty", "ageLimit",
               "perfPeriod", "perfPlace", "perfSchedule", "teamComp", "dayOff",
               "personnel", "contact", "addr", "qualification")
@@ -1023,6 +1027,9 @@ def _qc_fields(items):
             v = it.get(f)
             if not isinstance(v, str) or not v:
                 continue
+            cut = _LAW_CITE.sub("", v).strip(" ,·-–")
+            if cut != v and len(cut) >= 4:
+                it[f] = v = cut          # 법령 인용만 떼고 앞부분은 살린다
             why = next((name for name, pat in _SUSPECT if pat.search(v)), None)
             if not why and len(v) > 90:
                 why = f"너무 김({len(v)}자)"

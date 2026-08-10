@@ -98,6 +98,10 @@ if ($changed) {
     # 자격증명이 없으면 스스로 건너뛰므로 실패로 치지 않는다.
     & $PY "$PSScriptRoot\gindex.py"
     if ($LASTEXITCODE -ne 0) { Note "warn: gindex.py 종료코드 $LASTEXITCODE (계속 진행)" }
+
+    # 네이버·빙에도 알린다(IndexNow). 구글은 위 gindex 가 맡는다 — 구글은 이 규격을 안 쓴다.
+    & $PY "$PSScriptRoot\indexnow.py"
+    if ($LASTEXITCODE -ne 0) { Note "warn: indexnow.py 종료코드 $LASTEXITCODE (계속 진행)" }
 } else {
     Note "크롤 완료 · 데이터 변경 없음"
 }
