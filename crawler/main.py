@@ -241,7 +241,7 @@ def find_attachments(soup, base_url):
                     cands.append((full, el.get_text(" ", strip=True)))
     return cands[:4]
 
-EXT_VER = 59         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
+EXT_VER = 60         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
                      # v32(2026-08-02): 모집분야 구획 악기 추출(insts_from_recruit_text) + 원문 보관층
                      # 24: work.sen 등록일(게시일) 추출 추가 — date=None이던 승계분을 다시 뽑게
                      # 25: body_text 도입 — 본문을 <header>에 넣는 사이트(대전교육청)의 마감일을
@@ -996,6 +996,31 @@ _EXTRACTED_FIELDS = ("pay", "courses", "subject", "qualification", "bodyExcerpt"
                      "teamComp", "dayOff", "ageLimit", "contact", "hiringOrg")
 
 
+def _attach_coords(items):
+    """주소를 안 적은 공고에 기관 이름으로 찾아 둔 위치를 붙인다(crawler/geocode_jobs.py).
+
+    공고 대부분이 주소를 안 적는데, 연주자에게 '어디인지'는 지원 여부를 가르는 정보다 —
+    악기를 들고 가야 하기 때문이다 (2026-08-09 사용자 지시).
+    """
+    coords = {}
+    try:
+        with open(os.path.join(BASE, "data", "org-coords.json"), encoding="utf-8") as f:
+            coords = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        return 0
+    n = 0
+    for it in items:
+        if it.get("addr"):
+            continue
+        key = re.sub(r"\([^)]*\)", " ", it.get("org") or "")
+        key = re.sub(r"\s+", " ", key).strip(" ·-")
+        c = coords.get(key)
+        if c and c.get("addr"):
+            it["addr"], it["lat"], it["lng"], it["addrFrom"] = c["addr"], c["lat"], c["lng"], "geo"
+            n += 1
+    return n
+
+
 def _reset_stale_extracted(items):
     """추출기 버전이 낡은 항목의 '뽑아낸 값'을 비워 재추출 대상으로 만든다.
 
@@ -1629,6 +1654,9 @@ def run(force_all=False):
     if n_stale:
         log(f"낡은 추출값 초기화 {n_stale}건 (추출기 v{EXT_VER})")
     _refill_from_raw(final, today)
+    n_geo = _attach_coords(final)
+    if n_geo:
+        log(f"기관 이름으로 찾은 위치 {n_geo}건 연결")
     _repair_titles(final)
     # 게시판 주인이 아니라 실제 뽑는 기관을 org로. overrides 앞에 두어 사람이 손수 넣은
     # 기관명이 있으면 그쪽이 최종적으로 이기게 한다.

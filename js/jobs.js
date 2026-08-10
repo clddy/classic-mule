@@ -38,6 +38,14 @@ const OFFICIAL_ITEMS = ((window.CRAWLED && window.CRAWLED.items) || []).map(j =>
   positions: j.positions, recruitSummary: j.recruitSummary, bodyExcerpt: j.bodyExcerpt,
   denomination: j.denomination, documents: j.documents,
   applyEmail: j.applyEmail, applyPhone: j.applyPhone,
+  // ★ 여기는 화이트리스트다 — 크롤러가 새 필드를 채워도 이 줄에 없으면 화면까지 오지 못한다.
+  //   조건 항목(급여·근무기간·공연조건…)과 위치를 만들어 두고도 카드가 그대로였던 이유가
+  //   이것이다 (2026-08-09). 크롤러에 필드를 늘리면 반드시 여기도 같이 늘릴 것.
+  workPeriod: j.workPeriod, workHours: j.workHours, workPlace: j.workPlace, duty: j.duty,
+  ageLimit: j.ageLimit, contact: j.contact,
+  perfPeriod: j.perfPeriod, perfPlace: j.perfPlace, perfSchedule: j.perfSchedule,
+  teamComp: j.teamComp, dayOff: j.dayOff,
+  addr: j.addr, lat: j.lat, lng: j.lng,
   url: j.url, officialUrl: j.officialUrl, isNew: j.isNew, firstSeen: j.firstSeen, source: j.source
 }));
 
@@ -330,13 +338,18 @@ function cardHTML(j) {
     <span class="tag ${st.cls}">${st.label}</span>
     ${/제공/.test(j.instProvided || "") ? `<span class="tag provided">악기 제공</span>` : ""}
     ${isFresh(j) ? `<span class="tag urgent">NEW</span>` : ""}`;
-  const region = regionOf(j) !== "기타" ? `<span>${regionOf(j)}</span>` : "";
-  const pay = okPay(j.pay) ? `<span class="pay">${cleanVal(j.pay)}</span>` : "";
+  // 카드 줄에는 '어디인지'만 둔다 — 페이는 상세 창에서 본다 (2026-08-09 사용자 지시).
+  // 목록을 훑을 때 필요한 건 위치와 마감이고, 금액은 들어가서 확인할 정보다.
+  // 지역이 '기타'라도 주소를 알면 시·군·구까지 보여준다.
+  let where = regionOf(j) !== "기타" ? regionOf(j) : "";
+  if (j.addr) {
+    const m = String(j.addr).match(/([가-힣]+(?:특별시|광역시|특별자치시|특별자치도|도))\s*([가-힣]+[시군구])/);
+    if (m) where = `${m[1].replace(/(특별시|광역시|특별자치시|특별자치도|도)$/, "")} ${m[2]}`;
+  }
   const meta = `
     <span>${j.org}</span>
-    ${region}
+    ${where ? `<span>${where}</span>` : ""}
     ${j.when ? `<span>${j.when}</span>` : ""}
-    ${pay}
     ${j.rehearsalCount ? `<span>리허설 ${j.rehearsalCount}회</span>` : ""}
     ${j.deadline ? `<span>마감 ${j.deadline}</span>` : ""}`;
   // 객원·대체는 프로그램(연주곡)을 카드에 노출 (동생 피드백)
@@ -515,9 +528,12 @@ function metaRows(j) {
   // 주소가 없으면 기관 이름으로 찾게 한다 — 이름만 있어도 지도에서 대개 나온다.
   const place = cleanVal(j.addr) || (j.org && !/기독정보넷|교육청|포털/.test(j.org) ? cleanVal(j.org) : "");
   if (place) {
-    const q = encodeURIComponent(place);
+    // 좌표를 아는 곳은 지도에 핀으로 바로 찍는다(검색 결과가 여럿일 때 헤매지 않게).
+    const link = (j.lat && j.lng)
+      ? `https://map.kakao.com/link/map/${encodeURIComponent(cleanVal(j.org) || place)},${j.lat},${j.lng}`
+      : `https://map.kakao.com/?q=${encodeURIComponent(place)}`;
     rows.push([j.addr ? "주소" : "위치",
-      `${esc(place)} <a href="https://map.kakao.com/?q=${q}" target="_blank" rel="noopener"
+      `${place} <a href="${link}" target="_blank" rel="noopener"
         style="margin-left:6px;white-space:nowrap">지도 ↗</a>`]);
   }
   if (j.ageLimit) rows.push(["나이", cleanVal(j.ageLimit)]);
