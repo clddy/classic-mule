@@ -50,6 +50,13 @@ def _load(path, default):
         return default
 
 
+def _save(coords):
+    tmp = OUT + ".tmp"
+    with open(tmp, "w", encoding="utf-8") as f:
+        json.dump(coords, f, ensure_ascii=False, indent=1)
+    os.replace(tmp, OUT)      # 쓰다 죽어도 기존 파일이 반쪽으로 남지 않게
+
+
 def _clean_name(name):
     """기관명에서 괄호 주석·꼬리표를 뗀다 — '성은교회(부천 오정구 소재)' → '성은교회'."""
     n = re.sub(r"\([^)]*\)", " ", str(name or ""))
@@ -70,7 +77,8 @@ def _queries(name, region):
 def _geocode(q):
     """좌표와 함께 주소 문자열도 돌려준다 — 카드에 '어디인지'를 보여주기 위함."""
     if q in cache:
-        return cache[q]
+        c = cache[q]
+        return None if (isinstance(c, dict) and c.get("miss")) else c
     try:
         r = requests.get("https://nominatim.openstreetmap.org/search",
                          params={"q": q, "format": "json", "limit": 1,
@@ -86,10 +94,12 @@ def _geocode(q):
                    "city": a.get("city") or a.get("county") or a.get("town") or ""}
     except Exception:
         hit = None
-    if hit:
-        cache[q] = hit
-        with open(CACHE, "w", encoding="utf-8") as f:
-            json.dump(cache, f, ensure_ascii=False)
+    # 실패도 기록한다. 예전엔 성공만 캐시했는데, 명부 606곳 중 절반이 OSM에 없어서
+    # 매 실행마다 같은 곳을 다시 물어보느라 25분을 넘겨 시간 제한에 걸렸다 (2026-08-09).
+    # 못 찾은 것은 날짜와 함께 남겨, 나중에 다시 훑고 싶을 때 골라낼 수 있게 한다.
+    cache[q] = hit if hit else {"miss": time.strftime("%Y-%m-%d")}
+    with open(CACHE, "w", encoding="utf-8") as f:
+        json.dump(cache, f, ensure_ascii=False)
     time.sleep(1.1)          # Nominatim: 초당 1건 이하
     return hit
 
@@ -117,10 +127,38 @@ def _region_ok(hit, region):
     return any(w and (w in state or w[:2] in state) for w in want)
 
 
-def run(limit=40, verbose=True):
-    doc = _load(os.path.join(BASE, "data", "official.json"), {})
-    items = doc.get("items") if isinstance(doc, dict) else doc
+def _from_master():
+    """기관 명부(crawler/institutions.csv) 전체 — 미리 찾아 두면 새 공고가 즉시 위치를 갖는다."""
+    import csv
+    path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "institutions.csv")
+    out = []
+    try:
+        with open(path, encoding="utf-8-sig") as f:
+            for row in csv.reader(f):
+                if not row or row[0].startswith("#") or row[0] == "기관명":
+                    continue
+                name = _clean_name(row[0])
+                region = row[3].strip() if len(row) > 3 else ""
+                if name and len(name) >= 3 and not NOT_A_PLACE.search(name):
+                    out.append((name, region))
+    except FileNotFoundError:
+        pass
+    return out
+
+
+def run(limit=40, verbose=True, items=None, master=False):
+    """items 를 넘기면 그 목록에서, 안 넘기면 official.json 에서 대상을 고른다.
+    master=True 면 기관 명부 전체를 훑는다(초벌 채우기용)."""
+    if items is None:
+        doc = _load(os.path.join(BASE, "data", "official.json"), {})
+        items = doc.get("items") if isinstance(doc, dict) else doc
     coords = _load(OUT, {})
+
+    if master:
+        todo = [(n, r) for n, r in _from_master() if n not in coords][:limit]
+        if verbose:
+            print(f"[geocode_jobs] 명부에서 {len(todo)}곳 조회 (이미 찾은 {len(coords)}곳 제외)")
+        return _sweep(todo, coords, verbose)
 
     todo = []
     for it in (items or []):
@@ -136,7 +174,12 @@ def run(limit=40, verbose=True):
         if verbose:
             print("[geocode_jobs] 찾을 대상 없음")
         return 0
+    return _sweep(todo, coords, verbose)
 
+
+def _sweep(todo, coords, verbose):
+    if not todo:
+        return 0
     found = 0
     for name, region in todo:
         hit = None
@@ -153,13 +196,21 @@ def run(limit=40, verbose=True):
                             "at": time.strftime("%Y-%m-%d")}
             found += 1
             if verbose:
-                print(f"    {name} → {hit['display'][:60]}")
-    with open(OUT, "w", encoding="utf-8") as f:
-        json.dump(coords, f, ensure_ascii=False, indent=1)
+                print(f"    {name} → {hit['display'][:60]}", flush=True)
+            # 찾는 대로 바로 저장한다. 명부 606곳을 훑다 시간 제한에 걸려 죽었을 때
+            # 마지막에 한 번만 쓰는 구조라 그때까지 찾은 것이 통째로 날아갔다 (2026-08-09).
+            if found % 10 == 0:
+                _save(coords)
+    _save(coords)
     if verbose:
         print(f"[geocode_jobs] {found}/{len(todo)}건 위치 확보 · 누적 {len(coords)}곳")
     return found
 
 
 if __name__ == "__main__":
-    sys.exit(0 if run() >= 0 else 1)
+    import argparse
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--master", action="store_true", help="기관 명부 전체를 훑는다(초벌 채우기)")
+    ap.add_argument("--limit", type=int, default=40, help="이번 실행에서 조회할 최대 곳 수")
+    a = ap.parse_args()
+    sys.exit(0 if run(limit=a.limit, master=a.master) >= 0 else 1)

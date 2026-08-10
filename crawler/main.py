@@ -1654,6 +1654,15 @@ def run(force_all=False):
     if n_stale:
         log(f"낡은 추출값 초기화 {n_stale}건 (추출기 v{EXT_VER})")
     _refill_from_raw(final, today)
+    # 새로 들어온 공고의 기관 위치를 이번 회차에 바로 찾는다. Nominatim 예의상 초당 1건이라
+    # 회차당 12곳으로 묶는다(≈13초) — 못 찾은 곳은 다음 크롤에서 이어 찾는다.
+    try:
+        import geocode_jobs
+        n_new = geocode_jobs.run(limit=12, verbose=False, items=final)
+        if n_new:
+            log(f"기관 위치 새로 조회 {n_new}곳")
+    except Exception as e:
+        log(f"WARN 위치 조회 건너뜀: {type(e).__name__}: {e}")
     n_geo = _attach_coords(final)
     if n_geo:
         log(f"기관 이름으로 찾은 위치 {n_geo}건 연결")

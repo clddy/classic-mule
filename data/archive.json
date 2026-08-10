@@ -1,6 +1,6 @@
 {
  "updatedAt": "2026-08-10",
- "count": 1154,
+ "count": 1155,
  "items": {
   "f7b1c263744b9ece": {
    "id": "f7b1c263744b9ece",
@@ -5627,7 +5627,7 @@
    "deadlineFrom": "raw",
    "kind": "단원",
    "tier": "연주",
-   "inst": "타악",
+   "inst": "전체",
    "instDetails": [
     "타악",
     "피아노",
@@ -28904,6 +28904,29 @@
    "deadline": "2026-08-13",
    "deadlineFrom": "raw",
    "bodyExcerpt": "다만, 필수항목에 대한 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다. · 제공 목적: 구직활동 지원 및 채용업무 처리 라. · 보유 및 이용 기간: 회원 탈퇴 시까지(2년) 마. · 다만, 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다."
+  },
+  "7a7ad5942e8070bd": {
+   "id": "7a7ad5942e8070bd",
+   "org": "GS칼텍스 예울마루",
+   "region": "광주·전남",
+   "source": "yeulmaru.org",
+   "channel": "g_yeulmaru",
+   "layer": "B",
+   "title": "GS칼텍스 예울마루 (추경)예술기반 청년일자리(연수단원) 채용",
+   "url": "https://www.yeulmaru.org/community/v/3174/?&p=1&keyword=",
+   "date": "2026-06-17",
+   "kind": "단원",
+   "tier": "연주",
+   "inst": "전체",
+   "instDetails": [],
+   "ageGroup": "성인",
+   "obri": false,
+   "certReq": "무관",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "firstSeen": "2026-08-10",
+   "lastSeen": "2026-08-10",
+   "days": 1
   }
  }
 }
