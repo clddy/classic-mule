@@ -241,7 +241,7 @@ def find_attachments(soup, base_url):
                     cands.append((full, el.get_text(" ", strip=True)))
     return cands[:4]
 
-EXT_VER = 64         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
+EXT_VER = 66         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
                      # v32(2026-08-02): 모집분야 구획 악기 추출(insts_from_recruit_text) + 원문 보관층
                      # 24: work.sen 등록일(게시일) 추출 추가 — date=None이던 승계분을 다시 뽑게
                      # 25: body_text 도입 — 본문을 <header>에 넣는 사이트(대전교육청)의 마감일을
@@ -1011,10 +1011,13 @@ _EXTRACTED_FIELDS = ("pay", "courses", "subject", "qualification", "bodyExcerpt"
 # 뽑아낸 값이 '수상해 보이는' 신호들. 화면에 나가기 전에 우리가 먼저 잡기 위한 것이다.
 # 그동안은 사용자가 카드를 눈으로 보고 알려 줘야 알았다 — 그건 탐지가 아니다 (2026-08-10).
 _SUSPECT = [
-    ("다른 항목이 딸려옴", re.compile(r"(?:후생복지|복무|제출서류|접수방법|전형|우대사항|문의처)\s*[:：]")),
+    ("다른 항목이 딸려옴", re.compile(r"(?:후생복지|복무|제출서류|접수방법|전형|우대사항|문의처|서류|제출)\s*[:：]")),
     ("항목기호 섞임",     re.compile(r"\s[가나다라마바사아자차]\.\s")),
     ("참조 문구",         re.compile(r"(?:위\s*표|상기|붙임|별첨|공고문)\s*(?:와|과)?\s*(?:같|참조)")),
     ("한자 부스러기",     re.compile(r"[一-鿿]{2,}")),
+    # 개인정보 동의표의 수집 항목 나열('취업지원대상 여부, 학력사항, 경력정보…')이 자격으로
+    # 실렸다 — 동의표 특유의 낱말로 잡는다 (2026-08-11 화면 검증에서 발각)
+    ("동의표 조각",       re.compile(r"학력사항|경력정보|어학능력|취업지원대상|희망근무지|자기소개서?,")),
 ]
 # 법령 인용은 통째로 버리지 않고 그 앞까지만 남긴다 — '만 34세 이하(1991.1.1. 이후 출생자)
 # (* 청년고용촉진특별법 제2조 준용)' 에서 앞부분은 지원자에게 필요한 정보다 (2026-08-11).
@@ -1024,6 +1027,22 @@ _LAW_CITE = re.compile(r"\s*\(?\s*[*※]?\s*[「『]?[가-힣]{2,20}(?:법|규�
 _QC_FIELDS = ("pay", "workPeriod", "workHours", "workPlace", "duty", "ageLimit",
               "perfPeriod", "perfPlace", "perfSchedule", "teamComp", "dayOff",
               "personnel", "contact", "addr", "qualification")
+
+# 게시 직전 최종 검수 — 값이 '그 항목답게' 생겼는가. 추출이 어디서 왔든(직접 방문·재추출·
+# 승계·overrides) 여기서 한 번은 반드시 걸러진다. 통과 못 하면 빈칸으로 내보낸다 —
+# "빈칸이 있다면 과감히 빈칸으로" (2026-08-11 사용자 지시).
+_QC_MUST = {
+    "workPeriod": re.compile(r"\d"),                              # 기간엔 숫자가 있어야 한다
+    "perfPeriod": re.compile(r"\d"),
+    "pay":        re.compile(r"[\d,]{2,}\s*(?:만\s*)?원|시급|일당|사례|협의|상담|추후|결정"),
+    "contact":    re.compile(r"^0\d{1,2}-?\d{3,4}-?\d{4}$"),      # 전화번호 그 자체여야 한다
+    # 인원 칸엔 숫자 대신 역할명이 오기도 한다 — 기독정보넷 '모시는분: 반주자'.
+    # 짧은 순한글(콜론 없음)이면 역할명으로 인정한다. 첫 검수에서 이걸 몰라
+    # 정상값 '반주자' 26건을 먹었다 (2026-08-11).
+    "personnel":  re.compile(r"\d|[Oo○]\s*명|^[가-힣·/\s]{2,16}$"),
+    "ageLimit":   re.compile(r"\d|제한\s*없|무관"),
+    "dayOff":     re.compile(r"[월화수목금토일]|주\s*\d|협의|지정"),
+}
 
 
 def _qc_fields(items):
@@ -1045,6 +1064,15 @@ def _qc_fields(items):
             why = next((name for name, pat in _SUSPECT if pat.search(v)), None)
             if not why and len(v) > 90:
                 why = f"너무 김({len(v)}자)"
+            # 항목별 필수 모양 — 기간에 숫자가 없거나 연락처가 번호 꼴이 아니면 그 항목이 아니다
+            must = _QC_MUST.get(f)
+            if not why and must and not must.search(v):
+                why = "모양 불일치"
+            # 주소는 시도로 시작해야 한다. valid_addr(도로명+번지)까지 요구하면 지오코딩이
+            # 만든 '서울특별시 광진구 군자로'(건물번호 없음)가 억울하게 잘린다.
+            if not why and f == "addr" and not re.match(
+                    r"^(?:\(?우?\)?\s*\d{5}\s*)?(서울|부산|대구|인천|광주|대전|울산|세종|경기|강원|충[북남청]|전[북남라]|경[북남상]|제주)", v):
+                why = "주소 모양 아님"
             if why:
                 hits.append((f, why, it.get("title", "")[:22], v[:46]))
                 it.pop(f, None)
@@ -1476,6 +1504,29 @@ def track_deadline_misses(final):
         log(f"마감 미확인 {len(cur)}건 추적 중 (이번에 보고 {len(due)}건) → deadline_misses.json")
 
 
+# 본문에 <img> 로 박힌 공고 이미지. 첨부 링크(find_attachments)만 찾던 탓에 이런 공고는
+# 텍스트가 한 줄도 안 남았다 — 경북 도립예술단·통영 꿈의오케스트라가 그랬다 (2026-08-11).
+# '이미지의 모든 텍스트를 데이터화한다'(사용자 지시)의 마지막 공백.
+_IMG_CONTENT = re.compile(r"upload|editor|files|attach|data|bbs|smartupload", re.I)
+_IMG_CHROME = re.compile(r"icon|logo|btn|banner|bullet|emoticon|blank|spacer|/_next/image", re.I)
+
+
+def _find_content_images(soup, base_url, limit=3):
+    from urllib.parse import urljoin
+    out, seen = [], set()
+    for im in soup.find_all("img"):
+        src = im.get("src") or ""
+        if not src or not _IMG_CONTENT.search(src) or _IMG_CHROME.search(src):
+            continue
+        full = urljoin(base_url, src)
+        if full not in seen:
+            seen.add(full)
+            out.append(full)
+        if len(out) >= limit:
+            break
+    return out
+
+
 def _ensure_raw_attachments(final, cap=50):
     """원문 보관층 보완 패스 — 첨부를 아직 저장하지 못한 공고를 한 번씩 마저 긁는다.
 
@@ -1525,6 +1576,20 @@ def _ensure_raw_attachments(final, cap=50):
                     rawstore.stash(iid, "attach", attach.extract_any(name, fr.content), name=name)
                 except Exception:
                     continue
+            # 본문에 <img> 로 박힌 공고 이미지도 OCR 한다 — 첨부 링크가 없는 이미지 공고는
+            # 이 경로가 유일한 텍스트화 기회다. OCR 비용 때문에 공고당 2장으로 묶는다.
+            try:
+                for imurl in _find_content_images(BeautifulSoup(r.text, "lxml"), r.url, limit=2):
+                    try:
+                        fr = (curl_get(imurl, referer=it["url"], timeout=30) if tls_blocked(imurl)
+                              else s.get(imurl, timeout=30, verify=False, headers={"Referer": it["url"]}))
+                        if fr.status_code == 200 and 2_000 < len(fr.content) < 20_000_000:
+                            name = "img:" + imurl.rsplit("/", 1)[-1][:40]
+                            rawstore.stash(iid, "attach", attach.extract_any(name + ".png", fr.content), name=name)
+                    except Exception:
+                        continue
+            except Exception:
+                pass
             rawstore.mark_tried(iid)
             done += 1
         except Exception:

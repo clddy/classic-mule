@@ -198,6 +198,13 @@ def extract_any(filename: str, data: bytes, depth: int = 0) -> str:
     """확장자보다 매직바이트 우선 판별. zip이면 내부 문서(중첩 zip 포함)까지 재귀 추출."""
     fn = (filename or "").lower()
     try:
+        # 이미지 → OCR. 이 분기가 없어서 본문 <img> 공고를 내려받고도 전부 0자였다 —
+        # ocr_image 는 hwp 내부 이미지 경로에서만 쓰이고 extract_any 는 이미지를 그냥
+        # 흘려보냈다 (2026-08-11 이미지 백필에서 발각).
+        if (data[:2] == b"\xff\xd8" or data[:4] == b"\x89PNG" or data[:2] == b"BM"
+                or data[:6] in (b"GIF87a", b"GIF89a")
+                or re.search(r"\.(jpe?g|png|gif|bmp)(\.|$)", fn)):
+            return ocr_image(data)
         if data[:5] == b"%PDF-" or fn.endswith(".pdf"):
             return extract_pdf(data)
         if data[:8] == b"\xd0\xcf\x11\xe0\xa1\xb1\x1a\xe1" or fn.endswith(".hwp"):

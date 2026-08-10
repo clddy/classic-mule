@@ -1,5 +1,5 @@
 {
- "collectedAt": "2026-08-11 04:18",
+ "collectedAt": "2026-08-11 05:15",
  "sourceCount": 87,
  "okCount": 87,
  "instTotal": 75,
@@ -792,7 +792,7 @@
   {
    "id": "b0317693d5f0d495",
    "org": "제물포구 구립 여성합창단",
-   "region": "기타",
+   "region": "인천",
    "source": "artmore.kr",
    "title": "제물포구 구립 여성합창단 지휘자 모집",
    "nonMusic": null,
@@ -810,22 +810,26 @@
    "instDetails": [
     "지휘"
    ],
-   "personnel": null,
-   "subject": null,
    "officialUrl": "https://www.jcf.or.kr/main/bbs/bbsMsgDetail.do?bcd=announce&msg_seq=296",
    "channel": "artmore",
    "layer": "A",
-   "qualification": "경력 2년 학력 대학교(4년)",
-   "bodyExcerpt": "문의하기 입사 지원 완료 닫기 예술경영지원센터에서 직원 모집합니다. · 채용 공고에 입사 지원 했습니다.",
    "deadlineFrom": "raw",
+   "qualification": "경력 2년 학력 대학교(4년)",
+   "contact": "032-886-9045",
+   "pay": "월급 1,300,000원",
+   "workHours": "사회보험 퇴직금 지급 방법 월급 1,300,000원 ~ 1,300,000원(회사 내규에 따름)10:30 ~ 12:30주2일 해당없음 전형방법 접수마감일 전형방법",
+   "duty": "주 2회 정기연습 및 공연준비 등 필요시 특별연습 실시",
+   "addr": "인천 제물포구 축항대로296",
+   "regionBoard": "기타",
+   "bodyExcerpt": "문의하기 입사 지원 완료 닫기 예술경영지원센터에서 직원 모집합니다. · 채용 공고에 입사 지원 했습니다.",
    "firstSeen": "2026-08-10",
    "isNew": true,
-   "extVer": 63
+   "extVer": 66
   },
   {
    "id": "24f5f952c1d46922",
    "org": "제물포구 구립 소년소녀합창단",
-   "region": "기타",
+   "region": "인천",
    "source": "artmore.kr",
    "title": "제물포구 구립 소년소녀합창단 지휘자 모집",
    "nonMusic": null,
@@ -843,17 +847,21 @@
    "instDetails": [
     "지휘"
    ],
-   "personnel": null,
-   "subject": null,
    "officialUrl": "https://www.jcf.or.kr/main/bbs/bbsMsgDetail.do?bcd=announce&msg_seq=296",
    "channel": "artmore",
    "layer": "A",
-   "qualification": "경력 2년 학력 대학교(4년)",
-   "bodyExcerpt": "문의하기 입사 지원 완료 닫기 예술경영지원센터에서 직원 모집합니다. · 채용 공고에 입사 지원 했습니다.",
    "deadlineFrom": "raw",
+   "qualification": "경력 2년 학력 대학교(4년)",
+   "contact": "032-886-9045",
+   "pay": "월급 1,300,000원",
+   "workHours": "사회보험 퇴직금 지급 방법 월급 1,300,000원 ~ 1,300,000원(회사 내규에 따름)17:00 ~ 19:00주2일 해당없음 전형방법 접수마감일 전형방법",
+   "duty": "주 2회 정기연습 및 공연준비 등 필요시 특별연습 실시",
+   "addr": "인천 제물포구 금곡로 67(송림동)6층",
+   "regionBoard": "기타",
+   "bodyExcerpt": "문의하기 입사 지원 완료 닫기 예술경영지원센터에서 직원 모집합니다. · 채용 공고에 입사 지원 했습니다.",
    "firstSeen": "2026-08-10",
    "isNew": true,
-   "extVer": 63
+   "extVer": 66
   },
   {
    "id": "33eff7cbadc5df28",
@@ -876,22 +884,19 @@
    "instDetails": [
     "첼로"
    ],
-   "personnel": null,
-   "subject": null,
    "channel": "edu_seoul",
    "layer": "C",
-   "qualification": "여부, 학력사항, 경력정보",
-   "contact": "02-467-0281",
-   "workPeriod": "2026. 8. 25. ~ 2027. 2. 28.(연장 가능)",
-   "bodyExcerpt": "다만, 필수항목에 대한 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다. · 제공 목적: 구직활동 지원 및 채용업무 처리 라. · 보유 및 이용 기간: 회원 탈퇴 시까지(2년) 마. · 다만, 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다.",
    "deadlineFrom": "raw",
-   "addr": "서울특별시 광진구 군자로",
-   "lat": 37.5530158,
-   "lng": 127.0728946,
-   "addrFrom": "geo",
+   "contact": "02-467-0281",
+   "pay": "시급",
+   "workPeriod": "2026. 8. 25. ~ 2027. 2. 28.(연장 가능)",
+   "workHours": "주 14시간",
+   "personnel": "1명 과목(",
+   "addr": "서울특별시 광진구 군자로 114(군자동)",
+   "bodyExcerpt": "다만, 필수항목에 대한 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다. · 제공 목적: 구직활동 지원 및 채용업무 처리 라. · 보유 및 이용 기간: 회원 탈퇴 시까지(2년) 마. · 다만, 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다.",
    "firstSeen": "2026-08-10",
    "isNew": true,
-   "extVer": 63
+   "extVer": 66
   },
   {
    "id": "ece500b805beb60f",
@@ -912,17 +917,18 @@
    "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
-   "personnel": null,
-   "subject": null,
    "channel": "edu_seoul",
    "layer": "C",
-   "qualification": "여부, 학력사항, 경력정보",
-   "contact": "02-843-2028",
-   "bodyExcerpt": "다만, 필수항목에 대한 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다. · 제공 목적: 구직활동 지원 및 채용업무 처리 라. · 보유 및 이용 기간: 회원 탈퇴 시까지(2년) 마. · 다만, 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다.",
    "deadlineFrom": "raw",
+   "contact": "02-843-2028",
+   "pay": "시급 25,000",
+   "workHours": "주당 6시간(음악)",
+   "personnel": "1명 과목(",
+   "addr": "서울특별시 영등포구 영등포로62",
+   "bodyExcerpt": "다만, 필수항목에 대한 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다. · 제공 목적: 구직활동 지원 및 채용업무 처리 라. · 보유 및 이용 기간: 회원 탈퇴 시까지(2년) 마. · 다만, 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다.",
    "firstSeen": "2026-08-10",
    "isNew": true,
-   "extVer": 63
+   "extVer": 66
   },
   {
    "id": "20127745c2d6b638",
@@ -943,22 +949,19 @@
    "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
-   "personnel": null,
-   "subject": null,
    "channel": "edu_seoul",
    "layer": "C",
    "deadlineFrom": "title",
-   "qualification": "여부, 학력사항, 경력정보",
    "contact": "02-2602-1202",
+   "pay": "시급",
+   "workPeriod": "2026.08.26~2026.09.03",
    "workHours": "해당 수업일의 수업시간",
+   "personnel": "1명 과목(",
+   "addr": "서울특별시 양천구 신정로 213(신정동)",
    "bodyExcerpt": "다만, 필수항목에 대한 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다. · 제공 목적: 구직활동 지원 및 채용업무 처리 라. · 보유 및 이용 기간: 회원 탈퇴 시까지(2년) 마. · 다만, 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다.",
-   "addr": "서울특별시 양천구 신정로14길",
-   "lat": 37.5102504,
-   "lng": 126.844214,
-   "addrFrom": "geo",
    "firstSeen": "2026-08-10",
    "isNew": true,
-   "extVer": 63
+   "extVer": 66
   },
   {
    "id": "e74332d0cc55b1b5",
@@ -979,21 +982,18 @@
    "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
-   "personnel": null,
-   "subject": null,
    "channel": "edu_goe",
    "layer": "C",
-   "contact": "010-7213-0205",
-   "workHours": "전일제 근무",
-   "bodyExcerpt": "채용분야 및 기간 과목 인원 채용 기간 채용방법 비고 음악 1 2026. · 채용 응시 자격 : 내국인으로서 채용 분야 교원자격증 소지자 2. · 자격 : 해당 교과 교원 자격증 소지자 ( 실기교사 교원자격증 제외 ) 다 . · 기간 : 2026.",
    "deadlineFrom": "raw",
-   "addr": "경기도 안산시 단원구 단원로",
-   "lat": 37.3276111,
-   "lng": 126.8227623,
-   "addrFrom": "geo",
+   "contact": "070-4021-7078",
+   "workPeriod": "2026/08/18~2026/10/02",
+   "workHours": "전일제 근무",
+   "personnel": "1명 과목 음악",
+   "addr": "경기 안산시 단원구 단원로 27(고잔동)",
+   "bodyExcerpt": "채용분야 및 기간 과목 인원 채용 기간 채용방법 비고 음악 1 2026. · 채용 응시 자격 : 내국인으로서 채용 분야 교원자격증 소지자 2. · 자격 : 해당 교과 교원 자격증 소지자 ( 실기교사 교원자격증 제외 ) 다 . · 기간 : 2026.",
    "firstSeen": "2026-08-10",
    "isNew": true,
-   "extVer": 63
+   "extVer": 66
   },
   {
    "id": "b94318471e1c87c7",
@@ -1014,20 +1014,18 @@
    "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
-   "personnel": null,
-   "subject": null,
    "channel": "edu_goe",
    "layer": "C",
-   "contact": "031-249-1861",
-   "bodyExcerpt": "채용 권자 : 명인중학교장 나 . · 채용 분야 및 채용 기간 ◦ 음악과 1 명 , 2026. · 채용 응시 자격 : 내국인으로서 채용 분야 교원자격증 소지자 마 . · 기간 : 2026.",
    "deadlineFrom": "raw",
-   "addr": "경기도 수원시 장안구 대평로39번길",
-   "lat": 37.2918317,
-   "lng": 126.9930777,
-   "addrFrom": "geo",
+   "contact": "070-4021-7078",
+   "workPeriod": "2026/08/24~2026/08/31",
+   "workHours": "22시간 복리후생",
+   "personnel": "1명 과목 음악",
+   "addr": "경기 수원시 장안구 정자천로134",
+   "bodyExcerpt": "채용 권자 : 명인중학교장 나 . · 채용 분야 및 채용 기간 ◦ 음악과 1 명 , 2026. · 채용 응시 자격 : 내국인으로서 채용 분야 교원자격증 소지자 마 . · 기간 : 2026.",
    "firstSeen": "2026-08-10",
    "isNew": true,
-   "extVer": 63
+   "extVer": 66
   },
   {
    "id": "38cc755b26242172",
@@ -1048,20 +1046,17 @@
    "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
-   "personnel": null,
-   "subject": null,
    "channel": "edu_goe",
    "layer": "C",
-   "contact": "070-5077-1718",
-   "bodyExcerpt": "운영 기간 : 2026. · 모집 세부 사항 순서 일정 공고 게시일 2026. · 17.( 월 ) 10:00 까지 접수 방법 E-mail 접수 (nydud2589@korea.kr) 1 차 서류 심사 발표 2026. · 해당 분야에 전문적인 능력을 가진 자 또는 자격증 소지자 다 .",
    "deadlineFrom": "raw",
-   "addr": "경기도 시흥시 대은로",
-   "lat": 37.4416181,
-   "lng": 126.7954131,
-   "addrFrom": "geo",
+   "contact": "070-4021-7078",
+   "workHours": "2시간 복리후생 근무지역 주소 경기 시흥시 대은로 16-29(은행동)금모래초등학교 지도검색",
+   "personnel": "1명 과목 칼림바,오카리나 등",
+   "addr": "경기 시흥시 대은로 16-29(은행동)",
+   "bodyExcerpt": "운영 기간 : 2026. · 모집 세부 사항 순서 일정 공고 게시일 2026. · 17.( 월 ) 10:00 까지 접수 방법 E-mail 접수 (nydud2589@korea.kr) 1 차 서류 심사 발표 2026. · 해당 분야에 전문적인 능력을 가진 자 또는 자격증 소지자 다 .",
    "firstSeen": "2026-08-10",
    "isNew": true,
-   "extVer": 63
+   "extVer": 66
   },
   {
    "id": "f21c15f1cea76e99",
@@ -1082,21 +1077,18 @@
    "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
-   "personnel": null,
-   "subject": null,
    "channel": "edu_goe",
    "layer": "C",
-   "contact": "031-8055-7676",
-   "workPeriod": "2026.9.1.(화)~ 2026.12.15.(화)",
-   "bodyExcerpt": "모집 세부 사항 가 . · 서류 접수 기간 : 2026.8.10.( 월 ) ~ 2026.8.18.( 화 ) 10:00 까지 접수분 다 . · 계약기간 : 2026.9.1.( 화 ) ~ 2026.12.15.( 화 ) 사 . · ( 이력서에 기재한 자격사항 및 경력사항 추후 증빙서류 제출 ) 라 .",
    "deadlineFrom": "raw",
-   "addr": "경기도 화성시 동탄대로",
-   "lat": 37.1759659,
-   "lng": 127.106725,
-   "addrFrom": "geo",
+   "contact": "070-4021-7078",
+   "workPeriod": "2026.9.1.(화)~ 2026.12.15.(화)",
+   "workHours": "2시간 복리후생 근무지역 주소 경기 화성시 동탄구 동탄대로10길 11(산척동)화성나래학교 지도검색",
+   "personnel": "1명 과목 초3방과후(음악)",
+   "addr": "경기 화성시 동탄구 동탄대로10",
+   "bodyExcerpt": "모집 세부 사항 가 . · 서류 접수 기간 : 2026.8.10.( 월 ) ~ 2026.8.18.( 화 ) 10:00 까지 접수분 다 . · 계약기간 : 2026.9.1.( 화 ) ~ 2026.12.15.( 화 ) 사 . · ( 이력서에 기재한 자격사항 및 경력사항 추후 증빙서류 제출 ) 라 .",
    "firstSeen": "2026-08-10",
    "isNew": true,
-   "extVer": 63
+   "extVer": 66
   },
   {
    "id": "11d675c2b02da15f",
@@ -1117,17 +1109,18 @@
    "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
-   "personnel": null,
-   "subject": null,
    "channel": "edu_goe",
    "layer": "C",
-   "contact": "031-292-2579",
-   "workPeriod": "2026. 08. 24. ~ 2027. 01. 04.(학교사정상 변경될 수 있음)",
-   "bodyExcerpt": "공고 기간 및 서류 제출기간 : 2026. · ( 금 ) ※ 단 , 서류접수는 평일 9:00~ 16:00 까지 * 마감일은 12 시까지 접수 나 . · 접수장소 : 본교 2 층 교무실 방문접수 ( 본인 직접 제출 ) * FAX 접수 불가 , 서류 미비 시 접수 불가 라 . · 계약 기간 : 2026.",
    "deadlineFrom": "raw",
+   "contact": "070-4021-7078",
+   "workPeriod": "2026. 08. 24. ~ 2027. 01. 04.(학교사정상 변경될 수 있음)",
+   "workHours": "2시간 복리후생 근무지역 주소 경기 수원시 권선구 수봉로 47(탑동)자혜학교 지도검색",
+   "personnel": "1명 과목 음악",
+   "addr": "경기 수원시 권선구 수봉로 47(탑동)",
+   "bodyExcerpt": "공고 기간 및 서류 제출기간 : 2026. · ( 금 ) ※ 단 , 서류접수는 평일 9:00~ 16:00 까지 * 마감일은 12 시까지 접수 나 . · 접수장소 : 본교 2 층 교무실 방문접수 ( 본인 직접 제출 ) * FAX 접수 불가 , 서류 미비 시 접수 불가 라 . · 계약 기간 : 2026.",
    "firstSeen": "2026-08-10",
    "isNew": true,
-   "extVer": 63
+   "extVer": 66
   },
   {
    "id": "7e329dd22b52f11e",
@@ -1148,12 +1141,11 @@
    "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
-   "personnel": null,
-   "subject": null,
    "channel": "edu_jbe",
    "layer": "C",
    "qualification": "자는 관련 법률 「국가유공자 등 예우 및 지원에 관한 법률」제31조",
    "contact": "063-252-2758",
+   "workPeriod": "2026-09-01~2027-02-28지원서",
    "workHours": "전일제 근무(1일 8시간)",
    "ageLimit": "제한 없음",
    "bodyExcerpt": "공고에 ‘채용의 제한’ 부분 명시 2. · 서류접수 방법 : 전자우편 중심 3. · 지침 [붙임 2] 기간제교원 채용 공고(예시) 다운로드 지침",
@@ -1163,7 +1155,7 @@
    "addrFrom": "geo",
    "firstSeen": "2026-08-10",
    "isNew": true,
-   "extVer": 63
+   "extVer": 66
   },
   {
    "id": "9f6e1a9c65f4d62a",
@@ -1188,10 +1180,13 @@
    "layer": "C",
    "firstSeen": "2026-08-10",
    "isNew": true,
+   "addr": "인천광역시 연수구 앵고개로 224(동춘 1동 938-1)http://idongchun.es.kr",
    "contact": "032-812-5561",
+   "workHours": "09:00~18:00(수요일",
+   "personnel": "2채용시작일 2026/09/01채용종료일 2027/02/28채용방법 공개",
    "hiringOrg": "인천광역시교육청대상명 : 인천광역시교육청(https://www.ice.go.kr)",
    "bodyExcerpt": "초등교사 자격증 소지자 나 . · 공고 / 접수 : 2026. · 채용방법 : 1 차 - 서류심사 , 2 차 - 면접으로 채용 나 . · 2 차 전형 예정 : 2026.",
-   "extVer": 63
+   "extVer": 66
   },
   {
    "id": "a8c984e07534f04e",
@@ -1214,15 +1209,13 @@
    "instDetails": [
     "바이올린"
    ],
-   "personnel": null,
-   "subject": null,
    "channel": "edu_pen",
    "layer": "C",
    "contact": "051-860-0643",
    "bodyExcerpt": "채용 채용/시험정보 학교인력채용 등록중..",
    "firstSeen": "2026-08-10",
    "isNew": true,
-   "extVer": 63
+   "extVer": 66
   },
   {
    "id": "44536ef2f7672aab",
@@ -1255,7 +1248,7 @@
    "addrFrom": "geo",
    "firstSeen": "2026-08-10",
    "isNew": true,
-   "extVer": 63
+   "extVer": 66
   },
   {
    "id": "253d58760ca9741e",
@@ -1287,7 +1280,7 @@
    "addrFrom": "geo",
    "firstSeen": "2026-08-10",
    "isNew": true,
-   "extVer": 63,
+   "extVer": 66,
    "subject": "피아노"
   },
   {
@@ -1311,19 +1304,18 @@
    "instDetails": [
     "피아노"
    ],
-   "personnel": "반주자",
-   "subject": null,
    "channel": "cjob",
    "layer": "C",
-   "addr": "경기 부천시 오정구 상오정로 132 (오정동, 성은교회)",
    "deadlineFrom": "cjob-남은기간",
+   "addr": "경기 부천시 오정구 상오정로 132 (오정동, 성은교회)",
+   "personnel": "반주자",
    "qualification": "피아노 또는 음악 관련 전공자 및 교회 반주 경험자",
    "pay": "월 40만원",
    "duty": "주일예배 찬송가 및 예배 반주, 성가대 찬양 반주, 성가대 연습 반주",
    "bodyExcerpt": "모시는분 반주자 - 지역 경기 - 등록일 2026-08-07 - 남은기간 2026-09-18 23:59:59 · 탑동감리교회 드럼반주자&레슨강사 모집합니다. · 용호남교회 피아노 반주자 모집 건반 연주자와 일렉키타 연주자를 모십니다(찬양팀) 주일 피아노 반주자 모십니다.",
    "firstSeen": "2026-08-08",
    "isNew": false,
-   "extVer": 63
+   "extVer": 66
   },
   {
    "id": "4f0d888e1f8a5413",
@@ -1344,23 +1336,18 @@
    "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
-   "personnel": null,
-   "subject": null,
    "channel": "edu_seoul",
    "layer": "C",
-   "qualification": "여부, 학력사항, 경력정보",
+   "deadlineFrom": "raw",
    "contact": "070-5008-5726",
    "workPeriod": "2026. 8. 14. ~ 2027. 2. 28",
    "workHours": "전일제 근무",
+   "personnel": "1명 과목(",
+   "addr": "서울특별시 은평구 가좌로5",
    "bodyExcerpt": "다만, 필수항목에 대한 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다. · 제공 목적: 구직활동 지원 및 채용업무 처리 라. · 보유 및 이용 기간: 회원 탈퇴 시까지(2년) 마. · 다만, 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다.",
-   "deadlineFrom": "raw",
-   "addr": "서울특별시 은평구 가좌로5길",
-   "lat": 37.5852917,
-   "lng": 126.9219857,
-   "addrFrom": "geo",
    "firstSeen": "2026-08-07",
    "isNew": false,
-   "extVer": 63
+   "extVer": 66
   },
   {
    "id": "dc95d860e0a42457",
@@ -1381,23 +1368,18 @@
    "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
-   "personnel": null,
-   "subject": null,
    "channel": "edu_seoul",
    "layer": "C",
-   "qualification": "여부, 학력사항, 경력정보",
+   "deadlineFrom": "raw",
    "contact": "02-428-0732",
    "workPeriod": "2026. 8. 18.∼ 2026. 9. 16",
    "workHours": "전일제 근무",
+   "personnel": "1명 과목(",
+   "addr": "서울특별시 강동구 천호대로219",
    "bodyExcerpt": "다만, 필수항목에 대한 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다. · 제공 목적: 구직활동 지원 및 채용업무 처리 라. · 보유 및 이용 기간: 회원 탈퇴 시까지(2년) 마. · 다만, 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다.",
-   "deadlineFrom": "raw",
-   "addr": "서울특별시 강동구 천호대로219길",
-   "lat": 37.5483569,
-   "lng": 127.1698635,
-   "addrFrom": "geo",
    "firstSeen": "2026-08-07",
    "isNew": false,
-   "extVer": 63
+   "extVer": 66
   },
   {
    "id": "accd06da18aa4208",
@@ -1418,22 +1400,24 @@
    "ageGroup": "성인",
    "inst": "성악",
    "instDetails": [],
-   "personnel": null,
-   "subject": null,
    "channel": "edu_goe",
    "layer": "C",
-   "contact": "031-979-7503",
-   "pay": "시간당 40,000원",
-   "workHours": "3,4교시 운영(11시 ~ 12시 20분 , 총 400분)",
-   "bodyExcerpt": "인원 : 분야별 1 명 다 . · 보수 : 시간당 40,000 원 - 4 대 보험 ( 국민연금 , 건강보험 , 고용보험 , 산재보험 ) 중 산재보험만 학교에서 가입 다 . · 접수기간 : 2026.8.8.( 토 ) ~ 8.12.( 수 ) 14 시 나 . · ※ 제출기간 : 2026.8.18.( 화 ) 까지 미제출 시 본교 근무 포기로 간주하고 차순위자 채용할 수 있음 .",
    "deadlineFrom": "raw",
+   "contact": "070-4021-7078",
+   "pay": "시간당 40,000원",
+   "workPeriod": "2026.9.9.(수)~10.21.(수)(총 5일 , 1일 2차시 , 총 10차시)",
+   "workHours": "3,4교시 운영(11시 ~ 12시 20분 , 총 400분)",
+   "duty": "동아리별 전문 분야 실기 활동 지도 및 담당교사와의 협력수업",
+   "ageLimit": ")제한 없음",
+   "personnel": "3명 과목 요리, 합창, 메이커",
+   "bodyExcerpt": "인원 : 분야별 1 명 다 . · 보수 : 시간당 40,000 원 - 4 대 보험 ( 국민연금 , 건강보험 , 고용보험 , 산재보험 ) 중 산재보험만 학교에서 가입 다 . · 접수기간 : 2026.8.8.( 토 ) ~ 8.12.( 수 ) 14 시 나 . · ※ 제출기간 : 2026.8.18.( 화 ) 까지 미제출 시 본교 근무 포기로 간주하고 차순위자 채용할 수 있음 .",
    "addr": "경기도 고양시 덕양구 소원로 251",
    "lat": 37.614136,
    "lng": 126.8486937,
    "addrFrom": "geo",
    "firstSeen": "2026-08-07",
    "isNew": false,
-   "extVer": 63
+   "extVer": 66
   },
   {
    "id": "bedac6648415995b",
@@ -1460,8 +1444,10 @@
    "firstSeen": "2026-08-07",
    "isNew": false,
    "contact": "042-542-2224",
+   "workPeriod": "2026/08/24~2026/12/31",
+   "personnel": "1",
    "bodyExcerpt": "구직 기간제교사 학교인력 채용공고 산학겸임.강사.명예교사신청 연수",
-   "extVer": 63
+   "extVer": 66
   },
   {
    "id": "6d3ca4c6fee816ea",
@@ -1488,7 +1474,7 @@
    "layer": "B",
    "firstSeen": "2026-08-07",
    "isNew": false,
-   "extVer": 63
+   "extVer": 66
   },
   {
    "id": "9ae19f1a33f2ae8b",
@@ -1511,29 +1497,27 @@
    "instDetails": [
     "지휘"
    ],
-   "personnel": null,
-   "subject": null,
    "channel": "artinfo",
    "layer": "A",
+   "deadlineFrom": "raw",
+   "applyEmail": "rkd0365@korea.kr",
+   "applyPhone": "041-521-3416",
    "duty": "교향악단 공연기획, 작품선정, 관람객 유치 방안등 공연전반 - 교향악단 단원의 기량향상, 연습일정 등 관리 및 업무 전반",
    "bodyExcerpt": "모집기간 : 2026. · 14.(금) - 원서접수: 2026. · 모집분야 및 인원 모집분야: 예술감독(상임지휘자) 1명 2.",
-   "deadlineFrom": "raw",
    "officialUrl": "https://artcheonan.kr/with/notice/?vid=100",
-   "applyPhone": "041-521-3416",
-   "applyEmail": "rkd0365@korea.kr",
    "documents": "원서접수 2026.8.12(수)~8.14(금) 방문접수 (우편접수 불가)",
    "verifiedAt": "2026-08-02",
    "verifiedNote": "천안문화재단 공지사항에서 원문 확인 — 문화예술과 게시(2026-07-31). 접수는 방문접수만 가능.",
    "firstSeen": "2026-08-02",
    "isNew": false,
-   "extVer": 63
+   "extVer": 66
   },
   {
    "id": "e585a3428c07e3b8",
    "org": "강원교육청(학교 채용)",
    "region": "강원",
    "source": "gwe.go.kr",
-   "title": "기간제교원(음악) 채용",
+   "title": "[강원사대부설고] 기간제교원(음악) 채용",
    "nonMusic": null,
    "url": "https://www.gwe.go.kr/main/bbs/view.do?key=bTIzMDcyMTA1ODU2MzM%3D&bbsSn=54560",
    "date": "2026-08-05",
@@ -1553,9 +1537,10 @@
    "firstSeen": "2026-08-05",
    "isNew": false,
    "contact": "033-815-1203",
+   "workPeriod": "2026. 9. 1.(화)~2027. 4. 30.(금), 8개월",
    "workHours": "1일 8시간을 원칙으로 하며, 교원의 근무 시간과 동일 4",
    "bodyExcerpt": "채용이 완료된 학교에서는 채용문의에 대한 불필요한 민원 발생을 미연에 방지하고자 \"채용여부\"를 반드시 \"채용완료\"로 수정하여 주시기 바랍니다. · 구인공고시 채용 마감일자를 반드시 기재하여 주시기 바랍니다. · 채용 과목: 음악 1명 2. · 채용 기간: 2026.",
-   "extVer": 63
+   "extVer": 66
   },
   {
    "id": "142a902f302653e2",
@@ -1576,22 +1561,18 @@
    "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
-   "personnel": null,
-   "subject": null,
    "channel": "edu_seoul",
    "layer": "C",
-   "qualification": "여부, 학력사항, 경력정보",
-   "contact": "02-6388-9636",
-   "workHours": "전일제 근무",
-   "bodyExcerpt": "다만, 필수항목에 대한 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다. · 제공 목적: 구직활동 지원 및 채용업무 처리 라. · 보유 및 이용 기간: 회원 탈퇴 시까지(2년) 마. · 다만, 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다.",
    "deadlineFrom": "raw",
-   "addr": "서울특별시 양천구 목동서로 31",
-   "lat": 37.5377432,
-   "lng": 126.8832373,
-   "addrFrom": "geo",
+   "contact": "02-6388-9636",
+   "workPeriod": "2026.09.01~2027.02.28",
+   "workHours": "전일제 근무",
+   "personnel": "2명 과목(",
+   "addr": "서울특별시 양천구 목동서로 31(목동)",
+   "bodyExcerpt": "다만, 필수항목에 대한 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다. · 제공 목적: 구직활동 지원 및 채용업무 처리 라. · 보유 및 이용 기간: 회원 탈퇴 시까지(2년) 마. · 다만, 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다.",
    "firstSeen": "2026-08-07",
    "isNew": false,
-   "extVer": 63
+   "extVer": 66
   },
   {
    "id": "1c3f7021c8613ca5",
@@ -1618,9 +1599,10 @@
    "firstSeen": "2026-08-03",
    "isNew": false,
    "qualification": "및 면허/전공 이수 여부",
-   "contact": "064)729-6849",
+   "workHours": "내, 08:30~16:30)",
    "ageLimit": "만 62세 미만으로 직무수행의 결격사유나 학생 지도 시 건강에 이상이 없는",
-   "extVer": 63
+   "personnel": "강좌(반)대상(학년)운영요일 운영 시간(40분 단위)주당 수업 시수 강사료",
+   "extVer": 66
   },
   {
    "id": "ba538191e3f65442",
@@ -1640,7 +1622,18 @@
    "careerReq": "미기재",
    "ageGroup": "성인",
    "inst": "전체",
-   "instDetails": [],
+   "instDetails": [
+    "더블베이스",
+    "바이올린",
+    "비올라",
+    "플루트",
+    "오보에",
+    "클라리넷",
+    "바순",
+    "호른",
+    "트럼펫",
+    "타악"
+   ],
    "personnel": null,
    "subject": null,
    "channel": "g_timf",
@@ -1648,7 +1641,7 @@
    "deadlineFrom": "title",
    "firstSeen": "2026-07-31",
    "isNew": false,
-   "extVer": 63
+   "extVer": 66
   },
   {
    "id": "75b0e58f4b8192e4",
@@ -1667,23 +1660,22 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "타악",
+   "inst": "전체",
    "instDetails": [
     "타악",
     "피아노",
     "현악",
     "관악"
    ],
-   "personnel": "8명3",
-   "subject": null,
    "channel": "g_i_gunsangokr",
    "layer": "B",
-   "addr": "전북 군산시 백토로 203(지곡동), 군산예술의전당 시립교향악단 사무국 &lt;봉투 겉면에 “ 연주자 오디션 응시서류 재중” 명기&gt;",
-   "bodyExcerpt": "공고기간 : 2026. · 접수기간 : 2026. · 콘텐츠 관리부서 예술의전당관리과 시설운영계 담당전화 063-454-5529 최근수정일 2025-02-06 홈페이지 개선의견 열람하신 정보에 대해 만족 하십니까? · 모집기간 : 2026.",
    "deadlineFrom": "raw",
+   "personnel": "8명3",
+   "addr": "전북 군산시 백토로 203(지곡동)",
+   "bodyExcerpt": "공고기간 : 2026. · 접수기간 : 2026. · 콘텐츠 관리부서 예술의전당관리과 시설운영계 담당전화 063-454-5529 최근수정일 2025-02-06 홈페이지 개선의견 열람하신 정보에 대해 만족 하십니까? · 모집기간 : 2026.",
    "firstSeen": "2026-07-29",
    "isNew": false,
-   "extVer": 63
+   "extVer": 66
   },
   {
    "id": "ddd6789490369cc1",
@@ -1710,10 +1702,10 @@
    "subject": null,
    "channel": "g_casuwon",
    "layer": "B",
-   "qualification": "주일 11시 교중미사 반주자 서류 : 이력서, 자기소개서, 본당 신부님 추천서",
+   "contact": "031-263-0651",
    "firstSeen": "2026-08-02",
    "isNew": false,
-   "extVer": 63
+   "extVer": 66
   },
   {
    "id": "ba73b6b1fbdcb18a",
@@ -1737,17 +1729,16 @@
     "바이올린",
     "플루트"
    ],
-   "personnel": null,
-   "subject": null,
    "channel": "g_pajucf",
    "layer": "B",
+   "deadlineFrom": "raw",
    "qualification": "공고일 기준으로 주민등록상 파주시에 거주하며, 초등학교 3학년~6학년에 재학 중인 학생",
    "contact": "031-950-8414",
+   "personnel": "바이올린 1명 플룻 1명",
    "bodyExcerpt": "홈페이지 회원 가입 및 관리 회원 가입 의사 확인, 회원제 서비스 제공에 따른 본인 식별 · 인증, 회원자격 유지 · 개인영상정보의 확인 방법 및 장소에 관한 사항 - 확인 방법: 영상정보 관리담당자(접근권한자)의 안내에 따라 신청 후 본 기관을 방문하시면 확인할 수 있습니다. · 확인장소 : 해당부서 해당팀 6.",
-   "deadlineFrom": "raw",
    "firstSeen": "2026-08-05",
    "isNew": false,
-   "extVer": 63
+   "extVer": 66
   },
   {
    "id": "f6aa2aa67ffa4f82",
@@ -1780,8 +1771,9 @@
    "addrFrom": "geo",
    "contact": "044-320-4326",
    "workPeriod": "2026.8.31.(월)∼ 2027.1.22.(금)(단 , 방과후학교 예정 시간(시수)범위 내로 하며 , 학사 일정상 단축될 수 있음)2)",
+   "workHours": "학기중 - 주 1회 2시간 , 방학중 -5일간 매일 4시간 4)요일 및 운영시간은 학교 일정에 따라 변경될 수 있음 -자세한 사항은",
    "bodyExcerpt": "공고 기간 : 2026.7.27.( 월 ) ∼ 8.14.( 금 ) 나 . · 서류 접수 : 2026.7.27.( 월 ) ∼ 8.14.( 금 ) 다 . · 접수 장소 : 한솔중학교 1 층 교무실 교무행정사에게 방문 제출 ※ 우편 접수 시 2026.8.14.( 금 ) 11:00 까지 도착분에 한하여 인정함 . · 등록일시 : 2026/02/04 10:25 자료관리자 : (교육공무직원) 노사정책과",
-   "extVer": 63
+   "extVer": 66
   },
   {
    "id": "f1b923041a2add95",
@@ -1802,19 +1794,20 @@
    "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
-   "personnel": "1명",
-   "subject": null,
    "channel": "edu_seoul",
    "layer": "C",
-   "qualification": "여부, 학력사항, 경력정보",
+   "deadlineFrom": "raw",
    "contact": "02-305-7762",
    "pay": "232만원",
+   "workPeriod": "2026.08.26~2026.12.31",
+   "workHours": "매주 수요일 1~4교시(9:00~12:10, 1~2학년), 자세한 일정은 공고문 확인",
    "ageLimit": "제한 없음",
+   "personnel": "1명",
+   "addr": "서울특별시 마포구 월드컵북로 502-14(상암동)",
    "bodyExcerpt": "다만, 필수항목에 대한 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다. · 제공 목적: 구직활동 지원 및 채용업무 처리 라. · 보유 및 이용 기간: 회원 탈퇴 시까지(2년) 마. · 다만, 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다.",
-   "deadlineFrom": "raw",
    "firstSeen": "2026-07-24",
    "isNew": false,
-   "extVer": 63
+   "extVer": 66
   },
   {
    "id": "4ab6131bb9721cf5",
@@ -1843,7 +1836,7 @@
    "orgBoard": "통영국제음악재단",
    "firstSeen": "2026-07-21",
    "isNew": false,
-   "extVer": 63
+   "extVer": 66
   },
   {
    "id": "08982b2dad9606e0",
@@ -1868,15 +1861,17 @@
    "subject": null,
    "channel": "edu_seoul",
    "layer": "C",
-   "qualification": "여부, 학력사항, 경력정보",
    "contact": "02-305-7762",
    "pay": "408만원",
+   "workPeriod": "2026.08.20~2026.12.31",
+   "workHours": "매주 목요일 1~3교시(6학년), 금요일 1~3교시(5학년), 자세한 일정은 공고문 확인",
    "ageLimit": "제한 없음",
+   "addr": "서울특별시 마포구 월드컵북로 502-14(상암동)",
    "bodyExcerpt": "다만, 필수항목에 대한 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다. · 제공 목적: 구직활동 지원 및 채용업무 처리 라. · 보유 및 이용 기간: 회원 탈퇴 시까지(2년) 마. · 다만, 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다.",
    "deadlineFrom": "raw",
    "firstSeen": "2026-08-11",
    "isNew": false,
-   "extVer": 63
+   "extVer": 66
   },
   {
    "id": "b2e199e32140e0ed",
@@ -1899,11 +1894,10 @@
    "instDetails": [
     "피아노"
    ],
-   "personnel": "반주자",
-   "subject": null,
    "channel": "cjob",
    "layer": "C",
    "deadlineFrom": "cjob-남은기간",
+   "personnel": "반주자",
    "pay": "20만원",
    "denomination": "예장 합동",
    "documents": "이력서",
@@ -1912,7 +1906,7 @@
    "bodyExcerpt": "모시는분 반주자 - 지역 전북 - 등록일 2026-07-03 - 남은기간 2026-12-31 23:59:59 · 용호남교회 피아노 반주자 모집 건반 연주자와 일렉키타 연주자를 모십니다(찬양팀) 주일 피아노 반주자 모십니다.",
    "firstSeen": "2026-08-08",
    "isNew": false,
-   "extVer": 63
+   "extVer": 66
   },
   {
    "id": "5fbc7e4eb4f8d92d",
@@ -1935,19 +1929,18 @@
    "instDetails": [
     "피아노"
    ],
-   "personnel": "반주자",
-   "subject": null,
    "channel": "cjob",
    "layer": "C",
-   "addr": "경기 의왕시 경수대로 262 (오전동, 의왕서해그랑블(블루스퀘어))",
    "deadlineFrom": "cjob-남은기간",
+   "addr": "경기 의왕시 경수대로 262 (오전동, 의왕서해그랑블(블루스퀘어))",
+   "personnel": "반주자",
    "pay": "협의",
    "denomination": "순복음",
    "documents": "간단한 이력서",
    "bodyExcerpt": "모시는분 반주자 - 지역 경기 - 등록일 2026-05-20 - 남은기간 2026-12-31 23:59:59 · 탑동감리교회 드럼반주자&레슨강사 모집합니다. · 용호남교회 피아노 반주자 모집 건반 연주자와 일렉키타 연주자를 모십니다(찬양팀) 피아노 반주자를 모십니다.",
    "firstSeen": "2026-08-08",
    "isNew": false,
-   "extVer": 63
+   "extVer": 66
   }
  ]
 }
