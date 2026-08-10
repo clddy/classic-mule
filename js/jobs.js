@@ -511,6 +511,15 @@ function metaRows(j) {
   if (j.teamComp) rows.push(["팀 구성", cleanVal(j.teamComp)]);
   if (j.dayOff) rows.push(["휴일", cleanVal(j.dayOff)]);
   if (j.contact) rows.push(["연락처", cleanVal(j.contact)]);
+  // 주소가 있으면 지도로 바로 보낸다. 악기를 들고 갈 곳이라 '어디인지'가 지원 여부를 가른다.
+  // 주소가 없으면 기관 이름으로 찾게 한다 — 이름만 있어도 지도에서 대개 나온다.
+  const place = cleanVal(j.addr) || (j.org && !/기독정보넷|교육청|포털/.test(j.org) ? cleanVal(j.org) : "");
+  if (place) {
+    const q = encodeURIComponent(place);
+    rows.push([j.addr ? "주소" : "위치",
+      `${esc(place)} <a href="https://map.kakao.com/?q=${q}" target="_blank" rel="noopener"
+        style="margin-left:6px;white-space:nowrap">지도 ↗</a>`]);
+  }
   if (j.ageLimit) rows.push(["나이", cleanVal(j.ageLimit)]);
   // 리허설 횟수 + 회당 환산 (연주자가 시간당 효율로 판단)
   if (j.rehearsalCount) {

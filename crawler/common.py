@@ -304,7 +304,7 @@ def priority_deadlines(text, ref_year=None):
         return []
     from datetime import date as _d
     ref_year = ref_year or _d.today().year
-    text = re.sub(r"\s+", " ", text)
+    text = squash_spaced_labels(re.sub(r"\s+", " ", text))
     out = []
     for kw in _KW_PRIORITY.finditer(text):
         if _is_attach_name(text, kw.end()):
@@ -326,7 +326,7 @@ def extract_deadline(text, ref_year=None, priority_only=False):
         return None
     from datetime import date as _d
     ref_year = ref_year or _d.today().year
-    text = re.sub(r"\s+", " ", text)
+    text = squash_spaced_labels(re.sub(r"\s+", " ", text))
     def _is_filename(kw):
         # "응시원서.hwp" 같은 첨부파일명 매칭은 제외
         return bool(re.match(r"\s*[_\-]?\s*\.(hwpx?|pdf|docx?|xlsx?|zip)", text[kw.end():kw.end() + 8], re.I))
@@ -1175,6 +1175,8 @@ _FIELD_SPECS = [
     # 게시한 곳이 아니라 실제로 뽑는 회사. 대학 게시판에 올라온 외부 공고에서 특히 중요하다
     # — 제주 신라호텔 공고의 고용주는 '에이디엔노뜨'이고 호텔은 공연 장소일 뿐이다.
     ("hiringOrg",  r"구인\s*회사명|회사명|모집\s*기관|채용\s*기관|구인\s*기관|업체명"),
+    # 주소가 있으면 지역을 추측하지 않아도 된다 — 제목·기관명 짐작보다 훨씬 정확하다.
+    ("addr",       r"주\s*소|소\s*재\s*지|근무\s*장소|사업장\s*주소"),
 ]
 
 # 전화번호는 라벨 뒤에 콜론 없이 그냥 붙는 일이 많다("채용여부 진행 연락처 042-542-2224").
@@ -1203,11 +1205,37 @@ _FIELD_STOP = re.compile(
     r"|지원\s*방법|담당자|이메일)\s*[:：]")
 
 
+# 한글 공고문은 라벨 칸을 맞추려고 글자 사이를 벌린다 — '사 례 비 :', '교 회 명 :', '지  역 :'.
+# 눈으로는 같은 말이지만 우리 규칙에는 안 걸려서, 성은교회 공고처럼 정보가 가득한 글에서
+# 사례비·자격·업무를 하나도 못 뽑았다 (2026-08-09).
+# 한 글자짜리 토막이 이어질 때만 붙인다 — '모집 분야'처럼 원래 띄어 쓰는 말은 건드리지 않는다.
+_SPACED_LABEL = re.compile(r"(?:[가-힣]\s+){1,5}[가-힣](?=\s*[:：])")
+
+
+# 주소 칸에는 '주소는 현재 거주하는 곳을 기재하며…' 같은 지원서 작성 안내가 들어 있는 일이
+# 잦다. 시도 → 시군구 → 도로명·지번 순서를 갖춘 것만 주소로 인정한다 (2026-08-09).
+_ADDR_OK = re.compile(
+    r"(?:서울|부산|대구|인천|광주|대전|울산|세종|경기|강원|충북|충남|전북|전남|경북|경남|제주)"
+    r"[가-힣]{0,3}\s*[가-힣]{1,10}(?:시|군|구)\s*[가-힣\d\s.\-()]{2,40}?(?:로|길|동|가|번지)\s*[\d\-]+")
+
+
+def valid_addr(v):
+    """주소 모양을 갖췄는가 — 안내 문구·양식 설명을 걸러낸다."""
+    return bool(v and _ADDR_OK.search(v))
+
+
+def squash_spaced_labels(text):
+    """'사 례 비 :' → '사례비 :' 로 눕힌다. 라벨을 찾는 모든 추출기가 이 위에서 돈다."""
+    if not text:
+        return text
+    return _SPACED_LABEL.sub(lambda m: re.sub(r"\s+", "", m.group(0)), text)
+
+
 def extract_fields(text):
     """공고문에서 '라벨 : 값' 항목들을 뽑는다. 못 찾은 항목은 아예 넣지 않는다."""
     if not text:
         return {}
-    t = re.sub(r"\s+", " ", text)
+    t = squash_spaced_labels(re.sub(r"\s+", " ", text))
     out = {}
     for key, pat in _FIELD_SPECS:
         # 구분자는 콜론이 흔하지만 하이픈도 쓴다("3. 담당업무 - 예술창작‧실연 1명").
@@ -1246,6 +1274,11 @@ def extract_fields(text):
                            r"(?:\s*\([^)]{1,10}\))?", val)
             if m2:
                 val = val[:m2.end()].strip(" ,·-–")
+        if key == "addr":
+            m3 = _ADDR_OK.search(val)
+            if not m3:
+                continue
+            val = val[m3.start():].strip(" ,·-–")      # 앞의 우편번호·군더더기는 떼고 주소부터
         if 2 <= len(val) <= 140:
             out[key] = val
     return out

@@ -1,6 +1,6 @@
 {
  "updatedAt": "2026-08-10",
- "count": 1152,
+ "count": 1153,
  "items": {
   "f7b1c263744b9ece": {
    "id": "f7b1c263744b9ece",
@@ -1791,12 +1791,12 @@
   },
   "b2e199e32140e0ed": {
    "id": "b2e199e32140e0ed",
-   "org": "교회(기독정보넷)",
+   "org": "남양교회",
    "region": "기타",
    "source": "cjob.co.kr",
    "channel": "cjob",
    "layer": "C",
-   "title": "반주자와 농촌지역에서 전도해 주실분 모십니다.",
+   "title": "[남양교회] 반주자와 농촌지역에서 전도해 주실분 모십니다.",
    "url": "https://www.cjob.co.kr/bbs/board.php?bo_table=offerIG&wr_id=7773&c_jikjong=2&page=1",
    "kind": "반주",
    "tier": "연주",
@@ -1808,7 +1808,7 @@
    "lastSeen": "2026-08-10",
    "days": 14,
    "deadline": "2026-12-31",
-   "deadlineFrom": "raw",
+   "deadlineFrom": "cjob-남은기간",
    "date": "2026-07-03",
    "personnel": "반주자",
    "ageGroup": "성인",
@@ -1857,12 +1857,12 @@
   },
   "5fbc7e4eb4f8d92d": {
    "id": "5fbc7e4eb4f8d92d",
-   "org": "교회(기독정보넷)",
-   "region": "기타",
+   "org": "의왕소만교회",
+   "region": "경기",
    "source": "cjob.co.kr",
    "channel": "cjob",
    "layer": "C",
-   "title": "주일 피아노 반주자 모십니다.",
+   "title": "[의왕소만교회] 주일 피아노 반주자 모십니다.",
    "url": "https://www.cjob.co.kr/bbs/board.php?bo_table=offerIG&wr_id=7766&c_jikjong=2&page=1",
    "kind": "반주",
    "tier": "연주",
@@ -1874,7 +1874,7 @@
    "lastSeen": "2026-08-10",
    "days": 14,
    "deadline": "2026-12-31",
-   "deadlineFrom": "raw",
+   "deadlineFrom": "cjob-남은기간",
    "date": "2026-05-20",
    "personnel": "반주자",
    "ageGroup": "성인",
@@ -1886,7 +1886,9 @@
    "positions": [
     "반주자"
    ],
-   "backfill": true
+   "backfill": true,
+   "pay": "협의",
+   "addr": "경기 의왕시 경수대로 262 (오전동, 의왕서해그랑블(블루스퀘어))"
   },
   "c355fe34995919a9": {
    "id": "c355fe34995919a9",
@@ -5641,7 +5643,8 @@
    "firstSeen": "2026-07-17",
    "lastSeen": "2026-08-10",
    "days": 24,
-   "bodyExcerpt": "공고기간 : 2026. · 접수기간 : 2026. · 콘텐츠 관리부서 예술의전당관리과 시설운영계 담당전화 063-454-5529 최근수정일 2025-02-06 홈페이지 개선의견 열람하신 정보에 대해 만족 하십니까? · 모집기간 : 2026."
+   "bodyExcerpt": "공고기간 : 2026. · 접수기간 : 2026. · 콘텐츠 관리부서 예술의전당관리과 시설운영계 담당전화 063-454-5529 최근수정일 2025-02-06 홈페이지 개선의견 열람하신 정보에 대해 만족 하십니까? · 모집기간 : 2026.",
+   "addr": "전북 군산시 백토로 203(지곡동), 군산예술의전당 시립교향악단 사무국 &lt;봉투 겉면에 “ 연주자 오디션 응시서류 재중” 명기&gt;"
   },
   "429bc74e6bf6e4cc": {
    "id": "429bc74e6bf6e4cc",
@@ -6978,13 +6981,14 @@
    "certReq": "무관",
    "degreeReq": "무관",
    "careerReq": "미기재",
-   "personnel": "1명 라. 보 수 : 232만원",
+   "personnel": "1명",
    "firstSeen": "2026-07-24",
    "lastSeen": "2026-08-10",
    "days": 18,
    "date": "2026-07-20",
    "bodyExcerpt": "다만, 필수항목에 대한 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다. · 제공 목적: 구직활동 지원 및 채용업무 처리 라. · 보유 및 이용 기간: 회원 탈퇴 시까지(2년) 마. · 다만, 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다.",
-   "qualification": "여부, 학력사항, 경력정보"
+   "qualification": "여부, 학력사항, 경력정보",
+   "pay": "232만원"
   },
   "bd54031f805083b2": {
    "id": "bd54031f805083b2",
@@ -10187,12 +10191,12 @@
   },
   "0251912d3b918734": {
    "id": "0251912d3b918734",
-   "org": "교회(기독정보넷)",
-   "region": "기타",
+   "org": "성은교회(부천 오정구 소재)",
+   "region": "경기",
    "source": "cjob.co.kr",
    "channel": "cjob",
    "layer": "C",
-   "title": "함께 예배를 섬겨주실 반주자님을 모십니다",
+   "title": "[성은교회] 함께 예배를 섬겨주실 반주자님을 모십니다",
    "url": "https://www.cjob.co.kr/bbs/board.php?bo_table=offerIG&wr_id=7784&c_jikjong=2&page=1",
    "kind": "반주",
    "tier": "연주",
@@ -10209,12 +10213,15 @@
    "lastSeen": "2026-08-10",
    "days": 4,
    "deadline": "2026-09-18",
-   "deadlineFrom": "raw",
+   "deadlineFrom": "cjob-남은기간",
    "bodyExcerpt": "모시는분 반주자 - 지역 경기 - 등록일 2026-08-07 - 남은기간 2026-09-18 23:59:59 · 탑동감리교회 드럼반주자&레슨강사 모집합니다. · 용호남교회 피아노 반주자 모집 건반 연주자와 일렉키타 연주자를 모십니다(찬양팀) 주일 피아노 반주자 모십니다.",
    "backfill": true,
    "date": "2026-08-07",
    "dateApprox": true,
-   "duty": "주일예배 찬송가 및 예배 반주, 성가대 찬양 반주, 성가대 연습 반주"
+   "duty": "주일예배 찬송가 및 예배 반주, 성가대 찬양 반주, 성가대 연습 반주",
+   "personnel": "반주자",
+   "pay": "월 40만원",
+   "addr": "경기 부천시 오정구 상오정로 132 (오정동, 성은교회)"
   },
   "eaeb280d06303328": {
    "id": "eaeb280d06303328",
@@ -10718,7 +10725,8 @@
    "deadlineFrom": "raw",
    "bodyExcerpt": "다만, 필수항목에 대한 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다. · 제공 목적: 구직활동 지원 및 채용업무 처리 라. · 보유 및 이용 기간: 회원 탈퇴 시까지(2년) 마. · 다만, 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다.",
    "ageLimit": "제한 없음 나. 국가공무원법 제33조에 의한 결격사유가 없는 자 다. 채용분야별 자격요건을 갖춘 자(해당분야 전공자 및 자격증 소지자)",
-   "personnel": "1명 마. 보 수 : 408만원"
+   "personnel": "1명",
+   "pay": "408만원"
   },
   "370b275c2d2c6b57": {
    "id": "370b275c2d2c6b57",
@@ -28782,6 +28790,30 @@
    "ageGroup": "성인",
    "obri": false,
    "certReq": "무관",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "firstSeen": "2026-08-10",
+   "lastSeen": "2026-08-10",
+   "days": 1
+  },
+  "7e329dd22b52f11e": {
+   "id": "7e329dd22b52f11e",
+   "org": "전라중학교(전북교육청)",
+   "region": "전북",
+   "source": "jbe.go.kr",
+   "channel": "edu_jbe",
+   "layer": "C",
+   "title": "[전라중] 기간제교사(음악1) 채용",
+   "url": "https://www.jbe.go.kr/board/view.jbe?boardId=BBS_0000130&menuCd=DOM_000000103004006000&paging=ok&startPage=2&searchOperation=AND&dataSid=1162678",
+   "date": "2026-08-10",
+   "deadline": "2026-08-12",
+   "kind": "기타",
+   "tier": "교육 — 취미·입문",
+   "inst": "전체",
+   "instDetails": [],
+   "ageGroup": "성인",
+   "obri": false,
+   "certReq": "예",
    "degreeReq": "무관",
    "careerReq": "미기재",
    "firstSeen": "2026-08-10",

@@ -8,7 +8,7 @@ from common import (new_session, get, relevant, extract_deadline, priority_deadl
                     musician_relevant, youth_member, participant_only, school_title, parse_recruit_table, summarize_recruit, find_position,
                     classify_insts, find_subject, find_music_subjects, find_music_courses,
                     classify_kind, classify_tier, is_obri, cert_required, degree_req, career_req, age_group,
-                    region_from, EXCLUDE, compact_title, music_only_title, body_text,
+                    region_from, EXCLUDE, compact_title, music_only_title, body_text, valid_addr,
                     insts_from_recruit_text, tls_blocked, curl_get, extract_fields)
 from sources import SOURCES
 from institutions import INSTITUTIONS
@@ -241,7 +241,7 @@ def find_attachments(soup, base_url):
                     cands.append((full, el.get_text(" ", strip=True)))
     return cands[:4]
 
-EXT_VER = 58         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
+EXT_VER = 59         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
                      # v32(2026-08-02): 모집분야 구획 악기 추출(insts_from_recruit_text) + 원문 보관층
                      # 24: work.sen 등록일(게시일) 추출 추가 — date=None이던 승계분을 다시 뽑게
                      # 25: body_text 도입 — 본문을 <header>에 넣는 사이트(대전교육청)의 마감일을
@@ -584,6 +584,11 @@ def _cjob_detail(text, item):
             return None
         g = next((x for x in m.groups() if x), "")
         return re.sub(r"\s+", " ", g).strip(" :·-")
+    # 기본정보 표의 주소 — 상세 본문에도 지역이 적히지만 오타가 잦다(성은교회 공고는 본문에
+    # '수원시 오정구'라고 썼는데 수원엔 오정구가 없다. 표 쪽이 '부천시 오정구'로 맞다).
+    addr = grab(r"-\s*주소\s*(.+?)\s*-\s*(?:연락처|담당자|담당|모시는분|등록일)")
+    if addr and valid_addr(addr):
+        item["addr"] = addr
     org = grab(r"단체\(회사\)이름\s*(.+?)\s*-\s*(?:주소|연락처|담당자|담당|모시는분)")
     if org and 2 <= len(org) <= 30 and org != "미정":
         item["org"] = org
@@ -848,6 +853,12 @@ def _refill_from_raw(items, today):
         # 급여·근무기간·근무시간·담당업무·나이 — 공고문이 '라벨 : 값'으로 적어 둔 것을 항목으로
         # 세운다. 본문 발췌는 문장을 골라 오는 것이라 조건을 한눈에 보기 어렵다
         # (2026-08-08 사용자 가이던스).
+        # 기독정보넷은 상세 표를 전용 파서로 읽는다(단체명·지역·모시는분·남은기간). 그런데 그
+        # 파서는 '상세를 직접 여는' 경로에만 있었다 — 방문 예산에 밀리거나 승계된 항목은
+        # 원문을 보관해 두고도 표를 못 읽어, 기관이 '교회(기독정보넷)'·지역이 '기타'로 남았다
+        # (2026-08-09 성은교회 공고: 원문엔 단체명·지역·사례비·업무가 다 있었다).
+        if "cjob" in (it.get("source") or ""):
+            _cjob_detail(rawstore.all_text(it["id"]), it)
         fields = extract_fields(rawstore.all_text(it["id"]))
         if fields:
             for k, v in fields.items():
@@ -860,6 +871,12 @@ def _refill_from_raw(items, today):
             # 공고문이 '구인 회사명'을 직접 밝혔으면 그게 고용주다. 게시판 주인도, 제목 맨 앞
             # 이름도 아니다 — 제주 신라호텔 공고는 연세대 게시판에 올라왔고 제목은 호텔
             # 이름으로 시작하지만, 실제로 뽑는 곳은 에이디엔노뜨이고 호텔은 공연 장소다.
+            # 주소가 있으면 지역은 추측할 필요가 없다 — 제목·기관명 짐작보다 정확하다.
+            ad = it.get("addr") or fields.get("addr")
+            if ad:
+                rg2 = region_from(ad)
+                if rg2 and rg2 != "기타" and rg2 != it.get("region"):
+                    it["regionBoard"], it["region"] = it.get("region"), rg2
             ho = fields.get("hiringOrg")
             if ho and 2 <= len(ho) <= 30 and ho != it.get("org"):
                 it["orgBoard"] = it.get("org")

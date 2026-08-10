@@ -26,7 +26,7 @@ KEEP = (
     "bodyExcerpt", "qualification", "positions",
     # 공고문에서 뽑은 근무 조건 (common.extract_fields) — 마감돼 원문이 죽어도 남는다
     "pay", "workPeriod", "workHours", "duty", "ageLimit", "workPlace",
-    "perfPeriod", "perfPlace", "perfSchedule", "teamComp", "dayOff", "hiringOrg", "contact",
+    "perfPeriod", "perfPlace", "perfSchedule", "teamComp", "dayOff", "hiringOrg", "contact", "addr",
     # 게시판 뒤 페이지에서 소급 수집한 과거 글(backfill_past.py)임을 표시한다.
     # 관측 시점(firstSeen)이 실제 게시 시점과 무관하므로, 계절성·추이를 볼 때
     # 이 표식으로 갈라 봐야 한다 (2026-08-07).
