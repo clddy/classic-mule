@@ -1158,7 +1158,7 @@ def compact_title(title):
 # (2026-08-08 사용자 가이던스: 급여·근무기간·근무시간·담당업무·나이를 항목으로 적을 것).
 _FIELD_SPECS = [
     ("pay",        r"급여|보수|임금|처우|사례비|근로\s*조건|급여\s*조건|보수\s*조건"),
-    ("workPeriod", r"근무\s*기간|계약\s*기간|고용\s*기간|위촉\s*기간"),
+    ("workPeriod", r"근무\s*기간|계약\s*기간|고용\s*기간|위촉\s*기간|채용\s*기간|임용\s*기간"),
     ("workHours",  r"근무\s*시간|근무\s*일시|근무\s*형태|근무\s*요일"),
     ("duty",       r"담당\s*업무|주요\s*업무|업무\s*내용|직무\s*내용|담당업무"),
     ("ageLimit",   r"나이|연령"),
@@ -1182,7 +1182,9 @@ _FIELD_SPECS = [
 # 전화번호는 라벨 뒤에 콜론 없이 그냥 붙는 일이 많다("채용여부 진행 연락처 042-542-2224").
 # 그래서 일반 '라벨 : 값' 규칙으로는 안 잡힌다 — 번호 모양을 직접 찾는다.
 _PHONE = r"0\d{1,2}\s*[-)]?\s*\d{3,4}\s*-?\s*\d{4}"
-_CONTACT_LABELED = re.compile(rf"(?:연락처|문의\s*처|문의\s*전화|전화\s*번호|담당자)\s*[:：]?\s*({_PHONE})")
+# '문의 : 053-650-9107' 처럼 낱말 하나로 쓰는 곳이 많다 — 감사에서 35건이 이 꼴로 새고
+# 있었다 (2026-08-11). 번호 모양을 함께 요구하므로 '문의'가 다른 뜻으로 쓰여도 안 문다.
+_CONTACT_LABELED = re.compile(rf"(?:연락처|문의\s*처?|문의\s*전화|전화\s*번호|담당자)\s*[:：]?\s*({_PHONE})")
 _CONTACT_ANY = re.compile(rf"\(\s*({_PHONE})\s*\)")
 
 
@@ -1190,7 +1192,9 @@ def extract_contact(text):
     """공고문에서 문의 전화번호. 라벨이 붙은 번호를 먼저 찾고, 없으면 괄호 안 번호를 쓴다."""
     if not text:
         return None
-    t = re.sub(r"\s+", " ", text)
+    # '문 의 :' 처럼 칸 맞춤으로 띄운 라벨도 받는다 — extract_fields 만 눕히고 여기는
+    # 안 눕혀서 연락처 31건이 새고 있었다 (2026-08-11 감사).
+    t = squash_spaced_labels(re.sub(r"\s+", " ", text))
     m = _CONTACT_LABELED.search(t) or _CONTACT_ANY.search(t)
     if not m:
         return None
@@ -1205,7 +1209,7 @@ _FIELD_STOP = re.compile(
     # '…변경될 수 있음)사 . 지원자 중 전형위원회의에서…' (2026-08-11).
     # 앞 글자가 한글이면 낱말의 일부다('회사 .') — 그건 건드리지 않는다.
     r"(?:(?<=[)\]])|(?<=\s)|^)[가나다라마바사아자차카타파하]\s*\.\s"
-    r"|[•▪◦○●■□▶▷※]|\[|\s\d\.\s(?=[가-힣])|(?:급여|보수|임금|처우|사례비|근무\s*기간|계약\s*기간"
+    r"|[•▪◦○●■□▶▷※📌🔹✅☎]|\[|\s\d\.\s(?=[가-힣])|(?:급여|보수|임금|처우|사례비|근무\s*기간|계약\s*기간"
     r"|근무\s*시간|담당\s*업무|주요\s*업무|나이|연령|근무\s*지|자격\s*요건|우대\s*사항|전형|제출|접수"
     r"|공연\s*기간|공연\s*장소|공연\s*스케[줄쥴]|팀\s*구성|휴일|모집\s*인원|모집\s*분야|제공\s*사항"
     r"|지원\s*방법|담당자|이메일)\s*[:：]"
@@ -1216,12 +1220,22 @@ _FIELD_STOP = re.compile(
 # 정규식 하나로 하면 왼쪽부터 매치돼 '없음'이 라벨로 잡히고 '제한'만 남는다. 그래서 콜론을
 # 먼저 찾고 뒤로 되짚는다 (2026-08-11).
 # 숫자 뒤 콜론(9:00 같은 시각)은 앞이 한글이 아니므로 걸리지 않는다.
-_LABEL_TAIL = re.compile(r"(?:[가-힣]{1,12}\s+)?[가-힣]{1,12}\s*$")
+# ★ 낱말 경계에서만 시작해야 한다. 경계 없이 찾으면 '50만원 주소 :' 에서 '만원 주소'가
+#   라벨로 잡혀 '50'만 남고, 그마저 '잘린 값'으로 버려져 사례비가 통째로 사라졌다 (2026-08-11).
+_LABEL_TAIL2 = re.compile(r"(?:^|(?<=\s))[가-힣]{1,12}\s+[가-힣]{1,12}\s*$")
+_LABEL_TAIL1 = re.compile(r"(?:^|(?<=\s))[가-힣]{1,12}\s*$")
 
 
 def _cut_at_next_label(v):
     for m in re.finditer(r"[:：]", v):
-        mm = _LABEL_TAIL.search(v[:m.start()])
+        head = v[:m.start()]
+        # 두 낱말 라벨('교원자격증 소지자')을 먼저 본다. 단 문장 첫머리부터면 그건 라벨이
+        # 아니라 값 자체다('협의 주소 :' 의 '협의'는 값) — 한 낱말로 물러난다.
+        mm = _LABEL_TAIL2.search(head)
+        if mm and mm.start() == 0:
+            mm = _LABEL_TAIL1.search(head)
+        if not mm:
+            mm = _LABEL_TAIL1.search(head)
         if mm and mm.start() > 0:
             return v[:mm.start()].strip(" ,·-–")
     return v
@@ -1256,8 +1270,10 @@ def squash_spaced_labels(text):
 # '위표와 같음', '붙임 참조' 처럼 다른 곳을 가리키기만 하는 값 — 읽는 사람에게 아무 정보도
 # 주지 않는다. 이런 값이 첫 번째로 걸리면 뒤에 있는 진짜 값을 못 보므로, 버리고 계속 찾는다
 # (2026-08-10 사용자 지적).
-_REFERENCE = re.compile(r"^(?:위|상기|아래|하기|별첨|붙임|첨부|공고문|본문|해당)?\s*[표문]?\s*"
-                        r"(?:와|과|의)?\s*(?:같음|같습니다|동일|참조|참고|확인)[\s.·…]*$")
+_REFERENCE = re.compile(r"^(?:위|상기|아래|하기|별첨|붙임|첨부|공고문|본문|해당)?\s*(?:표|문|파일)?\s*"
+                        r"(?:와|과|의)?\s*(?:같음|같습니다|동일|참조|참고|확인)[\s.·…]*$"
+                        # 라벨 잘림 뒤 '첨부파일'만 덩그러니 남는 꼴도 정보가 0이다
+                        r"|^(?:첨부\s*파일?|붙임|별첨|상세\s*요강|공고문|파일\s*첨부)[\s.·…]*$")
 
 
 def extract_fields(text):
@@ -1271,31 +1287,86 @@ def extract_fields(text):
     t = squash_spaced_labels(re.sub(r"\s+", " ", text))
     out = {}
     for key, pat in _FIELD_SPECS:
-        for val in _candidates(t, pat):
-            v = _clean_field(key, val)
-            if v:
+        # 1차: 콜론·하이픈으로 나뉜 정상 표기. 2차: 구분자 없이 띄어쓰기만 있는 납작한 표.
+        # 2차는 모양 검사(_SHAPE)가 있는 항목에만 허용한다 — 담당업무처럼 서술형인 항목은
+        # 느슨하게 열면 '… 담당 업무 및 통계자료 등 자료제공을 위한 메뉴 …' 같은 산문
+        # 한복판을 물어온다 (2026-08-11 감사에서 8건).
+        modes = (False, True) if key in _SHAPE else (False,)
+        for loose in modes:
+            for val in _candidates(t, pat, loose=loose):
+                v = _clean_field(key, val)
+                if not v or (loose and not _shape_ok(key, v)):
+                    continue
                 out[key] = v
+                break
+            if key in out:
                 break
     return out
 
 
-def _candidates(t, pat):
+# 납작한 표에서 뽑을 때만 쓰는 모양 검사 — 구분자가 없어 값의 경계가 흐리기 때문이다.
+_SHAPE = {
+    "workPeriod":   re.compile(r"\d{1,4}\s*[.\-/년]\s*\d{1,2}.*?[~∼-]"),   # 기간이면 범위가 있다
+    "perfPeriod":   re.compile(r"\d{1,4}\s*[.\-/년]\s*\d{1,2}.*?[~∼-]"),
+    "pay":          re.compile(r"[\d,]{2,}\s*(?:만\s*)?원|시급|일당|협의"),
+    "personnel":    re.compile(r"\d|[Oo○]\s*명"),
+    "workHours":    re.compile(r"전일제|시간제|주\s*\d|\d\s*시간|\d{1,2}\s*[:시]|요일|근무"),
+    # 주소는 _ADDR_OK 가 곧 모양 검사다 — 이걸 빼먹어 납작한 표('- 주소 경기 부천시…')의
+    # 주소 추출이 통째로 죽었었다 (2026-08-11 감사에서 19→43건 회귀로 발각)
+    "addr":         _ADDR_OK,
+    "ageLimit":     re.compile(r"\d|제한\s*없"),
+    "contact":      re.compile(r"\d{2,}"),
+}
+
+
+def _shape_ok(key, v):
+    pat = _SHAPE.get(key)
+    return True if pat is None else bool(pat.search(v))
+
+
+# 표가 납작하게 펴지면 라벨과 값 사이에 아무 기호도 없다 —
+#   '채용기간 2026.09.01~2027.02.28 접수기간 2026.08.04 …'
+#   '근무시간 전일제 보수/임금 접수방법 …'
+# 이때는 다음 '라벨처럼 생긴 낱말'에서 값을 끊어야 한다. 콜론이 없으니 _cut_at_next_label 이
+# 못 쓰인다 (2026-08-11).
+_LABEL_WORDS = re.compile(
+    r"(?:접수\s*기간|채용\s*기간|계약\s*기간|근무\s*기간|공고\s*기간|근무\s*시간|근무\s*조건"
+    r"|보수\s*/?\s*임금|보수|급여|채용\s*인원|모집\s*인원|담당\s*업무|제출\s*서류|제출\s*장소"
+    r"|제출\s*방법|접수\s*방법|상세\s*요강|채용\s*과목|채용\s*사유|자격|비고|첨부|문의)")
+
+
+def _candidates(t, pat, loose=False):
     """라벨 뒤에 오는 값 후보들 — 구분자는 콜론이 흔하지만 하이픈도 쓴다.
+
+    loose=True 면 구분자 없이 띄어쓰기만으로 이어진 것도 받는다(납작해진 표). 그 경우
+    값은 다음 라벨 낱말에서 끊는다. 느슨한 만큼 호출부가 모양 검사를 함께 한다.
 
     ★ 값을 정규식으로 붙잡지 않고 라벨까지만 매치한 뒤 뒤를 잘라 낸다. 값을 `.{2,160}` 으로
       붙잡으면 그 160자 안에 든 다음 라벨까지 삼켜 버려서, finditer 가 두 번째 후보를 아예
       못 본다 — '가. 근무기간 : 위표와 같음 나. 근무기간 : 2026. 8. 14. ~' 에서 뒤엣것을
       영영 못 읽었다 (2026-08-10).
     """
-    for m in re.finditer(rf"(?:{pat})\s*(?:[:：]|[-–—]\s)\s*", t):
+    sep = r"(?:[:：]|[-–—]\s|\s)" if loose else r"(?:[:：]|[-–—]\s)"
+    for m in re.finditer(rf"(?:{pat})\s*{sep}\s*", t):
         seg = t[m.end():m.end() + 160]
-        if len(seg) >= 2:
+        if loose:
+            nxt = _LABEL_WORDS.search(seg)
+            if nxt and nxt.start() == 0:
+                continue     # 라벨 바로 다음이 또 라벨 = 이 칸은 비어 있다('근무시간 보수/임금 …')
+            if nxt and nxt.start() > 0:
+                seg = seg[:nxt.start()]
+        if len(seg.strip()) >= 1:
             yield seg
 
 
 def _clean_field(key, raw):
     """값 하나를 다듬고 검사한다. 쓸 수 없으면 None을 돌려 다음 후보로 넘긴다."""
+    # 값이 대괄호로 시작하면 여는 괄호만 뗀다 — '[겸임 11명 / 초빙 18명]'을 _FIELD_STOP 의
+    # '[' 가 통째로 잘라 빈 값이 됐다 (2026-08-11).
+    raw = raw.lstrip("[ ")
     val = _cut_at_next_label(_FIELD_STOP.split(raw, 1)[0])
+    if "[" not in val:
+        val = val.replace("]", " ")      # 여는 짝을 위에서 뗐으니 닫는 짝만 남으면 지운다
     # hwp·OCR 추출이 숫자와 단위를 벌려 놓는다 — '2,299,000 원', '만 34 세', '4 대보험'
     val = re.sub(r"(?<=\d)\s+(?=[\d,.])", "", val)
     val = re.sub(r"(?<=\d)\s+(?=[가-힣])", "", val)
@@ -1308,7 +1379,9 @@ def _clean_field(key, raw):
     if _REFERENCE.match(val):
         return None
     # 게시판이 값을 잘라 놓은 경우 — '접수기간 : 2026.' 처럼 연도만 남은 것
-    if re.fullmatch(r"20\d{2}\.?|\d{1,2}\.?|[\d.\-/~\s]{0,7}", val):
+    # 게시판이 값을 잘라 놓은 경우 — '접수기간 : 2026.' 처럼 연도만 남은 것.
+    # 인원은 예외다. '채용인원 1' 의 '1' 은 잘린 게 아니라 그게 값이다 (2026-08-11).
+    if key != "personnel" and re.fullmatch(r"20\d{2}\.?|\d{1,2}\.?|[\d.\-/~\s]{0,7}", val):
         return None
     # hwp 추출이 깨지면 한자 부스러기가 섞인다 — '제8 捤獥 汤捯 氠瑢 기간제교원'
     if len(re.findall(r"[一-鿿]", val)) >= 2:
@@ -1326,8 +1399,19 @@ def _clean_field(key, raw):
         m3 = _ADDR_OK.search(val)
         if not m3:
             return None
-        val = val[m3.start():].strip(" ,·-–")      # 앞의 우편번호·군더더기는 떼고 주소부터
-    return val if 2 <= len(val) <= 140 else None
+        # 주소 부분만 남긴다. 뒤에 게시판 UI('인근전철역 근무예정지 지도보기 목록보기')가
+        # 통째로 딸려 온 것이 감사에서 나왔다 (2026-08-11). 매치 끝의 짧은 꼬리
+        # ('(송림동)6층' 같은 동·층 표기)까지만 붙인다.
+        tail = re.match(r"[\s\d\-]*(?:\([^)]{1,14}\))?\s*[\d]*층?", val[m3.end():])
+        val = (val[m3.start():m3.end()] + (tail.group(0) if tail else "")).strip(" ,·-–")
+    if key == "duty" and len(val) > 80:
+        # 담당업무가 길면 첫 항목 경계에서 끊는다 — 통째로 버리면('빈칸 과감히'라 해도)
+        # 머리에 든 알짜('주 2회 정기연습 및 공연준비')까지 잃는다.
+        cut = re.split(r"\s[-*∙•]\s|(?<=[다음됨함])\s(?=[가-힣])", val, 1)[0].strip(" ,·-–")
+        val = cut if len(cut) >= 8 else val
+    # 인원은 '1' 처럼 한 글자도 정상값이다
+    lo = 1 if key == "personnel" else 2
+    return val if lo <= len(val) <= 140 else None
 
 
 # 학교 이름을 우리가 쓰는 짧은 형태로 줄인다. 게시판마다 제목이 제각각이라

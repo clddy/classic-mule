@@ -241,7 +241,7 @@ def find_attachments(soup, base_url):
                     cands.append((full, el.get_text(" ", strip=True)))
     return cands[:4]
 
-EXT_VER = 63         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
+EXT_VER = 64         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
                      # v32(2026-08-02): 모집분야 구획 악기 추출(insts_from_recruit_text) + 원문 보관층
                      # 24: work.sen 등록일(게시일) 추출 추가 — date=None이던 승계분을 다시 뽑게
                      # 25: body_text 도입 — 본문을 <header>에 넣는 사이트(대전교육청)의 마감일을
@@ -1142,6 +1142,16 @@ def _repair_titles(items):
     fixed = 0
     for it in items:
         t = (it.get("title") or "").strip()
+        # 제목에 학교·기관 이름이 전혀 없는데 본문에 '[강원사대부설고]' 같은 딱지가 있으면
+        # 그걸 앞에 세운다 — 교육청 포털 제목은 '기간제교원(음악) 채용'처럼 밋밋해서
+        # 어느 학교인지 카드만 봐서는 알 수 없다 (2026-08-11 사용자 지적).
+        if not re.search(r"[가-힣]{2,}(?:초|중|고|학교|대학교|교회|성당|악단|합창단|재단)", t):
+            page0 = re.sub(r"\s+", " ", (rawstore.load(it.get("id")) or {}).get("page") or "")
+            mtag = re.search(r"\[([가-힣]{2,14}(?:초|중|고|여중|여고|예고|학교))\]", page0)
+            if mtag:
+                it["title"] = f"[{mtag.group(1)}] {t}"
+                fixed += 1
+                continue
         if not _TRUNCATED.search(t):
             continue
         page = (rawstore.load(it.get("id")) or {}).get("page") or ""
