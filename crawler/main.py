@@ -9,7 +9,7 @@ from common import (new_session, get, relevant, extract_deadline, priority_deadl
                     classify_insts, find_subject, find_music_subjects, find_music_courses,
                     classify_kind, classify_tier, is_obri, cert_required, degree_req, career_req, age_group,
                     region_from, EXCLUDE, compact_title, music_only_title, body_text, valid_addr,
-                    insts_from_recruit_text, tls_blocked, curl_get, extract_fields)
+                    insts_from_recruit_text, tls_blocked, curl_get, extract_fields, extract_contact)
 from sources import SOURCES
 from institutions import INSTITUTIONS
 import attach
@@ -241,7 +241,7 @@ def find_attachments(soup, base_url):
                     cands.append((full, el.get_text(" ", strip=True)))
     return cands[:4]
 
-EXT_VER = 62         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
+EXT_VER = 63         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
                      # v32(2026-08-02): 모집분야 구획 악기 추출(insts_from_recruit_text) + 원문 보관층
                      # 24: work.sen 등록일(게시일) 추출 추가 — date=None이던 승계분을 다시 뽑게
                      # 25: body_text 도입 — 본문을 <header>에 넣는 사이트(대전교육청)의 마감일을
@@ -859,7 +859,19 @@ def _refill_from_raw(items, today):
         # (2026-08-09 성은교회 공고: 원문엔 단체명·지역·사례비·업무가 다 있었다).
         if "cjob" in (it.get("source") or ""):
             _cjob_detail(rawstore.all_text(it["id"]), it)
-        fields = extract_fields(rawstore.all_text(it["id"]))
+        _raw = rawstore.all_text(it["id"])
+        # 자격·연락처는 상세를 직접 여는 경로에만 있었다. 원문을 보관해 두고도 재추출에서
+        # 빠져 있어 화면엔 0건이었다 — 원문으로 다시 뽑으면 자격 15건·연락처 22건이 나온다
+        # (2026-08-11). 오늘 페이·기독정보넷 표에서 겪은 것과 같은 구조다.
+        if not it.get("qualification"):
+            q = _find_qualification(_raw)
+            if q:
+                it["qualification"] = q
+        if not it.get("contact"):
+            c = extract_contact(_raw)
+            if c:
+                it["contact"] = c
+        fields = extract_fields(_raw)
         if fields:
             for k, v in fields.items():
                 # 파서가 채운 값이 있으면 그쪽이 우선. 단 setdefault 는 키가 None 으로 이미
