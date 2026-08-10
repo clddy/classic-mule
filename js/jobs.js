@@ -448,7 +448,14 @@ function cleanVal(v) {
     .replace(/\s+\d{1,2}$/, "")                    // 꼬리에 붙은 낱개 숫자 제거 ("1명 2"→"1명")
     .replace(/[·|,\s~]+$/, "").trim();
 }
-function okPay(v) { return v && /원|만|협의|규정|시급|일당|사례/.test(v) && !/보내기|스북|URL|복사|인쇄/.test(v); }
+// 페이는 '얼마인지 알 수 있을 때'만 싣는다. 예전엔 '규정'만 있어도 통과시켰는데, 그 탓에
+// 「공무원보수규정」 제8조에 따라 산정된 호봉의 봉급을… 같은 법령 인용이 페이 칸에 실렸다
+// — 읽어도 금액을 알 수 없다 (2026-08-09 사용자 지적).
+function okPay(v) {
+  if (!v || /보내기|스북|URL|복사|인쇄/.test(v)) return false;
+  if (/[\d,]{2,}\s*(원|만|천)|시급|일당|사례|협의/.test(v)) return true;
+  return false;
+}
 // 총 보수를 (리허설 N회 + 공연 1회)로 나눈 회당 환산 — 이미 회당/시간당이면 생략
 function payPerSession(j) {
   if (!j.rehearsalCount || j.rehearsalCount < 1) return null;

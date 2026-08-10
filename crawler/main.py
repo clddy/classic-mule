@@ -241,7 +241,7 @@ def find_attachments(soup, base_url):
                     cands.append((full, el.get_text(" ", strip=True)))
     return cands[:4]
 
-EXT_VER = 54         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
+EXT_VER = 58         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
                      # v32(2026-08-02): 모집분야 구획 악기 추출(insts_from_recruit_text) + 원문 보관층
                      # 24: work.sen 등록일(게시일) 추출 추가 — date=None이던 승계분을 다시 뽑게
                      # 25: body_text 도입 — 본문을 <header>에 넣는 사이트(대전교육청)의 마감일을
@@ -360,10 +360,18 @@ def _find_pay(text):
     if m:
         return (m.group(1) + " " + m.group(2)).replace(" ", "")
     v = _seg_after(text, r"연주비|출연료|사례비|페이|보수|급여|수당|강사료", 24)
-    # 키워드 뒤 텍스트가 공유버튼 등 UI 잡음이거나 금액 표현이 없으면 버림
-    if v and not _PAY_NOISE.search(v) and re.search(r"원|만|협의|규정|시급|일당|사례|\d", v):
-        return v
-    return None
+    if not v or _PAY_NOISE.search(v):
+        return None
+    # 금액이 보이거나 '협의'라고 적힌 것만 페이로 인정한다. 예전엔 '규정'만 있어도
+    # 통과시켰는데, 법령 이름에 그 낱말이 들어가는 바람에 「공무원보수규정」 제8조에 따라
+    # 산정된 호봉의 봉급을… 같은 인용문이 페이 칸에 실렸다 — 읽어도 금액을 알 수 없다.
+    # (2026-08-09. 같은 판정을 common.extract_fields·js/jobs.js okPay 와 세 곳에서 맞춘다)
+    if not re.search(r"[\d,]{2,}\s*(?:만\s*)?원|시급|일당|협의", v):
+        return None
+    # 금액까지만 남긴다 — 뒤에 복무·보험 설명이 줄줄 이어지면 카드에서 읽히지 않는다
+    m2 = re.search(r"(?:시간당|시급|월|주|일당|회당|연간?)?\s*[\d,]{2,}\s*(?:만\s*)?원"
+                   r"(?:\s*\([^)]{1,10}\))?", v)
+    return v[:m2.end()].strip(" ,·-–") if m2 else v
 
 def _find_program(text):
     return _seg_after(text, r"프로그램|연주 ?곡목?|곡\s*목|레퍼토리|연주곡", 80)
@@ -601,9 +609,18 @@ def _cjob_detail(text, item):
     pay = grab(r"사례비\s*:?\s*([^:]{1,24}?)\s*(?:주소|연락처|제출|사진|상세|근무|문의|매주|주일|$)")
     if pay and len(pay) >= 2 and "이곳" not in pay:
         item["pay"] = pay
-    denom = grab(r"교회명\(교단\)\s*:?\s*([^:]{1,14}?)\s*(?:제출|주소|사례비|담당|연락처|사진|상세|$)")
-    if denom and 1 <= len(denom) <= 14:
-        item["denomination"] = denom
+    # '회사명, 교회명(교단) : 인덕원꿈의교회 대한예수교장로회 (예장대신)' 처럼 교회 이름과
+    # 교단이 한 칸에 같이 들어온다. 교회 이름은 카드 앞에 세울 딱지가 되므로 따로 뽑는다
+    # ('[인덕원꿈의교회] 기타/첼로/유치원교사 구합니다' — 2026-08-09 사용자 지시).
+    # 교단만 적힌 칸('예장 합동', '순복음')도 흔해서, 교회로 끝나는 이름이 있을 때만 쓴다.
+    org_cell = grab(r"교회명\(교단\)\s*:?\s*([^:]{1,40}?)\s*(?:제출|주소|사례비|담당|연락처|사진|상세|모집|사역|$)")
+    if org_cell:
+        m_ch = re.search(r"([가-힣]{2,12}(?:교회|성당|채플))", org_cell)
+        if m_ch:
+            item["org"] = m_ch.group(1)
+        denom = re.sub(r"[가-힣]{2,12}(?:교회|성당|채플)", "", org_cell).strip(" ()·-")
+        if denom and 1 <= len(denom) <= 20:
+            item["denomination"] = denom
     docs = grab(r"제출 ?서류\s*:?\s*([^:]{1,24}?)\s*(?:사례비|주소|연락처|담당|사진|상세|근무|$)")
     if docs and 2 <= len(docs) <= 24:
         item["documents"] = docs
@@ -953,6 +970,35 @@ _TRUNCATED = re.compile(r"(?:_+|\.{2,}|…|·{2,})\s*$")
 # 잘린 제목의 뒤를 상세 원문에서 이어 붙일 때, 여기서 멈춘다 (게시판 표의 다음 칸)
 _TITLE_TAIL = ("작성일", "등록일", "게시일", "조회", "작성자", "분류", "공유", "프린트",
                "첨부", "담당부서", "채용여부", "연락처")
+
+
+# 원문(raw)에서 다시 뽑을 수 있는 값들. 추출기를 고치면 이 값들은 낡은 것이 된다.
+_EXTRACTED_FIELDS = ("pay", "courses", "subject", "qualification", "bodyExcerpt",
+                     "personnel", "recruitSummary", "positions", "duty", "workPeriod",
+                     "workHours", "workPlace", "perfPeriod", "perfPlace", "perfSchedule",
+                     "teamComp", "dayOff", "ageLimit", "contact", "hiringOrg")
+
+
+def _reset_stale_extracted(items):
+    """추출기 버전이 낡은 항목의 '뽑아낸 값'을 비워 재추출 대상으로 만든다.
+
+    소스가 0건을 돌려주면 이전 수집분을 통째로 승계한다(서버 장애로 공고가 사라지지 않게).
+    그런데 승계 항목은 재파싱을 거치지 않으므로, 추출기를 고쳐도 옛 값이 그대로 남는다 —
+    강원교육청 공고의 페이가 「공무원보수규정」 제8조… 인용문인 채로 버텼다. 규칙을 세 곳
+    모두 고치고도 값이 안 바뀌어 한참 헤맸다 (2026-08-09).
+
+    비워 두면 바로 뒤 _refill_from_raw 가 원문 보관층에서 다시 뽑는다. 원문이 없어 못 뽑으면
+    비어 있게 되는데, 그게 틀린 값을 남기는 것보다 낫다.
+    """
+    n = 0
+    for it in items:
+        if it.get("extVer") == EXT_VER:
+            continue
+        if any(it.get(f) for f in _EXTRACTED_FIELDS):
+            for f in _EXTRACTED_FIELDS:
+                it.pop(f, None)
+            n += 1
+    return n
 
 
 def _posted_date(it):
@@ -1407,6 +1453,7 @@ def run(force_all=False):
             for it in carried:
                 it["channel"] = src["id"]
                 it["layer"] = src["layer"]
+                it.pop("extVer", None)      # 재파싱을 안 했으므로 추출 인증을 지운다(아래 주석)
             all_items.extend(carried)
             source_stats.append({**meta, "ok": True, "skipped": True, "kept": len(carried)})
             log(f"SKIP {src['name']} (폴링 주기 아님) — 이전 {len(carried)}건 승계")
@@ -1517,6 +1564,12 @@ def run(force_all=False):
                 carried = [it for it in prev_items if it.get("channel") == src["id"]]
                 if carried:
                     kept = carried
+                    # 승계 항목은 이번 회차에 파싱하지 않았다. 그런데 마지막에 모든 항목이
+                    # extVer 도장을 받으므로, 그대로 두면 '최신 추출기로 뽑은 값'으로 인증돼
+                    # 다음 회차의 재추출 대상에서도 빠진다 — 강원교육청 페이가 「공무원보수규정」
+                    # 인용문인 채로 버틴 이유다 (2026-08-09). 도장을 지워 재추출 대상으로 남긴다.
+                    for it in carried:
+                        it.pop("extVer", None)
                     log(f"WARN {src['name']}: 0건 반환 — 이전 {len(carried)}건 승계 (서버 장애 추정)")
             all_items.extend(kept)
             source_stats.append({**meta, "ok": True, "raw": len(raw), "kept": len(kept)})
@@ -1528,6 +1581,8 @@ def run(force_all=False):
             # 뒤의 마감·노후 정리 단계가 어차피 걸러내므로 승계가 유령 공고를 만들지 않는다.)
             carried = [it for it in prev_items if it.get("channel") == src["id"]]
             if carried:
+                for it in carried:
+                    it.pop("extVer", None)      # 파싱을 못 했으므로 추출 인증도 없다
                 all_items.extend(carried)
             source_stats.append({**meta, "ok": False, "kept": len(carried),
                                  "error": f"{type(e).__name__}: {str(e)[:120]}"})
@@ -1552,6 +1607,10 @@ def run(force_all=False):
              and musician_relevant(i["title"], i.get("kind", ""), i.get("org", ""))]
     # 대학 전체 강사 초빙 중 첨부 확인 결과 음악 교과목이 전혀 없던 공고는 제외(비음악 확정)
     final = [i for i in final if not i.get("nonMusic")]
+    # 승계로 들어온 옛 값을 먼저 비운다 — 안 그러면 아래 재추출이 '이미 값이 있다'며 건너뛴다
+    n_stale = _reset_stale_extracted(final)
+    if n_stale:
+        log(f"낡은 추출값 초기화 {n_stale}건 (추출기 v{EXT_VER})")
     _refill_from_raw(final, today)
     _repair_titles(final)
     # 게시판 주인이 아니라 실제 뽑는 기관을 org로. overrides 앞에 두어 사람이 손수 넣은
