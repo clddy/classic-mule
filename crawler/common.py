@@ -427,8 +427,28 @@ def participant_only(title):
 
 
 def youth_member(title):
-    """아동·청소년 '단원' 모집인가 — 채용이 아니라 참여."""
-    return bool(_YOUTH_MEMBER.search(title or ""))
+    """아동·청소년 '단원' 모집인가 — 채용이 아니라 참여.
+
+    '꿈의 오케스트라'는 이름에 어린이·청소년이 없지만 사업 자체가 아동 대상
+    (엘시스테마형 초등 오케스트라)이다 — 파주·통영 단원 모집이 제목만 봐서는 성인
+    채용처럼 보여 그대로 실렸다 (2026-08-12 사용자 지적). 단, 같은 사업의 강사·
+    지도자·교육단원·운영 인력 모집은 진짜 채용이므로 남긴다.
+    """
+    t = title or ""
+    if re.search(r"꿈의\s*오케스트라", t) and re.search(r"단원\s*(?:모집|선발|모심)", t)             and not re.search(r"강사|지도자?|교육\s*단원|음악\s*감독|운영|위탁|매니저", t):
+        return True
+    return bool(_YOUTH_MEMBER.search(t))
+
+
+def student_target(qual, age_limit=None):
+    """자격·나이 문구가 '재학 중인 학생'을 가리키는가 — 몸통 기반 아동 판정.
+
+    제목으로는 성인 채용처럼 보여도 자격 칸에 '초등학교 3학년~6학년에 재학 중인 학생'이라
+    적혀 있으면 참여 모집이다. 제목 규칙(youth_member)이 놓친 것을 몸통에서 받친다.
+    """
+    t = f"{qual or ''} {age_limit or ''}"
+    return bool(re.search(r"(?:초등|중|고등)학교.{0,14}재학|재학\s*중인\s*학생"
+                          r"|[1-6]\s*학년\s*[~∼-]\s*[1-6]\s*학년", t))
 
 
 def relevant(title):

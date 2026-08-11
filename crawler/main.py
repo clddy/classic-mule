@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import (new_session, get, relevant, extract_deadline, priority_deadlines, deadline_from_title,
-                    musician_relevant, youth_member, participant_only, school_title, parse_recruit_table, summarize_recruit, find_position,
+                    musician_relevant, youth_member, participant_only, student_target, school_title, parse_recruit_table, summarize_recruit, find_position,
                     classify_insts, find_subject, find_music_subjects, find_music_courses,
                     classify_kind, classify_tier, is_obri, cert_required, degree_req, career_req, age_group,
                     region_from, EXCLUDE, compact_title, music_only_title, body_text, valid_addr,
@@ -241,7 +241,7 @@ def find_attachments(soup, base_url):
                     cands.append((full, el.get_text(" ", strip=True)))
     return cands[:4]
 
-EXT_VER = 68         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
+EXT_VER = 69         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
                      # v32(2026-08-02): 모집분야 구획 악기 추출(insts_from_recruit_text) + 원문 보관층
                      # 24: work.sen 등록일(게시일) 추출 추가 — date=None이던 승계분을 다시 뽑게
                      # 25: body_text 도입 — 본문을 <header>에 넣는 사이트(대전교육청)의 마감일을
@@ -1804,6 +1804,14 @@ def run(force_all=False):
             log(f"기관 위치 새로 조회 {n_new}곳")
     except Exception as e:
         log(f"WARN 위치 조회 건너뜀: {type(e).__name__}: {e}")
+    # 몸통 기반 아동 판정 — 자격 칸이 '재학 중인 학생'이면 단원 모집은 참여지 채용이 아니다.
+    # 제목 규칙은 여기(자격 추출) 뒤에야 판단 재료가 생기므로 이 자리에서 거른다.
+    _kids = [it for it in final
+             if it.get("kind") == "단원" and student_target(it.get("qualification"), it.get("ageLimit"))]
+    if _kids:
+        final[:] = [it for it in final if it not in _kids]
+        log(f"학생 대상 단원 모집 {len(_kids)}건 제외 — "
+            + "; ".join(i["title"][:24] for i in _kids[:3]))
     _qc_fields(final)          # 수상한 값은 화면에 나가기 전에 우리가 먼저 거른다
     n_geo = _attach_coords(final)
     if n_geo:

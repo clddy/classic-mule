@@ -1,5 +1,5 @@
 {
- "collectedAt": "2026-08-12 02:14",
+ "collectedAt": "2026-08-12 03:01",
  "sourceCount": 87,
  "okCount": 87,
  "instTotal": 75,
@@ -46,8 +46,8 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
-   "kept": 3
+   "raw": 24,
+   "kept": 21
   },
   {
    "id": "gne",
@@ -452,7 +452,7 @@
    "poll": "daily",
    "ok": true,
    "raw": 8,
-   "kept": 3
+   "kept": 2
   },
   {
    "id": "g_onnuri",
@@ -551,7 +551,7 @@
    "poll": "daily",
    "ok": true,
    "raw": 5,
-   "kept": 4
+   "kept": 3
   },
   {
    "id": "g_i_ggcforkr",
@@ -740,7 +740,7 @@
    "poll": "daily",
    "ok": true,
    "raw": 1,
-   "kept": 1
+   "kept": 0
   },
   {
    "id": "g_timfensemble",
@@ -825,7 +825,7 @@
    "verifiedNote": "천안문화재단 공지사항에서 원문 확인 — 문화예술과 게시(2026-07-31). 접수는 방문접수만 가능.",
    "firstSeen": "2026-08-02",
    "isNew": true,
-   "extVer": 68
+   "extVer": 69
   },
   {
    "id": "a911a3f27a9b578e",
@@ -860,7 +860,7 @@
    "deadlineFrom": "raw",
    "firstSeen": "2026-08-11",
    "isNew": true,
-   "extVer": 68
+   "extVer": 69
   },
   {
    "id": "1cff666ec2391e40",
@@ -894,7 +894,7 @@
    "deadlineFrom": "raw",
    "firstSeen": "2026-08-11",
    "isNew": true,
-   "extVer": 68
+   "extVer": 69
   },
   {
    "id": "7d9fc8f6dc4d80d0",
@@ -930,7 +930,7 @@
    "deadlineFrom": "raw",
    "firstSeen": "2026-08-11",
    "isNew": true,
-   "extVer": 68
+   "extVer": 69
   },
   {
    "id": "afa192ee32868ba3",
@@ -963,7 +963,7 @@
    "deadlineFrom": "raw",
    "firstSeen": "2026-08-11",
    "isNew": true,
-   "extVer": 68
+   "extVer": 69
   },
   {
    "id": "54f6da500caa46fc",
@@ -998,7 +998,7 @@
    "deadlineFrom": "raw",
    "firstSeen": "2026-08-11",
    "isNew": true,
-   "extVer": 68
+   "extVer": 69
   },
   {
    "id": "eeda10eb63b52047",
@@ -1033,7 +1033,7 @@
    "addrFrom": "geo",
    "firstSeen": "2026-08-11",
    "isNew": true,
-   "extVer": 68
+   "extVer": 69
   },
   {
    "id": "e9699d38c7521b87",
@@ -1065,7 +1065,7 @@
    "deadlineFrom": "raw",
    "firstSeen": "2026-08-11",
    "isNew": true,
-   "extVer": 68
+   "extVer": 69
   },
   {
    "id": "c5d6e86cb4ef21c4",
@@ -1103,7 +1103,7 @@
    "addrFrom": "geo",
    "firstSeen": "2026-08-11",
    "isNew": true,
-   "extVer": 68
+   "extVer": 69
   },
   {
    "id": "0c1244a4bc78956a",
@@ -1136,7 +1136,7 @@
    "deadlineFrom": "raw",
    "firstSeen": "2026-08-11",
    "isNew": true,
-   "extVer": 68
+   "extVer": 69
   },
   {
    "id": "e4de4a328d54d0a0",
@@ -1165,7 +1165,7 @@
    "personnel": "2채용시작일 2026/09/01채용종료일 2027/02/28채용방법(1차)서류심사(2차)면접심사",
    "hiringOrg": "인천광역시교육청대상명 : 인천광역시교육청(https://www.ice.go.kr)",
    "bodyExcerpt": "2026 년 8 월 11 일 인천부평동초등학교장 Ⅰ 채용직종 및 채용 예정인원 인원 담당업무 채용기간 비고 1 명 6 학년 영어 ( 주당 21 시간 ) 2026. · 초등교사 자격증 소지자 (2 급 이상 ) 나 . · 접수 기간 - 2026. · 교원자격증 사본 3.",
-   "extVer": 68
+   "extVer": 69
   },
   {
    "id": "c15cc2b2cd1eb8c0",
@@ -1196,7 +1196,7 @@
    "addrFrom": "geo",
    "firstSeen": "2026-08-11",
    "isNew": true,
-   "extVer": 68
+   "extVer": 69
   },
   {
    "id": "b0317693d5f0d495",
@@ -1232,7 +1232,7 @@
    "pay": "월급 1,300,000원",
    "duty": "주 2회 정기연습 및 공연준비 등 필요시 특별연습 실시",
    "bodyExcerpt": "문의하기 입사 지원 완료 닫기 예술경영지원센터에서 직원 모집합니다. · 채용 공고에 입사 지원 했습니다.",
-   "extVer": 68
+   "extVer": 69
   },
   {
    "id": "24f5f952c1d46922",
@@ -1268,7 +1268,7 @@
    "pay": "월급 1,300,000원",
    "duty": "주 2회 정기연습 및 공연준비 등 필요시 특별연습 실시",
    "bodyExcerpt": "문의하기 입사 지원 완료 닫기 예술경영지원센터에서 직원 모집합니다. · 채용 공고에 입사 지원 했습니다.",
-   "extVer": 68
+   "extVer": 69
   },
   {
    "id": "33eff7cbadc5df28",
@@ -1304,7 +1304,7 @@
    "deadlineFrom": "raw",
    "firstSeen": "2026-08-10",
    "isNew": false,
-   "extVer": 68
+   "extVer": 69
   },
   {
    "id": "ece500b805beb60f",
@@ -1337,7 +1337,7 @@
    "deadlineFrom": "raw",
    "firstSeen": "2026-08-10",
    "isNew": false,
-   "extVer": 68
+   "extVer": 69
   },
   {
    "id": "20127745c2d6b638",
@@ -1371,7 +1371,7 @@
    "bodyExcerpt": "다만, 필수항목에 대한 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다. · 제공 목적: 구직활동 지원 및 채용업무 처리 라. · 보유 및 이용 기간: 회원 탈퇴 시까지(2년) 마. · 다만, 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다.",
    "firstSeen": "2026-08-10",
    "isNew": false,
-   "extVer": 68
+   "extVer": 69
   },
   {
    "id": "ec26d98143660dcd",
@@ -1404,7 +1404,7 @@
    "deadlineFrom": "raw",
    "firstSeen": "2026-08-12",
    "isNew": false,
-   "extVer": 68
+   "extVer": 69
   },
   {
    "id": "38cc755b26242172",
@@ -1436,7 +1436,7 @@
    "deadlineFrom": "raw",
    "firstSeen": "2026-08-10",
    "isNew": false,
-   "extVer": 68
+   "extVer": 69
   },
   {
    "id": "7e329dd22b52f11e",
@@ -1470,7 +1470,7 @@
    "workHours": "전일제 근무(1일 8시간)",
    "ageLimit": "제한 없음",
    "bodyExcerpt": "공고에 ‘채용의 제한’ 부분 명시 2. · 서류접수 방법 : 전자우편 중심 3. · 지침 [붙임 2] 기간제교원 채용 공고(예시) 다운로드 지침",
-   "extVer": 68
+   "extVer": 69
   },
   {
    "id": "a8c984e07534f04e",
@@ -1499,7 +1499,7 @@
    "isNew": false,
    "contact": "051-860-0643",
    "bodyExcerpt": "채용 채용/시험정보 학교인력채용 등록중..",
-   "extVer": 68
+   "extVer": 69
   },
   {
    "id": "44536ef2f7672aab",
@@ -1532,7 +1532,7 @@
    "addrFrom": "geo",
    "firstSeen": "2026-08-10",
    "isNew": false,
-   "extVer": 68
+   "extVer": 69
   },
   {
    "id": "253d58760ca9741e",
@@ -1564,7 +1564,7 @@
    "addrFrom": "geo",
    "firstSeen": "2026-08-10",
    "isNew": false,
-   "extVer": 68,
+   "extVer": 69,
    "subject": "피아노"
   },
   {
@@ -1588,18 +1588,19 @@
    "instDetails": [
     "피아노"
    ],
+   "personnel": "반주자",
+   "subject": null,
    "channel": "cjob",
    "layer": "C",
-   "deadlineFrom": "cjob-남은기간",
    "addr": "경기 부천시 오정구 상오정로 132 (오정동, 성은교회)",
-   "firstSeen": "2026-08-08",
-   "isNew": false,
-   "personnel": "반주자",
+   "deadlineFrom": "cjob-남은기간",
    "qualification": "피아노 또는 음악 관련 전공자 및 교회 반주 경험자",
    "pay": "월 40만원",
    "duty": "주일예배 찬송가 및 예배 반주, 성가대 찬양 반주, 성가대 연습 반주",
    "bodyExcerpt": "모시는분 반주자 - 지역 경기 - 등록일 2026-08-07 - 남은기간 2026-09-18 23:59:59 · 탑동감리교회 드럼반주자&레슨강사 모집합니다. · 용호남교회 피아노 반주자 모집 건반 연주자와 일렉키타 연주자를 모십니다(찬양팀) 주일 피아노 반주자 모십니다.",
-   "extVer": 68
+   "firstSeen": "2026-08-08",
+   "isNew": false,
+   "extVer": 69
   },
   {
    "id": "dc95d860e0a42457",
@@ -1632,7 +1633,7 @@
    "deadlineFrom": "raw",
    "firstSeen": "2026-08-07",
    "isNew": false,
-   "extVer": 68
+   "extVer": 69
   },
   {
    "id": "6d3ca4c6fee816ea",
@@ -1659,7 +1660,7 @@
    "layer": "B",
    "firstSeen": "2026-08-07",
    "isNew": false,
-   "extVer": 68
+   "extVer": 69
   },
   {
    "id": "1c3f7021c8613ca5",
@@ -1688,46 +1689,7 @@
    "workHours": "내, 08:30~16:",
    "ageLimit": "만 62세 미만으로 직무수행의 결격사유나 학생 지도 시 건강에 이상이 없는",
    "personnel": "강좌(반)대상(학년)운영요일 운영 시간(40분 단위)주당 수업 시수 강사료",
-   "extVer": 68
-  },
-  {
-   "id": "ba538191e3f65442",
-   "org": "통영국제음악재단",
-   "region": "경남",
-   "source": "timf.org",
-   "title": "꿈의 오케스트라 통영 하반기 신규 단원 모집(~9.17.)",
-   "nonMusic": null,
-   "url": "https://www.timf.org/kr/sub/timf/notice.asp?mode=view&bid=1&s_type=&s_keyword=&s_cate=&idx=3796&page=1",
-   "date": "2026-07-31",
-   "deadline": "2026-09-17",
-   "kind": "단원",
-   "tier": "교육 — 취미·입문",
-   "obri": false,
-   "certReq": "아니오",
-   "degreeReq": "무관",
-   "careerReq": "미기재",
-   "ageGroup": "성인",
-   "inst": "현악",
-   "instDetails": [
-    "더블베이스",
-    "바이올린",
-    "비올라",
-    "플루트",
-    "오보에",
-    "클라리넷",
-    "바순",
-    "호른",
-    "트럼펫",
-    "타악"
-   ],
-   "personnel": null,
-   "subject": null,
-   "channel": "g_timf",
-   "layer": "B",
-   "deadlineFrom": "title",
-   "firstSeen": "2026-07-31",
-   "isNew": false,
-   "extVer": 68
+   "extVer": 69
   },
   {
    "id": "75b0e58f4b8192e4",
@@ -1762,7 +1724,7 @@
    "deadlineFrom": "raw",
    "firstSeen": "2026-07-29",
    "isNew": false,
-   "extVer": 68
+   "extVer": 69
   },
   {
    "id": "ddd6789490369cc1",
@@ -1792,41 +1754,7 @@
    "contact": "031-263-0651",
    "firstSeen": "2026-08-02",
    "isNew": false,
-   "extVer": 68
-  },
-  {
-   "id": "ba73b6b1fbdcb18a",
-   "org": "파주문화재단",
-   "region": "경기",
-   "source": "pajucf.or.kr",
-   "title": "파주문화재단 꿈의 오케스트라 신규 단원 모집",
-   "nonMusic": null,
-   "url": "https://www.pajucf.or.kr/community/notice.php?admin_mode=read&no=426&page=1",
-   "date": "2026-07-28",
-   "deadline": "2026-08-13",
-   "kind": "단원",
-   "tier": "교육 — 취미·입문",
-   "obri": false,
-   "certReq": "아니오",
-   "degreeReq": "무관",
-   "careerReq": "미기재",
-   "ageGroup": "성인",
-   "inst": "현악",
-   "instDetails": [
-    "바이올린",
-    "플루트"
-   ],
-   "personnel": "바이올린 1명 플룻 1명",
-   "subject": null,
-   "channel": "g_pajucf",
-   "layer": "B",
-   "qualification": "공고일 기준으로 주민등록상 파주시에 거주하며, 초등학교 3학년~6학년에 재학 중인 학생",
-   "contact": "031-950-8414",
-   "bodyExcerpt": "홈페이지 회원 가입 및 관리 회원 가입 의사 확인, 회원제 서비스 제공에 따른 본인 식별 · 인증, 회원자격 유지 · 개인영상정보의 확인 방법 및 장소에 관한 사항 - 확인 방법: 영상정보 관리담당자(접근권한자)의 안내에 따라 신청 후 본 기관을 방문하시면 확인할 수 있습니다. · 확인장소 : 해당부서 해당팀 6.",
-   "deadlineFrom": "raw",
-   "firstSeen": "2026-08-05",
-   "isNew": false,
-   "extVer": 68
+   "extVer": 69
   },
   {
    "id": "f6aa2aa67ffa4f82",
@@ -1861,7 +1789,7 @@
    "workPeriod": "2026.8.31.(월)∼ 2027.1.22.(금)(단 , 방과후학교 예정 시간(시수)범위 내로 하며 , 학사 일정상 단축될 수 있음)",
    "workHours": "학기중 - 주 1회 2시간 , 방학중 -5일간 매일 4시간",
    "bodyExcerpt": "공고 기간 : 2026.7.27.( 월 ) ∼ 8.14.( 금 ) 나 . · 서류 접수 : 2026.7.27.( 월 ) ∼ 8.14.( 금 ) 다 . · 접수 장소 : 한솔중학교 1 층 교무실 교무행정사에게 방문 제출 ※ 우편 접수 시 2026.8.14.( 금 ) 11:00 까지 도착분에 한하여 인정함 . · 등록일시 : 2026/02/04 10:25 자료관리자 : (교육공무직원) 노사정책과",
-   "extVer": 68
+   "extVer": 69
   },
   {
    "id": "f1b923041a2add95",
@@ -1896,7 +1824,7 @@
    "deadlineFrom": "raw",
    "firstSeen": "2026-07-24",
    "isNew": false,
-   "extVer": 68
+   "extVer": 69
   },
   {
    "id": "4ab6131bb9721cf5",
@@ -1925,7 +1853,7 @@
    "orgBoard": "통영국제음악재단",
    "firstSeen": "2026-07-21",
    "isNew": false,
-   "extVer": 68
+   "extVer": 69
   },
   {
    "id": "08982b2dad9606e0",
@@ -1960,7 +1888,7 @@
    "deadlineFrom": "raw",
    "firstSeen": "2026-08-12",
    "isNew": false,
-   "extVer": 68
+   "extVer": 69
   },
   {
    "id": "b2e199e32140e0ed",
@@ -1983,19 +1911,20 @@
    "instDetails": [
     "피아노"
    ],
+   "personnel": "반주자",
+   "subject": null,
    "channel": "cjob",
    "layer": "C",
    "deadlineFrom": "cjob-남은기간",
+   "pay": "20만원",
    "denomination": "예장 합동",
    "documents": "이력서",
    "addr": "전북 김제시 황산면 남산로 334",
    "regionBoard": "기타",
+   "bodyExcerpt": "모시는분 반주자 - 지역 전북 - 등록일 2026-07-03 - 남은기간 2026-12-31 23:59:59 · 용호남교회 피아노 반주자 모집 건반 연주자와 일렉키타 연주자를 모십니다(찬양팀) 주일 피아노 반주자 모십니다.",
    "firstSeen": "2026-08-08",
    "isNew": false,
-   "personnel": "반주자",
-   "pay": "20만원",
-   "bodyExcerpt": "모시는분 반주자 - 지역 전북 - 등록일 2026-07-03 - 남은기간 2026-12-31 23:59:59 · 용호남교회 피아노 반주자 모집 건반 연주자와 일렉키타 연주자를 모십니다(찬양팀) 주일 피아노 반주자 모십니다.",
-   "extVer": 68
+   "extVer": 69
   },
   {
    "id": "5fbc7e4eb4f8d92d",
@@ -2018,18 +1947,19 @@
    "instDetails": [
     "피아노"
    ],
+   "personnel": "반주자",
+   "subject": null,
    "channel": "cjob",
    "layer": "C",
-   "deadlineFrom": "cjob-남은기간",
    "addr": "경기 의왕시 경수대로 262 (오전동, 의왕서해그랑블(블루스퀘어))",
+   "deadlineFrom": "cjob-남은기간",
+   "pay": "협의",
    "denomination": "순복음",
    "documents": "간단한 이력서",
+   "bodyExcerpt": "모시는분 반주자 - 지역 경기 - 등록일 2026-05-20 - 남은기간 2026-12-31 23:59:59 · 탑동감리교회 드럼반주자&레슨강사 모집합니다. · 용호남교회 피아노 반주자 모집 건반 연주자와 일렉키타 연주자를 모십니다(찬양팀) 피아노 반주자를 모십니다.",
    "firstSeen": "2026-08-08",
    "isNew": false,
-   "personnel": "반주자",
-   "pay": "협의",
-   "bodyExcerpt": "모시는분 반주자 - 지역 경기 - 등록일 2026-05-20 - 남은기간 2026-12-31 23:59:59 · 탑동감리교회 드럼반주자&레슨강사 모집합니다. · 용호남교회 피아노 반주자 모집 건반 연주자와 일렉키타 연주자를 모십니다(찬양팀) 피아노 반주자를 모십니다.",
-   "extVer": 68
+   "extVer": 69
   }
  ]
 }
