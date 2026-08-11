@@ -1,4 +1,76 @@
 {
+ "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=107568": {
+  "firstSeen": "2026-08-11",
+  "tries": 1,
+  "reported": false,
+  "lastTry": "2026-08-11",
+  "title": "[면목중] 오케스트라 방과후 및 동아리 첼로 대체강사(2학기) 공개 채용 안내",
+  "org": "면목중학교(서울시교육청)"
+ },
+ "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=107542": {
+  "firstSeen": "2026-08-11",
+  "tries": 1,
+  "reported": false,
+  "lastTry": "2026-08-11",
+  "title": "[서울본동초] 방과후교실 외부강사 모집",
+  "org": "서울본동초등학교(서울시교육청)"
+ },
+ "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=107623": {
+  "firstSeen": "2026-08-11",
+  "tries": 1,
+  "reported": false,
+  "lastTry": "2026-08-11",
+  "title": "[남성중] 방과후 및 동아리 첼로 강사 개인 위탁 운영자 모집",
+  "org": "남성중학교(서울시교육청)"
+ },
+ "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=107613": {
+  "firstSeen": "2026-08-11",
+  "tries": 1,
+  "reported": false,
+  "lastTry": "2026-08-11",
+  "title": "[세화여고] 2학기 음악과 시간강사 초빙",
+  "org": "세화여자고등학교(서울시교육청)"
+ },
+ "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=107581": {
+  "firstSeen": "2026-08-11",
+  "tries": 1,
+  "reported": false,
+  "lastTry": "2026-08-11",
+  "title": "[선화예고] 음악실기실 감독 채용",
+  "org": "선화예술고등학교(서울시교육청)"
+ },
+ "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=55588": {
+  "firstSeen": "2026-08-11",
+  "tries": 1,
+  "reported": false,
+  "lastTry": "2026-08-11",
+  "title": "[은여울중] 계약제교원 (음악) 채용",
+  "org": "은여울중학교(경기교육청)"
+ },
+ "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=55572": {
+  "firstSeen": "2026-08-11",
+  "tries": 1,
+  "reported": false,
+  "lastTry": "2026-08-11",
+  "title": "[장호원고] 경기-이천-장호원고 계약제교원 채용(음악)",
+  "org": "장호원고등학교(경기교육청)"
+ },
+ "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=55550": {
+  "firstSeen": "2026-08-11",
+  "tries": 1,
+  "reported": false,
+  "lastTry": "2026-08-11",
+  "title": "[장안여중] 특기적성방과후학교 프로그램 강사 모집",
+  "org": "장안여자중학교(경기교육청)"
+ },
+ "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=55531": {
+  "firstSeen": "2026-08-11",
+  "tries": 1,
+  "reported": false,
+  "lastTry": "2026-08-11",
+  "title": "[반송고] 시간강사 채용 공고(음악)",
+  "org": "반송고등학교(경기교육청)"
+ },
  "https://portal.hanyang.ac.kr/huas/iycy/hycy.do?pageGb=gscy": {
   "firstSeen": "2026-08-10",
   "tries": 2,
@@ -14,5 +86,13 @@
   "lastTry": "2026-08-11",
   "title": "마이 에뚜왈 : 신입 단원 모집",
   "org": "서울발레시어터"
+ },
+ "https://www.yeulmaru.org/community/v/3174/?&p=1&keyword=": {
+  "firstSeen": "2026-08-11",
+  "tries": 1,
+  "reported": false,
+  "lastTry": "2026-08-11",
+  "title": "GS칼텍스 예울마루 (추경)예술기반 청년일자리(연수단원) 채용",
+  "org": "GS칼텍스 예울마루"
  }
 }
