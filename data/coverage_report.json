@@ -372,8 +372,8 @@
  ],
  "master": {
   "total": 604,
-  "covered": 7,
-  "gapCount": 597,
+  "covered": 6,
+  "gapCount": 598,
   "byCategory": {
    "대학": {
     "total": 77,
@@ -389,7 +389,7 @@
    },
    "지자체": {
     "total": 323,
-    "covered": 1
+    "covered": 0
    },
    "공연장": {
     "total": 69,
@@ -2060,6 +2060,11 @@
    },
    {
     "name": "인천남동문화원",
+    "cat": "지자체",
+    "region": "인천"
+   },
+   {
+    "name": "인천부평문화원",
     "cat": "지자체",
     "region": "인천"
    },

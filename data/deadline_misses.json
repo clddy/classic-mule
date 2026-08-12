@@ -1,4 +1,36 @@
 {
+ "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=107836": {
+  "firstSeen": "2026-08-12",
+  "tries": 1,
+  "reported": false,
+  "lastTry": "2026-08-12",
+  "title": "[서울동구고] 시간강사(음악) 채용",
+  "org": "서울동구고등학교(서울시교육청)"
+ },
+ "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=107742": {
+  "firstSeen": "2026-08-12",
+  "tries": 1,
+  "reported": false,
+  "lastTry": "2026-08-12",
+  "title": "[개웅중] 시간강사 채용 공고(음악)",
+  "org": "개웅중학교(서울시교육청)"
+ },
+ "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=55765": {
+  "firstSeen": "2026-08-12",
+  "tries": 1,
+  "reported": false,
+  "lastTry": "2026-08-12",
+  "title": "[잠원중] 제8차 기간제교사 채용 공고문(음악)",
+  "org": "잠원중학교(경기교육청)"
+ },
+ "https://www.gwe.go.kr/main/bbs/view.do?key=bTIzMDcyMTA1ODU2MzM%3D&bbsSn=54757": {
+  "firstSeen": "2026-08-12",
+  "tries": 1,
+  "reported": false,
+  "lastTry": "2026-08-12",
+  "title": "시간 강사(음악) 채용",
+  "org": "강원교육청(학교 채용)"
+ },
  "https://portal.hanyang.ac.kr/huas/iycy/hycy.do?pageGb=gscy": {
   "firstSeen": "2026-08-10",
   "tries": 3,
@@ -14,5 +46,13 @@
   "lastTry": "2026-08-12",
   "title": "마이 에뚜왈 : 신입 단원 모집",
   "org": "서울발레시어터"
+ },
+ "https://www.yeulmaru.org/community/v/3174/?&p=1&keyword=": {
+  "firstSeen": "2026-08-12",
+  "tries": 1,
+  "reported": false,
+  "lastTry": "2026-08-12",
+  "title": "GS칼텍스 예울마루 (추경)예술기반 청년일자리(연수단원) 채용",
+  "org": "GS칼텍스 예울마루"
  }
 }
