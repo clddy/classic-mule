@@ -1,8 +1,8 @@
 {
- "date": "2026-08-12",
+ "date": "2026-08-13",
  "total": 75,
- "covered": 2,
- "gapCount": 73,
+ "covered": 3,
+ "gapCount": 72,
  "gaps": [
   {
    "name": "서울시립교향악단",
@@ -265,11 +265,6 @@
    "region": "경북"
   },
   {
-   "name": "과천시립교향악단",
-   "type": "교향악단",
-   "region": "경기"
-  },
-  {
    "name": "강남심포니오케스트라",
    "type": "교향악단",
    "region": "서울"
@@ -372,8 +367,8 @@
  ],
  "master": {
   "total": 604,
-  "covered": 6,
-  "gapCount": 598,
+  "covered": 8,
+  "gapCount": 596,
   "byCategory": {
    "대학": {
     "total": 77,
@@ -385,11 +380,11 @@
    },
    "예술단": {
     "total": 54,
-    "covered": 3
+    "covered": 4
    },
    "지자체": {
     "total": 323,
-    "covered": 0
+    "covered": 1
    },
    "공연장": {
     "total": 69,
@@ -924,11 +919,6 @@
     "region": "경남"
    },
    {
-    "name": "과천시립교향악단",
-    "cat": "예술단",
-    "region": "경기"
-   },
-   {
     "name": "양주시립교향악단",
     "cat": "예술단",
     "region": "경기"
@@ -1205,11 +1195,6 @@
    },
    {
     "name": "용인문화재단",
-    "cat": "지자체",
-    "region": "경기"
-   },
-   {
-    "name": "화성시문화관광재단",
     "cat": "지자체",
     "region": "경기"
    },
