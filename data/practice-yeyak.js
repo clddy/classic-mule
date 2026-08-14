@@ -1,19 +1,19 @@
 window.YEYAK_ROOMS = {
- "fetched": "2026-08-13",
+ "fetched": "2026-08-14",
  "items": [
   {
-   "name": "도봉구 창4동 주민센터 공연연습실(지하)",
+   "name": "중랑생활문화센터 다목적연습실",
    "category": "public",
-   "region": "도봉구",
-   "addr": "도봉구 창4동주민센터",
-   "price": "유료",
+   "region": "중랑구",
+   "addr": "중랑생활문화센터 중랑생활문화센터(다목적연습실)",
+   "price": "무료",
    "selection": "심사",
-   "apply_method": "전화",
-   "apply_timing": "2026.01.01 09:00 ~ 2026.12.31 18:00",
+   "apply_method": "인터넷",
+   "apply_timing": "2025.12.16 10:00 ~ 2026.12.31 00:00",
    "eligibility": "",
    "hours": "2026.01.01 ~ 2026.12.31",
-   "phone": "도봉구 / 02-2091-5753",
-   "booking_url": "https://yeyak.seoul.go.kr/web/reservation/selectReservView.do?rsv_svc_id=S260121140540554141",
+   "phone": "중랑구",
+   "booking_url": "https://yeyak.seoul.go.kr/web/reservation/selectReservView.do?rsv_svc_id=S251216095253476502",
    "src": "yeyak.seoul.go.kr"
   },
   {
@@ -47,18 +47,18 @@ window.YEYAK_ROOMS = {
    "src": "yeyak.seoul.go.kr"
   },
   {
-   "name": "중랑생활문화센터 다목적연습실",
+   "name": "도봉구 창4동 주민센터 공연연습실(지하)",
    "category": "public",
-   "region": "중랑구",
-   "addr": "중랑생활문화센터 중랑생활문화센터(다목적연습실)",
-   "price": "무료",
+   "region": "도봉구",
+   "addr": "도봉구 창4동주민센터",
+   "price": "유료",
    "selection": "심사",
-   "apply_method": "인터넷",
-   "apply_timing": "2025.12.16 10:00 ~ 2026.12.31 00:00",
+   "apply_method": "전화",
+   "apply_timing": "2026.01.01 09:00 ~ 2026.12.31 18:00",
    "eligibility": "",
    "hours": "2026.01.01 ~ 2026.12.31",
-   "phone": "중랑구",
-   "booking_url": "https://yeyak.seoul.go.kr/web/reservation/selectReservView.do?rsv_svc_id=S251216095253476502",
+   "phone": "도봉구 / 02-2091-5753",
+   "booking_url": "https://yeyak.seoul.go.kr/web/reservation/selectReservView.do?rsv_svc_id=S260121140540554141",
    "src": "yeyak.seoul.go.kr"
   },
   {

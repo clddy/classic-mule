@@ -1,81 +1,89 @@
 {
- "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=107979": {
-  "firstSeen": "2026-08-13",
+ "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=108053": {
+  "firstSeen": "2026-08-14",
   "tries": 1,
   "reported": false,
-  "lastTry": "2026-08-13",
-  "title": "예일유치원 특성화활동 바이올린 강사 채용",
-  "org": "예일유치원(서울시교육청)"
+  "lastTry": "2026-08-14",
+  "title": "[성서중] 음악과 계약직 교원 채용",
+  "org": "성서중학교(서울시교육청)"
  },
- "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=56020": {
-  "firstSeen": "2026-08-13",
+ "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=56332": {
+  "firstSeen": "2026-08-14",
   "tries": 1,
   "reported": false,
-  "lastTry": "2026-08-13",
-  "title": "[윤슬중] 기간제 채용공고(음악)",
-  "org": "윤슬중학교(경기교육청)"
+  "lastTry": "2026-08-14",
+  "title": "[매송중] 기간제교원 채용 공고(음악)",
+  "org": "매송중학교(경기교육청)"
  },
- "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=56087": {
-  "firstSeen": "2026-08-13",
+ "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=56267": {
+  "firstSeen": "2026-08-14",
   "tries": 1,
   "reported": false,
-  "lastTry": "2026-08-13",
-  "title": "[청림중] 화성시 학생 오케스트라 방과후학교 및 화성오산 학생 오케스트라 공유학교 제3바이올린 강사 채용",
-  "org": "청림중학교(경기교육청)"
+  "lastTry": "2026-08-14",
+  "title": "[안양관악초] 계약제교원(추가배치 특수 기간제교사) 채용",
+  "org": "안양관악초등학교(경기교육청)"
+ },
+ "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=56269": {
+  "firstSeen": "2026-08-14",
+  "tries": 1,
+  "reported": false,
+  "lastTry": "2026-08-14",
+  "title": "[운산초] 특성화(난타, 음악줄넘기, 합창) 강사 모집",
+  "org": "운산초등학교(경기교육청)"
+ },
+ "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=56212": {
+  "firstSeen": "2026-08-14",
+  "tries": 1,
+  "reported": false,
+  "lastTry": "2026-08-14",
+  "title": "[인덕원초] 1인 1악기 난타 지도 강사 모집",
+  "org": "경기도안양과천교육지원청(경기교육청)"
+ },
+ "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=107947": {
+  "firstSeen": "2026-08-14",
+  "tries": 1,
+  "reported": false,
+  "lastTry": "2026-08-14",
+  "title": "[서울중목초] 음악 협력 수업 강사 채용 공고문(중목초)",
+  "org": "서울중목초등학교(서울시교육청)"
  },
  "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=56076": {
   "firstSeen": "2026-08-13",
-  "tries": 1,
+  "tries": 2,
   "reported": false,
-  "lastTry": "2026-08-13",
-  "title": "[진접고] 시간강사 채용 공고문 및 지원서(음악)",
+  "lastTry": "2026-08-14",
+  "title": "[진접고] 시간강사 채용 공고문 및 지원서(음악) 기간변경",
   "org": "진접고등학교(경기교육청)"
- },
- "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=56073": {
-  "firstSeen": "2026-08-13",
-  "tries": 1,
-  "reported": false,
-  "lastTry": "2026-08-13",
-  "title": "[가운고] 시간강사(음악) 채용",
-  "org": "가운고등학교(경기교육청)"
  },
  "https://www.jfac.or.kr/site/main/archive/post/%EA%B3%B5%EA%B3%A0-2026%EB%85%84-%EC%A2%85%EB%A1%9C%EA%B5%AC%EB%A6%BD%EC%96%B4%EB%A5%B4%EC%8B%A0%ED%95%A9%EC%B0%BD%EB%8B%A8-%EC%A7%80%EB%8F%84%EB%8B%A8%EC%9B%90-%EC%95%8C%ED%86%A0-%EB%AA%A8%EC%A7%91-%EC%9E%AC%EA%B3%B5%EA%B3%A0-%EC%95%88%EB%82%B4": {
   "firstSeen": "2026-08-13",
-  "tries": 1,
+  "tries": 2,
   "reported": false,
-  "lastTry": "2026-08-13",
+  "lastTry": "2026-08-14",
   "title": "종로구립어르신합창단 지도단원 모집 (재공고)",
   "org": "종로구립어르신합창단"
  },
  "https://portal.hanyang.ac.kr/huas/iycy/hycy.do?pageGb=gscy": {
   "firstSeen": "2026-08-10",
-  "tries": 4,
+  "tries": 5,
   "reported": true,
-  "lastTry": "2026-08-13",
+  "lastTry": "2026-08-14",
   "title": "[한양대학교] 겸임교수 모집",
   "org": "한양대학교"
  },
  "https://www.ballet.or.kr/Notice/?q=YToxOntzOjEyOiJrZXl3b3JkX3R5cGUiO3M6MzoiYWxsIjt9&bmode=view&idx=122396471&t=board": {
   "firstSeen": "2026-08-07",
-  "tries": 7,
+  "tries": 8,
   "reported": true,
-  "lastTry": "2026-08-13",
+  "lastTry": "2026-08-14",
   "title": "마이 에뚜왈 : 신입 단원 모집",
   "org": "서울발레시어터"
  },
- "https://www.gcart.or.kr/kr/commu/recruitView.do?bbsIdx=1852&pageIndex=1&searchCondition=&searchKeyword=": {
-  "firstSeen": "2026-08-13",
-  "tries": 1,
-  "reported": false,
-  "lastTry": "2026-08-13",
-  "title": "과천시립예술단(소년소녀합창단) 반주자(육아휴직 대체인력) 공개채용",
-  "org": "과천시립예술단"
- },
  "https://www.yeulmaru.org/community/v/3174/?&p=1&keyword=": {
   "firstSeen": "2026-08-12",
-  "tries": 2,
-  "reported": false,
-  "lastTry": "2026-08-13",
+  "tries": 3,
+  "reported": true,
+  "lastTry": "2026-08-14",
   "title": "GS칼텍스 예울마루 (추경)예술기반 청년일자리(연수단원) 채용",
   "org": "GS칼텍스 예울마루"
  }
