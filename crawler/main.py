@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import (new_session, get, relevant, extract_deadline, priority_deadlines, deadline_from_title,
-                    musician_relevant, youth_member, participant_only, student_target, dance_member, school_title, parse_recruit_table, summarize_recruit, find_position,
+                    musician_relevant, youth_member, participant_only, student_target, dance_member, rope_skipping_only, school_title, parse_recruit_table, summarize_recruit, find_position,
                     classify_insts, find_subject, find_music_subjects, find_music_courses,
                     classify_kind, classify_tier, is_obri, cert_required, degree_req, career_req, age_group,
                     region_from, EXCLUDE, compact_title, music_only_title, body_text, valid_addr,
@@ -1853,6 +1853,11 @@ def run(force_all=False):
     if _dance:
         final[:] = [it for it in final if it not in _dance]
         log(f"무용수 모집 {len(_dance)}건 제외 — " + "; ".join(i["title"][:22] for i in _dance[:3]))
+    # 음악줄넘기 단독 = 체육 강사 자리 (2026-08-16 결정, docs/scope-decisions.md)
+    _rope = [it for it in final if rope_skipping_only(it.get("title", ""), it.get("org", ""))]
+    if _rope:
+        final[:] = [it for it in final if it not in _rope]
+        log(f"음악줄넘기 단독 {len(_rope)}건 제외 — " + "; ".join(i["title"][:26] for i in _rope[:3]))
     _qc_fields(final)          # 수상한 값은 화면에 나가기 전에 우리가 먼저 거른다
     n_geo = _attach_coords(final)
     if n_geo:
