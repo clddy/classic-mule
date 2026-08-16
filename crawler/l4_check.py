@@ -141,13 +141,27 @@ def pick_targets(items, state, force_ids=()):
 
 # ---------- API ----------
 
+# 진짜 키는 ASCII 영숫자·하이픈·밑줄뿐이다. 한글이 섞인 안내 문구('sk-ant-여기에_키를…')나
+# 잘못 붙여넣은 명령어를 키로 착각하면 401 만 받고 원인을 못 찾는다 (2026-08-16 실제로 겪음).
+_KEY_SHAPE = re.compile(r"^sk-[A-Za-z0-9_-]{20,}$")
+
+
+def _valid_key(k):
+    """키 모양인가. 아니면 401 대신 조용히 스킵한다."""
+    return bool(k) and bool(_KEY_SHAPE.match(k))
+
+
 def load_key():
-    key = os.environ.get("ANTHROPIC_API_KEY")
-    if key:
-        return key.strip()
+    key = (os.environ.get("ANTHROPIC_API_KEY") or "").strip()
+    if _valid_key(key):
+        return key
     f = SECRETS / "anthropic-key.txt"      # 자격증명은 커밋하지 않는다 (.secrets/ 는 gitignore)
     if f.exists():
-        return f.read_text(encoding="utf-8").strip()
+        # 파일에 안내 주석을 남겨 둘 수 있게 '#' 줄과 빈 줄은 건너뛴다
+        for line in f.read_text(encoding="utf-8").splitlines():
+            k = line.strip()
+            if k and not k.startswith("#") and _valid_key(k):
+                return k
     return None
 
 
