@@ -382,8 +382,8 @@
  ],
  "master": {
   "total": 604,
-  "covered": 5,
-  "gapCount": 599,
+  "covered": 2,
+  "gapCount": 602,
   "byCategory": {
    "대학": {
     "total": 77,
@@ -395,7 +395,7 @@
    },
    "예술단": {
     "total": 54,
-    "covered": 1
+    "covered": 0
    },
    "지자체": {
     "total": 323,
@@ -415,11 +415,11 @@
    },
    "학교": {
     "total": 17,
-    "covered": 1
+    "covered": 0
    },
    "민간": {
     "total": 25,
-    "covered": 1
+    "covered": 0
    }
   },
   "gaps": [
@@ -1019,6 +1019,11 @@
     "region": "서울"
    },
    {
+    "name": "서울시합창단",
+    "cat": "예술단",
+    "region": "서울"
+   },
+   {
     "name": "안산시립합창단",
     "cat": "예술단",
     "region": "경기"
@@ -1599,6 +1604,11 @@
     "region": "인천"
    },
    {
+    "name": "서울시교육청",
+    "cat": "학교",
+    "region": "서울"
+   },
+   {
     "name": "부산시교육청",
     "cat": "학교",
     "region": "부산"
@@ -1725,6 +1735,11 @@
    },
    {
     "name": "유니버설발레단",
+    "cat": "민간",
+    "region": "서울"
+   },
+   {
+    "name": "서울발레시어터",
     "cat": "민간",
     "region": "서울"
    },

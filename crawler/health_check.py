@@ -361,6 +361,10 @@ def check_links(rep, items, hist, today):
     live = []
     for i in items:
         d = i.get("deadline")
+        # 사용자가 실제로 누르는 링크는 officialUrl(기관 원문)이 우선이다 — 한양대 겸임교수
+        # 공고가 원문 소멸 후에도 노출됐다(워크오더 E16). 그쪽을 점검 대상으로 삼는다.
+        if i.get("officialUrl"):
+            i = dict(i, url=i["officialUrl"])
         if not i.get("url"):
             continue
         if d and d != SENTINEL and DATE_RE.match(d):
@@ -458,6 +462,61 @@ def notify(text):
 
 # ---------- 진입점 ----------
 
+# ---------- 역방향 감사 + 소스별 채움률 (2026-08-15 워크오더 C7·C8) ----------
+# 판정만 하고 수정하지 않는다 — 자동 수정은 오염을 만들 수 있어 사람 확인 큐로만 보낸다.
+_SIG2FIELD = [
+    (re.compile(r"접수\s*기간|원서\s*접수|접수\s*마감|제출\s*기한"), "deadline", "마감"),
+    (re.compile(r"보수|급여|임금|사례비|시급|월급"),                    "pay",      "급여"),
+    (re.compile(r"근무\s*기간|채용\s*기간|계약\s*기간"),             "workPeriod", "근무기간"),
+    (re.compile(r"모집\s*분야|담당\s*업무"),                          "duty",     "분야"),
+]
+_FILL_FIELDS = ("deadline", "pay", "workPeriod", "workHours", "personnel", "contact", "addr", "qualification")
+
+
+def check_unextracted(rep, items):
+    """원문에 시그널 라벨이 있는데 대응 필드가 빈 공고 → [미추출] 보고 (수정 없음)."""
+    import rawstore
+    miss = []
+    for i in items:
+        t = re.sub(r"\s+", " ", rawstore.all_text(i.get("id")) or "")
+        if len(t) < 200:
+            continue
+        for pat, field, label in _SIG2FIELD:
+            if pat.search(t) and not i.get(field) and i.get("deadlineNote") != "상시":
+                miss.append((label, i.get("title", "")[:24]))
+    if miss:
+        import collections
+        cnt = collections.Counter(l for l, _ in miss)
+        ex = "; ".join(f"{l}:{t}" for l, t in miss[:4])
+        rep.add("MED", "미추출",
+                f"[미추출] 라벨은 있는데 필드가 빈 공고 {len(miss)}건 ({dict(cnt)}) — 예: {ex}")
+
+
+def fill_rate_table(items, hist):
+    """소스×필드 채움률 표 + 전일 대비 급락 검출. (표 텍스트, 급락 경고 목록) 반환."""
+    import collections
+    by = collections.defaultdict(list)
+    for i in items:
+        by[(i.get("source") or "?")[:18]].append(i)
+    lines = ["소스별 채움률 (마감/급여/기간/연락처):"]
+    warns = []
+    today_rates = {}
+    for src in sorted(by):
+        rows = by[src]
+        rates = {f: sum(1 for i in rows if i.get(f)) * 100 // len(rows)
+                 for f in ("deadline", "pay", "workPeriod", "contact")}
+        today_rates[src] = rates
+        lines.append(f"  {src:20s} {len(rows):2d}건  "
+                     + " ".join(f"{rates[f]:3d}%" for f in ("deadline", "pay", "workPeriod", "contact")))
+        prev = (hist.get("fill_rates") or {}).get(src)
+        if prev:
+            for f in ("deadline", "workPeriod"):
+                if prev.get(f, 0) >= 50 and rates[f] <= prev[f] - 40:
+                    warns.append(f"{src} {f} {prev[f]}%→{rates[f]}%")
+    hist["fill_rates"] = today_rates
+    return chr(10).join(lines), warns
+
+
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--site", action="store_true", help="배포 사이트까지 점검 (playwright)")
@@ -485,6 +544,21 @@ def main():
     # 2순위 — 데이터 품질
     check_dupes(rep, items)
     check_dates(rep, items, today)
+    # B5(워크오더): 마감이 게시일+60일을 넘으면 오추출 의심 — 자동 수정 없이 플래그만
+    for i in items:
+        d, g = i.get("deadline"), i.get("date")
+        if d and g and DATE_RE.match(d) and DATE_RE.match(g):
+            try:
+                if (date.fromisoformat(d) - date.fromisoformat(g)).days > 60:
+                    rep.add("MED", "의심",
+                            f"[의심] 마감({d})이 게시({g})+60일 초과 — {i.get('title','')[:26]}")
+            except ValueError:
+                pass
+    # C7(워크오더): 역방향 감사 — 라벨은 있는데 필드가 빈 공고 (판정만, 수정 없음)
+    try:
+        check_unextracted(rep, items)
+    except Exception as e:
+        rep.add("LOW", "미추출", f"역방향 감사 실패: {type(e).__name__}")
     if not args.no_links:
         check_links(rep, items, hist, today)
     # 3·4순위 — 배포 사이트·제출 플로우
@@ -495,7 +569,16 @@ def main():
         except Exception as e:
             rep.add("MED", "사이트", f"사이트 점검 자체가 실패: {type(e).__name__}: {e}")
 
+    # C8(워크오더): 소스×필드 채움률 표 + 전일 대비 급락 알림
+    try:
+        table, warns = fill_rate_table(items, hist)
+        for w in warns:
+            rep.add("MED", "채움률", f"채움률 급락: {w}")
+    except Exception:
+        table = ""
     text = render(rep, today, args.site)
+    if table:
+        text = text + chr(10)*2 + table
     print(text)
 
     if args.dry_run:
