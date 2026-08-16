@@ -58,7 +58,9 @@ def norm_title(s):
     return re.sub(r"[\s\[\]()〈〉<>『』「」·.,\-~!?]", "", s)[:40]
 
 # 집계 채널의 일반(placeholder) org — 기관 특정이 안 되므로 병합 금지
-GENERIC_ORG = re.compile(r"기독정보넷|아트인포|아트모아|교육청 ?포털")
+# '개척교회'는 기관 이름이 아니라 분류어다 — 서로 다른 교회 14건이 한 장으로 묶여 있었다
+# (2026-08-16 소급 점검). 이름이 같아도 다른 기관이므로 병합하지 않는다.
+GENERIC_ORG = re.compile(r"기독정보넷|아트인포|아트모아|교육청 ?포털|^개척교회$")
 
 def dedup_key(it):
     if GENERIC_ORG.search(it.get("org", "")):
@@ -72,20 +74,71 @@ def dedup_key(it):
         return f"{norm_org(it['org'])}|{it['deadline']}"
     return f"{norm_org(it['org'])}|{norm_title(it['title'])}"
 
+# 같은 기관·같은 마감이어도 '다른 자리'인 것을 가르는 표식.
+# 서울하늘초가 1~2학년·5~6학년 강사를 같은 날 마감으로 각각 뽑았는데 org|마감 키가 둘을
+# 한 건으로 삼켰다 (2026-08-16 발견). 학년·악기·과목이 서로 다르면 지원자에게는 다른 자리다.
+# '2026학년도'의 '6학년'을 학년으로 오인하면 안 된다 — 충암초 두 공고가 그 때문에 갈렸다
+_GRADE_TOK = re.compile(r"\d\s*[~∼-]\s*\d\s*학년(?!도)|\d\s*학년(?!도)")
+_FIELD_TOK = re.compile(
+    r"난타|합창|오케스트라|관현악|기악|성악|국악|밴드|중창|줄넘기|우쿨렐레|사물놀이"
+    r"|바이올린|비올라|첼로|더블베이스|콘트라베이스|하프|기타|가야금|해금|장구"
+    r"|플루트|플룻|오보에|클라리넷|바순|색소폰|호른|트럼펫|트롬본|튜바|타악|팀파니|드럼"
+    r"|피아노|반주|오르간|지휘|작곡|음악사|음악감상")
+
+
+def _discriminators(it):
+    """이 공고가 '어떤 자리'인지 특정해 주는 표식들. 비어 있으면 판별 불가."""
+    d = {("inst", x) for x in (it.get("instDetails") or [])}
+    d |= {("course", x) for x in (it.get("courses") or [])}
+    t = (it.get("title") or "").replace(" ", "")
+    d |= {("grade", g) for g in _GRADE_TOK.findall(t)}
+    d |= {("field", w) for w in _FIELD_TOK.findall(t)}
+    return d
+
+
+def _same_position(a, b):
+    """같은 자리인가 — 양쪽 다 분야가 특정됐는데 서로 다르면 다른 자리로 본다.
+
+    한쪽이라도 판별 불가면 기존처럼 병합한다(보수적). 집계 포털판은 악기 태그가 없는 일이
+    많은데, 그걸 원천 공고와 갈라 놓으면 같은 자리가 두 장으로 뜬다 — 그게 더 나쁘다.
+    """
+    da, db = _discriminators(a), _discriminators(b)
+    return not (da and db and da != db)
+
+
+def _split_positions(group):
+    """한 병합 묶음을 '자리'별로 다시 가른다. 순서를 지켜 먼저 온 것을 대표로 삼는다."""
+    buckets = []
+    for it in group:
+        for b in buckets:
+            if _same_position(b[0], it):
+                b.append(it)
+                break
+        else:
+            buckets.append([it])
+    return buckets
+
+
 def dedup(items):
     groups = {}
     for it in items:
         groups.setdefault(dedup_key(it), []).append(it)
-    out = []
+    out, split_log = [], []
     for group in groups.values():
-        # 같은 층위면 최신 게시(변경공고)를 canonical로
-        group.sort(key=lambda x: x.get("date") or "", reverse=True)
-        group.sort(key=lambda x: LAYER_RANK.get(x.get("layer", "A"), 9))
-        canon = group[0]
-        others = sorted({g["source"] for g in group[1:] if g["source"] != canon["source"]})
-        if others:
-            canon["alsoSeenOn"] = others
-        out.append(canon)
+        subs = _split_positions(group) if len(group) > 1 else [group]
+        if len(subs) > 1:
+            split_log.append((subs[0][0].get("org") or "", [s[0].get("title", "")[:30] for s in subs]))
+        for sub in subs:
+            # 같은 층위면 최신 게시(변경공고)를 canonical로
+            sub.sort(key=lambda x: x.get("date") or "", reverse=True)
+            sub.sort(key=lambda x: LAYER_RANK.get(x.get("layer", "A"), 9))
+            canon = sub[0]
+            others = sorted({g["source"] for g in sub[1:] if g["source"] != canon["source"]})
+            if others:
+                canon["alsoSeenOn"] = others
+            out.append(canon)
+    for org, titles in split_log[:5]:
+        log(f"같은 마감 다른 자리 {len(titles)}건 분리 — {org}: " + "; ".join(titles))
     # 2차: 같은 기관 + 같은 마감인데 악기 집합이 포함관계면 재공고(악기 추가)로 보고 병합.
     # (KBS '비올라·오보에' 원공고 → '비올라·오보에·타악기' 추가 재공고가 둘 다 남는 문제)
     by_org = {}
