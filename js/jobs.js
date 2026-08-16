@@ -97,13 +97,15 @@ const SHOW_AGE_BADGE = false;
 
 // ---------- 필터 정의 ----------
 // 등급(단일 축: 연주냐 가르치냐, 가르치면 누구를). 미분류는 사람 확인 큐 → 필터 칩에는 노출 안 함.
-const TIERS = ["연주", "교육 — 대학", "교육 — 입시·전공", "교육 — 학교", "교육 — 취미·입문"];
+// '그 외'는 연주도 교육도 아닌 음악계 자리(실기실·악기 관리 등) — 미분류와 달리 판정이 끝난 값이다.
+const TIERS = ["연주", "교육 — 대학", "교육 — 입시·전공", "교육 — 학교", "교육 — 취미·입문", "그 외"];
 // 구분(연주·교육 3종)은 색을 나누지 않는다 — 같은 축의 값이라 색이 다르면 서로 다른
 // 종류의 정보처럼 읽힌다. 전부 검정 바탕으로 통일하고, 구별은 글자로 한다 (2026-08-02).
 // 미분류만 회색 — 사람 확인이 필요한 임시 상태라 값들과 구분되는 편이 맞다.
 const TIER_CLS = {
   "연주": "src-official", "교육 — 대학": "src-official", "교육 — 입시·전공": "src-official",
-  "교육 — 학교": "src-official", "교육 — 취미·입문": "src-official", "미분류": "dd-always"
+  "교육 — 학교": "src-official", "교육 — 취미·입문": "src-official", "그 외": "src-official",
+  "미분류": "dd-always"
 };
 const BANDS = ["단원", "객원·대체", "반주", "솔리스트", "행사연주", "강사·레슨", "교원", "지휘", "교수", "직원·스태프", "기타"];
 const INST_GROUPS = [
@@ -134,7 +136,7 @@ const REGION_LIST = ["서울", "경기", "인천", "강원", "대전", "세종",
 // 통합 전에 수집된 글은 region이 아직 '광주'·'전남'이다 — 다음 크롤 전까지 화면에서 옮겨 읽는다.
 const REGION_MIGRATE = { "광주": "광주·전남", "전남": "광주·전남" };
 function regionOf(j){ const r = j.region || "기타"; return REGION_MIGRATE[r] || r; }
-const STATUSES = ["접수중", "마감임박", "기한 미정", "마감"];
+const STATUSES = ["접수중", "마감임박", "상시모집", "기한 미정", "마감"];
 
 // 기본 정렬은 마감 임박순 — '언제까지 지원 가능한가'가 이 보드의 1차 정보다 (2026-07-23)
 const state = { tab: "전체", tiers: new Set(), bands: new Set(), insts: new Set(), regions: new Set(), status: new Set(), provided: new Set(), newOnly: false, obri: false, noCert: false, noCareer: false, query: "", sort: "deadline" };
@@ -208,14 +210,16 @@ function reportFilter(count) {
 //  · 급구·대타(마감일 없음)는 연주일이 곧 마감 → '연주일 D-n' 기준을 구분 표기
 function statusOf(j) {
   let base = j.deadline, kind = "지원 마감";
+  // 상시모집은 날짜보다 앞선다 — 교회 공고가 관행처럼 적어 둔 '연말 마감'에 D-day를 붙이면
+  // 있지도 않은 기한을 우리가 지어내는 셈이다 (2026-08-17).
+  // 교회 반주·지휘처럼 '사람 구해질 때까지' 열려 있는 자리도 같은 상태로 묶는다.
+  if (j.deadlineText === "상시" || (j.obri && !base)) {
+    return { key: "상시모집", label: "상시모집", cls: "dd-open", dday: 9000 };
+  }
   if (!base) {
     const cn = concertNum(j);                       // 연주일(YYYYMMDD 정수) — 없으면 Infinity
     if (cn !== Infinity && j.src !== "공식") {
       const s = String(cn); base = `${s.slice(0,4)}-${s.slice(4,6)}-${s.slice(6,8)}`; kind = "연주일";
-    } else if (j.deadlineText === "상시" || j.obri) {
-      // 교회 반주·지휘·솔리스트는 '사람 구해질 때까지' 열려 있는 자리다 — 마감일이 원문에
-      // 없는 게 정상이라 '기한 미정'(찾는 중)이 아니라 '상시'로 적는 게 정직하다 (2026-08-07).
-      return { key: "접수중", label: "상시", cls: "dd-open", dday: 9000 };
     } else {
       // '확인필요'는 사용자에게 내보이지 않는다 — 크롤러가 찾을 때까지의 임시 표기만.
       return { key: "기한 미정", label: "기한 미정", cls: "dd-always", dday: 9998 };

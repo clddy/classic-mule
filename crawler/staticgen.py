@@ -29,8 +29,12 @@ esc = lambda v: html.escape(str(v or ""), quote=True)
 def _status(j, today):
     """카드에 얹는 상태 라벨 (js/jobs.js statusOf의 정적 축약판)"""
     dl = j.get("deadline")
+    # 상시모집은 날짜보다 앞선다 (js/jobs.js statusOf와 같은 규칙 — 어긋나면 정적 목록과
+    # JS 렌더가 다른 배지를 보여준다)
+    if j.get("deadlineNote") == "상시" or (j.get("obri") and not dl):
+        return ("상시모집", "dd-open")
     if not dl:
-        return ("상시", "dd-open") if j.get("deadlineNote") == "상시" or j.get("obri") else ("기한 미정", "dd-always")
+        return ("기한 미정", "dd-always")
     diff = (date.fromisoformat(dl) - today).days
     if diff < 0:
         return ("마감", "dd-closed")
@@ -104,7 +108,8 @@ def _inject(path, marker, content):
 
 def _detail_rows(j):
     rows = [("기관", j.get("org")), ("지역", j.get("region")),
-            ("마감", j.get("deadline") or ("상시 모집" if j.get("deadlineNote") == "상시" or j.get("obri") else "기한 미정"))]
+            ("마감", "상시모집" if j.get("deadlineNote") == "상시"
+             else (j.get("deadline") or ("상시모집" if j.get("obri") else "기한 미정")))]
     if j.get("subject"):
         rows.append(("전공", j["subject"]))
     if j.get("courses"):

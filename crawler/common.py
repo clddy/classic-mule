@@ -748,11 +748,22 @@ def is_obri(title, org=""):
     """오브리(교회·웨딩·행사 연주) 여부 — 연주 태그의 하위 필터용."""
     return bool(_OBRI.search(f"{title} {org}"))
 
+# 음악 공간·악기 관리직 — 지도 직무가 아니므로 교육 계열에 넣지 않는다 (docs/scope-decisions.md).
+# 대상어(실기실·연습실·악기·시설)를 앞에 요구해 '예술감독·음악감독'과 갈라놓는다.
+_FACILITY_KEEPER = re.compile(
+    r"(?:실기실|연습실|연습 ?공간|악기|시설|공간|기자재)\s*(?:관리|감독|지킴이|당직|경비|운영\s*요원)")
+
+
 def classify_tier(title, org=""):
     """연주 / 교육 — 대학 / 교육 — 입시·전공 / 교육 — 취미·입문 / 미분류.
     지시서 3-1 우선순위: 대학교원 → 입시·전공 → 취미·입문 → 연주 → 오브리연주 → 미분류.
     교육 신호를 연주보다 먼저 봐서 '오케스트라 강사(초등)'=교육, '오케스트라 객원'=연주로 갈린다."""
     t = f"{title} {org}"
+    # 음악 공간·악기를 지키고 관리하는 자리 — 전공자의 실질 일감이지만 가르치는 일이 아니다.
+    # 학교 이름 때문에 '교육 — 입시·전공'으로 가던 선화예고 실기실 감독이 계기 (2026-08-17).
+    # '예술감독·음악감독'은 지휘 자리이므로 걸리지 않게 대상어를 앞에 못 박는다.
+    if _FACILITY_KEEPER.search(t):
+        return "그 외"
     # 예중·예고가 함께 보이면(대학 부설 예고 등) 입시·전공이 우선 — 대학 규칙에서 먼저 배제
     if _EDU_UNIV.search(t) and _EDU_UNIV_PLACE.search(t) and not _EDU_IPSI.search(t):
         return "교육 — 대학"
@@ -1381,6 +1392,13 @@ def extract_fields(text):
                 if not v or (loose and not _shape_ok(key, v)):
                     continue
                 out[key] = v
+                # 기간 칸 머리에서 떼어낸 표 앞 열의 인원은 버리지 말고 제 칸으로 돌려보낸다.
+                # (같이 붙어 온 과목명은 넣을 안전한 칸이 없어 흘려보낸다 — 악기 태그는
+                #  제목·모집구획에서 따로 뽑히므로 여기서 짐작해 넣으면 오염만 는다.)
+                if key in ("workPeriod", "perfPeriod"):
+                    _, cnt = lead_subject_count(val)
+                    if cnt:
+                        out.setdefault("personnel", cnt)
                 break
             if key in out:
                 break
@@ -1418,6 +1436,11 @@ _LABEL_WORDS = re.compile(
     r"|제출\s*방법|접수\s*방법|상세\s*요강|채용\s*과목|채용\s*사유|과목|담당\s*업무|자격|비고|첨부|문의)")
 
 
+# 페이지 꼬리표(푸터) 표식 — 이 근처의 라벨은 공고 본문이 아니라 사이트 안내다
+_PAGE_FOOTER = re.compile(
+    r"민원실|민원기동대|대표전화|대표번호|Copyright|All Rights Reserved|무단전재|누리집|개인정보처리방침")
+
+
 def _candidates(t, pat, loose=False):
     """라벨 뒤에 오는 값 후보들 — 구분자는 콜론이 흔하지만 하이픈도 쓴다.
 
@@ -1431,6 +1454,11 @@ def _candidates(t, pat, loose=False):
     """
     sep = r"(?:[:：]|[-–—]\s|\s)" if loose else r"(?:[:：]|[-–—]\s)"
     for m in re.finditer(rf"(?:{pat})\s*{sep}\s*", t):
+        # 페이지 꼬리표(민원실 안내·저작권 표시)에 박힌 라벨은 공고 내용이 아니다 —
+        # 인천교육청 푸터의 '근무시간 09:00~18:00(수요일…)'이 학교 근무시간으로 실렸다
+        # (2026-08-17). 그럴듯해서 더 위험한 값이라 후보 단계에서 버린다.
+        if _PAGE_FOOTER.search(t[max(0, m.start() - 120):m.end() + 160]):
+            continue
         seg = t[m.end():m.end() + 160]
         if loose:
             nxt = _LABEL_WORDS.search(seg)
@@ -1440,6 +1468,24 @@ def _candidates(t, pat, loose=False):
                 seg = seg[:nxt.start()]
         if len(seg.strip()) >= 1:
             yield seg
+
+
+# 기간 값이 시작하는 자리 — '2026.09.07', '2026-09-07', '2026년 9월 7일', '26.9.7'
+_DATE_START = re.compile(r"(?:20)?\d{2}\s*[.\-/년]\s*\d{1,2}\s*[.\-/월]\s*\d{1,2}")
+# 표 앞 열에 딸려 온 '과목 인원' — 버리지 않고 해당 필드로 넘길 수 있게 떼어 둔다
+_LEAD_SUBJ_CNT = re.compile(r"^([가-힣]{2,10})\s*(\d{1,3}\s*명)\b")
+
+
+def lead_subject_count(raw):
+    """기간 칸 머리에 붙어 온 '음악 1명' 같은 앞 열 값 → (과목, 인원). 없으면 (None, None).
+
+    표를 평탄화하면 데이터행의 앞 열이 뒤 칸 값에 붙어 온다. 그냥 잘라 버리면 인원 정보가
+    통째로 사라지므로, 떼어낸 조각을 제 칸으로 돌려보낸다 (가운고, 워크오더 08-17 §3).
+    """
+    m = _LEAD_SUBJ_CNT.match((raw or "").strip())
+    if not m:
+        return None, None
+    return m.group(1), re.sub(r"\s+", "", m.group(2))
 
 
 def _clean_field(key, raw):
@@ -1468,6 +1514,16 @@ def _clean_field(key, raw):
     # (워크오더 08-16 §1).
     val = re.sub(r"^(?:(?:과목|인원|성명|비고|구분|학교급|근무형태|채용사유|채용기간|계약기간|근무기간)(?:\s+|$)){2,}",
                  "", val).strip(" .,·-–")
+    # 기간 칸은 날짜에서 시작한다 — 헤더를 걷어내도 표의 앞 열('음악 1명')이 남아 있었다
+    # (가운고, 워크오더 08-17 §3). 낱말을 하나씩 지우는 대신 날짜부터 채택한다.
+    if key in ("workPeriod", "perfPeriod"):
+        m_d = _DATE_START.search(val)
+        if m_d and m_d.start() > 0:
+            val = val[m_d.start():].strip(" .,·-–")
+    # 여는 괄호만 있고 닫히지 않은 값 — 다음 라벨에서 잘린 흔적이다.
+    # '09:00~18:00(수요일' → '09:00~18:00' (워크오더 08-17 §4)
+    if val.count("(") > val.count(")"):
+        val = val[:val.rindex("(")].strip(" .,·-–")
     # goe 채용시스템 꼬리 UI — '24시간 복리후생 근무지역 주소 지도검색' 의 복리후생 이후는
     # 화면 조각이다. 콜론 없이 붙으므로 _FIELD_STOP 이 못 자른다 (진접고, 워크오더 08-16 §1).
     val = re.split(r"\s(?:복리\s*후생|근무\s*지역|지도\s*검색)(?=\s|$)", val, 1)[0].strip(" .,·-–")

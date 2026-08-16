@@ -489,7 +489,7 @@ def check_unextracted(rep, items):
         cnt = collections.Counter(l for l, _ in miss)
         ex = "; ".join(f"{l}:{t}" for l, t in miss[:4])
         rep.add("MED", "미추출",
-                f"[미추출] 라벨은 있는데 필드가 빈 공고 {len(miss)}건 ({dict(cnt)}) — 예: {ex}")
+                f"라벨은 있는데 필드가 빈 공고 {len(miss)}건 ({dict(cnt)}) — 예: {ex}")
 
 
 def fill_rate_table(items, hist):
@@ -549,14 +549,22 @@ def main():
     check_dates(rep, items, today)
     # B5(워크오더): 마감이 게시일+60일을 넘으면 오추출 의심 — 자동 수정 없이 플래그만
     for i in items:
+        # 상시모집은 기한이 사람 구해질 때까지다 — 게시일과 멀어도 오추출이 아니다
+        # (남양교회·의왕소만교회가 매일 같은 알림을 냈다, 워크오더 08-17 §1)
+        if i.get("deadlineNote") == "상시":
+            continue
         d, g = i.get("deadline"), i.get("date")
         if d and g and DATE_RE.match(d) and DATE_RE.match(g):
             try:
                 if (date.fromisoformat(d) - date.fromisoformat(g)).days > 60:
                     rep.add("MED", "의심",
-                            f"[의심] 마감({d})이 게시({g})+60일 초과 — {i.get('title','')[:26]}")
+                            f"마감({d})이 게시({g})+60일 초과 — {i.get('title','')[:26]}")
             except ValueError:
                 pass
+    # 원출처를 못 찾아 게시를 보류한 집계본 (워크오더 08-17 §6) — 역추적 규칙 보강 재료다
+    held = doc.get("heldNoOrigin") or 0
+    if held:
+        rep.add("MED", "보류", f"원출처 미확인 {held}건 — 아카이브만 남기고 게시 보류")
     # C7(워크오더): 역방향 감사 — 라벨은 있는데 필드가 빈 공고 (판정만, 수정 없음)
     try:
         check_unextracted(rep, items)

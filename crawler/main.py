@@ -808,6 +808,43 @@ def _deepen_list_origin(s, item):
         item["officialUrl"] = best
         item["originDeepened"] = True
 
+# 집계 포털·검색 포털·SNS는 원출처가 아니다 — 여기로 링크를 내보내지 않는다.
+_NOT_ORIGIN = re.compile(
+    r"artinfokorea|artmore|hibrain|jobkorea|saramin|albamon|cleaneye|gojobs|work\.go\.kr"
+    r"|naver\.|daum\.|google\.|facebook|instagram|youtube|kakao|blog\.|cafe\.|tistory", re.I)
+# 원출처로 볼 만한 도메인 — 기관 홈페이지의 관용 표기
+_ORIGIN_HINT = re.compile(r"\.or\.kr|\.go\.kr|\.ac\.kr|\.re\.kr", re.I)
+
+
+def _trace_origin(s, page_text, item):
+    """집계본 본문에서 원출처(기관 홈페이지·공고 원문)를 역추적한다.
+
+    찾으면 officialUrl 로 앉힌다 — 그 뒤 링크 검증·마감 추출은 기존 원문 경로가 이어받는다.
+    못 찾으면 아무것도 하지 않는다(게시 보류는 호출부에서 판단).
+    """
+    if item.get("officialUrl"):
+        return None
+    cands = []
+    for a in s.find_all("a", href=True):
+        href = (a["href"] or "").strip()
+        if not href.startswith("http") or _NOT_ORIGIN.search(href):
+            continue
+        if _ORIGIN_HINT.search(href):
+            cands.append(href)
+    # 본문에 링크가 아닌 맨 주소로 적어 두는 경우도 많다
+    for m in re.finditer(r"https?://[\w.\-/?=&%#]+", page_text or ""):
+        u = m.group(0).rstrip(".,)")
+        if not _NOT_ORIGIN.search(u) and _ORIGIN_HINT.search(u):
+            cands.append(u)
+    if not cands:
+        return None
+    # 상세 공고로 보이는 링크(경로가 깊은 것)를 기관 첫 화면보다 앞에 둔다
+    cands.sort(key=lambda u: (u.count("/") < 4, len(u)))
+    item["officialUrl"] = cands[0]
+    item["originTraced"] = True
+    return cands[0]
+
+
 def _origin_check(s, item, ry):
     """기관 원문(officialUrl)을 실제로 열어본다.
     죽은 페이지면 만료 처리(링크가 404로 가는 것 방지), 살아있으면 진짜 마감일을 추출."""
@@ -1152,6 +1189,11 @@ def _qc_fields(items):
             must = _QC_MUST.get(f)
             if not why and must and not must.search(v):
                 why = "모양 불일치"
+            # 괄호가 열리고 안 닫힌 값은 다음 라벨에서 잘린 흔적이다 — 추출기가 앞에서
+            # 손질하지만, 다른 경로(승계·overrides)로 들어온 값까지 여기서 한 번 더 본다
+            # (인천중산고 '09:00~18:00(수요일', 워크오더 08-17 §4)
+            if not why and v.count("(") != v.count(")"):
+                why = "괄호 미폐합"
             # 주소는 시도로 시작해야 한다. valid_addr(도로명+번지)까지 요구하면 지오코딩이
             # 만든 '서울특별시 광진구 군자로'(건물번호 없음)가 억울하게 잘린다.
             if not why and f == "addr" and not re.match(
@@ -1328,6 +1370,48 @@ def _drop_reposts(items):
     return dropped
 
 
+# 상시모집 어휘 — '충원 시까지', '수시 채용'처럼 기한이 사람 구해질 때까지인 자리.
+DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+_ALWAYS_OPEN = re.compile(
+    r"상시\s*(?:모집|채용|접수)|수시\s*(?:모집|채용|접수)|충원\s*시\s*(?:까지|마감)"
+    r"|채용\s*시\s*(?:까지|마감)|적격자\s*(?:선정|채용)\s*시|모집\s*시\s*까지")
+
+
+def _mark_always_open(items, today):
+    """상시모집 건을 표시한다. 원문 위에서 돌므로 과거 수집분도 매 크롤 자기치유된다.
+
+    두 가지로 잡는다.
+     ① 원문이 그렇게 적어 뒀다 — '상시모집', '충원 시까지'.
+     ② 마감이 연말(12-31)인데 게시일과 60일 넘게 떨어져 있다. 교회 공고가 기한을 정하지
+        않을 때 관행처럼 연말을 적어 넣는 꼴이라, 진짜 12월 31일 마감으로 읽으면 D-day를
+        우리가 지어내는 셈이 된다 (남양교회·의왕소만교회, 2026-08-17).
+    """
+    n = 0
+    for it in items:
+        if it.get("deadlineNote") == "상시":
+            continue
+        hit = False
+        d, g = it.get("deadline"), it.get("date")
+        # ② 연말 관행 표기 — 기한을 정하지 않은 자리에 12-31을 적어 넣은 꼴
+        if d and g and d.endswith("-12-31") and DATE_RE.match(d) and DATE_RE.match(g):
+            try:
+                hit = (date.fromisoformat(d) - date.fromisoformat(g)).days > 60
+            except ValueError:
+                hit = False
+        # ① 원문 어휘 — 단, 확정 마감일이 있으면 보지 않는다. 마감이 박힌 공고의
+        #    '지원자가 없을시 채용시까지 연장'은 조건절이지 상시 선언이 아니다
+        #    (서울동구고가 이 문구 하나로 상시가 될 뻔했다, 2026-08-17).
+        elif not d:
+            raw = rawstore.all_text(it.get("id"))
+            hit = bool(raw and _ALWAYS_OPEN.search(raw))
+        if hit:
+            it["deadlineNote"] = "상시"
+            n += 1
+    if n:
+        log(f"상시모집 표시 {n}건")
+    return n
+
+
 def _drop_expired(items, today):
     """접수가 끝난 공고를 내린다 — ① 아는 마감일이 지났거나 ② 원문에 지난 마감이 확정 표기된 것.
 
@@ -1455,6 +1539,9 @@ def enrich_deadline(s, item, allow_render=True, details_only=False):
                 if item.get("deadline") == "2000-01-01":
                     return  # 원문이 죽음 → 만료 처리하고 종료
             else:
+                # 원출처를 본문에서 역추적해 본다 — 집계본을 그대로 싣지 않기 위해서다
+                # (워크오더 08-17 §6). 찾으면 그쪽이 정본이 되고, 못 찾으면 게시를 보류한다.
+                _trace_origin(s, page_text, item)
                 _extract_contact(page_text, item)
         # 기독정보넷은 전용 표 구조 — 별도 파서로 처리
         if item.get("source") == "cjob.co.kr":
@@ -1926,6 +2013,8 @@ def run(force_all=False):
     _apply_overrides(final)
     # 마감이 지난 게 원문에 확정 표기된 공고를 내린다. overrides 뒤에 두는 이유는,
     # 사람이 손수 넣은 마감일이 있으면 그쪽이 우선이고 여기 판정은 아예 건너뛰기 때문이다.
+    # 상시모집 판정은 만료 처리보다 먼저 — 상시 건은 날짜로 내리지 않는다 (워크오더 08-17 §1)
+    _mark_always_open(final, today)
     _drop_expired(final, today)
     _drop_reposts(final)
     # 마감 미상 + 게시일 미상 공고는 첫 관측일 기준 60일에서 내린다 — date 가 없으면 120일
@@ -1941,6 +2030,14 @@ def run(force_all=False):
     # 이메일·전화도 못 뽑은 경우다. 포털로는 링크를 내지 않기로 했으므로(CLAUDE.md) 카드에
     # '기관명으로 검색하세요'라는 빈 안내만 남아 사용자가 할 수 있는 게 없다 (2026-07-29 지적).
     # 조용히 버리지 않고 로그로 남긴다 — 연락처 추출 규칙을 보강할 재료다.
+    # 아트인포 유래는 원출처가 확인돼야 싣는다 — 연락처만 있어도 보류다 (워크오더 08-17 §6).
+    # 집계본을 그대로 게시하면 '그 글이 거기서 태어났는가' 원칙과 어긋난다. 보류분도
+    # 아카이브에는 남겨 수요 분석 재료로는 쓴다.
+    _hold = [i for i in final
+             if (i.get("source") or "") == "artinfokorea.com" and not i.get("officialUrl")]
+    if _hold:
+        final[:] = [i for i in final if i not in _hold]
+        log(f"[보류] 원출처 미확인 {len(_hold)}건 — " + "; ".join(i["title"][:24] for i in _hold[:3]))
     _portal_src = AGGREGATORS + ("hibrain.net",)   # 링크를 내보내지 않기로 한 집계 포털들
     _dead_end = [i for i in final
                  if (i.get("source") or "") in _portal_src
@@ -2061,6 +2158,8 @@ def run(force_all=False):
 
     payload = {
         "collectedAt": datetime.now().strftime("%Y-%m-%d %H:%M"),
+        # 게시를 보류한 건수 — 헬스체크 브리핑이 이걸 읽어 [보류]로 알린다 (워크오더 08-17 §6)
+        "heldNoOrigin": len(_hold),
         "sourceCount": len(SOURCES),
         "okCount": sum(1 for x in source_stats if x["ok"]),
         "instTotal": len(INSTITUTIONS),   # 대조 기관 명부 규모
@@ -2086,7 +2185,8 @@ def run(force_all=False):
     # 사라진다. 수요 지도(crawler/demand_map.py)의 원본이 되도록 여기 따로 쌓는다.
     try:
         import archive
-        n_arc = archive.merge(BASE, final)
+        # 보류분도 아카이브에는 남긴다 — 게시하지 않을 뿐 수요 분석에는 쓰는 기록이다
+        n_arc = archive.merge(BASE, final + _hold)
         log(f"아카이브: 신규 {n_arc}건 · 누적 {len(archive.load(BASE))}건")
     except Exception as e:
         log(f"WARN 아카이브 병합 실패: {type(e).__name__}: {e}")
