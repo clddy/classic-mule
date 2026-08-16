@@ -42,7 +42,7 @@ const OFFICIAL_ITEMS = ((window.CRAWLED && window.CRAWLED.items) || []).map(j =>
   //   조건 항목(급여·근무기간·공연조건…)과 위치를 만들어 두고도 카드가 그대로였던 이유가
   //   이것이다 (2026-08-09). 크롤러에 필드를 늘리면 반드시 여기도 같이 늘릴 것.
   workPeriod: j.workPeriod, workHours: j.workHours, workPlace: j.workPlace, duty: j.duty,
-  ageLimit: j.ageLimit, contact: j.contact,
+  ageLimit: j.ageLimit, contact: j.contact, email: j.email,
   perfPeriod: j.perfPeriod, perfPlace: j.perfPlace, perfSchedule: j.perfSchedule,
   teamComp: j.teamComp, dayOff: j.dayOff,
   addr: j.addr, lat: j.lat, lng: j.lng,
@@ -523,7 +523,13 @@ function metaRows(j) {
   if (j.perfSchedule) rows.push(["공연 스케줄", cleanVal(j.perfSchedule)]);
   if (j.teamComp) rows.push(["팀 구성", cleanVal(j.teamComp)]);
   if (j.dayOff) rows.push(["휴일", cleanVal(j.dayOff)]);
-  if (j.contact) rows.push(["연락처", cleanVal(j.contact)]);
+  // 전화·이메일을 한 행에 병기한다 — '042-123-4567 · abc@school.kr' (워크오더 08-16 §5)
+  if (j.contact || j.email) {
+    const parts = [];
+    if (j.contact) parts.push(cleanVal(j.contact));
+    if (j.email) parts.push(`<a href="mailto:${j.email}">${j.email}</a>`);
+    rows.push(["연락처", parts.join(" · ")]);
+  }
   // 주소가 있으면 지도로 바로 보낸다. 악기를 들고 갈 곳이라 '어디인지'가 지원 여부를 가른다.
   // 주소가 없으면 기관 이름으로 찾게 한다 — 이름만 있어도 지도에서 대개 나온다.
   const place = cleanVal(j.addr) || (j.org && !/기독정보넷|교육청|포털/.test(j.org) ? cleanVal(j.org) : "");

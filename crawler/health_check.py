@@ -470,7 +470,7 @@ _SIG2FIELD = [
     (re.compile(r"근무\s*기간|채용\s*기간|계약\s*기간"),             "workPeriod", "근무기간"),
     (re.compile(r"모집\s*분야|담당\s*업무"),                          "duty",     "분야"),
 ]
-_FILL_FIELDS = ("deadline", "pay", "workPeriod", "workHours", "personnel", "contact", "addr", "qualification")
+_FILL_FIELDS = ("deadline", "pay", "workPeriod", "workHours", "personnel", "contact", "email", "addr", "qualification")
 
 
 def check_unextracted(rep, items):
@@ -498,16 +498,16 @@ def fill_rate_table(items, hist):
     by = collections.defaultdict(list)
     for i in items:
         by[(i.get("source") or "?")[:18]].append(i)
-    lines = ["소스별 채움률 (마감/급여/기간/연락처):"]
+    lines = ["소스별 채움률 (마감/급여/기간/연락처/이메일):"]
     warns = []
     today_rates = {}
     for src in sorted(by):
         rows = by[src]
         rates = {f: sum(1 for i in rows if i.get(f)) * 100 // len(rows)
-                 for f in ("deadline", "pay", "workPeriod", "contact")}
+                 for f in ("deadline", "pay", "workPeriod", "contact", "email")}
         today_rates[src] = rates
         lines.append(f"  {src:20s} {len(rows):2d}건  "
-                     + " ".join(f"{rates[f]:3d}%" for f in ("deadline", "pay", "workPeriod", "contact")))
+                     + " ".join(f"{rates[f]:3d}%" for f in ("deadline", "pay", "workPeriod", "contact", "email")))
         prev = (hist.get("fill_rates") or {}).get(src)
         if prev:
             for f in ("deadline", "workPeriod"):

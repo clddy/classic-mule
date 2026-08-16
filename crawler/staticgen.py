@@ -127,6 +127,9 @@ def _detail_rows(j):
         rows.append(("계약", j["contract"]))
     if j.get("auditionDate"):
         rows.append(("오디션", j["auditionDate"]))
+    # 전화·이메일 병기 — 화면 모달(js/jobs.js 연락처 행)과 같은 꼴 (워크오더 08-16 §5)
+    if j.get("contact") or j.get("email"):
+        rows.append(("연락처", " · ".join(str(j[k]) for k in ("contact", "email") if j.get(k))))
     if j.get("applyEmail"):
         rows.append(("지원 이메일", j["applyEmail"]))
     if j.get("applyPhone"):

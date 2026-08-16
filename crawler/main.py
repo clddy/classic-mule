@@ -9,7 +9,8 @@ from common import (new_session, get, relevant, extract_deadline, priority_deadl
                     classify_insts, find_subject, find_music_subjects, find_music_courses,
                     classify_kind, classify_tier, is_obri, cert_required, degree_req, career_req, age_group,
                     region_from, EXCLUDE, compact_title, music_only_title, body_text, valid_addr,
-                    insts_from_recruit_text, tls_blocked, curl_get, extract_fields, extract_contact)
+                    insts_from_recruit_text, tls_blocked, curl_get, extract_fields, extract_contact,
+                    extract_email)
 from sources import SOURCES
 from institutions import INSTITUTIONS
 import attach
@@ -26,7 +27,13 @@ LAYER_RANK = {"D": 0, "C": 1, "B": 2, "A": 3}  # canonical 우선순위: 원천 
 
 def log(msg):
     line = f"[{datetime.now():%Y-%m-%d %H:%M:%S}] {msg}"
-    print(line, flush=True)
+    try:
+        print(line, flush=True)
+    except UnicodeEncodeError:
+        # 출력이 파이프로 리디렉션되면 cp949 가 되어 '—' 같은 문자에서 크롤 전체가 죽는다
+        # (2026-08-16 실제 발생). 화면 출력은 뭉개져도 크롤은 계속 가야 한다 — 파일 로그는 UTF-8.
+        enc = sys.stdout.encoding or "utf-8"
+        print(line.encode(enc, "replace").decode(enc), flush=True)
     with open(LOG, "a", encoding="utf-8") as f:
         f.write(line + "\n")
 
@@ -241,7 +248,7 @@ def find_attachments(soup, base_url):
                     cands.append((full, el.get_text(" ", strip=True)))
     return cands[:4]
 
-EXT_VER = 70         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
+EXT_VER = 71         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
                      # v32(2026-08-02): 모집분야 구획 악기 추출(insts_from_recruit_text) + 원문 보관층
                      # 24: work.sen 등록일(게시일) 추출 추가 — date=None이던 승계분을 다시 뽑게
                      # 25: body_text 도입 — 본문을 <header>에 넣는 사이트(대전교육청)의 마감일을
@@ -871,6 +878,12 @@ def _refill_from_raw(items, today):
             c = extract_contact(_raw)
             if c:
                 it["contact"] = c
+        # 이메일 — 학교·교회 공고는 이메일 접수가 많다 (워크오더 08-16 §5). 집계 포털
+        # 직접게시의 applyEmail(지원 이메일 행이 따로 있다)과 겹치면 중복 표기라 건너뛴다.
+        if not it.get("email"):
+            e = extract_email(_raw)
+            if e and e != it.get("applyEmail"):
+                it["email"] = e
         fields = extract_fields(_raw)
         if fields:
             for k, v in fields.items():
@@ -1021,7 +1034,13 @@ _SUSPECT = [
     # 워크넷식 표는 머리글(고용형태·사회보험·퇴직금…)이 한 줄로 이어진 뒤 값 뭉텅이가 온다.
     # 이 낱말이 값 안에 있으면 표 머리를 물어 온 것이다 — 제물포구 여성합창단 근무시간에
     # '사회보험 퇴직금 지급 방법 월급 1,300,000원…'이 실렸다 (2026-08-12 사용자 발견)
-    ("표 머리 조각",       re.compile(r"사회보험|퇴직금|고용형태|접수마감일")),
+    # goe 채용시스템 화면 조각(복리후생·근무지역·지도검색)도 같은 부류다 (워크오더 08-16 §1)
+    ("표 머리 조각",       re.compile(r"사회보험|퇴직금|고용형태|접수마감일|복리후생|근무지역|지도검색")),
+    # 헤더 낱말이 값 안에서 3개 이상 연달아 나오면 표 머리를 통째로 물어 온 것이다 —
+    # '과목 인원 채용기간 비고 …' (진접고·가운고, 워크오더 08-16 §1). 실값이 붙은 경우는
+    # _clean_field 의 머리 절단이 먼저 살려내므로, 여기 걸리는 건 조각만 남은 값이다.
+    ("헤더 낱말 연쇄",     re.compile(r"(?:(?:과목|인원|성명|비고|구분|학교급|근무형태|채용사유"
+                                      r"|채용기간|계약기간|근무기간|자격면허)\s+){3,}")),
     # OCR 이 한글을 영단어로 오인한 흔적 — 'SAS 가지고 We 자' (종로문화재단, 워크오더 F20).
     # 한글 사이에 낀 고립 영단어가 둘 이상이면 오염으로 본다 (SNS·PC 같은 정상 약어는 한 개까지 허용)
     ("OCR 영단어 혼입",    re.compile(r"(?:[가-힣]\s+[A-Za-z]{2,6}\s+[가-힣].*){2,}")),
@@ -1036,7 +1055,7 @@ _LAW_CITE = re.compile(r"\s*\(?\s*[*※]?\s*[「『]?[가-힣][가-힣\s]{1,28}(
                        r"제?\s*\d+\s*조.*$")
 _QC_FIELDS = ("pay", "workPeriod", "workHours", "workPlace", "duty", "ageLimit",
               "perfPeriod", "perfPlace", "perfSchedule", "teamComp", "dayOff",
-              "personnel", "contact", "addr", "qualification")
+              "personnel", "contact", "addr", "qualification", "email")
 
 # 게시 직전 최종 검수 — 값이 '그 항목답게' 생겼는가. 추출이 어디서 왔든(직접 방문·재추출·
 # 승계·overrides) 여기서 한 번은 반드시 걸러진다. 통과 못 하면 빈칸으로 내보낸다 —
@@ -1052,6 +1071,8 @@ _QC_MUST = {
     "personnel":  re.compile(r"\d|[Oo○]\s*명|^[가-힣·/\s]{2,16}$"),
     "ageLimit":   re.compile(r"\d|제한\s*없|무관"),
     "dayOff":     re.compile(r"[월화수목금토일]|주\s*\d|협의|지정"),
+    # 이메일 그 자체여야 한다 — 앞뒤에 문장이 붙었으면 추출 실패다 (워크오더 08-16 §5)
+    "email":      re.compile(r"^[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)+$"),
 }
 
 
@@ -1952,6 +1973,11 @@ def run(force_all=False):
         # 자격 필드 — 본문(자격·요약)까지 반영해 정확도 향상
         qtext = " ".join(str(it.get(f, "") or "") for f in ("title", "qualification", "bodyExcerpt", "recruitSummary"))
         it["certReq"] = cert_required(it["tier"], it["title"], qtext)
+        # 교원자격증을 요구하는 초·중·고/교육청 채용은 제목 어휘가 뭐든 학교 수업이다 —
+        # 어휘 규칙이 놓친 '방과후 시간강사'류를 자격 신호로 받아낸다 (워크오더 08-16 §3)
+        if it["certReq"] == "예" and re.search(
+                r"[초고]등학교|중학교|특수학교|유치원|교육청|교육지원청", str(it.get("org") or "")):
+            it["tier"] = "교육 — 학교"
         it["degreeReq"] = degree_req(qtext)
         it["careerReq"] = career_req(qtext)
         if it["kind"] == "교수" and not it.get("subject"):
