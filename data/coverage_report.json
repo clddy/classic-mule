@@ -1,8 +1,8 @@
 {
- "date": "2026-08-15",
+ "date": "2026-08-16",
  "total": 75,
- "covered": 1,
- "gapCount": 74,
+ "covered": 0,
+ "gapCount": 75,
  "gaps": [
   {
    "name": "서울시립교향악단",
@@ -133,6 +133,11 @@
    "name": "구미시립예술단",
    "type": "예술단",
    "region": "경북"
+  },
+  {
+   "name": "군산시립예술단",
+   "type": "예술단",
+   "region": "전북"
   },
   {
    "name": "목포시립예술단",
@@ -377,8 +382,8 @@
  ],
  "master": {
   "total": 604,
-  "covered": 6,
-  "gapCount": 598,
+  "covered": 5,
+  "gapCount": 599,
   "byCategory": {
    "대학": {
     "total": 77,
@@ -390,7 +395,7 @@
    },
    "예술단": {
     "total": 54,
-    "covered": 2
+    "covered": 1
    },
    "지자체": {
     "total": 323,
@@ -960,6 +965,11 @@
    },
    {
     "name": "전주시립교향악단",
+    "cat": "예술단",
+    "region": "전북"
+   },
+   {
+    "name": "군산시립교향악단",
     "cat": "예술단",
     "region": "전북"
    },

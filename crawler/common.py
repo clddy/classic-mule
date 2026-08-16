@@ -346,6 +346,12 @@ def extract_deadline(text, ref_year=None, priority_only=False):
     for kw in _KW_FALLBACK.finditer(text):
         if _is_filename(kw):
             continue
+        # 폴백 키워드가 '채용종료일·근무기간·채용기간' 같은 다른 기간 라벨의 일부이거나
+        # 그 라벨 바로 뒤라면, 거기서 나온 날짜는 접수 마감이 아니다 — 기각하고 빈칸 유지
+        # ("빈칸 > 오염", 2026-08-15 워크오더 B4. 인천 방과후 첼로의 채용종료일 11/26 오표기)
+        if re.search(r"(?:채용\s*종료|채용\s*시작|근무\s*기|채용\s*기|계약\s*기|위촉\s*기)\s*$",
+                     text[max(0, kw.start() - 12):kw.start()]):
+            continue
         c = _window_deadline(text[kw.start(): kw.start() + 300], ref_year)
         if c and (best is None or c > best):
             best = c

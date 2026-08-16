@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import (new_session, get, relevant, extract_deadline, priority_deadlines, deadline_from_title,
-                    musician_relevant, youth_member, participant_only, student_target, school_title, parse_recruit_table, summarize_recruit, find_position,
+                    musician_relevant, youth_member, participant_only, student_target, dance_member, school_title, parse_recruit_table, summarize_recruit, find_position,
                     classify_insts, find_subject, find_music_subjects, find_music_courses,
                     classify_kind, classify_tier, is_obri, cert_required, degree_req, career_req, age_group,
                     region_from, EXCLUDE, compact_title, music_only_title, body_text, valid_addr,
@@ -1022,6 +1022,9 @@ _SUSPECT = [
     # 이 낱말이 값 안에 있으면 표 머리를 물어 온 것이다 — 제물포구 여성합창단 근무시간에
     # '사회보험 퇴직금 지급 방법 월급 1,300,000원…'이 실렸다 (2026-08-12 사용자 발견)
     ("표 머리 조각",       re.compile(r"사회보험|퇴직금|고용형태|접수마감일")),
+    # OCR 이 한글을 영단어로 오인한 흔적 — 'SAS 가지고 We 자' (종로문화재단, 워크오더 F20).
+    # 한글 사이에 낀 고립 영단어가 둘 이상이면 오염으로 본다 (SNS·PC 같은 정상 약어는 한 개까지 허용)
+    ("OCR 영단어 혼입",    re.compile(r"(?:[가-힣]\s+[A-Za-z]{2,6}\s+[가-힣].*){2,}")),
     # 문장 중간을 뚝 잘라 온 값 — '자는 관련 법률…', '여부, 학력사항…' 처럼 조사·꼬리말로
     # 시작하면 어떤 항목의 값도 아니다 (2026-08-12 전라중·상일미디어고)
     ("문장 조각",         re.compile(r"^(?:자는|자로서|여부|하는|되는|또는|및|등|의|을|를)[\s,]")),
@@ -1130,6 +1133,13 @@ def _reset_stale_extracted(items):
     for it in items:
         if it.get("extVer") == EXT_VER:
             continue
+        # 마감일도 추출 유래(raw/page/attachment/title)면 함께 비운다. 규칙을 고쳐도 옛
+        # 오염 마감이 승계로 영생했다 — 삼양초 12-31(정답 08-10), 중목초 08-24(정답 08-20),
+        # 남성중 08-19(정답 08-18). 소스가 직접 준 값(cjob-남은기간·origin·상태:마감)은
+        # 재추출로 복원할 수 없으므로 남긴다 (2026-08-15 워크오더 A·B).
+        if it.get("deadline") and (it.get("deadlineFrom") in ("raw", "page", "attachment", "title", None)):
+            it.pop("deadline", None)
+            it.pop("deadlineFrom", None)
         if any(it.get(f) for f in _EXTRACTED_FIELDS):
             for f in _EXTRACTED_FIELDS:
                 it.pop(f, None)
@@ -1812,6 +1822,16 @@ def run(force_all=False):
         final[:] = [it for it in final if it not in _kids]
         log(f"학생 대상 단원 모집 {len(_kids)}건 제외 — "
             + "; ".join(i["title"][:24] for i in _kids[:3]))
+    # 기관 칩엔 학교명만 — '(서울시교육청)' 접미는 소속 필드로 분리(출처와 중복, 워크오더 D11)
+    for it in final:
+        m_a = re.match(r"^(.+?)\s*\(([^()]*교육청[^()]*)\)$", it.get("org") or "")
+        if m_a:
+            it["org"], it["orgAffil"] = m_a.group(1).strip(), m_a.group(2).strip()
+    # 무용 단체의 단원 모집은 무용수 자리 — 제외 (워크오더 E14)
+    _dance = [it for it in final if dance_member(it.get("title", ""), it.get("org", ""))]
+    if _dance:
+        final[:] = [it for it in final if it not in _dance]
+        log(f"무용수 모집 {len(_dance)}건 제외 — " + "; ".join(i["title"][:22] for i in _dance[:3]))
     _qc_fields(final)          # 수상한 값은 화면에 나가기 전에 우리가 먼저 거른다
     n_geo = _attach_coords(final)
     if n_geo:
@@ -1829,6 +1849,15 @@ def run(force_all=False):
     # 사람이 손수 넣은 마감일이 있으면 그쪽이 우선이고 여기 판정은 아예 건너뛰기 때문이다.
     _drop_expired(final, today)
     _drop_reposts(final)
+    # 마감 미상 + 게시일 미상 공고는 첫 관측일 기준 60일에서 내린다 — date 가 없으면 120일
+    # 규칙을 영영 비켜 가 영생했다(서울발레시어터, 워크오더 E15)
+    _cut60 = (today - timedelta(days=60)).isoformat()
+    _aged = [i for i in final
+             if not i.get("deadline") and i.get("deadlineNote") != "상시" and not i.get("obri")
+             and not i.get("date") and (i.get("firstSeen") or "9999") < _cut60]
+    if _aged:
+        final[:] = [i for i in final if i not in _aged]
+        log(f"게시일 미상·60일 경과 {len(_aged)}건 정리 — " + "; ".join(i["title"][:20] for i in _aged[:3]))
     # 지원할 방법이 하나도 없는 공고는 싣지 않는다 — 집계 포털에서 왔는데 기관 원문도,
     # 이메일·전화도 못 뽑은 경우다. 포털로는 링크를 내지 않기로 했으므로(CLAUDE.md) 카드에
     # '기관명으로 검색하세요'라는 빈 안내만 남아 사용자가 할 수 있는 게 없다 (2026-07-29 지적).
