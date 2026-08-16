@@ -522,6 +522,9 @@ def main():
     ap.add_argument("--site", action="store_true", help="배포 사이트까지 점검 (playwright)")
     ap.add_argument("--dry-run", action="store_true", help="텔레그램·히스토리 쓰기 없이 출력만")
     ap.add_argument("--no-links", action="store_true", help="죽은 링크 확인 건너뛰기")
+    ap.add_argument("--l4-dry", action="store_true", help="L4 상식 검증을 API 호출 없이 대상만 세기")
+    ap.add_argument("--l4-force", action="append", default=[],
+                    help="L4 대상에 이 공고 id를 강제 포함 (검증용)")
     args = ap.parse_args()
 
     if not OFFICIAL.exists():
@@ -576,9 +579,34 @@ def main():
             rep.add("MED", "채움률", f"채움률 급락: {w}")
     except Exception:
         table = ""
+
+    # L4(워크오더 08-16 2차): 규칙이 못 잡는 '문맥상 말이 안 되는 값'을 LLM이 판정한다.
+    # 판정만 하고 고치지 않으며, 여기서 무슨 일이 나도 나머지 헬스체크는 그대로 나간다.
+    l4_appendix = ""
+    try:
+        import l4_check
+        l4_state = l4_check.load_state()
+        # --dry-run 은 기본적으로 API를 부르지 않는다. 상태를 저장하지 않으므로 돌릴 때마다
+        # 전량이 다시 대상이 되어 토큰만 태우기 때문이다. 단 --l4-force 는 '이 건을 일부러
+        # 검사하라'는 명시적 지시이므로 그때는 부른다 (검증용 경로).
+        l4_dry = args.l4_dry or (args.dry_run and not args.l4_force)
+        findings, l4_note = l4_check.run(items, l4_state,
+                                         force_ids=tuple(args.l4_force or ()),
+                                         dry_run=l4_dry)
+        lines, l4_appendix = l4_check.format_findings(findings)
+        for ln in lines:
+            rep.add("MED", "L4", ln[5:] if ln.startswith("[L4] ") else ln)
+        rep.add("LOW", "L4", l4_note)
+        if not args.dry_run and not args.l4_dry:
+            l4_check.save_state(l4_state)
+    except Exception as e:
+        rep.add("LOW", "L4", f"L4 스킵됨 — {type(e).__name__}: {str(e)[:80]}")
+
     text = render(rep, today, args.site)
     if table:
         text = text + chr(10)*2 + table
+    if l4_appendix:
+        text = text + chr(10)*2 + l4_appendix
     print(text)
 
     if args.dry_run:

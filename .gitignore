@@ -46,3 +46,6 @@ feedback/.wrangler/
 
 # IndexNow 통보 기록 (로컬 상태 — 어느 주소까지 알렸는지)
 data/indexnow_state.json
+
+# L4 상식 검증 상태 — 보고 이력·토큰 사용량 (이 PC 로컬 운영 기록)
+data/l4_state.json

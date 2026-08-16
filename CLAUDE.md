@@ -92,6 +92,26 @@ UI 어휘 금지: 급구·구직·오브리·대타 (교회 상시 포지션은 
 - run_daily.ps1이 crawler/도 커밋한다 — 코드가 로컬에만 쌓여 Actions가 낡은 추출기로
   돌던 사고(attach.py 7일) 방지.
 
+## L4 상식 검증 (2026-08-16 도입)
+
+규칙 기반 검수(추출→모양검사→QC)는 **'값이 그 항목답게 생겼는가'까지만** 본다. 자유중 근무시간
+'전일제 근무(1일 8시간)'은 모양이 멀쩡해 다 통과했지만, 방과후 화·목 15:50~17:20 강사 공고와는
+모순이다(첨부 hwp에 딸려 온 기간제교원 '양식 예시'에서 뽑혔다). 이런 문맥 모순을 LLM이 판정한다.
+
+- `crawler/l4_check.py` — 헬스체크가 마지막 단계에서 호출. 브리핑에 `[L4]` 태그로 합류.
+- **판정만 한다. 고치지도, 숨기지도 않는다** — 검증기가 오염원이 되면 그게 제일 나쁜 실패다.
+  값을 바로잡는 건 사람이 overrides.json에 적거나 추출 규칙을 고치는 쪽이다.
+- **게시 경로 밖에 있다** — 크롤·배포는 이 모듈이 죽든 API가 장애든 그대로 돈다. 키가 없으면
+  '스킵됨' 한 줄만 남기고 나머지 헬스체크는 정상 진행한다(try/except로 감싼 이유).
+- **신규·변경분만 본다** — 제목·분류·검증 대상 필드의 지문(fingerprint)이 지난번과 같으면
+  대상에서 빠진다. 대상 0건이면 API를 아예 부르지 않는다. 원문 전체는 보내지 않는다
+  (원문 대조는 C7 역방향 감사의 몫, L4는 뽑아 놓은 값들끼리의 정합만 본다).
+- **같은 (공고, 필드)는 값이 바뀌기 전까지 다시 보고하지 않는다** — 읽고 넘긴 지적이 매일
+  다시 뜨면 브리핑 자체를 안 읽게 된다. high만 본문, medium은 접힌 부록.
+- 키는 `ANTHROPIC_API_KEY` 또는 `crawler/.secrets/anthropic-key.txt`(gitignore). 모델은
+  `PODIUM_L4_MODEL`로 교체(기본 claude-sonnet-5). 실행당 토큰·추정 비용이 상태에 쌓인다
+  (`data/l4_state.json`, gitignore).
+
 ## 공고 아카이브 (2026-08-02 도입)
 
 official.json은 **살아있는 공고 스냅샷**이라 마감된 공고가 매일 사라진다. 수요 분석에 필요한
@@ -135,7 +155,7 @@ practice_yeyak(서울)·practice_sweep·build_practice_eshare는 run_daily가 **
 ## 자동 실행 (작업 스케줄러)
 
 - `PodiumCrawler` 18:00 → `crawler/run_daily.ps1` (크롤 → 커밋 → 푸시)
-- `PodiumHealth` 18:40 → `crawler/run_health.ps1` → `health_check.py --site`
+- `PodiumHealth` 21:30 → `crawler/run_health.ps1` → `health_check.py --site` (L4 상식 검증 포함)
 
 헬스체크는 **이상이 있을 때만** 텔레그램으로 알린다(HIGH·MED만; LOW는 로그만).
 전체 기록은 data/health.log, 소스별 수집량 baseline은 data/health_history.json (둘 다 gitignore).
