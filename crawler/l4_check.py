@@ -32,7 +32,7 @@ API_VERSION = "2023-06-01"
 # 판정 작업이라 최상위 모델이 필요하지 않다. 환경변수로 바꿀 수 있게 둔다.
 DEFAULT_MODEL = os.environ.get("PODIUM_L4_MODEL", "claude-sonnet-5")
 BATCH = 8            # 한 요청에 묶는 공고 수 — 호출 횟수를 줄이되 응답이 길어지지 않는 선
-MAX_TOKENS = 1500
+MAX_TOKENS = 4000    # 사고 블록이 출력 토큰을 함께 쓴다 — 좁게 잡으면 JSON 이 잘린다
 TIMEOUT = 90
 
 # 비용 추정용 단가(USD / 100만 토큰). 정확한 청구액이 아니라 '하루에 얼마 쓰나'를 보는 눈금이다.
@@ -190,10 +190,11 @@ def parse_findings(text):
 
 
 def call_api(key, model, batch):
+    # temperature 는 넣지 않는다 — 최신 모델에서 폐기돼 400 이 난다 (2026-08-16 실측).
+    # 판정 일관성은 프롬프트가 담보한다.
     req = {
         "model": model,
         "max_tokens": MAX_TOKENS,
-        "temperature": 0,
         "system": SYSTEM,
         "messages": [{"role": "user", "content": json.dumps(batch, ensure_ascii=False)}],
     }
