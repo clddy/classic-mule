@@ -1,6 +1,6 @@
 {
- "collectedAt": "2026-08-18 01:52",
- "heldNoOrigin": 3,
+ "collectedAt": "2026-08-18 02:56",
+ "heldNoOrigin": 2,
  "sourceCount": 87,
  "okCount": 87,
  "instTotal": 75,
@@ -30,7 +30,7 @@
    "poll": "daily",
    "ok": true,
    "raw": 0,
-   "kept": 1
+   "kept": 0
   },
   {
    "id": "gojobs",
@@ -812,7 +812,6 @@
    "subject": null,
    "channel": "edu_seoul",
    "layer": "C",
-   "orgAffil": "서울시교육청",
    "contact": "010-3706-1102",
    "email": "webmaster@sen.go.kr",
    "pay": "시급",
@@ -822,9 +821,10 @@
    "bodyExcerpt": "다만, 필수항목에 대한 동의를 거부할 경우 채용공고 지원 등 구직활동 서비스 이용에 제한이 있을 수 있습니다. · 제공 목적: 구직활동 지원 및 채용업무 처리 라. · 보유 및 이용 기간: 회원 탈퇴 시까지(2년) 마. · 초등학교 정교사 자격증 소지자에 한함 2.",
    "deadline": "2026-08-22",
    "deadlineFrom": "raw",
+   "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-18",
    "isNew": true,
-   "extVer": 72
+   "extVer": 75
   },
   {
    "id": "056c6c98a0ef451a",
@@ -848,8 +848,10 @@
    "subject": null,
    "channel": "edu_ice",
    "layer": "C",
+   "qualification": "교육공무원 임용 자격에 결격사유가 없는 자, 교원자격증 소지자",
    "contact": "032-456-8410",
    "email": "qodmswls@ice.go.kr",
+   "workPeriod": "2026.9.7(월)3시간 , 9.8.(화)3시간 , 9.9(수)3시간 * 총 3일 , 주 9시간(수업시수 변동될 수 있음)",
    "hiringOrg": "인천광역시교육청대상명 : 인천광역시교육청(https://www.ice.go.kr)",
    "addr": "인천광역시 중구 은하수로 142(중산동)",
    "bodyExcerpt": "지원 자격 가 . · 교원자격증 소지자 3. · 접수기간 : 2026. · 중국어 채용 공고 담당부서 : 최근업데이트 : 2026-01-08 열람하신 정보에 대해 만족하십니까?",
@@ -857,7 +859,7 @@
    "deadlineFrom": "raw",
    "firstSeen": "2026-08-17",
    "isNew": false,
-   "extVer": 72
+   "extVer": 75
   },
   {
    "id": "bd2c17f19933f651",
@@ -891,7 +893,7 @@
    "bodyExcerpt": "모시는분 반주자 - 지역 경기 - 등록일 2026-08-14 - 남은기간 2026-09-30 23:59:59 · 탑동감리교회 드럼반주자&레슨강사 모집합니다.",
    "firstSeen": "2026-08-14",
    "isNew": false,
-   "extVer": 72
+   "extVer": 75
   },
   {
    "id": "4d0fecd5924405ea",
@@ -926,7 +928,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-14",
    "isNew": false,
-   "extVer": 72
+   "extVer": 75
   },
   {
    "id": "9fc1ea849f09c3e2",
@@ -951,20 +953,20 @@
    "subject": null,
    "channel": "edu_goe",
    "layer": "C",
-   "orgAffil": "경기교육청",
-   "addr": "경기도 성남시 분당구 탄천로 49",
-   "lat": 37.3967826,
-   "lng": 127.1228386,
-   "addrFrom": "geo",
    "contact": "070-4021-7078",
    "email": "maesongmid@korea.kr",
    "workPeriod": "2026/09/01~2027/02/28",
    "workHours": "전일제 근무",
    "bodyExcerpt": "채용 분야 및 채용 예정 인원 교과 인원 임용기간 비고 음악 1 명 2026.09.01.~2027.02.28.(6 개월 ) 라 . · 채용 응시 자격 : 내국인으로서 채용 분야 교원자격증 소지자 2. · 계약 기간 (1 년 범위 내 기간을 정하여 계약 ) ◦ 음악 1 명 : 2026.09.01.~2027.02.28.(6 개월 ) 라 . · 자격 : 해당 교과 교원 자격증 소지자 다 .",
    "deadlineFrom": "raw",
+   "orgAffil": "경기교육청",
+   "addr": "경기도 성남시 분당구 탄천로 49",
+   "lat": 37.3967826,
+   "lng": 127.1228386,
+   "addrFrom": "geo",
    "firstSeen": "2026-08-18",
    "isNew": false,
-   "extVer": 72
+   "extVer": 75
   },
   {
    "id": "d7f544b94eb793cf",
@@ -998,7 +1000,7 @@
    "orgAffil": "경기교육청",
    "firstSeen": "2026-08-14",
    "isNew": false,
-   "extVer": 72
+   "extVer": 75
   },
   {
    "id": "2c3f75862772946a",
@@ -1033,7 +1035,7 @@
    "orgAffil": "경기교육청",
    "firstSeen": "2026-08-14",
    "isNew": false,
-   "extVer": 72
+   "extVer": 75
   },
   {
    "id": "3dc1300363d803e8",
@@ -1057,6 +1059,7 @@
    "subject": null,
    "channel": "g_i_musicyonseiackr",
    "layer": "B",
+   "qualification": "○ 지원자격 : 대한민국 국적을 가진 자로서, 2026년 10월 11일 기준 만 35세",
    "email": "jykang22220@dgfca.or.kr",
    "deadline": "2026-08-28",
    "deadlineFrom": "raw",
@@ -1066,7 +1069,7 @@
    "addrFrom": "geo",
    "firstSeen": "2026-08-14",
    "isNew": false,
-   "extVer": 72
+   "extVer": 75
   },
   {
    "id": "38f5ee0ff6f84761",
@@ -1090,7 +1093,7 @@
    "channel": "hibrain",
    "layer": "B",
    "subjectFrom": "attach",
-   "personnel": "| 2026학년도 2학기 강의 예정 교",
+   "qualification": "「대학교원 자격기준 등에 관한 규정」제2조에 따라 다음의 어느 하나에 해당하는 사람\r\n",
    "bodyExcerpt": "지원 접수 및 공고 기간 : 2026. · 채용분야 및 담당 교과목, 강의시간, 우대조건 등 : (붙임 2) 참조 4. · 임용(계약)기간 : 2026. · '지원완료' 후 수정이 필요한 경우, 지원한 학과(부서) 사무실로 상태변경 요청해야 함 (붙임 1) 강사 채용 공고 1부.",
    "deadline": "2026-08-19",
    "deadlineFrom": "raw",
@@ -1100,7 +1103,7 @@
    "addrFrom": "geo",
    "firstSeen": "2026-08-14",
    "isNew": false,
-   "extVer": 72
+   "extVer": 75
   },
   {
    "id": "cf4b9985af6e334a",
@@ -1136,7 +1139,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-13",
    "isNew": false,
-   "extVer": 72
+   "extVer": 75
   },
   {
    "id": "8421a54088a2cc2a",
@@ -1172,7 +1175,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-14",
    "isNew": false,
-   "extVer": 72
+   "extVer": 75
   },
   {
    "id": "8ddef816d832f61f",
@@ -1199,16 +1202,16 @@
    "subject": null,
    "channel": "edu_goe",
    "layer": "C",
-   "orgAffil": "경기교육청",
    "contact": "070-4021-7078",
    "email": "leethoven26@korea.kr",
    "workPeriod": "2026. 8. 24. - 2026. 12. 28",
    "addr": "경기 화성시 동탄구 동탄산척로 94(산척동)",
    "bodyExcerpt": "모집분야 및 인원 분야 및 인원 모집 세부사항 비고 제 3 바이올린 파트강사 1 명 가 . · 근무 기간 : 2026. · 모집 세부사항 및 지원조건 순 절차 ( 내용 ) 일정 세부 사항 1 모집 공고 및 접수 기간 2026. · 해당 분야 전공 학위 수여자 또는 자격증 소지자 나 .",
    "deadlineFrom": "raw",
+   "orgAffil": "경기교육청",
    "firstSeen": "2026-08-18",
    "isNew": false,
-   "extVer": 72
+   "extVer": 75
   },
   {
    "id": "b1c342813671142a",
@@ -1233,11 +1236,6 @@
    "subject": null,
    "channel": "edu_goe",
    "layer": "C",
-   "orgAffil": "경기교육청",
-   "addr": "경기도 남양주시 해밀예당2로 13",
-   "lat": 37.7157989,
-   "lng": 127.1903182,
-   "addrFrom": "geo",
    "contact": "070-4021-7078",
    "email": "kkh0009@korea.kr",
    "workPeriod": "2026/08/20~2026/08/28",
@@ -1245,9 +1243,14 @@
    "ageLimit": "만 62세 이내 . 단 , 만 62세이내 지원자가 없을 시 65세까지 지원가능 .(2026학년도 한시적 적용)",
    "bodyExcerpt": "채용분야 및 채용 예정인원 : 과목 인원 사유 기간 비고 음악 1 명 연가 2026. · 28(금) 20 시간 기간제 전환 가능성 있음 2026. · 채용 응시 자격 : 내국인으로서 채용 분야 교원자격증 소지자 2. · 자격 : 해당 교과 교원 자격증 소지자 다 .",
    "deadlineFrom": "raw",
+   "orgAffil": "경기교육청",
+   "addr": "경기도 남양주시 해밀예당2로 13",
+   "lat": 37.7157989,
+   "lng": 127.1903182,
+   "addrFrom": "geo",
    "firstSeen": "2026-08-18",
    "isNew": false,
-   "extVer": 72
+   "extVer": 75
   },
   {
    "id": "669f8ceed65c87ec",
@@ -1272,16 +1275,20 @@
    "subject": null,
    "channel": "edu_goe",
    "layer": "C",
-   "orgAffil": "경기교육청",
    "contact": "070-4021-7078",
    "email": "hhjiny82@korea.kr",
    "workPeriod": "2026.09.07.(월)~ 2026.09.11.(금)(5일간 /16시간)",
    "workHours": "16시간",
    "bodyExcerpt": "채용 기간 : 과목 인원 채용기간 비고 음악 1 명 2026.09.07.( 월 ) ~ 2026.09.11.( 금 ) (5 일간 /16 시간 ) 3. · 제출서류 : 이력서 1 부 , 교원자격증 사본 1 부 . · 접수기간 : 2026.08.14.( 금 ). · 서류전형 및 서면심사 : 2026.",
    "deadlineFrom": "raw",
+   "orgAffil": "경기교육청",
+   "addr": "경기도 남양주시 가운로",
+   "lat": 37.5983422,
+   "lng": 127.1621455,
+   "addrFrom": "geo",
    "firstSeen": "2026-08-18",
    "isNew": false,
-   "extVer": 72
+   "extVer": 75
   },
   {
    "id": "af81ca8f2222cb1e",
@@ -1320,7 +1327,7 @@
    "bodyExcerpt": "공고에 ‘채용의 제한’ 부분 명시 2. · 서류접수 방법 : 전자우편 중심 3. · 지침 [붙임 2] 기간제교원 채용 공고(예시) 다운로드 지침",
    "deadline": "2026-08-19",
    "deadlineFrom": "raw",
-   "extVer": 72
+   "extVer": 75
   },
   {
    "id": "dd5a4d6ae15ab995",
@@ -1353,7 +1360,7 @@
    "addrFrom": "geo",
    "firstSeen": "2026-08-13",
    "isNew": false,
-   "extVer": 72
+   "extVer": 75
   },
   {
    "id": "1d11aa8c0493cdcb",
@@ -1380,13 +1387,15 @@
    "layer": "B",
    "subjectFrom": "attach",
    "bodyExcerpt": "채용 입찰 채용 입학안내 WHY 상명 대학 입학 대학원 입학 International Student 학부 입학 대학원 입학 한국어 연수 대학",
+   "deadline": "2026-08-18",
+   "deadlineFrom": "raw",
    "addr": "서울특별시 종로구 홍지문2길",
    "lat": 36.833,
    "lng": 127.1789962,
    "addrFrom": "geo",
    "firstSeen": "2026-08-13",
    "isNew": false,
-   "extVer": 72
+   "extVer": 75
   },
   {
    "id": "9e9c34d080588a5e",
@@ -1397,7 +1406,7 @@
    "nonMusic": null,
    "url": "https://www.artinfokorea.com/jobs/478",
    "date": "2026-08-12",
-   "deadline": null,
+   "deadline": "2026-08-25",
    "kind": "단원",
    "tier": "연주",
    "obri": false,
@@ -1409,41 +1418,17 @@
    "instDetails": [
     "알토"
    ],
-   "personnel": null,
+   "personnel": "유급단원(지도단원)1인 : 알토",
    "subject": null,
    "officialUrl": "https://www.jfac.or.kr/site/main/archive/post/%EA%B3%B5%EA%B3%A0-2026%EB%85%84-%EC%A2%85%EB%A1%9C%EA%B5%AC%EB%A6%BD%EC%96%B4%EB%A5%B4%EC%8B%A0%ED%95%A9%EC%B0%BD%EB%8B%A8-%EC%A7%80%EB%8F%84%EB%8B%A8%EC%9B%90-%EC%95%8C%ED%86%A0-%EB%AA%A8%EC%A7%91-%EC%9E%AC%EA%B3%B5%EA%B3%A0-%EC%95%88%EB%82%B4",
    "channel": "artinfo",
    "layer": "A",
+   "email": "song@jfac.or.kr",
+   "pay": "세전 월 550,000원",
+   "deadlineFrom": "raw",
    "firstSeen": "2026-08-13",
    "isNew": false,
-   "extVer": 72
-  },
-  {
-   "id": "f07c2845cf1537c7",
-   "org": "충주문화관광재단",
-   "region": "충북",
-   "source": "job.cleaneye.go.kr",
-   "title": "꿈의 예술단(극단) 예비거점 지원사업 예술감독 모집",
-   "nonMusic": null,
-   "url": "http://www.cjcf.or.kr",
-   "date": "2026-08-12",
-   "kind": "지휘",
-   "tier": "미분류",
-   "obri": false,
-   "certReq": "무관",
-   "degreeReq": "무관",
-   "careerReq": "미기재",
-   "ageGroup": "성인",
-   "inst": "전체",
-   "instDetails": [],
-   "personnel": null,
-   "subject": null,
-   "officialUrl": "http://www.cjcf.or.kr",
-   "channel": "cleaneye",
-   "layer": "A",
-   "firstSeen": "2026-08-13",
-   "isNew": false,
-   "extVer": 72
+   "extVer": 75
   },
   {
    "id": "dc4d949880b13073",
@@ -1454,7 +1439,7 @@
    "nonMusic": null,
    "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=107836",
    "date": "2026-08-12",
-   "deadline": "2026-08-20",
+   "deadline": "2026-08-19",
    "kind": "강사",
    "tier": "교육 — 학교",
    "obri": false,
@@ -1477,7 +1462,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-12",
    "isNew": false,
-   "extVer": 72
+   "extVer": 75
   },
   {
    "id": "327cc9fc3119247d",
@@ -1509,7 +1494,7 @@
    "bodyExcerpt": "채용 과목: 음악 1명 2. · 채용 기간: 2026. · 근무 시간: 약 39시간(주당 12시수, 1학년 음악, 2학년 음악감상과 비평) 4 보수: 시간당 40,000원 5 · 채용 공고 및 원서 접수: 2026.",
    "deadline": "2026-08-18",
    "deadlineFrom": "raw",
-   "extVer": 72
+   "extVer": 75
   },
   {
    "id": "58a5ad2b823c1c2e",
@@ -1543,7 +1528,7 @@
    "orgAffil": "세종교육청",
    "firstSeen": "2026-08-13",
    "isNew": false,
-   "extVer": 72
+   "extVer": 75
   },
   {
    "id": "97cc2ffcf733b622",
@@ -1574,7 +1559,7 @@
    "bodyExcerpt": "채용분야: 음악 2. · 채용인원: 1명 3. · 소지자격: 정교사 2급 이상 4. · 채용기간: 2026.8.21.",
    "deadline": "2026-08-18",
    "deadlineFrom": "raw",
-   "extVer": 72
+   "extVer": 75
   },
   {
    "id": "1cff666ec2391e40",
@@ -1610,7 +1595,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-11",
    "isNew": false,
-   "extVer": 72
+   "extVer": 75
   },
   {
    "id": "7d9fc8f6dc4d80d0",
@@ -1648,7 +1633,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-11",
    "isNew": false,
-   "extVer": 72
+   "extVer": 75
   },
   {
    "id": "0251912d3b918734",
@@ -1683,7 +1668,7 @@
    "bodyExcerpt": "모시는분 반주자 - 지역 경기 - 등록일 2026-08-07 - 남은기간 2026-09-18 23:59:59 · 탑동감리교회 드럼반주자&레슨강사 모집합니다. · 용호남교회 피아노 반주자 모집 건반 연주자와 일렉키타 연주자를 모십니다(찬양팀) 주일 피아노 반주자 모십니다.",
    "firstSeen": "2026-08-08",
    "isNew": false,
-   "extVer": 72
+   "extVer": 75
   },
   {
    "id": "ddd6789490369cc1",
@@ -1713,7 +1698,7 @@
    "contact": "031-263-0651",
    "firstSeen": "2026-08-02",
    "isNew": false,
-   "extVer": 72
+   "extVer": 75
   },
   {
    "id": "b2e199e32140e0ed",
@@ -1750,7 +1735,7 @@
    "deadlineNote": "상시",
    "firstSeen": "2026-08-08",
    "isNew": false,
-   "extVer": 72
+   "extVer": 75
   },
   {
    "id": "5fbc7e4eb4f8d92d",
@@ -1786,7 +1771,7 @@
    "deadlineNote": "상시",
    "firstSeen": "2026-08-08",
    "isNew": false,
-   "extVer": 72
+   "extVer": 75
   }
  ]
 }

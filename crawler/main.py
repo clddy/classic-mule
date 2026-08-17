@@ -301,7 +301,7 @@ def find_attachments(soup, base_url):
                     cands.append((full, el.get_text(" ", strip=True)))
     return cands[:4]
 
-EXT_VER = 72         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
+EXT_VER = 75         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
                      # v32(2026-08-02): 모집분야 구획 악기 추출(insts_from_recruit_text) + 원문 보관층
                      # 24: work.sen 등록일(게시일) 추출 추가 — date=None이던 승계분을 다시 뽑게
                      # 25: body_text 도입 — 본문을 <header>에 넣는 사이트(대전교육청)의 마감일을
@@ -390,11 +390,26 @@ def _seg_after(text, label_pat, n=60):
     seg = re.split(r"[.\n]|\s{2,}", seg)[0]
     return _clip(seg, n)
 
-_QUAL_OK = re.compile(r"졸업|학위|학력|경력|이상|전공|재학|대학|연령|만 ?\d|세 |세$|자 |전공자|무관")
+_QUAL_OK = re.compile(r"졸업|학위|학력|경력|이상|전공|재학|대학|연령|만 ?\d|세 |세$|자 |전공자|무관"
+                      # 교원 채용 자격의 상투 어휘 — '교원자격증 소지자', '결격사유가 없는 자'가
+                      # 이 목록에 없어 멀쩡한 자격이 파편 취급으로 버려졌다 (인천중산고, 2026-08-18)
+                      r"|자격증|소지|결격|임용|면허|수료")
 
 def _find_qualification(text):
     q = _seg_after(text, r"지원 ?자격|응시 ?자격|자격 ?요건|참가 ?자격|모집 ?대상|지원 ?대상") \
         or _seg_after(text, r"자격(?!증)")
+    if not (q and len(q) >= 5 and _QUAL_OK.search(q)):
+        # hwp 열거형 '지원 자격 가. ○○ 나. ○○' — _seg_after 는 첫 마침표에서 값을 자르는데
+        # 항목 기호('가 .')의 마침표가 먼저 와서 '가'만 남고 버려졌다. 인천중산고 자격이
+        # 원문에 멀쩡히 있는데 빈칸이었던 이유다 (2026-08-18). 항목들을 이어 한 문장으로 만든다.
+        m = re.search(r"(?:공통 ?지원 ?자격|지원 ?자격|응시 ?자격|자격 ?요건)\s*[:：]?\s*", text)
+        if m:
+            seg = text[m.end():m.end() + 240]
+            seg = re.split(r"\s\d\s*[.)]\s|제출\s*서류|전형\s*방법|접수\s*방법|근무\s*조건", seg)[0]
+            parts = [p.strip(" .,·-–") for p in re.split(r"(?:^|\s)[가나다라마바사]\s*[.)]\s*", seg)]
+            parts = [p for p in parts if len(p) >= 5 and _QUAL_OK.search(p)]
+            if parts:
+                q = ", ".join(parts[:2])
     if not (q and len(q) >= 5 and _QUAL_OK.search(q)):
         # 실제 자격 표현이 담긴 경우만 채택 (○실기·전형 조기절단 파편 배제)
         return None
@@ -864,7 +879,7 @@ def _origin_check(s, item, ry):
     # 원문 보관층의 page 가 0자였고, 재추출이 볼 것이 첨부밖에 없었다. 계명대는 채용일정이
     # 원문 페이지에만 있어 마감·조건이 통째로 비었다 (2026-08-17 규명).
     rawstore.stash(item.get("id"), "page", body_text(r.text),
-                   url=item.get("url"), title=item.get("title"))
+                   url=url, title=item.get("title"))
     if not item.get("deadline"):
         dl = extract_deadline(body_text(r.text), ref_year=ry)
         if dl:
@@ -1130,7 +1145,9 @@ _SUSPECT = [
     # 이 낱말이 값 안에 있으면 표 머리를 물어 온 것이다 — 제물포구 여성합창단 근무시간에
     # '사회보험 퇴직금 지급 방법 월급 1,300,000원…'이 실렸다 (2026-08-12 사용자 발견)
     # goe 채용시스템 화면 조각(복리후생·근무지역·지도검색)도 같은 부류다 (워크오더 08-16 §1)
-    ("표 머리 조각",       re.compile(r"사회보험|퇴직금|고용형태|접수마감일|복리후생|근무지역|지도검색")),
+    # '| 2026학년도 2학기 강의 예정 교과목' — 표 구분선·머리 문구가 인원 칸에 실렸다 (교원대, 2026-08-18)
+    ("표 머리 조각",       re.compile(r"사회보험|퇴직금|고용형태|접수마감일|복리후생|근무지역|지도검색"
+                                      r"|강의 ?예정|학년도\s*제?\s*\d\s*학기|^\s*\|")),
     # 헤더 낱말이 값 안에서 3개 이상 연달아 나오면 표 머리를 통째로 물어 온 것이다 —
     # '과목 인원 채용기간 비고 …' (진접고·가운고, 워크오더 08-16 §1). 실값이 붙은 경우는
     # _clean_field 의 머리 절단이 먼저 살려내므로, 여기 걸리는 건 조각만 남은 값이다.
@@ -1698,20 +1715,36 @@ _IMG_CONTENT = re.compile(r"upload|editor|files|attach|data|bbs|smartupload", re
 _IMG_CHROME = re.compile(r"icon|logo|btn|banner|bullet|emoticon|blank|spacer|/_next/image", re.I)
 
 
+# 글 편집기가 본문에 심는 이미지의 표식 — 이게 있으면 그 이미지가 공고 본문이다.
+# (Froala fr-fic, 네이버 스마트에디터 se-, editorImage.do 류 뷰어 엔드포인트)
+_IMG_EDITOR = re.compile(r"editorImage|smarteditor|se2?_|/cms/plugin/", re.I)
+_EDITOR_BOX = re.compile(r"fr-view|se-main-container|note-editable|board[-_]?view|bbs[-_]?(?:content|view)", re.I)
+
+
 def _find_content_images(soup, base_url, limit=3):
+    """본문에 박힌 공고 이미지 URL — 편집기 본문 이미지를 배너·팝업보다 먼저 본다.
+
+    문서 순서대로 걷다가 limit에서 끊으면 사이트 팝업 배너(학위수여식·등록금 안내)가
+    자리를 다 차지한다 — 상명대 공고 이미지 5장이 전부 밀려나 '기한 미정'으로 남았다
+    (2026-08-18). 편집기 표식이 있는 이미지가 하나라도 있으면 그것만 쓴다.
+    """
     from urllib.parse import urljoin
-    out, seen = [], set()
+    prio, rest, seen = [], [], set()
     for im in soup.find_all("img"):
-        src = im.get("src") or ""
-        if not src or not _IMG_CONTENT.search(src) or _IMG_CHROME.search(src):
+        src = im.get("src") or im.get("data-src") or ""
+        if not src or _IMG_CHROME.search(src):
+            continue
+        cls = " ".join(im.get("class") or [])
+        parent_cls = " ".join(" ".join(p.get("class") or []) for p in im.parents if p.name)
+        is_editor = bool(_IMG_EDITOR.search(src) or "fr-fic" in cls or _EDITOR_BOX.search(parent_cls))
+        if not is_editor and not _IMG_CONTENT.search(src):
             continue
         full = urljoin(base_url, src)
-        if full not in seen:
-            seen.add(full)
-            out.append(full)
-        if len(out) >= limit:
-            break
-    return out
+        if full in seen:
+            continue
+        seen.add(full)
+        (prio if is_editor else rest).append(full)
+    return prio[:limit] if prio else rest[:limit]
 
 
 def _raw_url(it):
@@ -1736,20 +1769,29 @@ def _ensure_raw_attachments(final, cap=50):
     저장은 불변 누적이라 공고당 평생 한 번이다 — tried 마커(rawstore.RETRY_DAYS)로
     실패 재시도도 며칠에 한 번으로 묶는다. cap은 크롤 시간 방어(며칠에 걸쳐 수렴).
     """
-    todo = [it for it in final
-            if it.get("id") and _raw_url(it)
-            # hibrain 은 로그인 게이트라 익명 재방문이 무의미하지만, 원문(officialUrl)은 아니다.
-            # 그걸 뭉뚱그려 제외했던 탓에 대학 공고의 붙임 파일과 본문 이미지를 한 번도 열지
-            # 못했다 — 상명대는 접수기간이 본문 이미지 안에만 있어 영영 '기한 미정'이었고,
-            # 교원대 첨부에는 hibrain 페이지에서 긁힌 '도서관'이 들어와 있었다 (2026-08-17).
-            and (it.get("source") != "hibrain.net" or it.get("officialUrl"))
-            # 첨부가 하나라도 있으면 통과시키던 것을 고친다. 첨부가 여럿인 공고에서 우리가
-            # 첫 파일만 받아 둔 경우가 있는데, 하필 그게 응시원서 서식이면 마감일이 든
-            # 공고문을 영영 못 연다 — 통영시립소년소녀합창단이 그랬다 (2026-08-09).
-            # 그래서 '마감을 아직 모르는 공고'는 첨부가 있어도 한 번 더 들러 나머지를 받는다.
-            and (not rawstore.has_attach(it["id"])
-                 or (not it.get("deadline") and it.get("deadlineNote") != "상시"))
-            and not rawstore.tried_recently(it["id"])]
+    def _needs_raw(it):
+        if not it.get("id") or not _raw_url(it):
+            return False
+        # hibrain 은 로그인 게이트라 익명 재방문이 무의미하지만, 원문(officialUrl)은 아니다.
+        # 그걸 뭉뚱그려 제외했던 탓에 대학 공고의 붙임 파일과 본문 이미지를 한 번도 열지
+        # 못했다 — 상명대는 접수기간이 본문 이미지 안에만 있어 영영 '기한 미정'이었다 (2026-08-17).
+        if it.get("source") == "hibrain.net" and not it.get("officialUrl"):
+            return False
+        # '마감을 아직 모르는 공고'는 첨부가 있어도 한 번 더 들러 나머지를 받는다 —
+        # 첫 파일이 응시원서 서식이면 공고문을 영영 못 연다 (통영시립소년소녀합창단, 2026-08-09).
+        no_deadline = not it.get("deadline") and it.get("deadlineNote") != "상시"
+        # 원문 주소가 바뀐 공고(집계 포털에서 걷었다가 나중에 기관 원문을 찾음)는 첨부·마감이
+        # 있어도 정본을 다시 걷는다 — 종로구립은 아트인포 이미지 OCR(오탈자투성이)만 있고 기관
+        # 원문의 PDF 공고문은 한 번도 못 받았는데, '첨부 있음+마감 있음' 관문이 재수집 자체를
+        # 막고 있었다 (2026-08-18). flush 가 url 을 최신 수집처로 갱신해 재수집은 한 번으로 끝난다.
+        moved = ((rawstore.load(it["id"]) or {}).get("url") or "") != _raw_url(it)
+        if not (moved or no_deadline or not rawstore.has_attach(it["id"])):
+            return False
+        # 실패 재시도 억제(RETRY_DAYS)는 '마감을 알고 주소도 그대로인' 공고에만 —
+        # 마감 미상은 회차마다 재시도하는 게 원칙(CLAUDE.md)이다 (2026-08-18).
+        return moved or no_deadline or not rawstore.tried_recently(it["id"])
+
+    todo = [it for it in final if _needs_raw(it)]
     if not todo:
         return 0
     s = new_session()

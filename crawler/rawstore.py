@@ -110,7 +110,10 @@ def flush():
     for iid, b in _buf.items():
         old = load(iid) or {}
         doc = {
-            "url": old.get("url") or b.get("url"),
+            # url 은 '이 원문을 어디서 걷었나' — 최신 수집처가 이긴다. 집계 포털에서 걷었다가
+            # 나중에 기관 원문을 찾으면 그쪽이 정본이고, 이 값이 갱신돼야 '원문 주소가 바뀐
+            # 공고 재수집' 판정(main._ensure_raw_attachments)이 한 번으로 끝난다 (2026-08-18).
+            "url": b.get("url") or old.get("url"),
             "title": old.get("title") or b.get("title"),
             "fetchedAt": old.get("fetchedAt") or date.today().isoformat(),
             "page": old.get("page") or b.get("page"),
