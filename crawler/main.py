@@ -301,7 +301,7 @@ def find_attachments(soup, base_url):
                     cands.append((full, el.get_text(" ", strip=True)))
     return cands[:4]
 
-EXT_VER = 71         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
+EXT_VER = 72         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
                      # v32(2026-08-02): 모집분야 구획 악기 추출(insts_from_recruit_text) + 원문 보관층
                      # 24: work.sen 등록일(게시일) 추출 추가 — date=None이던 승계분을 다시 뽑게
                      # 25: body_text 도입 — 본문을 <header>에 넣는 사이트(대전교육청)의 마감일을
@@ -860,6 +860,11 @@ def _origin_check(s, item, ry):
         item["deadline"] = "2000-01-01"
         item["deadlineFrom"] = "origin-dead"
         return
+    # 원문 본문을 보관층에 남긴다 — 여기서 마감만 뽑고 버리던 탓에 집계 경유 공고는
+    # 원문 보관층의 page 가 0자였고, 재추출이 볼 것이 첨부밖에 없었다. 계명대는 채용일정이
+    # 원문 페이지에만 있어 마감·조건이 통째로 비었다 (2026-08-17 규명).
+    rawstore.stash(item.get("id"), "page", body_text(r.text),
+                   url=item.get("url"), title=item.get("title"))
     if not item.get("deadline"):
         dl = extract_deadline(body_text(r.text), ref_year=ry)
         if dl:
@@ -1515,6 +1520,10 @@ def enrich_deadline(s, item, allow_render=True, details_only=False):
     # 단, 원문(officialUrl)이 '공지 목록'이면 상세 공고까지 파고들어 교체(창원대 케이스).
     if item.get("source") == "hibrain.net":
         _deepen_list_origin(s, item)
+        # 원문(대학 공고 페이지)은 열어서 보관층에 남긴다 — 여기서 그냥 돌아서던 탓에
+        # hibrain 3건 전부 page 0자였고, 계명대는 원문 페이지에만 있는 채용일정을
+        # 영영 못 읽었다 (2026-08-17). 마감도 원문에서 함께 확보된다.
+        _origin_check(s, item, _ref_year(item))
         return
     ry = _ref_year(item)
     try:

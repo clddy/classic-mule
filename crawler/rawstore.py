@@ -32,11 +32,37 @@ def _path(iid):
 
 
 def load(iid):
+    """저장된 원문. **이번 크롤에서 방금 담은 것(메모리 버퍼)까지 함께 보여준다.**
+
+    ★ 이걸 디스크만 읽게 두면 '오늘 처음 들어온 공고'는 원문이 빈 것으로 보인다 —
+      버퍼는 크롤 마지막에 flush 되는데 재추출(_refill_from_raw)은 그 전에 돌기 때문이다.
+      그래서 마감·연락처·이메일처럼 재추출 경로에만 있는 값이 신규 공고에서 통째로
+      비었고, 다음 날 크롤에서야 채워졌다(하루 늦은 자기치유). 인천중산고 카드가
+      기관·지역만 남아 텅 빈 채로 배포된 원인이다 (2026-08-17 규명).
+    """
     try:
         with open(_path(iid), encoding="utf-8") as f:
-            return json.load(f)
+            doc = json.load(f)
     except (FileNotFoundError, json.JSONDecodeError, OSError):
-        return None
+        doc = None
+    b = _buf.get(iid)
+    if not b:
+        return doc
+    if not doc:
+        # 아직 파일이 없다 — 버퍼 내용만으로 flush 와 같은 모양을 만들어 돌려준다
+        return {"url": b.get("url"), "title": b.get("title"),
+                "page": b.get("page"), "attach": list(b.get("attach") or [])}
+    # 파일과 버퍼를 겹친다 (flush 와 같은 규칙: 기존 섹션 보존, 새 이름의 첨부만 추가)
+    merged = dict(doc)
+    merged["page"] = doc.get("page") or b.get("page")
+    attach = list(doc.get("attach") or [])
+    names = {a.get("name") for a in attach}
+    for a in (b.get("attach") or []):
+        if a.get("name") not in names and len(attach) < MAX_ATTACH:
+            attach.append(a)
+            names.add(a.get("name"))
+    merged["attach"] = attach
+    return merged
 
 
 def has_attach(iid):
