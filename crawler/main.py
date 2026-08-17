@@ -1714,6 +1714,18 @@ def _find_content_images(soup, base_url, limit=3):
     return out
 
 
+def _raw_url(it):
+    """원문 보관층을 채울 때 실제로 열어야 하는 주소.
+
+    집계 포털 경유 공고는 포털 페이지가 아니라 기관 원문이 정본이다 — 포털 쪽은 로그인
+    게이트거나 요약본이라 붙임·본문 이미지가 아예 없다 (2026-08-17).
+    """
+    src = it.get("source") or ""
+    if it.get("officialUrl") and (src in AGGREGATORS or src == "hibrain.net"):
+        return it["officialUrl"]
+    return it.get("url")
+
+
 def _ensure_raw_attachments(final, cap=50):
     """원문 보관층 보완 패스 — 첨부를 아직 저장하지 못한 공고를 한 번씩 마저 긁는다.
 
@@ -1725,8 +1737,12 @@ def _ensure_raw_attachments(final, cap=50):
     실패 재시도도 며칠에 한 번으로 묶는다. cap은 크롤 시간 방어(며칠에 걸쳐 수렴).
     """
     todo = [it for it in final
-            if it.get("id") and it.get("url")
-            and it.get("source") != "hibrain.net"           # 로그인 게이트 — 익명 재방문 무의미
+            if it.get("id") and _raw_url(it)
+            # hibrain 은 로그인 게이트라 익명 재방문이 무의미하지만, 원문(officialUrl)은 아니다.
+            # 그걸 뭉뚱그려 제외했던 탓에 대학 공고의 붙임 파일과 본문 이미지를 한 번도 열지
+            # 못했다 — 상명대는 접수기간이 본문 이미지 안에만 있어 영영 '기한 미정'이었고,
+            # 교원대 첨부에는 hibrain 페이지에서 긁힌 '도서관'이 들어와 있었다 (2026-08-17).
+            and (it.get("source") != "hibrain.net" or it.get("officialUrl"))
             # 첨부가 하나라도 있으면 통과시키던 것을 고친다. 첨부가 여럿인 공고에서 우리가
             # 첫 파일만 받아 둔 경우가 있는데, 하필 그게 응시원서 서식이면 마감일이 든
             # 공고문을 영영 못 연다 — 통영시립소년소녀합창단이 그랬다 (2026-08-09).
@@ -1741,11 +1757,12 @@ def _ensure_raw_attachments(final, cap=50):
     for it in todo[:cap]:
         iid = it["id"]
         try:
-            r = get(s, it["url"])
+            target = _raw_url(it)
+            r = get(s, target)
             if r.status_code != 200:
                 rawstore.mark_tried(iid)
                 continue
-            rawstore.stash(iid, "page", body_text(r.text), url=it["url"], title=it.get("title"))
+            rawstore.stash(iid, "page", body_text(r.text), url=target, title=it.get("title"))
             atts = []
             for parser in ("lxml", "html.parser"):   # 대형 페이지 lxml 앵커 누락 폴백
                 atts = find_attachments(BeautifulSoup(r.text, parser), r.url)
@@ -1753,8 +1770,8 @@ def _ensure_raw_attachments(final, cap=50):
                     break
             for furl, fname in atts[:rawstore.MAX_ATTACH]:
                 try:
-                    fr = (curl_get(furl, referer=it["url"], timeout=30) if tls_blocked(furl)
-                          else s.get(furl, timeout=30, verify=False, headers={"Referer": it["url"]}))
+                    fr = (curl_get(furl, referer=target, timeout=30) if tls_blocked(furl)
+                          else s.get(furl, timeout=30, verify=False, headers={"Referer": target}))
                     if fr.status_code != 200 or not (200 < len(fr.content) < 20_000_000):
                         continue
                     cd = fr.headers.get("Content-Disposition", "")
@@ -1768,8 +1785,8 @@ def _ensure_raw_attachments(final, cap=50):
             try:
                 for imurl in _find_content_images(BeautifulSoup(r.text, "lxml"), r.url, limit=2):
                     try:
-                        fr = (curl_get(imurl, referer=it["url"], timeout=30) if tls_blocked(imurl)
-                              else s.get(imurl, timeout=30, verify=False, headers={"Referer": it["url"]}))
+                        fr = (curl_get(imurl, referer=target, timeout=30) if tls_blocked(imurl)
+                              else s.get(imurl, timeout=30, verify=False, headers={"Referer": target}))
                         if fr.status_code == 200 and 2_000 < len(fr.content) < 20_000_000:
                             name = "img:" + imurl.rsplit("/", 1)[-1][:40]
                             rawstore.stash(iid, "attach", attach.extract_any(name + ".png", fr.content), name=name)

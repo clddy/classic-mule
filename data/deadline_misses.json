@@ -1,58 +1,26 @@
 {
- "https://www.ice.go.kr/ice/na/ntt/selectNttInfo.do?nttSn=3380992&mi=10997&bbsId=1981": {
-  "firstSeen": "2026-08-17",
-  "tries": 1,
-  "reported": false,
-  "lastTry": "2026-08-17",
-  "title": "[인천중산고] 음악 시간강사 채용",
-  "org": "인천교육청(학교 채용)"
- },
- "https://www.knue.ac.kr/www/selectBbsNttView.do?bbsNo=27&key=808&nttNo=83850": {
-  "firstSeen": "2026-08-16",
-  "tries": 2,
-  "reported": false,
-  "lastTry": "2026-08-17",
-  "title": "[한국교원대학교] 강사 모집 (3차)",
-  "org": "한국교원대학교"
- },
- "https://www.kmu.ac.kr/uni/recruit/page.jsp?cmd=2&mnu_uid=4876&pageNo=1&pageOrder=0&pagePrvNxt=1&pageRef=269816&parm_bod_uid=269816&srchBgpUid=-1&srchColumn=&srchEDate=&srchEnable=1&srchKeyword=&srchSDate=&srchVoteType=-1": {
-  "firstSeen": "2026-08-16",
-  "tries": 2,
-  "reported": false,
-  "lastTry": "2026-08-17",
-  "title": "[계명대학교] 강사 모집 (2차)",
-  "org": "계명대학교"
- },
  "https://www.smu.ac.kr/kor/intro/recruitment.do?article.offset=0&articleLimit=10&articleNo=767711&mode=view": {
   "firstSeen": "2026-08-16",
-  "tries": 2,
-  "reported": false,
-  "lastTry": "2026-08-17",
+  "tries": 3,
+  "reported": true,
+  "lastTry": "2026-08-18",
   "title": "[상명대학교] 강사 모집 (2차)",
   "org": "상명대학교"
  },
  "https://www.jfac.or.kr/site/main/archive/post/%EA%B3%B5%EA%B3%A0-2026%EB%85%84-%EC%A2%85%EB%A1%9C%EA%B5%AC%EB%A6%BD%EC%96%B4%EB%A5%B4%EC%8B%A0%ED%95%A9%EC%B0%BD%EB%8B%A8-%EC%A7%80%EB%8F%84%EB%8B%A8%EC%9B%90-%EC%95%8C%ED%86%A0-%EB%AA%A8%EC%A7%91-%EC%9E%AC%EA%B3%B5%EA%B3%A0-%EC%95%88%EB%82%B4": {
   "firstSeen": "2026-08-13",
-  "tries": 5,
+  "tries": 6,
   "reported": true,
-  "lastTry": "2026-08-17",
+  "lastTry": "2026-08-18",
   "title": "종로구립어르신합창단 지도단원 모집 (재공고)",
   "org": "종로구립어르신합창단"
  },
  "http://www.cjcf.or.kr": {
   "firstSeen": "2026-08-16",
-  "tries": 2,
-  "reported": false,
-  "lastTry": "2026-08-17",
+  "tries": 3,
+  "reported": true,
+  "lastTry": "2026-08-18",
   "title": "꿈의 예술단(극단) 예비거점 지원사업 예술감독 모집",
   "org": "충주문화관광재단"
- },
- "https://www.yeulmaru.org/community/v/3174/?&p=1&keyword=": {
-  "firstSeen": "2026-08-17",
-  "tries": 1,
-  "reported": false,
-  "lastTry": "2026-08-17",
-  "title": "GS칼텍스 예울마루 (추경)예술기반 청년일자리(연수단원) 채용",
-  "org": "GS칼텍스 예울마루"
  }
 }
