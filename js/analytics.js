@@ -28,12 +28,38 @@ window.PODIUM_GA_ID = "G-BVYPBWD5DH";
   // GA4 콘솔의 IP 필터만으로는 부족하다 — 집 IP는 바뀌고, 밖에서 폰으로 보면 안 걸린다.
   // 그래서 기기 단위 스위치를 같이 둔다: ?pd_optout=1 로 켜고, ?pd_optout=0 으로 푼다.
   // (localStorage 라 그 브라우저에서 영구 유지 — IP가 바뀌어도 계속 제외된다)
-  var optout = false;
+  var optout = false, optoutTouched = false, optoutFailed = false;
   try {
     var m = location.search.match(/[?&]pd_optout=([01])/);
-    if (m) localStorage.setItem("podium_ga_optout", m[1]);
+    if (m) { localStorage.setItem("podium_ga_optout", m[1]); optoutTouched = true; }
     optout = localStorage.getItem("podium_ga_optout") === "1";
-  } catch (e) { /* 사생활 보호 모드 등에서 localStorage 차단 — 계측은 계속 */ }
+    // 저장이 실제로 됐는지 되읽어 확인 — 사파리 사생활 모드는 setItem 을 조용히 무시한다
+    if (m && (localStorage.getItem("podium_ga_optout") !== m[1])) optoutFailed = true;
+  } catch (e) {
+    if (location.search.indexOf("pd_optout") >= 0) { optoutTouched = true; optoutFailed = true; }
+  }
+
+  // 눈에 보이는 확인 — 폰에서는 콘솔을 못 보므로 화면에 띄운다.
+  // 이게 없으면 "눌렀는데 됐는지 모르겠다"가 된다 (2026-08-17 사용자 지적).
+  if (optoutTouched) {
+    var msg = optoutFailed
+      ? "⚠ 저장 실패 — 사생활 보호 모드에서는 제외가 유지되지 않습니다"
+      : (optout ? "✔ 이 기기는 통계에서 제외됩니다" : "○ 제외 해제 — 이 기기 방문이 통계에 집계됩니다");
+    var bg = optoutFailed ? "#7a2a38" : (optout ? "#1f5f3a" : "#444");
+    var show = function () {
+      var d = document.createElement("div");
+      d.textContent = msg;
+      d.setAttribute("style", "position:fixed;left:50%;top:16px;transform:translateX(-50%);z-index:99999;" +
+        "background:" + bg + ";color:#fff;padding:12px 18px;border-radius:8px;font-size:14px;" +
+        "font-family:system-ui,sans-serif;box-shadow:0 4px 16px rgba(0,0,0,.28);max-width:90vw;text-align:center");
+      d.addEventListener("click", function () { d.remove(); });
+      document.body.appendChild(d);
+      setTimeout(function () { d.style.transition = "opacity .4s"; d.style.opacity = "0";
+                               setTimeout(function () { d.remove(); }, 400); }, 5000);
+    };
+    if (document.body) show();
+    else document.addEventListener("DOMContentLoaded", show);
+  }
 
   // 개발용 접속(로컬 프리뷰·사설망·file://)은 언제나 제외. 실측정 ID가 붙은 뒤로는
   // localhost 테스트도 실제 데이터를 오염시킨다.
