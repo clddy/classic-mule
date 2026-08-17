@@ -13,6 +13,12 @@
 # 띄운 프로세스에는 '브라우저 없음'으로 보인다. jsfetch.py(JS 렌더링)가 조용히 실패했다.
 $env:PYTHONIOENCODING = 'utf-8'
 $env:PLAYWRIGHT_BROWSERS_PATH = 'C:\ohai\playwright-browsers'
+# 무인 실행에서 git이 자격증명을 물으면 안 된다. 2026-08-17 18:00 크롤은 GCM이
+# 로그인 창을 띄웠는데 스케줄 작업은 창이 숨겨져 있어 아무도 못 눌렀고,
+# "User cancelled dialog" → 푸시 실패로 하루치가 로컬에만 남았다. 물어보지 말고
+# 그 자리에서 실패하게 해서 알림이 정확한 사유를 담게 한다.
+$env:GIT_TERMINAL_PROMPT = '0'
+$env:GCM_INTERACTIVE = 'never'
 Set-Location C:\ohai\podium
 
 $RunLog = 'C:\ohai\podium\data\run_daily.log'
@@ -45,6 +51,16 @@ if (-not $PY) {
 # (1) 이번 크롤이 낡은 이전 수집분을 승계하고 (2) 마지막 푸시가 거부된다. (2026-07-29)
 git pull --ff-only origin main 2>&1 | Out-Null
 if ($LASTEXITCODE -ne 0) { Note "warn: pull 실패 — 로컬이 갈라졌을 수 있다 (계속 진행)" }
+
+# 어제 푸시가 실패했다면 커밋은 로컬에 남아 있다. 오늘 수집분에 변경이 없으면
+# 아래 커밋 블록을 안 타므로 그 커밋은 영영 안 올라간다 — 여기서 먼저 밀어준다.
+$pending = git rev-list --count origin/main..HEAD
+if ($pending -and [int]$pending -gt 0) {
+    Note "밀리지 않은 커밋 $pending 개 — 먼저 푸시 시도"
+    git push origin main
+    if ($LASTEXITCODE -ne 0) { Note "warn: 밀린 커밋 푸시 실패 (크롤은 계속 진행)" }
+    else { Note "밀린 커밋 $pending 개 푸시됨" }
+}
 
 Note "크롤 시작 ($PY)"
 & $PY crawler\main.py
