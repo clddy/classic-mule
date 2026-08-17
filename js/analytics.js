@@ -46,16 +46,23 @@ window.PODIUM_GA_ID = "G-BVYPBWD5DH";
       ? "⚠ 저장 실패 — 사생활 보호 모드에서는 제외가 유지되지 않습니다"
       : (optout ? "✔ 이 기기는 통계에서 제외됩니다" : "○ 제외 해제 — 이 기기 방문이 통계에 집계됩니다");
     var bg = optoutFailed ? "#7a2a38" : (optout ? "#1f5f3a" : "#444");
+    // 자동으로 사라지지 않는다 — 확인이 목적인 배너라 사용자가 보기 전에 없어지면 의미가
+    // 없다(느린 폰에서는 로딩 중에 타이머가 지난다). 탭해야 닫힌다.
     var show = function () {
       var d = document.createElement("div");
-      d.textContent = msg;
+      d.id = "pd-optout-banner";
+      d.innerHTML = "";
+      d.appendChild(document.createTextNode(msg));
+      var hint = document.createElement("div");
+      hint.textContent = "탭하면 닫힙니다";
+      hint.setAttribute("style", "font-size:12px;opacity:.75;margin-top:5px");
+      d.appendChild(hint);
       d.setAttribute("style", "position:fixed;left:50%;top:16px;transform:translateX(-50%);z-index:99999;" +
-        "background:" + bg + ";color:#fff;padding:12px 18px;border-radius:8px;font-size:14px;" +
-        "font-family:system-ui,sans-serif;box-shadow:0 4px 16px rgba(0,0,0,.28);max-width:90vw;text-align:center");
+        "background:" + bg + ";color:#fff;padding:14px 20px;border-radius:10px;font-size:15px;" +
+        "font-family:system-ui,sans-serif;box-shadow:0 4px 20px rgba(0,0,0,.32);max-width:90vw;" +
+        "text-align:center;cursor:pointer;line-height:1.4");
       d.addEventListener("click", function () { d.remove(); });
       document.body.appendChild(d);
-      setTimeout(function () { d.style.transition = "opacity .4s"; d.style.opacity = "0";
-                               setTimeout(function () { d.remove(); }, 400); }, 5000);
     };
     if (document.body) show();
     else document.addEventListener("DOMContentLoaded", show);
