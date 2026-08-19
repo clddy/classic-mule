@@ -606,7 +606,8 @@ def main():
         findings, l4_note = l4_check.run(items, l4_state,
                                          force_ids=tuple(args.l4_force or ()),
                                          dry_run=l4_dry)
-        lines, l4_appendix = l4_check.format_findings(findings)
+        # 열린 판정 전부(도장 찍기 전까지)가 본문에 남는다 — format 은 state 기준 (워크오더 08-19)
+        lines, l4_appendix = l4_check.format_findings(l4_state)
         for ln in lines:
             rep.add("MED", "L4", ln[5:] if ln.startswith("[L4] ") else ln)
         rep.add("LOW", "L4", l4_note)

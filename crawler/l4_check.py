@@ -87,13 +87,14 @@ def load_state():
     if STATE.exists():
         try:
             s = json.loads(STATE.read_text(encoding="utf-8"))
-            s.setdefault("seen", {})
-            s.setdefault("reported", {})
-            s.setdefault("runs", [])
+            for k, d in (("seen", {}), ("reported", {}), ("runs", []),
+                         ("open", {}), ("stamps", {}), ("history", []), ("seqCounter", 0)):
+                s.setdefault(k, d)
             return s
         except Exception:
             pass
-    return {"seen": {}, "reported": {}, "runs": []}
+    return {"seen": {}, "reported": {}, "runs": [],
+            "open": {}, "stamps": {}, "history": [], "seqCounter": 0}
 
 
 def save_state(state):
@@ -265,11 +266,34 @@ def run(items, state, force_ids=(), dry_run=False, model=None):
     return fresh, note
 
 
+# 도장 종류 — 브리핑을 읽다가 바로 찍을 수 있게 짧은 별칭을 받는다 (워크오더 08-19)
+STAMP_TYPES = {
+    "정상": "데이터 정상", "데이터정상": "데이터 정상",
+    "수정": "수정 완료", "수정완료": "수정 완료",
+    "무시": "대응 안 함", "무대응": "대응 안 함", "대응안함": "대응 안 함",
+}
+
+
+def _now():
+    return datetime.now().strftime("%Y-%m-%d %H:%M")
+
+
+def _log(state, action, slot, entry):
+    state.setdefault("history", []).append(
+        {"at": _now(), "action": action, "slot": slot, **entry})
+
+
 def dedupe(findings, items, state):
-    """같은 (공고, 필드)는 값이 바뀌기 전까지 다시 보고하지 않는다.
-    한 번 읽고 넘긴 지적이 매일 다시 뜨면 브리핑을 안 읽게 된다."""
+    """판정을 '열린 큐'로 관리한다 — 도장을 찍기 전까지 브리핑에 남는다 (워크오더 08-19).
+
+    도장 규칙:
+      데이터 정상 · 대응 안 함 → 영구 침묵 (공고 자체의 사정 — 다시 볼 이유가 없다)
+      수정 완료               → 그 값이 또 바뀌면 같은 번호로 다시 연다
+    공고가 내려가면 열린 판정은 자동 닫힘으로 이력에 남는다.
+    """
     by_id = {i.get("id"): i for i in items}
-    rep, fresh = state.setdefault("reported", {}), []
+    opens, stamps = state.setdefault("open", {}), state.setdefault("stamps", {})
+    fresh = []
     for f in findings:
         it = by_id.get(f["id"])
         if not it:
@@ -279,28 +303,72 @@ def dedupe(findings, items, state):
         # 삼는다 — 안 그러면 같은 필드의 서로 다른 지적이 한 덩어리로 묶여 조용히 사라진다.
         vh = _hash(it.get(key)) if key in it else _hash(f["issue"])
         slot = f"{f['id']}|{key}"
-        if rep.get(slot) == vh:
-            continue                        # 값이 그대로 = 이미 보고한 그 문제
-        rep[slot] = vh
+        st = stamps.get(slot)
+        if st:
+            if st["type"] in ("데이터 정상", "대응 안 함"):
+                continue                    # 사람이 닫았다 — 다시 보고하지 않는다
+            if st.get("valueHash") == vh:
+                continue                    # 수정 완료 그대로 — 조용히
+            _log(state, "재개", slot, {"seq": st.get("seq"), "note": "수정 완료 후 값이 또 바뀜"})
+            stamps.pop(slot)                # 수정 완료였는데 값이 바뀜 → 같은 번호로 다시 연다
+        o = opens.get(slot)
         f["title"] = (it.get("title") or "")[:30]
+        if o and o.get("valueHash") == vh:
+            o["lastAt"] = _now()            # 이미 열려 있음 — 본문 표시는 open 목록이 담당
+            continue
+        seq = o["seq"] if o else state.setdefault("seqCounter", 0) + 1
+        if not o:
+            state["seqCounter"] = seq
+        opens[slot] = {"seq": seq, "id": f["id"], "field": f["field"],
+                       "issue": f["issue"], "confidence": f["confidence"],
+                       "title": f["title"], "valueHash": vh,
+                       "firstAt": (o or {}).get("firstAt") or _now(), "lastAt": _now()}
         fresh.append(f)
-    # 사라진 공고의 이력은 흘려보낸다 (상태 파일이 무한히 자라지 않도록)
+    # 사라진 공고의 열린 판정은 자동으로 닫는다 (공고가 내려가면 볼 일도 없다)
     alive = set(by_id)
-    for slot in [s for s in rep if s.split("|")[0] not in alive]:
-        rep.pop(slot, None)
+    for slot in [s for s in opens if s.split("|")[0] not in alive]:
+        o = opens.pop(slot)
+        _log(state, "자동닫힘", slot, {"seq": o["seq"], "title": o["title"], "note": "공고 내려감"})
     return fresh
 
 
-def format_findings(findings):
-    """(본문 줄 목록, 부록 텍스트) — high는 브리핑 본문에, medium은 접힌 부록에."""
-    high = [f for f in findings if f["confidence"] == "high"]
-    med = [f for f in findings if f["confidence"] != "high"]
-    lines = [f"[L4] {f['title']} {f['field']} — {f['issue']} (high)" for f in high]
-    appendix = ""
+def stamp(state, seq, kind, note=""):
+    """열린 판정에 확인 도장. (성공 여부, 메시지) 반환."""
+    typ = STAMP_TYPES.get(str(kind).replace(" ", ""))
+    if not typ:
+        return False, f"도장 종류를 모르겠다: {kind} (정상 | 수정 | 무시)"
+    slot = next((s for s, o in state.get("open", {}).items() if o.get("seq") == int(seq)), None)
+    if not slot:
+        return False, f"#{seq} 는 열린 판정에 없다 (목록: python crawler/l4_check.py open)"
+    o = state["open"].pop(slot)
+    state.setdefault("stamps", {})[slot] = {
+        "seq": o["seq"], "type": typ, "at": _now(), "note": note,
+        "valueHash": o.get("valueHash"), "title": o.get("title"), "issue": o.get("issue")}
+    _log(state, "도장", slot, {"seq": o["seq"], "type": typ, "note": note, "title": o.get("title")})
+    return True, f"[L4#{o['seq']}] {o.get('title')} {o.get('field','')} → {typ}" + (f" ({note})" if note else "")
+
+
+def format_findings(state):
+    """(본문 줄 목록, 부록 텍스트) — 열린 판정이 도장 찍힐 때까지 남는다.
+    high는 본문, medium은 접힌 부록. 하단에 확인 완료 누적과 도장 찍는 법 한 줄."""
+    opens = sorted(state.get("open", {}).values(), key=lambda o: o["seq"])
+    high = [o for o in opens if o.get("confidence") == "high"]
+    med = [o for o in opens if o.get("confidence") != "high"]
+    lines = [f"[L4#{o['seq']}] {o['title']} {o['field']} — {o['issue']} (high)" for o in high]
+    parts = []
     if med:
-        appendix = "L4 참고(medium, 확인만):\n" + "\n".join(
-            f"  · {f['title']} {f['field']} — {f['issue']}" for f in med)
-    return lines, appendix
+        parts.append("L4 참고(medium, 확인만):\n" + "\n".join(
+            f"  · [#{o['seq']}] {o['title']} {o['field']} — {o['issue']}" for o in med))
+    stamps = state.get("stamps", {}).values()
+    if opens or stamps:
+        cnt = {}
+        for s in stamps:
+            cnt[s["type"]] = cnt.get(s["type"], 0) + 1
+        tail = " · ".join(f"{k} {v}" for k, v in cnt.items()) or "0건"
+        parts.append(f"L4 확인 완료 누적: {tail}"
+                     + (f"\n도장: python crawler/l4_check.py stamp <번호> <정상|수정|무시> [메모]"
+                        if opens else ""))
+    return lines, "\n\n".join(parts)
 
 
 def main():
@@ -316,7 +384,7 @@ def main():
     findings, note = run(items, state, force_ids=tuple(args.force_id),
                          dry_run=args.dry_run, model=args.model)
     print(note)
-    lines, appendix = format_findings(findings)
+    lines, appendix = format_findings(state)
     for ln in lines:
         print(ln)
     if appendix:
@@ -326,5 +394,50 @@ def main():
     return 0
 
 
+def _cli_stamp(argv):
+    """브리핑을 보다가 바로 찍는 도장 — python crawler/l4_check.py stamp 7 정상 [메모]"""
+    if len(argv) < 2:
+        print("사용법: python crawler/l4_check.py stamp <번호> <정상|수정|무시> [메모]")
+        return 2
+    state = load_state()
+    ok, msg = stamp(state, argv[0], argv[1], " ".join(argv[2:]))
+    print(msg)
+    if ok:
+        save_state(state)
+    return 0 if ok else 1
+
+
+def _cli_open():
+    state = load_state()
+    opens = sorted(state.get("open", {}).values(), key=lambda o: o["seq"])
+    if not opens:
+        print("열린 L4 판정 없음")
+        return 0
+    for o in opens:
+        print(f"[#{o['seq']}] ({o.get('confidence')}) {o['title']} {o['field']} — {o['issue']}"
+              f"  (처음 {o.get('firstAt')})")
+    print("\n도장: python crawler/l4_check.py stamp <번호> <정상|수정|무시> [메모]")
+    return 0
+
+
+def _cli_stamps():
+    state = load_state()
+    hist = state.get("history", [])
+    if not hist:
+        print("확인 이력 없음")
+        return 0
+    for h in hist[-50:]:
+        extra = f" — {h.get('note')}" if h.get("note") else ""
+        print(f"{h['at']}  [{h['action']}] #{h.get('seq')} {h.get('type', '')} {h.get('title', '')}{extra}")
+    return 0
+
+
 if __name__ == "__main__":
+    _sub = sys.argv[1] if len(sys.argv) > 1 else ""
+    if _sub == "stamp":
+        sys.exit(_cli_stamp(sys.argv[2:]))
+    if _sub == "open":
+        sys.exit(_cli_open())
+    if _sub == "stamps":
+        sys.exit(_cli_stamps())
     sys.exit(main())
