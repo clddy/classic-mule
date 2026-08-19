@@ -1617,6 +1617,14 @@ def _clean_field(key, raw):
     if len(re.findall(r"[一-鿿]", val)) >= 2:
         return None
     if key == "pay":
+        # 게시판이 단위를 빼고 적는 경우가 있다 — 서울교육일자리포털은 '보수/임금 시급 40000'
+        # 처럼 '원'이 없다. 화면에 그대로 나가면 '시급 40000'이 되어 읽는 사람이 단위를
+        # 짐작해야 한다 (2026-08-20). 금액이 분명하면 '원'을 붙이고 천 단위를 끊는다.
+        m_bare = re.fullmatch(r"\s*((?:시급|시간당|일당|월급|월|주급|회당|연봉)?)\s*([\d,]{3,})\s*", val)
+        if m_bare:
+            unit, num = m_bare.group(1), m_bare.group(2).replace(",", "")
+            if num.isdigit() and int(num) >= 1000:
+                val = (unit + " " if unit else "") + f"{int(num):,}원"
         # 급여 자리의 법령 인용은 읽어도 얼마인지 알 수 없다
         if not re.search(r"[\d,]{2,}\s*(?:원|만|천)", val)                 and re.search(r"보수규정|예규|조례|지침|규정|법률|제\s*\d+\s*조", val):
             return None

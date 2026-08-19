@@ -301,7 +301,7 @@ def find_attachments(soup, base_url):
                     cands.append((full, el.get_text(" ", strip=True)))
     return cands[:4]
 
-EXT_VER = 76         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
+EXT_VER = 77         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
                      # v32(2026-08-02): 모집분야 구획 악기 추출(insts_from_recruit_text) + 원문 보관층
                      # 24: work.sen 등록일(게시일) 추출 추가 — date=None이던 승계분을 다시 뽑게
                      # 25: body_text 도입 — 본문을 <header>에 넣는 사이트(대전교육청)의 마감일을

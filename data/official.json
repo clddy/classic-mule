@@ -1,5 +1,5 @@
 {
- "collectedAt": "2026-08-19 23:46",
+ "collectedAt": "2026-08-20 01:06",
  "heldNoOrigin": 0,
  "sourceCount": 87,
  "okCount": 87,
@@ -821,7 +821,7 @@
    "deadlineFrom": "raw",
    "firstSeen": "2026-08-19",
    "isNew": true,
-   "extVer": 76
+   "extVer": 77
   },
   {
    "id": "9e9c34d080588a5e",
@@ -855,7 +855,7 @@
    "deadlineFrom": "raw",
    "firstSeen": "2026-08-13",
    "isNew": true,
-   "extVer": 76
+   "extVer": 77
   },
   {
    "id": "e151b29525ebd6a7",
@@ -892,7 +892,7 @@
    "verifiedNote": "제물포문화재단 공고 게시판에서 원문 확인(공고 제2026-호, 성악지도자·반주자·단무장). 아트인포 게시글의 '채용 사이트 바로가기'가 재단 홈 루트만 가리켜 자동 역추적이 상세를 못 찾던 건.",
    "firstSeen": "2026-08-19",
    "isNew": true,
-   "extVer": 76
+   "extVer": 77
   },
   {
    "id": "ce16034f8d957907",
@@ -931,7 +931,7 @@
    "regionBoard": "경기",
    "firstSeen": "2026-08-19",
    "isNew": true,
-   "extVer": 76
+   "extVer": 77
   },
   {
    "id": "a065cd31ec9dbdf1",
@@ -960,7 +960,7 @@
    "layer": "C",
    "contact": "070-5004-3626",
    "email": "minho918@naver.com",
-   "pay": "시급 40000",
+   "pay": "시급 40,000원",
    "workPeriod": "2026. 8. 29. ~ 2027. 1",
    "workHours": "08:30~11:30",
    "addr": "서울특별시 서초구 서운로 115(서초동)",
@@ -969,7 +969,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-19",
    "isNew": true,
-   "extVer": 76
+   "extVer": 77
   },
   {
    "id": "2e1303468ed40bd1",
@@ -1005,7 +1005,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-19",
    "isNew": true,
-   "extVer": 76
+   "extVer": 77
   },
   {
    "id": "c1e5ff7ecded408e",
@@ -1040,7 +1040,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-19",
    "isNew": true,
-   "extVer": 76
+   "extVer": 77
   },
   {
    "id": "6b8f9705056432ef",
@@ -1075,7 +1075,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-19",
    "isNew": true,
-   "extVer": 76
+   "extVer": 77
   },
   {
    "id": "947d6e215cb58bac",
@@ -1110,7 +1110,7 @@
    "orgAffil": "경기교육청",
    "firstSeen": "2026-08-19",
    "isNew": true,
-   "extVer": 76
+   "extVer": 77
   },
   {
    "id": "eaa944139f232cd4",
@@ -1145,7 +1145,7 @@
    "orgAffil": "경기교육청",
    "firstSeen": "2026-08-19",
    "isNew": true,
-   "extVer": 76
+   "extVer": 77
   },
   {
    "id": "6193baf676202e65",
@@ -1181,7 +1181,7 @@
    "orgAffil": "경기교육청",
    "firstSeen": "2026-08-19",
    "isNew": true,
-   "extVer": 76
+   "extVer": 77
   },
   {
    "id": "550c73f144d41ff4",
@@ -1213,7 +1213,7 @@
    "orgAffil": "경기교육청",
    "firstSeen": "2026-08-19",
    "isNew": true,
-   "extVer": 76
+   "extVer": 77
   },
   {
    "id": "b83667209a8cd77d",
@@ -1246,7 +1246,7 @@
    "deadlineNote": "상시",
    "firstSeen": "2026-08-19",
    "isNew": true,
-   "extVer": 76
+   "extVer": 77
   },
   {
    "id": "6cb1a301d8f777cc",
@@ -1285,8 +1285,8 @@
    "addrFrom": "geo",
    "orgBoard": "울산문화예술회관(시립예술단)",
    "firstSeen": "2026-08-18",
-   "isNew": true,
-   "extVer": 76
+   "isNew": false,
+   "extVer": 77
   },
   {
    "id": "0fedf8036a363075",
@@ -1323,8 +1323,8 @@
    "deadlineFrom": "raw",
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-18",
-   "isNew": true,
-   "extVer": 76
+   "isNew": false,
+   "extVer": 77
   },
   {
    "id": "11376188af16b7d1",
@@ -1350,7 +1350,7 @@
    "layer": "C",
    "contact": "02-595-5471",
    "email": "webmaster@sen.go.kr",
-   "pay": "시급 25,000",
+   "pay": "시급 25,000원",
    "workPeriod": "2026.09.21~2026.09.23",
    "workHours": "9.21.(월)~9.23.(수)기간 중 매일 5시간(1교시~5교시)",
    "addr": "서울특별시 동작구 사당로23",
@@ -1359,8 +1359,8 @@
    "deadlineFrom": "raw",
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-19",
-   "isNew": true,
-   "extVer": 76
+   "isNew": false,
+   "extVer": 77
   },
   {
    "id": "c6c2c8ce91d4ded5",
@@ -1395,8 +1395,8 @@
    "deadlineFrom": "raw",
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-19",
-   "isNew": true,
-   "extVer": 76
+   "isNew": false,
+   "extVer": 77
   },
   {
    "id": "99baef65491d2273",
@@ -1420,7 +1420,7 @@
    "layer": "C",
    "email": "832happy@korea.kr",
    "firstSeen": "2026-08-18",
-   "isNew": true,
+   "isNew": false,
    "contact": "099-335-5091",
    "workPeriod": "2026. 9. 1. ∼ 2027. 1. 31.(5개월)",
    "workHours": "7.5시간(08:50~16:50)을 원칙으로 하며 , 휴게시간 30분 부여",
@@ -1428,7 +1428,7 @@
    "bodyExcerpt": "채용 분야 및 채용 예정 인원 : 음악 1 명 ( 전일제 ) 2. · 채용 기간 : 2026. · 응모 자격 : 임용 상한 연령 (70 세 이하 ) 미 해당자 5. · 기간 : 2026.",
    "deadline": "2026-08-21",
    "deadlineFrom": "raw",
-   "extVer": 76
+   "extVer": 77
   },
   {
    "id": "6bbf52d3420bced8",
@@ -1453,7 +1453,11 @@
    "orgAffil": "전북교육청",
    "email": "earthljs0@gmail.com",
    "firstSeen": "2026-08-18",
-   "isNew": true,
+   "isNew": false,
+   "addr": "전북특별자치도 전주시 덕진구 안전로",
+   "lat": 35.8420029,
+   "lng": 127.0590059,
+   "addrFrom": "geo",
    "contact": "063-249-6106",
    "workPeriod": "2026-09-01~2027-02-28",
    "workHours": "전일제 근무(1일 8시간)",
@@ -1461,11 +1465,7 @@
    "bodyExcerpt": "공고에 ‘채용의 제한’ 부분 명시 2. · 서류접수 방법 : 전자우편 중심 3. · 지침 [붙임 2] 기간제교원 채용 공고(예시) 다운로드 지침",
    "deadline": "2026-08-20",
    "deadlineFrom": "raw",
-   "addr": "전북특별자치도 전주시 덕진구 안전로",
-   "lat": 35.8420029,
-   "lng": 127.0590059,
-   "addrFrom": "geo",
-   "extVer": 76
+   "extVer": 77
   },
   {
    "id": "056c6c98a0ef451a",
@@ -1499,7 +1499,7 @@
    "bodyExcerpt": "채용 지원서 , 교원자격증 사본 : 담당자 이메일 제출 (qodmswls@ice.go.kr) 나 . · 접수기간 : 2026. · 접수방법 : 이메일 (qodmswls@ice.go.kr) 제출 – 개인 연락처 반드시 기재 요망 다 . · 중국어 채용 공고 담당부서 : 최근업데이트 : 2026-01-08 열람하신 정보에 대해 만족하십니까?",
    "deadline": "2026-08-23",
    "deadlineFrom": "raw",
-   "extVer": 76
+   "extVer": 77
   },
   {
    "id": "bd2c17f19933f651",
@@ -1533,7 +1533,7 @@
    "bodyExcerpt": "모시는분 반주자 - 지역 경기 - 등록일 2026-08-14 - 남은기간 2026-09-30 23:59:59 · 탑동감리교회 드럼반주자&레슨강사 모집합니다.",
    "firstSeen": "2026-08-14",
    "isNew": false,
-   "extVer": 76
+   "extVer": 77
   },
   {
    "id": "3dc1300363d803e8",
@@ -1567,7 +1567,7 @@
    "addrFrom": "geo",
    "firstSeen": "2026-08-14",
    "isNew": false,
-   "extVer": 76
+   "extVer": 77
   },
   {
    "id": "8421a54088a2cc2a",
@@ -1603,39 +1603,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-14",
    "isNew": false,
-   "extVer": 76
-  },
-  {
-   "id": "58a5ad2b823c1c2e",
-   "org": "으뜸초등학교",
-   "region": "세종",
-   "source": "sje.go.kr",
-   "title": "[으뜸초] 1인 1악기(난타) 강사 채용",
-   "nonMusic": null,
-   "url": "https://www.sje.go.kr/sje/na/ntt/selectNttInfo.do?nttSn=3071555&mi=52132&bbsId=108",
-   "date": "2026-08-12",
-   "kind": "강사",
-   "tier": "교육 — 취미·입문",
-   "obri": false,
-   "certReq": "아니오",
-   "degreeReq": "무관",
-   "careerReq": "미기재",
-   "ageGroup": "성인",
-   "inst": "전체",
-   "instDetails": [],
-   "channel": "edu_sje",
-   "layer": "C",
-   "orgAffil": "세종교육청",
-   "firstSeen": "2026-08-13",
-   "isNew": false,
-   "contact": "044-320-4326",
-   "pay": "1차시당 35,000원",
-   "workPeriod": "2026. 9. ~ 12. *운영 예산 내 근무",
-   "workHours": "주1일(금요일)*세부 일정은 학교와 협의",
-   "bodyExcerpt": "채용절차 및 전형 방법: 공개 채용(1차 서류 및 2차 면접 심사) 2. · 채용 구분 및 인원: 난타 1명 3. · 채용 기간: 2026. · 보수: 1차시당 35,000원 7.",
-   "deadline": "2026-08-19",
-   "deadlineFrom": "raw",
-   "extVer": 76
+   "extVer": 77
   },
   {
    "id": "0251912d3b918734",
@@ -1670,7 +1638,7 @@
    "bodyExcerpt": "모시는분 반주자 - 지역 경기 - 등록일 2026-08-07 - 남은기간 2026-09-18 23:59:59 · 탑동감리교회 드럼반주자&레슨강사 모집합니다. · 용호남교회 피아노 반주자 모집 건반 연주자와 일렉키타 연주자를 모십니다(찬양팀) 주일 피아노 반주자 모십니다.",
    "firstSeen": "2026-08-08",
    "isNew": false,
-   "extVer": 76
+   "extVer": 77
   },
   {
    "id": "ddd6789490369cc1",
@@ -1700,7 +1668,7 @@
    "contact": "031-263-0651",
    "firstSeen": "2026-08-02",
    "isNew": false,
-   "extVer": 76
+   "extVer": 77
   },
   {
    "id": "b2e199e32140e0ed",
@@ -1737,7 +1705,7 @@
    "deadlineNote": "상시",
    "firstSeen": "2026-08-08",
    "isNew": false,
-   "extVer": 76
+   "extVer": 77
   },
   {
    "id": "5fbc7e4eb4f8d92d",
@@ -1773,7 +1741,7 @@
    "deadlineNote": "상시",
    "firstSeen": "2026-08-08",
    "isNew": false,
-   "extVer": 76
+   "extVer": 77
   }
  ]
 }
