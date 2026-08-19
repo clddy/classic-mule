@@ -59,7 +59,7 @@ ENV = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".env")
 # 이 앞은 아무리 당겨도 0이라 백필 대상이 아니다.
 FIRST_DAY = "2026-08-06"
 
-SCHEMA = 2          # 이 값이 오르면 옛 형식으로 저장된 날짜는 다시 당긴다
+SCHEMA = 3          # 이 값이 오르면 옛 형식으로 저장된 날짜는 다시 당긴다
 
 
 def _load_env():
@@ -135,13 +135,21 @@ def pull(day):
     rec["sources"] = rows(["sessionSource", "sessionMedium"], S)
     rec["audience"] = rows(["city", "deviceCategory", "operatingSystem", "browser",
                             "newVsReturning"], S)
-    rec["hours"] = {d[0]: int(m[0]) for d, m in run(["hour"], ["sessions"])}
+    # [세션, 참여세션] — 참여 쪽만 보면 헬스체크·스캐너가 빠진 '사람의 시각'이 된다
+    rec["hours"] = {d[0]: [int(m[0]), int(m[1])]
+                    for d, m in run(["hour"], ["sessions", "engagedSessions"])}
 
     rec["jobs"] = counts("customEvent:job_id")
     rec["filters"] = {"bands": counts("customEvent:f_bands"),
                       "results": counts("customEvent:f_results"),
                       "insts": counts("customEvent:f_insts"),
                       "regions": counts("customEvent:f_regions")}
+    # 축별 집계(filters)는 "무엇을 많이 걸렀나"까지만 답한다. "**무엇을 켰을 때** 결과가
+    # 없었나"는 축을 쪼갠 순간 사라지는 정보라, 조합을 통째로 한 줄로 받아 둔다.
+    rec["filterCombos"] = rows(["customEvent:f_bands", "customEvent:f_insts",
+                                "customEvent:f_regions", "customEvent:f_toggles",
+                                "customEvent:f_query", "customEvent:f_results"],
+                               ["eventCount"])
     rec["jobmeta"] = {"kind": counts("customEvent:job_kind"),
                       "dday": counts("customEvent:job_dday"),
                       "region": counts("customEvent:job_region"),

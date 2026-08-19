@@ -102,9 +102,15 @@ UI 어휘 금지: 급구·구직·오브리·대타 (교회 상시 포지션은 
   이벤트 사전은 analytics.js 머리말 — traffic.py와 이름을 맞춘다. crawler/traffic.py가
   매일 data/traffic.json에 누적(gitignore, 미설정 시 자동 스킵). **빠진 날은 스스로 메운다** —
   저장 안 됐거나 옛 형식(`v` < SCHEMA)인 날을 FIRST_DAY부터 훑어 다시 당긴다(`--from`으로 시작일 지정).
-  담는 축: totals·events·pages·sources·audience(도시x기기xOSx브라우저x신규재방문)·hours·
-  jobs(공고별 열람)·filters(수요 신호)·jobmeta. 맞춤측정기준은 ga4_dimensions.py로 등록하며
+  담는 축: totals·events·pages·sources·audience(도시x기기xOSx브라우저x신규재방문)·
+  hours([세션,참여세션] — 참여 쪽만 보면 봇이 빠진 '사람의 시각')·jobs(공고별 열람)·
+  filters(축별 집계)·**filterCombos**·jobmeta. 맞춤측정기준은 ga4_dimensions.py로 등록하며
   **등록 이전 기간엔 소급 적용되지 않는다**(그 기간은 영영 (not set)).
+  **필터는 축을 쪼개 세면 안 된다** — 직종·악기·지역을 따로 집계하면 "지휘를 켰더니 1건"이라는
+  교차가 통째로 사라진다. filterCombos가 조합+결과건수를 한 줄로 받는 이유다. 화면은 순서만
+  다른 조합(지휘|교수 = 교수|지휘)을 합치고, 같은 조합의 날짜별 편차는 범위(1~3건)로 보여준다.
+  f_results가 숫자가 아닌 행은 그 파라미터를 안 싣는 이벤트(page_view 등)가 뭉친 것이라 버린다 —
+  0건으로 읽으면 있지도 않은 '빈손'이 만들어진다.
 - 검색 노출·검색어는 `crawler/gsc.py` → data/search.json (gitignore). GA4가 '들어온 뒤'라면
   이쪽은 '들어오기 전'(노출·순위)이고, **검색어는 GA4에 아예 없어 이 경로뿐이다.**
   자격증명은 gindex.py와 같은 서비스 계정(Search Console 소유자 등록 필요).

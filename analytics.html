@@ -151,9 +151,13 @@ function loadJobs() {
 
 // 로컬(정적 서버)에서는 열쇠 없이 data/*.json 을 바로 읽는다 — 개발용 경로.
 function loadLocal() {
+  // no-store 가 없으면 브라우저가 옛 traffic.json 을 계속 물고 있는다 — 수집기를 돌려도
+  // 화면이 안 바뀌어서 코드를 의심하게 된다(2026-08-19에 실제로 그랬다).
+  // 배포 경로(Worker)는 동적 응답이라 해당 없음.
+  var fresh = { cache: "no-store" };
   return Promise.all([
-    loadJSON("data/traffic.json"),
-    loadJSON("data/search.json").catch(function () { return null; })
+    loadJSON("data/traffic.json", fresh),
+    loadJSON("data/search.json", fresh).catch(function () { return null; })
   ]).then(function (r) { return { traffic: r[0], search: r[1] }; });
 }
 
@@ -230,6 +234,18 @@ document.getElementById("showbots").onchange = render;
 boot();
 
 // ── 유틸 ──────────────────────────────────────────────────────────────────
+// 경로만 보면 / 와 /index.html 이 같은 화면이라는 걸 알 수 없다. 이름을 붙여 준다.
+var PAGE_NAMES = {
+  "/": "홈", "/index.html": "홈", "/jobs.html": "구인구직 목록",
+  "/practice.html": "연습실", "/about.html": "소개", "/sources.html": "수집 출처",
+  "/privacy.html": "개인정보", "/analytics.html": "이 대시보드"
+};
+function pageLabel(path) {
+  var p = String(path || "").replace(/^https?:\/\/[^/]+/, "").split("?")[0];
+  if (PAGE_NAMES[p]) return p + "  <span class=\"tag\">" + PAGE_NAMES[p] + "</span>";
+  if (/^\/p\//.test(p)) return p + '  <span class="tag">공고 상세</span>';
+  return esc(p);
+}
 function esc(s) {
   return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) {
     return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
@@ -290,7 +306,9 @@ function aggregate() {
     sessions: 0, users: 0, newUsers: 0, engaged: 0, sec: 0, pv: 0,
     events: {}, pages: {}, hours: {}, jobs: {},
     bands: {}, results: {}, finsts: {}, fregions: {},
-    kind: {}, dday: {}, dest: {}, src: {}, aud: {}, daily: []
+    kind: {}, dday: {}, dest: {}, src: {}, aud: {}, daily: [],
+    combos: {},        // 필터 조합 → [결과건수, 횟수]
+    visits: []         // 최근 방문: {date, hours:[시각…], engaged}
   };
   keys().forEach(function (d) {
     var r = DAYS[d] || {}, t = r.totals || {};
@@ -298,7 +316,16 @@ function aggregate() {
     a.engaged += t.engaged || 0; a.sec += t.engagementSec || 0; a.pv += t.pv || 0;
     a.daily.push({ date: d, bg: t.sessions || 0, fg: t.engaged || 0, label: d.slice(8) + "일" });
     addInto(a.events, r.events);
-    addInto(a.hours, r.hours);
+    // hours 는 v3부터 [세션, 참여세션]. 옛 형식(숫자)도 견딘다.
+    Object.keys(r.hours || {}).forEach(function (h) {
+      var v = r.hours[h], se = (typeof v === "number") ? [v, 0] : v;
+      var cur = a.hours[h] || (a.hours[h] = [0, 0]);
+      cur[0] += se[0]; cur[1] += se[1];
+    });
+    var vh = Object.keys(r.hours || {}).filter(function (h) {
+      var v = r.hours[h]; return (typeof v === "number") ? false : v[1] > 0;
+    }).map(Number).sort(function (x, y) { return x - y; });
+    if (vh.length) a.visits.push({ date: d, hours: vh, engaged: (r.totals || {}).engaged || 0 });
     addInto(a.jobs, r.jobs);
     Object.keys(r.pages || {}).forEach(function (p) {
       var v = r.pages[p]; a.pages[p] = a.pages[p] || [0, 0];
@@ -308,6 +335,24 @@ function aggregate() {
     addInto(a.bands, f.bands); addInto(a.results, f.results);
     addInto(a.finsts, f.insts); addInto(a.fregions, f.regions);
     addInto(a.kind, jm.kind); addInto(a.dday, jm.dday); addInto(a.dest, jm.dest);
+    (r.filterCombos || []).forEach(function (row) {
+      // f_results 가 숫자인 행만이 실제 필터 사용이다. page_view 처럼 이 파라미터를 아예
+      // 안 싣는 이벤트가 전부 (not set) 한 줄로 뭉쳐 오는데, 그걸 0건으로 읽으면
+      // '조건 없음 · 0건 · 130회'라는 없는 빈손이 만들어진다.
+      if (!/^\d+$/.test(row[5])) return;
+      // '지휘|교수'와 '교수|지휘'는 같은 필터다 — 고른 순서까지 다른 조합으로 세면 표가 쪼개진다.
+      var k = row.slice(0, 5).map(function (x) {
+        if (x === "(not set)" || !x) return "";
+        return x.split("|").sort().join("|");
+      }).join("");                          // bands|insts|regions|toggles|query
+      // 같은 조합도 날마다 결과 수가 다르다(공고가 들고 난다). 마지막 값만 남기면
+      // '이 필터는 늘 1건'인지 '그날만 1건'인지 구분이 사라진다 — 범위로 들고 있는다.
+      var v = +row[5];
+      var c = a.combos[k] || (a.combos[k] = { min: v, max: v, n: 0 });
+      if (v < c.min) c.min = v;
+      if (v > c.max) c.max = v;
+      c.n += row[6];
+    });
     (r.sources || []).forEach(function (row) {
       var k = row[0] + "|" + row[1], v = a.src[k] || (a.src[k] = [0, 0, 0, 0, 0]);
       for (var i = 0; i < 5; i++) v[i] += row[2 + i];
@@ -338,8 +383,7 @@ function render() {
     ["원문 이동", n(ob), "전환 " + pct(ob, jv), 1],
     ["필터 사용", n(ev.filter_use || 0), "빈손 " + n(ev.filter_empty || 0) + "회", 0],
     ["재방문 세션", n(ret), "전체 세션의 " + pct(ret, a.sessions), 0],
-    ["평균 참여시간", dur(a.engaged ? a.sec / a.engaged : 0), "참여 세션당", 0],
-    ["봇·자동접속", n(botSess), pct(botSess, a.sessions) + " · 참여 0", 0]
+    ["평균 참여시간", dur(a.engaged ? a.sec / a.engaged : 0), "참여 세션당", 0]
   ].map(function (c) {
     return '<div class="kpi' + (c[3] ? " accent" : "") + '"><div class="k">' + c[0] +
       '</div><div class="v">' + c[1] + '</div><div class="n">' + esc(c[2]) + "</div></div>";
@@ -378,7 +422,7 @@ function render() {
     H.push(table([["뜬 페이지", 0], ["노출", 1], ["클릭", 1], ["순위", 1]],
       (SEARCH.pages || []).slice().sort(function (x, y) { return y[1] - x[1]; })
         .map(function (r) {
-          return '<tr><td class="t">' + esc(r[0].replace(/^https?:\/\/[^/]+/, "")) +
+          return '<tr><td class="t">' + pageLabel(r[0]) +
             '</td><td class="num">' + n(r[1]) + '</td><td class="num">' + n(r[2]) +
             '</td><td class="num">' + r[3] + "</td></tr>";
         }), "페이지 데이터 없음"));
@@ -404,14 +448,29 @@ function render() {
     });
   H.push(table([["출처", 0], ["참여", 1], ["세션", 1], ["PV", 1], ["체류", 1]], srows));
   H.push("</div><div>");
-  H.push('<h2>시간대 <span class="sub">세션 수 · 0~23시</span></h2>');
+  H.push('<h2>시간대 <span class="sub">0~23시 · 진한 막대가 사람(참여 세션)</span></h2>');
   var hr = [];
   for (var i = 0; i < 24; i++) {
-    hr.push({ bg: a.hours[String(i)] || a.hours[("0" + i).slice(-2)] || 0,
-              fg: 0, label: i % 3 === 0 ? i : "" });
+    var hv = a.hours[String(i)] || a.hours[("0" + i).slice(-2)] || [0, 0];
+    hr.push({ bg: hv[0], fg: hv[1], label: i % 3 === 0 ? i : "" });
   }
   H.push(bars(hr, { h: 110, fs: 14 }));
   H.push("</div></div>");
+
+  // 사람이 실제로 들어온 날짜와 시각. 시간대 차트는 기간을 뭉개므로 "요즘 언제 오나"를
+  // 못 보여준다 — 참여 세션이 있었던 시각만 최근 순으로 늘어놓는다.
+  H.push('<h2>최근 방문 <span class="sub">참여 세션이 있었던 날짜와 시각 · 최근 순</span></h2>');
+  var vrows = a.visits.slice().reverse().map(function (v) {
+    var dt = new Date(v.date + "T00:00:00");
+    var wd = ["일", "월", "화", "수", "목", "금", "토"][dt.getDay()];
+    return "<tr><td>" + esc(v.date.slice(5).replace("-", "/")) + " (" + wd + ")</td>" +
+      "<td>" + v.hours.map(function (h) {
+        return '<span class="tag' + (h >= 22 || h <= 5 ? " ret" : "") + '">' + h + "시</span>";
+      }).join(" ") + '</td><td class="num">' + n(v.engaged) + "</td></tr>";
+  });
+  H.push(table([["날짜", 0], ["방문 시각", 0], ["참여 세션", 1]], vrows,
+               "참여 세션이 있었던 날이 없습니다"));
+  H.push('<p class="note">초록 칩은 밤·새벽(22~5시)입니다. 알림 발송 시각을 정할 때 쓰는 축입니다.</p>');
 
   H.push('<h2>방문자 <span class="sub">도시 · 기기 · 브라우저</span></h2>');
   var arows = Object.keys(a.aud).map(function (k) { return [k, a.aud[k]]; })
@@ -459,10 +518,38 @@ function render() {
           (k <= 3 ? ' <span class="tag">빈손에 가까움</span>' : "") +
           '</td><td class="num">' + n(a.results[k]) + "</td></tr>";
       }), "맞춤측정기준 f_results 데이터 없음"));
+  H.push("</div></div>");
+
+  // 축별 집계로는 "지휘를 켰더니 1건"을 못 본다 — 조합을 통째로 봐야 나온다.
+  H.push('<h2>무엇을 켰을 때 빈손이었나 <span class="sub">필터 조합별 결과 건수 · 적은 순</span></h2>');
+  var crows = Object.keys(a.combos).map(function (k) { return [k.split(""), a.combos[k]]; })
+    .sort(function (x, y) { return x[1].min - y[1].min || y[1].n - x[1].n; })
+    .map(function (r) {
+      var p = r[0], c = r[1];
+      var parts = [];
+      if (p[0]) parts.push("직종 " + p[0].replace(/\|/g, "+"));
+      if (p[1]) parts.push("악기 " + p[1].replace(/\|/g, "+"));
+      if (p[2]) parts.push("지역 " + p[2].replace(/\|/g, "+"));
+      if (p[3]) parts.push(p[3].replace(/\|/g, "+"));
+      if (p[4]) parts.push('검색 "' + p[4] + '"');
+      var span = (c.min === c.max) ? n(c.min) : n(c.min) + "~" + n(c.max);
+      return "<tr" + (c.max <= 3 ? ' class="bot"' : "") + '><td class="t">' +
+        (parts.length ? esc(parts.join(" · ")) : "<i>조건 없음</i>") + "</td>" +
+        '<td class="num">' + span + "건" +
+        (c.max === 0 ? ' <span class="tag">빈손</span>' :
+         c.max <= 3 ? ' <span class="tag">거의 빈손</span>' : "") +
+        '</td><td class="num">' + n(c.n) + "회</td></tr>";
+    });
+  H.push(table([["켠 필터", 0], ["결과", 1], ["횟수", 1]], crows,
+    "필터 조합 데이터 없음 — 2026-08-19 이후 수집분부터 쌓입니다"));
+  H.push('<p class="note">결과가 적었던 조합이 곧 채워야 할 칸입니다. ' +
+         '0건(filter_empty)만 보면 1건짜리 헛걸음이 통째로 안 보입니다.</p>');
+
+  H.push('<div class="grid2"><div>');
   if (all) H.push('<p class="note">결과 건수가 기록된 필터 ' + n(all) + '건 중 <b>' + n(thin) +
     '건(' + pct(thin, all) + ')</b>이 3건 이하였습니다. 0건(filter_empty)만 세면 안 보이는 ' +
     '결핍입니다. (맞춤측정기준 집계라 위 KPI 의 filter_use 이벤트 수와 몇 건 어긋날 수 있습니다)</p>');
-  H.push("</div></div>");
+  H.push("</div><div></div></div>");
 
   H.push('<h2>많이 열린 공고 <span class="sub">job_view · 제목은 official/archive 에서 붙임</span></h2>');
   H.push(table([["공고", 0], ["기관", 0], ["지역", 0], ["열람", 1]],
@@ -487,7 +574,7 @@ function render() {
     Object.keys(a.pages).map(function (k) { return [k, a.pages[k]]; })
       .sort(function (x, y) { return y[1][1] - x[1][1] || y[1][0] - x[1][0]; })
       .map(function (r) {
-        return '<tr><td class="t">' + esc(r[0]) + '</td><td class="num">' + n(r[1][0]) +
+        return '<tr><td class="t">' + pageLabel(r[0]) + '</td><td class="num">' + n(r[1][0]) +
           '</td><td class="num">' + dur(r[1][1]) + "</td></tr>";
       })));
   H.push('<h2>이벤트</h2>');
