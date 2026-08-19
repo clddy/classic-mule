@@ -185,18 +185,22 @@ function boot() {
   loadJobs();
   var isLocal = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
   var key = getKey();
-  var first = key ? loadRemote(key) : (isLocal ? loadLocal() : Promise.reject({ status: 401 }));
+  // 열쇠를 넣은 적이 없는 첫 방문에 '열쇠가 맞지 않습니다'가 뜨면 틀린 안내다.
+  // 아래 catch 가 이 표시로 '시도했다 vs 아직 없다'를 구분한다.
+  var first = key ? loadRemote(key)
+                  : (isLocal ? loadLocal() : Promise.reject({ status: 0, virgin: true }));
   first.then(apply).catch(function (e) {
     // 열쇠가 틀렸거나 없다 → 로컬이면 파일 경로로 한 번 더 시도해 본다
     if (isLocal) {
       loadLocal().then(apply).catch(function () {
-        showGate(e.status === 401 ? "열쇠가 맞지 않습니다." : "");
+        showGate(e.status === 401 ? "저장된 열쇠가 맞지 않습니다 — 다시 넣어 주세요." : "");
       });
       return;
     }
-    showGate(e.status === 401 ? "열쇠가 맞지 않습니다."
+    showGate(e.virgin ? ""
+             : e.status === 401 ? "저장된 열쇠가 맞지 않습니다 — 다시 넣어 주세요."
              : e.status === 404 ? "아직 올라온 데이터가 없습니다 (PC에서 dash_upload.py 실행)."
-             : "");
+             : "연결 실패 — " + (e.message || ""));
   });
 }
 
