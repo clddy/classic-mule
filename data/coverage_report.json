@@ -377,12 +377,12 @@
  ],
  "master": {
   "total": 604,
-  "covered": 4,
-  "gapCount": 600,
+  "covered": 3,
+  "gapCount": 601,
   "byCategory": {
    "대학": {
     "total": 77,
-    "covered": 1
+    "covered": 0
    },
    "교육대": {
     "total": 10,
@@ -527,6 +527,11 @@
     "name": "서울신학대학교",
     "cat": "대학",
     "region": "경기"
+   },
+   {
+    "name": "한국교원대학교",
+    "cat": "대학",
+    "region": "충북"
    },
    {
     "name": "가천대학교",
