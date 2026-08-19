@@ -351,6 +351,48 @@ def check_dates(rep, items, today):
                 f"마감 지난 공고가 {len(closed)}/{len(items)}건 ({round(len(closed) / len(items) * 100)}%) — 접수중 공고가 거의 없음")
 
 
+def check_sitemap(rep):
+    """구글 서치콘솔에 사이트맵이 등록돼 있고 정상 처리되는가.
+
+    사이트맵 제출은 한 번 하면 끝인 줄 알기 쉽지만, 조용히 깨지는 축에 속한다 —
+    파일이 404가 되거나, 구글이 읽다 오류를 내거나, 속성에서 등록이 빠져도 아무 신호가 없다.
+    색인이 안 되는 이유를 몇 주 뒤에야 알게 되는 게 제일 나쁘다 (2026-08-19 최초 제출).
+    서비스 계정(인덱싱 API용)이 속성 소유자라 조회까지 자동으로 된다.
+    """
+    key = Path(__file__).resolve().parent / ".secrets" / "gcp-indexing.json"
+    if not key.exists():
+        return
+    try:
+        from google.oauth2 import service_account
+        import google.auth.transport.requests as gt
+        import urllib.parse
+        cred = service_account.Credentials.from_service_account_file(
+            str(key), scopes=["https://www.googleapis.com/auth/webmasters"])
+        cred.refresh(gt.Request())
+        site = urllib.parse.quote("https://podiumclassical.kr/", safe="")
+        r = requests.get(f"https://www.googleapis.com/webmasters/v3/sites/{site}/sitemaps",
+                         headers={"Authorization": f"Bearer {cred.token}"}, timeout=30)
+        if r.status_code != 200:
+            rep.add("MED", "사이트맵", f"서치콘솔 조회 실패 (HTTP {r.status_code})")
+            return
+        maps = r.json().get("sitemap", [])
+        if not maps:
+            rep.add("HIGH", "사이트맵", "서치콘솔에 등록된 사이트맵이 없다 — 재제출 필요")
+            return
+        for m in maps:
+            errs, warns = int(m.get("errors", 0)), int(m.get("warnings", 0))
+            submitted = sum(int(c.get("submitted", 0)) for c in m.get("contents", []))
+            if errs:
+                rep.add("HIGH", "사이트맵", f"구글이 사이트맵에서 오류 {errs}건 — {m.get('path')}")
+            elif warns:
+                rep.add("MED", "사이트맵", f"사이트맵 경고 {warns}건 — {m.get('path')}")
+            else:
+                rep.add("LOW", "사이트맵", f"정상 (URL {submitted}건, 마지막 처리 "
+                                           f"{(m.get('lastDownloaded') or '?')[:10]})")
+    except Exception as e:
+        rep.add("LOW", "사이트맵", f"점검 건너뜀 — {type(e).__name__}")
+
+
 def check_links(rep, items, hist, today):
     """유저가 실제로 누를 링크(접수중)만 찔러본다. 404면 신뢰가 바로 깨진다.
 
@@ -542,6 +584,7 @@ def main():
 
     # 1순위 — 파서
     check_freshness(rep, doc, doc_src)
+    check_sitemap(rep)
     check_sources(rep, doc, hist, today)
     check_total(rep, doc, hist, today)
     check_fields(rep, items)
