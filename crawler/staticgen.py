@@ -18,6 +18,9 @@ import re
 import sys
 from datetime import date
 
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from slug import build as build_slug  # noqa: E402
+
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # podium/
 SITE = "https://podiumclassical.kr"
 # js/jobs.js PORTAL_RE와 같은 목록 — 두 곳이 어긋나면 한쪽에서만 포털 링크가 샌다
@@ -199,6 +202,36 @@ def build_description(j):
     return (head + (" " + ", ".join(keep) + "." if keep else "")).strip()[:110]
 
 
+
+# JSON-LD 보강 (작업 C) — 결측 키는 넣지 않는다(빈 문자열 금지), 화면에 없는 정보는 만들지 않는다.
+_PAY_UNIT = [(r"시급|시간\s*당", "HOUR"), (r"일당|일\s*급", "DAY"),
+             (r"주급|주\s*당", "WEEK"), (r"월급|월\s*액|월\s*보수|세전\s*월|월\s*\d", "MONTH"),
+             (r"연봉|연\s*급", "YEAR")]
+# 직무 → 고용형태. 확실한 것만 매긴다 — 모르면 키 자체를 생략한다.
+_EMP = {"교수": "PART_TIME", "강사": "PART_TIME", "단원": "PART_TIME",
+        "객원·대체": "TEMPORARY", "직원": "FULL_TIME", "교원": "CONTRACTOR"}
+
+
+def _base_salary(j):
+    """baseSalary — 금액과 단위를 둘 다 읽었을 때만 만든다."""
+    pay = j.get("pay")
+    if not pay:
+        return None
+    t = re.sub(r"\s+", " ", str(pay))
+    m = re.search(r"([\d,]+)\s*(만\s*)?원", t)
+    if not m:
+        return None
+    try:
+        won = int(m.group(1).replace(",", "")) * (10000 if m.group(2) else 1)
+    except ValueError:
+        return None
+    unit = next((u for pat, u in _PAY_UNIT if re.search(pat, t)), None)
+    if not unit or won < 1000:
+        return None                      # 단위 불명이면 생략 (작업 C 규칙)
+    return {"@type": "MonetaryAmount", "currency": "KRW",
+            "value": {"@type": "QuantitativeValue", "value": won, "unitText": unit}}
+
+
 def _jsonld(j):
     d = {"@context": "https://schema.org", "@type": "JobPosting",
          "title": j["title"],
@@ -209,6 +242,14 @@ def _jsonld(j):
          "description": build_description(j)}
     if j.get("deadline"):
         d["validThrough"] = j["deadline"]
+    sal = _base_salary(j)
+    if sal:
+        d["baseSalary"] = sal
+    emp = _EMP.get(j.get("kind") or "")
+    if emp:
+        d["employmentType"] = emp
+    if j.get("addr"):                     # 주소를 아는 공고는 지역보다 정확하게 적는다
+        d["jobLocation"]["address"]["streetAddress"] = j["addr"]
     return json.dumps(d, ensure_ascii=False)
 
 
@@ -226,6 +267,36 @@ def _dday_bucket(j, today):
     if d <= 7: return "D4-7"
     if d <= 30: return "D8-30"
     return "D30+"
+
+
+
+STUB_MARK = "<!-- podium:redirect-stub -->"
+
+_STUB_TMPL = """<!DOCTYPE html>
+<html lang="ko">
+<head>{mark}
+<meta charset="UTF-8">
+<meta http-equiv="refresh" content="0; url={url}">
+<meta name="robots" content="noindex, follow">
+<link rel="canonical" href="{url}">
+<title>{title} — 포디엄</title>
+</head>
+<body>
+<p>이 공고는 <a href="{url}">{title}</a> 로 옮겨졌습니다.</p>
+</body>
+</html>
+"""
+
+
+def _stub_page(j, new_slug):
+    """옛 주소에 남기는 리다이렉트 스텁 (GitHub Pages 는 서버 리다이렉트가 안 된다).
+
+    meta refresh 0초로 즉시 옮기고, canonical 로 새 주소가 정본임을 알리고, noindex 로
+    이 껍데기가 검색결과에 남지 않게 한다. 본문 링크 한 줄은 리프레시가 막힌 환경에서도
+    길이 끊기지 않게 하려는 것이다 (작업 B, 2026-08-20).
+    """
+    return _STUB_TMPL.format(mark=STUB_MARK, url=f"{SITE}/p/{new_slug}.html",
+                             title=esc(j["title"]))
 
 
 def _detail_page(j, today):
@@ -262,7 +333,7 @@ def _detail_page(j, today):
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{esc(j['title'])} — 포디엄</title>
   <meta name="description" content="{desc}">
-  <link rel="canonical" href="{SITE}/p/{j['id']}.html">
+  <link rel="canonical" href="{SITE}/p/{build_slug(j)}.html">
   <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
   <link rel="apple-touch-icon" href="../apple-touch-icon.png">
   <meta name="theme-color" content="#7a2a38">
@@ -270,7 +341,7 @@ def _detail_page(j, today):
   <meta property="og:site_name" content="포디엄">
   <meta property="og:title" content="{esc(j['title'])} — {esc(j.get('org'))}">
   <meta property="og:description" content="{desc}">
-  <meta property="og:url" content="{SITE}/p/{j['id']}.html">
+  <meta property="og:url" content="{SITE}/p/{build_slug(j)}.html">
   <meta property="og:image" content="{SITE}/og-image.png">
   <meta property="og:locale" content="ko_KR">
   <meta name="twitter:card" content="summary_large_image">
@@ -323,27 +394,42 @@ def generate(base=BASE):
         return (1, "") if not (j.get("deadlineNote") == "상시" or j.get("obri")) else (2, "")
     items.sort(key=key)
 
-    # 1) 상세 페이지 — p/ 를 현재 공고로 전면 재생성 (내려간 공고 페이지는 제거)
+    # 1) 상세 페이지 — 사람이 읽을 수 있는 슬러그로 (작업 B, 2026-08-20)
     pdir = os.path.join(base, "p")
     os.makedirs(pdir, exist_ok=True)
+    slugs = {j["id"]: build_slug(j) for j in items}
+    keep = {sl + ".html" for sl in slugs.values()}
+    # 옛 주소(/p/{id}.html)는 지우지 않는다 — 색인·북마크가 물려 있어 스텁으로 남긴다.
+    # 스텁은 내용의 마커로 식별하고, 그 밖의 낡은 파일만 정리한다.
     for f_ in os.listdir(pdir):
-        if f_.endswith(".html"):
-            os.remove(os.path.join(pdir, f_))
+        if not f_.endswith(".html") or f_ in keep:
+            continue
+        fp = os.path.join(pdir, f_)
+        try:
+            with open(fp, encoding="utf-8") as fh:
+                if STUB_MARK in fh.read(400):
+                    continue
+        except OSError:
+            pass
+        os.remove(fp)
     for j in items:
-        with open(os.path.join(pdir, f"{j['id']}.html"), "w", encoding="utf-8") as f:
+        with open(os.path.join(pdir, slugs[j["id"]] + ".html"), "w", encoding="utf-8") as f:
             f.write(_detail_page(j, today))
+        if j["id"] + ".html" not in keep:
+            with open(os.path.join(pdir, j["id"] + ".html"), "w", encoding="utf-8") as f:
+                f.write(_stub_page(j, slugs[j["id"]]))
 
     # 2) 목록 정적 삽입 — 카드는 정적 상세 페이지로 링크 (검색 봇의 착지 경로)
     _inject(os.path.join(base, "jobs.html"), "LIST",
-            "".join(_card(j, today, f"p/{j['id']}.html") for j in items))
+            "".join(_card(j, today, f"p/{slugs[j['id']]}.html") for j in items))
     recent = sorted(items, key=lambda j: str(j.get("date") or j.get("firstSeen") or ""), reverse=True)[:8]
     _inject(os.path.join(base, "index.html"), "RECENT",
-            "".join(_card(j, today, f"p/{j['id']}.html") for j in recent))
+            "".join(_card(j, today, f"p/{slugs[j['id']]}.html") for j in recent))
 
     # 3) sitemap + robots
     lastmod = (doc.get("collectedAt") or today.isoformat())[:10]
     urls = [f"{SITE}/{p}" for p in ("", "jobs.html", "practice.html", "about.html", "sources.html", "privacy.html")]
-    urls += [f"{SITE}/p/{j['id']}.html" for j in items]
+    urls += [f"{SITE}/p/{slugs[j['id']]}.html" for j in items]
     with open(os.path.join(base, "sitemap.xml"), "w", encoding="utf-8") as f:
         f.write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n')
         f.write("".join(f"<url><loc>{u}</loc><lastmod>{lastmod}</lastmod></url>\n" for u in urls))
