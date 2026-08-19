@@ -1,5 +1,5 @@
 {
- "date": "2026-08-18",
+ "date": "2026-08-19",
  "total": 75,
  "covered": 1,
  "gapCount": 74,
@@ -377,8 +377,8 @@
  ],
  "master": {
   "total": 604,
-  "covered": 2,
-  "gapCount": 602,
+  "covered": 4,
+  "gapCount": 600,
   "byCategory": {
    "대학": {
     "total": 77,
@@ -390,11 +390,11 @@
    },
    "예술단": {
     "total": 54,
-    "covered": 1
+    "covered": 2
    },
    "지자체": {
     "total": 323,
-    "covered": 0
+    "covered": 1
    },
    "공연장": {
     "total": 69,
@@ -920,11 +920,6 @@
    },
    {
     "name": "과천시립교향악단",
-    "cat": "예술단",
-    "region": "경기"
-   },
-   {
-    "name": "양주시립교향악단",
     "cat": "예술단",
     "region": "경기"
    },
@@ -3075,11 +3070,6 @@
    },
    {
     "name": "남양주시문화재단",
-    "cat": "지자체",
-    "region": "경기"
-   },
-   {
-    "name": "양주시문화재단",
     "cat": "지자체",
     "region": "경기"
    },

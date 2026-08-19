@@ -466,7 +466,9 @@ def notify(text):
 # 판정만 하고 수정하지 않는다 — 자동 수정은 오염을 만들 수 있어 사람 확인 큐로만 보낸다.
 _SIG2FIELD = [
     (re.compile(r"접수\s*기간|원서\s*접수|접수\s*마감|제출\s*기한"), "deadline", "마감"),
-    (re.compile(r"보수|급여|임금|사례비|시급|월급"),                    "pay",      "급여"),
+    # 낱말만으로 찾으면 워크넷류 사이트 UI('육아휴직급여·최저임금위원회')가 걸려 숙지고처럼
+    # 원문에 보수 표기가 없는 공고까지 [미추출]로 오탐한다 (2026-08-19) — 라벨 꼴만 인정
+    (re.compile(r"(?:보수|급여|임금|사례비)\s*[:：/]|보수\s*금?액|시\s*급\s*[:：]?\s*[\d,]"),  "pay", "급여"),
     (re.compile(r"근무\s*기간|채용\s*기간|계약\s*기간"),             "workPeriod", "근무기간"),
     (re.compile(r"모집\s*분야|담당\s*업무"),                          "duty",     "분야"),
 ]
@@ -561,10 +563,13 @@ def main():
                             f"마감({d})이 게시({g})+60일 초과 — {i.get('title','')[:26]}")
             except ValueError:
                 pass
-    # 원출처를 못 찾아 게시를 보류한 집계본 (워크오더 08-17 §6) — 역추적 규칙 보강 재료다
+    # 원출처를 못 찾아 게시를 보류한 집계본 (워크오더 08-17 §6) — 역추적 규칙 보강 재료다.
+    # 같은 건수가 매일 반복되면 새 정보가 아니다 — 건수가 변한 날만 알림(MED), 그대로면 로그만
     held = doc.get("heldNoOrigin") or 0
     if held:
-        rep.add("MED", "보류", f"원출처 미확인 {held}건 — 아카이브만 남기고 게시 보류")
+        sev = "MED" if held != hist.get("heldNoOrigin") else "LOW"
+        rep.add(sev, "보류", f"원출처 미확인 {held}건 — 아카이브만 남기고 게시 보류")
+    hist["heldNoOrigin"] = held
     # C7(워크오더): 역방향 감사 — 라벨은 있는데 필드가 빈 공고 (판정만, 수정 없음)
     try:
         check_unextracted(rep, items)

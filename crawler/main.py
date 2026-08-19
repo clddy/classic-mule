@@ -421,6 +421,26 @@ def _find_qualification(text):
     q = re.sub(r"(경력|학력|자격|연령|성별|우대)\s+(?=\1)", "", q)
     return q
 
+def _find_duty(text):
+    """담당업무 — 열거형('담당업무 ○ 활동 ○ 업무 …') 전용. 콜론 표기는 extract_fields 가 본다.
+
+    C7 역방향 감사에서 '분야' 미추출 12건의 대부분이 이 꼴이었다 (종로구립, 2026-08-19).
+    """
+    m = re.search(r"(?:담당\s*업무|모집\s*분야|담당\s*분야)\s*[:：]?\s*", text)
+    if not m:
+        return None
+    seg = text[m.end():m.end() + 260]
+    # 다음 번호 항목·다른 구획에서 끊는다
+    seg = re.split(r"\s\d\s*[.)]\s|근무\s*조건|지원\s*자격|응시\s*자격|제출\s*서류|전형|보수|접수", seg)[0]
+    parts = [p.strip(" .,·-–") for p in re.split(r"\s*[○ㅇ•▪◦●■□▶-]\s+", seg)]
+    parts = [p for p in parts if 4 <= len(p) <= 60
+             # 구획 머리말('공통사항')이 값으로 실렸다 (제물포, 2026-08-19) — 라벨성 낱말 기각
+             and not re.match(r"^(?:및|등|참가|참여|공통\s*사항|세부\s*내용|유의\s*사항|기타\s*사항?)$", p)]
+    if not parts:
+        return None
+    return ", ".join(parts[:2])
+
+
 def _find_personnel_body(text):
     """모집인원(표 없이 본문에만 있을 때) — 라벨 우선, 없으면 '○○ N명 모집'"""
     seg = _seg_after(text, r"모집 ?인원|채용 ?인원|선발 ?인원|모집 ?정원|T\.?O\.?", 24)
@@ -988,6 +1008,10 @@ def _refill_from_raw(items, today):
             c = extract_contact(_raw)
             if c:
                 it["contact"] = c
+        if not it.get("duty"):
+            dv = _find_duty(_raw)
+            if dv:
+                it["duty"] = dv
         # 이메일 — 학교·교회 공고는 이메일 접수가 많다 (워크오더 08-16 §5). 집계 포털
         # 직접게시의 applyEmail(지원 이메일 행이 따로 있다)과 겹치면 중복 표기라 건너뛴다.
         if not it.get("email"):
@@ -1159,6 +1183,8 @@ _SUSPECT = [
     # 문장 중간을 뚝 잘라 온 값 — '자는 관련 법률…', '여부, 학력사항…' 처럼 조사·꼬리말로
     # 시작하면 어떤 항목의 값도 아니다 (2026-08-12 전라중·상일미디어고)
     ("문장 조각",         re.compile(r"^(?:자는|자로서|여부|하는|되는|또는|및|등|의|을|를)[\s,]")),
+    # 구획 머리말이 통째로 값이 된 경우 — '공통사항' 하나만 남으면 정보가 0이다 (제물포, 2026-08-19)
+    ("라벨성 값",         re.compile(r"^(?:공통\s*사항|세부\s*내용|유의\s*사항|기타\s*사항)$")),
 ]
 # 법령 인용은 통째로 버리지 않고 그 앞까지만 남긴다 — '만 34세 이하(1991.1.1. 이후 출생자)
 # (* 청년고용촉진특별법 제2조 준용)' 에서 앞부분은 지원자에게 필요한 정보다 (2026-08-11).
