@@ -219,7 +219,7 @@ def _detail_page(j, today):
   <meta name="twitter:card" content="summary_large_image">
   <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Cormorant:wght@500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/style.css?v=16">
-  <script src="../js/analytics.js?v=7" defer></script>
+  <script src="../js/analytics.js?v=8" defer></script>
   <script type="application/ld+json">{_jsonld(j)}</script>
 </head>
 <body>

@@ -71,6 +71,18 @@ UI 어휘 금지: 급구·구직·오브리·대타 (교회 상시 포지션은 
 - **헬스체크의 진실의 원천은 배포된 데이터다** — 크롤이 Actions로 간 뒤 로컬 official.json은
   git pull 전까지 낡은 채로 남는다. `health_check.load_doc()`이 배포본이 더 최신이면 그걸
   점검한다(안 그러면 매일 '크롤 안 돌았다' 오탐 + 낡은 데이터로 파서 baseline 판정).
+- **우리 헬스체크가 GA 최대 방문자였다 (2026-08-19)** — health_site.py가 배포된 사이트를
+  Playwright로 `networkidle`까지 렌더하니 analytics.js도 그대로 실행돼 GA로 쐈다. 매 실행이
+  새 컨텍스트라 client_id가 매번 새로 발급돼 **'신규 사용자'로만 쌓였다**(2026-08-06~19 전체
+  세션의 47%). 기기 단위 제외(pd_optout, localStorage)로는 절대 못 막는다 — 컨텍스트가 매번
+  새로 생기고 `_check_submit`은 localStorage.clear()까지 한다. UA에 `PodiumHealthCheck` 마커를
+  박고 analytics.js가 그걸 보고 끈다. **문자열을 바꾸면 양쪽을 같이 고칠 것.**
+  일반화: 배포된 사이트를 실제 브라우저로 여는 자동화는 전부 계측을 오염시킨다고 보고 의심할 것.
+  그리고 GA4는 지난 데이터를 소급 삭제·필터할 수 없어, 오염된 기간은 영구히 오염이다.
+- **로그 출력이 터져서 성공이 실패로 집계될 수 있다 (2026-08-19 traffic.py)** — cp949 콘솔에서
+  한글 로그의 em-dash 하나에 print가 UnicodeEncodeError를 냈고, 그게 수집 try/except에 걸려
+  13일 전부 '수집 실패'로 찍혔다(데이터는 멀쩡히 저장돼 있었다). 스크립트 머리에
+  `sys.stdout.reconfigure(encoding="utf-8")`를 두고, **저장·출력은 수집 try 밖에서** 할 것.
 - **자동화 스크립트는 실패를 삼키지 말 것** — `& python x.py` 다음 줄로 그냥 넘어가면 스크립트가
   exit 0으로 끝나고 스케줄러는 '성공'이라 보고한다. 단계마다 `$LASTEXITCODE`를 보고, 결과 파일이
   실제로 갱신됐는지까지 확인할 것.
@@ -88,7 +100,15 @@ UI 어휘 금지: 급구·구직·오브리·대타 (교회 상시 포지션은 
   머리말 없으면 침묵 — 오디션 곡목을 악기로 오인하지 않기 위함). EXT_VER 32.
 - 계측: js/analytics.js (GA4, `PODIUM_GA_ID` 한 곳 기입, 비면 전부 no-op).
   이벤트 사전은 analytics.js 머리말 — traffic.py와 이름을 맞춘다. crawler/traffic.py가
-  매일 어제치를 data/traffic.json에 누적(gitignore, 미설정 시 자동 스킵).
+  매일 data/traffic.json에 누적(gitignore, 미설정 시 자동 스킵). **빠진 날은 스스로 메운다** —
+  저장 안 됐거나 옛 형식(`v` < SCHEMA)인 날을 FIRST_DAY부터 훑어 다시 당긴다(`--from`으로 시작일 지정).
+  담는 축: totals·events·pages·sources·audience(도시x기기xOSx브라우저x신규재방문)·hours·
+  jobs(공고별 열람)·filters(수요 신호)·jobmeta. 맞춤측정기준은 ga4_dimensions.py로 등록하며
+  **등록 이전 기간엔 소급 적용되지 않는다**(그 기간은 영영 (not set)).
+- 화면은 `local/analytics.html` — traffic.json 하나만 읽는다. local/도 traffic.json도 gitignore다
+  (방문 통계는 공개 저장소에 올리지 않는다). `podium-static` 서버로 열 것: file://은 fetch가 막힌다.
+  **헤드라인은 전부 참여세션(engagedSessions)** — 봇 목록을 손으로 관리하지 않는다.
+  헬스체크도 스캐너도 참여세션이 0이라 저절로 갈리고, 새 봇이 와도 고칠 게 없다.
 - run_daily.ps1이 crawler/도 커밋한다 — 코드가 로컬에만 쌓여 Actions가 낡은 추출기로
   돌던 사고(attach.py 7일) 방지.
 

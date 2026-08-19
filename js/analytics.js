@@ -70,18 +70,30 @@ window.PODIUM_GA_ID = "G-BVYPBWD5DH";
 
   // 개발용 접속(로컬 프리뷰·사설망·file://)은 언제나 제외. 실측정 ID가 붙은 뒤로는
   // localhost 테스트도 실제 데이터를 오염시킨다.
+  // ---------- 헬스체크 자기 트래픽 제외 (2026-08-19) ----------
+  // crawler/health_site.py 가 배포된 사이트를 Playwright(iPhone UA)로 매일 21:30 렌더한다 —
+  // networkidle 까지 기다리므로 이 스크립트도 그대로 실행돼 GA 로 쏜다. 2026-08-06~19 사이
+  // 전체 세션의 절반(55/117)이 그 헬스체크였고, 매 실행이 새 컨텍스트라 '신규 사용자 55명'으로
+  // 잡혀 방문자 통계를 통째로 왜곡했다. localStorage 방식(pd_optout)으로는 못 막는다 —
+  // 컨텍스트가 매번 새로 만들어지는 데다 _check_submit 은 localStorage.clear() 까지 한다.
+  // 그래서 UA 에 마커를 박고 여기서 본다 (health_site.py 의 _UA_MARK 와 같은 문자열).
+  var isHealthCheck = /PodiumHealthCheck/.test(navigator.userAgent || "");
+
   var h = location.hostname;
   var isDev = location.protocol === "file:" ||
               /^(localhost|127\.|0\.0\.0\.0|::1|192\.168\.|10\.|172\.(1[6-9]|2\d|3[01])\.)/.test(h);
 
   var enabled = ID && /^G-[A-Z0-9]+$/.test(ID) &&
-                location.protocol.indexOf("http") === 0 && !isDev && !optout;
+                location.protocol.indexOf("http") === 0 && !isDev && !optout && !isHealthCheck;
   // 제외 상태를 눈으로 확인할 수 있게 (운영자 전용 — 일반 방문자는 볼 일이 없다)
-  if (optout || isDev) {
-    try { console.info("[포디엄] 계측 제외됨 —", optout ? "이 기기 제외 설정" : "개발용 접속"); } catch (e) {}
+  if (optout || isDev || isHealthCheck) {
+    try {
+      console.info("[포디엄] 계측 제외됨 —",
+        isHealthCheck ? "헬스체크" : (optout ? "이 기기 제외 설정" : "개발용 접속"));
+    } catch (e) {}
   }
   window.podiumTrackingStatus = function () {
-    return { enabled: enabled, optout: optout, isDev: isDev, id: ID };
+    return { enabled: enabled, optout: optout, isDev: isDev, healthCheck: isHealthCheck, id: ID };
   };
 
   // 계측 꺼짐이어도 pdEvent 는 항상 존재해야 한다 — 호출부가 가드 없이 쓰도록

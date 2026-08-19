@@ -9,6 +9,15 @@ import requests
 
 BASE = "https://podiumclassical.kr"
 
+# 이 마커가 UA 에 있으면 js/analytics.js 가 계측을 끈다 (2026-08-19).
+# 안 붙이면 매일 21:30 의 이 점검이 GA 에 '신규 방문자'로 쌓여 통계를 망친다 —
+# 실제로 2026-08-06~19 전체 세션의 47%(55/117)가 이 헬스체크였다.
+# ⚠ 문자열을 바꾸면 js/analytics.js 의 isHealthCheck 정규식도 같이 바꿀 것.
+_UA_MARK = " PodiumHealthCheck/1"
+_UA_MOBILE = ("Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) "
+              "AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 "
+              "Mobile/15E148 Safari/604.1" + _UA_MARK)
+
 # 데이터 파일 하나가 깨지면 그 페이지 전체가 빈 화면이 된다 — 치명적이라 개별 확인.
 DATA_FILES = [
     "data/official.json",
@@ -89,9 +98,7 @@ def check_pages(rep):
 
 def _check_one(rep, browser, path, must):
     ctx = browser.new_context(viewport={"width": 375, "height": 812},  # 폰 기준
-                              user_agent=("Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X) "
-                                          "AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.0 "
-                                          "Mobile/15E148 Safari/604.1"))
+                              user_agent=_UA_MOBILE)
     page = ctx.new_page()
     errors, failed = [], []
     page.on("console", lambda m: errors.append(m.text) if m.type == "error" else None)
@@ -141,7 +148,8 @@ def _check_submit(rep, browser):
     "Step1 '구인' 버튼이 없다" 오검출.)
     등록된 글은 이 헤드리스 브라우저의 localStorage에만 남고 세션 종료 시 사라진다.
     """
-    ctx = browser.new_context(viewport={"width": 390, "height": 844})
+    ctx = browser.new_context(viewport={"width": 390, "height": 844},
+                              user_agent=_UA_MOBILE)
     page = ctx.new_page()
     errors = []
     page.on("pageerror", lambda e: errors.append(str(e)))
