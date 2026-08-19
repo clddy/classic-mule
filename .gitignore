@@ -24,6 +24,8 @@ data/demand_map.md
 data/inst_gap.md
 # 방문 통계는 로컬 전용 — 공개 저장소(Pages)에 사이트 분석 데이터를 올리지 않는다
 data/traffic.json
+# 검색 노출·검색어도 같은 이유로 로컬 전용
+data/search.json
 
 # 메일 발송 도구는 로컬 전용 (커밋 금지 약속)
 tools/

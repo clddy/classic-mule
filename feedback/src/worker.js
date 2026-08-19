@@ -23,13 +23,15 @@ const ALLOW_ORIGINS = [
   "https://clddy.github.io",
   "http://localhost:4174",
   "http://localhost:4175",
+  "http://localhost:8791",   // 대시보드 로컬 확인용 (podium-static)
+  "http://localhost:4173",
 ];
 
 function cors(origin) {
   const allow = ALLOW_ORIGINS.includes(origin) ? origin : ALLOW_ORIGINS[0];
   return {
     "Access-Control-Allow-Origin": allow,
-    "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+    "Access-Control-Allow-Methods": "GET, POST, PUT, OPTIONS",
     "Access-Control-Allow-Headers": "Content-Type, X-Admin-Key",
     "Access-Control-Max-Age": "86400",
   };
@@ -183,6 +185,44 @@ async function mark(req, url, env, origin, read) {
   return json({ ok: true }, 200, origin);
 }
 
+// ── 방문 대시보드 데이터 (2026-08-19) ────────────────────────────────────────
+// 왜 여기 있나: 사이트 저장소가 public 이라 data/traffic.json 을 커밋하면 방문자 수·
+// 검색 유입·어떤 공고가 읽히는지가 통째로 공개된다(.gitignore 가 그래서 막고 있다).
+// 그렇다고 로컬 서버를 띄워야만 보이면 실제로 안 보게 된다 — 화면(analytics.html)은
+// 공개 사이트에 두고 **데이터만** 열쇠로 여기서 받아 간다. 피드백 수신함과 같은 구조다.
+//
+// PC 가 매일(crawler/dash_upload.py) 올리고, 브라우저가 열쇠로 받아 간다.
+// KV 값 1MB 제한이 있어 traffic+search 합본만 둔다 — 지금 30KB 남짓이라 여유가 크다.
+const DASH_KEY = "dash:latest";
+const DASH_MAX = 900 * 1024;
+
+async function dashPut(req, url, env, origin) {
+  if (!keyOk(adminKey(req, url), env.ADMIN_KEY)) {
+    return json({ ok: false, error: "열쇠가 맞지 않습니다" }, 401, origin);
+  }
+  const body = await req.text();
+  if (body.length > DASH_MAX) {
+    return json({ ok: false, error: "너무 큼 " + body.length }, 413, origin);
+  }
+  try { JSON.parse(body); } catch (e) {
+    return json({ ok: false, error: "JSON 아님" }, 400, origin);
+  }
+  await env.FEEDBACK.put(DASH_KEY, body);
+  return json({ ok: true, bytes: body.length }, 200, origin);
+}
+
+async function dashGet(req, url, env, origin) {
+  if (!keyOk(adminKey(req, url), env.ADMIN_KEY)) {
+    return json({ ok: false, error: "열쇠가 맞지 않습니다" }, 401, origin);
+  }
+  const v = await env.FEEDBACK.get(DASH_KEY);
+  if (!v) return json({ ok: false, error: "아직 올라온 데이터가 없습니다" }, 404, origin);
+  return new Response(v, {
+    status: 200,
+    headers: { "Content-Type": "application/json; charset=utf-8", ...cors(origin) },
+  });
+}
+
 export default {
   async fetch(req, env) {
     const url = new URL(req.url);
@@ -194,6 +234,8 @@ export default {
     if (url.pathname === "/api/diag" && req.method === "GET") return diag(req, url, env, origin);
     if (url.pathname === "/api/read" && req.method === "POST") return mark(req, url, env, origin, true);
     if (url.pathname === "/api/unread" && req.method === "POST") return mark(req, url, env, origin, false);
+    if (url.pathname === "/api/dash" && req.method === "PUT") return dashPut(req, url, env, origin);
+    if (url.pathname === "/api/dash" && req.method === "GET") return dashGet(req, url, env, origin);
 
     return json({ ok: false, error: "없는 경로" }, 404, origin);
   },

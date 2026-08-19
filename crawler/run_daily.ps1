@@ -76,6 +76,15 @@ if ($LASTEXITCODE -ne 0) { Note "warn: export_sources_md.py 종료코드 $LASTEX
 & $PY crawler\traffic.py
 if ($LASTEXITCODE -ne 0) { Note "warn: traffic.py 종료코드 $LASTEXITCODE (계속 진행)" }
 
+# 검색 노출·검색어 (Search Console) — GA4에 없는 '들어오기 전' 데이터
+& $PY crawler\gsc.py
+if ($LASTEXITCODE -ne 0) { Note "warn: gsc.py 종료코드 $LASTEXITCODE (계속 진행)" }
+
+# 대시보드용 업로드 — 방문 통계는 공개 저장소에 못 올리므로 Worker(KV)로 보낸다.
+# analytics.html이 관리자 열쇠로 이걸 받아 그린다. 열쇠 없으면 스스로 스킵.
+& $PY crawler\dash_upload.py
+if ($LASTEXITCODE -ne 0) { Note "warn: dash_upload.py 종료코드 $LASTEXITCODE (계속 진행)" }
+
 # 연습실 수집 — 서울 yeyak + 공유누리 전국 순회 + 시설 묶음 재생성.
 # 2026-08-03 사용자 지시로 매일 실행 (수분 수준이라 부담 없음).
 # (2026-08-02 이식 당시 yeyak이 스케줄에 안 들어가 3주 낡은 채 방치돼 있었다)

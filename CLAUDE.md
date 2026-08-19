@@ -105,8 +105,17 @@ UI 어휘 금지: 급구·구직·오브리·대타 (교회 상시 포지션은 
   담는 축: totals·events·pages·sources·audience(도시x기기xOSx브라우저x신규재방문)·hours·
   jobs(공고별 열람)·filters(수요 신호)·jobmeta. 맞춤측정기준은 ga4_dimensions.py로 등록하며
   **등록 이전 기간엔 소급 적용되지 않는다**(그 기간은 영영 (not set)).
-- 화면은 `local/analytics.html` — traffic.json 하나만 읽는다. local/도 traffic.json도 gitignore다
-  (방문 통계는 공개 저장소에 올리지 않는다). `podium-static` 서버로 열 것: file://은 fetch가 막힌다.
+- 검색 노출·검색어는 `crawler/gsc.py` → data/search.json (gitignore). GA4가 '들어온 뒤'라면
+  이쪽은 '들어오기 전'(노출·순위)이고, **검색어는 GA4에 아예 없어 이 경로뿐이다.**
+  자격증명은 gindex.py와 같은 서비스 계정(Search Console 소유자 등록 필요).
+  **검색어 대부분은 구글이 익명화한다** — 검색어별 노출 합이 전체 노출보다 훨씬 작은 게 정상.
+  GSC는 데이터가 2~3일 늦고 뒤늦게 정정되므로 최근 30일을 매번 다시 당겨 덮어쓴다.
+- 화면은 **https://podiumclassical.kr/analytics.html** (noindex + robots Disallow).
+  저장소가 public이라 데이터는 커밋하지 않는다 — `crawler/dash_upload.py`가 traffic+search
+  합본을 Worker KV(`/api/dash`, ADMIN_KEY)로 올리고 브라우저가 열쇠로 받아 간다.
+  피드백 수신함(admin.html)과 같은 구조이고 열쇠도 같다. localhost로 열면 열쇠 없이
+  data/*.json을 직접 읽는다(개발 경로). **대시보드를 로컬 전용으로 되돌리지 말 것** —
+  서버를 띄워야만 보이면 실제로 안 보게 된다는 게 2026-08-19 판단이다.
   **헤드라인은 전부 참여세션(engagedSessions)** — 봇 목록을 손으로 관리하지 않는다.
   헬스체크도 스캐너도 참여세션이 0이라 저절로 갈리고, 새 봇이 와도 고칠 게 없다.
 - run_daily.ps1이 crawler/도 커밋한다 — 코드가 로컬에만 쌓여 Actions가 낡은 추출기로

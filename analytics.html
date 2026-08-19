@@ -1,0 +1,496 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 검색엔진에 노출하지 않는다 (robots.txt 에도 Disallow). admin.html 과 같은 취급. -->
+<meta name="robots" content="noindex, nofollow">
+<title>방문 대시보드 — 포디엄</title>
+<!--
+  ── 왜 데이터가 이 저장소에 없는가 ─────────────────────────────────────────
+  이 저장소는 public 이라 data/traffic.json 을 커밋하면 방문자 수·검색 유입·어떤 공고가
+  읽히는지가 통째로 공개된다(.gitignore 가 그래서 막고 있다). 그렇다고 로컬 서버를
+  띄워야만 보이면 실제로는 안 보게 된다 — 그래서 **화면만 공개하고 데이터는 열쇠로** 받는다:
+
+    PC (매일 18시 run_daily)
+      crawler/traffic.py  → data/traffic.json   (GA4: 들어온 뒤)
+      crawler/gsc.py      → data/search.json    (Search Console: 들어오기 전)
+      crawler/dash_upload.py → Worker KV 에 합본 업로드
+    브라우저 (이 페이지)
+      열쇠를 넣고 GET /api/dash → 그 합본을 받아 그린다. 열쇠는 이 기기에만 저장된다.
+
+  열쇠는 피드백 수신함(admin.html)과 같은 ADMIN_KEY 다.
+  로컬에서 정적 서버로 열면 열쇠 없이 data/*.json 을 직접 읽는다(개발용 경로).
+
+  ── 이 화면의 기준 하나 ──────────────────────────────────────────────────
+  헤드라인 숫자는 전부 **참여 세션(engagedSessions)** 이다. 봇을 이름으로 걸러내는 대신
+  GA4 자신의 정의(10초 이상 머물렀거나 2페이지 이상 봤거나 전환)를 쓴다. 헬스체크도
+  데이터센터 스캐너도 참여 세션이 0이라 저절로 빠지고, 새 봇이 와도 규칙을 고칠 필요가 없다.
+  '전체 세션'은 회색으로 같이 보여준다 — 둘의 격차가 곧 봇의 크기다.
+-->
+<style>
+  :root{
+    --ivory:#fbfaf7; --paper:#fff; --wash:#f2efe7; --ink:#1b1917; --ink-soft:#736c60;
+    --line:#e4ded1; --claret:#7a2a38; --claret-tint:#f2e5e6; --green:#35674a;
+    --green-tint:#e6efe8; --grey:#9a958a; --radius:3px;
+    --serif:"Gowun Batang","Nanum Myeongjo","Batang",serif;
+    --sans:"Pretendard",-apple-system,"Malgun Gothic","Apple SD Gothic Neo",sans-serif;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--ivory);color:var(--ink);font-family:var(--sans);
+       font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+  .wrap{max-width:1080px;margin:0 auto;padding:26px 20px 90px}
+  h1{font-family:var(--serif);font-size:1.5rem;margin:0 0 2px;font-weight:600}
+  h2{font-family:var(--serif);font-size:1.05rem;margin:34px 0 10px;font-weight:600;
+     padding-bottom:6px;border-bottom:1px solid var(--line)}
+  h2 .sub{font-family:var(--sans);font-size:.76rem;font-weight:400;color:var(--ink-soft);
+          margin-left:8px}
+  .lede{color:var(--ink-soft);font-size:.84rem;margin:0 0 18px}
+
+  .bar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:0 0 22px}
+  .bar button{font:inherit;font-size:.83rem;padding:5px 13px;border:1px solid var(--line);
+    background:var(--paper);color:var(--ink-soft);border-radius:999px;cursor:pointer}
+  .bar button.on{background:var(--claret);border-color:var(--claret);color:#fff}
+  .bar .spacer{flex:1}
+  .bar label{font-size:.8rem;color:var(--ink-soft);display:flex;align-items:center;gap:6px;
+    cursor:pointer}
+
+  .gate{max-width:420px;margin:60px auto;background:var(--paper);border:1px solid var(--line);
+    border-radius:var(--radius);padding:22px 24px}
+  .gate h2{margin-top:0;border:0;padding:0}
+  .gate p{font-size:.85rem;color:var(--ink-soft);margin:0 0 16px}
+  .gate .row{display:flex;gap:8px}
+  .gate input{flex:1;min-width:0;padding:9px 12px;border-radius:var(--radius);
+    border:1px solid var(--line);background:transparent;color:inherit;font:inherit}
+  .gate button{padding:9px 18px;border-radius:999px;border:1px solid var(--claret);
+    background:var(--claret);color:#fff;font:inherit;cursor:pointer}
+  .gate .msg{font-size:.82rem;color:var(--claret);margin-top:12px;min-height:1.2em}
+
+  .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:10px}
+  .kpi{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);
+    padding:13px 15px}
+  .kpi .k{font-size:.75rem;color:var(--ink-soft);margin-bottom:3px}
+  .kpi .v{font-family:var(--serif);font-size:1.7rem;line-height:1.1;letter-spacing:-.01em}
+  .kpi .n{font-size:.73rem;color:var(--grey);margin-top:4px}
+  .kpi.accent .v{color:var(--claret)}
+
+  table{width:100%;border-collapse:collapse;font-size:.85rem;background:var(--paper);
+    border:1px solid var(--line);border-radius:var(--radius);overflow:hidden}
+  th{text-align:left;font-weight:600;font-size:.75rem;color:var(--ink-soft);
+     padding:8px 11px;border-bottom:1px solid var(--line);background:var(--wash)}
+  td{padding:7px 11px;border-bottom:1px solid var(--line);vertical-align:top}
+  tr:last-child td{border-bottom:0}
+  td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+  td.t{max-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  tr.bot td{color:var(--grey)}
+  .tag{display:inline-block;font-size:.68rem;padding:1px 6px;border-radius:999px;
+    border:1px solid var(--line);background:var(--wash);color:var(--ink-soft);white-space:nowrap}
+  .tag.bot{background:#f4f2ee}
+  .tag.ret{background:var(--green-tint);border-color:#cfe0d4;color:var(--green)}
+  .scroll{overflow-x:auto}
+  .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  @media(max-width:760px){.grid2{grid-template-columns:1fr}}
+  .note{font-size:.78rem;color:var(--ink-soft);margin:8px 0 0}
+  .empty{color:var(--grey);font-size:.85rem;padding:14px 0}
+  code{background:var(--wash);padding:1px 5px;border-radius:2px;font-size:.85em}
+</style>
+
+<div class="wrap">
+  <h1>방문 대시보드</h1>
+  <p class="lede">podiumclassical.kr · <span id="meta">불러오는 중…</span></p>
+
+  <div id="gate" class="gate" hidden>
+    <h2>관리자 열쇠</h2>
+    <p>방문 통계는 공개되지 않습니다. 피드백 수신함과 같은 열쇠를 넣으세요 —
+       이 기기에만 저장되며 다음부터는 바로 열립니다.</p>
+    <div class="row">
+      <input type="password" id="key" placeholder="관리자 열쇠" autocomplete="current-password">
+      <button id="enter">열기</button>
+    </div>
+    <div class="msg" id="gatemsg"></div>
+  </div>
+
+  <div id="controls" hidden>
+    <div class="bar">
+      <button data-days="7">최근 7일</button>
+      <button data-days="14" class="on">최근 14일</button>
+      <button data-days="0">전체</button>
+      <span class="spacer"></span>
+      <label><input type="checkbox" id="showbots"> 봇·자동접속도 표시</label>
+    </div>
+  </div>
+
+  <div id="app"></div>
+</div>
+
+<script>
+// ── 데이터 확보 ────────────────────────────────────────────────────────────
+var API = "https://podium-feedback.ohmjin314.workers.dev/api/dash";
+var KEYNAME = "podium_dash_key";
+var DAYS = null, SEARCH = null, JOBS = {}, RANGE = 14;
+
+function getKey() { try { return localStorage.getItem(KEYNAME) || ""; } catch (e) { return ""; } }
+function setKey(k) { try { localStorage.setItem(KEYNAME, k); } catch (e) {} }
+
+function loadJSON(url, opt) {
+  return fetch(url, opt).then(function (r) {
+    if (!r.ok) { var e = new Error("HTTP " + r.status); e.status = r.status; throw e; }
+    return r.json();
+  });
+}
+
+// 공고 제목은 공개 데이터라 사이트에서 그냥 읽는다 (열쇠와 무관).
+function loadJobs() {
+  return Promise.all([
+    loadJSON("data/official.json").catch(function () { return null; }),
+    loadJSON("data/archive.json").catch(function () { return null; })
+  ]).then(function (r) {
+    if (r[0]) (r[0].items || []).forEach(function (j) { JOBS[j.id] = j; });
+    if (r[1]) Object.keys(r[1].items || {}).forEach(function (k) {
+      if (!JOBS[k]) JOBS[k] = r[1].items[k];
+    });
+  });
+}
+
+// 로컬(정적 서버)에서는 열쇠 없이 data/*.json 을 바로 읽는다 — 개발용 경로.
+function loadLocal() {
+  return Promise.all([
+    loadJSON("data/traffic.json"),
+    loadJSON("data/search.json").catch(function () { return null; })
+  ]).then(function (r) { return { traffic: r[0], search: r[1] }; });
+}
+
+function loadRemote(key) {
+  return loadJSON(API, { headers: { "X-Admin-Key": key } });
+}
+
+function apply(doc) {
+  DAYS = (doc.traffic || {}).days || {};
+  SEARCH = doc.search || null;
+  var ks = Object.keys(DAYS).sort();
+  var up = (doc.traffic || {}).updatedAt;
+  document.getElementById("meta").textContent =
+    ks.length ? (ks[0] + " ~ " + ks[ks.length - 1] + " · " + ks.length + "일치"
+                 + (up ? " · 갱신 " + up : "")) : "데이터 없음";
+  document.getElementById("gate").hidden = true;
+  document.getElementById("controls").hidden = false;
+  render();
+}
+
+function showGate(msg) {
+  document.getElementById("gate").hidden = false;
+  document.getElementById("controls").hidden = true;
+  document.getElementById("meta").textContent = "열쇠 필요";
+  document.getElementById("gatemsg").textContent = msg || "";
+}
+
+function boot() {
+  loadJobs();
+  var isLocal = /^(localhost|127\.0\.0\.1)$/.test(location.hostname);
+  var key = getKey();
+  var first = key ? loadRemote(key) : (isLocal ? loadLocal() : Promise.reject({ status: 401 }));
+  first.then(apply).catch(function (e) {
+    // 열쇠가 틀렸거나 없다 → 로컬이면 파일 경로로 한 번 더 시도해 본다
+    if (isLocal) {
+      loadLocal().then(apply).catch(function () {
+        showGate(e.status === 401 ? "열쇠가 맞지 않습니다." : "");
+      });
+      return;
+    }
+    showGate(e.status === 401 ? "열쇠가 맞지 않습니다."
+             : e.status === 404 ? "아직 올라온 데이터가 없습니다 (PC에서 dash_upload.py 실행)."
+             : "");
+  });
+}
+
+document.getElementById("enter").onclick = function () {
+  var k = document.getElementById("key").value.trim();
+  if (!k) return;
+  document.getElementById("gatemsg").textContent = "확인 중…";
+  loadRemote(k).then(function (doc) { setKey(k); apply(doc); }).catch(function (e) {
+    showGate(e.status === 401 ? "열쇠가 맞지 않습니다."
+             : e.status === 404 ? "열쇠는 맞지만 아직 올라온 데이터가 없습니다."
+             : "연결 실패 — " + e.message);
+  });
+};
+document.getElementById("key").addEventListener("keydown", function (e) {
+  if (e.key === "Enter") document.getElementById("enter").click();
+});
+
+document.querySelectorAll(".bar button").forEach(function (b) {
+  b.onclick = function () {
+    document.querySelectorAll(".bar button").forEach(function (x) { x.classList.remove("on"); });
+    b.classList.add("on");
+    RANGE = +b.dataset.days;
+    render();
+  };
+});
+document.getElementById("showbots").onchange = render;
+boot();
+
+// ── 유틸 ──────────────────────────────────────────────────────────────────
+function esc(s) {
+  return String(s == null ? "" : s).replace(/[&<>"]/g, function (c) {
+    return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c];
+  });
+}
+function n(x) { return (x || 0).toLocaleString("ko-KR"); }
+function pct(a, b) { return b ? Math.round(a / b * 100) + "%" : "—"; }
+function dur(sec) {
+  sec = Math.round(sec || 0);
+  if (sec < 60) return sec + "초";
+  var m = Math.floor(sec / 60);
+  return m < 60 ? m + "분" : Math.floor(m / 60) + "시간 " + (m % 60) + "분";
+}
+function keys() {
+  var ks = Object.keys(DAYS).sort();
+  return RANGE ? ks.slice(-RANGE) : ks;
+}
+function addInto(map, obj) {
+  Object.keys(obj || {}).forEach(function (k) { map[k] = (map[k] || 0) + obj[k]; });
+}
+function sorted(map, limit) {
+  var a = Object.keys(map).map(function (k) { return [k, map[k]]; });
+  a.sort(function (x, y) { return y[1] - x[1]; });
+  return limit ? a.slice(0, limit) : a;
+}
+function table(head, rows, empty) {
+  if (!rows.length) return '<div class="empty">' + (empty || "기록 없음") + "</div>";
+  var h = head.map(function (c) {
+    return '<th' + (c[1] ? ' class="num"' : "") + ">" + esc(c[0]) + "</th>";
+  }).join("");
+  return '<div class="scroll"><table><tr>' + h + "</tr>" + rows.join("") + "</table></div>";
+}
+// 막대 차트 — 배경(연한)=전체, 앞(진한)=참여. 의존성 없이 SVG 로 직접 그린다.
+function bars(items, opt) {
+  opt = opt || {};
+  var W = 1000, H = opt.h || 120, pad = 18, max = 1;
+  items.forEach(function (it) { max = Math.max(max, it.bg || 0, it.fg || 0); });
+  var bw = (W - pad * 2) / items.length;
+  var s = '<svg viewBox="0 0 ' + W + " " + (H + 26) + '" style="width:100%;height:auto" ' +
+          'preserveAspectRatio="none" role="img">';
+  items.forEach(function (it, i) {
+    var x = pad + i * bw, w = Math.max(2, bw * 0.66), ox = x + (bw - w) / 2;
+    var hb = (it.bg || 0) / max * H, hf = (it.fg || 0) / max * H;
+    s += '<rect x="' + ox + '" y="' + (H - hb) + '" width="' + w + '" height="' + hb +
+         '" fill="#e4ded1"/>';
+    s += '<rect x="' + ox + '" y="' + (H - hf) + '" width="' + w + '" height="' + hf +
+         '" fill="#7a2a38"/>';
+    if (it.label) s += '<text x="' + (ox + w / 2) + '" y="' + (H + 17) +
+      '" text-anchor="middle" font-size="' + (opt.fs || 15) + '" fill="#9a958a" ' +
+      'font-family="sans-serif">' + esc(it.label) + "</text>";
+  });
+  return s + "</svg>";
+}
+
+// ── 집계 ──────────────────────────────────────────────────────────────────
+function aggregate() {
+  var a = {
+    sessions: 0, users: 0, newUsers: 0, engaged: 0, sec: 0, pv: 0,
+    events: {}, pages: {}, hours: {}, jobs: {},
+    bands: {}, results: {}, finsts: {}, fregions: {},
+    kind: {}, dday: {}, dest: {}, src: {}, aud: {}, daily: []
+  };
+  keys().forEach(function (d) {
+    var r = DAYS[d] || {}, t = r.totals || {};
+    a.sessions += t.sessions || 0; a.users += t.users || 0; a.newUsers += t.newUsers || 0;
+    a.engaged += t.engaged || 0; a.sec += t.engagementSec || 0; a.pv += t.pv || 0;
+    a.daily.push({ date: d, bg: t.sessions || 0, fg: t.engaged || 0, label: d.slice(8) + "일" });
+    addInto(a.events, r.events);
+    addInto(a.hours, r.hours);
+    addInto(a.jobs, r.jobs);
+    Object.keys(r.pages || {}).forEach(function (p) {
+      var v = r.pages[p]; a.pages[p] = a.pages[p] || [0, 0];
+      a.pages[p][0] += v[0]; a.pages[p][1] += v[1];
+    });
+    var f = r.filters || {}, jm = r.jobmeta || {};
+    addInto(a.bands, f.bands); addInto(a.results, f.results);
+    addInto(a.finsts, f.insts); addInto(a.fregions, f.regions);
+    addInto(a.kind, jm.kind); addInto(a.dday, jm.dday); addInto(a.dest, jm.dest);
+    (r.sources || []).forEach(function (row) {
+      var k = row[0] + "|" + row[1], v = a.src[k] || (a.src[k] = [0, 0, 0, 0, 0]);
+      for (var i = 0; i < 5; i++) v[i] += row[2 + i];
+    });
+    (r.audience || []).forEach(function (row) {
+      var k = row.slice(0, 5).join("|"), v = a.aud[k] || (a.aud[k] = [0, 0, 0, 0, 0]);
+      for (var i = 0; i < 5; i++) v[i] += row[5 + i];
+    });
+  });
+  return a;
+}
+
+// ── 그리기 ────────────────────────────────────────────────────────────────
+function render() {
+  if (!DAYS) return;
+  var a = aggregate(), showBots = document.getElementById("showbots").checked;
+  var ev = a.events, jv = ev.job_view || 0, ob = ev.job_outbound || 0;
+  var ret = 0;
+  Object.keys(a.aud).forEach(function (k) {
+    if (k.split("|")[4] === "returning") ret += a.aud[k][0];
+  });
+  var botSess = a.sessions - a.engaged;
+  var H = [];
+
+  H.push('<div class="kpis">' + [
+    ["참여 세션", n(a.engaged), "봇 제외 · 전체 " + n(a.sessions), 1],
+    ["공고 열람", n(jv), "job_view", 0],
+    ["원문 이동", n(ob), "전환 " + pct(ob, jv), 1],
+    ["필터 사용", n(ev.filter_use || 0), "빈손 " + n(ev.filter_empty || 0) + "회", 0],
+    ["재방문 세션", n(ret), "전체 세션의 " + pct(ret, a.sessions), 0],
+    ["평균 참여시간", dur(a.engaged ? a.sec / a.engaged : 0), "참여 세션당", 0],
+    ["봇·자동접속", n(botSess), pct(botSess, a.sessions) + " · 참여 0", 0]
+  ].map(function (c) {
+    return '<div class="kpi' + (c[3] ? " accent" : "") + '"><div class="k">' + c[0] +
+      '</div><div class="v">' + c[1] + '</div><div class="n">' + esc(c[2]) + "</div></div>";
+  }).join("") + "</div>");
+
+  H.push('<h2>일별 <span class="sub">진한 막대 = 참여 세션 · 연한 막대 = 전체(봇 포함)</span></h2>');
+  H.push(bars(a.daily, { h: 110 }));
+
+  // ── 검색 노출 (Search Console) ───────────────────────────────────────────
+  // GA4 와 보는 시점이 다르다: 여기는 '들어오기 전'(검색결과에 뜬 순간)이다.
+  if (SEARCH) {
+    var si = 0, sc = 0;
+    (SEARCH.days || []).forEach(function (r) { si += r[1]; sc += r[2]; });
+    var named = 0;
+    (SEARCH.queries || []).forEach(function (r) { named += r[1]; });
+    H.push('<h2>구글 검색 <span class="sub">' + esc(SEARCH.from || "") + " ~ " +
+           esc(SEARCH.to || "") + ' · 검색결과에 뜬 횟수(노출)와 순위</span></h2>');
+    H.push('<div class="kpis">' + [
+      ["노출", n(si), "검색결과에 뜬 횟수"],
+      ["클릭", n(sc), "CTR " + pct(sc, si)],
+      ["검색어 확보", n(named), "노출의 " + pct(named, si) + "만 검색어를 알 수 있음"]
+    ].map(function (c) {
+      return '<div class="kpi"><div class="k">' + c[0] + '</div><div class="v">' + c[1] +
+        '</div><div class="n">' + esc(c[2]) + "</div></div>";
+    }).join("") + "</div>");
+    H.push('<div class="grid2"><div>');
+    H.push(table([["검색어", 0], ["노출", 1], ["클릭", 1], ["순위", 1]],
+      (SEARCH.queries || []).slice().sort(function (x, y) { return y[1] - x[1]; })
+        .map(function (r) {
+          return '<tr><td class="t">' + esc(r[0]) + '</td><td class="num">' + n(r[1]) +
+            '</td><td class="num">' + n(r[2]) + '</td><td class="num">' + r[3] + "</td></tr>";
+        }), "검색어 데이터 없음"));
+    H.push('<p class="note">구글은 소수만 검색한 질의를 개인 식별 우려로 숨깁니다. ' +
+           '트래픽이 적을수록 더 많이 가려지니, 여기 안 보이는 노출이 대부분인 게 정상입니다.</p>');
+    H.push("</div><div>");
+    H.push(table([["뜬 페이지", 0], ["노출", 1], ["클릭", 1], ["순위", 1]],
+      (SEARCH.pages || []).slice().sort(function (x, y) { return y[1] - x[1]; })
+        .map(function (r) {
+          return '<tr><td class="t">' + esc(r[0].replace(/^https?:\/\/[^/]+/, "")) +
+            '</td><td class="num">' + n(r[1]) + '</td><td class="num">' + n(r[2]) +
+            '</td><td class="num">' + r[3] + "</td></tr>";
+        }), "페이지 데이터 없음"));
+    H.push(table([["기기", 0], ["노출", 1], ["클릭", 1], ["순위", 1]],
+      (SEARCH.devices || []).map(function (r) {
+        return "<tr><td>" + esc(r[0]) + '</td><td class="num">' + n(r[1]) +
+          '</td><td class="num">' + n(r[2]) + '</td><td class="num">' + r[3] + "</td></tr>";
+      })));
+    H.push("</div></div>");
+  }
+
+  H.push('<div class="grid2"><div>');
+  H.push('<h2>유입 경로 <span class="sub">누가 데려왔나</span></h2>');
+  var srows = Object.keys(a.src).map(function (k) { return [k, a.src[k]]; })
+    .sort(function (x, y) { return y[1][2] - x[1][2] || y[1][0] - x[1][0]; })
+    .filter(function (r) { return showBots || r[1][2] > 0; })
+    .map(function (r) {
+      var p = r[0].split("|"), v = r[1], bot = v[2] === 0;
+      return '<tr class="' + (bot ? "bot" : "") + '"><td class="t">' + esc(p[0]) +
+        ' <span class="tag">' + esc(p[1]) + "</span></td>" +
+        '<td class="num">' + n(v[2]) + '</td><td class="num">' + n(v[0]) + "</td>" +
+        '<td class="num">' + n(v[4]) + '</td><td class="num">' + dur(v[3]) + "</td></tr>";
+    });
+  H.push(table([["출처", 0], ["참여", 1], ["세션", 1], ["PV", 1], ["체류", 1]], srows));
+  H.push("</div><div>");
+  H.push('<h2>시간대 <span class="sub">세션 수 · 0~23시</span></h2>');
+  var hr = [];
+  for (var i = 0; i < 24; i++) {
+    hr.push({ bg: a.hours[String(i)] || a.hours[("0" + i).slice(-2)] || 0,
+              fg: 0, label: i % 3 === 0 ? i : "" });
+  }
+  H.push(bars(hr, { h: 110, fs: 14 }));
+  H.push("</div></div>");
+
+  H.push('<h2>방문자 <span class="sub">도시 · 기기 · 브라우저</span></h2>');
+  var arows = Object.keys(a.aud).map(function (k) { return [k, a.aud[k]]; })
+    .sort(function (x, y) { return y[1][2] - x[1][2] || y[1][0] - x[1][0]; })
+    .filter(function (r) { return showBots || r[1][2] > 0; })
+    .map(function (r) {
+      var p = r[0].split("|"), v = r[1], bot = v[2] === 0;
+      return '<tr class="' + (bot ? "bot" : "") + '"><td class="t">' + esc(p[0]) + "</td>" +
+        '<td class="t">' + esc(p[1]) + " · " + esc(p[3] || p[2]) + "</td>" +
+        "<td>" + (p[4] === "returning" ? '<span class="tag ret">재방문</span>' :
+                  bot ? '<span class="tag bot">자동</span>' : "") + "</td>" +
+        '<td class="num">' + n(v[2]) + '</td><td class="num">' + n(v[0]) + "</td>" +
+        '<td class="num">' + n(v[1]) + '</td><td class="num">' + n(v[4]) + "</td>" +
+        '<td class="num">' + dur(v[3]) + "</td></tr>";
+    });
+  H.push(table([["도시", 0], ["기기", 0], ["", 0], ["참여", 1], ["세션", 1],
+                ["연인원", 1], ["PV", 1], ["체류", 1]], arows));
+  H.push('<p class="note">연인원 = 날짜별 사용자 수의 합입니다. 같은 사람이 사흘 오면 3으로 ' +
+         '세어지니 순 방문자 수가 아닙니다 — 순 방문자는 GA4 가 기간 단위로만 셀 수 있습니다.</p>');
+  if (!showBots && botSess > 0)
+    H.push('<p class="note">참여 0인 자동 접속 ' + n(botSess) +
+           '세션은 숨겼습니다 — 위 체크박스로 볼 수 있습니다.</p>');
+
+  H.push('<h2>수요 신호 <span class="sub">방문자가 무엇을 걸렀나 — 공급(크롤)과 대조할 유일한 축</span></h2>');
+  H.push('<div class="grid2"><div>');
+  H.push(table([["필터 직종", 0], ["횟수", 1]],
+    sorted(a.bands, 12).map(function (r) {
+      return "<tr><td>" + esc(r[0].replace(/\|/g, " + ")) + '</td><td class="num">' +
+        n(r[1]) + "</td></tr>";
+    }), "맞춤측정기준 f_bands 데이터 없음"));
+  var fi = sorted(a.finsts, 10), fr = sorted(a.fregions, 10);
+  if (fi.length) H.push(table([["필터 악기", 0], ["횟수", 1]], fi.map(function (r) {
+    return "<tr><td>" + esc(r[0]) + '</td><td class="num">' + n(r[1]) + "</td></tr>"; })));
+  if (fr.length) H.push(table([["필터 지역", 0], ["횟수", 1]], fr.map(function (r) {
+    return "<tr><td>" + esc(r[0]) + '</td><td class="num">' + n(r[1]) + "</td></tr>"; })));
+  H.push("</div><div>");
+  var thin = 0, all = 0;
+  Object.keys(a.results).forEach(function (k) {
+    all += a.results[k]; if (+k <= 3) thin += a.results[k];
+  });
+  H.push(table([["필터 결과 건수", 0], ["횟수", 1]],
+    Object.keys(a.results).map(Number).sort(function (x, y) { return x - y; })
+      .map(function (k) {
+        return "<tr" + (k <= 3 ? ' class="bot"' : "") + "><td>" + k + "건" +
+          (k <= 3 ? ' <span class="tag">빈손에 가까움</span>' : "") +
+          '</td><td class="num">' + n(a.results[k]) + "</td></tr>";
+      }), "맞춤측정기준 f_results 데이터 없음"));
+  if (all) H.push('<p class="note">결과 건수가 기록된 필터 ' + n(all) + '건 중 <b>' + n(thin) +
+    '건(' + pct(thin, all) + ')</b>이 3건 이하였습니다. 0건(filter_empty)만 세면 안 보이는 ' +
+    '결핍입니다. (맞춤측정기준 집계라 위 KPI 의 filter_use 이벤트 수와 몇 건 어긋날 수 있습니다)</p>');
+  H.push("</div></div>");
+
+  H.push('<h2>많이 열린 공고 <span class="sub">job_view · 제목은 official/archive 에서 붙임</span></h2>');
+  H.push(table([["공고", 0], ["기관", 0], ["지역", 0], ["열람", 1]],
+    sorted(a.jobs, 25).map(function (r) {
+      var j = JOBS[r[0].replace(/^o/, "")] || JOBS[r[0]] || {};
+      return '<tr><td class="t">' + esc(j.title || "(해석 불가 " + r[0] + ")") + "</td>" +
+        '<td class="t">' + esc(j.org || "—") + "</td><td>" + esc(j.region || "—") + "</td>" +
+        '<td class="num">' + n(r[1]) + "</td></tr>";
+    }), "맞춤측정기준 job_id 데이터 없음"));
+
+  H.push('<div class="grid2"><div>');
+  H.push('<h2>열린 공고의 성격</h2>');
+  H.push(table([["직종", 0], ["횟수", 1]], sorted(a.kind, 10).map(function (r) {
+    return "<tr><td>" + esc(r[0]) + '</td><td class="num">' + n(r[1]) + "</td></tr>"; })));
+  H.push(table([["마감 임박도", 0], ["횟수", 1]], sorted(a.dday, 10).map(function (r) {
+    return "<tr><td>" + esc(r[0]) + '</td><td class="num">' + n(r[1]) + "</td></tr>"; })));
+  H.push(table([["이동처", 0], ["횟수", 1]], sorted(a.dest, 10).map(function (r) {
+    return "<tr><td>" + esc(r[0]) + '</td><td class="num">' + n(r[1]) + "</td></tr>"; })));
+  H.push("</div><div>");
+  H.push('<h2>페이지</h2>');
+  H.push(table([["경로", 0], ["PV", 1], ["체류", 1]],
+    Object.keys(a.pages).map(function (k) { return [k, a.pages[k]]; })
+      .sort(function (x, y) { return y[1][1] - x[1][1] || y[1][0] - x[1][0]; })
+      .map(function (r) {
+        return '<tr><td class="t">' + esc(r[0]) + '</td><td class="num">' + n(r[1][0]) +
+          '</td><td class="num">' + dur(r[1][1]) + "</td></tr>";
+      })));
+  H.push('<h2>이벤트</h2>');
+  H.push(table([["이름", 0], ["횟수", 1]], sorted(ev).map(function (r) {
+    return "<tr><td>" + esc(r[0]) + '</td><td class="num">' + n(r[1]) + "</td></tr>"; })));
+  H.push("</div></div>");
+
+  document.getElementById("app").innerHTML = H.join("");
+}
+</script>
