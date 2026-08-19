@@ -351,6 +351,42 @@ def check_dates(rep, items, today):
                 f"마감 지난 공고가 {len(closed)}/{len(items)}건 ({round(len(closed) / len(items) * 100)}%) — 접수중 공고가 거의 없음")
 
 
+def check_description(rep, items):
+    """상세 페이지 description 결함 — 약관 혼입·본문 공백·제목 중복 (작업 A-3, 판정만).
+
+    description 을 필드 조립으로 바꿔 오염원은 구조적으로 없앴지만, 조립 재료인
+    필드가 비면 문장이 앙상해진다. 무엇이 얼마나 비는지는 계속 봐야 한다.
+    bodyExcerpt 는 화면에 안 쓰이지만 아카이브·분석에 남으므로 함께 센다.
+    """
+    try:
+        sys.path.insert(0, str(Path(__file__).resolve().parent))
+        from staticgen import build_description
+    except Exception:
+        return
+    terms = re.compile(r"개인정보|동의를? ?거부|보유 ?및 ?이용 ?기간|필수 ?항목|구직활동 ?서비스"
+                       r"|제공 ?목적|고유식별정보")
+    clause, blank, dup, thin = 0, 0, 0, 0
+    for j in items:
+        ex = (j.get("bodyExcerpt") or "").strip()
+        if ex and terms.search(ex):
+            clause += 1
+        elif not ex:
+            blank += 1
+        d = build_description(j)
+        t = (j.get("title") or "").strip()
+        if t and t[:12] and t[:12] in d and len(d) <= len(t) + 4:
+            dup += 1                       # 제목만 되풀이 = 조립 재료가 없다는 뜻
+        if len(d) < 30:
+            thin += 1
+    n = max(len(items), 1)
+    if clause:
+        rep.add("MED", "설명", f"약관 시그니처 검출 {clause}건 — 본문 발췌 추출 규칙 보강 필요")
+    if blank * 100 // n >= 10:
+        rep.add("MED", "설명", f"본문 발췌 공백 {blank}건 ({blank * 100 // n}%)")
+    if dup or thin:
+        rep.add("LOW", "설명", f"설명 빈약: 제목 반복 {dup}건 · 30자 미만 {thin}건")
+
+
 def check_sitemap(rep):
     """구글 서치콘솔에 사이트맵이 등록돼 있고 정상 처리되는가.
 
@@ -589,6 +625,7 @@ def main():
     check_total(rep, doc, hist, today)
     check_fields(rep, items)
     check_encoding(rep, items)
+    check_description(rep, items)
     # 2순위 — 데이터 품질
     check_dupes(rep, items)
     check_dates(rep, items, today)

@@ -142,6 +142,63 @@ def _detail_rows(j):
     return [(k, v) for k, v in rows if v]
 
 
+
+# ---------- description = 필드 조립 (본문 발췌 폐기, 작업 A-2 / 2026-08-19) ----------
+# 본문 발췌는 게시 28건 중 14건이 약관·공백으로 오염돼 있었다. 발췌를 다듬는 대신
+# 우리가 이미 검증해 둔 필드만으로 문장을 짓는다 — 오염원이 구조적으로 사라진다.
+
+def _pay_short(pay):
+    """'시급 40000원' → '시급 4만원'. 금액을 못 읽으면 None(절 자체를 생략)."""
+    if not pay:
+        return None
+    t = re.sub(r"\s+", " ", str(pay))
+    m = re.search(r"([\d,]+)\s*(?:만\s*)?원", t)
+    if not m:
+        return None
+    try:
+        won = int(m.group(1).replace(",", ""))
+    except ValueError:
+        return None
+    if "만" in t[m.end() - 2:m.end() + 1]:
+        won *= 10000
+    # 단위는 금액 앞을 본다 — '세전 월 550,000원'처럼 낱말이 떨어져 있어도 월급이다
+    before = t[:m.start()]
+    unit = ("시급" if re.search(r"시급|시간\s*당", t) else
+            "일당" if re.search(r"일당|일\s*급", t) else
+            "월급" if re.search(r"월급|월\s*액|월\s*보수|월\s*$", before) else
+            "회당" if re.search(r"회당|건당", t) else "")
+    if won >= 10000:
+        amt = f"{won // 10000}만원" if won % 10000 == 0 else f"{won / 10000:.1f}만원"
+    else:
+        amt = f"{won:,}원"
+    return f"{unit} {amt}".strip()
+
+
+def build_description(j):
+    """검증된 필드로 짓는 70~110자 설명. 결측은 절 단위로 자연 생략한다."""
+    inst = "·".join(j.get("instDetails") or []) or j.get("subject")
+    kind = j.get("kind")
+    # '지휘 지휘 채용'처럼 악기와 직무가 같은 말이면 한 번만 쓴다
+    what = " ".join(dict.fromkeys(x for x in (inst, kind) if x))
+    head = " ".join(x for x in (j.get("org"), what) if x).strip()
+    head = f"{head} 채용." if head else (j.get("title") or "").strip()
+    tail = [j.get("region"),
+            _pay_short(j.get("pay")),
+            (f"{int(j['deadline'][5:7])}/{int(j['deadline'][8:10])} 마감"
+             if (j.get("deadline") or "").count("-") == 2 else
+             ("상시모집" if j.get("deadlineNote") == "상시" else None)),
+            j.get("workHours"),
+            (f"근무 {j['workPeriod']}" if j.get("workPeriod") and len(str(j["workPeriod"])) <= 34 else None)]
+    parts = [p for p in tail if p]
+    # 110자를 넘으면 뒤에서부터 덜어낸다 — 지역·마감이 페이·근무시간보다 중요하다
+    order = [0, 2, 1, 3, 4]
+    keep = [p for i, p in enumerate(parts)]
+    while keep and len(head + ", ".join(keep)) > 108:
+        drop = max((i for i in range(len(keep))), key=lambda i: order.index(min(i, 3)))
+        keep.pop(drop)
+    return (head + (" " + ", ".join(keep) + "." if keep else "")).strip()[:110]
+
+
 def _jsonld(j):
     d = {"@context": "https://schema.org", "@type": "JobPosting",
          "title": j["title"],
@@ -149,7 +206,7 @@ def _jsonld(j):
          "hiringOrganization": {"@type": "Organization", "name": j.get("org") or ""},
          "jobLocation": {"@type": "Place",
                          "address": {"@type": "PostalAddress", "addressRegion": j.get("region") or "", "addressCountry": "KR"}},
-         "description": (j.get("bodyExcerpt") or j.get("recruitSummary") or j.get("qualification") or j["title"])[:300]}
+         "description": build_description(j)}
     if j.get("deadline"):
         d["validThrough"] = j["deadline"]
     return json.dumps(d, ensure_ascii=False)
@@ -197,7 +254,7 @@ def _detail_page(j, today):
            f'data-ev="{_ev}" data-evp="{esc(json.dumps(_p, ensure_ascii=False))}">{esc(label)}</a>'
            if href and label else "")   # 지원 경로가 없으면 버튼 자체를 만들지 않는다
     rows = "".join(f"<dt>{esc(k)}</dt><dd>{esc(v)}</dd>" for k, v in _detail_rows(j))
-    desc = esc((j.get("bodyExcerpt") or j.get("recruitSummary") or f"{j.get('org','')} {j['title']}")[:150])
+    desc = esc(build_description(j))
     return f"""<!DOCTYPE html>
 <html lang="ko">
 <head>

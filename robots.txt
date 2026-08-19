@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 Disallow: /admin.html
-Disallow: /analytics.html
 Sitemap: https://podiumclassical.kr/sitemap.xml
