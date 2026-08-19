@@ -256,7 +256,20 @@ def build_title(j):
     kind = j.get("kind") or ""
     if what and kind and what == kind:
         kind = ""                       # '지휘 지휘' 방지
-    head = " ".join(x for x in (j.get("region"), name, what, kind) if x).strip()
+    # '전체'·'기타'처럼 값이 없다는 뜻의 표기는 제목에 싣지 않는다
+    if what in ("전체", "기타", "미상", "무관"):
+        what = ""
+    region = j.get("region") or ""
+    if region in ("기타", "전국"):
+        region = ""
+    # 기관명이 이미 지역으로 시작하면 앞의 지역을 빼 '부산 부산문화회관'을 막는다
+    if region and name.startswith(region):
+        region = ""
+    bits = []
+    for x in (region, name, what, kind):
+        if x and x not in bits:          # 같은 말이 두 번 들어가지 않게
+            bits.append(x)
+    head = " ".join(bits).strip()
     head = (head + " 채용") if head else (j.get("title") or "")
     pay = _pay_short(j.get("pay"))
     dl = j.get("deadline")
@@ -474,6 +487,13 @@ def generate(base=BASE):
     os.makedirs(pdir, exist_ok=True)
     slugs = {j["id"]: build_slug(j) for j in items}
     keep = {sl + ".html" for sl in slugs.values()}
+    # 아카이브 페이지(마감분)도 보존 대상이다 — 여기 없으면 매 실행 지워졌다 다시 생기며
+    # 검색엔진에는 URL 이 사라졌다 살아나는 것으로 보인다 (작업 D, 2026-08-20).
+    try:
+        import archive_pages
+        keep |= archive_pages.expected_files(base, {j["id"] for j in items})
+    except Exception:
+        pass
     # 옛 주소(/p/{id}.html)는 지우지 않는다 — 색인·북마크가 물려 있어 스텁으로 남긴다.
     # 스텁은 내용의 마커로 식별하고, 그 밖의 낡은 파일만 정리한다.
     for f_ in os.listdir(pdir):
@@ -505,6 +525,13 @@ def generate(base=BASE):
     lastmod = (doc.get("collectedAt") or today.isoformat())[:10]
     urls = [f"{SITE}/{p}" for p in ("", "jobs.html", "practice.html", "about.html", "sources.html", "privacy.html")]
     urls += [f"{SITE}/p/{slugs[j['id']]}.html" for j in items]
+    # 마감 공고의 아카이브 페이지 (작업 D) — 품질 게이트를 통과한 것만 만들어 sitemap 에 싣는다.
+    # 목록(jobs.html)·index 에는 넣지 않는다 — 화면에서는 진행 중인 공고만 보여준다.
+    try:
+        import archive_pages
+        urls += archive_pages.generate(base, verbose=False)
+    except Exception as e:
+        print(f"[warn] 아카이브 페이지 생성 건너뜀: {type(e).__name__}: {e}")
     _write_sitemaps(base, urls, lastmod)
     with open(os.path.join(base, "robots.txt"), "w", encoding="utf-8") as f:
         # admin.html 은 열쇠로 막혀 있지만 검색결과에 뜰 이유가 없다 (sitemap 목록에도 없다).

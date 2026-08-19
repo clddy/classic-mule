@@ -81,12 +81,13 @@ def org_name_ko(org):
     if not org:
         return ""
     t = _ORG_DROP.sub("", str(org)).strip()
-    for pat, _ in _ORG_TYPE:
-        m = re.search(pat, t)
-        if m:
-            name = t[:m.start()].strip()
-            return _REGION_HEAD.sub("", name) or name
-    return _REGION_HEAD.sub("", t) or t
+    # 학교만 줄인다 — '서운중학교'는 '서운'으로 충분하지만 '부산문화회관'에서 유형어를 떼면
+    # '부산'만 남아 기관이 사라진다. 재단·회관·악단은 이름의 일부다 (2026-08-20).
+    m = re.search(r"(?:여자중|여자고|예술고|예술중|초등|중|고|특수)학교$|유치원$|어린이집$", t)
+    if m:
+        name = t[:m.start()].strip()
+        return _REGION_HEAD.sub("", name) or name
+    return t
 
 
 def org_short(org):
