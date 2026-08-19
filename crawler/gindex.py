@@ -62,7 +62,11 @@ def notify(verbose=True):
     import requests
     doc = _load(os.path.join(BASE, "data", "official.json"), {})
     items = doc.get("items") if isinstance(doc, dict) else doc
-    live = {f"{SITE}/p/{i['id']}.html" for i in (items or []) if i.get("id")}
+    # 슬러그 전환(작업 B) 이후로는 새 주소를 알린다 — 옛 주소는 noindex 스텁이라
+    # 그걸 통보하면 구글에 '색인하지 말 것'을 부지런히 알리는 꼴이 된다 (2026-08-20).
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    from slug import build as _slug
+    live = {f"{SITE}/p/{_slug(i)}.html" for i in (items or []) if i.get("id")}
     seen = _load(STATE, {})          # url → "up" | "del"
 
     # 올릴 것: 이번에 새로 실렸거나, 전에 내렸다가 되살아난 것

@@ -72,8 +72,25 @@ _REGION_HEAD = re.compile(r"^(?:서울|부산|대구|인천|광주|대전|울산
 _ORG_DROP = re.compile(r"\([^)]*\)|재단법인|사단법인|\(재\)|\(사\)|주식회사")
 
 
+def org_name_ko(org):
+    """화면·제목용 한글 축약 — URL 전용 영문 별칭(_ORG_ALIAS)을 타지 않는다.
+
+    org_short 는 슬러그를 만드느라 'knue' 같은 영문 별칭을 돌려주는데, 그걸 제목에
+    쓰면 '인천 jemulpo-cf 피아노 채용' 처럼 한글 문장에 영문이 샌다 (2026-08-20).
+    """
+    if not org:
+        return ""
+    t = _ORG_DROP.sub("", str(org)).strip()
+    for pat, _ in _ORG_TYPE:
+        m = re.search(pat, t)
+        if m:
+            name = t[:m.start()].strip()
+            return _REGION_HEAD.sub("", name) or name
+    return _REGION_HEAD.sub("", t) or t
+
+
 def org_short(org):
-    """기관명 → (고유명, 유형약어). '서운중학교' → ('서운', 'ms')."""
+    """기관명 → (고유명, 유형약어). '서운중학교' → ('서운', 'ms'). URL 전용."""
     if not org:
         return "", ""
     t = _ORG_DROP.sub("", str(org)).strip()

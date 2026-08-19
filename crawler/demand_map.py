@@ -11,6 +11,7 @@
 #   python crawler/demand_map.py --print     # 화면에도 출력
 import csv
 import json
+import argparse
 import os
 import re
 import sys
@@ -151,18 +152,38 @@ def table(counter, total, head=None, limit=None):
 
 
 def main():
+    # 작업 G-1 — 소급수집(backfill)을 걷어낸 '유량' 기준으로도 볼 수 있어야 한다.
+    # 아카이브 1,239건 중 712건이 8월 한 번의 소급수집이고 그중 692건이 cjob 하나라,
+    # 섞어 보면 "포디엄은 교회 반주 사이트"라는 착시가 생긴다 (2026-08-19 규명).
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--exclude-backfill", action="store_true",
+                    help="소급수집분을 빼고 실제 유입(유량)만 집계")
+    args, _ = ap.parse_known_args()
     if not os.path.exists(ARC):
         print("data/archive.json 이 없다 — crawler/backfill_archive.py 를 먼저 돌릴 것", file=sys.stderr)
         return 1
     items = normalize(dedupe(load()))
+    n_all = len(items)
+    if args.exclude_backfill:
+        from flowstats import is_backfill
+        items = [i for i in items if not is_backfill(i)]
     n = len(items)
     if not n:
         print("아카이브가 비어 있다", file=sys.stderr)
         return 1
 
     days = sorted(it.get("firstSeen") for it in items if it.get("firstSeen"))
+    from flowstats import is_backfill
+    n_bf = sum(1 for i in normalize(dedupe(load())) if is_backfill(i))
+    scope = "유량(소급수집 제외)" if args.exclude_backfill else "전체(소급수집 포함)"
     L = [f"# 포디엄 수요 지도", "",
-         f"생성 {date.today().isoformat()} · 아카이브 공고 **{n}건** · 관측 {days[0]} ~ {days[-1]}", "",
+         f"생성 {date.today().isoformat()} · 집계 범위 **{scope}** · 공고 **{n}건**"
+         + (f" (전체 {n_all}건 중 소급수집 {n_bf}건 제외)" if args.exclude_backfill
+            else f" · 이 중 소급수집 {n_bf}건")
+         + f" · 관측 {days[0]} ~ {days[-1]}", "",
+         "> ⚠ 소급수집분은 과거 글을 한 번에 훑어 온 것이라 '지금 들어오는 수요'가 아니다.",
+         "> 분포를 판단할 때는 `--exclude-backfill` 로 유량 기준을 함께 볼 것 —",
+         "> 전체 기준으로는 cjob(교회 반주)이 58%지만 유량 기준으로는 1% 미만이다.", "",
          "> 공고에 드러나는 것은 **기관 수요**뿐이다. 개인(교수·단장·교회 음악감독)이 지인에게",
          "> 바로 돌리는 수요는 여기 잡히지 않는다 — 그쪽이 오히려 더 클 수 있다는 걸 전제로 읽을 것.", ""]
 

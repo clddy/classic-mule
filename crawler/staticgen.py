@@ -26,6 +26,14 @@ SITE = "https://podiumclassical.kr"
 # js/jobs.js PORTAL_RE와 같은 목록 — 두 곳이 어긋나면 한쪽에서만 포털 링크가 샌다
 PORTAL_RE = re.compile(r"artinfokorea|artmore|hibrain|jobkorea|saramin|albamon|cleaneye|gojobs|work\.go\.kr/portal", re.I)
 
+XML_HEAD = '<?xml version="1.0" encoding="UTF-8"?>' + chr(10)
+URLSET_OPEN = '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + chr(10)
+URLSET_CLOSE = "</urlset>" + chr(10)
+URL_ROW = "<url><loc>{u}</loc><lastmod>{m}</lastmod></url>" + chr(10)
+INDEX_OPEN = '<sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + chr(10)
+INDEX_ROW = "<sitemap><loc>{s}/sitemap-{n}.xml</loc><lastmod>{m}</lastmod></sitemap>" + chr(10)
+INDEX_CLOSE = "</sitemapindex>" + chr(10)
+
 esc = lambda v: html.escape(str(v or ""), quote=True)
 
 
@@ -232,6 +240,38 @@ def _base_salary(j):
             "value": {"@type": "QuantitativeValue", "value": won, "unitText": unit}}
 
 
+
+def build_title(j):
+    """검색결과에 뜨는 제목 (작업 E, 2026-08-20).
+
+    "{지역} {기관축약} {악기·전공} {직무} 채용 ({페이}, ~{M/D}) — 포디엄"
+    한글 30자 안팎을 노리고, 넘치면 페이 → 마감 → '— 포디엄' 순으로 덜어낸다.
+    h1(공고 제목 원문)은 건드리지 않는다 — 화면에 보이는 글자는 그대로 두고
+    검색결과용 표기만 다르게 짓는 것이다.
+    """
+    from slug import org_name_ko
+    name = org_name_ko(j.get("org"))
+    what = "·".join(j.get("instDetails") or []) or (j.get("subject") or "")
+    what = re.sub(r"(?:학과|학부|전공|과)$", "", str(what).split("·")[0]) if what else ""
+    kind = j.get("kind") or ""
+    if what and kind and what == kind:
+        kind = ""                       # '지휘 지휘' 방지
+    head = " ".join(x for x in (j.get("region"), name, what, kind) if x).strip()
+    head = (head + " 채용") if head else (j.get("title") or "")
+    pay = _pay_short(j.get("pay"))
+    dl = j.get("deadline")
+    when = (f"~{int(dl[5:7])}/{int(dl[8:10])}" if (dl or "").count("-") == 2
+            else ("상시모집" if j.get("deadlineNote") == "상시" else ""))
+    # 30자 = '{본문} — 포디엄' 까지 합친 길이 기준. 넘치면 페이 → 마감 → 꼬리표 순으로 덜어낸다
+    for bits in ([pay, when], [when], [pay], []):
+        bits = [b for b in bits if b]
+        t = head + (f" ({', '.join(bits)})" if bits else "")
+        if len(t) + 5 <= 30:
+            return t + " — 포디엄"
+    t = head + (f" ({when})" if when else "")
+    return t[:30]
+
+
 def _jsonld(j):
     d = {"@context": "https://schema.org", "@type": "JobPosting",
          "title": j["title"],
@@ -331,7 +371,7 @@ def _detail_page(j, today):
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{esc(j['title'])} — 포디엄</title>
+  <title>{esc(build_title(j))}</title>
   <meta name="description" content="{desc}">
   <link rel="canonical" href="{SITE}/p/{build_slug(j)}.html">
   <link rel="icon" type="image/png" sizes="32x32" href="../favicon-32.png">
@@ -339,7 +379,7 @@ def _detail_page(j, today):
   <meta name="theme-color" content="#7a2a38">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="포디엄">
-  <meta property="og:title" content="{esc(j['title'])} — {esc(j.get('org'))}">
+  <meta property="og:title" content="{esc(build_title(j))}">
   <meta property="og:description" content="{desc}">
   <meta property="og:url" content="{SITE}/p/{build_slug(j)}.html">
   <meta property="og:image" content="{SITE}/og-image.png">
@@ -378,6 +418,41 @@ def _detail_page(j, today):
 </body>
 </html>
 """
+
+
+
+SITEMAP_SHARD = 1000     # 규격 상한은 50,000이지만 작게 끊어야 어디가 막혔는지 보인다
+
+
+def _write_sitemaps(base, urls, lastmod):
+    """URL이 많아지면 sitemap index + 조각으로 나눈다 (작업 F, 2026-08-20).
+
+    한 파일에 다 넣어도 규격상 문제는 없지만, 조각으로 나눠야 서치콘솔이 조각별
+    색인 현황을 따로 보여준다 — '어느 묶음이 안 먹히는가'를 볼 수 있다.
+    조각이 하나뿐이면 예전처럼 sitemap.xml 한 장으로 둔다(불필요한 층 금지).
+    """
+    def _urlset(path, chunk):
+        with open(path, "w", encoding="utf-8") as f:
+            f.write(XML_HEAD + URLSET_OPEN)
+            f.write("".join(URL_ROW.format(u=u, m=lastmod) for u in chunk))
+            f.write(URLSET_CLOSE)
+
+    shards = [urls[i:i + SITEMAP_SHARD] for i in range(0, len(urls), SITEMAP_SHARD)] or [[]]
+    # 지난 회차의 조각이 남아 있으면 지운다 (공고가 줄면 조각 수도 줄어야 한다)
+    for f_ in os.listdir(base):
+        if re.fullmatch(r"sitemap-[0-9]+[.]xml", f_):
+            os.remove(os.path.join(base, f_))
+    if len(shards) == 1:
+        _urlset(os.path.join(base, "sitemap.xml"), shards[0])
+        return 1
+    for n, chunk in enumerate(shards, 1):
+        _urlset(os.path.join(base, "sitemap-{}.xml".format(n)), chunk)
+    with open(os.path.join(base, "sitemap.xml"), "w", encoding="utf-8") as f:
+        f.write(XML_HEAD + INDEX_OPEN)
+        f.write("".join(INDEX_ROW.format(s=SITE, n=n, m=lastmod)
+                        for n in range(1, len(shards) + 1)))
+        f.write(INDEX_CLOSE)
+    return len(shards)
 
 
 def generate(base=BASE):
@@ -430,10 +505,7 @@ def generate(base=BASE):
     lastmod = (doc.get("collectedAt") or today.isoformat())[:10]
     urls = [f"{SITE}/{p}" for p in ("", "jobs.html", "practice.html", "about.html", "sources.html", "privacy.html")]
     urls += [f"{SITE}/p/{slugs[j['id']]}.html" for j in items]
-    with open(os.path.join(base, "sitemap.xml"), "w", encoding="utf-8") as f:
-        f.write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n')
-        f.write("".join(f"<url><loc>{u}</loc><lastmod>{lastmod}</lastmod></url>\n" for u in urls))
-        f.write("</urlset>\n")
+    _write_sitemaps(base, urls, lastmod)
     with open(os.path.join(base, "robots.txt"), "w", encoding="utf-8") as f:
         # admin.html 은 열쇠로 막혀 있지만 검색결과에 뜰 이유가 없다 (sitemap 목록에도 없다).
         f.write(f"User-agent: *\nAllow: /\nDisallow: /admin.html\nSitemap: {SITE}/sitemap.xml\n")
