@@ -22,7 +22,13 @@ BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 STATE = os.path.join(BASE, "data", "indexnow_state.json")
 SITE = "https://podiumclassical.kr"
 HOST = "podiumclassical.kr"
-ENDPOINT = "https://api.indexnow.org/indexnow"
+# 여러 엔진에 함께 통보한다. api.indexnow.org 가 참여 엔진에 배포해 주긴 하지만, 네이버는
+# 자체 엔드포인트를 따로 안내한다 — 신규 사이트라 수집이 느린 판에 배포를 기다릴 이유가 없다
+# (2026-08-19: 네이버 수집 현황이 열흘째 0건이었다).
+ENDPOINTS = [
+    ("indexnow", "https://api.indexnow.org/indexnow"),
+    ("naver", "https://searchadvisor.naver.com/indexnow"),
+]
 MAX_URLS = 2000          # 규격 상한은 10,000. 우리는 훨씬 적다
 
 
@@ -68,25 +74,30 @@ def notify(verbose=True):
             print(f"[indexnow] {len(urls)}건 중 {MAX_URLS}건만 — 나머지는 다음 회차")
         urls = urls[:MAX_URLS]
 
-    try:
-        r = requests.post(ENDPOINT, timeout=30, json={
-            "host": HOST, "key": key,
-            "keyLocation": f"{SITE}/{key}.txt",
-            "urlList": urls,
-        })
-    except Exception as e:
-        print(f"[indexnow] 실패: {type(e).__name__}: {e}")
-        return 0
+    payload = {"host": HOST, "key": key,
+               "keyLocation": f"{SITE}/{key}.txt", "urlList": urls}
+    results, ok_any = [], False
+    for name, url in ENDPOINTS:
+        try:
+            r = requests.post(url, timeout=30, json=payload)
+        except Exception as e:
+            results.append(f"{name}:{type(e).__name__}")
+            continue
+        # 200·202 가 정상. 그 밖의 코드는 이유를 남긴다(422=키 불일치, 403=키 파일 못 읽음).
+        results.append(f"{name}:{r.status_code}")
+        if r.status_code in (200, 202):
+            ok_any = True
+        else:
+            print(f"[indexnow/{name}] {r.status_code} {r.text[:150]}")
 
-    # 200·202 가 정상. 그 밖의 코드는 이유를 남긴다(422=키 불일치, 403=키 파일 못 읽음).
-    if r.status_code not in (200, 202):
-        print(f"[indexnow] {r.status_code} {r.text[:150]}")
+    # 한 곳이라도 받았으면 통보한 것으로 친다 — 전부 실패했을 때만 다음 회차에 다시 보낸다
+    if not ok_any:
         return 0
-
     with open(STATE, "w", encoding="utf-8") as f:
         json.dump(sorted(live), f, ensure_ascii=False, indent=1)
     if verbose:
-        print(f"[indexnow] {len(urls)}건 통보 (신규 {len(fresh)} · 내려감 {len(gone)}) · {r.status_code}")
+        print(f"[indexnow] {len(urls)}건 통보 (신규 {len(fresh)} · 내려감 {len(gone)}) · "
+              + " ".join(results))
     return len(urls)
 
 
