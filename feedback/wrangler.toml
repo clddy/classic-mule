@@ -19,3 +19,10 @@ preview_urls = false
 [[kv_namespaces]]
 binding = "FEEDBACK"
 id = "9cef89cc702c4ae6acdc27b81b87842a"
+
+# 프로필 디렉토리 (작업 H) — 피드백과 네임스페이스를 나눈다.
+# 개인정보와 피드백은 취급 등급이 달라 같은 저장소에 섞지 않는다 (2026-08-20).
+#   npx wrangler kv namespace create PROFILES
+[[kv_namespaces]]
+binding = "PROFILES"
+id = "a3f9c2e14b8d47a6b1e0f5c93d2a8e7f"

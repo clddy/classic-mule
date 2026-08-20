@@ -13,6 +13,8 @@
 //   TELEGRAM_BOT_TOKEN  알림봇 토큰 (podium-alert 와 같은 봇을 쓴다)
 //   TELEGRAM_CHAT_ID    받을 대화방
 
+import * as PF from "./profiles.js";
+
 const MAX_LEN = 2000;
 const MIN_LEN = 5;
 const RATE_MAX = 5;          // 같은 IP가 한 시간에 보낼 수 있는 수
@@ -223,6 +225,87 @@ async function dashGet(req, url, env, origin) {
   });
 }
 
+
+// ---------- 프로필 디렉토리 (작업 H, 2026-08-20) ----------
+// 토큰은 조회·수정·삭제 전부 POST body 로 받는다 — URL 쿼리에 실으면 브라우저 히스토리와
+// 엣지 로그에 삭제 권한이 그대로 남는다.
+
+async function pfSubmit(req, env, origin) {
+  let body;
+  try { body = await req.json(); } catch { return json({ ok: false, error: "형식 오류" }, 400, origin); }
+  // 봇 덫 — 사람 눈에 안 보이는 칸이 채워져 오면 조용히 성공으로 답하고 버린다
+  if (body.website) return json({ ok: true, silent: true }, 200, origin);
+
+  const { data, err } = PF.validate(body);
+  if (err.length) return json({ ok: false, error: err[0], errors: err }, 400, origin);
+
+  const ip = req.headers.get("CF-Connecting-IP") || "0.0.0.0";
+  const who = await ipHash(ip);
+  const rlKey = `pfrl:${who}`;
+  const sent = parseInt((await env.PROFILES.get(rlKey)) || "0", 10);
+  if (sent >= PF.LIMITS.rateMax) {
+    return json({ ok: false, error: "잠시 후 다시 시도해 주세요" }, 429, origin);
+  }
+  await env.PROFILES.put(rlKey, String(sent + 1), { expirationTtl: PF.LIMITS.rateWindow });
+
+  const token = PF.newToken();
+  const rec = {
+    ...data,
+    id: PF.newId(),
+    at: new Date().toISOString(),
+    status: "pending",              // 자동 게시 금지 — 사람이 승인해야 published 가 된다
+    tokenHash: await PF.hashToken(token),   // 원문은 저장하지 않는다
+    who,
+  };
+  await env.PROFILES.put(PF.KEY(rec.id), JSON.stringify(rec));
+  // 토큰은 여기서 한 번만 돌려준다. 다시 볼 방법이 없다고 화면에서 분명히 알린다.
+  return json({ ok: true, id: rec.id, token }, 200, origin);
+}
+
+async function pfLoad(env, id) {
+  const raw = id ? await env.PROFILES.get(PF.KEY(id)) : null;
+  if (!raw) return null;
+  try { return JSON.parse(raw); } catch { return null; }
+}
+
+// 토큰으로 본인 확인 — 맞으면 레코드를, 아니면 null. 존재/부재를 구분해 알리지 않는다.
+async function pfAuth(env, body) {
+  const rec = await pfLoad(env, String(body.id || "").slice(0, 32));
+  if (!rec) return null;
+  const h = await PF.hashToken(body.token);
+  return PF.hashEq(h, rec.tokenHash || "") ? rec : null;
+}
+
+async function pfView(req, env, origin) {
+  let body;
+  try { body = await req.json(); } catch { return json({ ok: false }, 400, origin); }
+  const rec = await pfAuth(env, body);
+  if (!rec) return json({ ok: false, error: "확인 코드가 맞지 않습니다" }, 403, origin);
+  return json({ ok: true, profile: PF.publicView(rec), status: rec.status }, 200, origin);
+}
+
+async function pfUpdate(req, env, origin) {
+  let body;
+  try { body = await req.json(); } catch { return json({ ok: false }, 400, origin); }
+  const rec = await pfAuth(env, body);
+  if (!rec) return json({ ok: false, error: "확인 코드가 맞지 않습니다" }, 403, origin);
+  const { data, err } = PF.validate({ ...body, consent: true });
+  if (err.length) return json({ ok: false, error: err[0] }, 400, origin);
+  // 고친 내용은 다시 승인을 받는다 — 승인 뒤 내용을 바꿔치기하는 경로를 막는다
+  const next = { ...rec, ...data, status: "pending", editedAt: new Date().toISOString() };
+  await env.PROFILES.put(PF.KEY(rec.id), JSON.stringify(next));
+  return json({ ok: true, status: next.status }, 200, origin);
+}
+
+async function pfDelete(req, env, origin) {
+  let body;
+  try { body = await req.json(); } catch { return json({ ok: false }, 400, origin); }
+  const rec = await pfAuth(env, body);
+  if (!rec) return json({ ok: false, error: "확인 코드가 맞지 않습니다" }, 403, origin);
+  await env.PROFILES.delete(PF.KEY(rec.id));   // 실삭제 — 표시만 바꾸지 않는다
+  return json({ ok: true, deleted: true }, 200, origin);
+}
+
 export default {
   async fetch(req, env) {
     const url = new URL(req.url);
@@ -230,6 +313,10 @@ export default {
     if (req.method === "OPTIONS") return new Response(null, { status: 204, headers: cors(origin) });
 
     if (url.pathname === "/api/feedback" && req.method === "POST") return submit(req, env, origin);
+    if (url.pathname === "/api/profile" && req.method === "POST") return pfSubmit(req, env, origin);
+    if (url.pathname === "/api/profile/view" && req.method === "POST") return pfView(req, env, origin);
+    if (url.pathname === "/api/profile/update" && req.method === "POST") return pfUpdate(req, env, origin);
+    if (url.pathname === "/api/profile/delete" && req.method === "POST") return pfDelete(req, env, origin);
     if (url.pathname === "/api/list" && req.method === "GET") return list(req, url, env, origin);
     if (url.pathname === "/api/diag" && req.method === "GET") return diag(req, url, env, origin);
     if (url.pathname === "/api/read" && req.method === "POST") return mark(req, url, env, origin, true);
