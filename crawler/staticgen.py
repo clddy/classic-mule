@@ -535,7 +535,13 @@ def generate(base=BASE):
     _write_sitemaps(base, urls, lastmod)
     with open(os.path.join(base, "robots.txt"), "w", encoding="utf-8") as f:
         # admin.html 은 열쇠로 막혀 있지만 검색결과에 뜰 이유가 없다 (sitemap 목록에도 없다).
-        f.write(f"User-agent: *\nAllow: /\nDisallow: /admin.html\nSitemap: {SITE}/sitemap.xml\n")
+        # 관리·계측·프로필 계열은 검색결과에 뜰 이유가 없다. 프로필은 v0 라 색인을 열지
+        # 않는다 — 승인·삭제 프로세스가 안정된 뒤 v1 에서 연다 (지시서 v3 작업 H).
+        f.write("User-agent: *" + chr(10) + "Allow: /" + chr(10)
+                + chr(10).join("Disallow: /" + p_ for p_ in (
+                    "admin.html", "analytics.html",
+                    "profiles.html", "profile-submit.html", "profile-manage.html"))
+                + chr(10) + f"Sitemap: {SITE}/sitemap.xml" + chr(10))
     return len(items)
 
 

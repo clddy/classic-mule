@@ -34,6 +34,15 @@
   <div id="diagout" style="font-size:.85rem;opacity:.75;margin:-8px 0 16px"></div>
 
   <div id="out"><div class="empty">열쇠를 넣고 <b>열기</b>를 누르세요.</div></div>
+
+  <h1 style="margin-top:36px">프로필 승인</h1>
+  <p style="font-size:.85rem;opacity:.75;margin:-6px 0 12px">
+    자동 게시는 하지 않습니다. 확인 후 <b>공개</b>를 눌러야 디렉토리에 실립니다.</p>
+  <div class="key-row" style="margin-bottom:10px">
+    <button id="pf-load">대기 목록</button>
+    <button id="pf-load-all">전체</button>
+  </div>
+  <div id="pf-out"><div class="empty">열쇠를 넣고 <b>대기 목록</b>을 누르세요.</div></div>
 </div>
 
 <script>
@@ -110,6 +119,67 @@ $("#diag").addEventListener("click", async () => {
       + ` · 대화방 ${d.hasChatId ? "있음" : "없음"} · 발송 ${d.send}`;
   } catch { o.textContent = "서버에 닿지 못했습니다."; }
 });
+
+// --- 프로필 승인 (작업 H-2) ---
+// 자동 게시 금지가 이 화면의 존재 이유다. 반려는 지우지 않고 표시만 바꾼다 —
+// 본인이 확인 코드로 지울 수 있어야 하고, 실수로 지웠을 때 되돌릴 방법이 없으면 곤란하다.
+const PF_LABEL = { pending: "대기", published: "공개 중", rejected: "보류" };
+
+function pfRender(items) {
+  const box = $("#pf-out");
+  if (!items.length) { box.innerHTML = '<div class="empty">해당하는 프로필이 없습니다.</div>'; return; }
+  box.innerHTML = items.map(p => `
+    <div class="item" data-id="${esc(p.id)}">
+      <div style="font-size:.8rem;opacity:.7">
+        ${esc(p.at || "").slice(0, 16).replace("T", " ")} · ${esc(PF_LABEL[p.status] || p.status)}
+        ${p.editedAt ? " · 수정됨" : ""}
+      </div>
+      <div style="margin:4px 0"><b>${esc(p.name)}</b> · ${esc(p.inst)} · ${esc(p.region)}</div>
+      <div style="font-size:.9rem">${esc(p.intro)}</div>
+      ${p.career ? `<div style="font-size:.85rem;opacity:.8;margin-top:4px">${esc(p.career)}</div>` : ""}
+      <div style="font-size:.85rem;margin-top:4px">연락: ${esc(p.contact)}</div>
+      <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap">
+        <button data-act="published">공개</button>
+        <button data-act="rejected">보류</button>
+        <button data-act="delete" style="color:#8c2f2f">삭제</button>
+      </div>
+    </div>`).join("");
+}
+
+async function pfLoad(status) {
+  const box = $("#pf-out");
+  if (!$("#key").value.trim()) { box.innerHTML = '<div class="empty">열쇠를 먼저 넣어 주세요.</div>'; return; }
+  box.innerHTML = '<div class="empty">불러오는 중…</div>';
+  try {
+    const q = status ? `?status=${status}` : "";
+    const d = await (await fetch(`${API}/api/profile/admin${q}`, { headers: hdr() })).json();
+    if (!d.ok) { box.innerHTML = `<div class="empty">${esc(d.error || "실패")}</div>`; return; }
+    pfRender(d.items || []);
+  } catch { box.innerHTML = '<div class="empty">서버에 닿지 못했습니다.</div>'; }
+}
+
+$("#pf-out").addEventListener("click", async (e) => {
+  const btn = e.target.closest("button[data-act]");
+  if (!btn) return;
+  const id = btn.closest(".item").getAttribute("data-id");
+  const act = btn.getAttribute("data-act");
+  if (act === "delete" && !confirm("이 프로필을 지울까요? 되돌릴 수 없습니다.")) return;
+  btn.disabled = true;
+  const url = act === "delete" ? "/api/profile/admin/delete" : "/api/profile/admin";
+  const body = act === "delete" ? { id } : { id, status: act };
+  try {
+    const d = await (await fetch(API + url, {
+      method: "POST",
+      headers: { ...hdr(), "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    })).json();
+    if (!d.ok) { alert(d.error || "실패"); btn.disabled = false; return; }
+    btn.closest(".item").remove();
+  } catch { alert("서버에 닿지 못했습니다."); btn.disabled = false; }
+});
+
+$("#pf-load").addEventListener("click", () => pfLoad("pending"));
+$("#pf-load-all").addEventListener("click", () => pfLoad(""));
 
 $("#load").addEventListener("click", load);
 $("#key").addEventListener("keydown", e => { if (e.key === "Enter") load(); });

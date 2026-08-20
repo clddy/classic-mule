@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta name="robots" content="noindex, nofollow">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>프로필 등록 — 포디엄</title>
+  <meta name="description" content="포디엄이 공개 공고에서 수집·표시하는 연락처 정보의 처리 원칙과 삭제 요청 방법.">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <meta name="theme-color" content="#7a2a38">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="포디엄">
+  <meta property="og:title" content="개인정보 처리방침 — 포디엄">
+  <meta property="og:description" content="공개 공고에서 수집·표시하는 연락처 정보의 처리 원칙과 삭제 요청 방법.">
+  <meta property="og:url" content="https://podiumclassical.kr/privacy.html">
+  <meta property="og:image" content="https://podiumclassical.kr/og-image.png">
+  <meta property="og:locale" content="ko_KR">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Cormorant:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=16">
+  <script src="js/analytics.js?v=8"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="logo">포디엄<span class="accent">.</span><span class="beta">BETA</span></a>
+    <nav class="main-nav">
+      <a href="jobs.html">구인구직</a>
+      <a href="practice.html">연습실</a>
+      <a href="about.html">소개</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page-head">
+  <div class="container">
+    <h1>프로필 등록</h1>
+    <p class="desc">클래식 음악인 디렉토리 · 시험 운영</p>
+  </div>
+</div>
+
+<main class="container" style="max-width:640px;padding-block:24px 48px">
+  <p style="font-size:0.9rem;line-height:1.7;color:#5b5348;margin-bottom:20px">
+    등록하면 <b>누구나 볼 수 있는 공개 페이지</b>에 실립니다. 연락은 포디엄 밖에서 이뤄지며,
+    포디엄은 중개하지 않습니다. 올린 정보는 언제든 본인이 직접 지울 수 있습니다.
+  </p>
+
+  <form id="pf-form" novalidate>
+    <label class="pf-l">이름 또는 활동명 <span class="pf-req">필수</span>
+      <input name="name" maxlength="40" required></label>
+
+    <label class="pf-l">악기 / 전공 <span class="pf-req">필수</span>
+      <input name="inst" maxlength="40" placeholder="예: 클라리넷, 성악(소프라노), 지휘" required></label>
+
+    <label class="pf-l">활동 지역 <span class="pf-req">필수</span>
+      <select name="region" required>
+        <option value="">고르세요</option>
+      </select></label>
+
+    <label class="pf-l">한 줄 소개 <span class="pf-req">필수</span>
+      <input name="intro" maxlength="100" placeholder="100자 이내" required>
+      <span class="pf-count" data-for="intro">0/100</span></label>
+
+    <label class="pf-l">경력 요약 <span class="pf-opt">선택</span>
+      <textarea name="career" maxlength="500" rows="4" placeholder="500자 이내"></textarea>
+      <span class="pf-count" data-for="career">0/500</span></label>
+
+    <label class="pf-l">공개 연락 수단 <span class="pf-req">필수</span>
+      <input name="contact" maxlength="200" placeholder="이메일 또는 링크 (전화번호는 받지 않습니다)" required>
+      <span class="pf-help">이 값은 공개 페이지에 그대로 표시됩니다.</span></label>
+
+    <label class="pf-check">
+      <input type="checkbox" name="consent" required>
+      <span>이 정보는 누구나 볼 수 있는 공개 페이지로 게시됩니다. 동의합니다.</span></label>
+
+    <!-- 봇 덫: 사람에게는 보이지 않는 칸 -->
+    <input name="website" tabindex="-1" autocomplete="off"
+           style="position:absolute;left:-9999px;width:1px;height:1px" aria-hidden="true">
+
+    <button type="submit" class="btn-primary" id="pf-submit" style="margin-top:8px">등록 신청</button>
+    <p id="pf-msg" style="margin-top:12px;font-size:0.88rem"></p>
+  </form>
+
+  <!-- 제출 완료 — 토큰을 여기서 딱 한 번 보여준다 -->
+  <div id="pf-done" hidden>
+    <h3 style="margin-bottom:8px">신청이 접수되었습니다</h3>
+    <p style="font-size:0.9rem;line-height:1.7;color:#5b5348">
+      운영자 확인 후 디렉토리에 실립니다. 확인 전까지는 공개되지 않습니다.</p>
+    <div style="background:#fff8e6;border:1px solid #e6d9b8;border-radius:8px;padding:14px 16px;margin:16px 0">
+      <b style="display:block;margin-bottom:6px">확인 코드 — 지금 적어 두세요</b>
+      <code id="pf-token" style="font-size:1.15rem;letter-spacing:1px;user-select:all"></code>
+      <p style="font-size:0.85rem;margin:10px 0 0;color:#6b6154">
+        수정하거나 지울 때 필요합니다. <b>이 화면을 벗어나면 다시 볼 수 없습니다</b> —
+        저희 서버에도 남지 않기 때문입니다. 잃어버리면
+        <a href="index.html#feedback">피드백</a>으로 알려 주세요.</p>
+    </div>
+    <p style="font-size:0.9rem"><a href="profile-manage.html">내 프로필 관리하기 →</a></p>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <span class="logo serif">포디엄<span class="accent">.</span></span><br>
+    클래식 음악인을 위한 공고 집약 플랫폼 · v2.0 · <a href="sources.html" style="color:inherit">수집 원천</a> · <a href="privacy.html" style="color:inherit">개인정보 처리방침</a>
+  </div>
+</footer>
+<script src="js/profiles.js?v=1"></script>
+</body>
+</html>

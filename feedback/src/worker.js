@@ -258,6 +258,7 @@ async function pfSubmit(req, env, origin) {
     who,
   };
   await env.PROFILES.put(PF.KEY(rec.id), JSON.stringify(rec));
+  await pfNotifyPending(env).catch(() => {});   // 알림 실패가 제출을 막지 않는다
   // 토큰은 여기서 한 번만 돌려준다. 다시 볼 방법이 없다고 화면에서 분명히 알린다.
   return json({ ok: true, id: rec.id, token }, 200, origin);
 }
@@ -306,6 +307,107 @@ async function pfDelete(req, env, origin) {
   return json({ ok: true, deleted: true }, 200, origin);
 }
 
+
+// --- 승인 파이프라인 (H-2) — 자동 게시 금지. 사람이 승인해야 published 가 된다. ---
+
+// 알림은 건당이 아니라 '대기 N건' 묶음으로 보낸다 — 봇이 폼을 두들기면 건당 알림은
+// 그대로 알림 폭탄이 된다 (2026-08-20 승인 사항). 같은 시간대에는 한 번만 보낸다.
+async function pfNotifyPending(env) {
+  const TOKEN = clean(env.TELEGRAM_BOT_TOKEN);
+  const CHAT = clean(env.TELEGRAM_CHAT_ID);
+  if (!TOKEN || !CHAT) return "설정 없음";
+  const mark = new Date().toISOString().slice(0, 13);   // 시간 단위 묶음 (YYYY-MM-DDTHH)
+  if (await env.PROFILES.get("pfnotify:" + mark)) return "이미 보냄";
+  const { keys } = await env.PROFILES.list({ prefix: "pf:" });
+  let pending = 0;
+  for (const k of keys) {
+    const raw = await env.PROFILES.get(k.name);
+    try { if (JSON.parse(raw).status === "pending") pending++; } catch { /* 건너뜀 */ }
+  }
+  if (!pending) return "대기 없음";
+  await env.PROFILES.put("pfnotify:" + mark, "1", { expirationTtl: 3600 });
+  const text = `👤 포디엄 프로필 승인 대기 ${pending}건
+
+관리자 페이지에서 확인하세요.`;
+  try {
+    const r = await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
+      method: "POST", headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ chat_id: CHAT, text }),
+    });
+    const d = await r.json().catch(() => ({}));
+    return d && d.ok ? "ok" : `실패: ${d.description || r.status}`;
+  } catch (e) { return `실패: ${e.name}`; }
+}
+
+// 관리자 목록 — 열쇠가 있어야 본다. 여기서는 내부값(토큰 해시)을 절대 내보내지 않는다.
+async function pfAdminList(req, url, env, origin) {
+  if (!keyOk(req.headers.get("X-Admin-Key"), env.ADMIN_KEY)) {
+    return json({ ok: false, error: "열쇠가 맞지 않습니다" }, 401, origin);
+  }
+  const want = url.searchParams.get("status") || "";
+  const { keys } = await env.PROFILES.list({ prefix: "pf:" });
+  const items = [];
+  for (const k of keys) {
+    const raw = await env.PROFILES.get(k.name);
+    if (!raw) continue;
+    let p;
+    try { p = JSON.parse(raw); } catch { continue; }
+    if (want && p.status !== want) continue;
+    items.push({ ...PF.publicView(p), status: p.status, editedAt: p.editedAt || null });
+  }
+  items.sort((a, b) => String(b.at).localeCompare(String(a.at)));
+  return json({ ok: true, items }, 200, origin);
+}
+
+// 승인·반려. 반려는 지우지 않고 표시만 바꾼다 — 본인이 토큰으로 지울 수 있어야 하고,
+// 관리자가 실수로 지웠을 때 되돌릴 방법이 없으면 곤란하다.
+async function pfAdminSet(req, env, origin) {
+  if (!keyOk(req.headers.get("X-Admin-Key"), env.ADMIN_KEY)) {
+    return json({ ok: false, error: "열쇠가 맞지 않습니다" }, 401, origin);
+  }
+  let body;
+  try { body = await req.json(); } catch { return json({ ok: false }, 400, origin); }
+  const status = String(body.status || "");
+  if (!["published", "rejected", "pending"].includes(status)) {
+    return json({ ok: false, error: "상태값이 올바르지 않습니다" }, 400, origin);
+  }
+  const rec = await pfLoad(env, String(body.id || "").slice(0, 32));
+  if (!rec) return json({ ok: false, error: "없는 프로필" }, 404, origin);
+  rec.status = status;
+  rec.reviewedAt = new Date().toISOString();
+  await env.PROFILES.put(PF.KEY(rec.id), JSON.stringify(rec));
+  return json({ ok: true, id: rec.id, status }, 200, origin);
+}
+
+// 관리자 삭제 — 사칭·스팸을 즉시 걷어낼 수단. 실삭제다.
+async function pfAdminDelete(req, env, origin) {
+  if (!keyOk(req.headers.get("X-Admin-Key"), env.ADMIN_KEY)) {
+    return json({ ok: false, error: "열쇠가 맞지 않습니다" }, 401, origin);
+  }
+  let body;
+  try { body = await req.json(); } catch { return json({ ok: false }, 400, origin); }
+  const id = String(body.id || "").slice(0, 32);
+  if (!(await pfLoad(env, id))) return json({ ok: false, error: "없는 프로필" }, 404, origin);
+  await env.PROFILES.delete(PF.KEY(id));
+  return json({ ok: true, deleted: true }, 200, origin);
+}
+
+// 공개 목록 — published 만. 열쇠 없이 누구나 본다(그게 디렉토리의 목적).
+async function pfPublic(req, env, origin) {
+  const { keys } = await env.PROFILES.list({ prefix: "pf:" });
+  const items = [];
+  for (const k of keys) {
+    const raw = await env.PROFILES.get(k.name);
+    if (!raw) continue;
+    try {
+      const p = JSON.parse(raw);
+      if (p.status === "published") items.push(PF.publicView(p));
+    } catch { /* 건너뜀 */ }
+  }
+  items.sort((a, b) => String(b.at).localeCompare(String(a.at)));
+  return json({ ok: true, items }, 200, origin);
+}
+
 export default {
   async fetch(req, env) {
     const url = new URL(req.url);
@@ -317,6 +419,10 @@ export default {
     if (url.pathname === "/api/profile/view" && req.method === "POST") return pfView(req, env, origin);
     if (url.pathname === "/api/profile/update" && req.method === "POST") return pfUpdate(req, env, origin);
     if (url.pathname === "/api/profile/delete" && req.method === "POST") return pfDelete(req, env, origin);
+    if (url.pathname === "/api/profiles" && req.method === "GET") return pfPublic(req, env, origin);
+    if (url.pathname === "/api/profile/admin" && req.method === "GET") return pfAdminList(req, url, env, origin);
+    if (url.pathname === "/api/profile/admin" && req.method === "POST") return pfAdminSet(req, env, origin);
+    if (url.pathname === "/api/profile/admin/delete" && req.method === "POST") return pfAdminDelete(req, env, origin);
     if (url.pathname === "/api/list" && req.method === "GET") return list(req, url, env, origin);
     if (url.pathname === "/api/diag" && req.method === "GET") return diag(req, url, env, origin);
     if (url.pathname === "/api/read" && req.method === "POST") return mark(req, url, env, origin, true);

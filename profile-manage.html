@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta name="robots" content="noindex, nofollow">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>내 프로필 관리 — 포디엄</title>
+  <meta name="description" content="포디엄이 공개 공고에서 수집·표시하는 연락처 정보의 처리 원칙과 삭제 요청 방법.">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <meta name="theme-color" content="#7a2a38">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="포디엄">
+  <meta property="og:title" content="개인정보 처리방침 — 포디엄">
+  <meta property="og:description" content="공개 공고에서 수집·표시하는 연락처 정보의 처리 원칙과 삭제 요청 방법.">
+  <meta property="og:url" content="https://podiumclassical.kr/privacy.html">
+  <meta property="og:image" content="https://podiumclassical.kr/og-image.png">
+  <meta property="og:locale" content="ko_KR">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Cormorant:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=16">
+  <script src="js/analytics.js?v=8"></script>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="container">
+    <a href="index.html" class="logo">포디엄<span class="accent">.</span><span class="beta">BETA</span></a>
+    <nav class="main-nav">
+      <a href="jobs.html">구인구직</a>
+      <a href="practice.html">연습실</a>
+      <a href="about.html">소개</a>
+    </nav>
+  </div>
+</header>
+
+<div class="page-head">
+  <div class="container">
+    <h1>내 프로필 관리</h1>
+    <p class="desc">확인 코드로 수정하거나 지웁니다</p>
+  </div>
+</div>
+
+<main class="container" style="max-width:640px;padding-block:24px 48px">
+  <form id="pm-auth">
+    <label class="pf-l">프로필 번호
+      <input name="id" maxlength="32" placeholder="등록할 때 받은 번호" required></label>
+    <label class="pf-l">확인 코드
+      <input name="token" maxlength="40" placeholder="pxk2-9mfa-vt7d-3xqw" required></label>
+    <button type="submit" class="btn-primary">불러오기</button>
+    <p id="pm-msg" style="margin-top:12px;font-size:0.88rem"></p>
+  </form>
+
+  <div id="pm-edit" hidden>
+    <p id="pm-status" style="font-size:0.88rem;color:#6b6154;margin-bottom:14px"></p>
+    <form id="pm-form">
+      <label class="pf-l">이름 또는 활동명<input name="name" maxlength="40" required></label>
+      <label class="pf-l">악기 / 전공<input name="inst" maxlength="40" required></label>
+      <label class="pf-l">활동 지역<select name="region" required></select></label>
+      <label class="pf-l">한 줄 소개<input name="intro" maxlength="100" required></label>
+      <label class="pf-l">경력 요약<textarea name="career" maxlength="500" rows="4"></textarea></label>
+      <label class="pf-l">공개 연락 수단<input name="contact" maxlength="200" required></label>
+      <p style="font-size:0.85rem;color:#6b6154">고치면 운영자 확인을 다시 거칩니다.</p>
+      <button type="submit" class="btn-primary">수정 저장</button>
+    </form>
+    <hr style="margin:28px 0;border:0;border-top:1px solid #e5ded2">
+    <h3 style="font-size:1rem;margin-bottom:6px">프로필 지우기</h3>
+    <p style="font-size:0.88rem;color:#6b6154;line-height:1.7">
+      누르는 즉시 지워지며 되돌릴 수 없습니다. 저희 쪽에도 사본이 남지 않습니다.</p>
+    <button id="pm-del" type="button"
+            style="margin-top:8px;background:#8c2f2f;color:#fff;border:0;border-radius:6px;padding:10px 18px;cursor:pointer">
+      지우기</button>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <span class="logo serif">포디엄<span class="accent">.</span></span><br>
+    클래식 음악인을 위한 공고 집약 플랫폼 · v2.0 · <a href="sources.html" style="color:inherit">수집 원천</a> · <a href="privacy.html" style="color:inherit">개인정보 처리방침</a>
+  </div>
+</footer>
+<script src="js/profiles.js?v=1"></script>
+</body>
+</html>
