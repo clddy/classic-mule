@@ -136,7 +136,10 @@ def main(argv):
                 prev = (json.load(f).get("index") or [])
         except (FileNotFoundError, json.JSONDecodeError):
             prev = []
-        doc["index"] = inspect_all(s, _sitemap_urls(), prev, date.today().isoformat())
+        _urls = _sitemap_urls()
+        # 사이트맵 전체 규모 — index 는 회전 표본이라 그 길이를 전체로 착각하면 안 된다
+        doc["sitemapTotal"] = len(_urls)
+        doc["index"] = inspect_all(s, _urls, prev, date.today().isoformat())
     except ImportError:
         print("gsc: google-auth 미설치 — pip install google-auth requests", file=sys.stderr)
         return 1

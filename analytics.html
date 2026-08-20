@@ -520,12 +520,13 @@ function render() {
     if (ix.length) {
       var okN = ix.filter(function (r) { return r[1] === "PASS"; }).length;
       var unknown = ix.filter(function (r) { return /unknown/i.test(r[2] || ""); }).length;
-      H.push('<h2>색인 상태 <span class="sub">사이트맵에 올린 ' + n(ix.length) +
-             '개 주소를 구글이 실제로 아는가</span></h2>');
+      var smTotal = SEARCH.sitemapTotal || 0;
+      H.push('<h2>색인 상태 <span class="sub">사이트맵 ' + (smTotal ? n(smTotal) + '개 중 ' : "") +
+             n(ix.length) + '개를 확인한 결과 (회전 표본)</span></h2>');
       H.push('<div class="kpis">' + [
-        ["색인됨", n(okN), pct(okN, ix.length) + " · 검색에 뜰 수 있음", 1],
+        ["색인됨", n(okN), "확인한 " + n(ix.length) + "개 중 " + pct(okN, ix.length), 1],
         ["구글이 모름", n(unknown), "크롤조차 안 해 간 주소", 0],
-        ["그 밖", n(ix.length - okN - unknown), "크롤됐으나 미색인 등", 0]
+        ["아직 미확인", n(Math.max(0, smTotal - ix.length)), "사이트맵에는 있으나 미검사", 0]
       ].map(function (c) {
         return '<div class="kpi' + (c[3] ? " accent" : "") + '"><div class="k">' + c[0] +
           '</div><div class="v">' + c[1] + '</div><div class="n">' + esc(c[2]) + "</div></div>";
@@ -547,6 +548,7 @@ function render() {
              '<b>구글이 그 주소를 한 번도 방문한 적 없음</b>을 뜻합니다. ' +
              '사이트맵은 2026-08-19에 제출했으니 그 뒤 변화를 여기서 추적합니다. ' +
              '한 건 확인에 7.5초가 걸려 공고 상세는 회차당 8개씩 돌아가며 봅니다 — ' +
+             '<b>위 비율은 확인한 표본 기준이지 사이트 전체가 아닙니다.</b> ' +
              '확인일이 오래된 줄은 그만큼 옛 상태입니다.</p>');
     }
   }
