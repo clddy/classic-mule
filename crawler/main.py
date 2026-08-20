@@ -1210,11 +1210,23 @@ def _refill_from_raw(items, today):
             if not dl:
                 dl = deadline_from_title((raw or {}).get("title") or it.get("title") or "",
                                          ref_year=_ref_year(it))
-            # 지난 날짜를 마감으로 앉히면 멀쩡한 공고가 '마감'으로 사라진다 — 오늘 이후만
-            if dl and dl >= today.isoformat():
-                it["deadline"] = dl
-                it["deadlineFrom"] = "raw"
-                n_dl += 1
+            # 지난 마감도 앉힌다 (2026-08-21 정정). 종전에는 '오늘 이후'만 받았는데,
+            # 그러면 **진짜로 마감된 공고가 마감일 없이 '기한 미정'으로 영영 살아남는다** —
+            # 천안시립교향악단(8/14 마감)이 제목에도 '(~8/14)'라고 적혀 있는데 8/21까지
+            # 접수중인 것처럼 걸려 있었다. 지원할 수 없는 자리를 보여주는 건 빈칸보다 나쁘다.
+            #
+            # 원래 가드가 막으려던 것은 '엉뚱한 과거 날짜를 물어 멀쩡한 공고를 죽이는 일'이다.
+            # 그건 날짜의 출처로 가른다: 게시일보다 뒤여야 하고(게시일 자체를 마감으로 오독한
+            # 경우 배제), 지나치게 오래된 날짜는 다른 공고의 것으로 본다.
+            if dl:
+                _posted = it.get("date") or it.get("firstSeen") or ""
+                _too_old = dl < (today - timedelta(days=120)).isoformat()
+                if dl >= today.isoformat() or (dl > _posted and not _too_old):
+                    it["deadline"] = dl
+                    it["deadlineFrom"] = "raw"
+                    n_dl += 1
+                    if dl < today.isoformat():
+                        log(f"  마감 소급: {it['title'][:30]} → {dl} (지난 마감을 뒤늦게 확인)")
     if n_ex or n_dl or n_fd:
         log(f"원문 보관층에서 복구: 요약 {n_ex}건 · 마감 {n_dl}건 · 조건항목 {n_fd}건")
 

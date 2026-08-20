@@ -1,8 +1,8 @@
 {
  "date": "2026-08-21",
  "total": 75,
- "covered": 2,
- "gapCount": 73,
+ "covered": 1,
+ "gapCount": 74,
  "gaps": [
   {
    "name": "서울시립교향악단",
@@ -285,6 +285,11 @@
    "region": "전남"
   },
   {
+   "name": "천안시립합창단",
+   "type": "합창단",
+   "region": "충남"
+  },
+  {
    "name": "경주시립합창단",
    "type": "합창단",
    "region": "경북"
@@ -372,8 +377,8 @@
  ],
  "master": {
   "total": 604,
-  "covered": 4,
-  "gapCount": 600,
+  "covered": 3,
+  "gapCount": 601,
   "byCategory": {
    "대학": {
     "total": 77,
@@ -385,7 +390,7 @@
    },
    "예술단": {
     "total": 54,
-    "covered": 3
+    "covered": 2
    },
    "지자체": {
     "total": 323,
@@ -1037,6 +1042,11 @@
     "name": "순천시립합창단",
     "cat": "예술단",
     "region": "광주·전남"
+   },
+   {
+    "name": "천안시립합창단",
+    "cat": "예술단",
+    "region": "충남"
    },
    {
     "name": "경주시립합창단",
