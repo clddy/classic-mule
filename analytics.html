@@ -85,6 +85,12 @@
   .tag.bot{background:#f4f2ee}
   .tag.ret{background:var(--green-tint);border-color:#cfe0d4;color:var(--green)}
   .scroll{overflow-x:auto}
+  table.hourgrid td,table.hourgrid th{padding:4px 5px;font-size:.76rem}
+  th.hg{color:var(--grey);font-weight:400}
+  th.hg.night{color:var(--green)}
+  td.hg{color:var(--grey)}
+  td.hg.off{background:var(--wash)}
+  td.hg.on{background:var(--claret);color:#fff;font-weight:600}
   .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
   @media(max-width:760px){.grid2{grid-template-columns:1fr}}
   .note{font-size:.78rem;color:var(--ink-soft);margin:8px 0 0}
@@ -300,13 +306,73 @@ function bars(items, opt) {
   return s + "</svg>";
 }
 
+// 참조 URL 을 사람이 읽는 한 줄로. 여기 정보가 생각보다 깊다 —
+// 네이버 블로그 referrer 에는 어느 글(logNo)인지에 더해, 그 사람이 블로그에 닿기까지
+// 쓴 검색어(topReferer 안의 query)까지 실려 온다. 그게 우리 유입의 원류다.
+function refLabel(u) {
+  var out = { where: u, detail: "" };
+  try {
+    var url = new URL(u);
+    var host = url.hostname.replace(/^www\./, "");
+    if (host === "podiumclassical.kr") { out.where = "사이트 내부 이동"; out.detail = url.pathname; return out; }
+    if (host.indexOf("blog.naver.com") >= 0) {
+      var logNo = url.searchParams.get("logNo");
+      out.where = "네이버 블로그" + (logNo ? " · 글 " + logNo : "");
+      var top = url.searchParams.get("topReferer");
+      if (top) {
+        try {
+          var t = new URL(top), q = t.searchParams.get("query") || t.searchParams.get("q");
+          out.detail = q ? "검색어 “" + q + "”  (" + t.hostname.replace(/^www\./, "") + ")"
+                         : t.hostname.replace(/^www\./, "") + " 경유";
+        } catch (e) { out.detail = "경유 " + top.slice(0, 40); }
+      }
+      return out;
+    }
+    if (/google\./.test(host)) { out.where = "구글 검색"; return out; }
+    if (/naver\.com/.test(host)) { out.where = "네이버 검색"; return out; }
+    if (/bing\./.test(host)) { out.where = "빙 검색"; return out; }
+    if (/chatgpt|openai/.test(host)) { out.where = "ChatGPT"; return out; }
+    out.where = host; out.detail = url.pathname.slice(0, 40);
+  } catch (e) { /* 파싱 실패하면 원문 그대로 */ }
+  return out;
+}
+
+// 날짜 x 시각 표 — 셀 하나가 "그날 그 시각의 세션 수".
+// 값이 0인 칸은 비워 둔다. 24열이 가로로 넘치면 표만 가로 스크롤된다.
+function hourGrid(a) {
+  var days = keys().slice().reverse();
+  if (!days.length) return '<div class="empty">기록 없음</div>';
+  var head = '<tr><th>날짜</th>';
+  for (var h = 0; h < 24; h++) {
+    var night = (h >= 22 || h <= 5);
+    head += '<th class="num hg' + (night ? " night" : "") + '">' + h + "</th>";
+  }
+  head += '<th class="num">합</th></tr>';
+  var body = days.map(function (d) {
+    var r = DAYS[d] || {}, hrs = r.hours || {}, tot = 0, cells = "";
+    for (var h = 0; h < 24; h++) {
+      var v = hrs[String(h)] || hrs[("0" + h).slice(-2)] || [0, 0];
+      if (typeof v === "number") v = [v, 0];
+      tot += v[0];
+      cells += '<td class="num hg' + (v[1] > 0 ? " on" : v[0] > 0 ? " off" : "") + '">' +
+        (v[0] || "") + "</td>";
+    }
+    var dt = new Date(d + "T00:00:00");
+    var wd = ["일", "월", "화", "수", "목", "금", "토"][dt.getDay()];
+    return "<tr><td>" + esc(d.slice(5).replace("-", "/")) + " (" + wd + ")</td>" + cells +
+      '<td class="num">' + n(tot) + "</td></tr>";
+  }).join("");
+  return '<div class="scroll"><table class="hourgrid">' + head + body + "</table></div>";
+}
+
 // ── 집계 ──────────────────────────────────────────────────────────────────
 function aggregate() {
   var a = {
     sessions: 0, users: 0, newUsers: 0, engaged: 0, sec: 0, pv: 0,
     events: {}, pages: {}, hours: {}, jobs: {},
     bands: {}, results: {}, finsts: {}, fregions: {},
-    kind: {}, dday: {}, dest: {}, src: {}, aud: {}, daily: [],
+    kind: {}, tier: {}, inst: {}, jregion: {}, cert: {}, career: {}, dday: {}, dest: {},
+    src: {}, aud: {}, daily: [], land: {}, ref: {},
     combos: {},        // 필터 조합 → [결과건수, 횟수]
     visits: []         // 최근 방문: {date, hours:[시각…], engaged}
   };
@@ -335,6 +401,17 @@ function aggregate() {
     addInto(a.bands, f.bands); addInto(a.results, f.results);
     addInto(a.finsts, f.insts); addInto(a.fregions, f.regions);
     addInto(a.kind, jm.kind); addInto(a.dday, jm.dday); addInto(a.dest, jm.dest);
+    addInto(a.tier, jm.tier); addInto(a.inst, jm.inst); addInto(a.jregion, jm.region);
+    addInto(a.cert, jm.cert); addInto(a.career, jm.career);
+    (r.landing || []).forEach(function (row) {
+      var k = row[0] + "|" + row[1], v = a.land[k] || (a.land[k] = [0, 0, 0]);
+      for (var i = 0; i < 3; i++) v[i] += row[2 + i];
+    });
+    (r.referrers || []).forEach(function (row) {
+      if (!row[0]) return;                       // 참조 없음(직접 입력·북마크)
+      var v = a.ref[row[0]] || (a.ref[row[0]] = [0, 0]);
+      v[0] += row[1]; v[1] += row[2];
+    });
     (r.filterCombos || []).forEach(function (row) {
       // f_results 가 숫자인 행만이 실제 필터 사용이다. page_view 처럼 이 파라미터를 아예
       // 안 싣는 이벤트가 전부 (not set) 한 줄로 뭉쳐 오는데, 그걸 0건으로 읽으면
@@ -354,8 +431,12 @@ function aggregate() {
       c.n += row[6];
     });
     (r.sources || []).forEach(function (row) {
-      var k = row[0] + "|" + row[1], v = a.src[k] || (a.src[k] = [0, 0, 0, 0, 0]);
-      for (var i = 0; i < 5; i++) v[i] += row[2 + i];
+      // v4부터 [출처, 매체, 채널그룹, 지표5]. 옛 형식은 채널그룹이 없다.
+      var wide = row.length >= 8;
+      var k = row[0] + "|" + row[1] + "|" + (wide ? row[2] : "");
+      var off = wide ? 3 : 2;
+      var v = a.src[k] || (a.src[k] = [0, 0, 0, 0, 0]);
+      for (var i = 0; i < 5; i++) v[i] += row[off + i];
     });
     (r.audience || []).forEach(function (row) {
       var k = row.slice(0, 5).join("|"), v = a.aud[k] || (a.aud[k] = [0, 0, 0, 0, 0]);
@@ -432,6 +513,42 @@ function render() {
           '</td><td class="num">' + n(r[2]) + '</td><td class="num">' + r[3] + "</td></tr>";
       })));
     H.push("</div></div>");
+
+    // 색인 상태 — 노출이 0인 이유가 '순위가 낮아서'인지 '구글이 페이지를 아예 모르는지'는
+    // 이것으로만 갈린다. 사이트맵에 올린 주소 전부를 URL 검사 API로 매일 확인한다.
+    var ix = SEARCH.index || [];
+    if (ix.length) {
+      var okN = ix.filter(function (r) { return r[1] === "PASS"; }).length;
+      var unknown = ix.filter(function (r) { return /unknown/i.test(r[2] || ""); }).length;
+      H.push('<h2>색인 상태 <span class="sub">사이트맵에 올린 ' + n(ix.length) +
+             '개 주소를 구글이 실제로 아는가</span></h2>');
+      H.push('<div class="kpis">' + [
+        ["색인됨", n(okN), pct(okN, ix.length) + " · 검색에 뜰 수 있음", 1],
+        ["구글이 모름", n(unknown), "크롤조차 안 해 간 주소", 0],
+        ["그 밖", n(ix.length - okN - unknown), "크롤됐으나 미색인 등", 0]
+      ].map(function (c) {
+        return '<div class="kpi' + (c[3] ? " accent" : "") + '"><div class="k">' + c[0] +
+          '</div><div class="v">' + c[1] + '</div><div class="n">' + esc(c[2]) + "</div></div>";
+      }).join("") + "</div>");
+      var order = { PASS: 0, PARTIAL: 1, NEUTRAL: 2, FAIL: 3 };
+      H.push(table([["주소", 0], ["상태", 0], ["마지막 크롤", 0], ["확인일", 0]],
+        ix.slice().sort(function (x, y) {
+          return (order[x[1]] === undefined ? 9 : order[x[1]]) -
+                 (order[y[1]] === undefined ? 9 : order[y[1]]);
+        }).map(function (r) {
+          var good = r[1] === "PASS";
+          return '<tr class="' + (good ? "" : "bot") + '"><td class="t">' + pageLabel(r[0]) +
+            "</td><td>" + (good ? '<span class="tag ret">색인됨</span>'
+                                : '<span class="tag">' + esc(r[2]) + "</span>") +
+            "</td><td>" + esc(r[3] || "—") + "</td>" +
+            "<td>" + esc(r[4] || "—") + "</td></tr>";
+        })));
+      H.push('<p class="note">"URL is unknown to Google"은 색인 실패가 아니라 ' +
+             '<b>구글이 그 주소를 한 번도 방문한 적 없음</b>을 뜻합니다. ' +
+             '사이트맵은 2026-08-19에 제출했으니 그 뒤 변화를 여기서 추적합니다. ' +
+             '한 건 확인에 7.5초가 걸려 공고 상세는 회차당 8개씩 돌아가며 봅니다 — ' +
+             '확인일이 오래된 줄은 그만큼 옛 상태입니다.</p>');
+    }
   }
 
   H.push('<div class="grid2"><div>');
@@ -442,35 +559,47 @@ function render() {
     .map(function (r) {
       var p = r[0].split("|"), v = r[1], bot = v[2] === 0;
       return '<tr class="' + (bot ? "bot" : "") + '"><td class="t">' + esc(p[0]) +
-        ' <span class="tag">' + esc(p[1]) + "</span></td>" +
+        ' <span class="tag">' + esc(p[2] || p[1]) + "</span></td>" +
         '<td class="num">' + n(v[2]) + '</td><td class="num">' + n(v[0]) + "</td>" +
         '<td class="num">' + n(v[4]) + '</td><td class="num">' + dur(v[3]) + "</td></tr>";
     });
   H.push(table([["출처", 0], ["참여", 1], ["세션", 1], ["PV", 1], ["체류", 1]], srows));
-  H.push("</div><div>");
-  H.push('<h2>시간대 <span class="sub">0~23시 · 진한 막대가 사람(참여 세션)</span></h2>');
-  var hr = [];
-  for (var i = 0; i < 24; i++) {
-    var hv = a.hours[String(i)] || a.hours[("0" + i).slice(-2)] || [0, 0];
-    hr.push({ bg: hv[0], fg: hv[1], label: i % 3 === 0 ? i : "" });
-  }
-  H.push(bars(hr, { h: 110, fs: 14 }));
   H.push("</div></div>");
 
-  // 사람이 실제로 들어온 날짜와 시각. 시간대 차트는 기간을 뭉개므로 "요즘 언제 오나"를
-  // 못 보여준다 — 참여 세션이 있었던 시각만 최근 순으로 늘어놓는다.
-  H.push('<h2>최근 방문 <span class="sub">참여 세션이 있었던 날짜와 시각 · 최근 순</span></h2>');
-  var vrows = a.visits.slice().reverse().map(function (v) {
-    var dt = new Date(v.date + "T00:00:00");
-    var wd = ["일", "월", "화", "수", "목", "금", "토"][dt.getDay()];
-    return "<tr><td>" + esc(v.date.slice(5).replace("-", "/")) + " (" + wd + ")</td>" +
-      "<td>" + v.hours.map(function (h) {
-        return '<span class="tag' + (h >= 22 || h <= 5 ? " ret" : "") + '">' + h + "시</span>";
-      }).join(" ") + '</td><td class="num">' + n(v.engaged) + "</td></tr>";
-  });
-  H.push(table([["날짜", 0], ["방문 시각", 0], ["참여 세션", 1]], vrows,
-               "참여 세션이 있었던 날이 없습니다"));
-  H.push('<p class="note">초록 칩은 밤·새벽(22~5시)입니다. 알림 발송 시각을 정할 때 쓰는 축입니다.</p>');
+  H.push('<h2>어디서 왔나 — 자세히 <span class="sub">실제 참조 URL을 풀어서</span></h2>');
+  var rrows = Object.keys(a.ref).map(function (k) { return [k, a.ref[k]]; })
+    .sort(function (x, y) { return y[1][1] - x[1][1] || y[1][0] - x[1][0]; })
+    .filter(function (r) { return refLabel(r[0]).where !== "사이트 내부 이동"; })
+    .map(function (r) {
+      var L = refLabel(r[0]), v = r[1];
+      return '<tr class="' + (v[1] ? "" : "bot") + '"><td class="t">' + esc(L.where) + "</td>" +
+        '<td class="t">' + esc(L.detail || "—") + "</td>" +
+        '<td class="num">' + n(v[1]) + '</td><td class="num">' + n(v[0]) + "</td></tr>";
+    });
+  H.push(table([["출처", 0], ["무엇을 거쳐서", 0], ["참여", 1], ["세션", 1]], rrows,
+               "참조 URL 데이터 없음"));
+  H.push('<p class="note">사이트 내부 이동은 뺐습니다. 네이버 블로그 유입은 어느 글인지와, ' +
+         '그 사람이 블로그에 닿기까지 쓴 검색어까지 실려 옵니다.</p>');
+
+  H.push('<h2>첫 화면 <span class="sub">출처별로 어느 페이지에 처음 닿았나</span></h2>');
+  var lrows = Object.keys(a.land).map(function (k) { return [k.split("|"), a.land[k]]; })
+    .sort(function (x, y) { return y[1][1] - x[1][1] || y[1][0] - x[1][0]; })
+    .filter(function (r) { return r[0][1]; })
+    .map(function (r) {
+      var v = r[1];
+      return '<tr class="' + (v[1] ? "" : "bot") + '"><td class="t">' + esc(r[0][0]) + "</td>" +
+        '<td class="t">' + pageLabel(r[0][1]) + "</td>" +
+        '<td class="num">' + n(v[1]) + '</td><td class="num">' + n(v[0]) +
+        '</td><td class="num">' + n(v[2]) + "</td></tr>";
+    });
+  H.push(table([["출처", 0], ["첫 페이지", 0], ["참여", 1], ["세션", 1], ["PV", 1]], lrows));
+
+  // 날짜 x 시각 표. 기간을 뭉갠 24칸 막대로는 "요즘 언제 오나"를 못 본다 —
+  // 알림 발송 시각을 정하려면 최근 며칠의 시각 분포가 그대로 보여야 한다.
+  H.push('<h2>방문 시간대 <span class="sub">날짜 × 시각 · 숫자는 세션 수 · 진한 칸이 사람(참여)</span></h2>');
+  H.push(hourGrid(a));
+  H.push('<p class="note">진한 칸 = 참여 세션이 있었던 시각(사람). 연한 칸 = 세션은 있었지만 ' +
+         '참여 0(봇·자동접속). 밤·새벽(22~5시)은 열 머리를 초록으로 표시했습니다.</p>');
 
   H.push('<h2>방문자 <span class="sub">도시 · 기기 · 브라우저</span></h2>');
   var arows = Object.keys(a.aud).map(function (k) { return [k, a.aud[k]]; })
@@ -483,92 +612,54 @@ function render() {
         "<td>" + (p[4] === "returning" ? '<span class="tag ret">재방문</span>' :
                   bot ? '<span class="tag bot">자동</span>' : "") + "</td>" +
         '<td class="num">' + n(v[2]) + '</td><td class="num">' + n(v[0]) + "</td>" +
-        '<td class="num">' + n(v[1]) + '</td><td class="num">' + n(v[4]) + "</td>" +
-        '<td class="num">' + dur(v[3]) + "</td></tr>";
+        '<td class="num">' + n(v[4]) + '</td><td class="num">' + dur(v[3]) + "</td></tr>";
     });
   H.push(table([["도시", 0], ["기기", 0], ["", 0], ["참여", 1], ["세션", 1],
-                ["연인원", 1], ["PV", 1], ["체류", 1]], arows));
-  H.push('<p class="note">연인원 = 날짜별 사용자 수의 합입니다. 같은 사람이 사흘 오면 3으로 ' +
-         '세어지니 순 방문자 수가 아닙니다 — 순 방문자는 GA4 가 기간 단위로만 셀 수 있습니다.</p>');
+                ["PV", 1], ["체류", 1]], arows));
   if (!showBots && botSess > 0)
     H.push('<p class="note">참여 0인 자동 접속 ' + n(botSess) +
            '세션은 숨겼습니다 — 위 체크박스로 볼 수 있습니다.</p>');
 
-  H.push('<h2>수요 신호 <span class="sub">방문자가 무엇을 걸렀나 — 공급(크롤)과 대조할 유일한 축</span></h2>');
-  H.push('<div class="grid2"><div>');
-  H.push(table([["필터 직종", 0], ["횟수", 1]],
-    sorted(a.bands, 12).map(function (r) {
-      return "<tr><td>" + esc(r[0].replace(/\|/g, " + ")) + '</td><td class="num">' +
-        n(r[1]) + "</td></tr>";
-    }), "맞춤측정기준 f_bands 데이터 없음"));
-  var fi = sorted(a.finsts, 10), fr = sorted(a.fregions, 10);
-  if (fi.length) H.push(table([["필터 악기", 0], ["횟수", 1]], fi.map(function (r) {
-    return "<tr><td>" + esc(r[0]) + '</td><td class="num">' + n(r[1]) + "</td></tr>"; })));
-  if (fr.length) H.push(table([["필터 지역", 0], ["횟수", 1]], fr.map(function (r) {
-    return "<tr><td>" + esc(r[0]) + '</td><td class="num">' + n(r[1]) + "</td></tr>"; })));
-  H.push("</div><div>");
-  var thin = 0, all = 0;
-  Object.keys(a.results).forEach(function (k) {
-    all += a.results[k]; if (+k <= 3) thin += a.results[k];
-  });
-  H.push(table([["필터 결과 건수", 0], ["횟수", 1]],
-    Object.keys(a.results).map(Number).sort(function (x, y) { return x - y; })
-      .map(function (k) {
-        return "<tr" + (k <= 3 ? ' class="bot"' : "") + "><td>" + k + "건" +
-          (k <= 3 ? ' <span class="tag">빈손에 가까움</span>' : "") +
-          '</td><td class="num">' + n(a.results[k]) + "</td></tr>";
-      }), "맞춤측정기준 f_results 데이터 없음"));
-  H.push("</div></div>");
-
-  // 축별 집계로는 "지휘를 켰더니 1건"을 못 본다 — 조합을 통째로 봐야 나온다.
-  H.push('<h2>무엇을 켰을 때 빈손이었나 <span class="sub">필터 조합별 결과 건수 · 적은 순</span></h2>');
+  // 사용자 지시(2026-08-19): 궁금한 것은 "결과가 몇 건이었나"가 아니라
+  // **무엇을 걸렀나** 자체다. 그래서 조합을 빈도순으로 앞세우고 결과 건수는 곁들인다.
+  H.push('<h2>무엇을 찾고 있나 <span class="sub">필터 조합 · 많이 쓴 순 · 공급(크롤)과 대조할 유일한 축</span></h2>');
   var crows = Object.keys(a.combos).map(function (k) { return [k.split(""), a.combos[k]]; })
-    .sort(function (x, y) { return x[1].min - y[1].min || y[1].n - x[1].n; })
+    .sort(function (x, y) { return y[1].n - x[1].n || x[1].min - y[1].min; })
     .map(function (r) {
-      var p = r[0], c = r[1];
-      var parts = [];
-      if (p[0]) parts.push("직종 " + p[0].replace(/\|/g, "+"));
-      if (p[1]) parts.push("악기 " + p[1].replace(/\|/g, "+"));
-      if (p[2]) parts.push("지역 " + p[2].replace(/\|/g, "+"));
-      if (p[3]) parts.push(p[3].replace(/\|/g, "+"));
-      if (p[4]) parts.push('검색 "' + p[4] + '"');
+      var p = r[0], c = r[1], cells = [];
+      cells.push(p[0] ? esc(p[0].replace(/\|/g, " + ")) : "—");   // 직종
+      cells.push(p[1] ? esc(p[1].replace(/\|/g, " + ")) : "—");   // 악기
+      cells.push(p[2] ? esc(p[2].replace(/\|/g, " + ")) : "—");   // 지역
+      var extra = [];
+      if (p[3]) extra.push(esc(p[3].replace(/\|/g, " + ")));
+      if (p[4]) extra.push('검색 "' + esc(p[4]) + '"');
+      cells.push(extra.join(" · ") || "—");
       var span = (c.min === c.max) ? n(c.min) : n(c.min) + "~" + n(c.max);
-      return "<tr" + (c.max <= 3 ? ' class="bot"' : "") + '><td class="t">' +
-        (parts.length ? esc(parts.join(" · ")) : "<i>조건 없음</i>") + "</td>" +
+      return "<tr><td>" + cells.join("</td><td>") + '</td><td class="num">' + n(c.n) + "회</td>" +
         '<td class="num">' + span + "건" +
-        (c.max === 0 ? ' <span class="tag">빈손</span>' :
-         c.max <= 3 ? ' <span class="tag">거의 빈손</span>' : "") +
-        '</td><td class="num">' + n(c.n) + "회</td></tr>";
+        (c.max <= 3 ? ' <span class="tag">거의 빈손</span>' : "") + "</td></tr>";
     });
-  H.push(table([["켠 필터", 0], ["결과", 1], ["횟수", 1]], crows,
-    "필터 조합 데이터 없음 — 2026-08-19 이후 수집분부터 쌓입니다"));
-  H.push('<p class="note">결과가 적었던 조합이 곧 채워야 할 칸입니다. ' +
-         '0건(filter_empty)만 보면 1건짜리 헛걸음이 통째로 안 보입니다.</p>');
+  H.push(table([["직종", 0], ["악기", 0], ["지역", 0], ["그 밖", 0], ["쓴 횟수", 1], ["나온 결과", 1]],
+    crows, "필터 조합 데이터 없음"));
+  H.push('<p class="note">한 줄이 실제로 켠 필터 한 벌입니다. 순서만 다른 조합은 합쳤고, ' +
+         '같은 조합도 날마다 공고가 들고 나므로 결과는 범위로 적었습니다. ' +
+         '결과 3건 이하는 사실상 헛걸음이라 표시해 뒀습니다.</p>');
 
+  // 사용자 지시: 무엇이 열렸나(제목)보다 **어떤 종류가 열렸나**가 궁금하다.
+  // 그래서 '많이 열린 공고' 표를 빼고 성격 축을 늘렸다.
+  H.push('<h2>열린 공고의 성격 <span class="sub">방문자가 실제로 펼쳐 본 공고들의 속성 분포</span></h2>');
+  var CH = [["직종", a.kind], ["직무군", a.tier], ["악기", a.inst], ["지역", a.jregion],
+            ["마감 임박도", a.dday], ["교원자격 요건", a.cert], ["경력 요건", a.career],
+            ["원문 이동처", a.dest]];
+  H.push('<div class="grid2">');
+  CH.forEach(function (c) {
+    var rows = sorted(c[1], 8).map(function (r) {
+      return "<tr><td>" + esc(r[0]) + '</td><td class="num">' + n(r[1]) + "</td></tr>";
+    });
+    H.push("<div>" + table([[c[0], 0], ["횟수", 1]], rows, "데이터 없음") + "</div>");
+  });
+  H.push("</div>");
   H.push('<div class="grid2"><div>');
-  if (all) H.push('<p class="note">결과 건수가 기록된 필터 ' + n(all) + '건 중 <b>' + n(thin) +
-    '건(' + pct(thin, all) + ')</b>이 3건 이하였습니다. 0건(filter_empty)만 세면 안 보이는 ' +
-    '결핍입니다. (맞춤측정기준 집계라 위 KPI 의 filter_use 이벤트 수와 몇 건 어긋날 수 있습니다)</p>');
-  H.push("</div><div></div></div>");
-
-  H.push('<h2>많이 열린 공고 <span class="sub">job_view · 제목은 official/archive 에서 붙임</span></h2>');
-  H.push(table([["공고", 0], ["기관", 0], ["지역", 0], ["열람", 1]],
-    sorted(a.jobs, 25).map(function (r) {
-      var j = JOBS[r[0].replace(/^o/, "")] || JOBS[r[0]] || {};
-      return '<tr><td class="t">' + esc(j.title || "(해석 불가 " + r[0] + ")") + "</td>" +
-        '<td class="t">' + esc(j.org || "—") + "</td><td>" + esc(j.region || "—") + "</td>" +
-        '<td class="num">' + n(r[1]) + "</td></tr>";
-    }), "맞춤측정기준 job_id 데이터 없음"));
-
-  H.push('<div class="grid2"><div>');
-  H.push('<h2>열린 공고의 성격</h2>');
-  H.push(table([["직종", 0], ["횟수", 1]], sorted(a.kind, 10).map(function (r) {
-    return "<tr><td>" + esc(r[0]) + '</td><td class="num">' + n(r[1]) + "</td></tr>"; })));
-  H.push(table([["마감 임박도", 0], ["횟수", 1]], sorted(a.dday, 10).map(function (r) {
-    return "<tr><td>" + esc(r[0]) + '</td><td class="num">' + n(r[1]) + "</td></tr>"; })));
-  H.push(table([["이동처", 0], ["횟수", 1]], sorted(a.dest, 10).map(function (r) {
-    return "<tr><td>" + esc(r[0]) + '</td><td class="num">' + n(r[1]) + "</td></tr>"; })));
-  H.push("</div><div>");
   H.push('<h2>페이지</h2>');
   H.push(table([["경로", 0], ["PV", 1], ["체류", 1]],
     Object.keys(a.pages).map(function (k) { return [k, a.pages[k]]; })

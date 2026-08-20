@@ -59,7 +59,7 @@ ENV = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".env")
 # 이 앞은 아무리 당겨도 0이라 백필 대상이 아니다.
 FIRST_DAY = "2026-08-06"
 
-SCHEMA = 3          # 이 값이 오르면 옛 형식으로 저장된 날짜는 다시 당긴다
+SCHEMA = 4          # 이 값이 오르면 옛 형식으로 저장된 날짜는 다시 당긴다
 
 
 def _load_env():
@@ -132,7 +132,14 @@ def pull(day):
     rec["events"] = counts("eventName")
     rec["pages"] = {d[0]: [int(m[0]), int(float(m[1]))]
                     for d, m in run(["pagePath"], ["screenPageViews", "userEngagementDuration"])}
-    rec["sources"] = rows(["sessionSource", "sessionMedium"], S)
+    # 채널 그룹(자연검색/직접/추천/소셜)까지 같이 — source 문자열만으로는 분류가 애매하다
+    rec["sources"] = rows(["sessionSource", "sessionMedium",
+                           "sessionDefaultChannelGroup"], S)
+    # 어느 페이지로 들어왔나 (출처별) — 검색 유입이 목록으로 오는지 상세로 오는지
+    rec["landing"] = rows(["sessionSource", "landingPage"],
+                          ["sessions", "engagedSessions", "screenPageViews"])
+    # 실제 참조 URL — 'blog.naver.com' 이 아니라 '어느 글'인지가 여기 있다
+    rec["referrers"] = rows(["pageReferrer"], ["sessions", "engagedSessions"])
     rec["audience"] = rows(["city", "deviceCategory", "operatingSystem", "browser",
                             "newVsReturning"], S)
     # [세션, 참여세션] — 참여 쪽만 보면 헬스체크·스캐너가 빠진 '사람의 시각'이 된다
@@ -150,9 +157,14 @@ def pull(day):
                                 "customEvent:f_regions", "customEvent:f_toggles",
                                 "customEvent:f_query", "customEvent:f_results"],
                                ["eventCount"])
+    # 열린 공고의 '성격' — 무엇이 열렸나(제목)보다 어떤 종류가 열렸나가 수요 신호다
     rec["jobmeta"] = {"kind": counts("customEvent:job_kind"),
+                      "tier": counts("customEvent:job_tier"),
+                      "inst": counts("customEvent:job_inst"),
                       "dday": counts("customEvent:job_dday"),
                       "region": counts("customEvent:job_region"),
+                      "cert": counts("customEvent:job_cert"),
+                      "career": counts("customEvent:job_career"),
                       "dest": counts("customEvent:dest")}
     return rec
 
