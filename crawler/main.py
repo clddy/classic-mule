@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import (new_session, get, relevant, extract_deadline, priority_deadlines, deadline_from_title,
-                    musician_relevant, youth_member, participant_only, student_target, dance_member, rope_skipping_only, school_title, tidy_personnel, parse_recruit_table, summarize_recruit, find_position,
+                    musician_relevant, youth_member, participant_only, student_target, dance_member, rope_skipping_only, school_title, tidy_personnel, parse_meta_table, tidy_spacing, parse_recruit_table, summarize_recruit, find_position,
                     classify_insts, find_subject, find_music_subjects, find_music_courses,
                     classify_kind, classify_tier, is_obri, cert_required, degree_req, career_req, age_group,
                     region_from, EXCLUDE, compact_title, music_only_title, body_text, valid_addr,
@@ -301,7 +301,7 @@ def find_attachments(soup, base_url):
                     cands.append((full, el.get_text(" ", strip=True)))
     return cands[:4]
 
-EXT_VER = 84         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
+EXT_VER = 85         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
                      # v32(2026-08-02): 모집분야 구획 악기 추출(insts_from_recruit_text) + 원문 보관층
                      # 24: work.sen 등록일(게시일) 추출 추가 — date=None이던 승계분을 다시 뽑게
                      # 25: body_text 도입 — 본문을 <header>에 넣는 사이트(대전교육청)의 마감일을
@@ -405,11 +405,12 @@ def _find_qualification(text):
         m = re.search(r"(?:공통 ?지원 ?자격|지원 ?자격|응시 ?자격|자격 ?요건)\s*[:：]?\s*", text)
         if m:
             seg = text[m.end():m.end() + 240]
-            seg = re.split(r"\s\d\s*[.)]\s|제출\s*서류|전형\s*방법|접수\s*방법|근무\s*조건", seg)[0]
-            parts = [p.strip(" .,·-–") for p in re.split(r"(?:^|\s)[가나다라마바사]\s*[.)]\s*", seg)]
+            seg = re.split(r"\s\d\s*\.\s|제출\s*서류|전형\s*방법|접수\s*방법|근무\s*조건|원서\s*접수", seg)[0]
+            parts = [tidy_spacing(p) for p in
+                     re.split(r"(?:^|\s)[가나다라마바사]\s*[.)]\s*|\s*\d{1,2}\)\s*", seg)]
             parts = [p for p in parts if len(p) >= 5 and _QUAL_OK.search(p)]
             if parts:
-                q = ", ".join(parts[:2])
+                q = " · ".join(parts[:2])
     if not (q and len(q) >= 5 and _QUAL_OK.search(q)):
         # 실제 자격 표현이 담긴 경우만 채택 (○실기·전형 조기절단 파편 배제)
         return None
@@ -422,7 +423,11 @@ def _find_qualification(text):
     # 표의 '열 제목 + 값'이 나란히 긁혀 라벨이 겹치는 경우: '경력 경력 5년 학력 대학교(4년)'
     # → 앞의 홀로 선 라벨을 지워 '경력 5년 학력 대학교(4년)'로 읽히게 한다 (2026-08-02 지적)
     q = re.sub(r"(경력|학력|자격|연령|성별|우대)\s+(?=\1)", "", q)
-    return q
+    # 값 머리에 표 머리글이 딸려 온다 — '○ 공통사항 구분 세부내용 - 만 20세 이상인 자'
+    # (제물포, 2026-08-21). 뒤가 진짜 자격이므로 버리지 않고 머리만 걷어낸다.
+    q = re.sub(r"^(?:[○●ㅇ□▢-]\s*)?(?:공통\s*사항|구분|세부\s*내용|해당\s*없음|공통)"
+               r"(?:\s*[-–:：]?\s*(?:구분|세부\s*내용|공통\s*사항))*\s*[-–:：]?\s*", "", q)
+    return tidy_spacing(q)
 
 # 근무기간 표기 통일 (2026-08-20 사용자 지적: "근무기간 폼을 우리가 정하지 않았나?").
 # 그동안 마감일만 ISO 로 정규화하고 근무기간은 원문 표기를 그대로 실어 왔다 —
@@ -480,14 +485,16 @@ def _find_duty(text):
         return None
     seg = text[m.end():m.end() + 260]
     # 다음 번호 항목·다른 구획에서 끊는다
-    seg = re.split(r"\s\d\s*[.)]\s|근무\s*조건|지원\s*자격|응시\s*자격|제출\s*서류|전형|보수|접수", seg)[0]
-    parts = [p.strip(" .,·-–") for p in re.split(r"\s*[○ㅇ•▪◦●■□▶-]\s+", seg)]
+    seg = re.split(r"\s\d\s*\.\s|근무\s*조건|지원\s*자격|응시\s*자격|제출\s*서류|전형|보수|접수", seg)[0]
+    # 글머리표뿐 아니라 번호 매김('1) … 2) …')도 항목 구분자다 — 이게 없어 첫 항목만
+    # 남고 나머지가 통째로 잘려 나갔다 (학성초, 2026-08-21)
+    parts = [tidy_spacing(p) for p in re.split(r"\s*[○ㅇ•▪◦●■□▶-]\s+|\s*\d{1,2}\)\s*", seg)]
     parts = [p for p in parts if 4 <= len(p) <= 60
              # 구획 머리말('공통사항')이 값으로 실렸다 (제물포, 2026-08-19) — 라벨성 낱말 기각
              and not re.match(r"^(?:및|등|참가|참여|공통\s*사항|세부\s*내용|유의\s*사항|기타\s*사항?)$", p)]
     if not parts:
         return None
-    return ", ".join(parts[:2])
+    return " · ".join(parts[:2])
 
 
 def _find_personnel_body(text):
@@ -626,6 +633,32 @@ def _merge_insts(item, grp, dets):
     if item.get("inst") in (None, "", "전체", "기타") and grp:
         item["inst"] = grp
 
+def _apply_meta_table(text, item):
+    """교육청 구인 게시판 메타표를 항목에 옮긴다 (common.parse_meta_table).
+
+    게시판 이름('강원교육청(학교 채용)')이 아니라 표가 밝힌 기관명('학성초등학교')이
+    고용주다 — 이걸 못 읽어 강원·인천 공고가 교육청 이름으로 뭉쳐 있었다 (2026-08-21).
+    주소가 있으면 지역도 추측하지 않는다.
+    """
+    meta = parse_meta_table(text)
+    if not meta:
+        return False
+    org = meta.get("org")
+    if org and 2 <= len(org) <= 30 and org != item.get("org"):
+        item["orgBoard"] = item.get("org")
+        item["org"] = org
+    for k in ("addr", "contact", "email"):
+        if meta.get(k) and not item.get(k):
+            item[k] = meta[k]
+    if meta.get("addr"):
+        rg = region_from(meta["addr"])
+        if rg and rg != "기타" and rg != item.get("region"):
+            item["regionBoard"], item["region"] = item.get("region"), rg
+    if meta.get("deadline") and not item.get("deadline"):
+        item["deadline"], item["deadlineFrom"] = meta["deadline"], "meta"
+    return True
+
+
 def _apply_details_from_text(text, item, want_excerpt=True):
     """평문 본문(페이지/첨부/OCR)에서 자격·인원·객원필드·요약을 채운다 (없는 것만)"""
     if not text:
@@ -683,6 +716,7 @@ def _extract_body_details(soup, page_text, item, ry):
         if c:
             item["contract"] = c
     # 자격·모집인원·객원필드 (평문 본문에서, 없는 것만) — 요약은 아래서 별도 처리
+    _apply_meta_table(page_text, item)
     _apply_details_from_text(page_text, item, want_excerpt=False)
     # 본문 요약: 줄 구조가 살아있는 soup 기준(품질 필터가 집계·게시판 잡음 제거).
     # 얇은 페이지에서 못 뽑으면 이후 첨부 단계에서 채워진다.
@@ -1073,6 +1107,9 @@ def _refill_from_raw(items, today):
             e = extract_email(_raw)
             if e and e != it.get("applyEmail"):
                 it["email"] = e
+        # 교육청 구인 게시판 메타표가 있으면 그것부터 — 기관명·주소·연락처·마감이 한 표에
+        # 정리돼 있어 본문 추측보다 정확하다 (2026-08-21)
+        _apply_meta_table(page, it)
         fields = extract_fields(_raw)
         if fields:
             for k, v in fields.items():

@@ -133,6 +133,14 @@ def _detail_rows(j):
         rows.append(("모집", str(j["personnel"])))
     elif insts:
         rows.append(("모집", insts))
+    # 담당업무는 '무엇을 하는 자리인가'라 지원 판단의 핵심인데 정적 상세에만 빠져 있었다
+    # (화면 모달에는 있었다). 검색 착지 페이지가 화면보다 적게 말할 이유가 없다 (2026-08-21).
+    if j.get("duty"):
+        rows.append(("담당업무", j["duty"]))
+    if j.get("workPeriod"):
+        rows.append(("근무기간", j["workPeriod"]))
+    if j.get("workHours"):
+        rows.append(("근무시간", j["workHours"]))
     if j.get("qualification"):
         q = str(j["qualification"])
         if re.search(r"(있는|없는|준하는|가능한|갖춘|마친|수료한|졸업한|이수한|전공한|취득한|소지한)$", q):

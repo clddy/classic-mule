@@ -1,5 +1,5 @@
 {
- "collectedAt": "2026-08-21 00:26",
+ "collectedAt": "2026-08-21 01:13",
  "heldNoOrigin": 0,
  "sourceCount": 87,
  "okCount": 87,
@@ -800,7 +800,6 @@
    "nonMusic": null,
    "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=108657",
    "date": "2026-08-20",
-   "deadline": "2026-08-24",
    "kind": "강사",
    "tier": "교육 — 학교",
    "obri": false,
@@ -808,72 +807,27 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "현악",
+   "inst": "전체",
    "instDetails": [
     "첼로"
    ],
-   "personnel": "2명",
-   "subject": null,
    "channel": "edu_seoul",
    "layer": "C",
-   "orgAffil": "서울시교육청",
-   "addr": "서울특별시 노원구 중계로16나길",
-   "lat": 37.6520576,
-   "lng": 127.082982,
-   "addrFrom": "geo",
    "contact": "02-2289-0123",
    "email": "smileho@sen.go.kr",
    "pay": "시간당 50,000원",
    "workPeriod": "2026.08.27 ~ 2026.12.31(1년 범위 내 기간을 정하여 계약)",
    "workHours": "시간제",
+   "personnel": "2명",
+   "addr": "서울특별시 노원구 중계로16",
    "duty": "성악 1명, 첼로 1명",
    "bodyExcerpt": "채용담당자 이름 유** 연락처 02",
-   "deadlineFrom": "raw",
-   "firstSeen": "2026-08-21",
-   "isNew": true,
-   "extVer": 84
-  },
-  {
-   "id": "2d2d83f46f091faa",
-   "org": "영신여자고등학교",
-   "region": "서울",
-   "source": "work.sen.go.kr",
-   "title": "[영신여고] 음악중점학급 시간강사 채용",
-   "nonMusic": null,
-   "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=108658",
-   "date": "2026-08-20",
    "deadline": "2026-08-24",
-   "kind": "강사",
-   "tier": "교육 — 입시·전공",
-   "obri": false,
-   "certReq": "무관",
-   "degreeReq": "무관",
-   "careerReq": "미기재",
-   "ageGroup": "성인",
-   "inst": "현악",
-   "instDetails": [
-    "첼로"
-   ],
-   "personnel": "3명",
-   "subject": null,
-   "channel": "edu_seoul",
-   "layer": "C",
-   "orgAffil": "서울시교육청",
-   "addr": "서울특별시 노원구 중계로16나길",
-   "lat": 37.6520576,
-   "lng": 127.082982,
-   "addrFrom": "geo",
-   "contact": "02-2289-0123",
-   "email": "smileho@sen.go.kr",
-   "pay": "시간당 25,000원",
-   "workPeriod": "2026.08.31 ~ 2027.02.28(1년 범위 내 기간을 정하여 계약)",
-   "workHours": "시간제",
-   "duty": "성악 1명, 첼로 1명, 뮤지컬(연기)1명",
-   "bodyExcerpt": "25,000원 접수방법 이메일 접수 ( smileho@sen.go.kr ) · 채용담당자 이름 유** 연락처 02",
    "deadlineFrom": "raw",
+   "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-21",
    "isNew": true,
-   "extVer": 84
+   "extVer": 85
   },
   {
    "id": "ffd880eb64c6e25a",
@@ -907,7 +861,7 @@
    "orgAffil": "경기교육청",
    "firstSeen": "2026-08-20",
    "isNew": true,
-   "extVer": 84
+   "extVer": 85
   },
   {
    "id": "020ed96538d30e4e",
@@ -941,7 +895,7 @@
    "orgAffil": "경기교육청",
    "firstSeen": "2026-08-20",
    "isNew": true,
-   "extVer": 84
+   "extVer": 85
   },
   {
    "id": "0fe9d79c55666b30",
@@ -977,17 +931,18 @@
    "addrFrom": "geo",
    "firstSeen": "2026-08-20",
    "isNew": true,
-   "extVer": 84
+   "extVer": 85
   },
   {
    "id": "055ecb2c1356228b",
-   "org": "강원교육청(학교 채용)",
+   "org": "학성초등학교",
    "region": "강원",
    "source": "gwe.go.kr",
-   "title": "악기뱅크2.0 울림프로젝트 밴드부 강사 채용",
+   "title": "[학성초] 밴드부 강사 채용",
    "nonMusic": null,
    "url": "https://www.gwe.go.kr/main/bbs/view.do?key=bTIzMDcyMTA1ODU2MzM%3D&bbsSn=54935",
    "date": "2026-08-20",
+   "deadline": "2026-08-27",
    "kind": "강사",
    "tier": "교육 — 취미·입문",
    "obri": false,
@@ -999,20 +954,25 @@
    "instDetails": [],
    "channel": "edu_gwe",
    "layer": "C",
+   "deadlineFrom": "meta",
+   "qualification": "초등학교 밴드부 지도 경험자 우대 · 해당 분야 전공자 또는 문화예술교육사 자격증 소지자",
    "contact": "033-737-1470",
+   "duty": "밴드부 기초 지도(보컬 혹은 밴드 세션) 및 합주 지도 · 교내 버스킹 데이 및 발표회 공연 준비",
    "email": "seomeesoon@korea.kr",
+   "orgBoard": "강원교육청(학교 채용)",
+   "addr": "강원특별자치도 원주시 치악로 2009-9(태장동)",
+   "pay": "1명 기준으로 시간당(40분) 40,000원",
    "workPeriod": "2026.09 ~ 2026.12(지도 시기 협의 가능)",
-   "workHours": "화요일 , 목요일 14:40~15:20(매 주는 아님)",
+   "workHours": "화요일, 목요일 14:40~15:20(매 주는 아님)",
+   "personnel": "보컬 강사 1명, 밴드부 기악 지도 강사(악기 무관) 1명",
    "bodyExcerpt": "채용 분야 및 채용 예정 인원 : 보컬 강사 1 명 , 밴드부 기악 지도 강사 ( 악기 무관 ) 1 명 , 시간제 2. · 채용 기간 : 2026. · 강의 시간 : 채용 기간 동안 1 인당 총 25 시간 ( 초등학교 1 시간은 40 분 기준 ) 나 . · 접수처 : 학성초등학교 3 층 교무실 방문접수 ( ☎ 033-737-1470) 다 .",
-   "deadline": "2026-08-27",
-   "deadlineFrom": "raw",
    "firstSeen": "2026-08-20",
    "isNew": true,
-   "extVer": 84
+   "extVer": 85
   },
   {
    "id": "d074172cd37256f4",
-   "org": "인천교육청(학교 채용)",
+   "org": "강화중학교",
    "region": "인천",
    "source": "ice.go.kr",
    "title": "[강화중] 기간제교원 모집 공고(2차, 음악)",
@@ -1032,6 +992,7 @@
    "layer": "C",
    "contact": "032-510-6545",
    "email": "beefly11@ice.go.kr",
+   "orgBoard": "인천교육청(학교 채용)",
    "personnel": "1",
    "hiringOrg": "인천광역시교육청대상명 : 인천광역시교육청(https://www.ice.go.kr)",
    "addr": "인천광역시 강화군 강화읍 동문로 53",
@@ -1040,7 +1001,7 @@
    "deadlineFrom": "raw",
    "firstSeen": "2026-08-20",
    "isNew": true,
-   "extVer": 84
+   "extVer": 85
   },
   {
    "id": "ee0d661436e7a1ca",
@@ -1062,18 +1023,17 @@
    "instDetails": [
     "지휘"
    ],
-   "personnel": null,
-   "subject": null,
    "officialUrl": "https://www.yangju.go.kr/www/selectEminwonView.do?pageUnit=10&pageIndex=1&searchCnd=all&key=4075&not_ancmt_mgt_no=67570&ofr_pageSize=10",
    "channel": "artinfo",
    "layer": "A",
    "contact": "031-8082-5652",
+   "pay": "150,000원",
    "workHours": "1일 4시간 30분(주2회)",
    "deadline": "2026-08-31",
    "deadlineFrom": "raw",
    "firstSeen": "2026-08-19",
    "isNew": false,
-   "extVer": 84
+   "extVer": 85
   },
   {
    "id": "9e9c34d080588a5e",
@@ -1098,15 +1058,15 @@
    "officialUrl": "https://www.jfac.or.kr/site/main/archive/post/%EA%B3%B5%EA%B3%A0-2026%EB%85%84-%EC%A2%85%EB%A1%9C%EA%B5%AC%EB%A6%BD%EC%96%B4%EB%A5%B4%EC%8B%A0%ED%95%A9%EC%B0%BD%EB%8B%A8-%EC%A7%80%EB%8F%84%EB%8B%A8%EC%9B%90-%EC%95%8C%ED%86%A0-%EB%AA%A8%EC%A7%91-%EC%9E%AC%EA%B3%B5%EA%B3%A0-%EC%95%88%EB%82%B4",
    "channel": "artinfo",
    "layer": "A",
-   "duty": "지도단원 솔리스트(알토) 활동, 알토 파트 단원 지도 교육 및 합창단 운영 관련 업무",
+   "duty": "지도단원 솔리스트(알토) 활동 · 알토 파트 단원 지도 교육 및 합창단 운영 관련 업무",
    "email": "song@jfac.or.kr",
    "pay": "세전 월 550,000원",
-   "personnel": "유급단원(지도단원)1인 : 알토",
+   "personnel": "유급단원(지도단원) 1인 : 알토",
    "deadline": "2026-08-25",
    "deadlineFrom": "raw",
    "firstSeen": "2026-08-13",
    "isNew": false,
-   "extVer": 84
+   "extVer": 85
   },
   {
    "id": "e151b29525ebd6a7",
@@ -1130,6 +1090,7 @@
    ],
    "channel": "artinfo",
    "layer": "A",
+   "qualification": "만 20세 이상인자 · 남자의 경우 병역법에 의한 병역을 필한 자 또는 면제자",
    "contact": "032-886-9045",
    "email": "jcf_5@jcf.or.kr",
    "pay": "월 800,000원(세전)",
@@ -1141,7 +1102,7 @@
    "verifiedAt": "2026-08-19",
    "firstSeen": "2026-08-19",
    "isNew": false,
-   "extVer": 84
+   "extVer": 85
   },
   {
    "id": "ce16034f8d957907",
@@ -1167,6 +1128,7 @@
    "layer": "C",
    "contact": "02-815-2554",
    "email": "jucktocla@sen.go.kr",
+   "pay": "1시간(50분) 43,000원(1회 2시간 수업)",
    "workPeriod": "2026.09.01 ~ 2027.02.26",
    "ageLimit": "제한 없음",
    "addr": "서울특별시 동작구 대방동길 74",
@@ -1179,7 +1141,7 @@
    "regionBoard": "경기",
    "firstSeen": "2026-08-19",
    "isNew": false,
-   "extVer": 84
+   "extVer": 85
   },
   {
    "id": "a065cd31ec9dbdf1",
@@ -1205,7 +1167,7 @@
    "layer": "C",
    "contact": "070-5004-3626",
    "email": "minho918@naver.com",
-   "pay": "시급 40,000원",
+   "pay": "40,000원(45분 기준)",
    "workPeriod": "2026.08 ~ 2027.01",
    "workHours": "08:30~11:30",
    "personnel": "1명",
@@ -1217,7 +1179,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-19",
    "isNew": false,
-   "extVer": 84
+   "extVer": 85
   },
   {
    "id": "2e1303468ed40bd1",
@@ -1243,6 +1205,7 @@
    "layer": "C",
    "contact": "02-380-0782",
    "email": "yale757@sen.go.kr",
+   "pay": "주 1회 50분, 4주 기준, 80,000원",
    "workPeriod": "2026.09.14 ~ 2026.11.27",
    "personnel": "1명",
    "addr": "서울특별시 은평구 연서로 117",
@@ -1253,7 +1216,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-19",
    "isNew": false,
-   "extVer": 84
+   "extVer": 85
   },
   {
    "id": "2f63b2b0a2e9b35d",
@@ -1279,6 +1242,7 @@
    "email": "jy5601@sen.go.kr",
    "pay": "시급 43,000원",
    "workPeriod": "2026.08.26 ~ 2026.12.04",
+   "workHours": "우쿨렐레반 자율동아리 6회 16시간(일자: 8.26 / 8.28/ 9.4 / 9.5 / 9.11 /10.2일과 및 방과후)",
    "personnel": "1명",
    "addr": "서울특별시 송파구 양산로 21(거여동)",
    "duty": "우쿨렐레 실기강사",
@@ -1288,7 +1252,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-20",
    "isNew": false,
-   "extVer": 84
+   "extVer": 85
   },
   {
    "id": "c1e5ff7ecded408e",
@@ -1323,7 +1287,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-19",
    "isNew": false,
-   "extVer": 84
+   "extVer": 85
   },
   {
    "id": "6b8f9705056432ef",
@@ -1349,7 +1313,7 @@
    "email": "shinso0@sen.go.kr",
    "pay": "시간당 25,000원",
    "workPeriod": "2026.09.14 ~ 2026.09.18",
-   "personnel": "1명",
+   "personnel": "음악 1명",
    "addr": "서울특별시 성북구 북악산로 935(돈암동)",
    "duty": "음악",
    "bodyExcerpt": "채용담당자 이름 이** 연락처 02",
@@ -1358,7 +1322,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-19",
    "isNew": false,
-   "extVer": 84
+   "extVer": 85
   },
   {
    "id": "947d6e215cb58bac",
@@ -1392,7 +1356,7 @@
    "orgAffil": "경기교육청",
    "firstSeen": "2026-08-19",
    "isNew": false,
-   "extVer": 84
+   "extVer": 85
   },
   {
    "id": "eaa944139f232cd4",
@@ -1426,7 +1390,7 @@
    "orgAffil": "경기교육청",
    "firstSeen": "2026-08-19",
    "isNew": false,
-   "extVer": 84
+   "extVer": 85
   },
   {
    "id": "b83667209a8cd77d",
@@ -1457,7 +1421,7 @@
    "bodyExcerpt": "자격 조건 - 세례받은 지 3년 이상 된 신자 - 지휘 경험자 3. · 마감: 채용시까지 6. · 채용 절차: 서류 심사 후 면접 일자 통보 7. · 문의: 사무실 031-8017-8101 ※ 제출하신 서류는 채용 완료 후 폐기하며 별도의 반환은 없습니다.",
    "firstSeen": "2026-08-19",
    "isNew": false,
-   "extVer": 84
+   "extVer": 85
   },
   {
    "id": "6cb1a301d8f777cc",
@@ -1495,7 +1459,7 @@
    "orgBoard": "울산문화예술회관(시립예술단)",
    "firstSeen": "2026-08-18",
    "isNew": false,
-   "extVer": 84
+   "extVer": 85
   },
   {
    "id": "0fedf8036a363075",
@@ -1533,7 +1497,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-18",
    "isNew": false,
-   "extVer": 84
+   "extVer": 85
   },
   {
    "id": "11376188af16b7d1",
@@ -1559,7 +1523,7 @@
    "email": "webmaster@sen.go.kr",
    "pay": "시급 25,000원",
    "workPeriod": "2026.09.21 ~ 2026.09.23",
-   "workHours": "9.21.(월)~9.23.(수)기간 중 매일 5시간(1교시~5교시)",
+   "workHours": "9.21.(월)~9.23.(수) 기간 중 매일 5시간(1교시~5교시)",
    "personnel": "1명",
    "addr": "서울특별시 동작구 사당로23",
    "duty": "3학년 영어와 음악, 5학년 영어",
@@ -1569,7 +1533,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-19",
    "isNew": false,
-   "extVer": 84
+   "extVer": 85
   },
   {
    "id": "c6c2c8ce91d4ded5",
@@ -1595,7 +1559,7 @@
    "email": "soongshin@sen.go.kr",
    "pay": "시간당 40,000원",
    "workPeriod": "2026.09.02 ~ 2026.12.11",
-   "workHours": "4, 5세 학급 음악활동 협력강사 1명 2026. 9. 2.(수)~ 2026. 12. 11.(금)10:00~11:001시간 주 2회",
+   "workHours": "4, 5세 학급 음악활동 협력강사 1명 2026. 9. 2.(수)~ 2026. 12. 11.(금) 10:00~11:001시간 주 2회",
    "duty": "4, 5세 통합학급 대상 음악활동, 기타 유치원장이 지정하는 업무 등",
    "personnel": "1명",
    "addr": "서울특별시 성동구 마장로 161",
@@ -1605,7 +1569,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-19",
    "isNew": false,
-   "extVer": 84
+   "extVer": 85
   },
   {
    "id": "bd2c17f19933f651",
@@ -1638,7 +1602,7 @@
    "bodyExcerpt": "모시는분 반주자 - 지역 경기 - 등록일 2026-08-14 - 남은기간 2026-09-30 23:59:59 · 탑동감리교회 드럼반주자&레슨강사 모집합니다.",
    "firstSeen": "2026-08-14",
    "isNew": false,
-   "extVer": 84
+   "extVer": 85
   },
   {
    "id": "3dc1300363d803e8",
@@ -1671,7 +1635,7 @@
    "addrFrom": "geo",
    "firstSeen": "2026-08-14",
    "isNew": false,
-   "extVer": 84
+   "extVer": 85
   },
   {
    "id": "0251912d3b918734",
@@ -1700,12 +1664,12 @@
    "addr": "경기 부천시 오정구 상오정로 132 (오정동, 성은교회)",
    "personnel": "반주자",
    "qualification": "피아노 또는 음악 관련 전공자 및 교회 반주 경험자",
-   "duty": "주일예배 및 성가대 피아노 반주자, 예배시간 : 매주 일요일 11시~12시(1시간)",
+   "duty": "주일예배 및 성가대 피아노 반주자 · 예배시간 : 매주 일요일 11시~12시(1시간)",
    "pay": "월 40만원",
    "bodyExcerpt": "모시는분 반주자 - 지역 경기 - 등록일 2026-08-07 - 남은기간 2026-09-18 23:59:59 · 탑동감리교회 드럼반주자&레슨강사 모집합니다. · 용호남교회 피아노 반주자 모집 건반 연주자와 일렉키타 연주자를 모십니다(찬양팀) 주일 피아노 반주자 모십니다.",
    "firstSeen": "2026-08-08",
    "isNew": false,
-   "extVer": 84
+   "extVer": 85
   },
   {
    "id": "f2218434566f0c14",
@@ -1741,7 +1705,7 @@
    "regionBoard": "충남",
    "firstSeen": "2026-08-20",
    "isNew": false,
-   "extVer": 84
+   "extVer": 85
   },
   {
    "id": "ddd6789490369cc1",
@@ -1771,7 +1735,7 @@
    "contact": "031-263-0651",
    "firstSeen": "2026-08-02",
    "isNew": false,
-   "extVer": 84
+   "extVer": 85
   },
   {
    "id": "b2e199e32140e0ed",
@@ -1807,7 +1771,7 @@
    "bodyExcerpt": "모시는분 반주자 - 지역 전북 - 등록일 2026-07-03 - 남은기간 2026-12-31 23:59:59 · 용호남교회 피아노 반주자 모집 건반 연주자와 일렉키타 연주자를 모십니다(찬양팀) 주일 피아노 반주자 모십니다.",
    "firstSeen": "2026-08-08",
    "isNew": false,
-   "extVer": 84
+   "extVer": 85
   },
   {
    "id": "5fbc7e4eb4f8d92d",
@@ -1842,7 +1806,7 @@
    "bodyExcerpt": "모시는분 반주자 - 지역 경기 - 등록일 2026-05-20 - 남은기간 2026-12-31 23:59:59 · 탑동감리교회 드럼반주자&레슨강사 모집합니다. · 용호남교회 피아노 반주자 모집 건반 연주자와 일렉키타 연주자를 모십니다(찬양팀) 피아노 반주자를 모십니다.",
    "firstSeen": "2026-08-08",
    "isNew": false,
-   "extVer": 84
+   "extVer": 85
   }
  ]
 }
