@@ -152,7 +152,17 @@ def check_sources(rep, doc, hist, today):
             raws = [e.get("raw", 0) for e in ok_past][-KEEP_DAYS:]
             kepts = [e.get("kept", 0) for e in ok_past][-KEEP_DAYS:]
 
-            if len(raws) >= MIN_SAMPLES:
+            # 목록이 스스로 건수를 밝히는 소스는 median 짐작이 필요 없다 — 사이트가 센 수와
+            # 우리가 읽은 수를 바로 대조한다. 8월 하이브레인은 대학 공고 자체가 줄어 원본이
+            # 12→6건이 됐는데, 45일 median 이 여름 이전 값을 붙들고 있어 '파서 -50%'가 매일
+            # 떴다. 파서는 멀쩡했다(사이트 표기 5건 = 파싱 5건, 2026-08-20 실측).
+            # baseline 은 '평소보다 적은가'를 짐작할 뿐이고, 이 대조는 '다 읽었는가'를 말한다.
+            dec = s.get("declared")
+            if dec is not None:
+                if raw < dec:
+                    rep.add("HIGH", "파서",
+                            f"{name}: 목록 표기 {dec}건 중 {raw}건만 읽음 — 목록 파서 깨짐")
+            elif len(raws) >= MIN_SAMPLES:
                 mr = median(raws)
                 if mr >= 3 and raw == 0:
                     rep.add("HIGH", "파서",
@@ -552,15 +562,22 @@ _SIG2FIELD = [
 ]
 _FILL_FIELDS = ("deadline", "pay", "workPeriod", "workHours", "personnel", "contact", "email", "addr", "qualification")
 
-# 라벨 뒤에 조사가 붙으면 항목이 아니라 산문이다 —
+# 라벨에 조사가 **바로 붙으면** 항목이 아니라 산문이다 —
 # '경력증명서 상 근무기간과 담당업무가 명시된 경우'. '별'은 사이트 메뉴('담당업무별전화').
-_PROSE_TAIL = re.compile(r"^(?:과|와|이|가|은|는|을|를|에|의|도|만|별)")
+# 조사 뒤에 공백을 요구하는 것이 핵심이다. 안 그러면 '급여: 이백만원'의 '이'를 조사로 읽어
+# 멀쩡한 값을 산문으로 몰아낸다.
+_PROSE_TAIL = re.compile(r"^(?:(?:과|와|이|가|은|는|을|를|에|의|도|만)\s|별[가-힣])")
 # 라벨이 겹쳐 적히는 자리 — '보수/임금', '과목 (담당업무)'. 겹친 라벨은 값이 아니다.
 _LABEL_ECHO = re.compile(r"^(?:임금|보수|급여|담당\s*업무|모집\s*분야|과목)\s*[)）]?\s*")
 # 보수 자리에 법령·조례 인용만 있으면 금액이 없는 것이다. QC 가 일부러 버리는 값이라
 # (common._LAW_CITE) 감사가 '미추출'로 셀 이유가 없다.
 _PAY_NO_AMOUNT = re.compile(r"보수\s*규정|보수규정|조례|시행\s*규칙|지침|호봉|산정")
 _PAY_AMOUNT = re.compile(r"[\d,]{2,}\s*(?:만\s*)?원|시급|일당|월급|협의")
+# 지원자가 채울 서식(응시원서·이력서·경력증명서)의 흔적. 앞은 서식 이름, 뒤는 hwp 표 머리로
+# 글자마다 벌어진 칸 이름이다 — '자격증'처럼 붙여 쓴 낱말은 지원자격 산문에도 흔해서
+# 붙은 꼴까지 받으면 멀쩡한 미추출(악기뱅크 담당업무)까지 덮는다 (2026-08-20).
+_FORM_CTX = re.compile(r"응시\s?원서|이력서|경력\s?증명서|재직\s?증명서|자기\s?소개서|별지|서식"
+                       r"|경\s력\s사\s항|자\s격\s증|근\s무\s기\s간|직\s장\s명|학\s력\s사\s항")
 
 
 def _value_after(t, end):
@@ -584,14 +601,18 @@ def _value_after(t, end):
 def _really_missing(t, pat, field):
     """이 원문에 '뽑을 수 있었는데 안 뽑힌 값'이 정말 있는가."""
     for m in pat.finditer(t):
-        tail = t[m.end():m.end() + 8].lstrip()
-        if _PROSE_TAIL.match(tail):
+        if _PROSE_TAIL.match(t[m.end():m.end() + 8]):
             continue                      # 산문·사이트 메뉴
-        val = _value_after(t, m.end())
-        if len(val) < 2:
-            continue                      # 라벨만 있고 칸이 빈 자리
-        if field == "pay" and _PAY_NO_AMOUNT.search(val) and not _PAY_AMOUNT.search(val):
+        win = t[m.end():m.end() + 140]
+        if field == "pay" and _PAY_NO_AMOUNT.search(win[:60]) and not _PAY_AMOUNT.search(win[:60]):
             continue                      # 법령 인용뿐 — 금액이 없다
+        # 첨부에 딸려 온 응시원서·이력서 서식에도 '근무기간 / 담당업무' 칸이 있다.
+        # 그건 지원자가 채울 빈 칸이지 이 공고의 값이 아니다 (2026-08-20 양주·양현고).
+        # 마감·급여는 '응시원서 접수' 옆이 제자리라 이 규칙에서 뺀다.
+        if field in ("duty", "workPeriod") and _FORM_CTX.search(t[max(0, m.start() - 140):m.end() + 140]):
+            continue
+        if len(_value_after(t, m.end())) < 2:
+            continue                      # 라벨만 있고 칸이 빈 자리
         return True
     return False
 

@@ -7,7 +7,7 @@
 """
 import re
 from bs4 import BeautifulSoup
-from common import make_item, region_from
+from common import make_item, region_from, declare_total
 
 # 음악학 = AP02 (예술체육 AP 하위). 국악학과는 상위 musician_relevant가 풍류로 분리 제외.
 AP02_LIST = ("https://www.hibrain.net/recruitment/categories/MJR/"
@@ -64,6 +64,24 @@ def _origin(soup):
     return home
 
 
+# 목록 왼쪽 분류 패널이 '음악학(5)'처럼 건수를 스스로 적어 둔다. 그 수와 우리가 읽은 수가
+# 같으면 파서는 멀쩡한 것이다 — 8월처럼 대학 공고 자체가 줄어들 때 수집량 median 만으로는
+# '파서가 깨졌나'와 '공고가 없나'를 가를 수 없다 (2026-08-20).
+_FACET_HREF = re.compile(r"/categories/AP02/recruits(?:\?|$)")
+
+
+def _declared_total(soup):
+    """목록 화면이 표시한 음악학 총건수. 못 읽으면 None."""
+    for a in soup.find_all("a", href=True):
+        if not _FACET_HREF.search(a["href"]):
+            continue
+        cnt = a.find("span", class_="cnt")
+        m = re.search(r"([\d,]+)", cnt.get_text(strip=True) if cnt else "")
+        if m:
+            return int(m.group(1).replace(",", ""))
+    return None
+
+
 def parse_hibrain(s):
     try:
         import hibrain_auth
@@ -73,6 +91,9 @@ def parse_hibrain(s):
     if not lst:
         return []   # 세션 만료 — fetch_many가 경고 출력
     soup = BeautifulSoup(next(iter(lst.values())), "lxml")
+    dec = _declared_total(soup)
+    if dec is not None:
+        declare_total("hibrain", dec)
     ids, seen = [], set()
     for a in soup.find_all("a", href=True):
         m = re.search(r"/categories/AP02/recruits/(\d+)", a["href"])

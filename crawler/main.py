@@ -10,7 +10,7 @@ from common import (new_session, get, relevant, extract_deadline, priority_deadl
                     classify_kind, classify_tier, is_obri, cert_required, degree_req, career_req, age_group,
                     region_from, EXCLUDE, compact_title, music_only_title, body_text, valid_addr,
                     insts_from_recruit_text, tls_blocked, curl_get, extract_fields, extract_contact,
-                    extract_email)
+                    extract_email, DECLARED_TOTALS)
 from sources import SOURCES
 from institutions import INSTITUTIONS
 import attach
@@ -301,7 +301,7 @@ def find_attachments(soup, base_url):
                     cands.append((full, el.get_text(" ", strip=True)))
     return cands[:4]
 
-EXT_VER = 80         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
+EXT_VER = 84         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
                      # v32(2026-08-02): 모집분야 구획 악기 추출(insts_from_recruit_text) + 원문 보관층
                      # 24: work.sen 등록일(게시일) 추출 추가 — date=None이던 승계분을 다시 뽑게
                      # 25: body_text 도입 — 본문을 <header>에 넣는 사이트(대전교육청)의 마감일을
@@ -469,6 +469,14 @@ def _find_duty(text):
     """
     m = re.search(r"(?:담당\s*업무|모집\s*분야|담당\s*분야)\s*[:：]?\s*", text)
     if not m:
+        return None
+    # 서울일자리포털의 표 머리 '과목 (담당업무)' — 라벨이 괄호로 닫히는 자리다. 여기서 물면
+    # 값이 ') 오케스트라(클라리넷) 채용기간 …' 꼴이 돼 QC 가 '괄호 미폐합'으로 버렸고, 그래서
+    # 담당업무가 매일 [미추출]로 잡혔다 (2026-08-20). 이 꼴은 extract_fields 의
+    # _SUBJECT_DUTY_CELL 이 제대로 뽑으므로 여기서는 손을 뗀다.
+    # (뒤의 매치로 넘어가 보기도 했는데, 원서 서식의 '담당업무가 명시된 경우…' 나
+    #  '모집분야별 세부 담당업무' 같은 산문을 물어 와 양주·제물포 카드를 망쳤다. 첫 매치만 본다.)
+    if text[m.end():m.end() + 1] in (")", "）"):
         return None
     seg = text[m.end():m.end() + 260]
     # 다음 번호 항목·다른 구획에서 끊는다
@@ -1959,6 +1967,7 @@ def run(force_all=False):
             continue
         s = new_session()
         try:
+            DECLARED_TOTALS.pop(src["id"], None)   # 지난 회차 값이 남아 오판하지 않도록
             raw = src["fn"](s)
             kept = []
             for it in raw:
@@ -2071,8 +2080,13 @@ def run(force_all=False):
                         it.pop("extVer", None)
                     log(f"WARN {src['name']}: 0건 반환 — 이전 {len(carried)}건 승계 (서버 장애 추정)")
             all_items.extend(kept)
-            source_stats.append({**meta, "ok": True, "raw": len(raw), "kept": len(kept)})
-            log(f"OK  {src['name']}: 원본 {len(raw)}건 → 수집 {len(kept)}건")
+            stat = {**meta, "ok": True, "raw": len(raw), "kept": len(kept)}
+            dec = DECLARED_TOTALS.get(src["id"])
+            if dec is not None:                    # 목록이 스스로 밝힌 건수 (파서 자기검증)
+                stat["declared"] = dec
+            source_stats.append(stat)
+            log(f"OK  {src['name']}: 원본 {len(raw)}건 → 수집 {len(kept)}건"
+                + (f" (목록 표기 {dec}건)" if dec is not None else ""))
         except Exception as e:
             # 파서가 죽어도 그 기관 공고를 사이트에서 사라지게 두지 않는다 — 0건 반환과 같은
             # 논리로 이전 수집분을 승계한다. (2026-07-27 대구문화예술회관 ReadTimeout 사고:
