@@ -129,7 +129,8 @@ def _detail_rows(j):
     if j.get("recruitSummary"):
         rows.append(("모집", j["recruitSummary"]))
     elif j.get("personnel"):
-        rows.append(("모집", (insts + " " if insts else "") + str(j["personnel"])))
+        # 악기를 여기 또 붙이지 않는다 — 카드 위쪽 태그와 겹친다 (2026-08-21)
+        rows.append(("모집", str(j["personnel"])))
     elif insts:
         rows.append(("모집", insts))
     if j.get("qualification"):

@@ -510,7 +510,8 @@ function metaRows(j) {
   if (j.degreeReq && j.degreeReq !== "무관") rows.push(["학위 요건", j.degreeReq + " 이상"]);
   if (j.careerReq && j.careerReq !== "미기재") rows.push(["경력", j.careerReq]);
   if (j.recruitSummary) rows.push(["모집", cleanVal(j.recruitSummary)]);
-  else if (j.personnel) rows.push(["모집", cleanVal((insts ? insts + " " : "") + j.personnel)]);
+  // 악기를 여기 또 붙이지 않는다 — 카드 위쪽에 태그로 이미 보인다 (2026-08-21)
+  else if (j.personnel) rows.push(["모집", cleanVal(j.personnel)]);
   else if (insts) rows.push(["모집", insts + (senior ? " " + senior : "")]);
   // 원문에서 '…경험이 있는 (자)'처럼 관형형에서 잘려온 자격 문구는 '자'를 붙여 문장을 닫는다
   let q = cleanVal(j.qualification);

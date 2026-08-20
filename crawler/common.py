@@ -1265,6 +1265,32 @@ def _tidy_parens(t):
     return re.sub(r"\s{2,}", " ", t).strip(" -–·,")
 
 
+# 모집 표를 평탄화하면 인원 칸에 표 전체가 들어온다 —
+# '성악지도자 1명 제물포구 구립 여성합창단 반주자 1명 … 단무장 1명 ▢' (제물포, 2026-08-21).
+# 어느 파트를 몇 명 뽑는지는 원문 표를 봐야 하고, 카드에는 규모만 있으면 된다.
+# 직무 이름은 이미 제목에 있다('…성악지도자/반주자/단무장 모집').
+_HEADCOUNT = re.compile(r"(\d{1,3})\s*명")
+
+
+def tidy_personnel(v):
+    """인원 값 정리. 'N명'이 여럿이면 합계로 접고, 하나면 그대로 둔다."""
+    if not v:
+        return v
+    t = re.sub(r"\s+", " ", str(v)).strip(" .,·-–▢□○●")
+    nums = _HEADCOUNT.findall(t)
+    if len(nums) >= 2:
+        try:
+            total = sum(int(n) for n in nums)
+        except ValueError:
+            return t
+        return f"총 {total}명" if total else t
+    # 하나뿐이어도 앞뒤에 표 부스러기가 붙어 있으면 그 부분만 남긴다
+    if len(nums) == 1 and len(t) > 24:
+        m = re.search(r"[가-힣]{2,12}\s*\d{1,3}\s*명", t)
+        return m.group(0) if m else t
+    return t
+
+
 def compact_title(title):
     """행정 상투구를 걷어내 제목을 카드에 맞게 압축. 악기명·기관명 등 알맹이는 건드리지 않는다.
 

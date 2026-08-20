@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import (new_session, get, relevant, extract_deadline, priority_deadlines, deadline_from_title,
-                    musician_relevant, youth_member, participant_only, student_target, dance_member, rope_skipping_only, school_title, parse_recruit_table, summarize_recruit, find_position,
+                    musician_relevant, youth_member, participant_only, student_target, dance_member, rope_skipping_only, school_title, tidy_personnel, parse_recruit_table, summarize_recruit, find_position,
                     classify_insts, find_subject, find_music_subjects, find_music_courses,
                     classify_kind, classify_tier, is_obri, cert_required, degree_req, career_req, age_group,
                     region_from, EXCLUDE, compact_title, music_only_title, body_text, valid_addr,
@@ -2286,6 +2286,8 @@ def run(force_all=False):
         it["title"] = school_title(it["title"], it.get("org"))
         # 자격 필드 — 본문(자격·요약)까지 반영해 정확도 향상
         qtext = " ".join(str(it.get(f, "") or "") for f in ("title", "qualification", "bodyExcerpt", "recruitSummary"))
+        if it.get("personnel"):
+            it["personnel"] = tidy_personnel(it["personnel"])
         for _pf in ("workPeriod", "perfPeriod"):
             if it.get(_pf):
                 it[_pf] = normalize_period(it[_pf])
