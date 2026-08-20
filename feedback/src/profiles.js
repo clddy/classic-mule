@@ -12,9 +12,24 @@
 //  · 자동 게시 금지 — 제출은 pending 으로만 들어가고 사람이 승인해야 published 가 된다.
 
 export const LIMITS = {
-  name: 40, intro: 100, career: 500, contact: 200,
+  name: 40, intro: 100, career: 500, contact: 200, video: 300,
   rateMax: 3, rateWindow: 3600,     // 같은 IP 시간당 3회 (공개 폼 최소 방어)
 };
+
+// 연주 영상 — 연주자에게는 이력서보다 이게 실체다 (2026-08-20 사용자 지시:
+// "자신이 얼만큼 칠 수 있는지 퍼포먼스가 중요하기 때문에").
+// 링크는 임베드가 되는 곳만 받는다. 아무 URL이나 받으면 공개 페이지가 낚시 링크의 통로가 된다.
+const VIDEO_HOSTS = /^https?:\/\/(?:www\.)?(?:youtube\.com\/(?:watch\?v=|shorts\/|embed\/)|youtu\.be\/|vimeo\.com\/|naver\.me\/|tv\.naver\.com\/)/i;
+
+export function videoId(url) {
+  // 유튜브·비메오 주소에서 임베드용 식별자. 못 읽으면 null.
+  const u = String(url || "");
+  let m = u.match(/(?:youtube\.com\/(?:watch\?v=|shorts\/|embed\/)|youtu\.be\/)([A-Za-z0-9_-]{6,})/i);
+  if (m) return { host: "youtube", id: m[1] };
+  m = u.match(/vimeo\.com\/(?:video\/)?(\d{6,})/i);
+  if (m) return { host: "vimeo", id: m[1] };
+  return null;
+}
 
 // 토큰: 16바이트(128비트) → base32 유사 표기. 사람이 옮겨 적을 수 있게 소문자+숫자만.
 const T_ALPHABET = "abcdefghjkmnpqrstuvwxyz23456789";   // 헷갈리는 글자(i,l,o,0,1) 제외
@@ -73,6 +88,12 @@ export function validate(body) {
     err.push("공개 연락 수단은 이메일 또는 링크로 적어 주세요");
   }
 
+  // 영상 링크 (선택) — 임베드 가능한 곳만
+  out.video = s(body.video, LIMITS.video);
+  if (out.video && !VIDEO_HOSTS.test(out.video)) {
+    err.push("영상 링크는 유튜브·비메오 주소만 넣을 수 있습니다");
+  }
+
   if (body.consent !== true && body.consent !== "true") {
     err.push("공개 게시 동의가 필요합니다");
   }
@@ -92,5 +113,6 @@ export function publicView(p) {
   return {
     id: p.id, name: p.name, inst: p.inst, region: p.region,
     intro: p.intro, career: p.career, contact: p.contact, at: p.at,
+    video: p.video || "", videoFile: p.videoFile || "",
   };
 }

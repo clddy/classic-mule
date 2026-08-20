@@ -408,6 +408,90 @@ async function pfPublic(req, env, origin) {
   return json({ ok: true, items }, 200, origin);
 }
 
+
+// --- 중개: 연락 요청 (2026-08-20 전략 전환) ---
+// 이전 방침("연락은 플랫폼 밖에서")을 알고 뒤집었다 — CLAUDE.md 전략 전제 참고.
+// 다만 자동 매칭은 만들지 않는다. 구인자가 요청을 남기면 운영자가 보고 사람에게 잇는다.
+// 사람이 개입하는 편이 (1) 스팸·사칭을 걸러내고 (2) 연결이 실제로 일어나는지 세어 볼 수 있다.
+async function pfContact(req, env, origin) {
+  let body;
+  try { body = await req.json(); } catch { return json({ ok: false }, 400, origin); }
+  if (body.website) return json({ ok: true, silent: true }, 200, origin);   // 봇 덫
+
+  const target = await pfLoad(env, String(body.id || "").slice(0, 32));
+  if (!target || target.status !== "published") {
+    return json({ ok: false, error: "지금은 연락할 수 없는 프로필입니다" }, 404, origin);
+  }
+  const from = String(body.from || "").trim().slice(0, 200);
+  const msg = String(body.message || "").trim().slice(0, 1000);
+  if (msg.length < 10) return json({ ok: false, error: "요청 내용을 조금 더 적어 주세요" }, 400, origin);
+  if (!/^[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)+$/.test(from)) {
+    return json({ ok: false, error: "회신받을 이메일을 정확히 적어 주세요" }, 400, origin);
+  }
+
+  const ip = req.headers.get("CF-Connecting-IP") || "0.0.0.0";
+  const who = await ipHash(ip);
+  const rl = `ctrl:${who}`;
+  const sent = parseInt((await env.PROFILES.get(rl)) || "0", 10);
+  if (sent >= 5) return json({ ok: false, error: "잠시 후 다시 시도해 주세요" }, 429, origin);
+  await env.PROFILES.put(rl, String(sent + 1), { expirationTtl: 3600 });
+
+  const rec = {
+    id: PF.newId(), at: new Date().toISOString(),
+    toId: target.id, toName: target.name,
+    from, message: msg,
+    org: String(body.org || "").trim().slice(0, 80),
+    who, handled: false,
+  };
+  // 역순 키 — 최신 요청이 목록 앞에 온다 (피드백 수신함과 같은 방식)
+  const rev = (9999999999999 - Date.now()).toString().padStart(13, "0");
+  await env.PROFILES.put(`ct:${rev}:${rec.id}`, JSON.stringify(rec));
+
+  const TOKEN = clean(env.TELEGRAM_BOT_TOKEN), CHAT = clean(env.TELEGRAM_CHAT_ID);
+  if (TOKEN && CHAT) {
+    const text = `🤝 연락 요청 — ${rec.toName}\n\n${rec.org ? rec.org + " · " : ""}${from}\n\n${msg}`;
+    try {
+      await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ chat_id: CHAT, text }),
+      });
+    } catch { /* 알림 실패가 접수를 막지 않는다 */ }
+  }
+  return json({ ok: true }, 200, origin);
+}
+
+// 관리자: 연락 요청 목록·처리 표시
+async function pfContactList(req, env, origin) {
+  if (!keyOk(req.headers.get("X-Admin-Key"), env.ADMIN_KEY)) {
+    return json({ ok: false, error: "열쇠가 맞지 않습니다" }, 401, origin);
+  }
+  const { keys } = await env.PROFILES.list({ prefix: "ct:" });
+  const items = [];
+  for (const k of keys.slice(0, 100)) {
+    const raw = await env.PROFILES.get(k.name);
+    if (!raw) continue;
+    try { items.push({ ...JSON.parse(raw), key: k.name }); } catch { /* 건너뜀 */ }
+  }
+  return json({ ok: true, items }, 200, origin);
+}
+
+async function pfContactDone(req, env, origin) {
+  if (!keyOk(req.headers.get("X-Admin-Key"), env.ADMIN_KEY)) {
+    return json({ ok: false, error: "열쇠가 맞지 않습니다" }, 401, origin);
+  }
+  let body;
+  try { body = await req.json(); } catch { return json({ ok: false }, 400, origin); }
+  const key = String(body.key || "");
+  if (!key.startsWith("ct:")) return json({ ok: false }, 400, origin);
+  const raw = await env.PROFILES.get(key);
+  if (!raw) return json({ ok: false, error: "없는 요청" }, 404, origin);
+  const rec = JSON.parse(raw);
+  rec.handled = true;
+  rec.handledAt = new Date().toISOString();
+  await env.PROFILES.put(key, JSON.stringify(rec));
+  return json({ ok: true }, 200, origin);
+}
+
 export default {
   async fetch(req, env) {
     const url = new URL(req.url);
@@ -420,6 +504,9 @@ export default {
     if (url.pathname === "/api/profile/update" && req.method === "POST") return pfUpdate(req, env, origin);
     if (url.pathname === "/api/profile/delete" && req.method === "POST") return pfDelete(req, env, origin);
     if (url.pathname === "/api/profiles" && req.method === "GET") return pfPublic(req, env, origin);
+    if (url.pathname === "/api/profile/contact" && req.method === "POST") return pfContact(req, env, origin);
+    if (url.pathname === "/api/contacts" && req.method === "GET") return pfContactList(req, env, origin);
+    if (url.pathname === "/api/contacts/done" && req.method === "POST") return pfContactDone(req, env, origin);
     if (url.pathname === "/api/profile/admin" && req.method === "GET") return pfAdminList(req, url, env, origin);
     if (url.pathname === "/api/profile/admin" && req.method === "POST") return pfAdminSet(req, env, origin);
     if (url.pathname === "/api/profile/admin/delete" && req.method === "POST") return pfAdminDelete(req, env, origin);

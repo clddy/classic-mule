@@ -43,6 +43,12 @@
     <button id="pf-load-all">전체</button>
   </div>
   <div id="pf-out"><div class="empty">열쇠를 넣고 <b>대기 목록</b>을 누르세요.</div></div>
+
+  <h1 style="margin-top:36px">연락 요청</h1>
+  <p style="font-size:.85rem;opacity:.75;margin:-6px 0 12px">
+    구인하는 곳이 프로필에 보낸 요청입니다. 확인 후 양쪽을 이어 주고 <b>처리함</b>을 누르세요.</p>
+  <div class="key-row" style="margin-bottom:10px"><button id="ct-load">요청 목록</button></div>
+  <div id="ct-out"><div class="empty">열쇠를 넣고 <b>요청 목록</b>을 누르세요.</div></div>
 </div>
 
 <script>
@@ -177,6 +183,46 @@ $("#pf-out").addEventListener("click", async (e) => {
     btn.closest(".item").remove();
   } catch { alert("서버에 닿지 못했습니다."); btn.disabled = false; }
 });
+
+// --- 연락 요청 수신함 (중개, 2026-08-20) ---
+async function ctLoad() {
+  const box = $("#ct-out");
+  if (!$("#key").value.trim()) { box.innerHTML = '<div class="empty">열쇠를 먼저 넣어 주세요.</div>'; return; }
+  box.innerHTML = '<div class="empty">불러오는 중…</div>';
+  try {
+    const d = await (await fetch(`${API}/api/contacts`, { headers: hdr() })).json();
+    if (!d.ok) { box.innerHTML = `<div class="empty">${esc(d.error || "실패")}</div>`; return; }
+    const items = d.items || [];
+    if (!items.length) { box.innerHTML = '<div class="empty">받은 요청이 없습니다.</div>'; return; }
+    box.innerHTML = items.map(c => `
+      <div class="item" data-key="${esc(c.key)}" style="${c.handled ? "opacity:.55" : ""}">
+        <div style="font-size:.8rem;opacity:.7">
+          ${esc(c.at || "").slice(0, 16).replace("T", " ")} · → <b>${esc(c.toName)}</b>
+          ${c.handled ? " · 처리됨" : ""}
+        </div>
+        <div style="margin:4px 0;font-size:.9rem">${esc(c.org ? c.org + " · " : "")}${esc(c.from)}</div>
+        <div style="font-size:.9rem;white-space:pre-wrap">${esc(c.message)}</div>
+        ${c.handled ? "" : '<div style="margin-top:8px"><button data-act="done">처리함</button></div>'}
+      </div>`).join("");
+  } catch { box.innerHTML = '<div class="empty">서버에 닿지 못했습니다.</div>'; }
+}
+
+$("#ct-out").addEventListener("click", async (e) => {
+  const btn = e.target.closest('button[data-act="done"]');
+  if (!btn) return;
+  btn.disabled = true;
+  const key = btn.closest(".item").getAttribute("data-key");
+  try {
+    const d = await (await fetch(`${API}/api/contacts/done`, {
+      method: "POST", headers: { ...hdr(), "Content-Type": "application/json" },
+      body: JSON.stringify({ key }),
+    })).json();
+    if (!d.ok) { alert(d.error || "실패"); btn.disabled = false; return; }
+    ctLoad();
+  } catch { alert("서버에 닿지 못했습니다."); btn.disabled = false; }
+});
+
+$("#ct-load").addEventListener("click", ctLoad);
 
 $("#pf-load").addEventListener("click", () => pfLoad("pending"));
 $("#pf-load-all").addEventListener("click", () => pfLoad(""));

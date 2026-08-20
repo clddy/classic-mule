@@ -131,7 +131,7 @@
         say(msg, "");
         auth.hidden = true;
         $("#pm-edit").hidden = false;
-        ["name", "inst", "intro", "career", "contact"].forEach(function (k) {
+        ["name", "inst", "intro", "career", "contact", "video"].forEach(function (k) {
           var el = form.querySelector('[name="' + k + '"]');
           if (el) el.value = d.profile[k] || "";
         });
@@ -180,10 +180,62 @@
   }
 
   // ---- 디렉토리 목록 ----
+
+  // 연주 영상 — 유튜브·비메오만 임베드한다(Worker 가 이미 같은 검증을 하지만,
+  // 화면에서도 한 번 더 본다. 저장된 값이 어떤 경로로든 바뀌었을 때 iframe 을 아무 데나
+  // 열어 주면 안 되기 때문이다).
+  function videoHtml(url) {
+    if (!url) return "";
+    var m = String(url).match(/(?:youtube\.com\/(?:watch\?v=|shorts\/|embed\/)|youtu\.be\/)([A-Za-z0-9_-]{6,})/i);
+    var src = m ? "https://www.youtube-nocookie.com/embed/" + m[1] : null;
+    if (!src) {
+      m = String(url).match(/vimeo\.com\/(?:video\/)?(\d{6,})/i);
+      src = m ? "https://player.vimeo.com/video/" + m[1] : null;
+    }
+    if (!src) return "";
+    return '<div style="position:relative;padding-top:56.25%;margin:10px 0;border-radius:8px;overflow:hidden">' +
+      '<iframe src="' + esc(src) + '" loading="lazy" allowfullscreen ' +
+      'referrerpolicy="strict-origin-when-cross-origin" ' +
+      'style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe></div>';
+  }
+
+  // 연락 요청 — 등록자의 연락처를 몰라도 닿게 하는 경로. 요청은 운영자가 보고 잇는다
+  // (자동 매칭이 아니다 — CLAUDE.md 전략 전제 2026-08-20).
+  function askForm(p) {
+    var box = document.createElement("div");
+    box.className = "pd-ask-box";
+    box.style.cssText = "margin-top:10px;padding:12px;background:#faf7f1;border:1px solid #e5ded2;border-radius:8px";
+    box.innerHTML =
+      '<label class="pf-l">회신받을 이메일<input name="from" maxlength="200" required></label>' +
+      '<label class="pf-l">기관·단체 (선택)<input name="org" maxlength="80"></label>' +
+      '<label class="pf-l">요청 내용<textarea name="message" rows="3" maxlength="1000" ' +
+      'placeholder="어떤 자리인지, 언제·어디인지 적어 주세요"></textarea></label>' +
+      '<input name="website" tabindex="-1" autocomplete="off" aria-hidden="true" ' +
+      'style="position:absolute;left:-9999px;width:1px;height:1px">' +
+      '<button type="button" class="btn-primary pd-send">보내기</button>' +
+      '<span class="pd-ask-msg" style="margin-left:10px;font-size:0.88rem"></span>';
+    box.querySelector(".pd-send").addEventListener("click", function () {
+      var v = {};
+      Array.prototype.forEach.call(box.querySelectorAll("input,textarea"), function (el) {
+        v[el.name] = el.value;
+      });
+      v.id = p.id;
+      var msg = box.querySelector(".pd-ask-msg");
+      msg.textContent = "보내는 중…";
+      post("/api/profile/contact", v).then(function (d) {
+        if (!d.ok) { msg.style.color = "#8c2f2f"; msg.textContent = d.error || "보내지 못했습니다."; return; }
+        box.innerHTML = '<p style="margin:0;font-size:0.9rem">요청을 접수했습니다. ' +
+          '포디엄이 확인해 전달해 드립니다.</p>';
+      });
+    });
+    return box;
+  }
+
   function initDirectory() {
     var wrap = $("#pd-list");
     if (!wrap) return;
     var all = [];
+    var rowsShown = [];      // 지금 화면에 그려진 것 — 필터가 걸리면 인덱스가 달라진다
     var fInst = "";
     var fRegion = "";
 
@@ -192,32 +244,47 @@
         return (!fRegion || p.region === fRegion) &&
           (!fInst || (p.inst || "").indexOf(fInst) >= 0);
       });
+      rowsShown = rows;
       var n = $("#pd-count");
       if (n) n.textContent = rows.length + "명";
       if (!rows.length) {
         wrap.innerHTML = '<p style="color:#6b6154;font-size:0.9rem">해당하는 프로필이 없습니다.</p>';
         return;
       }
-      wrap.innerHTML = rows.map(function (p) {
+      wrap.innerHTML = rows.map(function (p, i) {
         var link = /^https?:/i.test(p.contact)
           ? '<a href="' + esc(p.contact) + '" target="_blank" rel="noopener nofollow">' + esc(p.contact) + "</a>"
           : '<a href="mailto:' + esc(p.contact) + '">' + esc(p.contact) + "</a>";
-        return '<article class="job-card" style="cursor:pointer">' +
+        return '<article class="job-card" style="cursor:pointer" data-i="' + i + '">' +
           '<div class="top-row"><span class="tag inst">' + esc(p.inst) + "</span>" +
-          '<span class="tag org">' + esc(p.region) + "</span></div>" +
+          '<span class="tag org">' + esc(p.region) + "</span>" +
+          (p.video ? '<span class="tag ok">🎬 연주 영상</span>' : "") + "</div>" +
           "<h3>" + esc(p.name) + "</h3>" +
           '<div class="meta"><span>' + esc(p.intro) + "</span></div>" +
           '<div class="pd-more" hidden style="margin-top:10px;font-size:0.9rem;line-height:1.7">' +
           (p.career ? "<p>" + esc(p.career) + "</p>" : "") +
-          "<p>연락: " + link + "</p></div></article>";
+          videoHtml(p.video) +
+          "<p>연락: " + link + "</p>" +
+          '<button type="button" class="btn-primary pd-ask" data-i="' + i + '" ' +
+          'style="margin-top:8px">연락 요청 보내기</button>' +
+          "</div></article>";
       }).join("");
     }
 
     // 개별 프로필에 별도 URL을 주지 않는다(v0) — 카드를 눌러 그 자리에서 펼친다
     wrap.addEventListener("click", function (e) {
       if (e.target.tagName === "A") return;
+      var ask = e.target.closest(".pd-ask");
+      if (ask) {                       // 연락 요청 — 카드 접힘을 건드리지 않는다
+        e.stopPropagation();
+        var host = ask.parentNode;
+        if (host.querySelector(".pd-ask-box")) return;
+        host.appendChild(askForm(rowsShown[+ask.getAttribute("data-i")]));
+        ask.remove();
+        return;
+      }
       var card = e.target.closest(".job-card");
-      if (!card) return;
+      if (!card || e.target.closest(".pd-ask-box")) return;
       var more = card.querySelector(".pd-more");
       if (more) more.hidden = !more.hidden;
     });
