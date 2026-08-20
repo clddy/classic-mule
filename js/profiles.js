@@ -177,7 +177,7 @@
         say(msg, "");
         auth.hidden = true;
         $("#pm-edit").hidden = false;
-        ["name", "inst", "intro", "career", "contact", "video"].forEach(function (k) {
+        ["name", "inst", "intro", "career", "contact", "phone", "video"].forEach(function (k) {
           var el = form.querySelector('[name="' + k + '"]');
           if (el) el.value = d.profile[k] || "";
         });
@@ -327,7 +327,9 @@
           '<div class="pd-more" hidden style="margin-top:10px;font-size:0.9rem;line-height:1.7">' +
           (p.career ? "<p>" + esc(p.career) + "</p>" : "") +
           (videoHtml(p.video) || fileVideoHtml(p)) +
-          "<p>연락: " + link + "</p>" +
+          "<p>연락: " + link +
+          (p.phone ? ' · <a href="tel:' + esc(String(p.phone).replace(/-/g, "")) + '">' +
+            esc(p.phone) + "</a>" : "") + "</p>" +
           '<button type="button" class="btn-primary pd-ask" data-i="' + i + '" ' +
           'style="margin-top:8px">연락 요청 보내기</button>' +
           "</div></article>";

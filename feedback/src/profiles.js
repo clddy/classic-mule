@@ -12,7 +12,7 @@
 //  · 자동 게시 금지 — 제출은 pending 으로만 들어가고 사람이 승인해야 published 가 된다.
 
 export const LIMITS = {
-  name: 40, intro: 100, career: 500, contact: 200, video: 300,
+  name: 40, intro: 100, career: 500, contact: 200, phone: 20, video: 300,
   rateMax: 3, rateWindow: 3600,     // 같은 IP 시간당 3회 (공개 폼 최소 방어)
 };
 
@@ -60,10 +60,25 @@ export function hashEq(a, b) {
 const REGIONS = new Set(["서울", "부산", "대구", "인천", "대전", "울산", "세종", "경기",
   "강원", "충북", "충남", "전북", "광주·전남", "경북", "경남", "제주"]);
 
-// 공개 연락 수단 — 이메일 또는 http(s) 주소만. 전화번호는 v0 에서 받지 않는다
-// (공개 페이지에 전화번호가 박히면 스팸 수집의 표적이 된다).
+// 공개 연락 수단 — 이메일은 필수, 전화번호는 선택 (2026-08-20 사용자 지시로 두 칸으로 나눔).
+// ⚠ 공개 페이지의 전화번호는 스팸 수집의 표적이 된다. 그래도 받기로 한 것은 연주 일감이
+//   전화로 오가는 일이 많기 때문이다 — 대신 '선택'으로 두어 본인이 고르게 한다.
 const EMAIL_RE = /^[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)+$/;
 const URL_RE = /^https?:\/\/[^\s<>"']{4,}$/i;
+// 국내 번호만. 하이픈이 있든 없든 받고 저장할 때 하이픈 꼴로 맞춘다.
+const PHONE_RE = /^0\d{1,2}-?\d{3,4}-?\d{4}$/;
+
+function fmtPhone(v) {
+  const d = String(v || "").replace(/[^0-9]/g, "");
+  if (d.length === 11) return d.slice(0, 3) + "-" + d.slice(3, 7) + "-" + d.slice(7);
+  if (d.length === 10) {
+    return d.startsWith("02")
+      ? d.slice(0, 2) + "-" + d.slice(2, 6) + "-" + d.slice(6)
+      : d.slice(0, 3) + "-" + d.slice(3, 6) + "-" + d.slice(6);
+  }
+  if (d.length === 9 && d.startsWith("02")) return "02-" + d.slice(2, 5) + "-" + d.slice(5);
+  return String(v || "").trim();
+}
 
 export function validate(body) {
   const out = {}, err = [];
@@ -85,7 +100,18 @@ export function validate(body) {
 
   out.contact = s(body.contact, LIMITS.contact);
   if (!(EMAIL_RE.test(out.contact) || URL_RE.test(out.contact))) {
-    err.push("공개 연락 수단은 이메일 또는 링크로 적어 주세요");
+    err.push("이메일을 정확히 적어 주세요");
+  }
+
+  out.phone = s(body.phone, LIMITS.phone);
+  if (out.phone) {
+    const norm = fmtPhone(out.phone);
+    if (!PHONE_RE.test(norm.replace(/-/g, "").replace(/^(0\d{1,2})(\d{3,4})(\d{4})$/, "$1-$2-$3"))
+        && !PHONE_RE.test(norm)) {
+      err.push("전화번호 형식을 확인해 주세요 (예: 010-1234-5678)");
+    } else {
+      out.phone = norm;
+    }
   }
 
   // 영상 링크 (선택) — 임베드 가능한 곳만
@@ -112,7 +138,7 @@ export function newId() {
 export function publicView(p) {
   return {
     id: p.id, name: p.name, inst: p.inst, region: p.region,
-    intro: p.intro, career: p.career, contact: p.contact, at: p.at,
+    intro: p.intro, career: p.career, contact: p.contact, phone: p.phone || "", at: p.at,
     video: p.video || "", videoFile: p.videoFile || "",
   };
 }
