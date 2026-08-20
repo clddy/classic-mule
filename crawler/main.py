@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import (new_session, get, relevant, extract_deadline, priority_deadlines, deadline_from_title,
-                    musician_relevant, youth_member, participant_only, student_target, dance_member, rope_skipping_only, school_title, tidy_personnel, parse_meta_table, tidy_spacing, parse_recruit_table, summarize_recruit, find_position,
+                    musician_relevant, youth_member, participant_only, student_target, dance_member, rope_skipping_only, school_title, tidy_personnel, parse_meta_table, tidy_spacing, squash_spaced_labels, parse_recruit_table, summarize_recruit, find_position,
                     classify_insts, find_subject, find_music_subjects, find_music_courses,
                     classify_kind, classify_tier, is_obri, cert_required, degree_req, career_req, age_group,
                     region_from, EXCLUDE, compact_title, music_only_title, body_text, valid_addr,
@@ -83,7 +83,11 @@ _FIELD_TOK = re.compile(
     r"난타|합창|오케스트라|관현악|기악|성악|국악|밴드|중창|줄넘기|우쿨렐레|사물놀이"
     r"|바이올린|비올라|첼로|더블베이스|콘트라베이스|하프|기타|가야금|해금|장구"
     r"|플루트|플룻|오보에|클라리넷|바순|색소폰|호른|트럼펫|트롬본|튜바|타악|팀파니|드럼"
-    r"|피아노|반주|오르간|지휘|작곡|음악사|음악감상")
+    r"|피아노|반주|오르간|지휘|작곡|음악사|음악감상"
+    # 학교가 운영하는 프로그램 이름도 '어떤 자리인가'를 가른다 — 영신여고는 음악거점학교
+    # 시간강사(시급 5만원)와 음악중점학급 시간강사(시급 2.5만원)를 따로 뽑는데, 악기 태그가
+    # 양쪽 다 없어 '판별 불가 → 병합'으로 한 장이 돼 버렸다 (2026-08-21)
+    r"|거점학교|중점학급|중점학교|영재학급|특수학급|방과후|자율동아리|특성화|늘봄|돌봄")
 
 
 def _discriminators(it):
@@ -478,6 +482,7 @@ def _find_duty(text):
 
     C7 역방향 감사에서 '분야' 미추출 12건의 대부분이 이 꼴이었다 (종로구립, 2026-08-19).
     """
+    text = squash_spaced_labels(re.sub(r"\s+", " ", text or ""))
     m = re.search(r"(?:담당\s*업무|모집\s*분야|담당\s*분야)\s*[:：]?\s*", text)
     if not m:
         return None
@@ -495,6 +500,12 @@ def _find_duty(text):
     # 글머리표뿐 아니라 번호 매김('1) … 2) …')도 항목 구분자다 — 이게 없어 첫 항목만
     # 남고 나머지가 통째로 잘려 나갔다 (학성초, 2026-08-21)
     parts = [tidy_spacing(p) for p in re.split(r"\s*[○ㅇ•▪◦●■□▶-]\s+|\s*\d{1,2}\)\s*", seg)]
+    # 조각이 '○○ :' 로 시작하면 그건 담당업무의 이어짐이 아니라 다음 항목이다 —
+    # '모집분야 : 주일예배 반주자 ■ 예배시간 : 매주 일요일 11시~12시' 에서 뒤 조각은
+    # 근무시간이고, 제 칸(workHours)이 따로 있다 (성은교회, 2026-08-21).
+    parts = [p for p in parts if not re.match(r"[가-힣]{2,6}(?:\s*[가-힣]{1,6})?\s*[:：]", p)]
+    parts = [p for p in parts
+             if not (len(p.split()) >= 4 and not _KOREAN_SENTENCE.search(p))]
     parts = [p for p in parts if 4 <= len(p) <= 60
              # 구획 머리말('공통사항')이 값으로 실렸다 (제물포, 2026-08-19) — 라벨성 낱말 기각
              and not re.match(r"^(?:및|등|참가|참여|공통\s*사항|세부\s*내용|유의\s*사항|기타\s*사항?)$", p)]
