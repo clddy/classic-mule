@@ -38,9 +38,12 @@ lessons/market/community.html은 리다이렉트 스텁 — 되살리지 말 것
   홈 디렉터리(`C:\Users\...`)에서 돌리면 윈도우의 옛 호환 junction
   `Application Data` 에 걸려 `A permission error occurred while accessing the file system`
   가 난다. KV 생성·배포가 이것 때문에 두 번 막혔다 (2026-08-20).
-- Cloudflare 인증이 필요한 명령(`wrangler deploy`, `kv namespace create`,
-  `r2 bucket create`)은 **Claude 가 대신 실행할 수 없다** — 사용자에게 명령을 주고
-  결과를 받아 이어간다.
+- **Cloudflare 인증은 로컬에 캐시돼 있어 Claude 가 직접 실행할 수 있다** (2026-08-21 확인).
+  `~/.wrangler/config/default.toml` 의 OAuth 토큰을 쓴다. 예전에 '실행 불가'로 적어 뒀던 것은
+  인증 문제가 아니라 홈 디렉터리에서 돌려 junction 에 걸린 것이었다 — **프로젝트 폴더에서
+  돌리면 된다.** `feedback/` 을 고쳤으면 커밋·푸시와 마찬가지로 배포까지가 한 작업 단위다.
+- **Worker 재배포가 필요한 때는 `feedback/` 코드를 고쳤을 때뿐이다.** 매일 도는 크롤·공고
+  데이터·정적 페이지·사이트 HTML 은 전부 GitHub Pages 라 push 로 끝나고 Worker 와 무관하다.
 
 ## 함정 (이미 밟아본 것)
 
