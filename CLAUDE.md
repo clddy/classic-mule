@@ -25,6 +25,23 @@ lessons/market/community.html은 리다이렉트 스텁 — 되살리지 말 것
 크롤러가 회차마다 재시도한다. 3회차까지 못 찾으면 텔레그램으로 사용자에게 보고
 (deadline_misses.json이 미해결 큐, dlHint 발췌가 추출 규칙 보강 재료). 기본 정렬은 마감 임박순.
 
+## 명령어를 드릴 때 (2026-08-20 사용자 지시)
+
+**사용자는 cmd(명령 프롬프트)에서 실행한다.** PowerShell 문법으로 주면 그대로 막힌다.
+
+- `&&` 는 cmd 에서 쓸 수 있다. PowerShell 5.1 에서는 파서 오류가 나므로, 굳이 나눌
+  필요는 없지만 **줄을 나눠 주는 편이 어느 쪽에서든 안전하다.**
+- `npx` 대신 **`npx.cmd`** 로 적는다. PowerShell 실행 정책(`UnauthorizedAccess`)이
+  `npx.ps1` 로딩을 막은 적이 있다 — 실행 정책을 바꾸라고 안내하지 말 것(시스템 보안 설정이라
+  명령 하나 때문에 건드릴 이유가 없다).
+- **wrangler 계열은 반드시 프로젝트 폴더에서 실행하게 안내한다.**
+  홈 디렉터리(`C:\Users\...`)에서 돌리면 윈도우의 옛 호환 junction
+  `Application Data` 에 걸려 `A permission error occurred while accessing the file system`
+  가 난다. KV 생성·배포가 이것 때문에 두 번 막혔다 (2026-08-20).
+- Cloudflare 인증이 필요한 명령(`wrangler deploy`, `kv namespace create`,
+  `r2 bucket create`)은 **Claude 가 대신 실행할 수 없다** — 사용자에게 명령을 주고
+  결과를 받아 이어간다.
+
 ## 함정 (이미 밟아본 것)
 
 - **분류기·추출기(순수함수) 수정 후엔 반드시 `EXT_VER`(crawler/main.py)를 올릴 것.**
