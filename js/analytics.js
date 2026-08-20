@@ -124,3 +124,22 @@ window.PODIUM_GA_ID = "G-BVYPBWD5DH";
     window.pdEvent(el.getAttribute("data-ev"), p);
   }, true);
 })();
+
+// ---------- 상단 메뉴: 운영자 전용 항목 (2026-08-20) ----------
+// '소개'는 방문자에게 지금 보여줄 이유가 없어 메뉴에서 감췄다. 다만 페이지 자체는 살아 있고
+// 주소로 열린다 — 지우면 검색에 걸린 링크가 죽고, 나중에 되살릴 때 다시 만들어야 한다.
+// 운영자 본인 브라우저에서는 계속 보이게 한다: 아무 페이지든 ?nav=full 로 한 번 열면
+// 이 브라우저에 표식이 남고, ?nav=off 로 되돌린다. 비밀이 아니라 '치워 둔 것'이므로
+// 열쇠를 쓰지 않는다 — 열쇠를 쓰면 그게 더 무거운 약속이 된다.
+(function () {
+  try {
+    var q = new URLSearchParams(location.search).get("nav");
+    if (q === "full") localStorage.setItem("podium_nav_full", "1");
+    if (q === "off") localStorage.removeItem("podium_nav_full");
+    if (localStorage.getItem("podium_nav_full") !== "1") return;
+    document.addEventListener("DOMContentLoaded", function () {
+      var els = document.querySelectorAll('[data-nav="about"]');
+      for (var i = 0; i < els.length; i++) els[i].hidden = false;
+    });
+  } catch (e) { /* 프라이빗 모드 등 localStorage 차단 — 그냥 감춘 채로 둔다 */ }
+})();
