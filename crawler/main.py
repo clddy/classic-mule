@@ -427,6 +427,12 @@ def _find_qualification(text):
     # (제물포, 2026-08-21). 뒤가 진짜 자격이므로 버리지 않고 머리만 걷어낸다.
     q = re.sub(r"^(?:[○●ㅇ□▢-]\s*)?(?:공통\s*사항|구분|세부\s*내용|해당\s*없음|공통)"
                r"(?:\s*[-–:：]?\s*(?:구분|세부\s*내용|공통\s*사항))*\s*[-–:：]?\s*", "", q)
+    # 라벨의 뒷조각만 남은 머리 — '조건 - 세례받은 지 3년 이상 된 신자' (동판교 성당).
+    # 원문은 '자격 조건'인데 라벨이 '자격'까지만 잡혀 '조건'이 값에 남았다.
+    q = re.sub(r"^(?:조건|요건|사항|기준)\s*[-–:：]?\s*", "", q)
+    # 꼬리에 다음 절 번호가 딸려 온다 — '… 지휘 경험자 3' 의 3 은 '3. 마감:' 의 번호다.
+    # 단위가 붙은 수('3년')는 값이므로 건드리지 않는다.
+    q = re.sub(r"\s+\d{1,2}\s*$", "", q)
     return tidy_spacing(q)
 
 # 근무기간 표기 통일 (2026-08-20 사용자 지적: "근무기간 폼을 우리가 정하지 않았나?").
@@ -540,6 +546,15 @@ _EXCERPT_KW = re.compile(
     r"모집|채용|선발|자격|대상|리허설|연습|공연|연주|일시|장소|기간|인원|오디션"
     r"|전형|접수|급여|보수|페이|출연|곡목|프로그램|\d명")
 # 집계·게시판 페이지의 내비게이션·관련목록·결과공고 잡음 배제
+# 본문 한 줄에 여럿 나오면 '다른 공고 목록'이라는 신호가 되는 기관 이름
+_ORG_NAME = re.compile(r"[가-힣]{2,10}(?:교회|성당|채플|초등학교|중학교|고등학교|유치원)")
+# 한국어 문장의 표식 — 조사나 어미가 붙은 낱말. 표를 편 줄에는 이게 없다.
+# ('채용분야 및 기간 과목 인원 채용기간 비고' vs '세례받은 지 3년 이상 된 신자')
+_KOREAN_SENTENCE = re.compile(
+    # '과'·'도'는 뺀다 — 조사이기도 하지만 '교과·학과·음악과', '경기도·강원도'의 끝
+    # 글자이기도 해서 표 나열 줄이 통째로 문장으로 통과했다 (2026-08-21)
+    r"[가-힣](?:은|는|이|가|을|를|의|에|에서|으로|로|와|까지|부터|보다|처럼)\s"
+    r"|[가-힣](?:다|함|임|음|자|것|중|자로|하며|하고|하는|한|된|될|있는|없는|가능|바랍니다|합니다)(?:\s|[.,)]|$)")
 _EXCERPT_SKIP = re.compile(
     r"메인 ?페이지|바로가기|로그인|회원가입|비슷한|관련\s*(모집|공고|정보)|목록|이전\s*글|다음\s*글"
     r"|리스트|검색|더보기|메뉴|카테고리|사이트맵|저작권|Copyright|배너|공유|인쇄|스크랩|조회수"
@@ -549,6 +564,14 @@ _EXCERPT_SKIP = re.compile(
     r"|최종 ?합격|합격자|불합격|합격 ?발표|채용 ?결과|선정 ?결과|낙찰|입찰 ?결과|계약 ?체결|티켓|추가 ?오픈"
     r"|채용 ?비리|비리 ?신고|신고 ?센터|공공기관 채용|청탁|개인정보|저작권|이용약관|고객센터"
     r"|용역|평가위원|단장 ?공개"
+    # 채용시스템 화면 부속물 — 공고문이 아니라 포털이 그리는 칸이다. 이걸 안 막아
+    # 본문 발췌 29건 중 8건이 '채용담당자 이름 김** 연락처 02'였다 (2026-08-21).
+    r"|채용담당자|담당자 ?정보|만족하십니까|이 ?페이지의|페이지 ?정보|선택 ?지원 ?닫기|닫기$"
+    r"|지도 ?보기|위치 ?보기|길찾기|인근 ?전철|유의사항 ?안내"
+    # 게시판이 상단에 붙이는 이용 안내 — 공고문이 아니라 사이트 운영 문구다
+    # ('채용여부를 반드시 채용완료로 수정하여 주시기 바랍니다', 강원교육청 2026-08-21)
+    r"|채용문의|민원 ?발생|미연에 ?방지|채용완료|구인정보는|인증서 ?로그인|과거자료"
+    r"|구인공고시|기재하여 ?주시기|착오없으시기|정보의 ?정확성"
     # 개인정보 수집·이용 동의표. '개인정보'라는 낱말이 표 제목에만 있고 각 줄에는 없어서
     # 기존 규칙을 통과해 요약에 실렸다 — '이용 목적: 구직활동 지원 및…', '보유기간: 회원
     # 탈퇴 시까지(2년)', '제공받는자: 각급기관 채용담당자' (2026-08-08 사용자 지적).
@@ -569,9 +592,12 @@ _EXCERPT_SKIP = re.compile(
     r"|다음과 같이 (?:공고|모집|채용|알려)|공고하고자|채용 ?계획을|위와 같이 ?공고"
     r"|^내국인으로서|^채용 ?(?:응시 )?자격$|^모집 ?세부 ?사항$|^응모 ?자격$|^채용 ?분야$")
 
-def _body_excerpt_text(text, title=None):
+def _body_excerpt_text(text, title=None, org=None):
     keep = []
     tnorm = re.sub(r"\s+", " ", title).strip() if title else ""
+    # 제목 앞의 딱지는 우리가 붙인 것이라 원문 본문에는 없다 — 떼고 견주지 않으면
+    # 본문 첫 줄(= 제목)이 요약으로 실린다 (성은교회, 2026-08-21).
+    tnorm = re.sub(r"^\[[^\]]{1,20}\]\s*", "", tnorm)
     for raw in (text or "").split("\n"):
         ln = re.sub(r"\s+", " ", raw).strip(" ·-•▷▶◦□■●○△*|:")
         if not (8 <= len(ln) <= 90) or ln in keep:
@@ -586,11 +612,32 @@ def _body_excerpt_text(text, title=None):
         solid = len(ln.replace(" ", ""))
         if solid and len(re.findall(r"[^가-힣A-Za-z0-9\s.:,~()/\-]", ln)) / solid > 0.15:
             continue
+        if re.search(r"[가-힣]\*{2,}", ln):   # 담당자 마스킹('김**') — 포털 화면 부속물
+            continue
+        # 표를 통째로 편 줄 — '채용분야 및 기간 과목 인원 채용 기간 채용방법 비고 음악 1'.
+        # 판정은 낱말 목록이 아니라 '한국어 문장인가'로 한다: 표를 편 줄은 명사만 나열되고
+        # 조사도 서술어도 없다. 라벨형 알짜 줄('계약기간: 2026.8.27.~')은 콜론이 지켜 준다.
+        _after = re.split(r"[:：]", ln, 1)
+        _body = _after[1] if len(_after) > 1 else ln
+        if len(ln.split()) >= 4 and not _KOREAN_SENTENCE.search(_body):
+            continue
+        # 게시판이 본문 아래에 붙이는 '다른 공고' 목록 — 기독정보넷이 이 꼴로 남의 공고를
+        # 흘린다('탑동감리교회 드럼반주자 모집합니다'가 성은교회 공고의 요약이 돼 있었다).
+        # 줄마다 이름이 하나씩이라 개수로는 못 가른다 — 우리 기관 이름과 견준다.
+        _names = set(_ORG_NAME.findall(ln))
+        if len(_names) >= 2:
+            continue
+        if _names and org and not any(n in org or org in n for n in _names):
+            continue
         if ln.count("|") >= 2:      # 브레드크럼(메뉴 경로) 배제
             continue
         if re.search(r"\.(pdf|hwpx?|zip|docx?|xlsx?)(\b|$)", ln, re.I):  # 첨부 파일명 줄 배제
             continue
         if _EXCERPT_SKIP.search(ln) or not _EXCERPT_KW.search(ln):
+            continue
+        # 라벨만 있고 값이 잘린 줄 — '기간: 2026.', '채용 인원 : 1 명 다 .'
+        # 표를 편 본문에서 흔하다. 라벨이 있어도 값이 없으면 요약에 실을 게 없다.
+        if re.search(r"[:：]\s*(?:20\d\d\s*\.?|\d{1,2}\s*\.?)\s*$", ln):
             continue
         # 라벨(콜론)·날짜·인원·금액 등 '실제 공고 내용' 신호가 있는 줄만
         if not re.search(r"[:：]|20\d\d|\d\s*명|\d\s*월|원\b|졸업|자격|모집|채용|리허설|오디션", ln):
@@ -607,7 +654,7 @@ def _body_excerpt_text(text, title=None):
     # 매겨 상위 4줄만 남기고, 읽기 순서는 원문 그대로 되돌린다.
     ranked = sorted(keep, key=lambda l: (-_line_value(l), keep.index(l)))[:4]
     picked = [l for l in keep if l in ranked]
-    return " · ".join(picked)[:240]
+    return tidy_spacing(" · ".join(picked))[:240]
 
 
 def _line_value(ln):
@@ -682,7 +729,7 @@ def _apply_details_from_text(text, item, want_excerpt=True):
                 if v:
                     item[fld] = v
     if want_excerpt and not item.get("bodyExcerpt"):
-        ex = _body_excerpt_text(text, title=item.get("title"))
+        ex = _body_excerpt_text(text, title=item.get("title"), org=item.get("org"))
         if ex:
             item["bodyExcerpt"] = ex
 
@@ -721,7 +768,7 @@ def _extract_body_details(soup, page_text, item, ry):
     # 본문 요약: 줄 구조가 살아있는 soup 기준(품질 필터가 집계·게시판 잡음 제거).
     # 얇은 페이지에서 못 뽑으면 이후 첨부 단계에서 채워진다.
     if not item.get("bodyExcerpt"):
-        ex = _body_excerpt(soup, title=item.get("title"))
+        ex = _body_excerpt(soup, title=item.get("title"), org=item.get("org"))
         if ex:
             item["bodyExcerpt"] = ex
     # 본문에서 악기 탐지 후 제목에서 뽑은 것과 **합친다**. 예전엔 제목에 악기가 하나라도
@@ -1142,7 +1189,10 @@ def _refill_from_raw(items, today):
             # 보관된 본문은 공백으로 이어붙인 한 덩어리다 — 줄 단위로 고르는 요약기가
             # 쓰도록 문장 끝·구분점에서 줄을 나눠 준다.
             lines = re.sub(r"(?<=[.。!?])\s+|\s*·\s*|\s{2,}", "\n", page)
-            ex = _body_excerpt_text(lines, title=it.get("title"))
+            # 첨부 공고문까지 폴백해 봤으나 철회했다 (2026-08-21) — 몇 건 더 채우는 대신
+            # 게시판 이용 안내문('채용여부를 채용완료로 수정해 주시기 바랍니다')과 다른
+            # 공고가 섞여 들어왔다. 이 필드는 화면에 쓰이지 않으므로 채움률보다 순도가 낫다.
+            ex = _body_excerpt_text(lines, title=it.get("title"), org=it.get("org"))
             if ex:
                 it["bodyExcerpt"] = ex
                 n_ex += 1
