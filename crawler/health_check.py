@@ -21,6 +21,15 @@ from statistics import median
 
 import requests
 
+# 브리핑에 이모지(🔴🟡)가 들어가는데 cp949 콘솔에서 print 가 터진다. 그 print 가
+# write_log·save_history·notify 보다 앞에 있어서, 터지면 기록도 알림도 통째로 날아간다 —
+# traffic.py 가 13일치를 '수집 실패'로 찍었던 것과 같은 구조다 (2026-08-19).
+# run_health.ps1 은 PYTHONIOENCODING 을 박아 두지만, 손으로 돌릴 땐 그 보호가 없다.
+try:
+    sys.stdout.reconfigure(encoding="utf-8")
+except Exception:
+    pass
+
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 from common import UA  # noqa: E402
 
