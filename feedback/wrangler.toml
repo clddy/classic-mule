@@ -25,4 +25,4 @@ id = "9cef89cc702c4ae6acdc27b81b87842a"
 #   npx wrangler kv namespace create PROFILES
 [[kv_namespaces]]
 binding = "PROFILES"
-id = "a3f9c2e14b8d47a6b1e0f5c93d2a8e7f"
+id = "d907a972913d4accb4978e03f1641940"
