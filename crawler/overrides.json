@@ -54,11 +54,12 @@
   "officialUrl": "https://www.jcf.or.kr/main/bbs/bbsMsgDetail.do?bcd=announce&msg_seq=299",
   "org": "제물포문화재단(구립합창단)",
   "verifiedAt": "2026-08-19",
-  "verifiedNote": "제물포문화재단 공고 게시판에서 원문 확인(공고 제2026-호, 성악지도자·반주자·단무장). 아트인포 게시글의 '채용 사이트 바로가기'가 재단 홈 루트만 가리켜 자동 역추적이 상세를 못 찾던 건."
+  "verifiedNote": "제물포문화재단 공고 게시판에서 원문을 확인했습니다 (성악지도자·반주자·단무장 모집).",
+  "internalNote": "아트인포 게시글의 '채용 사이트 바로가기'가 재단 홈 루트만 가리켜 _trace_origin 이 상세를 못 찾았다. 승계 항목이라 역추적 경로를 안 탄 것도 겹침."
  },
  "https://www.artinfokorea.com/jobs/476": {
   "deadline": "2000-01-01",
   "verifiedAt": "2026-08-19",
-  "verifiedNote": "지휘자 모집은 재단 공고 게시판(announce, 유일한 공고 게시판)에 더 이상 없음 — 원출처 소멸로 만료 처리. 게시 2026-08-06."
+  "internalNote": "지휘자 모집은 재단 공고 게시판(announce, 유일한 공고 게시판)에 없음 — 원출처 소멸로 만료 처리. 게시 2026-08-06."
  }
 }

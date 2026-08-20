@@ -552,6 +552,49 @@ _SIG2FIELD = [
 ]
 _FILL_FIELDS = ("deadline", "pay", "workPeriod", "workHours", "personnel", "contact", "email", "addr", "qualification")
 
+# 라벨 뒤에 조사가 붙으면 항목이 아니라 산문이다 —
+# '경력증명서 상 근무기간과 담당업무가 명시된 경우'. '별'은 사이트 메뉴('담당업무별전화').
+_PROSE_TAIL = re.compile(r"^(?:과|와|이|가|은|는|을|를|에|의|도|만|별)")
+# 라벨이 겹쳐 적히는 자리 — '보수/임금', '과목 (담당업무)'. 겹친 라벨은 값이 아니다.
+_LABEL_ECHO = re.compile(r"^(?:임금|보수|급여|담당\s*업무|모집\s*분야|과목)\s*[)）]?\s*")
+# 보수 자리에 법령·조례 인용만 있으면 금액이 없는 것이다. QC 가 일부러 버리는 값이라
+# (common._LAW_CITE) 감사가 '미추출'로 셀 이유가 없다.
+_PAY_NO_AMOUNT = re.compile(r"보수\s*규정|보수규정|조례|시행\s*규칙|지침|호봉|산정")
+_PAY_AMOUNT = re.compile(r"[\d,]{2,}\s*(?:만\s*)?원|시급|일당|월급|협의")
+
+
+def _value_after(t, end):
+    """라벨 뒤에 실제로 값이 오는가 — 다음 라벨 전까지의 알맹이. 없으면 ''.
+
+    서울일자리포털은 값이 없는 칸에도 라벨을 찍는다('근무시간 보수/임금 접수방법').
+    그런 자리를 [미추출]로 세면 원문에 없는 값을 매일 내놓으라고 조르는 셈이 된다
+    (2026-08-20). 라벨은 라벨일 뿐이고, 감사가 찾는 것은 '값이 있는데 못 뽑은' 자리다.
+    """
+    import common
+    win = re.sub(r"^[\s:：/·\-–]+", "", t[end:end + 140])
+    for _ in range(3):
+        w2 = _LABEL_ECHO.sub("", win)
+        if w2 == win:
+            break
+        win = w2
+    nxt = common._LABEL_WORDS.search(win)
+    return (win[:nxt.start()] if nxt else win).strip(" :：/·-–()（）")
+
+
+def _really_missing(t, pat, field):
+    """이 원문에 '뽑을 수 있었는데 안 뽑힌 값'이 정말 있는가."""
+    for m in pat.finditer(t):
+        tail = t[m.end():m.end() + 8].lstrip()
+        if _PROSE_TAIL.match(tail):
+            continue                      # 산문·사이트 메뉴
+        val = _value_after(t, m.end())
+        if len(val) < 2:
+            continue                      # 라벨만 있고 칸이 빈 자리
+        if field == "pay" and _PAY_NO_AMOUNT.search(val) and not _PAY_AMOUNT.search(val):
+            continue                      # 법령 인용뿐 — 금액이 없다
+        return True
+    return False
+
 
 def check_unextracted(rep, items):
     """원문에 시그널 라벨이 있는데 대응 필드가 빈 공고 → [미추출] 보고 (수정 없음)."""
@@ -562,7 +605,9 @@ def check_unextracted(rep, items):
         if len(t) < 200:
             continue
         for pat, field, label in _SIG2FIELD:
-            if pat.search(t) and not i.get(field) and i.get("deadlineNote") != "상시":
+            if i.get(field) or i.get("deadlineNote") == "상시":
+                continue
+            if _really_missing(t, pat, field):
                 miss.append((label, i.get("title", "")[:24]))
     if miss:
         import collections

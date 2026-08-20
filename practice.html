@@ -50,12 +50,7 @@
 <div class="page-head">
   <div class="container">
     <h1>연습실</h1>
-    <p class="desc">민간은 <b>외부 예약처 링크</b>로, 공공은 <b>신청 방법</b>까지 — 아무도 정리해주지 않던 저가 공공 연습 공간까지 한곳에서. <span style="color:var(--ink-soft)">(공공은 기관 공식정보 실데이터)</span></p>
-    <div class="tabs">
-      <button class="tab active" id="tab-all">전체</button>
-      <button class="tab" id="tab-instant">외부 예약</button>
-      <button class="tab" id="tab-public">🏛 신청제·공공</button>
-    </div>
+    <p class="desc">아무도 정리해주지 않던 저가 공공 연습 공간을 한곳에서 — <b>신청 방법</b>까지 정리했습니다.</p>
   </div>
 </div>
 
@@ -227,11 +222,12 @@
 <script src="data/practice-seed.js?v=20260716d"></script>
 <script src="data/practice-yeyak.js?v=20260716d"></script>
 <script src="data/practice-eshare.js?v=20260803"></script>
-<script src="data/practice-instant.js?v=20260716d"></script>
 <script src="data/practice-coords.js?v=20260716d"></script>
 <script>
-// ===== 연습실 통합 보드 — '대여 방식' 축: 외부 예약(instant, 민간=링크로 연결만) / 신청제·공공(public) =====
-// v2.0: 포디엄은 결제·예약을 다루지 않는다 — 민간은 외부 예약처 링크, 공공은 신청 방법 집약.
+// ===== 연습실 보드 — 공공 연습 공간(신청제) 집약 =====
+// v2.0: 포디엄은 결제·예약을 다루지 않는다 — 기관의 신청 방법을 정리해 보여줄 뿐이다.
+// 민간(외부 예약) 갈래는 2026-08-20 제거했다: 스페이스클라우드 미러본이라 원래
+// 프로토타입 한정이었고(CLAUDE.md: 남의 마켓 미러링 금지) 정보도 낡았다.
 // 공공 = 실데이터 (큐레이션 practice-public.js + 서울시 공공서비스예약 practice-yeyak.js).
 // 민간 = 호스트 직접 등록 원칙 (타 플랫폼 크롤 금지). 등록 예시 1건은 참고용(sample).
 const esc = s => String(s ?? "").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
@@ -385,11 +381,13 @@ const PUBLIC_ALL = [..._curated, ..._seed, ..._yeyak, ..._eshare];
 
 // 즉시예약(민간) — 프로토타입 수집분. 실서비스에서는 호스트 직접 등록으로 대체한다.
 const INSTANT_ALL = (window.INSTANT_ROOMS || []).map(r => ({ ...r, cat: "instant" }));
-function allRooms(){ return [...HOST_ROOMS, ...INSTANT_ALL, ...SAMPLE_INSTANT, ...PUBLIC_ALL]; }
+// 외부 예약(민간)은 제거했다 — 스페이스클라우드 미러본이라 원래 프로토타입 한정이었고
+// 정보도 낡았다 (2026-08-20). 남은 것은 사용자가 직접 등록한 공간과 공공뿐이다.
+function allRooms(){ return [...HOST_ROOMS, ...PUBLIC_ALL]; }
 
 // ---------- 필터 (구인구직란과 동일 체계) ----------
 // '타악 허용'은 확인된 페인포인트라 최상단·강조(hot)
-const CATS = [["instant","외부 예약"], ["public","🏛 신청제·공공"]];
+const CATS = [];   // 대여 방식 축 폐기 — 전부 신청제·공공 (2026-08-20)
 const ALLOWS = ["타악 허용", "금관 허용", "성악·앙상블 허용", "대편성 허용"];
 const EQUIPS = ["마림바", "팀파니", "그랜드피아노", "업라이트피아노", "드럼"];
 const PRICES = ["무료", "유료"];
@@ -476,7 +474,7 @@ function ptypeOf(r){
 }
 
 function pass(r){
-  if (st.tab !== "all" && r.cat !== st.tab) return false;
+  // 대여 방식 축은 폐기 — 전부 공공이라 거를 것이 없다
   if (st.cat.size && !st.cat.has(r.cat)) return false;
   const ax = axesOf(r);
   if (st.allow.size && ![...st.allow].every(v => ax.allow.includes(v))) return false;
@@ -595,9 +593,9 @@ const sortFns = {
 };
 
 // ---------- 카드 ----------
-const catBadge = r => r.cat === "public"
-  ? `<span class="tag src-official">🏛 신청제·공공</span>`
-  : `<span class="tag ok">외부 예약</span>`;
+// 전부 신청제·공공이라 배지로 구분할 것이 없다 — 붙이면 모든 카드에 같은 딱지가 달릴 뿐이다
+// (2026-08-20 사용자 지시). 함수는 남겨 둔다 — 호출부가 여러 곳이라 여기서 비우는 편이 안전하다.
+const catBadge = () => "";
 const priceBadge = r => (r.free || r.price === "무료") ? `<span class="tag free">무료</span>` : "";
 
 // 신청제는 구조적으로 채용공고와 같다 — 구인구직에서 검증한 마감 D-day 뱃지 UX를 재활용
@@ -712,13 +710,10 @@ function render(){
   const cnt = { all: all.length,
                 instant: all.filter(r=>r.cat==="instant").length,
                 public: all.filter(r=>r.cat==="public").length };
-  $("#tab-all").innerHTML = `전체 <span class="count">${cnt.all}</span>`;
-  $("#tab-instant").innerHTML = `외부 예약 <span class="count">${cnt.instant}</span>`;
-  $("#tab-public").innerHTML = `🏛 신청제·공공 <span class="count">${cnt.public}</span>`;
-  for (const t of ["all","instant","public"]) $(`#tab-${t}`).classList.toggle("active", st.tab===t);
+  // 탭은 없앴다(전부 공공) — 요소가 있을 때만 갱신한다
   CUR = all.filter(pass).sort(sortFns[st.sort] || sortFns.reco);
-  const nPub = CUR.filter(r=>r.cat==="public").length, nIns = CUR.length - nPub;
-  $("#result-count").innerHTML = `총 <strong>${CUR.length}</strong>곳 <span style="color:var(--ink-soft);font-size:0.8rem">— 외부 예약 ${nIns} · 신청제·공공 ${nPub}</span> — 카드를 누르면 상세와 예약 방법이 열립니다`;
+  // 전부 신청제·공공이라 갈래를 세어 보일 이유가 없다 (2026-08-20)
+  $("#result-count").innerHTML = `총 <strong>${CUR.length}</strong>곳 — 카드를 누르면 상세와 신청 방법이 열립니다`;
   // 0건 화면 = 수요 수집 장치: 어떤 조건 조합에 수요가 있는지가 프로토타입에서 제일 갖고 싶은 신호
   $("#room-list").innerHTML = CUR.length
     ? CUR.map((r,i)=> r.cat==="public" ? cardPublic(r,i) : cardInstant(r,i)).join("")
@@ -850,8 +845,7 @@ document.addEventListener("DOMContentLoaded", ()=>{
     ? `공공 데이터 확인 ${fetched} · 공식 예약페이지 기준`
     : `공공 데이터 — 각 기관 공식정보 기준`;
   render();
-  for (const t of ["all","instant","public"])
-    $(`#tab-${t}`).addEventListener("click", ()=>{ st.tab=t; render(); });
+  // 탭 제거 — 전부 신청제·공공이라 나눌 축이 없다 (2026-08-20)
   $("#search-input").addEventListener("input", e=>{ st.q=e.target.value.trim(); render(); });
   $("#sort-sel").addEventListener("change", e=>{ st.sort=e.target.value; render(); });
   $("#map-wrap").addEventListener("toggle", ()=>{ updateMap(); if (MAP) setTimeout(()=>MAP.invalidateSize(), 60); });

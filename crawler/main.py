@@ -301,7 +301,7 @@ def find_attachments(soup, base_url):
                     cands.append((full, el.get_text(" ", strip=True)))
     return cands[:4]
 
-EXT_VER = 77         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
+EXT_VER = 80         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
                      # v32(2026-08-02): 모집분야 구획 악기 추출(insts_from_recruit_text) + 원문 보관층
                      # 24: work.sen 등록일(게시일) 추출 추가 — date=None이던 승계분을 다시 뽑게
                      # 25: body_text 도입 — 본문을 <header>에 넣는 사이트(대전교육청)의 마감일을
@@ -414,12 +414,53 @@ def _find_qualification(text):
         # 실제 자격 표현이 담긴 경우만 채택 (○실기·전형 조기절단 파편 배제)
         return None
     # 표의 열 제목만 긁힌 경우('경력 경력 학력') 배제 — 라벨 어휘로만 이뤄진 값은 정보가 아니다
-    if re.fullmatch(r"(?:경력|학력|자격|연령|성별|무관|우대|사항|세부내용|및|과|[,·/\s])+", q):
+    # 표의 열 제목만 긁힌 경우('경력 경력 학력', '경력 신입 학력') 배제 — 라벨 어휘로만
+    # 이뤄진 값은 정보가 0이다. '신입·경력무관' 같은 값 어휘도 라벨과 함께 오면 조각이다.
+    if re.fullmatch(r"(?:경력|학력|자격|연령|성별|무관|우대|사항|세부내용|신입|경력무관"
+                    r"|이상|해당|없음|및|과|[,·/\s])+", q):
         return None
     # 표의 '열 제목 + 값'이 나란히 긁혀 라벨이 겹치는 경우: '경력 경력 5년 학력 대학교(4년)'
     # → 앞의 홀로 선 라벨을 지워 '경력 5년 학력 대학교(4년)'로 읽히게 한다 (2026-08-02 지적)
     q = re.sub(r"(경력|학력|자격|연령|성별|우대)\s+(?=\1)", "", q)
     return q
+
+# 근무기간 표기 통일 (2026-08-20 사용자 지적: "근무기간 폼을 우리가 정하지 않았나?").
+# 그동안 마감일만 ISO 로 정규화하고 근무기간은 원문 표기를 그대로 실어 왔다 —
+# '2026년 8월28일~2026년 12월24일', '2026/09/02~2026/12/23', '2026. 9. 1. ∼ 2027. 2. 28.'
+# 이 한 화면에 섞여 있었다. 날짜 두 개를 읽어 'YYYY.MM.DD ~ YYYY.MM.DD' 로 맞춘다.
+# 날짜를 못 읽으면 원문을 그대로 둔다 — '위촉일로부터 2년' 같은 표기도 정보다.
+_WP_DATE = re.compile(r"(20\d{2})\s*[.\-/년]\s*(\d{1,2})\s*[.\-/월]\s*(\d{1,2})")
+_WP_TAIL = re.compile(r"[(（]([^)）]{2,40})[)）]\s*$")
+
+
+def normalize_period(v):
+    """근무·계약 기간을 'YYYY.MM.DD ~ YYYY.MM.DD' 로. 뒤의 짧은 단서는 괄호로 남긴다."""
+    if not v:
+        return v
+    t = str(v)
+    ds = _WP_DATE.findall(t)
+    if len(ds) < 2:
+        # 일이 빠진 표기 — '2026. 9. ~ 2026. 12.' 는 월까지만 밝힌 것이다.
+        # 없는 날짜를 지어내지 않고 'YYYY.MM ~ YYYY.MM' 로만 맞춘다 (2026-08-20).
+        ym = re.findall(r"(20\d{2})\s*[.\-/년]\s*(\d{1,2})\s*[.\-/월]?(?!\s*\d)", t)
+        if len(ym) >= 2:
+            out = f"{ym[0][0]}.{int(ym[0][1]):02d} ~ {ym[1][0]}.{int(ym[1][1]):02d}"
+            m_t = _WP_TAIL.search(t)
+            if m_t and not _WP_DATE.search(m_t.group(1)):
+                out += f"({m_t.group(1).strip()})"
+            return out
+        return t
+    def fmt(d):
+        y, m, dd = d
+        return f"{y}.{int(m):02d}.{int(dd):02d}"
+    out = f"{fmt(ds[0])} ~ {fmt(ds[1])}"
+    m_tail = _WP_TAIL.search(t)
+    # '(6개월)', '(학교 사정에 따라 연장 가능)' 처럼 기간을 보충하는 말만 살린다.
+    # 날짜가 또 들어 있는 괄호는 이미 위에서 읽었으므로 버린다.
+    if m_tail and not _WP_DATE.search(m_tail.group(1)):
+        out += f"({m_tail.group(1).strip()})"
+    return out
+
 
 def _find_duty(text):
     """담당업무 — 열거형('담당업무 ○ 활동 ○ 업무 …') 전용. 콜론 표기는 extract_fields 가 본다.
@@ -1539,7 +1580,11 @@ def _apply_overrides(items, verbose=False):
         for it in items:
             ov = overrides.get(it.get("url")) or overrides.get(it.get("officialUrl") or "")
             if ov:
-                it.update(ov)
+                # verifiedNote 는 **사용자에게 보이는 칸**이다(카드 상세 '✓ 직접 확인').
+                # 파서가 왜 못 찾았는지 같은 운영 기록은 internalNote 에 적고, 그 키는
+                # 화면 데이터로 흘리지 않는다 (2026-08-20 제물포 건에서 노출됐다).
+                it.update({k: v for k, v in ov.items()
+                           if k != "internalNote" and not k.startswith("_")})
                 n_ov += 1
         if verbose and n_ov:
             log(f"확인정보 병합: {n_ov}건 (overrides.json)")
@@ -2227,6 +2272,9 @@ def run(force_all=False):
         it["title"] = school_title(it["title"], it.get("org"))
         # 자격 필드 — 본문(자격·요약)까지 반영해 정확도 향상
         qtext = " ".join(str(it.get(f, "") or "") for f in ("title", "qualification", "bodyExcerpt", "recruitSummary"))
+        for _pf in ("workPeriod", "perfPeriod"):
+            if it.get(_pf):
+                it[_pf] = normalize_period(it[_pf])
         it["certReq"] = cert_required(it["tier"], it["title"], qtext)
         # 교원자격증을 요구하는 초·중·고/교육청 채용은 제목 어휘가 뭐든 학교 수업이다 —
         # 어휘 규칙이 놓친 '방과후 시간강사'류를 자격 신호로 받아낸다 (워크오더 08-16 §3)

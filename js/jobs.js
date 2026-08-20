@@ -239,9 +239,17 @@ function statusOf(j) {
 // ---------- 칩 렌더 ----------
 // '기타'는 클래식 사이트에서 악기 기타(guitar)로 읽힌다 — 화면 표기만 '그 외'로 (데이터 값은 유지)
 const bandLabel = b => b === "기타" ? "그 외" : b;
+// 필터 칩에 쓰는 표시명 — 데이터 값은 그대로 두고 화면 글자만 줄인다.
+// '교육 — 대학'은 칩이 두 줄로 접히고 '교육'이 다섯 번 반복돼 읽는 데 방해가 된다
+// (2026-08-20 사용자 지시). 데이터 값을 바꾸면 분류기·아카이브까지 손대야 한다.
+const CHIP_LABEL = {
+  "교육 — 대학": "대학", "교육 — 입시·전공": "입시전공",
+  "교육 — 학교": "학교", "교육 — 취미·입문": "취미입문",
+};
+const chipLabel = v => CHIP_LABEL[v] || bandLabel(v);
 function renderChips(sel, items, set) {
   const el = $(sel);
-  el.innerHTML = items.map(v => `<button class="chip${set.has(v) ? " on" : ""}" data-v="${v}">${bandLabel(v)}</button>`).join("");
+  el.innerHTML = items.map(v => `<button class="chip${set.has(v) ? " on" : ""}" data-v="${v}">${chipLabel(v)}</button>`).join("");
   el.querySelectorAll(".chip").forEach(c => c.addEventListener("click", () => {
     const v = c.dataset.v;
     set.has(v) ? set.delete(v) : set.add(v);
@@ -433,7 +441,7 @@ function renderToggle(sel, label, key) {
 }
 
 function renderAll() {
-  renderToggle("#filter-new", "🔵 NEW만 보기", "newOnly");   // 맨 위 — 최근 3일 내 새 공고
+  renderToggle("#filter-new", "🔵 NEW", "newOnly");   // 맨 위 — 최근 3일 내 새 공고
   renderChips("#filter-tier", TIERS, state.tiers);
   renderToggle("#filter-obri", "교회 공고만", "obri");   // 크롤 필드명(obri)은 유지 — 크롤러 무수정
   renderToggle("#filter-cert", "교원자격증 불필요만", "noCert");

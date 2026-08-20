@@ -1,1 +1,10 @@
-{}
+{
+ "https://music.yonsei.ac.kr/music/notice1.do?mode=view&articleNo=475942&article.offset=0&articleLimit=10": {
+  "firstSeen": "2026-08-20",
+  "tries": 1,
+  "reported": false,
+  "lastTry": "2026-08-20",
+  "title": "천안시립교향악단 예술감독(상임지휘자) 모집",
+  "org": "천안시립교향악단"
+ }
+}
