@@ -26,3 +26,10 @@ id = "9cef89cc702c4ae6acdc27b81b87842a"
 [[kv_namespaces]]
 binding = "PROFILES"
 id = "d907a972913d4accb4978e03f1641940"
+
+# 연주 영상 파일 (작업 H) — KV 는 값 하나가 25MB 상한이라 영상을 담을 수 없다.
+#   npx.cmd wrangler r2 bucket create podium-profiles
+# 바인딩 이름은 코드에서 읽히는 이름이라 MEDIA 로 둔다(버킷 이름과 별개).
+[[r2_buckets]]
+binding = "MEDIA"
+bucket_name = "podium-profiles"

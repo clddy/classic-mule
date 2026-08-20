@@ -69,6 +69,36 @@
     });
   }
 
+
+  // 영상 파일 올리기 — 프로필을 먼저 만들고, 받은 확인 코드로 파일을 올린다.
+  // 한 번에 보내지 않는 이유: 영상 바이트와 폼 값을 같은 요청에 담으면 multipart 를
+  // 파싱해야 하는데, 100MB 짜리를 메모리에 올려 쪼개는 셈이 된다. 파일은 그대로 흘려보내고
+  // 본인 확인만 헤더로 싣는 편이 가볍고 안전하다 (2026-08-20).
+  var VIDEO_MAX = 100 * 1024 * 1024;
+  function uploadVideo(file, cred, onProgress) {
+    if (!file) return Promise.resolve({ ok: true, skipped: true });
+    if (file.size > VIDEO_MAX) {
+      return Promise.resolve({ ok: false, error: "영상은 100MB 까지 올릴 수 있습니다" });
+    }
+    return new Promise(function (resolve) {
+      var xhr = new XMLHttpRequest();          // fetch 로는 업로드 진행률을 볼 수 없다
+      xhr.open("PUT", API + "/api/profile/video");
+      xhr.setRequestHeader("Content-Type", file.type || "video/mp4");
+      xhr.setRequestHeader("X-Profile-Id", cred.id);
+      xhr.setRequestHeader("X-Profile-Token", cred.token);
+      xhr.upload.onprogress = function (e) {
+        if (e.lengthComputable && onProgress) onProgress(Math.round(e.loaded / e.total * 100));
+      };
+      xhr.onload = function () {
+        var d = {};
+        try { d = JSON.parse(xhr.responseText); } catch (e) { /* 형식 밖 응답 */ }
+        resolve(d.ok ? d : { ok: false, error: d.error || ("업로드 실패 (" + xhr.status + ")") });
+      };
+      xhr.onerror = function () { resolve({ ok: false, error: "업로드 중 연결이 끊겼습니다" }); };
+      xhr.send(file);
+    });
+  }
+
   // ---- 제출 폼 ----
   function initSubmit() {
     var form = $("#pf-form");
@@ -94,13 +124,29 @@
           say(msg, d.error || "등록에 실패했습니다.", true);
           return;
         }
-        form.hidden = true;
-        var done = $("#pf-done");
-        if (done) {
-          done.hidden = false;
-          // 봇 덫에 걸린 요청도 ok 로 답하지만 토큰이 없다 — 그때는 코드 자리를 비운다
-          $("#pf-token").textContent = d.token ? (d.id + " / " + d.token) : "(발급되지 않았습니다)";
-        }
+        var fileEl = $("#pf-video-file");
+        var file = fileEl && fileEl.files && fileEl.files[0];
+        var finish = function () {
+          form.hidden = true;
+          var done = $("#pf-done");
+          if (done) {
+            done.hidden = false;
+            // 봇 덫에 걸린 요청도 ok 로 답하지만 토큰이 없다 — 그때는 코드 자리를 비운다
+            $("#pf-token").textContent = d.token ? (d.id + " / " + d.token) : "(발급되지 않았습니다)";
+          }
+        };
+        if (!file || !d.token) { finish(); return; }
+        say(msg, "영상 올리는 중… 0%");
+        uploadVideo(file, { id: d.id, token: d.token }, function (pct) {
+          say(msg, "영상 올리는 중… " + pct + "%");
+        }).then(function (u) {
+          // 영상이 실패해도 프로필 등록 자체는 이미 됐다 — 그 사실을 분명히 알린다
+          if (!u.ok) {
+            say(msg, "프로필은 등록됐지만 영상 올리기에 실패했습니다: " + (u.error || "") +
+              " 내 프로필 관리에서 다시 시도할 수 있습니다.", true);
+          }
+          finish();
+        });
       }).catch(function () {
         btn.disabled = false;
         btn.textContent = "등록 신청";
@@ -154,7 +200,16 @@
         payload.id = cred.id;
         payload.token = cred.token;
         post("/api/profile/update", payload).then(function (d) {
-          say(msg, d.ok ? "저장했습니다. 운영자 확인 후 다시 공개됩니다." : (d.error || "저장 실패"), !d.ok);
+          if (!d.ok) { say(msg, d.error || "저장 실패", true); return; }
+          var fe = $("#pm-video-file");
+          var file = fe && fe.files && fe.files[0];
+          if (!file) { say(msg, "저장했습니다. 운영자 확인 후 다시 공개됩니다."); return; }
+          say(msg, "영상 올리는 중… 0%");
+          uploadVideo(file, cred, function (pct) { say(msg, "영상 올리는 중… " + pct + "%"); })
+            .then(function (u) {
+              say(msg, u.ok ? "저장했습니다. 운영자 확인 후 다시 공개됩니다."
+                : ("저장은 됐지만 영상 올리기 실패: " + (u.error || "")), !u.ok);
+            });
         });
       });
     }
@@ -197,6 +252,14 @@
       '<iframe src="' + esc(src) + '" loading="lazy" allowfullscreen ' +
       'referrerpolicy="strict-origin-when-cross-origin" ' +
       'style="position:absolute;inset:0;width:100%;height:100%;border:0"></iframe></div>';
+  }
+
+  // 올린 파일 재생 — 주소는 Worker 가 내준다(공개된 프로필만 열린다)
+  function fileVideoHtml(p) {
+    if (!p.videoFile) return "";
+    return '<video controls preload="metadata" playsinline ' +
+      'style="width:100%;margin:10px 0;border-radius:8px;background:#000" ' +
+      'src="' + esc(API + "/v/" + p.id) + '"></video>';
   }
 
   // 연락 요청 — 등록자의 연락처를 몰라도 닿게 하는 경로. 요청은 운영자가 보고 잇는다
@@ -263,7 +326,7 @@
           '<div class="meta"><span>' + esc(p.intro) + "</span></div>" +
           '<div class="pd-more" hidden style="margin-top:10px;font-size:0.9rem;line-height:1.7">' +
           (p.career ? "<p>" + esc(p.career) + "</p>" : "") +
-          videoHtml(p.video) +
+          (videoHtml(p.video) || fileVideoHtml(p)) +
           "<p>연락: " + link + "</p>" +
           '<button type="button" class="btn-primary pd-ask" data-i="' + i + '" ' +
           'style="margin-top:8px">연락 요청 보내기</button>' +

@@ -34,7 +34,7 @@ function cors(origin) {
   return {
     "Access-Control-Allow-Origin": allow,
     "Access-Control-Allow-Methods": "GET, POST, PUT, OPTIONS",
-    "Access-Control-Allow-Headers": "Content-Type, X-Admin-Key",
+    "Access-Control-Allow-Headers": "Content-Type, X-Admin-Key, X-Profile-Id, X-Profile-Token",
     "Access-Control-Max-Age": "86400",
   };
 }
@@ -303,6 +303,8 @@ async function pfDelete(req, env, origin) {
   try { body = await req.json(); } catch { return json({ ok: false }, 400, origin); }
   const rec = await pfAuth(env, body);
   if (!rec) return json({ ok: false, error: "확인 코드가 맞지 않습니다" }, 403, origin);
+  // 개인정보를 지웠다면서 영상 파일이 남으면 그건 지운 게 아니다
+  if (rec.videoFile && env.MEDIA) await env.MEDIA.delete(rec.videoFile).catch(() => {});
   await env.PROFILES.delete(PF.KEY(rec.id));   // 실삭제 — 표시만 바꾸지 않는다
   return json({ ok: true, deleted: true }, 200, origin);
 }
@@ -387,7 +389,9 @@ async function pfAdminDelete(req, env, origin) {
   let body;
   try { body = await req.json(); } catch { return json({ ok: false }, 400, origin); }
   const id = String(body.id || "").slice(0, 32);
-  if (!(await pfLoad(env, id))) return json({ ok: false, error: "없는 프로필" }, 404, origin);
+  const gone = await pfLoad(env, id);
+  if (!gone) return json({ ok: false, error: "없는 프로필" }, 404, origin);
+  if (gone.videoFile && env.MEDIA) await env.MEDIA.delete(gone.videoFile).catch(() => {});
   await env.PROFILES.delete(PF.KEY(id));
   return json({ ok: true, deleted: true }, 200, origin);
 }
@@ -492,6 +496,79 @@ async function pfContactDone(req, env, origin) {
   return json({ ok: true }, 200, origin);
 }
 
+
+// --- 연주 영상 파일 (R2) — 작업 H, 2026-08-20 ---
+// KV 는 값 하나가 25MB 상한이라 영상을 담을 수 없다. R2 버킷(MEDIA)에 따로 둔다.
+//
+// ★ 공개된 프로필의 영상만 내보낸다. 이 관문이 없으면 누구나 파일을 올려 공개 주소를 얻는
+//   무료 파일 호스팅이 된다 — 악성 파일 배포 통로가 되는 건 시간문제다.
+// 반려(rejected)해도 파일은 지우지 않는다(2026-08-20 사용자 결정). 다만 공개도 하지 않는다.
+// 프로필을 지우면 영상도 함께 지운다 — 개인정보를 지웠다면서 파일이 남으면 거짓말이 된다.
+const VIDEO_MAX = 100 * 1024 * 1024;      // Worker 요청 상한과 같은 눈금
+const VIDEO_TYPES = {
+  "video/mp4": "mp4", "video/quicktime": "mov", "video/webm": "webm",
+  "video/x-m4v": "m4v", "video/mpeg": "mpg",
+};
+
+function videoKey(id, ext) { return `pv/${id}.${ext}`; }
+
+async function pfVideoPut(req, env, origin) {
+  // 본인 확인은 폼과 같은 방식 — 토큰은 헤더로 받는다(본문은 영상 바이트라 JSON 이 아니다)
+  const id = (req.headers.get("X-Profile-Id") || "").slice(0, 32);
+  const token = req.headers.get("X-Profile-Token") || "";
+  const rec = await pfAuth(env, { id, token });
+  if (!rec) return json({ ok: false, error: "확인 코드가 맞지 않습니다" }, 403, origin);
+
+  const type = (req.headers.get("Content-Type") || "").split(";")[0].trim().toLowerCase();
+  const ext = VIDEO_TYPES[type];
+  if (!ext) return json({ ok: false, error: "mp4·mov·webm 형식만 올릴 수 있습니다" }, 415, origin);
+
+  const len = parseInt(req.headers.get("Content-Length") || "0", 10);
+  if (len > VIDEO_MAX) {
+    return json({ ok: false, error: "영상은 100MB 까지 올릴 수 있습니다" }, 413, origin);
+  }
+  if (!env.MEDIA) return json({ ok: false, error: "영상 저장소가 설정되지 않았습니다" }, 503, origin);
+
+  // 형식을 바꿔 다시 올리면 옛 파일이 남는다 — 먼저 지운다
+  if (rec.videoFile && rec.videoFile !== videoKey(rec.id, ext)) {
+    await env.MEDIA.delete(rec.videoFile).catch(() => {});
+  }
+  const key = videoKey(rec.id, ext);
+  await env.MEDIA.put(key, req.body, { httpMetadata: { contentType: type } });
+
+  rec.videoFile = key;
+  rec.status = "pending";      // 영상이 바뀌면 다시 확인을 받는다 (승인 후 바꿔치기 차단)
+  await env.PROFILES.put(PF.KEY(rec.id), JSON.stringify(rec));
+  await pfNotifyPending(env).catch(() => {});
+  return json({ ok: true, key }, 200, origin);
+}
+
+// 재생 — 공개된 프로필만. 되감기(탐색)를 위해 Range 요청을 그대로 넘긴다.
+async function pfVideoGet(req, url, env, origin) {
+  const id = url.pathname.split("/").pop().replace(/\.[a-z0-9]+$/i, "").slice(0, 32);
+  const rec = await pfLoad(env, id);
+  if (!rec || rec.status !== "published" || !rec.videoFile) {
+    return new Response("Not found", { status: 404, headers: cors(origin) });
+  }
+  if (!env.MEDIA) return new Response("Not configured", { status: 503, headers: cors(origin) });
+
+  const range = req.headers.get("Range");
+  const obj = await env.MEDIA.get(rec.videoFile, range ? { range: req.headers } : undefined);
+  if (!obj) return new Response("Not found", { status: 404, headers: cors(origin) });
+
+  const h = new Headers(cors(origin));
+  obj.writeHttpMetadata(h);
+  h.set("etag", obj.httpEtag);
+  h.set("Cache-Control", "public, max-age=3600");
+  h.set("Accept-Ranges", "bytes");
+  if (obj.range && typeof obj.range.offset === "number") {
+    const end = obj.range.offset + obj.range.length - 1;
+    h.set("Content-Range", `bytes ${obj.range.offset}-${end}/${obj.size}`);
+    return new Response(obj.body, { status: 206, headers: h });
+  }
+  return new Response(obj.body, { headers: h });
+}
+
 export default {
   async fetch(req, env) {
     const url = new URL(req.url);
@@ -505,6 +582,8 @@ export default {
     if (url.pathname === "/api/profile/delete" && req.method === "POST") return pfDelete(req, env, origin);
     if (url.pathname === "/api/profiles" && req.method === "GET") return pfPublic(req, env, origin);
     if (url.pathname === "/api/profile/contact" && req.method === "POST") return pfContact(req, env, origin);
+    if (url.pathname === "/api/profile/video" && req.method === "PUT") return pfVideoPut(req, env, origin);
+    if (url.pathname.startsWith("/v/") && req.method === "GET") return pfVideoGet(req, url, env, origin);
     if (url.pathname === "/api/contacts" && req.method === "GET") return pfContactList(req, env, origin);
     if (url.pathname === "/api/contacts/done" && req.method === "POST") return pfContactDone(req, env, origin);
     if (url.pathname === "/api/profile/admin" && req.method === "GET") return pfAdminList(req, url, env, origin);
