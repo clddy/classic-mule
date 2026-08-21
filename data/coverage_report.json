@@ -1,8 +1,8 @@
 {
  "date": "2026-08-21",
  "total": 75,
- "covered": 1,
- "gapCount": 74,
+ "covered": 2,
+ "gapCount": 73,
  "gaps": [
   {
    "name": "서울시립교향악단",
@@ -213,11 +213,6 @@
    "name": "심포니송",
    "type": "민간악단",
    "region": "서울"
-  },
-  {
-   "name": "평창대관령음악제",
-   "type": "축제",
-   "region": "강원"
   },
   {
    "name": "통영국제음악제",
