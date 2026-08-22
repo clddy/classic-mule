@@ -22,6 +22,14 @@ from pathlib import Path
 
 import requests
 
+# 판정문에 em-dash 와 한글이 들어가는데 cp949 콘솔에서 print 가 터진다 —
+# 도장 찍는 CLI(open·stamps)가 통째로 죽어 문서에 적힌 절차를 밟을 수 없었다
+# (2026-08-22). health_check.py 와 같은 이유, 같은 처방.
+try:
+    sys.stdout.reconfigure(encoding="utf-8")
+except Exception:
+    pass
+
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 STATE = DATA / "l4_state.json"

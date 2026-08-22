@@ -44,6 +44,7 @@ LIVE_JSON = "https://podiumclassical.kr/data/official.json"
 
 KEEP_DAYS = 45      # 소스별 히스토리 보관 개수
 MIN_SAMPLES = 5     # baseline을 신뢰하는 데 필요한 최소 '정상 관측' 수
+MIN_FILL_ROWS = 4   # 채움률 급락을 말하려면 이 정도 공고는 있어야 한다 (n=1 은 0/100%뿐)
 STALE_DAYS = 60     # main.py가 이보다 오래된 마감 공고를 버린다 (main.py: stale)
 SENTINEL = "2000-01-01"   # 마감/상시종료 표식 — 진짜 날짜가 아니다
 DATE_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
@@ -370,12 +371,20 @@ def check_dates(rep, items, today):
                 f"마감 지난 공고가 {len(closed)}/{len(items)}건 ({round(len(closed) / len(items) * 100)}%) — 접수중 공고가 거의 없음")
 
 
-def check_description(rep, items):
+def check_description(rep, items, hist):
     """상세 페이지 description 결함 — 약관 혼입·본문 공백·제목 중복 (작업 A-3, 판정만).
 
     description 을 필드 조립으로 바꿔 오염원은 구조적으로 없앴지만, 조립 재료인
     필드가 비면 문장이 앙상해진다. 무엇이 얼마나 비는지는 계속 봐야 한다.
     bodyExcerpt 는 화면에 안 쓰이지만 아카이브·분석에 남으므로 함께 센다.
+
+    **공백률은 절대값이 아니라 baseline 으로 본다** (2026-08-22). 10% 넘으면 알리던
+    규칙은 발췌기가 헐거웠고 소스 구성이 달랐을 때 정한 것이다. 지금 주력 소스인
+    교육청 구인포털(work.sen·goe)은 상세 페이지에 산문 본문이 아예 없다 — 내용은
+    납작한 표(이미 필드로 뽑힌다)와 첨부 hwp 에 있고, 첨부 폴백은 안내문이 딸려 와
+    2026-08-21 에 일부러 철회했다. 그래서 공백 73%는 고장이 아니라 그 소스들의 정상
+    상태이고, 그걸 매일 🟡 로 올리면 진짜 회귀가 묻힌다.
+    이 시스템의 다른 점검과 같은 원리로 간다 — 수준이 아니라 '어제까지와 달라졌는가'.
     """
     try:
         sys.path.insert(0, str(Path(__file__).resolve().parent))
@@ -400,8 +409,16 @@ def check_description(rep, items):
     n = max(len(items), 1)
     if clause:
         rep.add("MED", "설명", f"약관 시그니처 검출 {clause}건 — 본문 발췌 추출 규칙 보강 필요")
-    if blank * 100 // n >= 10:
-        rep.add("MED", "설명", f"본문 발췌 공백 {blank}건 ({blank * 100 // n}%)")
+
+    ratio = blank * 100 // n
+    past = (hist.get("excerptBlank") or [])[-KEEP_DAYS:]
+    if len(past) >= MIN_SAMPLES and ratio >= median(past) + 20:
+        rep.add("MED", "설명",
+                f"본문 발췌 공백 {blank}건 ({ratio}%) — 평소 {median(past):g}% 대비 급등")
+    else:
+        rep.add("LOW", "설명", f"본문 발췌 공백 {blank}건 ({ratio}%)")
+    hist["excerptBlank"] = (past + [ratio])[-KEEP_DAYS:]
+
     if dup or thin:
         rep.add("LOW", "설명", f"설명 빈약: 제목 반복 {dup}건 · 30자 미만 {thin}건")
 
@@ -576,11 +593,19 @@ _FILL_FIELDS = ("deadline", "pay", "workPeriod", "workHours", "personnel", "cont
 # 조사 뒤에 공백을 요구하는 것이 핵심이다. 안 그러면 '급여: 이백만원'의 '이'를 조사로 읽어
 # 멀쩡한 값을 산문으로 몰아낸다.
 _PROSE_TAIL = re.compile(r"^(?:(?:과|와|이|가|은|는|을|를|에|의|도|만)\s|별[가-힣])")
+# 칸 이름만 적힌 자리 — 경남교육청은 접수기간이 비어 있어도 '접수기간 시작일 - 종료일'
+# 처럼 칸 이름을 그대로 그린다 (2026-08-22). 칸 이름은 값이 아니다.
+_PLACEHOLDER_VAL = re.compile(
+    r"^(?:시작일?|종료일?|구분|비고|기간|일자|날짜|미정)"
+    r"(?:\s*[-~/·]?\s*(?:시작일?|종료일?|구분|비고|기간|일자|날짜|미정))*$")
 # 라벨이 겹쳐 적히는 자리 — '보수/임금', '과목 (담당업무)'. 겹친 라벨은 값이 아니다.
 _LABEL_ECHO = re.compile(r"^(?:임금|보수|급여|담당\s*업무|모집\s*분야|과목)\s*[)）]?\s*")
 # 보수 자리에 법령·조례 인용만 있으면 금액이 없는 것이다. QC 가 일부러 버리는 값이라
 # (common._LAW_CITE) 감사가 '미추출'로 셀 이유가 없다.
-_PAY_NO_AMOUNT = re.compile(r"보수\s*규정|보수규정|조례|시행\s*규칙|지침|호봉|산정")
+# '보수 : 시간당 강사 수당 지급기준에 준한다'(망포중, 2026-08-22)처럼 다른 기준을
+# 가리키기만 하는 것도 금액이 없는 것이다 — 원문에 없는 값을 매일 내놓으라고 조를 뿐이다.
+_PAY_NO_AMOUNT = re.compile(r"보수\s*규정|보수규정|조례|시행\s*규칙|지침|호봉|산정"
+                            r"|지급\s*기준|기준에\s*준|기준에\s*따|내부\s*규정")
 _PAY_AMOUNT = re.compile(r"[\d,]{2,}\s*(?:만\s*)?원|시급|일당|월급|협의")
 # 지원자가 채울 서식(응시원서·이력서·경력증명서)의 흔적. 앞은 서식 이름, 뒤는 hwp 표 머리로
 # 글자마다 벌어진 칸 이름이다 — '자격증'처럼 붙여 쓴 낱말은 지원자격 산문에도 흔해서
@@ -620,8 +645,9 @@ def _really_missing(t, pat, field):
         # 마감·급여는 '응시원서 접수' 옆이 제자리라 이 규칙에서 뺀다.
         if field in ("duty", "workPeriod") and _FORM_CTX.search(t[max(0, m.start() - 140):m.end() + 140]):
             continue
-        if len(_value_after(t, m.end())) < 2:
-            continue                      # 라벨만 있고 칸이 빈 자리
+        val = _value_after(t, m.end())
+        if len(val) < 2 or _PLACEHOLDER_VAL.match(val):
+            continue                      # 라벨만 있거나 칸 이름만 있는 자리
         return True
     return False
 
@@ -660,11 +686,16 @@ def fill_rate_table(items, hist):
         rows = by[src]
         rates = {f: sum(1 for i in rows if i.get(f)) * 100 // len(rows)
                  for f in ("deadline", "pay", "workPeriod", "contact", "email")}
+        rates["n"] = len(rows)
         today_rates[src] = rates
         lines.append(f"  {src:20s} {len(rows):2d}건  "
                      + " ".join(f"{rates[f]:3d}%" for f in ("deadline", "pay", "workPeriod", "contact", "email")))
         prev = (hist.get("fill_rates") or {}).get(src)
-        if prev:
+        # 공고가 몇 건 없는 소스는 한 건이 들고 나는 것만으로 채움률이 100%p 씩 튄다 —
+        # 연세대 음대 게시판이 2건에서 1건(오디션 공고, 근무기간이 원래 없다)이 되자
+        # 'workPeriod 50%→0%'가 떴다 (2026-08-22). 표에는 그대로 싣되 경고는 내지 않는다.
+        # 옛 기록엔 n 이 없다 — 그 경우는 오늘 건수만 보고 판단한다.
+        if prev and len(rows) >= MIN_FILL_ROWS and prev.get("n", MIN_FILL_ROWS) >= MIN_FILL_ROWS:
             for f in ("deadline", "workPeriod"):
                 if prev.get(f, 0) >= 50 and rates[f] <= prev[f] - 40:
                     warns.append(f"{src} {f} {prev[f]}%→{rates[f]}%")
@@ -700,7 +731,7 @@ def main():
     check_total(rep, doc, hist, today)
     check_fields(rep, items)
     check_encoding(rep, items)
-    check_description(rep, items)
+    check_description(rep, items, hist)
     # 2순위 — 데이터 품질
     check_dupes(rep, items)
     check_dates(rep, items, today)

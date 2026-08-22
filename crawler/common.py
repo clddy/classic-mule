@@ -62,7 +62,13 @@ def get(s, url, encoding=None, retries=2, **kw):
     공공기관 사이트는 간헐적으로 응답이 멎는다 — 대구문화예술회관은 같은 URL에
     40초 타임아웃 2연속 뒤 3회째에 0.9초로 정상 응답했다(2026-07-27 측정).
     재시도가 없으면 이런 딸꾹질 한 번에 그 소스의 하루치 수집이 통째로 날아간다.
-    HTTP 상태코드는 호출부가 판단하므로 여기선 연결·타임아웃 계열만 재시도한다.
+    HTTP 상태코드는 대체로 호출부가 판단한다 — **다만 5xx 는 여기서 예외로 올린다.**
+    점검 안내 페이지도 본문은 멀쩡한 HTML 이라 목록 파서가 조용히 0건을 돌려주고,
+    그러면 헬스체크가 '목록 파서 깨짐 의심'(🔴)으로 오진한다. 경남교육청이 계획 점검
+    (2026-08-21 19:00 ~ 08-24 08:00)에 들어가며 503 을 주자 실제로 그렇게 찍혔다.
+    예외로 올리면 크롤 루프가 이전 수집분을 승계하고 소스를 ok=False 로 기록하며,
+    헬스체크는 '서버 오류(5xx) 1일차 — 관찰 중'으로 조용히 지나갔다가 사흘 이어질 때
+    알린다. 'FAIL 없이 조용히 0건이 되는 게 제일 위험하다'는 원칙 그대로다 (2026-08-22).
     """
     if tls_blocked(url):
         return curl_get(url, referer=(kw.get("headers") or {}).get("Referer"), encoding=encoding)
@@ -70,13 +76,16 @@ def get(s, url, encoding=None, retries=2, **kw):
     for attempt in range(retries + 1):
         try:
             r = s.get(url, timeout=20, verify=False, **kw)
+            if 500 <= r.status_code < 600:
+                # 5xx 도 딸꾹질일 수 있다 — 타임아웃과 같은 백오프로 다시 물어본다
+                raise requests.HTTPError(f"{r.status_code} {r.reason}", response=r)
             if encoding:
                 r.encoding = encoding
             elif r.encoding in (None, "ISO-8859-1"):
                 r.encoding = r.apparent_encoding
             time.sleep(0.8)  # 예의상 간격
             return r
-        except (requests.Timeout, requests.ConnectionError) as e:
+        except (requests.Timeout, requests.ConnectionError, requests.HTTPError) as e:
             last = e
             if attempt < retries:
                 time.sleep(2 * (attempt + 1))   # 2초 → 4초 백오프
@@ -1612,10 +1621,23 @@ def extract_fields(text):
         # 느슨하게 열면 '… 담당 업무 및 통계자료 등 자료제공을 위한 메뉴 …' 같은 산문
         # 한복판을 물어온다 (2026-08-11 감사에서 8건).
         modes = (False, True) if key in _SHAPE else (False,)
+        # 모양이 안 맞는 강한 모드 값 — 버리진 않고 미뤄 둔다 (아래)
+        weak = None
         for loose in modes:
             for val in _candidates(t, pat, loose=loose):
                 v = _clean_field(key, val)
-                if not v or (loose and not _shape_ok(key, v)):
+                if not v:
+                    continue
+                if key in _SHAPE and not _shape_ok(key, v):
+                    # 콜론이 붙었다고 다 값은 아니다 — '근무 기간 : 상기 채용 기간 참고'
+                    # (망포중, 2026-08-22)처럼 다른 데를 가리키는 안내가 흔하다. 이걸 덥석
+                    # 받으면 같은 표에 '채용기간 2026/09/01~2026/09/11'이 멀쩡히 있는데도
+                    # 못 읽고, QC 가 '모양 불일치'로 버려 빈칸이 된다.
+                    # 그렇다고 통째로 버리면 모양 검사가 모르는 정상 표기를 잃으므로,
+                    # 더 나은 값이 끝내 없을 때만 쓴다. 느슨한 모드 값은 미뤄 두지 않는다
+                    # (구분자가 없어 경계가 흐린데 모양까지 안 맞으면 값이 아니다).
+                    if not loose:
+                        weak = weak or v
                     continue
                 out[key] = v
                 # 기간 칸 머리에서 떼어낸 표 앞 열의 인원은 버리지 말고 제 칸으로 돌려보낸다.
@@ -1628,6 +1650,8 @@ def extract_fields(text):
                 break
             if key in out:
                 break
+        if key not in out and weak:
+            out[key] = weak
     # 서울일자리포털(work.sen)은 담당업무를 '과목 (담당업무) 값 채용기간 …' 꼴 납작한 표로
     # 낸다. 구분자가 없어 강한 모드가 못 잡고, duty 는 서술형이라 느슨한 모드를 열 수 없다
     # (열면 산문 한복판을 물어온다 — 위 주석). 이 라벨은 표 머리에만 쓰는 말이라 그 꼴만
@@ -1641,6 +1665,17 @@ def extract_fields(text):
             v = _clean_field("duty", win[:nxt.start()]) if nxt else None
             if v:
                 out["duty"] = v
+    # '모집분야: 플루트 파트 강사 1명'(양산남부고) — 역방향 감사와 _find_duty 는 이것도
+    # 담당업무 라벨로 보는데 추출기에만 빠져 있어 아무도 안 뽑고 있었다 (2026-08-22).
+    # **담당업무를 못 찾았을 때만** 본다. 같은 자격으로 두면 대개 앞에 있는 모집분야가
+    # 이기는데, 그건 직무 설명이 아니라 자리 이름이라 값이 나빠진다
+    # ('예배 전 찬양인도, 행정' → '전임전도사(남0명)').
+    if "duty" not in out:
+        for val in _candidates(t, r"모집\s*분야|모집\s*부문|채용\s*분야", loose=False):
+            v = _clean_field("duty", val)
+            if v:
+                out["duty"] = v
+                break
     return out
 
 
@@ -1648,10 +1683,15 @@ def extract_fields(text):
 _SHAPE = {
     # 기간이면 범위(~)가 있거나, 날짜를 나열하고 시수를 다는 꼴이다 —
     # '2026.9.7.(월) 3시간, 9.8.(화) 3시간, 9.9(수) 3시간' (인천중산고, 2026-08-18)
-    "workPeriod":   re.compile(r"\d{1,4}\s*[.\-/년]\s*\d{1,2}.*?(?:[~∼-]|시간)"),
-    "perfPeriod":   re.compile(r"\d{1,4}\s*[.\-/년]\s*\d{1,2}.*?[~∼-]"),
+    # 물결표는 종류가 여럿이다 — 공고문에 전각(～)이 흔한데 빠져 있어서
+    #   '2026.8.18.～2027.2.28' 같은 멀쩡한 기간이 모양 검사에서 떨어졌다 (2026-08-22).
+    "workPeriod":   re.compile(r"\d{1,4}\s*[.\-/년]\s*\d{1,2}.*?(?:[~∼～〜-]|시간)"),
+    "perfPeriod":   re.compile(r"\d{1,4}\s*[.\-/년]\s*\d{1,2}.*?[~∼～〜-]"),
     "pay":          re.compile(r"[\d,]{2,}\s*(?:만\s*)?원|시급|일당|협의"),
-    "personnel":    re.compile(r"\d|[Oo○]\s*명"),
+    # 숫자 하나만 요구하면 아무 문장이나 통과한다 — 인원 칸의 모양은 'N명'이다 (2026-08-22)
+    # 숫자 하나만 요구하면 아무 문장이나 통과한다 — 인원 칸의 모양은 'N명'이다 (2026-08-22).
+    # 단위 없이 숫자만 남은 칸('모집: 1', 강화중)은 tidy_personnel 이 '명'을 붙이므로 받는다.
+    "personnel":    re.compile(r"\d\s*(?:명|인)|[Oo○]\s*명|^\s*\d{1,3}\s*$"),
     "workHours":    re.compile(r"전일제|시간제|주\s*\d|\d\s*시간|\d{1,2}\s*[:시]|요일|근무"),
     # 주소는 _ADDR_OK 가 곧 모양 검사다 — 이걸 빼먹어 납작한 표('- 주소 경기 부천시…')의
     # 주소 추출이 통째로 죽었었다 (2026-08-11 감사에서 19→43건 회귀로 발각)
@@ -1735,6 +1775,9 @@ def _candidates(t, pat, loose=False):
 _DATE_START = re.compile(r"(?:20)?\d{2}\s*[.\-/년]\s*\d{1,2}\s*[.\-/월]\s*\d{1,2}")
 # 표 앞 열에 딸려 온 '과목 인원' — 버리지 않고 해당 필드로 넘길 수 있게 떼어 둔다
 _LEAD_SUBJ_CNT = re.compile(r"^([가-힣]{2,10})\s*(\d{1,3}\s*명)\b")
+# 근무시간 값이 시작하는 자리 — 'HH:MM', '전일제', '시간제'. 요일·시수는 넣지 않는다
+# (앞 열 판정에만 쓰므로 모호한 신호를 넣으면 멀쩡한 값을 자른다).
+_TIME_START = re.compile(r"\d{1,2}\s*:\s*\d{2}|전일제|시간제")
 
 
 def lead_subject_count(raw):
@@ -1759,7 +1802,9 @@ def tidy_spacing(v):
     t = re.sub(r"\s+", " ", str(v))
     t = re.sub(r"\s*([()（）])\s*", r"\1", t)          # 괄호 안팎 공백 제거
     t = re.sub(r"([)\]）])(?=[가-힣\d])", r"\1 ", t)   # 닫는 괄호 뒤엔 한 칸
-    t = re.sub(r"(?<=\d:\d\d)(?=[가-힣])", " ", t)     # '16:00주 22시수' (대청중)
+    # '16:00주 22시수'(대청중) · '11:001시간 주 2회'(숭신병설유치원, 2026-08-22) —
+    # 시각 뒤에 낱말도 숫자도 바로 붙는다. 숫자까지 받도록 넓혔다.
+    t = re.sub(r"(?<=\d:\d\d)(?=[가-힣\d])", " ", t)
     # 쉼표 앞 공백만 지운다 — 가운뎃점은 항목을 잇는 구분자로도 쓰여(' · ') 건드리면
     # 오히려 붙어 버리고, 마침표는 날짜('2026. 9.')를 망친다.
     t = re.sub(r"\s+([,、])", r"\1", t)
@@ -1807,6 +1852,21 @@ def _clean_field(key, raw):
         m_d = _DATE_START.search(val)
         if m_d and m_d.start() > 0:
             val = val[m_d.start():].strip(" .,·-–")
+    # 근무시간 칸도 같은 일을 당한다 — 표를 평탄화하면 앞 열이 통째로 딸려 온다.
+    # '4, 5세 학급 음악활동 협력강사 1명 2026. 9. 2.(수)~ 2026. 12. 11.(금) 10:00~11:00 1시간 주 2회'
+    # (숭신병설유치원, L4#2 2026-08-22 — 직종·인원·근무기간 세 칸이 근무시간 칸에 붙었다).
+    # 기간 칸과 같이 '시각부터 채택'하되, **앞부분에 인원이나 날짜가 있을 때만** 자른다 —
+    # 무조건 자르면 '방과후 15:50~17:20'의 '방과후' 같은 정상 수식어까지 날아간다.
+    if key == "workHours":
+        m_h = _TIME_START.search(val)
+        head = val[:m_h.start()] if m_h else ""
+        if m_h and head and (re.search(r"\d\s*명", head) or _DATE_START.search(head)):
+            # 앞머리의 요일 표기는 근무시간의 일부다 — '월,화,수 1명 17:30~22:00' 에서
+            # 인원만 걷어내고 요일은 남긴다. 낱말 첫 글자('수업')를 요일로 오인하지 않도록
+            # 요일 글자 뒤에 구분자가 오는 것만 인정한다.
+            m_w = re.match(r"^\s*(?:[월화수목금토일](?=[\s,·/]|$)\s*[,·/]?\s*)+", head)
+            days = m_w.group(0).strip(" ,·/") if m_w else ""
+            val = (f"{days} " if days else "") + val[m_h.start():].strip(" .,·-–")
     # 여는 괄호만 있고 닫히지 않은 값 — 다음 라벨에서 잘린 흔적이다.
     # '09:00~18:00(수요일' → '09:00~18:00' (워크오더 08-17 §4)
     if val.count("(") > val.count(")"):
