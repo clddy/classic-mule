@@ -281,6 +281,36 @@ def strip_navi(soup):
     return soup
 
 
+# 값이 태그 사이가 아니라 속성에 들어 있는 칸 — 관공서 게시판은 읽기 전용 정보를
+# 입력폼처럼 그린다. 경남교육청 구인 상세는 접수기간을 <input value="2026.08.21"> 로
+# 렌더해서, 본문 텍스트에는 '접수기간 시작일 - 종료일' 이라는 라벨만 남는다.
+# 마감일이 화면에 뻔히 보이는데 3회차까지 못 찾아 사람에게 넘어왔다 (남해정보산업고,
+# 2026-08-21). get_text() 는 속성을 보지 않으므로 여기서 따로 이어 붙인다.
+def _inline_input_values(soup):
+    """입력칸의 값을 **그 자리의 텍스트로** 바꿔 넣는다.
+
+    끝에 몰아 붙이면 안 된다 — 마감 추출은 '접수기간' 같은 라벨 **근처의** 날짜를 찾는데,
+    값이 문서 끝에 떨어져 있으면 라벨과 이어지지 않아 못 읽는다. 제자리에 넣어야
+    '접수기간 2026.08.21 - 2026.08.25' 로 읽힌다 (2026-08-21).
+    """
+    n = 0
+    for el in soup.find_all(["input", "option", "textarea"]):
+        if el.name == "input":
+            if (el.get("type") or "text").lower() in ("hidden", "submit", "button", "image", "checkbox", "radio"):
+                continue
+            v = el.get("value")
+        elif el.name == "option":
+            v = el.get("value") if el.has_attr("selected") else None
+        else:
+            v = None      # textarea 는 get_text 가 이미 읽는다
+        v = (v or "").strip()
+        # 값처럼 보이는 것만 — 버튼 문구나 빈 칸은 본문을 어지럽히기만 한다
+        if 3 <= len(v) <= 60 and re.search(r"\d", v):
+            el.replace_with(" " + v + " ")
+            n += 1
+    return n
+
+
 def body_text(html_or_soup, parser="lxml"):
     """공고 페이지에서 본문 텍스트 추출 — 크롬(헤더·푸터·내비)만 걷어내고 본문은 지킨다.
 
@@ -296,6 +326,7 @@ def body_text(html_or_soup, parser="lxml"):
     for tag in soup(["script", "style"]):
         tag.decompose()
     strip_navi(soup)
+    _inline_input_values(soup)
     full = soup.get_text(" ", strip=True)
     chrome = soup(["header", "footer", "nav"])
     if not chrome:
@@ -960,8 +991,28 @@ _REGION_TOKENS = [
 # '세종문화회관'(서울)·'세종대'(서울)·'세종로' 등이 세종시로 오분류되지 않게 제거 후 매칭
 _SEJONG_FALSE = re.compile(r"세종문화|세종대학|세종캠퍼스|세종로|세종연구|세종교향|세종체임버|세종솔로이스츠")
 
+# 주소 맨 앞의 정식 시도명. 토큰 훑기보다 **먼저** 본다 — 목록은 '경기'가 '경상남'보다
+# 앞서 있어서, 지오코딩이 돌려준 '경상남도 양산시 양주로'가 뒤쪽 '양주(경기 양주시)'에
+# 걸려 경남 공고를 경기로 보냈다 (2026-08-23 양산남부고). 주소는 맨 앞이 곧 답이다.
+_SIDO_HEAD = [
+    ("서울특별시", "서울"), ("부산광역시", "부산"), ("대구광역시", "대구"),
+    ("인천광역시", "인천"), ("광주광역시", GWANGJU_JEONNAM), ("대전광역시", "대전"),
+    ("울산광역시", "울산"), ("세종특별자치시", "세종"),
+    ("경기도", "경기"), ("강원특별자치도", "강원"), ("강원도", "강원"),
+    ("충청북도", "충북"), ("충청남도", "충남"),
+    ("전북특별자치도", "전북"), ("전라북도", "전북"),
+    ("전남특별자치도", GWANGJU_JEONNAM), ("전라남도", GWANGJU_JEONNAM),
+    ("경상북도", "경북"), ("경상남도", "경남"),
+    ("제주특별자치도", "제주"),
+]
+
+
 def region_from(text, default="기타"):
     t = _SEJONG_FALSE.sub("", text or "")
+    ts = t.lstrip()
+    for head, region in _SIDO_HEAD:
+        if ts.startswith(head):
+            return region
     for token, region in _REGION_TOKENS:
         if token in t:
             return region
@@ -1605,6 +1656,54 @@ def parse_meta_table(text):
     return {k: v for k, v in out.items() if v}
 
 
+# ---- 경남교육청 구인·구직포털 상세 (2026-08-23) --------------------------
+# 이 포털은 목록 행에 학교 이름을 싣지 않는다. 그래서 파서가 기관을 게시판 이름
+# ('경남 학교 방과후(교육청 포털)')으로 뭉쳐 두었고, 공고 카드가 전부 같은 기관으로 떴다.
+# 상세엔 학교 이름이 두 군데 있다:
+#   ① 머리표 '작성자 양산남부고 등록일 …'  ② 본문 '양산남부고등학교에서는 …'
+# ①은 줄임 표기라 _ORG_SHAPE(정식 이름꼴)를 통과하지 못한다. ①을 실마리 삼아 ②에서
+# 같은 학교의 정식 명칭을 찾아 쓰고, ②가 없을 때만 ①을 학교 약칭 규칙으로 펼친다.
+# ★ _ORG_SHAPE 를 '고·중·초'까지 받도록 넓히지 말 것 — 그러면 아무 낱말이나 기관명으로
+#   통과한다(사용자 지시 2026-08-23). 검증은 언제나 정식 이름꼴로 한다.
+_GNE_WRITER = re.compile(r"작성자\s+([가-힣A-Za-z0-9]{2,20}?)\s+등록일")
+_GNE_REGION = re.compile(r"지역\s+([가-힣]{2,8}?)\s+(?:채용상태|접수)")
+# 학교 약칭 → 정식 명칭. '여고'를 '고'보다 먼저 봐야 '진주여고 → 진주여고등학교'가 안 된다.
+_SCHOOL_ABBR = re.compile(r"^([가-힣]{2,12}?)(여고|여중|고|중|초)$")
+_ABBR_FULL = {"고": "고등학교", "중": "중학교", "초": "초등학교",
+              "여고": "여자고등학교", "여중": "여자중학교"}
+_SCHOOL_SUF = r"(?:초등학교|중학교|고등학교|중고등학교|특수학교|병설유치원|유치원)"
+
+
+def parse_gne_detail(text):
+    """경남교육청 구인·구직포털 상세 → {"org", "region"}. 못 읽으면 빈 dict."""
+    t = re.sub(r"\s+", " ", text or "")
+    out = {}
+    mw = _GNE_WRITER.search(t)
+    if mw:
+        writer = mw.group(1)
+        ma = _SCHOOL_ABBR.match(writer)
+        base = ma.group(1) if ma else writer
+        if _ORG_SHAPE.fullmatch(writer):
+            out["org"] = writer                       # 작성자가 이미 정식 명칭
+        elif len(base) >= 2:
+            # ② 본문에서 '작성자'와 같은 학교의 정식 명칭 — 앞 글자가 겹치는 것만 받는다.
+            #    본문 전체를 _ORG_SHAPE 로 훑으면 '방과후학교강사'의 '방과후학교'를 문다.
+            m = re.search(re.escape(base) + r"[가-힣]{0,6}?" + _SCHOOL_SUF, t)
+            if m and _ORG_SHAPE.fullmatch(m.group(0)):
+                out["org"] = m.group(0)
+            elif ma:
+                # ①만 있는 공고(남해정보산업고) — 약칭을 펼쳐 정식 이름꼴로 검증한다
+                cand = base + _ABBR_FULL[ma.group(2)]
+                if _ORG_SHAPE.fullmatch(cand):
+                    out["org"] = cand
+    # 지역: 상세 머리표의 '지역 양산' 칸. 시군 이름이라 시도로 못 옮겨지는 곳이 많고
+    # (남해·고성·거창…), 이 게시판은 경남교육청 것이므로 못 옮기면 경남이 맞다.
+    mr = _GNE_REGION.search(t)
+    rg = region_from(mr.group(1)) if mr else "기타"
+    out["region"] = rg if rg != "기타" else "경남"
+    return out
+
+
 def extract_fields(text):
     """공고문에서 '라벨 : 값' 항목들을 뽑는다. 못 찾은 항목은 아예 넣지 않는다.
 
@@ -2007,7 +2106,10 @@ def school_title(title, org):
     t = re.sub(r"[가-힣]{2,12}(?:여자|예술)?(?:초등학교|중학교|고등학교)\s*", "", t)
     t = re.sub(rf"^\s*{re.escape(short)}\s*", "", t)     # 교회·대학 이름이 제목 앞에 또 있으면 제거
     # 괄호를 벗기면 앞머리에 있던 연도·학년도가 다시 드러난다 — 여기서도 한 번 더 훑는다
-    t = re.sub(r"^\s*20\d{2}\s*(?:학년도)?\s*", "", t)
+    # 연도와 그 뒤에 남는 구두점('2026. …')을 함께 걷어낸다. 점만 남으면 그다음의
+    # 약칭 제거(아래)가 문자열 머리에서 걸리지 않아 '[양산남부고] . 양산남부고 …'가
+    # 된다 (2026-08-23). 딱지가 이미 붙은 제목에 다시 돌려도 같은 결과가 나온다.
+    t = re.sub(r"^\s*(?:20\d{2}\s*(?:학년도)?\s*)?[.,·:\-–]*\s*", "", t)
     t = _YEAR_TERM.sub(" ", t)
     t = " ".join(w for w in t.split() if not re.fullmatch(r"20\d{2}", w))
     t = re.sub(rf"^\s*{re.escape(short)}\s*", "", t)         # 이미 줄여 쓴 이름이 또 붙지 않게

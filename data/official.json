@@ -1,8 +1,8 @@
 {
- "collectedAt": "2026-08-22 19:27",
+ "collectedAt": "2026-08-23 01:30",
  "heldNoOrigin": 0,
  "sourceCount": 87,
- "okCount": 86,
+ "okCount": 87,
  "instTotal": 75,
  "sources": [
   {
@@ -55,9 +55,9 @@
    "name": "경남교육청 방과후강사",
    "layer": "C",
    "poll": "daily",
-   "ok": false,
-   "kept": 2,
-   "error": "HTTPError: 503 Service Unavailable"
+   "ok": true,
+   "raw": 15,
+   "kept": 2
   },
   {
    "id": "ggac",
@@ -245,8 +245,8 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 17,
-   "kept": 14
+   "raw": 15,
+   "kept": 12
   },
   {
    "id": "edu_goe",
@@ -793,10 +793,10 @@
  "items": [
   {
    "id": "e79177c5fab8eed3",
-   "org": "경남 학교 방과후",
+   "org": "양산남부고등학교",
    "region": "경남",
    "source": "gne.go.kr",
-   "title": "2026. 양산남부고 거점오케스트라 방과후 외부강사 채용",
+   "title": "[양산남부고] 거점오케스트라 방과후 외부강사 채용",
    "nonMusic": null,
    "url": "https://www.gne.go.kr/works/user/recruitment/BD_recruitmentDetail.do?regSn=1813541",
    "date": "2026-08-24",
@@ -813,23 +813,28 @@
    ],
    "channel": "gne",
    "layer": "C",
-   "orgAffil": "교육청 포털",
-   "firstSeen": "2026-08-21",
-   "isNew": false,
+   "orgBoard": "경남 학교 방과후(교육청 포털)",
+   "orgAffil": "경남교육청",
    "contact": "055-382-1061",
    "workPeriod": "2026.09 ~ 2027.02",
    "duty": "플루트 파트 강사 1명",
-   "bodyExcerpt": "계약기간 : 2026.9.~2027.2. · 모집 세부 사항(",
+   "bodyExcerpt": "계약기간 : 2026.9.~2027.2. · 모집 세부 사항(· 접수 장소: 양산남부고등학교 5층 교육연구부실로 본인(대리인) 직접 제출 3",
    "deadline": "2026-08-26",
    "deadlineFrom": "raw",
-   "extVer": 87
+   "addr": "경상남도 양산시 양주로",
+   "lat": 35.3326224,
+   "lng": 129.024375,
+   "addrFrom": "geo",
+   "firstSeen": "2026-08-21",
+   "isNew": false,
+   "extVer": 88
   },
   {
    "id": "49ab8e2790c6da1a",
-   "org": "경남 학교 방과후",
+   "org": "남해정보산업고등학교",
    "region": "경남",
    "source": "gne.go.kr",
-   "title": "2026. 오케스트라 밴드반 외부강사 채용",
+   "title": "[남해정보산업고] 오케스트라 밴드반 외부강사 채용",
    "nonMusic": null,
    "url": "https://www.gne.go.kr/works/user/recruitment/BD_recruitmentDetail.do?regSn=1813578",
    "date": "2026-08-21",
@@ -842,13 +847,20 @@
    "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
+   "personnel": null,
+   "subject": null,
    "channel": "gne",
    "layer": "C",
-   "orgAffil": "교육청 포털",
-   "firstSeen": "2026-08-21",
-   "isNew": true,
+   "orgBoard": "경남 학교 방과후(교육청 포털)",
+   "orgAffil": "경남교육청",
    "contact": "055-862-3124",
-   "extVer": 87
+   "addr": "경상남도 남해군 탑동로 46",
+   "lat": 34.8966168,
+   "lng": 127.8738213,
+   "addrFrom": "geo",
+   "firstSeen": "2026-08-21",
+   "isNew": false,
+   "extVer": 88
   },
   {
    "id": "6a7345166eaf8476",
@@ -884,8 +896,8 @@
    "deadlineFrom": "raw",
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-21",
-   "isNew": true,
-   "extVer": 87
+   "isNew": false,
+   "extVer": 88
   },
   {
    "id": "3d85fcec8408463d",
@@ -917,8 +929,8 @@
    "deadlineFrom": "raw",
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-21",
-   "isNew": true,
-   "extVer": 87
+   "isNew": false,
+   "extVer": 88
   },
   {
    "id": "8a9d741e8c359fb5",
@@ -951,8 +963,8 @@
    "deadlineFrom": "raw",
    "orgAffil": "경기교육청",
    "firstSeen": "2026-08-21",
-   "isNew": true,
-   "extVer": 87
+   "isNew": false,
+   "extVer": 88
   },
   {
    "id": "981205938e142e99",
@@ -984,8 +996,8 @@
    "deadlineFrom": "raw",
    "orgAffil": "경기교육청",
    "firstSeen": "2026-08-21",
-   "isNew": true,
-   "extVer": 87
+   "isNew": false,
+   "extVer": 88
   },
   {
    "id": "c6bfa0e49942d511",
@@ -1016,8 +1028,8 @@
    "deadlineFrom": "raw",
    "orgAffil": "경기교육청",
    "firstSeen": "2026-08-21",
-   "isNew": true,
-   "extVer": 87
+   "isNew": false,
+   "extVer": 88
   },
   {
    "id": "f9b18949671f4b2b",
@@ -1050,8 +1062,8 @@
    "deadlineFrom": "raw",
    "orgAffil": "경기교육청",
    "firstSeen": "2026-08-21",
-   "isNew": true,
-   "extVer": 87
+   "isNew": false,
+   "extVer": 88
   },
   {
    "id": "423062b3513ba83f",
@@ -1083,8 +1095,8 @@
    "deadlineFrom": "raw",
    "orgAffil": "경기교육청",
    "firstSeen": "2026-08-22",
-   "isNew": true,
-   "extVer": 87
+   "isNew": false,
+   "extVer": 88
   },
   {
    "id": "099728304805c26d",
@@ -1115,11 +1127,11 @@
    "deadlineFrom": "raw",
    "orgAffil": "경기교육청",
    "firstSeen": "2026-08-21",
-   "isNew": true,
-   "extVer": 87
+   "isNew": false,
+   "extVer": 88
   },
   {
-   "id": "adb477bd75f13972",
+   "id": "bc005bdd28bd0d7b",
    "org": "동탄중앙고등학교",
    "region": "경기",
    "source": "goe.go.kr",
@@ -1145,9 +1157,9 @@
    "deadline": "2026-08-23",
    "deadlineFrom": "raw",
    "orgAffil": "경기교육청",
-   "firstSeen": "2026-08-21",
-   "isNew": true,
-   "extVer": 87
+   "firstSeen": "2026-08-23",
+   "isNew": false,
+   "extVer": 88
   },
   {
    "id": "bfddf1241fb8ef27",
@@ -1182,8 +1194,8 @@
    "personnel": "음악 1명",
    "bodyExcerpt": "응모 자격 · 응모 자격: 임용 상한 연령(70세) 미해당자 · 자격: 해당과목 교원 자격증 소지자 6",
    "firstSeen": "2026-08-21",
-   "isNew": true,
-   "extVer": 87
+   "isNew": false,
+   "extVer": 88
   },
   {
    "id": "153d3da5b4d713c8",
@@ -1220,7 +1232,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-21",
    "isNew": false,
-   "extVer": 87
+   "extVer": 88
   },
   {
    "id": "2d2d83f46f091faa",
@@ -1257,7 +1269,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-21",
    "isNew": false,
-   "extVer": 87
+   "extVer": 88
   },
   {
    "id": "055ecb2c1356228b",
@@ -1294,7 +1306,7 @@
    "bodyExcerpt": "강의 시간 : 채용 기간 동안 1 인당 총 25 시간(초등학교 1 시간은 40 분 기준) · 2026 년 8 월 31 일 이후 계약서 작성 예정이므로 기간 확인 필요 · 성범죄 경력조회 및 아동학대관련범죄 조회 결과 및 채용신체검사 결과 결격사유가 있는 경우 최종 선정 취소 처리함 . · 범죄경력조회 및 채용 신체검사 결과 이상이 있을 시에는 합격을 취소함",
    "firstSeen": "2026-08-20",
    "isNew": false,
-   "extVer": 87
+   "extVer": 88
   },
   {
    "id": "d074172cd37256f4",
@@ -1327,7 +1339,7 @@
    "bodyExcerpt": "고 2026 학년도 강화중학교 계약제 교원(기간제 교원) 의 선발계획을 아래와 같이 공고합니다 . · 우편접수 :(23030) 인천광역시 강화군 강화읍 동문로 53 · 채용방법 · 서류 심사 서류(1 차)① [ 붙임 1] 응시원서 및 [ 붙임 2] 자기소개서 1 부(사진부착 필수)② 교원자격증 사본 1 부",
    "deadline": "2026-08-23",
    "deadlineFrom": "raw",
-   "extVer": 87
+   "extVer": 88
   },
   {
    "id": "ee0d661436e7a1ca",
@@ -1359,7 +1371,7 @@
    "deadlineFrom": "raw",
    "firstSeen": "2026-08-19",
    "isNew": false,
-   "extVer": 87
+   "extVer": 88
   },
   {
    "id": "9e9c34d080588a5e",
@@ -1392,7 +1404,7 @@
    "deadlineFrom": "raw",
    "firstSeen": "2026-08-13",
    "isNew": false,
-   "extVer": 87
+   "extVer": 88
   },
   {
    "id": "e151b29525ebd6a7",
@@ -1428,7 +1440,7 @@
    "verifiedAt": "2026-08-19",
    "firstSeen": "2026-08-19",
    "isNew": false,
-   "extVer": 87
+   "extVer": 88
   },
   {
    "id": "ce16034f8d957907",
@@ -1466,7 +1478,7 @@
    "regionBoard": "경기",
    "firstSeen": "2026-08-19",
    "isNew": false,
-   "extVer": 87
+   "extVer": 88
   },
   {
    "id": "2e1303468ed40bd1",
@@ -1502,7 +1514,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-19",
    "isNew": false,
-   "extVer": 87
+   "extVer": 88
   },
   {
    "id": "2f63b2b0a2e9b35d",
@@ -1537,75 +1549,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-20",
    "isNew": false,
-   "extVer": 87
-  },
-  {
-   "id": "c1e5ff7ecded408e",
-   "org": "대청중학교",
-   "region": "서울",
-   "source": "work.sen.go.kr",
-   "title": "[대청중] 음악과 기간제교원 채용",
-   "nonMusic": null,
-   "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=108484",
-   "date": "2026-08-19",
-   "kind": "교원",
-   "tier": "교육 — 학교",
-   "obri": false,
-   "certReq": "예",
-   "degreeReq": "무관",
-   "careerReq": "미기재",
-   "ageGroup": "성인",
-   "inst": "전체",
-   "instDetails": [],
-   "channel": "edu_seoul",
-   "layer": "C",
-   "contact": "02-6329-9569",
-   "email": "smartedu@sen.go.kr",
-   "workPeriod": "2026.09.01 ~ 2027.02.28(학교 사정에 따라 연장 가능)",
-   "workHours": "08:00~16:00 주 22시수(시수 지원 가능)",
-   "personnel": "1명",
-   "addr": "서울특별시 강남구 양재천로 321(대치동)",
-   "duty": "음악",
-   "deadline": "2026-08-22",
-   "deadlineFrom": "raw",
-   "orgAffil": "서울시교육청",
-   "firstSeen": "2026-08-19",
-   "isNew": false,
-   "extVer": 87
-  },
-  {
-   "id": "6b8f9705056432ef",
-   "org": "개운중학교",
-   "region": "서울",
-   "source": "work.sen.go.kr",
-   "title": "[개운중] 시간강사 채용 공고(음악)",
-   "nonMusic": null,
-   "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=108337",
-   "date": "2026-08-19",
-   "kind": "강사",
-   "tier": "교육 — 학교",
-   "obri": false,
-   "certReq": "무관",
-   "degreeReq": "무관",
-   "careerReq": "미기재",
-   "ageGroup": "성인",
-   "inst": "전체",
-   "instDetails": [],
-   "channel": "edu_seoul",
-   "layer": "C",
-   "contact": "02-6011-6842",
-   "email": "shinso0@sen.go.kr",
-   "pay": "시간당 25,000원",
-   "workPeriod": "2026.09.14 ~ 2026.09.18",
-   "personnel": "음악 1명",
-   "addr": "서울특별시 성북구 북악산로 935(돈암동)",
-   "duty": "음악",
-   "deadline": "2026-08-22",
-   "deadlineFrom": "raw",
-   "orgAffil": "서울시교육청",
-   "firstSeen": "2026-08-19",
-   "isNew": false,
-   "extVer": 87
+   "extVer": 88
   },
   {
    "id": "b83667209a8cd77d",
@@ -1636,7 +1580,7 @@
    "bodyExcerpt": "자격 조건 - 세례받은 지 3년 이상 된 신자 - 지휘 경험자 3. · 마감: 채용시까지 6. · 채용 절차: 서류 심사 후 면접 일자 통보 7. · 제출하신 서류는 채용 완료 후 폐기하며 별도의 반환은 없습니다",
    "firstSeen": "2026-08-19",
    "isNew": false,
-   "extVer": 87
+   "extVer": 88
   },
   {
    "id": "aa820c313755a55f",
@@ -1664,7 +1608,7 @@
    "addr": "광주광역시 북구 본촌동 양산택지소로36",
    "firstSeen": "2026-08-21",
    "isNew": false,
-   "extVer": 87
+   "extVer": 88
   },
   {
    "id": "6cb1a301d8f777cc",
@@ -1703,7 +1647,7 @@
    "orgBoard": "울산문화예술회관(시립예술단)",
    "firstSeen": "2026-08-18",
    "isNew": false,
-   "extVer": 87
+   "extVer": 88
   },
   {
    "id": "0fedf8036a363075",
@@ -1740,7 +1684,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-18",
    "isNew": false,
-   "extVer": 87
+   "extVer": 88
   },
   {
    "id": "11376188af16b7d1",
@@ -1775,7 +1719,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-19",
    "isNew": false,
-   "extVer": 87
+   "extVer": 88
   },
   {
    "id": "c6c2c8ce91d4ded5",
@@ -1810,7 +1754,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-19",
    "isNew": false,
-   "extVer": 87
+   "extVer": 88
   },
   {
    "id": "bd2c17f19933f651",
@@ -1842,7 +1786,7 @@
    "documents": "이력서",
    "firstSeen": "2026-08-14",
    "isNew": false,
-   "extVer": 87
+   "extVer": 88
   },
   {
    "id": "3dc1300363d803e8",
@@ -1875,7 +1819,7 @@
    "addrFrom": "geo",
    "firstSeen": "2026-08-14",
    "isNew": false,
-   "extVer": 87
+   "extVer": 88
   },
   {
    "id": "0251912d3b918734",
@@ -1910,7 +1854,7 @@
    "bodyExcerpt": "모집분야 : 주일예배 및 성가대 피아노 반주자 · 성가대 연습 : 주일 10시~10시 50분, 12시 10분~12시 50분(시간은 유동적임)· 지원자격 : 피아노 또는 음악 관련 전공자 및 교회 반주 경험자 우대 · 주요업무 : 주일예배 찬송가 및 예배 반주, 성가대 찬양 반주, 성가대 연습 반주",
    "firstSeen": "2026-08-08",
    "isNew": false,
-   "extVer": 87
+   "extVer": 88
   },
   {
    "id": "b2e199e32140e0ed",
@@ -1945,7 +1889,7 @@
    "regionBoard": "기타",
    "firstSeen": "2026-08-08",
    "isNew": false,
-   "extVer": 87
+   "extVer": 88
   },
   {
    "id": "5fbc7e4eb4f8d92d",
@@ -1979,7 +1923,7 @@
    "documents": "간단한 이력서",
    "firstSeen": "2026-08-08",
    "isNew": false,
-   "extVer": 87
+   "extVer": 88
   }
  ]
 }

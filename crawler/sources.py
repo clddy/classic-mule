@@ -309,8 +309,17 @@ def parse_gne(s):
         p = re.search(r"접수기간\s*[\d.]{8,10}\s*~\s*(\d{4})\.(\d{1,2})\.(\d{1,2})", rtxt)
         if p:
             dl = f"{p.group(1)}-{int(p.group(2)):02d}-{int(p.group(3)):02d}"
+        # 기관명: 목록 행엔 학교 이름이 없다 — 상세에만 있다. 여기선 게시판 이름을 두고,
+        # 상세를 여는 자리(main._apply_gne_detail)가 '양산남부고등학교'로 갈아 끼운다.
+        # 지역은 행의 '지역 양산' 칸에서 세운다. 시군 이름이라 시도로 안 옮겨지는 곳이
+        # 많은데(남해·고성·거창…) 경남교육청 게시판이므로 못 옮기면 경남이 맞다.
+        # ★ 예전처럼 '기타'로 넘기면 make_item 이 기관명의 '경남' 글자에 기대 지역을
+        #   유도하는데, 상세에서 기관을 학교로 바꾸는 순간 그 글자가 사라져 '기타'가 된다.
+        mrg = re.search(r"지역\s*([가-힣]{2,6})", rtxt)
+        rg = region_from(mrg.group(1)) if mrg else "기타"
         # 개별 공고 상세 URL(regSn) — 포털 검색목록이 아니라 원문으로 링크
-        items.append(make_item("경남 학교 방과후(교육청 포털)", "기타", "gne.go.kr",
+        items.append(make_item("경남 학교 방과후(교육청 포털)", rg if rg != "기타" else "경남",
+                               "gne.go.kr",
                                title, GNE_DETAIL + m.group(1), date=_row_date(a), deadline=dl))
     return items
 

@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import (new_session, get, relevant, extract_deadline, priority_deadlines, deadline_from_title,
-                    musician_relevant, youth_member, participant_only, student_target, dance_member, rope_skipping_only, school_title, tidy_personnel, parse_meta_table, tidy_spacing, squash_spaced_labels, parse_recruit_table, summarize_recruit, find_position,
+                    musician_relevant, youth_member, participant_only, student_target, dance_member, rope_skipping_only, school_title, tidy_personnel, parse_meta_table, parse_gne_detail, tidy_spacing, squash_spaced_labels, parse_recruit_table, summarize_recruit, find_position,
                     classify_insts, find_subject, find_music_subjects, find_music_courses,
                     classify_kind, classify_tier, is_obri, cert_required, degree_req, career_req, age_group,
                     region_from, EXCLUDE, compact_title, music_only_title, body_text, valid_addr,
@@ -305,7 +305,7 @@ def find_attachments(soup, base_url):
                     cands.append((full, el.get_text(" ", strip=True)))
     return cands[:4]
 
-EXT_VER = 87         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
+EXT_VER = 88         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
                      # v32(2026-08-02): 모집분야 구획 악기 추출(insts_from_recruit_text) + 원문 보관층
                      # 24: work.sen 등록일(게시일) 추출 추가 — date=None이던 승계분을 다시 뽑게
                      # 25: body_text 도입 — 본문을 <header>에 넣는 사이트(대전교육청)의 마감일을
@@ -717,6 +717,26 @@ def _apply_meta_table(text, item):
     return True
 
 
+def _apply_gne_detail(text, item):
+    """경남교육청 포털 상세에서 학교 이름·지역을 세운다 (common.parse_gne_detail).
+
+    다른 교육청은 상세 메타표에 '기관명' 칸이 있어 _apply_meta_table 이 읽어 주는데,
+    경남 포털엔 그 칸이 없다. 목록에도 학교 이름이 없어 파서가 게시판 이름으로 뭉쳐 둔
+    탓에 경남 공고가 전부 '경남 학교 방과후(교육청 포털)'로 떴다 (2026-08-22 확인).
+    기관을 갈아 끼우면 '경남'이라는 글자도 함께 사라지므로 지역을 반드시 같이 세운다 —
+    안 그러면 make_item 의 지역 유도가 기댈 곳이 없어 '기타'로 떨어진다.
+    """
+    meta = parse_gne_detail(text)
+    org = meta.get("org")
+    if org and org != item.get("org"):
+        item["orgBoard"] = item.get("orgBoard") or item.get("org")
+        item["org"] = org
+        # 소속은 학교일 때만 — 작성자가 교육청 자신인 공고까지 '경남교육청(경남교육청)'이 된다
+        item["orgAffil"] = None if "교육청" in org else "경남교육청"
+    if meta.get("region"):
+        item["region"] = meta["region"]
+
+
 def _apply_details_from_text(text, item, want_excerpt=True):
     """평문 본문(페이지/첨부/OCR)에서 자격·인원·객원필드·요약을 채운다 (없는 것만)"""
     if not text:
@@ -1027,6 +1047,63 @@ def _trace_origin(s, page_text, item):
     return cands[0]
 
 
+# 집계 포털이 준 '원문 링크'가 상세가 아니라 **게시판 목록**일 때가 있다 —
+# 광신대 강사 초빙의 officialUrl 이 공지사항 목록이었다 (하이브레인 경유, 2026-08-21).
+# 그대로 원문으로 삼으면 남의 글 날짜·첨부가 통째로 섞여 들어오고(실제로 '연구윤리제도화'
+# 같은 엉뚱한 첨부가 붙었다), 마감은 영영 못 찾아 사람에게 넘어간다.
+_LIST_MARK = re.compile(r"글쓴이|작성자|조회수?")
+
+
+def _looks_like_list(text):
+    """게시판 목록 페이지인가 — 글 머리 표식이 여러 번 반복되면 목록이다."""
+    return len(_LIST_MARK.findall(text or "")) >= 5
+
+
+def _list_soup(r):
+    from bs4 import BeautifulSoup
+    return BeautifulSoup(r.text, "lxml")
+
+
+def _find_detail_in_list(soup, base, title):
+    """목록에서 우리 공고와 같은 글의 상세 링크를 찾는다. 못 찾으면 None.
+
+    제목이 정확히 같을 일은 드물다(집계 포털이 제목을 고쳐 싣는다) — 그래서 낱말 겹침으로
+    고르되, **후보가 뚜렷하게 하나일 때만** 인정한다. 어설프게 고르면 남의 공고로 보낸다.
+    """
+    from urllib.parse import urljoin
+    want = [w for w in re.findall(r"[가-힣A-Za-z]{2,}", title or "")]
+    if len(want) < 2:
+        return None
+    wtext = re.sub(r"[^가-힣A-Za-z]", "", title or "")
+    best, best_score, runner = None, 0, 0
+    for a in soup.find_all("a", href=True):
+        href = a["href"]
+        # 상세로 가는 링크만 후보로 — 목록의 메뉴·페이지 이동까지 재면 엉뚱한 데로 간다.
+        # javascript: 는 주소가 아니라 함수 호출이라 우리가 열 수 없다 — 광신대 공지사항이
+        # 이 꼴이라(fView('42734')) 자동 교정이 원리적으로 불가능하다 (2026-08-21).
+        if href.lower().startswith("javascript:"):
+            continue
+        if not re.search(r"view|View|VIEW|detail|Detail|read|Read|articleNo|nttId|bbsSn", href):
+            continue
+        txt = a.get_text(" ", strip=True)
+        if not (6 <= len(txt) <= 80):
+            continue
+        gtext = re.sub(r"[^가-힣A-Za-z]", "", txt)
+        got = re.findall(r"[가-힣A-Za-z]{2,}", txt)
+        # 낱말이 딱 맞는 일은 드물다 — 집계 포털이 제목을 고쳐 싣는다
+        # ('강사 및 겸임/초빙교원 모집' vs '교원(강사, 초빙,겸임) 임용 공고').
+        # 양쪽 낱말을 상대 제목 안에서 부분 문자열로 찾고, 큰 쪽을 점수로 삼는다.
+        score = max(sum(1 for w in want if w in gtext), sum(1 for g in got if g in wtext))
+        if score > best_score:
+            best, best_score, runner = a, score, best_score
+        elif score > runner:
+            runner = score
+    # 겹치는 낱말이 셋 이상이고, 2등보다 확실히 앞설 때만 — 어설프게 고르면 남의 공고로 보낸다
+    if best and best_score >= 3 and best_score > runner:
+        return urljoin(base, best["href"])
+    return None
+
+
 def _origin_check(s, item, ry):
     """기관 원문(officialUrl)을 실제로 열어본다.
     죽은 페이지면 만료 처리(링크가 404로 가는 것 방지), 살아있으면 진짜 마감일을 추출."""
@@ -1045,10 +1122,27 @@ def _origin_check(s, item, ry):
     # 원문 본문을 보관층에 남긴다 — 여기서 마감만 뽑고 버리던 탓에 집계 경유 공고는
     # 원문 보관층의 page 가 0자였고, 재추출이 볼 것이 첨부밖에 없었다. 계명대는 채용일정이
     # 원문 페이지에만 있어 마감·조건이 통째로 비었다 (2026-08-17 규명).
-    rawstore.stash(item.get("id"), "page", body_text(r.text),
+    _text = body_text(r.text)
+    # 목록 페이지를 원문으로 삼지 않는다 — 상세를 찾아 들어가고, 못 찾으면 손을 뗀다.
+    if _looks_like_list(_text):
+        det = _find_detail_in_list(_list_soup(r), url, item.get("title"))
+        if not det or det == url:
+            item["originIsList"] = True   # 헬스체크·알림이 '링크가 목록'임을 알 수 있게
+            return
+        try:
+            r = get(s, det)
+        except Exception:
+            item["originIsList"] = True
+            return
+        if _is_dead_origin(r):
+            item["originIsList"] = True
+            return
+        item["officialUrl"], url = det, det
+        _text = body_text(r.text)
+    rawstore.stash(item.get("id"), "page", _text,
                    url=url, title=item.get("title"))
     if not item.get("deadline"):
-        dl = extract_deadline(body_text(r.text), ref_year=ry)
+        dl = extract_deadline(_text, ref_year=ry)
         if dl:
             item["deadline"] = dl
             item["deadlineFrom"] = "origin"
@@ -1143,6 +1237,10 @@ def _refill_from_raw(items, today):
         # (2026-08-09 성은교회 공고: 원문엔 단체명·지역·사례비·업무가 다 있었다).
         if "cjob" in (it.get("source") or ""):
             _cjob_detail(rawstore.all_text(it["id"]), it)
+        # 경남교육청 포털도 같은 사정이다 — 상세를 못 연 회차·승계 항목이 게시판 이름을
+        # 그대로 물고 있으므로, 보관해 둔 본문으로 여기서 되찾는다 (2026-08-23).
+        if "gne.go.kr" in (it.get("source") or ""):
+            _apply_gne_detail(page, it)
         _raw = rawstore.all_text(it["id"])
         # 자격·연락처는 상세를 직접 여는 경로에만 있었다. 원문을 보관해 두고도 재추출에서
         # 빠져 있어 화면엔 0건이었다 — 원문으로 다시 뽑으면 자격 15건·연락처 22건이 나온다
@@ -1770,6 +1868,9 @@ def enrich_deadline(s, item, allow_render=True, details_only=False):
         if item.get("source") == "cjob.co.kr":
             _cjob_detail(page_text, item)
             return
+        # 경남교육청 포털 — 학교 이름이 상세에만 있다 (목록 행엔 없음)
+        if item.get("source") == "gne.go.kr":
+            _apply_gne_detail(page_text, item)
         # 채용부문/직책/인원 표 등 본문 상세 (마감 유무와 무관하게 항상)
         _extract_body_details(soup, page_text, item, ry)
         # 명시적 채용/모집 상태가 '마감/종료'면 만료 처리 (엉뚱한 날짜 추출 방지)
@@ -1885,6 +1986,10 @@ def track_deadline_misses(final):
         e["title"], e["org"] = it.get("title"), it.get("org")
         if it.get("dlHint"):
             e["hint"] = it["dlHint"]
+        # 원문 링크가 게시판 목록이면 눌러도 그 공고가 안 나온다 — 알림에 미리 적어 준다
+        # (광신대는 상세를 javascript 로 열어 우리가 주소를 만들 수 없다, 2026-08-21)
+        if it.get("originIsList"):
+            e["listOnly"] = True
         cur[url] = e
     # 마감이 확보됐거나 내려간 공고는 큐에서 빠진다 — 이 파일은 캐시가 아니라 '미해결 큐'
     due = [(u, e) for u, e in cur.items() if e["tries"] >= 3 and not e.get("reported")]
@@ -1892,7 +1997,10 @@ def track_deadline_misses(final):
         try:
             sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))  # 번들 crawler/notify.py
             from notify import send
-            lines = [f"· {e['org']} — {e['title'][:40]}\n  {u}" for u, e in due[:6]]
+            lines = [f"· {e['org']} — {e['title'][:40]}"
+                     + ("\n  ⚠ 원문 링크가 게시판 목록이라 그 공고가 바로 열리지 않아요 — 목록에서 찾아야 해요"
+                        if e.get("listOnly") else "")
+                     + f"\n  {u}" for u, e in due[:6]]
             send(f"[포디엄] 마감일을 3회차까지 못 찾은 공고 {len(due)}건 — "
                  f"직접 확인이나 기관 문의가 필요해요\n" + "\n".join(lines), silent=True)
             for _, e in due:
