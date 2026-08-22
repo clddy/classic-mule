@@ -32052,7 +32052,9 @@
    "addr": "경상남도 남해군 탑동로 46",
    "lat": 34.8966168,
    "lng": 127.8738213,
-   "addrFrom": "geo"
+   "addrFrom": "geo",
+   "deadline": "2026-08-25",
+   "deadlineFrom": "raw"
   },
   "6a7345166eaf8476": {
    "id": "6a7345166eaf8476",

@@ -54,7 +54,10 @@ def load(iid):
                 "page": b.get("page"), "attach": list(b.get("attach") or [])}
     # 파일과 버퍼를 겹친다 (flush 와 같은 규칙: 기존 섹션 보존, 새 이름의 첨부만 추가)
     merged = dict(doc)
-    merged["page"] = doc.get("page") or b.get("page")
+    # flush 와 같은 규칙 — 더 많이 읽어 낸 쪽. 여기서도 맞춰야 **이번 크롤의 재추출**이
+    # 개선된 본문을 본다. 안 맞추면 flush 로 파일만 좋아지고 그 회차 추출은 옛 본문을 봐
+    # 자기치유가 한 번씩 늦는다 (남해정보산업고 접수기간, 2026-08-23).
+    merged["page"] = _richer(doc.get("page"), b.get("page"))
     attach = list(doc.get("attach") or [])
     names = {a.get("name") for a in attach}
     for a in (b.get("attach") or []):
@@ -103,6 +106,15 @@ def mark_tried(iid):
     b["_tried"] = True
 
 
+def _richer(old, new):
+    """더 많이 읽어 낸 쪽을 고른다. 새 것이 눈에 띄게 길 때만 교체한다."""
+    if not new:
+        return old
+    if not old:
+        return new
+    return new if len(new) > len(old) * 1.02 else old
+
+
 def flush():
     """버퍼를 디스크에 병합 저장. 기존 섹션은 보존(불변 누적). 저장 건수를 돌려준다."""
     os.makedirs(RAW_DIR, exist_ok=True)
@@ -116,7 +128,12 @@ def flush():
             "url": b.get("url") or old.get("url"),
             "title": old.get("title") or b.get("title"),
             "fetchedAt": old.get("fetchedAt") or date.today().isoformat(),
-            "page": old.get("page") or b.get("page"),
+            # 본문은 불변이 원칙이다 — 마감돼 원문이 사라져도 남겨야 하니까. 다만 **더 많이
+            # 읽어 냈을 때는 갱신한다.** 본문 추출기를 고쳐도(예: 입력칸 값을 읽게 됨) 저장본이
+            # 옛 텍스트인 채로 남아, 재추출이 영영 개선을 못 보던 문제가 있었다 —
+            # 경남교육청 접수기간이 <input value> 안에 있어 마감이 계속 빈칸이었다 (2026-08-23).
+            # 짧아지는 쪽은 받지 않는다(사이트 장애·로그인 게이트로 본문이 쪼그라들 수 있다).
+            "page": _richer(old.get("page"), b.get("page")),
             "attach": list(old.get("attach") or []),
         }
         names = {a["name"] for a in doc["attach"]}

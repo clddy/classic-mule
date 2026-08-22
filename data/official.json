@@ -1,5 +1,5 @@
 {
- "collectedAt": "2026-08-23 01:30",
+ "collectedAt": "2026-08-23 01:50",
  "heldNoOrigin": 0,
  "sourceCount": 87,
  "okCount": 87,
@@ -854,6 +854,8 @@
    "orgBoard": "경남 학교 방과후(교육청 포털)",
    "orgAffil": "경남교육청",
    "contact": "055-862-3124",
+   "deadline": "2026-08-25",
+   "deadlineFrom": "raw",
    "addr": "경상남도 남해군 탑동로 46",
    "lat": 34.8966168,
    "lng": 127.8738213,
@@ -1603,6 +1605,7 @@
    "officialUrl": "https://www.kwangshin.ac.kr/front/boardList.do?brd_mgrno=180&menu_no=442",
    "channel": "hibrain",
    "layer": "B",
+   "originIsList": true,
    "subjectFrom": "attach",
    "contact": "062-605-1004",
    "addr": "광주광역시 북구 본촌동 양산택지소로36",
