@@ -141,11 +141,8 @@ def _detail_rows(j):
         rows.append(("근무기간", j["workPeriod"]))
     if j.get("workHours"):
         rows.append(("근무시간", j["workHours"]))
-    if j.get("qualification"):
-        q = str(j["qualification"])
-        if re.search(r"(있는|없는|준하는|가능한|갖춘|마친|수료한|졸업한|이수한|전공한|취득한|소지한)$", q):
-            q += " 자"
-        rows.append(("자격", q))
+    # 자격 행은 보여주지 않는다 (2026-08-23 사용자 지시) — 화면 모달과 같은 규칙.
+    # 값 대부분이 어느 공고에나 붙는 상투구라 정보가 0이다.
     if j.get("pay"):
         rows.append(("페이", j["pay"]))
     if j.get("contract"):

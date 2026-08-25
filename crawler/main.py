@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import (new_session, get, relevant, extract_deadline, priority_deadlines, deadline_from_title,
-                    musician_relevant, youth_member, participant_only, student_target, dance_member, rope_skipping_only, school_title, tidy_personnel, parse_meta_table, parse_gne_detail, tidy_spacing, squash_spaced_labels, parse_recruit_table, summarize_recruit, find_position,
+                    musician_relevant, youth_member, participant_only, student_target, dance_member, rope_skipping_only, school_title, tidy_personnel, parse_meta_table, parse_gne_detail, tidy_spacing, squash_spaced_labels, pay_from_shape, parse_recruit_table, summarize_recruit, find_position,
                     classify_insts, find_subject, find_music_subjects, find_music_courses,
                     classify_kind, classify_tier, is_obri, cert_required, degree_req, career_req, age_group,
                     region_from, EXCLUDE, compact_title, music_only_title, body_text, valid_addr,
@@ -1308,6 +1308,11 @@ def _refill_from_raw(items, today):
         # 교육청 구인 게시판 메타표가 있으면 그것부터 — 기관명·주소·연락처·마감이 한 표에
         # 정리돼 있어 본문 추측보다 정확하다 (2026-08-21)
         _apply_meta_table(page, it)
+        # 급여는 표에서 라벨과 값이 갈라지는 일이 잦다 — 모양으로 찾은 쪽이 더 많이 담고
+        # 있으면 그걸 쓴다(기본급+수당을 함께 싣기 위함, 2026-08-23)
+        _ps = pay_from_shape(_raw)
+        if _ps and len(_ps) > len(str(it.get("pay") or "")):
+            it["pay"] = _ps
         fields = extract_fields(_raw)
         if fields:
             for k, v in fields.items():

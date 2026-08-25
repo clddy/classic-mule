@@ -513,10 +513,9 @@ function metaRows(j) {
   // 악기를 여기 또 붙이지 않는다 — 카드 위쪽에 태그로 이미 보인다 (2026-08-21)
   else if (j.personnel) rows.push(["모집", cleanVal(j.personnel)]);
   else if (insts) rows.push(["모집", insts + (senior ? " " + senior : "")]);
-  // 원문에서 '…경험이 있는 (자)'처럼 관형형에서 잘려온 자격 문구는 '자'를 붙여 문장을 닫는다
-  let q = cleanVal(j.qualification);
-  if (/(있는|없는|준하는|가능한|갖춘|마친|수료한|졸업한|이수한|전공한|취득한|소지한)$/.test(q)) q += " 자";
-  if (q && q.length >= 4) rows.push(["자격", q]);
+  // 자격 행은 보여주지 않는다 (2026-08-23 사용자 지시) — 값 대부분이 어느 공고에나 붙는
+  // 상투구라 정보가 0이다('만 20세 이상인자 · 병역을 필한 자 또는 면제자'). 데이터는 계속
+  // 모은다: 자격증·학위·경력 필터(certReq/degreeReq/careerReq)와 수요 분석이 그걸 쓴다.
   const reh = cleanVal(j.rehearsal || j.when);
   if (!j.rehearsalCount && reh && /\d/.test(reh)) rows.push(["리허설", reh]);
   const con = cleanVal(j.concertDate);
