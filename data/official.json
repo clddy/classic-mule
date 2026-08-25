@@ -1,8 +1,8 @@
 {
- "collectedAt": "2026-08-25 18:08",
+ "collectedAt": "2026-08-26 01:26",
  "heldNoOrigin": 0,
  "sourceCount": 87,
- "okCount": 87,
+ "okCount": 86,
  "instTotal": 75,
  "sources": [
   {
@@ -12,7 +12,12 @@
    "poll": "daily",
    "ok": true,
    "raw": 2,
-   "kept": 1
+   "kept": 1,
+   "drop": {
+    "비음악": 1,
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "artinfo",
@@ -21,7 +26,12 @@
    "poll": "daily",
    "ok": true,
    "raw": 10,
-   "kept": 4
+   "kept": 4,
+   "drop": {
+    "비음악": 4,
+    "만료": 2,
+    "오래됨": 0
+   }
   },
   {
    "id": "cleaneye",
@@ -30,7 +40,11 @@
    "poll": "daily",
    "ok": true,
    "raw": 0,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "gojobs",
@@ -39,16 +53,22 @@
    "poll": "daily",
    "ok": true,
    "raw": 28,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "만료": 11,
+    "무관": 4,
+    "오래됨": 8,
+    "비음악": 5
+   }
   },
   {
    "id": "cjob",
    "name": "기독정보넷(교회 반주)",
    "layer": "C",
    "poll": "daily",
-   "ok": true,
-   "raw": 24,
-   "kept": 4
+   "ok": false,
+   "kept": 4,
+   "error": "HTTPError: 403 Forbidden"
   },
   {
    "id": "gne",
@@ -57,7 +77,12 @@
    "poll": "daily",
    "ok": true,
    "raw": 15,
-   "kept": 3
+   "kept": 2,
+   "drop": {
+    "무관": 1,
+    "만료": 12,
+    "오래됨": 0
+   }
   },
   {
    "id": "ggac",
@@ -66,7 +91,12 @@
    "poll": "daily",
    "ok": true,
    "raw": 1,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "무관": 1,
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "incheon",
@@ -75,7 +105,13 @@
    "poll": "daily",
    "ok": true,
    "raw": 14,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "무관": 10,
+    "비음악": 4,
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "daegu",
@@ -84,7 +120,12 @@
    "poll": "daily",
    "ok": true,
    "raw": 1,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "무관": 1,
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "bscc",
@@ -93,7 +134,13 @@
    "poll": "daily",
    "ok": true,
    "raw": 15,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "무관": 12,
+    "비음악": 2,
+    "만료": 1,
+    "오래됨": 0
+   }
   },
   {
    "id": "artsuwon",
@@ -102,7 +149,13 @@
    "poll": "daily",
    "ok": true,
    "raw": 21,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "무관": 17,
+    "비음악": 4,
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "snart",
@@ -111,7 +164,13 @@
    "poll": "daily",
    "ok": true,
    "raw": 10,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "무관": 5,
+    "비음악": 5,
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "sejongpac",
@@ -120,7 +179,13 @@
    "poll": "daily",
    "ok": true,
    "raw": 10,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "비음악": 8,
+    "무관": 1,
+    "만료": 1,
+    "오래됨": 0
+   }
   },
   {
    "id": "cwcf",
@@ -129,7 +194,13 @@
    "poll": "daily",
    "ok": true,
    "raw": 35,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "무관": 24,
+    "비음악": 11,
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "ulsan",
@@ -138,7 +209,13 @@
    "poll": "daily",
    "ok": true,
    "raw": 21,
-   "kept": 1
+   "kept": 1,
+   "drop": {
+    "무관": 17,
+    "비음악": 1,
+    "만료": 2,
+    "오래됨": 0
+   }
   },
   {
    "id": "seoulphil",
@@ -147,7 +224,12 @@
    "poll": "daily",
    "ok": true,
    "raw": 20,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "오래됨": 11,
+    "비음악": 9,
+    "만료": 0
+   }
   },
   {
    "id": "kbs",
@@ -156,7 +238,12 @@
    "poll": "daily",
    "ok": true,
    "raw": 10,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "비음악": 5,
+    "오래됨": 1,
+    "만료": 4
+   }
   },
   {
    "id": "knso",
@@ -165,7 +252,13 @@
    "poll": "daily",
    "ok": true,
    "raw": 15,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "무관": 11,
+    "비음악": 2,
+    "만료": 2,
+    "오래됨": 0
+   }
   },
   {
    "id": "bucheonphil",
@@ -174,7 +267,12 @@
    "poll": "daily",
    "ok": true,
    "raw": 6,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "무관": 6,
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "dpo",
@@ -183,7 +281,12 @@
    "poll": "daily",
    "ok": true,
    "raw": 10,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "무관": 9,
+    "만료": 1,
+    "오래됨": 0
+   }
   },
   {
    "id": "gso",
@@ -192,7 +295,12 @@
    "poll": "daily",
    "ok": true,
    "raw": 10,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "무관": 5,
+    "만료": 5,
+    "오래됨": 0
+   }
   },
   {
    "id": "natopera",
@@ -201,7 +309,13 @@
    "poll": "daily",
    "ok": true,
    "raw": 11,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "무관": 9,
+    "비음악": 1,
+    "만료": 1,
+    "오래됨": 0
+   }
   },
   {
    "id": "natchorus",
@@ -210,7 +324,13 @@
    "poll": "daily",
    "ok": true,
    "raw": 20,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "무관": 17,
+    "비음악": 3,
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "jeonju",
@@ -219,7 +339,11 @@
    "poll": "daily",
    "ok": true,
    "raw": 0,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "sac",
@@ -228,7 +352,11 @@
    "poll": "daily",
    "ok": true,
    "raw": 0,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "phcf",
@@ -237,7 +365,11 @@
    "poll": "daily",
    "ok": true,
    "raw": 0,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "edu_seoul",
@@ -246,7 +378,12 @@
    "poll": "daily",
    "ok": true,
    "raw": 11,
-   "kept": 8
+   "kept": 8,
+   "drop": {
+    "무관": 3,
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "edu_goe",
@@ -255,7 +392,11 @@
    "poll": "daily",
    "ok": true,
    "raw": 2,
-   "kept": 2
+   "kept": 2,
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "edu_gwe",
@@ -264,7 +405,11 @@
    "poll": "daily",
    "ok": true,
    "raw": 0,
-   "kept": 1
+   "kept": 1,
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "edu_jbe",
@@ -273,7 +418,11 @@
    "poll": "daily",
    "ok": true,
    "raw": 0,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "edu_dje",
@@ -282,7 +431,11 @@
    "poll": "daily",
    "ok": true,
    "raw": 0,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "edu_ice",
@@ -291,7 +444,12 @@
    "poll": "daily",
    "ok": true,
    "raw": 1,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "무관": 1,
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "edu_jne",
@@ -300,7 +458,11 @@
    "poll": "daily",
    "ok": true,
    "raw": 4,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "만료": 4,
+    "오래됨": 0
+   }
   },
   {
    "id": "edu_gbe",
@@ -309,7 +471,11 @@
    "poll": "daily",
    "ok": true,
    "raw": 0,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "edu_sje",
@@ -318,7 +484,11 @@
    "poll": "daily",
    "ok": true,
    "raw": 0,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "edu_dge",
@@ -327,7 +497,11 @@
    "poll": "daily",
    "ok": true,
    "raw": 0,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "edu_pen",
@@ -336,7 +510,11 @@
    "poll": "daily",
    "ok": true,
    "raw": 0,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "edu_cbe",
@@ -345,7 +523,11 @@
    "poll": "daily",
    "ok": true,
    "raw": 0,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_cfac",
@@ -354,7 +536,11 @@
    "poll": "daily",
    "ok": true,
    "raw": 0,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_ansanart",
@@ -363,7 +549,11 @@
    "poll": "daily",
    "ok": true,
    "raw": 0,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_ayac",
@@ -372,7 +562,11 @@
    "poll": "daily",
    "ok": true,
    "raw": 0,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_uac",
@@ -381,7 +575,12 @@
    "poll": "daily",
    "ok": true,
    "raw": 1,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "무관": 1,
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_artgy",
@@ -390,7 +589,11 @@
    "poll": "daily",
    "ok": true,
    "raw": 0,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_gfac",
@@ -399,7 +602,11 @@
    "poll": "daily",
    "ok": true,
    "raw": 0,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_sjcf",
@@ -408,7 +615,11 @@
    "poll": "daily",
    "ok": true,
    "raw": 0,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_dgopera",
@@ -417,7 +628,12 @@
    "poll": "daily",
    "ok": true,
    "raw": 1,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "무관": 1,
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_knb",
@@ -426,7 +642,11 @@
    "poll": "daily",
    "ok": true,
    "raw": 0,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_ubc",
@@ -435,7 +655,11 @@
    "poll": "daily",
    "ok": true,
    "raw": 0,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_jeongdong",
@@ -444,7 +668,11 @@
    "poll": "daily",
    "ok": true,
    "raw": 0,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_timf",
@@ -453,7 +681,13 @@
    "poll": "daily",
    "ok": true,
    "raw": 9,
-   "kept": 1
+   "kept": 1,
+   "drop": {
+    "무관": 5,
+    "비음악": 2,
+    "만료": 1,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_onnuri",
@@ -462,7 +696,11 @@
    "poll": "daily",
    "ok": true,
    "raw": 0,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_i_musicsnuackr",
@@ -471,7 +709,12 @@
    "poll": "daily",
    "ok": true,
    "raw": 2,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "무관": 2,
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_i_musicyonseiackr",
@@ -480,7 +723,11 @@
    "poll": "daily",
    "ok": true,
    "raw": 2,
-   "kept": 1
+   "kept": 1,
+   "drop": {
+    "만료": 1,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_i_kartsackr",
@@ -489,7 +736,11 @@
    "poll": "daily",
    "ok": true,
    "raw": 0,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_i_artjeonjugokr",
@@ -498,7 +749,13 @@
    "poll": "daily",
    "ok": true,
    "raw": 6,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "비음악": 3,
+    "무관": 3,
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_i_gunsangokr",
@@ -507,7 +764,12 @@
    "poll": "daily",
    "ok": true,
    "raw": 8,
-   "kept": 3
+   "kept": 3,
+   "drop": {
+    "무관": 3,
+    "만료": 2,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_i_gbgokr",
@@ -516,7 +778,11 @@
    "poll": "daily",
    "ok": true,
    "raw": 0,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_i_ansanartscom",
@@ -525,7 +791,12 @@
    "poll": "daily",
    "ok": true,
    "raw": 8,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "무관": 4,
+    "오래됨": 4,
+    "만료": 0
+   }
   },
   {
    "id": "g_i_gurigokr",
@@ -534,7 +805,11 @@
    "poll": "daily",
    "ok": true,
    "raw": 0,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_i_suncheongokr",
@@ -543,7 +818,12 @@
    "poll": "daily",
    "ok": true,
    "raw": 2,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "무관": 2,
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_i_andonggokr",
@@ -552,7 +832,13 @@
    "poll": "daily",
    "ok": true,
    "raw": 5,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "비음악": 1,
+    "무관": 1,
+    "만료": 3,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_i_ggcforkr",
@@ -561,7 +847,11 @@
    "poll": "daily",
    "ok": true,
    "raw": 0,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_i_hcforkr",
@@ -570,7 +860,11 @@
    "poll": "daily",
    "ok": true,
    "raw": 0,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_i_gokamsorkr",
@@ -579,7 +873,11 @@
    "poll": "daily",
    "ok": true,
    "raw": 0,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_i_millenniumsympho",
@@ -588,7 +886,12 @@
    "poll": "daily",
    "ok": true,
    "raw": 2,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "무관": 1,
+    "오래됨": 1,
+    "만료": 0
+   }
   },
   {
    "id": "g_i_balletorkr",
@@ -597,7 +900,11 @@
    "poll": "daily",
    "ok": true,
    "raw": 1,
-   "kept": 1
+   "kept": 1,
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_i_dctforkr",
@@ -606,7 +913,11 @@
    "poll": "daily",
    "ok": true,
    "raw": 0,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_i_cfscorkr",
@@ -615,7 +926,11 @@
    "poll": "daily",
    "ok": true,
    "raw": 0,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_i_tyhansancforkr",
@@ -624,7 +939,11 @@
    "poll": "daily",
    "ok": true,
    "raw": 0,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_gcart",
@@ -633,7 +952,12 @@
    "poll": "daily",
    "ok": true,
    "raw": 2,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "무관": 1,
+    "만료": 1,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_mokpo",
@@ -642,7 +966,11 @@
    "poll": "daily",
    "ok": true,
    "raw": 0,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_yeosu",
@@ -651,7 +979,11 @@
    "poll": "daily",
    "ok": true,
    "raw": 0,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_wonju",
@@ -660,7 +992,12 @@
    "poll": "daily",
    "ok": true,
    "raw": 7,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "무관": 5,
+    "만료": 2,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_i_dcaforkr",
@@ -669,7 +1006,11 @@
    "poll": "daily",
    "ok": true,
    "raw": 0,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_i_cjcultureorg",
@@ -678,7 +1019,11 @@
    "poll": "daily",
    "ok": true,
    "raw": 0,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_edu_gen",
@@ -687,7 +1032,11 @@
    "poll": "daily",
    "ok": true,
    "raw": 1,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "만료": 1,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_edu_jje",
@@ -696,7 +1045,11 @@
    "poll": "daily",
    "ok": true,
    "raw": 0,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_edu_use",
@@ -705,7 +1058,11 @@
    "poll": "daily",
    "ok": true,
    "raw": 0,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_edu_cne",
@@ -714,7 +1071,11 @@
    "poll": "daily",
    "ok": true,
    "raw": 0,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_daeguart_notice",
@@ -723,7 +1084,12 @@
    "poll": "daily",
    "ok": true,
    "raw": 6,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "무관": 5,
+    "만료": 0,
+    "오래됨": 1
+   }
   },
   {
    "id": "g_ansanarts",
@@ -732,7 +1098,12 @@
    "poll": "daily",
    "ok": true,
    "raw": 6,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "오래됨": 3,
+    "무관": 3,
+    "만료": 0
+   }
   },
   {
    "id": "g_pajucf",
@@ -741,7 +1112,12 @@
    "poll": "daily",
    "ok": true,
    "raw": 1,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "무관": 1,
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_timfensemble",
@@ -750,7 +1126,12 @@
    "poll": "daily",
    "ok": true,
    "raw": 3,
-   "kept": 1
+   "kept": 1,
+   "drop": {
+    "무관": 1,
+    "만료": 1,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_guriarts",
@@ -759,7 +1140,11 @@
    "poll": "daily",
    "ok": true,
    "raw": 0,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_yeulmaru",
@@ -768,7 +1153,11 @@
    "poll": "daily",
    "ok": true,
    "raw": 1,
-   "kept": 0
+   "kept": 0,
+   "drop": {
+    "만료": 1,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_casuwon",
@@ -777,7 +1166,11 @@
    "poll": "daily",
    "ok": true,
    "raw": 1,
-   "kept": 1
+   "kept": 1,
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "hibrain",
@@ -787,7 +1180,12 @@
    "ok": true,
    "raw": 10,
    "kept": 9,
-   "declared": 10
+   "declared": 10,
+   "drop": {
+    "비음악": 1,
+    "만료": 0,
+    "오래됨": 0
+   }
   }
  ],
  "items": [
@@ -812,10 +1210,10 @@
    "instDetails": [],
    "channel": "artmore",
    "layer": "A",
+   "deadlineNote": "상시",
+   "applyEmail": "job@platform-l.org",
    "officialUrl": "http://spaf.or.kr/2024/",
    "originTraced": true,
-   "applyEmail": "job@platform-l.org",
-   "deadlineNote": "상시",
    "qualification": "경력무관,경력 1년 학력 대학교(4년)",
    "contact": "02-6929-4480",
    "pay": "시급 10,320원",
@@ -829,7 +1227,7 @@
    "bodyExcerpt": "문화예술분야의 일자리를 창출하고 실무 현장 실습 기회를 제공하기 위한 연수단원을 모집하오니 관심있는 분들의 많은 참여 바랍니다. · 근무 기간: 2026년 9월 중~2026년 12월 31일(채용일부터 약 4개월 간) · 유의사항 제출 서류가 허위일 경우 채용이 취소됨 제출 서류는 일체 반환하지 않음 기타 자세한 내용은 경영지원팀(02-6929-4480) 으로 문의하시기 바랍니다. · 문의하기 입사 지원 완료 닫기 예술경영지원센",
    "firstSeen": "2026-08-25",
    "isNew": true,
-   "extVer": 89
+   "extVer": 90
   },
   {
    "id": "311cef60305a6ede",
@@ -867,7 +1265,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-25",
    "isNew": true,
-   "extVer": 89
+   "extVer": 90
   },
   {
    "id": "4a3eef2496cf081e",
@@ -886,13 +1284,15 @@
    "careerReq": "미기재",
    "ageGroup": "성인",
    "inst": "전체",
-   "instDetails": [],
+   "instDetails": [
+    "관악"
+   ],
    "channel": "edu_goe",
    "layer": "C",
    "contact": "070-4021-7078",
    "email": "sbms@korea.kr",
    "workPeriod": "2026.09.14 ~ 2027.02.22",
-   "personnel": "교과 구분 채용 기간 인원 비고 음악 기간제 교사 2026. 9. 14. ~ 2027. 2. 22.(5개월 9일(2학기)) 1명 담임교사 - 순회교사 겸임",
+   "personnel": "1명",
    "addr": "경기 성남시 분당구 불정로 288(수내동)",
    "bodyExcerpt": "채용 응시 자격 : 내국인으로서 채용 분야 교원자격증 소지자 원서 접수 · 접수 방법 : 이메일(sbms@korea.kr) 또는 방문접수(2 층 교무실, ☎ 031-777-4184)",
    "deadline": "2026-08-28",
@@ -900,7 +1300,7 @@
    "orgAffil": "경기교육청",
    "firstSeen": "2026-08-25",
    "isNew": true,
-   "extVer": 89
+   "extVer": 90
   },
   {
    "id": "df2cbda14d4379fe",
@@ -935,7 +1335,7 @@
    "orgAffil": "경기교육청",
    "firstSeen": "2026-08-25",
    "isNew": true,
-   "extVer": 89
+   "extVer": 90
   },
   {
    "id": "ee0d661436e7a1ca",
@@ -966,80 +1366,8 @@
    "deadline": "2026-08-31",
    "deadlineFrom": "raw",
    "firstSeen": "2026-08-19",
-   "isNew": true,
-   "extVer": 89
-  },
-  {
-   "id": "9e9c34d080588a5e",
-   "org": "종로구립어르신합창단",
-   "region": "서울",
-   "source": "artinfokorea.com",
-   "title": "종로구립어르신합창단 지도단원 모집 (재공고)",
-   "nonMusic": null,
-   "url": "https://www.artinfokorea.com/jobs/478",
-   "date": "2026-08-24",
-   "kind": "단원",
-   "tier": "연주",
-   "obri": false,
-   "certReq": "무관",
-   "degreeReq": "무관",
-   "careerReq": "미기재",
-   "ageGroup": "성인",
-   "inst": "성악",
-   "instDetails": [
-    "알토"
-   ],
-   "officialUrl": "https://www.jfac.or.kr/site/main/archive/post/%EA%B3%B5%EA%B3%A0-2026%EB%85%84-%EC%A2%85%EB%A1%9C%EA%B5%AC%EB%A6%BD%EC%96%B4%EB%A5%B4%EC%8B%A0%ED%95%A9%EC%B0%BD%EB%8B%A8-%EC%A7%80%EB%8F%84%EB%8B%A8%EC%9B%90-%EC%95%8C%ED%86%A0-%EB%AA%A8%EC%A7%91-%EC%9E%AC%EA%B3%B5%EA%B3%A0-%EC%95%88%EB%82%B4",
-   "channel": "artinfo",
-   "layer": "A",
-   "duty": "지도단원 솔리스트(알토) 활동 · 알토 파트 단원 지도 교육 및 합창단 운영 관련 업무",
-   "email": "song@jfac.or.kr",
-   "pay": "세전 월 550,000원",
-   "personnel": "유급단원(지도단원) 1인 : 알토",
-   "deadline": "2026-08-25",
-   "deadlineFrom": "raw",
-   "firstSeen": "2026-08-13",
-   "isNew": true,
-   "extVer": 89
-  },
-  {
-   "id": "e151b29525ebd6a7",
-   "org": "제물포문화재단(구립합창단)",
-   "region": "인천",
-   "source": "artinfokorea.com",
-   "title": "제물포구 구립합창단 성악지도자/반주자/단무장 모집",
-   "nonMusic": null,
-   "url": "https://www.artinfokorea.com/jobs/477",
-   "date": "2026-08-24",
-   "kind": "반주",
-   "tier": "연주",
-   "obri": false,
-   "certReq": "무관",
-   "degreeReq": "무관",
-   "careerReq": "미기재",
-   "ageGroup": "성인",
-   "inst": "건반",
-   "instDetails": [
-    "피아노",
-    "소프라노"
-   ],
-   "channel": "artinfo",
-   "layer": "A",
-   "officialUrl": "https://www.jcf.or.kr/main/bbs/bbsMsgDetail.do?bcd=announce&msg_seq=299",
-   "originTraced": true,
-   "qualification": "만 20세 이상인자 · 남자의 경우 병역법에 의한 병역을 필한 자 또는 면제자",
-   "contact": "032-886-9045",
-   "duty": "주 2회 정기연습 및 공연 준비 등 필요시 특별연습 참여",
-   "email": "jcf_5@jcf.or.kr",
-   "pay": "월 800,000원(세전)",
-   "workPeriod": "위촉일로부터 2년",
-   "personnel": "총 5명",
-   "deadline": "2026-08-25",
-   "deadlineFrom": "raw",
-   "verifiedAt": "2026-08-19",
-   "firstSeen": "2026-08-19",
-   "isNew": true,
-   "extVer": 89
+   "isNew": false,
+   "extVer": 90
   },
   {
    "id": "fb008b812b460034",
@@ -1074,8 +1402,8 @@
    "lng": 128.6885063,
    "addrFrom": "geo",
    "firstSeen": "2026-08-24",
-   "isNew": true,
-   "extVer": 89
+   "isNew": false,
+   "extVer": 90
   },
   {
    "id": "e79177c5fab8eed3",
@@ -1113,8 +1441,8 @@
    "lng": 129.024375,
    "addrFrom": "geo",
    "firstSeen": "2026-08-21",
-   "isNew": true,
-   "extVer": 89
+   "isNew": false,
+   "extVer": 90
   },
   {
    "id": "5d5183294251f902",
@@ -1149,8 +1477,8 @@
    "deadlineFrom": "raw",
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-24",
-   "isNew": true,
-   "extVer": 89
+   "isNew": false,
+   "extVer": 90
   },
   {
    "id": "c227067b5acf6e1c",
@@ -1169,7 +1497,9 @@
    "careerReq": "미기재",
    "ageGroup": "성인",
    "inst": "전체",
-   "instDetails": [],
+   "instDetails": [
+    "관악"
+   ],
    "channel": "edu_seoul",
    "layer": "C",
    "contact": "02-715-4916",
@@ -1185,8 +1515,8 @@
    "deadlineFrom": "raw",
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-24",
-   "isNew": true,
-   "extVer": 89
+   "isNew": false,
+   "extVer": 90
   },
   {
    "id": "c177a947ace75d0c",
@@ -1223,8 +1553,8 @@
    "deadlineFrom": "raw",
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-24",
-   "isNew": true,
-   "extVer": 89
+   "isNew": false,
+   "extVer": 90
   },
   {
    "id": "e29203a6b490758a",
@@ -1243,7 +1573,9 @@
    "careerReq": "미기재",
    "ageGroup": "성인",
    "inst": "전체",
-   "instDetails": [],
+   "instDetails": [
+    "관악"
+   ],
    "channel": "edu_seoul",
    "layer": "C",
    "contact": "02-475-4641",
@@ -1258,8 +1590,8 @@
    "deadlineFrom": "raw",
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-24",
-   "isNew": true,
-   "extVer": 89
+   "isNew": false,
+   "extVer": 90
   },
   {
    "id": "9807eb719f058d8c",
@@ -1284,47 +1616,11 @@
    "layer": "B",
    "originIsList": true,
    "subjectFrom": "attach",
-   "addr": "전남광주통합특별시 북구 본촌마을길",
-   "lat": 35.2159269,
-   "lng": 126.8853507,
-   "addrFrom": "geo",
    "contact": "062-605-1004",
+   "addr": "광주광역시 북구 본촌동 양산택지소로36",
    "firstSeen": "2026-08-25",
-   "isNew": true,
-   "extVer": 89
-  },
-  {
-   "id": "49ab8e2790c6da1a",
-   "org": "남해정보산업고등학교",
-   "region": "경남",
-   "source": "gne.go.kr",
-   "title": "[남해정보산업고] 오케스트라 밴드반 외부강사 채용",
-   "nonMusic": null,
-   "url": "https://www.gne.go.kr/works/user/recruitment/BD_recruitmentDetail.do?regSn=1813578",
-   "date": "2026-08-21",
-   "kind": "강사",
-   "tier": "교육 — 취미·입문",
-   "obri": false,
-   "certReq": "무관",
-   "degreeReq": "무관",
-   "careerReq": "미기재",
-   "ageGroup": "성인",
-   "inst": "전체",
-   "instDetails": [],
-   "channel": "gne",
-   "layer": "C",
-   "orgBoard": "경남 학교 방과후(교육청 포털)",
-   "orgAffil": "경남교육청",
-   "contact": "055-862-3124",
-   "deadline": "2026-08-25",
-   "deadlineFrom": "raw",
-   "addr": "경상남도 남해군 탑동로 46",
-   "lat": 34.8966168,
-   "lng": 127.8738213,
-   "addrFrom": "geo",
-   "firstSeen": "2026-08-21",
    "isNew": false,
-   "extVer": 89
+   "extVer": 90
   },
   {
    "id": "055ecb2c1356228b",
@@ -1361,7 +1657,7 @@
    "workHours": "화요일, 목요일 14:40~15:20(매 주는 아님)",
    "personnel": "보컬 강사 1명, 밴드부 기악 지도 강사(악기 무관) 1명",
    "bodyExcerpt": "강의 시간 : 채용 기간 동안 1 인당 총 25 시간(초등학교 1 시간은 40 분 기준) · 2026 년 8 월 31 일 이후 계약서 작성 예정이므로 기간 확인 필요 · 성범죄 경력조회 및 아동학대관련범죄 조회 결과 및 채용신체검사 결과 결격사유가 있는 경우 최종 선정 취소 처리함 . · 범죄경력조회 및 채용 신체검사 결과 이상이 있을 시에는 합격을 취소함",
-   "extVer": 89
+   "extVer": 90
   },
   {
    "id": "b83667209a8cd77d",
@@ -1392,7 +1688,7 @@
    "bodyExcerpt": "자격 조건 - 세례받은 지 3년 이상 된 신자 - 지휘 경험자 3. · 마감: 채용시까지 6. · 채용 절차: 서류 심사 후 면접 일자 통보 7. · 제출하신 서류는 채용 완료 후 폐기하며 별도의 반환은 없습니다",
    "firstSeen": "2026-08-19",
    "isNew": false,
-   "extVer": 89
+   "extVer": 90
   },
   {
    "id": "6cb1a301d8f777cc",
@@ -1432,7 +1728,7 @@
    "orgBoard": "울산문화예술회관(시립예술단)",
    "firstSeen": "2026-08-18",
    "isNew": false,
-   "extVer": 89
+   "extVer": 90
   },
   {
    "id": "11376188af16b7d1",
@@ -1469,7 +1765,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-19",
    "isNew": false,
-   "extVer": 89
+   "extVer": 90
   },
   {
    "id": "c6c2c8ce91d4ded5",
@@ -1506,7 +1802,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-19",
    "isNew": false,
-   "extVer": 89
+   "extVer": 90
   },
   {
    "id": "bd2c17f19933f651",
@@ -1534,11 +1830,11 @@
    "deadlineFrom": "cjob-남은기간",
    "denomination": "대한예수교 장로회 (합동",
    "documents": "이력서",
-   "personnel": "반주자",
-   "pay": "30만원",
    "firstSeen": "2026-08-14",
    "isNew": false,
-   "extVer": 89
+   "personnel": "반주자",
+   "pay": "30만원",
+   "extVer": 90
   },
   {
    "id": "3dc1300363d803e8",
@@ -1572,7 +1868,7 @@
    "addrFrom": "geo",
    "firstSeen": "2026-08-14",
    "isNew": false,
-   "extVer": 89
+   "extVer": 90
   },
   {
    "id": "0251912d3b918734",
@@ -1599,15 +1895,15 @@
    "layer": "C",
    "deadlineFrom": "cjob-남은기간",
    "addr": "경기 부천시 오정구 상오정로 132 (오정동, 성은교회)",
+   "firstSeen": "2026-08-08",
+   "isNew": false,
    "personnel": "반주자",
    "qualification": "피아노 또는 음악 관련 전공자 및 교회 반주 경험자",
    "duty": "주일예배 및 성가대 피아노 반주자",
    "pay": "월 40만원",
    "workHours": "매주 일요일 11시~12시(1시간)",
    "bodyExcerpt": "모집분야 : 주일예배 및 성가대 피아노 반주자 · 성가대 연습 : 주일 10시~10시 50분, 12시 10분~12시 50분(시간은 유동적임)· 지원자격 : 피아노 또는 음악 관련 전공자 및 교회 반주 경험자 우대 · 주요업무 : 주일예배 찬송가 및 예배 반주, 성가대 찬양 반주, 성가대 연습 반주",
-   "firstSeen": "2026-08-08",
-   "isNew": false,
-   "extVer": 89
+   "extVer": 90
   },
   {
    "id": "b2e199e32140e0ed",
@@ -1636,13 +1932,13 @@
    "deadlineNote": "상시",
    "denomination": "예장 합동",
    "documents": "이력서",
-   "personnel": "반주자",
-   "pay": "20만원",
    "addr": "전북 김제시 황산면 남산로 334",
    "regionBoard": "기타",
    "firstSeen": "2026-08-08",
    "isNew": false,
-   "extVer": 89
+   "personnel": "반주자",
+   "pay": "20만원",
+   "extVer": 90
   },
   {
    "id": "5fbc7e4eb4f8d92d",
@@ -1672,11 +1968,11 @@
    "addr": "경기 의왕시 경수대로 262 (오전동, 의왕서해그랑블(블루스퀘어))",
    "denomination": "순복음",
    "documents": "간단한 이력서",
-   "personnel": "반주자",
-   "pay": "협의",
    "firstSeen": "2026-08-08",
    "isNew": false,
-   "extVer": 89
+   "personnel": "반주자",
+   "pay": "협의",
+   "extVer": 90
   }
  ]
 }

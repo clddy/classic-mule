@@ -76,8 +76,12 @@ def get(s, url, encoding=None, retries=2, **kw):
     for attempt in range(retries + 1):
         try:
             r = s.get(url, timeout=20, verify=False, **kw)
-            if 500 <= r.status_code < 600:
-                # 5xx 도 딸꾹질일 수 있다 — 타임아웃과 같은 백오프로 다시 물어본다
+            if 500 <= r.status_code < 600 or r.status_code == 403:
+                # 5xx 도 딸꾹질일 수 있다 — 타임아웃과 같은 백오프로 다시 물어본다.
+                # 403 도 같이 올린다: 봇 차단 페이지('Just a moment…')는 본문이 멀쩡한
+                # HTML 이라 목록 파서가 0건을 돌려주고, 헬스체크가 '파서 깨짐'으로 오진한다.
+                # 기독정보넷이 2026-08-26 새벽 Cloudflare 뒤로 들어가며 실제로 그랬다.
+                # 404 는 올리지 않는다 — 빈 목록을 404 로 주는 게시판이 있어 호출부가 읽는다.
                 raise requests.HTTPError(f"{r.status_code} {r.reason}", response=r)
             if encoding:
                 r.encoding = encoding
@@ -1780,7 +1784,11 @@ def extract_fields(text):
                 v = _clean_field(key, val)
                 if not v:
                     continue
-                if key in _SHAPE and not _shape_ok(key, v):
+                if _HEAD_RUN_LEAD.match(v) or (key in _SHAPE and not _shape_ok(key, v)):
+                    # 칸 이름이 줄줄이 앞에 붙으면 값이 아니라 표 한 판이다 —
+                    # '교과 구분 채용 기간 인원 비고 음악 기간제 교사 2026. 9. 14. ~ … 1명 …'
+                    # (샛별중, L4#6 2026-08-26). 같은 표의 납작한 칸에 '1명'이 멀쩡히 있는데도
+                    # 콜론이 붙었다는 이유로 강한 모드가 이걸 덥석 받았다.
                     # 콜론이 붙었다고 다 값은 아니다 — '근무 기간 : 상기 채용 기간 참고'
                     # (망포중, 2026-08-22)처럼 다른 데를 가리키는 안내가 흔하다. 이걸 덥석
                     # 받으면 같은 표에 '채용기간 2026/09/01~2026/09/11'이 멀쩡히 있는데도
@@ -1927,6 +1935,14 @@ def _candidates(t, pat, loose=False):
 _DATE_START = re.compile(r"(?:20)?\d{2}\s*[.\-/년]\s*\d{1,2}\s*[.\-/월]\s*\d{1,2}")
 # 표 앞 열에 딸려 온 '과목 인원' — 버리지 않고 해당 필드로 넘길 수 있게 떼어 둔다
 _LEAD_SUBJ_CNT = re.compile(r"^([가-힣]{2,10})\s*(\d{1,3}\s*명)\b")
+# 표를 평탄화하면 칸 이름이 줄줄이 앞에 붙는다 — 그건 값이 아니라 표 한 판이다.
+# QC 의 '헤더 낱말 연쇄'와 같은 판정인데, 그쪽은 화면 직전이라 이미 늦다(빈칸이 된다).
+# 여기서 걸러 두면 같은 표의 납작한 칸에서 제 값을 다시 찾아온다 (샛별중, 2026-08-26).
+# 띄어 쓴 칸 이름('채용 기간')까지 받는다 — QC 쪽 규칙이 붙여 쓴 꼴만 알아 새고 있었다.
+_HEAD_RUN_LEAD = re.compile(
+    r"^(?:(?:교과|과목|분야|직종|인원|성명|비고|구분|학교급|근무\s*형태|채용\s*사유"
+    r"|채용\s*기간|계약\s*기간|근무\s*기간|근무\s*시간|모집\s*인원|채용\s*인원"
+    r"|대상|요일|시수|자격\s*면허)\s+){3,}")
 # 근무시간 값이 시작하는 자리 — 'HH:MM', '전일제', '시간제'. 요일·시수는 넣지 않는다
 # (앞 열 판정에만 쓰므로 모호한 신호를 넣으면 멀쩡한 값을 자른다).
 _TIME_START = re.compile(r"\d{1,2}\s*:\s*\d{2}|전일제|시간제")

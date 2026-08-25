@@ -1,4 +1,5 @@
 # 메인: 소스 레지스트리 기반 수집 → dedup(canonical) → 마감일 보강 → 커버리지 리포트
+import collections
 import json, os, re, sys, time, traceback
 from datetime import date, datetime, timedelta
 from bs4 import BeautifulSoup
@@ -305,7 +306,7 @@ def find_attachments(soup, base_url):
                     cands.append((full, el.get_text(" ", strip=True)))
     return cands[:4]
 
-EXT_VER = 89         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
+EXT_VER = 90         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
                      # v32(2026-08-02): 모집분야 구획 악기 추출(insts_from_recruit_text) + 원문 보관층
                      # 24: work.sen 등록일(게시일) 추출 추가 — date=None이던 승계분을 다시 뽑게
                      # 25: body_text 도입 — 본문을 <header>에 넣는 사이트(대전교육청)의 마감일을
@@ -2241,18 +2242,26 @@ def run(force_all=False):
             DECLARED_TOTALS.pop(src["id"], None)   # 지난 회차 값이 남아 오판하지 않도록
             raw = src["fn"](s)
             kept = []
+            # 왜 걸러졌는지를 센다 — 헬스체크가 '수집 0건'을 보고 분류기 고장인지
+            # 만료 공고뿐인지 가릴 수 있게 (2026-08-26). 짐작 대신 사실을 넘긴다.
+            drop = collections.Counter()
             for it in raw:
                 if not relevant(it["title"]):
+                    drop["무관"] += 1
                     continue
                 if it.get("nonMusic") or not musician_relevant(it["title"], it["kind"], it.get("org", "")):
+                    drop["비음악"] += 1
                     continue   # nonMusic: 원제목 기준 음악 곁다리 판정 (make_item에서 세팅)
                 future_dl = it["deadline"] and it["deadline"] >= today.isoformat()
                 if it["date"] and it["date"] < cutoff and not future_dl:
+                    drop["오래됨"] += 1
                     continue
                 ym = re.search(r"20\d{2}", it["title"])
                 if ym and int(ym.group(0)) < today.year and not future_dl:
+                    drop["지난해"] += 1
                     continue
                 if it["deadline"] and it["deadline"] < stale:
+                    drop["만료"] += 1
                     continue
                 it["channel"] = src["id"]
                 it["layer"] = src["layer"]
@@ -2332,12 +2341,16 @@ def run(force_all=False):
                             it["deadline"] = fixed
                             it["deadlineFrom"] = (it.get("deadlineFrom") or "") + "+yearfix"
             # 마감이 이미 지난 공고는 제거 (오늘 이전) — 만료 공고 노출 방지
+            n_before = len(kept)
             kept = [i for i in kept if not (i["deadline"] and i["deadline"] < today.isoformat())]
+            drop["만료"] += n_before - len(kept)
             # 마감을 못 찾았고 게시된 지 120일 넘은 공고는 정리 (사실상 만료 — 상시모집은 예외)
             # 무마감 공고를 '기한 확인 필요'로 오래 노출하지 않기 위함
             old_cut = (today - timedelta(days=120)).isoformat()
+            n_before = len(kept)
             kept = [i for i in kept if i["deadline"] or i.get("deadlineNote") == "상시"
                     or not i["date"] or i["date"] >= old_cut]
+            drop["오래됨"] += n_before - len(kept)
             # 소스가 비정상적으로 0건 반환(서버 다운 등) 시 이전 수집분 승계
             if not raw:
                 carried = [it for it in prev_items if it.get("channel") == src["id"]]
@@ -2355,6 +2368,8 @@ def run(force_all=False):
             dec = DECLARED_TOTALS.get(src["id"])
             if dec is not None:                    # 목록이 스스로 밝힌 건수 (파서 자기검증)
                 stat["declared"] = dec
+            if drop:                               # 걸러진 사유별 건수 (헬스체크가 읽는다)
+                stat["drop"] = dict(drop)
             source_stats.append(stat)
             log(f"OK  {src['name']}: 원본 {len(raw)}건 → 수집 {len(kept)}건"
                 + (f" (목록 표기 {dec}건)" if dec is not None else ""))

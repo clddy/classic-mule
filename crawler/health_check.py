@@ -189,8 +189,20 @@ def check_sources(rep, doc, hist, today):
                 mk = median(kepts)
                 # kept=0은 대부분 소스의 정상 상태다. 평소 꾸준히 걷히던 곳만 본다.
                 if mk >= 3 and kept == 0 and raw > 0:
-                    rep.add("HIGH", "분류기",
-                            f"{name}: 원본 {raw}건인데 수집 0건 (평소 {mk:g}건) — 분류·필터 깨짐 의심")
+                    # '수집 0건'이 분류기 고장인지 만료 공고뿐인지는 짐작할 게 아니라
+                    # 크롤이 세어 준 사유(drop)를 보면 된다 (2026-08-26). KBS·광주시립·
+                    # 안동은 지난 채용 공고가 계속 걸려 있는 아카이브형 게시판인데,
+                    # enrich 가 18일간 죽어 마감을 못 읽는 동안 '기한 미정'으로 남아 있었다.
+                    # 마감을 다시 읽게 되자 전부 걷혔고, 그건 고장이 아니라 제 일을 한 것이다.
+                    # baseline(평소 3~5건)은 그 18일 동안 쌓인 값이라 3주는 0을 따라가지 못한다.
+                    d = s.get("drop") or {}
+                    aged = d.get("만료", 0) + d.get("오래됨", 0) + d.get("지난해", 0)
+                    if aged >= raw * 0.5:
+                        rep.add("LOW", "분류기",
+                                f"{name}: 원본 {raw}건이 전부 지난 공고 — 정상 (평소 {mk:g}건, 사유 {d})")
+                    else:
+                        rep.add("HIGH", "분류기",
+                                f"{name}: 원본 {raw}건인데 수집 0건 (평소 {mk:g}건) — 분류·필터 깨짐 의심")
 
         h["history"] = (past + [{
             "date": today,
