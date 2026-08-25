@@ -1,5 +1,5 @@
 window.YEYAK_ROOMS = {
- "fetched": "2026-08-24",
+ "fetched": "2026-08-25",
  "items": [
   {
    "name": "도봉구 창4동 주민센터 공연연습실(지하)",
@@ -144,7 +144,7 @@ window.YEYAK_ROOMS = {
    "price": "무료",
    "selection": "선착순",
    "apply_method": "인터넷",
-   "apply_timing": "2026.09.01 09:00 ~ 2026.09.30 20:00",
+   "apply_timing": "2026.09.01 09:00 ~ 2026.12.31 20:00",
    "eligibility": "",
    "hours": "2026.10.01 ~ 2026.10.31",
    "phone": "성동구 / 02-2204-7554",
