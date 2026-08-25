@@ -426,8 +426,14 @@ def parse_artinfo(s):
 CJOB_INCLUDE = re.compile(r"피아노|오르간|반주|성악|솔리스트|바이올린|비올라|첼로|플루트|오케스트라|지휘|콰르텟|앙상블|소프라노|알토|테너|베이스")
 CJOB_EXCLUDE = re.compile(r"드럼|일렉|기타리스트|베이스 ?기타|신디|미디|보컬 ?트레이너")
 
+# 2026-08-26 Cloudflare 봇 차단이 켜지며 403. robots.txt 는 일반 수집을 허용하고
+# (search=yes) AI 학습 봇만 지목해 막고 있어, 스스로를 밝히는 UA 로 허용 목록 등재를
+# help@cjob.co.kr 에 요청했다. 허용되면 이 UA 로 바로 통한다 — 숨는 UA 로 바꾸지 말 것.
+CJOB_UA = "PodiumBot/1.0 (+https://podiumclassical.kr)"
+
 def parse_cjob(s):
-    r = get(s, "https://www.cjob.co.kr/offerIG?c_jikjong=2&page=1&device=pc")
+    r = get(s, "https://www.cjob.co.kr/offerIG?c_jikjong=2&page=1&device=pc",
+            headers={"User-Agent": CJOB_UA})
     items = []
     for a in _soup(r).select('a[href*="bo_table=offerIG"]'):
         if "wr_id=" not in a["href"]:
