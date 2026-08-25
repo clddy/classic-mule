@@ -1,6 +1,6 @@
 {
  "updatedAt": "2026-08-25",
- "count": 1275,
+ "count": 1276,
  "items": {
   "f7b1c263744b9ece": {
    "id": "f7b1c263744b9ece",
@@ -30692,7 +30692,8 @@
    "tier": "연주",
    "inst": "건반",
    "instDetails": [
-    "피아노"
+    "피아노",
+    "소프라노"
    ],
    "ageGroup": "성인",
    "obri": false,
@@ -31266,7 +31267,7 @@
    "source": "work.sen.go.kr",
    "channel": "edu_seoul",
    "layer": "C",
-   "title": "성남고등학교 윈드오케스트라 클라리넷 강사 채용",
+   "title": "[성남고] 윈드오케스트라 클라리넷 강사 채용",
    "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=108406",
    "date": "2026-08-19",
    "deadline": "2026-08-25",
@@ -31275,7 +31276,8 @@
    "tier": "교육 — 취미·입문",
    "inst": "목관",
    "instDetails": [
-    "클라리넷"
+    "클라리넷",
+    "관악"
    ],
    "ageGroup": "성인",
    "obri": false,
@@ -31419,8 +31421,10 @@
    "deadlineFrom": "raw",
    "kind": "강사",
    "tier": "교육 — 취미·입문",
-   "inst": "전체",
-   "instDetails": [],
+   "inst": "목관",
+   "instDetails": [
+    "관악"
+   ],
    "ageGroup": "성인",
    "obri": false,
    "certReq": "아니오",
@@ -31650,8 +31654,10 @@
    "deadlineFrom": "raw",
    "kind": "교원",
    "tier": "교육 — 학교",
-   "inst": "전체",
-   "instDetails": [],
+   "inst": "목관",
+   "instDetails": [
+    "관악"
+   ],
    "ageGroup": "성인",
    "obri": false,
    "certReq": "무관",
@@ -32513,7 +32519,8 @@
    "tier": "교육 — 취미·입문",
    "inst": "목관",
    "instDetails": [
-    "플루트"
+    "플루트",
+    "관악"
    ],
    "ageGroup": "성인",
    "obri": false,
@@ -32580,8 +32587,10 @@
    "deadlineFrom": "raw",
    "kind": "강사",
    "tier": "교육 — 학교",
-   "inst": "전체",
-   "instDetails": [],
+   "inst": "목관",
+   "instDetails": [
+    "관악"
+   ],
    "ageGroup": "성인",
    "obri": false,
    "certReq": "무관",
@@ -32664,7 +32673,11 @@
    "orgAffil": "경기교육청",
    "firstSeen": "2026-08-24",
    "lastSeen": "2026-08-25",
-   "days": 2
+   "days": 2,
+   "addr": "경기도 용인시 수지구 성복1로 147",
+   "lat": 37.315029,
+   "lng": 127.0641456,
+   "addrFrom": "geo"
   },
   "3ad9610f4073bf19": {
    "id": "3ad9610f4073bf19",
@@ -32729,7 +32742,11 @@
    "firstSeen": "2026-08-24",
    "lastSeen": "2026-08-25",
    "days": 2,
-   "pay": "시간당 30,000원"
+   "pay": "시간당 30,000원",
+   "addr": "인천광역시 남동구 예술로172번길",
+   "lat": 37.4487082,
+   "lng": 126.7032232,
+   "addrFrom": "geo"
   },
   "5080a7bf4e8b575b": {
    "id": "5080a7bf4e8b575b",
@@ -32767,15 +32784,17 @@
    "source": "work.sen.go.kr",
    "channel": "edu_seoul",
    "layer": "C",
-   "title": "[목운중] 시간강사 채용 공고: 음악 1명",
+   "title": "[목운중] 시간강사 채용",
    "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=108973",
    "date": "2026-08-25",
    "deadline": "2026-08-25",
    "deadlineFrom": "raw",
    "kind": "강사",
    "tier": "교육 — 학교",
-   "inst": "전체",
-   "instDetails": [],
+   "inst": "목관",
+   "instDetails": [
+    "관악"
+   ],
    "ageGroup": "성인",
    "obri": false,
    "certReq": "무관",
@@ -32840,8 +32859,10 @@
    "deadlineFrom": "raw",
    "kind": "교원",
    "tier": "교육 — 학교",
-   "inst": "전체",
-   "instDetails": [],
+   "inst": "목관",
+   "instDetails": [
+    "관악"
+   ],
    "ageGroup": "성인",
    "obri": false,
    "certReq": "예",
@@ -32854,6 +32875,43 @@
    "email": "jiyeong127@korea.kr",
    "addr": "경기 화성시 효행구 봉담읍 상리1길 128",
    "orgAffil": "경기교육청",
+   "firstSeen": "2026-08-25",
+   "lastSeen": "2026-08-25",
+   "days": 1
+  },
+  "311cef60305a6ede": {
+   "id": "311cef60305a6ede",
+   "org": "서울영화초등학교",
+   "region": "서울",
+   "source": "work.sen.go.kr",
+   "channel": "edu_seoul",
+   "layer": "C",
+   "title": "[서울영화초] 오케스트라 강사 채용",
+   "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=109006",
+   "date": "2026-08-25",
+   "deadline": "2026-08-30",
+   "deadlineFrom": "raw",
+   "kind": "강사",
+   "tier": "교육 — 취미·입문",
+   "inst": "현악",
+   "instDetails": [
+    "바이올린"
+   ],
+   "ageGroup": "성인",
+   "obri": false,
+   "certReq": "무관",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "personnel": "1명",
+   "bodyExcerpt": "공인된 자격증 사본, 각종 경력증명서",
+   "pay": "시급",
+   "workPeriod": "2026.09.01 ~ 2027.02.28",
+   "workHours": "14:40~16:30 / 주 1회 2시간, 15주",
+   "duty": "오케스트라 바이올린",
+   "contact": "02-824-6051",
+   "email": "kimej740@younghwa.sen.es.kr",
+   "addr": "서울특별시 동작구 등용로8",
+   "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-25",
    "lastSeen": "2026-08-25",
    "days": 1

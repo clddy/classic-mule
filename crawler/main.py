@@ -9,7 +9,7 @@ from common import (new_session, get, relevant, extract_deadline, priority_deadl
                     classify_insts, find_subject, find_music_subjects, find_music_courses,
                     classify_kind, classify_tier, is_obri, cert_required, degree_req, career_req, age_group,
                     region_from, EXCLUDE, compact_title, music_only_title, body_text, valid_addr,
-                    insts_from_recruit_text, tls_blocked, curl_get, extract_fields, extract_contact,
+                    insts_from_recruit_text, tls_blocked, curl_get, extract_fields, extract_contact, strip_navi,
                     extract_email, DECLARED_TOTALS)
 from sources import SOURCES
 from institutions import INSTITUTIONS
@@ -722,8 +722,8 @@ def _line_value(ln):
     if re.search(r"[:：]", ln):                               v += 1   # 라벨형(값이 붙어 있음)
     return v
 
-def _body_excerpt(soup, title=None):
-    return _body_excerpt_text(soup.get_text("\n", strip=True), title=title)
+def _body_excerpt(soup, title=None, org=None):
+    return _body_excerpt_text(soup.get_text("\n", strip=True), title=title, org=org)
 
 def _merge_insts(item, grp, dets):
     """추출된 악기를 기존 태그와 합친다 — 제목 추출분을 지우지 않는다(악기명 보존 원칙)."""
@@ -1060,7 +1060,7 @@ _NOT_ORIGIN = re.compile(
 _ORIGIN_HINT = re.compile(r"\.or\.kr|\.go\.kr|\.ac\.kr|\.re\.kr", re.I)
 
 
-def _trace_origin(s, page_text, item):
+def _trace_origin(soup, page_text, item):
     """집계본 본문에서 원출처(기관 홈페이지·공고 원문)를 역추적한다.
 
     찾으면 officialUrl 로 앉힌다 — 그 뒤 링크 검증·마감 추출은 기존 원문 경로가 이어받는다.
@@ -1069,7 +1069,7 @@ def _trace_origin(s, page_text, item):
     if item.get("officialUrl"):
         return None
     cands = []
-    for a in s.find_all("a", href=True):
+    for a in soup.find_all("a", href=True):
         href = (a["href"] or "").strip()
         if not href.startswith("http") or _NOT_ORIGIN.search(href):
             continue
@@ -1909,7 +1909,9 @@ def enrich_deadline(s, item, allow_render=True, details_only=False):
             else:
                 # 원출처를 본문에서 역추적해 본다 — 집계본을 그대로 싣지 않기 위해서다
                 # (워크오더 08-17 §6). 찾으면 그쪽이 정본이 되고, 못 찾으면 게시를 보류한다.
-                _trace_origin(s, page_text, item)
+                # 첫 인자는 세션이 아니라 soup 이다 — 이름이 s 로 같아 세션을 넘기고 있었고,
+                # 아트인포 항목의 원출처 역추적이 통째로 죽어 있었다 (2026-08-25).
+                _trace_origin(soup, page_text, item)
                 _extract_contact(page_text, item)
         # 기독정보넷은 전용 표 구조 — 별도 파서로 처리
         if item.get("source") == "cjob.co.kr":
@@ -2004,8 +2006,10 @@ def enrich_deadline(s, item, allow_render=True, details_only=False):
         # (집계 포털 무마감 공고를 '상시'로 눕히던 기본값 제거 — 상시는 본문에
         #  '상시모집' 등이 명시된 경우에만 위에서 설정된다. 마감을 못 찾은 항목은
         #  게시일 기준 노후 정리 로직이 정직하게 처리한다.)
-    except Exception:
-        log(f"  enrich 실패 {item['url'][:60]}")
+    except Exception as e:
+        # 예외 종류를 남긴다 — 종전에는 이유 없이 '실패'만 찍혀서 회차마다 80~90건이
+        # 나는데도 무엇이 문제인지 알 수 없었다 (2026-08-25).
+        log(f"  enrich 실패 [{type(e).__name__}] {e!s:.60} {item['url'][:60]}")
 
 # ---------- 마감 미확인 추적 ----------
 # '기한 확인필요'를 화면에 오래 두지 않기로 함 (2026-07-23): 크롤러가 매 회차 전 단계
