@@ -137,7 +137,7 @@ const REGION_LIST = ["서울", "경기", "인천", "강원", "대전", "세종",
 // 통합 전에 수집된 글은 region이 아직 '광주'·'전남'이다 — 다음 크롤 전까지 화면에서 옮겨 읽는다.
 const REGION_MIGRATE = { "광주": "광주·전남", "전남": "광주·전남" };
 function regionOf(j){ const r = j.region || "기타"; return REGION_MIGRATE[r] || r; }
-const STATUSES = ["접수중", "마감임박", "상시모집", "기한 미정", "마감"];
+const STATUSES = ["접수중", "마감임박", "기한 미정", "마감"];   // 상시모집은 접수중에 합류 (2026-08-26)
 
 // 기본 정렬은 마감 임박순 — '언제까지 지원 가능한가'가 이 보드의 1차 정보다 (2026-07-23)
 const state = { tab: "전체", tiers: new Set(), bands: new Set(), insts: new Set(), regions: new Set(), status: new Set(), provided: new Set(), newOnly: false, obri: false, noCert: false, noCareer: false, query: "", sort: "deadline" };
@@ -214,8 +214,10 @@ function statusOf(j) {
   // 상시모집은 날짜보다 앞선다 — 교회 공고가 관행처럼 적어 둔 '연말 마감'에 D-day를 붙이면
   // 있지도 않은 기한을 우리가 지어내는 셈이다 (2026-08-17).
   // 교회 반주·지휘처럼 '사람 구해질 때까지' 열려 있는 자리도 같은 상태로 묶는다.
+  // 라벨은 '접수중'으로 합류 — '상시모집' 배지 폐기 (2026-08-26 사용자 지시:
+  // 상시 판정은 관행 문구에 잘 속고, 방문자에게 중요한 건 '지금 지원 가능한가'뿐이다)
   if (j.deadlineText === "상시" || (j.obri && !base)) {
-    return { key: "상시모집", label: "상시모집", cls: "dd-open", dday: 9000 };
+    return { key: "접수중", label: "접수중", cls: "dd-open", dday: 9000 };
   }
   if (!base) {
     const cn = concertNum(j);                       // 연주일(YYYYMMDD 정수) — 없으면 Infinity
@@ -499,7 +501,7 @@ function metaRows(j) {
   const st = statusOf(j);
   const dl = j.deadline
     ? `${j.deadline} <span style="color:var(--ink-soft)">(${st.label})</span>`
-    : (j.deadlineText === "상시" ? "상시 모집" : (j.src === "공식" ? "기한 미정" : (j.deadlineText || "협의")));
+    : (j.deadlineText === "상시" ? "접수중" : (j.src === "공식" ? "기한 미정" : (j.deadlineText || "협의")));
   const rows = [["기관", j.org], ["지역", regionOf(j)], ["마감", dl]];
   const insts = (j.insts || []).join("·");
   const senior = (j.positions || []).filter(p => /수석|악장|차석/.test(p)).join("·");
@@ -545,7 +547,9 @@ function metaRows(j) {
   }
   // 주소가 있으면 지도로 바로 보낸다. 악기를 들고 갈 곳이라 '어디인지'가 지원 여부를 가른다.
   // 주소가 없으면 기관 이름으로 찾게 한다 — 이름만 있어도 지도에서 대개 나온다.
-  const place = cleanVal(j.addr) || (j.org && !/기독정보넷|교육청|포털/.test(j.org) ? cleanVal(j.org) : "");
+  // 교구도 뺀다 — 게시판 운영기관 이름으로 지도를 찍으면 본부(교구청)에 핀이 박힌다
+  // (성복동성당 공고에 수원교구청 위치가 찍혔다, 2026-08-26).
+  const place = cleanVal(j.addr) || (j.org && !/기독정보넷|교육청|교구|포털/.test(j.org) ? cleanVal(j.org) : "");
   if (place) {
     // 좌표를 아는 곳은 지도에 핀으로 바로 찍는다(검색 결과가 여럿일 때 헤매지 않게).
     const link = (j.lat && j.lng)
@@ -630,14 +634,11 @@ function openOfficial(key) {
   //  - 그 외 자체 게시판 소스는 수집 URL이 곧 원문이므로 그대로 이동
   // 포털 도메인이면(source든 officialUrl이든) 절대 링크로 내보내지 않는다
   const isAggregator = PORTAL_RE.test(j.source || "");
-  const officialOk = j.officialUrl && !PORTAL_RE.test(j.officialUrl);
+  // 목록으로 가는 링크는 내보내지 않는다 (2026-08-26 사용자 지시) — 연락처 지원으로 보낸다
+  const officialOk = j.officialUrl && !PORTAL_RE.test(j.officialUrl) && !j.originIsList;
   actReset(act);
   if (officialOk) {
-    // 원문 링크가 게시판 목록인 공고(originIsList — 광신대처럼 상세 주소가 함수 호출이라
-    // 못 딴 경우)는 라벨을 정직하게 — '공식 공고 페이지'라 해 놓고 목록에 떨어뜨리면
-    // 방문자는 링크가 깨졌다고 느낀다 (2026-08-26 사용자 지적).
-    act.textContent = j.originIsList
-      ? "기관 게시판에서 공고 찾기 ↗" : "공식 공고 페이지 바로가기 ↗";
+    act.textContent = "공식 공고 페이지 바로가기 ↗";
     act.href = j.officialUrl;
   } else if (isAggregator) {
     // 포털 직접게시글 — 포털로 보내지 않고 연락처로 지원

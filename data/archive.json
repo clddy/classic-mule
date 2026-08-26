@@ -30945,10 +30945,10 @@
    "workHours": "시립합창단 상임단원과 동일",
    "workPlace": "울산문화예술회관 등",
    "contact": "052-226-8273",
-   "addr": "울산광역시 남구 돋질로",
+   "addr": "울산광역시 남구 번영로 200",
    "lat": 35.5429632,
    "lng": 129.3269595,
-   "addrFrom": "geo",
+   "addrFrom": "postal",
    "firstSeen": "2026-08-18",
    "lastSeen": "2026-08-26",
    "days": 9,
@@ -31670,7 +31670,7 @@
    "workHours": "9.21.(월)~9.23.(수) 기간 중 매일 5시간(1교시~5교시)",
    "contact": "02-595-5471",
    "email": "webmaster@sen.go.kr",
-   "addr": "서울특별시 동작구 사당로23",
+   "addr": "서울특별시 동작구 사당로23길 57-14(사당동)",
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-19",
    "lastSeen": "2026-08-26",
@@ -32569,7 +32569,7 @@
    "duty": "3학년 영어, 4학년 음악",
    "contact": "02-715-4916",
    "email": "alley9406@sen.go.kr",
-   "addr": "서울특별시 마포구 토정로37",
+   "addr": "서울특별시 마포구 토정로37길 37(염리동)",
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-24",
    "lastSeen": "2026-08-26",
@@ -32642,7 +32642,7 @@
    "duty": "교과전담교사(5학년 영어, 4학년 음악)",
    "contact": "02-475-4641",
    "email": "adam1006@sen.go.kr",
-   "addr": "서울특별시 강동구 성내로15",
+   "addr": "서울특별시 강동구 성내로15길 33",
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-24",
    "lastSeen": "2026-08-26",
@@ -32917,7 +32917,7 @@
    "duty": "오케스트라 바이올린",
    "contact": "02-824-6051",
    "email": "kimej740@younghwa.sen.es.kr",
-   "addr": "서울특별시 동작구 등용로8",
+   "addr": "서울특별시 동작구 등용로8길 3(대방동)",
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-25",
    "lastSeen": "2026-08-26",
@@ -32955,7 +32955,9 @@
    "addr": "서울 강남구 언주로133",
    "firstSeen": "2026-08-25",
    "lastSeen": "2026-08-26",
-   "days": 2
+   "days": 2,
+   "deadline": "2026-08-31",
+   "deadlineFrom": "raw"
   },
   "9807eb719f058d8c": {
    "id": "9807eb719f058d8c",
@@ -33078,7 +33080,9 @@
    "email": "sungbok@casuwon.or.kr",
    "firstSeen": "2026-08-26",
    "lastSeen": "2026-08-26",
-   "days": 1
+   "days": 1,
+   "addr": "경기 용인시 수지구 도마치로 89번길 4-17",
+   "addrFrom": "postal"
   }
  }
 }

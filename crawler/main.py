@@ -11,7 +11,7 @@ from common import (new_session, get, relevant, extract_deadline, priority_deadl
                     classify_kind, classify_tier, is_obri, cert_required, degree_req, career_req, age_group,
                     region_from, EXCLUDE, compact_title, music_only_title, body_text, valid_addr,
                     insts_from_recruit_text, tls_blocked, curl_get, extract_fields, extract_contact, strip_navi,
-                    extract_email, DECLARED_TOTALS)
+                    extract_email, DECLARED_TOTALS, addr_from_text)
 from sources import SOURCES
 from institutions import INSTITUTIONS
 import attach
@@ -306,7 +306,7 @@ def find_attachments(soup, base_url):
                     cands.append((full, el.get_text(" ", strip=True)))
     return cands[:4]
 
-EXT_VER = 91         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
+EXT_VER = 94         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
                      # v32(2026-08-02): 모집분야 구획 악기 추출(insts_from_recruit_text) + 원문 보관층
                      # 24: work.sen 등록일(게시일) 추출 추가 — date=None이던 승계분을 다시 뽑게
                      # 25: body_text 도입 — 본문을 <header>에 넣는 사이트(대전교육청)의 마감일을
@@ -585,7 +585,29 @@ def _find_pay(text):
     return v[:m2.end()].strip(" ,·-–") if m2 else v
 
 def _find_program(text):
-    return _seg_after(text, r"프로그램|연주 ?곡목?|곡\s*목|레퍼토리|연주곡", 80)
+    # 맨 '프로그램'은 라벨로 못 쓴다 — 공연장 사이트마다 메뉴 이름이라, 울산문예회관의
+    # 내비게이션('프로그램 캘린더 공연일정 …')에서 '캘린더'가 값으로 실렸다 (2026-08-26).
+    # 수식어가 붙은 꼴만 받고, 오디션 과제곡 라벨(과제곡·평가내용)도 함께 본다 —
+    # 울산시립합창단의 쇼팽·베토벤 과제곡이 이 라벨 아래 있었다.
+    m = re.search(r"(?:(?:공연|연주|오디션|실기) ?프로그램|연주 ?곡목?|곡\s*목|레퍼토리|연주곡"
+                  r"|과제곡|평가 ?내용)\s*[:：]?\s*", text)
+    if not m:
+        return None
+    # 곡목엔 이니셜 마침표가 흔하다('F. Chopin', 'L. v. Beethoven') — _seg_after 의
+    # 문장 절단을 쓰면 첫 이니셜에서 잘린다. 다음 항목 기호(마. 합격기준…)에서만 끊는다.
+    win = text[m.end():m.end() + 220]
+    win = re.split(r"(?:(?<=[)\]])|(?<=\s))[가나다라마바사아자차]\s*\.\s(?=[가-힣])", win)[0]
+    win = _LBL_RE.split(win, 1)[0]
+    v = _clip(win.strip(" -·,"), 120)
+    if not v:
+        return None
+    # 과제곡 값은 실제 곡 이야기여야 한다 — '곡'·'악장'·작곡가 로마자 없이 산문만 오면 버린다.
+    # 첨부 파일명 나열('…과제곡_-_호른_수석.pdf …')과 응시원서 서식('작곡자: (Full Name 기재)')도
+    # 라벨 근처에 흔하다 — 곡목이 아니라 곡목의 그릇이다 (2026-08-26 A/B에서 발각).
+    if re.search(r"\.(?:pdf|hwpx?|docx?|xlsx?|zip)\b|기재|서식|\(인\)|응\s*시\s*자", v, re.I):
+        return None
+    # 곡목이 12자보다 짧을 일은 없다 — 'Media : 미디어' 같은 UI 조각을 거른다
+    return v if len(v) >= 12 and re.search(r"곡|악장|[A-Z][a-z]{3,}", v) else None
 
 def _find_rehearsal(text):
     v = _seg_after(text, r"리허설|연습 ?일정|연습", 50)
@@ -1107,6 +1129,101 @@ def _list_soup(r):
     return BeautifulSoup(r.text, "lxml")
 
 
+# 채용 글이 아니라 그 곁가지인 글 — 서식·시간표·결과 발표는 공고 본문이 아니다
+_AUX_POST = re.compile(r"서식|양식|시간표|계획서|합격|결과|명단|정정|취소")
+_RECRUIT_ANCHOR = re.compile(r"모집|채용|임용|초빙|공모")
+# 제목 대조에서 무게가 없는 상투어 — 이 낱말들만 겹치는 건 우연이다
+_GENERIC_W = {"모집", "채용", "공고", "재공고", "추가공고", "안내", "안내문", "임용", "초빙", "공모"}
+
+
+def _find_detail_by_content(s, soup, base, item):
+    """제목 대조가 실패한 목록에서 '이 기관이 이 시기에 낸 채용 글'을 내용으로 찾는다.
+
+    집계 포털이 제목을 고쳐 실으면 낱말 대조가 확신을 못 한다(광신대: '강사 모집 (재공고)'
+    vs '교원(강사) 임용 추가공고 안내문'). 그때의 힌트는 '그 게시판에 채용 글이 실제로
+    있다'는 사실이다 — 채용 어휘가 든 글을 직접 열어 우리 공고의 낱말·날짜와 대조하고,
+    확신이 서는 하나만 채택한다 (2026-08-26 사용자 지시: 목록 링크를 내보내느니 직접 찾는다).
+    반환: (상세 URL, 본문 텍스트) 또는 None.
+    """
+    title = item.get("title") or ""
+    want = [w for w in re.findall(r"[가-힣A-Za-z]{2,}", title) if w not in _GENERIC_W]
+    cands = []
+    for a in soup.find_all("a", href=True):
+        txt = a.get_text(" ", strip=True)
+        if not (6 <= len(txt) <= 80):
+            continue
+        if not _RECRUIT_ANCHOR.search(txt) or _AUX_POST.search(txt):
+            continue
+        # 지난 학년도 글은 이번 공고일 수 없다
+        m_y = re.search(r"(20\d\d)학년도", txt)
+        if m_y and int(m_y.group(1)) < date.today().year:
+            continue
+        det, _c = _board_detail_url(soup, base, a["href"])
+        if det and det != base:
+            cands.append((det, txt))
+    seen, uniq = set(), []
+    for det, txt in cands:
+        if det not in seen:
+            seen.add(det)
+            uniq.append((det, txt))
+    # 게시판은 최신 글이 위에 온다 — 앞의 다섯만 연다 (열어 보는 값이라 비싸다)
+    scored = []
+    for det, txt in uniq[:5]:
+        try:
+            r = get(s, det)
+        except Exception:
+            continue
+        if _is_dead_origin(r):
+            continue
+        body = body_text(r.text)
+        if _looks_like_list(body) or not re.search(r"지원|접수|제출|응시|서류", body):
+            continue                      # 여전히 목록이거나 채용 글이 아니다
+        score = sum(1 for w in want if w in body)
+        # 우리가 아는 날짜(게시일·마감일)가 본문에 있으면 같은 건이라는 강한 신호다
+        for d in (item.get("date"), item.get("deadline")):
+            if d and DATE_RE.match(d or ""):
+                y, mo, dy = d[:4], int(d[5:7]), int(d[8:10])
+                if re.search(rf"{y}\s*[.\-/년]\s*0?{mo}\s*[.\-/월]\s*0?{dy}", body):
+                    score += 3
+        scored.append((score, det, body))
+    if not scored:
+        return None
+    scored.sort(key=lambda x: -x[0])
+    best = scored[0]
+    runner = scored[1][0] if len(scored) > 1 else 0
+    # 확신이 설 때만 — 낱말·날짜 신호가 있고 2등을 확실히 앞서야 한다
+    if best[0] >= 2 and best[0] > runner:
+        return best[1], best[2]
+    return None
+
+
+def _board_detail_url(soup, base, href):
+    """게시판 목록의 상세 링크 → 열 수 있는 절대 주소. (주소, 조립여부). 못 만들면 (None, True).
+
+    javascript:fView('42748') 꼴이면 글 번호를 꺼내 목록 URL 의 List→View 치환으로
+    GET 주소를 조립한다 (광신대 실측, 2026-08-26). 번호를 싣는 파라미터 이름은 페이지 폼의
+    hidden(brd_no 등)에서 읽는다 — 글 번호 폼은 첫 폼이 아닐 수 있어(검색 폼이 먼저 온다)
+    전부 훑는다. 조립 주소는 추측이므로 호출부가 반드시 열어서 내용을 대조할 것.
+    """
+    from urllib.parse import urljoin
+    if not href.lower().startswith("javascript:"):
+        return urljoin(base, href), False
+    m_id = re.search(r"\(\s*['\"]?(\d+)", href)
+    if not m_id or not re.search(r"(?i)list", base):
+        return None, True
+    id_name = None
+    for form in soup.find_all("form"):
+        names = [i.get("name") or "" for i in form.find_all("input")]
+        id_name = next((n for n in names
+                        if re.search(r"(?:brd|ntt|bbs|board|article|wr)_?(?:no|id|sn)$", n, re.I)), None)
+        if id_name:
+            break
+    if not id_name:
+        return None, True
+    sep = "&" if "?" in base else "?"
+    return re.sub(r"(?i)list", "View", base, count=1) + f"{sep}{id_name}={m_id.group(1)}", True
+
+
 def _find_detail_in_list(soup, base, title):
     """목록에서 우리 공고와 같은 글의 상세 링크를 찾는다. 못 찾으면 None.
 
@@ -1150,29 +1267,10 @@ def _find_detail_in_list(soup, base, title):
         return None
     href = best["href"]
     anchor_txt = best.get_text(" ", strip=True)
-    if not href.lower().startswith("javascript:"):
-        return urljoin(base, href), anchor_txt, False
-    # javascript:fView('42748') → 글 번호를 꺼내 목록 URL 로 상세 주소를 조립한다.
-    # 이 게시판 계열은 List→View 만 바꾸면 같은 파라미터로 GET 이 열린다. 번호를 싣는
-    # 파라미터 이름은 페이지의 폼 hidden(brd_no 등)에서 읽고, 못 읽으면 포기한다.
-    # 조립한 주소는 추측이다 — 호출부가 실제로 열어 이 글 제목(anchor_txt)이 그 페이지에
-    # 있는지 대조하고, 없으면 버린다.
-    m_id = re.search(r"\(\s*['\"]?(\d+)", href)
-    if not m_id or not re.search(r"(?i)list", base):
+    det, constructed = _board_detail_url(soup, base, href)
+    if not det:
         return None
-    # 글 번호를 싣는 폼은 첫 번째 폼이 아닐 수 있다(검색 폼이 먼저 온다) — 전부 훑는다
-    id_name = None
-    for form in soup.find_all("form"):
-        names = [i.get("name") or "" for i in form.find_all("input")]
-        id_name = next((n for n in names
-                        if re.search(r"(?:brd|ntt|bbs|board|article|wr)_?(?:no|id|sn)$", n, re.I)), None)
-        if id_name:
-            break
-    if not id_name:
-        return None
-    sep = "&" if "?" in base else "?"
-    det = re.sub(r"(?i)list", "View", base, count=1) + f"{sep}{id_name}={m_id.group(1)}"
-    return det, anchor_txt, True
+    return det, anchor_txt, constructed
 
 
 def _origin_check(s, item, ry):
@@ -1194,30 +1292,48 @@ def _origin_check(s, item, ry):
     # 원문 보관층의 page 가 0자였고, 재추출이 볼 것이 첨부밖에 없었다. 계명대는 채용일정이
     # 원문 페이지에만 있어 마감·조건이 통째로 비었다 (2026-08-17 규명).
     _text = body_text(r.text)
+    # 역추적(_trace_origin)으로 앉힌 원문은 짐작이다 — 열어 보니 이 공고와 무관한 페이지면
+    # 버린다. 플랫폼엘 공고의 officialUrl 이 spaf.or.kr(서울국제공연예술제) 였다: 집계
+    # 페이지의 배너 링크가 '.or.kr' 힌트에 걸려 원문 행세를 했고, 카드의 '공식 공고
+    # 페이지' 버튼이 생판 남의 사이트로 갔다 (2026-08-26 사용자 발견 문맥).
+    if item.get("originTraced"):
+        toks = [w for w in re.findall(r"[가-힣A-Za-z]{2,}", item.get("title") or "")
+                if w not in _GENERIC_W]
+        org_tok = re.sub(r"\([^)]*\)", "", item.get("org") or "").strip()
+        hits = sum(1 for w in toks if w in _text) + (2 if org_tok and org_tok in _text else 0)
+        if hits < 2:
+            item.pop("officialUrl", None)
+            item.pop("originTraced", None)
+            return
     # 목록 페이지를 원문으로 삼지 않는다 — 상세를 찾아 들어가고, 못 찾으면 손을 뗀다.
     if _looks_like_list(_text):
-        found = _find_detail_in_list(_list_soup(r), url, item.get("title"))
+        lsoup = _list_soup(r)
+        found = _find_detail_in_list(lsoup, url, item.get("title"))
         det, anchor_txt, constructed = found if found else (None, "", False)
-        if not det or det == url:
-            item["originIsList"] = True   # 헬스체크·알림이 '링크가 목록'임을 알 수 있게
+        resolved = False
+        if det and det != url:
+            try:
+                r2 = get(s, det)
+            except Exception:
+                r2 = None
+            if r2 is not None and not _is_dead_origin(r2):
+                t2 = body_text(r2.text)
+                # 조립한 주소는 추측이다 — 그 글의 제목이 실제로 열린 페이지에 있어야 믿는다.
+                # (href 로 직접 딴 주소는 게시판이 준 것이라 그대로 신뢰 — 기존 동작 유지)
+                norm = lambda t: re.sub(r"[^가-힣A-Za-z0-9]", "", t or "")
+                if not constructed or norm(anchor_txt)[:24] in norm(t2):
+                    _text, resolved = t2, True
+                    item["officialUrl"], url = det, det
+        if not resolved:
+            # 제목 대조가 확신을 못 하면(집계 포털이 제목을 고쳐 싣는 경우) 내용으로 직접
+            # 찾는다 — 목록 링크를 내보내느니 우리가 찾아 들어간다 (2026-08-26 사용자 지시).
+            alt = _find_detail_by_content(s, lsoup, url, item)
+            if alt:
+                item["officialUrl"], url = alt[0], alt[0]
+                _text, resolved = alt[1], True
+        if not resolved:
+            item["originIsList"] = True   # 화면은 이 링크를 내보내지 않고, 알림에 적힌다
             return
-        try:
-            r = get(s, det)
-        except Exception:
-            item["originIsList"] = True
-            return
-        if _is_dead_origin(r):
-            item["originIsList"] = True
-            return
-        _text = body_text(r.text)
-        # 조립한 주소는 추측이다 — 그 글의 제목이 실제로 열린 페이지에 있어야 믿는다.
-        # (href 로 직접 딴 주소는 게시판이 준 것이라 그대로 신뢰 — 기존 동작 유지)
-        if constructed:
-            norm = lambda t: re.sub(r"[^가-힣A-Za-z0-9]", "", t or "")
-            if norm(anchor_txt)[:24] not in norm(_text):
-                item["originIsList"] = True
-                return
-        item["officialUrl"], url = det, det
     rawstore.stash(item.get("id"), "page", _text,
                    url=url, title=item.get("title"))
     if not item.get("deadline"):
@@ -1336,6 +1452,14 @@ def _refill_from_raw(items, today):
             dv = _find_duty(_raw)
             if dv:
                 it["duty"] = dv
+        # 주소 — 라벨 없이 우편번호만 달고 오는 꼴('문 의: … (16807)용인시 …').
+        # 주소가 없으면 org 이름 좌표(_attach_coords)로 넘어가는데, org 가 게시판
+        # 운영기관(교구·교육청)이면 지도 핀이 엉뚱한 본부에 찍힌다 (성복동성당, 2026-08-26).
+        if not it.get("addr"):
+            av = addr_from_text(_raw)
+            if av:
+                it["addr"] = av
+                it["addrFrom"] = "postal"
         # 이메일 — 학교·교회 공고는 이메일 접수가 많다 (워크오더 08-16 §5). 집계 포털
         # 직접게시의 applyEmail(지원 이메일 행이 따로 있다)과 겹치면 중복 표기라 건너뛴다.
         if not it.get("email"):
@@ -1622,6 +1746,10 @@ def _attach_coords(items):
     for it in items:
         if it.get("addr"):
             continue
+        # 게시판 운영기관(교구·교육청)의 좌표는 그 게시판에 올라온 공고의 위치가 아니다 —
+        # 성복동성당(용인) 공고에 수원교구청 핀이 찍혔다 (2026-08-26). 본부 좌표는 안 붙인다.
+        if re.search(r"교구|교육청|교육지원청", it.get("org") or ""):
+            continue
         key = re.sub(r"\([^)]*\)", " ", it.get("org") or "")
         key = re.sub(r"\s+", " ", key).strip(" ·-")
         c = coords.get(key)
@@ -1653,6 +1781,17 @@ def _reset_stale_extracted(items):
         if it.get("deadline") and (it.get("deadlineFrom") in ("raw", "page", "attachment", "title", None)):
             it.pop("deadline", None)
             it.pop("deadlineFrom", None)
+        # '상시'도 추출된 판정이다 — 남겨 두면 마감 재추출 경로가 통째로 닫혀서, 추출기를
+        # 고쳐도 옛 상시가 영생한다. 플랫폼엘이 원문에 '접수마감일 ~ 2026-08-31'을 두고도
+        # 상시로 굳어 있던 이유다 (2026-08-26). cjob 의 상시는 소스가 직접 준 것이지만
+        # 재크롤에서 같은 규칙으로 다시 나오므로 비워도 잃지 않는다.
+        if it.get("deadlineNote") == "상시":
+            it.pop("deadlineNote", None)
+        # 역추적으로 앉힌 원문도 짐작이다 — 비워야 _trace_origin 재실행 + 무관 페이지 검증을
+        # 다시 거친다 (플랫폼엘 spaf.or.kr 오링크가 승계로 살아남았다, 2026-08-26).
+        if it.get("originTraced"):
+            it.pop("officialUrl", None)
+            it.pop("originTraced", None)
         if any(it.get(f) for f in _EXTRACTED_FIELDS):
             for f in _EXTRACTED_FIELDS:
                 it.pop(f, None)
@@ -1976,13 +2115,17 @@ def enrich_deadline(s, item, allow_render=True, details_only=False):
             m = re.search(r"(?:등록일|작성일|게시일|등록 ?일자)\s*[:：]?\s*(20\d{2})[.\-](\d{1,2})[.\-](\d{1,2})", page_text)
             if m:
                 item["date"] = f"{m.group(1)}-{int(m.group(2)):02d}-{int(m.group(3)):02d}"
-        # 상시모집 감지: 기독정보넷의 '남은기간 0000-00-00', 통상 표현들
-        if re.search(r"남은기간\s*0000-00-00|상시 ?모집|상시 ?채용|채용 ?시 ?(?:까지|마감)|충원 ?시 ?마감", page_text):
-            item["deadlineNote"] = "상시"
-            return
+        # 마감일을 먼저 찾고, 못 찾았을 때만 상시로 눕힌다 (2026-08-26 사용자 지시).
+        # 순서가 반대였을 때: 플랫폼엘 공고에 '접수 기간: … - 채용시 마감'과
+        # '접수마감일 ~ 2026-08-31'이 같이 있었는데, '채용시 마감' 문구에 상시 판정이
+        # 먼저 걸려 return — 뻔히 적힌 마감일을 안 보고 카드가 '상시 모집'으로 나갔다.
+        # 날짜는 사실이고 '채용시 마감'은 관행 문구다 — 사실이 이긴다.
         dl = extract_deadline(page_text, ref_year=ry)
         if dl:
             item["deadline"] = dl
+        elif re.search(r"남은기간\s*0000-00-00|상시 ?모집|상시 ?채용|채용 ?시 ?(?:까지|마감)|충원 ?시 ?마감", page_text):
+            item["deadlineNote"] = "상시"
+            return
             item["deadlineFrom"] = "page"
             return
         for furl, fname in find_attachments(soup, r.url):

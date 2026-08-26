@@ -43,7 +43,7 @@ def _status(j, today):
     # 상시모집은 날짜보다 앞선다 (js/jobs.js statusOf와 같은 규칙 — 어긋나면 정적 목록과
     # JS 렌더가 다른 배지를 보여준다)
     if j.get("deadlineNote") == "상시" or (j.get("obri") and not dl):
-        return ("상시모집", "dd-open")
+        return ("접수중", "dd-open")   # '상시모집' 배지 폐기 — 접수중에 합류 (2026-08-26)
     if not dl:
         return ("기한 미정", "dd-always")
     diff = (date.fromisoformat(dl) - today).days
@@ -62,11 +62,9 @@ def _status(j, today):
 def _apply(j):
     """상세 페이지의 지원 경로 — (라벨, href|None). 포털로는 절대 내보내지 않는다."""
     ou = j.get("officialUrl")
-    if ou and not PORTAL_RE.search(ou):
-        # 목록으로 가는 링크에 '공식 공고 페이지'라 적으면 방문자는 링크가 깨졌다고
-        # 느낀다 (광신대, 2026-08-26 사용자 지적) — jobs.js 와 같은 라벨 규칙.
-        if j.get("originIsList"):
-            return "기관 게시판에서 공고 찾기 ↗", ou
+    # 목록으로 가는 링크는 아예 내보내지 않는다 (2026-08-26 사용자 지시 — 라벨을 정직하게
+    # 바꿔 봤지만 "목록 링크는 없는 게 나아"). 상세를 못 찾은 공고는 연락처 지원으로 보낸다.
+    if ou and not PORTAL_RE.search(ou) and not j.get("originIsList"):
         return "공식 공고 페이지 바로가기 ↗", ou
     if PORTAL_RE.search(j.get("source") or ""):
         if j.get("applyEmail"):
@@ -123,8 +121,8 @@ def _inject(path, marker, content):
 
 def _detail_rows(j):
     rows = [("기관", j.get("org")), ("지역", j.get("region")),
-            ("마감", "상시모집" if j.get("deadlineNote") == "상시"
-             else (j.get("deadline") or ("상시모집" if j.get("obri") else "기한 미정")))]
+            ("마감", "접수중" if j.get("deadlineNote") == "상시"
+             else (j.get("deadline") or ("접수중" if j.get("obri") else "기한 미정")))]
     if j.get("subject"):
         rows.append(("전공", j["subject"]))
     if j.get("courses"):
@@ -207,7 +205,7 @@ def build_description(j):
             _pay_short(j.get("pay")),
             (f"{int(j['deadline'][5:7])}/{int(j['deadline'][8:10])} 마감"
              if (j.get("deadline") or "").count("-") == 2 else
-             ("상시모집" if j.get("deadlineNote") == "상시" else None)),
+             ("접수중" if j.get("deadlineNote") == "상시" else None)),
             j.get("workHours"),
             (f"근무 {j['workPeriod']}" if j.get("workPeriod") and len(str(j["workPeriod"])) <= 34 else None)]
     parts = [p for p in tail if p]
@@ -284,7 +282,7 @@ def build_title(j):
     pay = _pay_short(j.get("pay"))
     dl = j.get("deadline")
     when = (f"~{int(dl[5:7])}/{int(dl[8:10])}" if (dl or "").count("-") == 2
-            else ("상시모집" if j.get("deadlineNote") == "상시" else ""))
+            else ("접수중" if j.get("deadlineNote") == "상시" else ""))
     # 30자 = '{본문} — 포디엄' 까지 합친 길이 기준. 넘치면 페이 → 마감 → 꼬리표 순으로 덜어낸다
     for bits in ([pay, when], [when], [pay], []):
         bits = [b for b in bits if b]
