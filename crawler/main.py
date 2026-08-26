@@ -306,7 +306,7 @@ def find_attachments(soup, base_url):
                     cands.append((full, el.get_text(" ", strip=True)))
     return cands[:4]
 
-EXT_VER = 90         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
+EXT_VER = 91         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
                      # v32(2026-08-02): 모집분야 구획 악기 추출(insts_from_recruit_text) + 원문 보관층
                      # 24: work.sen 등록일(게시일) 추출 추가 — date=None이던 승계분을 다시 뽑게
                      # 25: body_text 도입 — 본문을 <header>에 넣는 사이트(대전교육청)의 마감일을
@@ -1122,11 +1122,15 @@ def _find_detail_in_list(soup, base, title):
     for a in soup.find_all("a", href=True):
         href = a["href"]
         # 상세로 가는 링크만 후보로 — 목록의 메뉴·페이지 이동까지 재면 엉뚱한 데로 간다.
-        # javascript: 는 주소가 아니라 함수 호출이라 우리가 열 수 없다 — 광신대 공지사항이
-        # 이 꼴이라(fView('42734')) 자동 교정이 원리적으로 불가능하다 (2026-08-21).
+        # javascript: 도 받는다 — '함수 호출이라 열 수 없다'(2026-08-21)는 과했다.
+        # 광신대 fView('42748')는 글 번호를 들고 폼을 List→View 로 제출할 뿐이라,
+        # 목록 URL 의 List 를 View 로 바꾸고 번호를 붙이면 GET 으로도 열린다
+        # (2026-08-26 실측). 주소는 뒤에서 조립하고, 조립한 주소는 호출부가 실제로
+        # 열어 제목을 대조하므로 틀리면 버려진다.
         if href.lower().startswith("javascript:"):
-            continue
-        if not re.search(r"view|View|VIEW|detail|Detail|read|Read|articleNo|nttId|bbsSn", href):
+            if not re.search(r"[a-zA-Z]\(\s*['\"]?\d+", href):
+                continue
+        elif not re.search(r"view|View|VIEW|detail|Detail|read|Read|articleNo|nttId|bbsSn", href):
             continue
         txt = a.get_text(" ", strip=True)
         if not (6 <= len(txt) <= 80):
@@ -1142,9 +1146,33 @@ def _find_detail_in_list(soup, base, title):
         elif score > runner:
             runner = score
     # 겹치는 낱말이 셋 이상이고, 2등보다 확실히 앞설 때만 — 어설프게 고르면 남의 공고로 보낸다
-    if best and best_score >= 3 and best_score > runner:
-        return urljoin(base, best["href"])
-    return None
+    if not (best and best_score >= 3 and best_score > runner):
+        return None
+    href = best["href"]
+    anchor_txt = best.get_text(" ", strip=True)
+    if not href.lower().startswith("javascript:"):
+        return urljoin(base, href), anchor_txt, False
+    # javascript:fView('42748') → 글 번호를 꺼내 목록 URL 로 상세 주소를 조립한다.
+    # 이 게시판 계열은 List→View 만 바꾸면 같은 파라미터로 GET 이 열린다. 번호를 싣는
+    # 파라미터 이름은 페이지의 폼 hidden(brd_no 등)에서 읽고, 못 읽으면 포기한다.
+    # 조립한 주소는 추측이다 — 호출부가 실제로 열어 이 글 제목(anchor_txt)이 그 페이지에
+    # 있는지 대조하고, 없으면 버린다.
+    m_id = re.search(r"\(\s*['\"]?(\d+)", href)
+    if not m_id or not re.search(r"(?i)list", base):
+        return None
+    # 글 번호를 싣는 폼은 첫 번째 폼이 아닐 수 있다(검색 폼이 먼저 온다) — 전부 훑는다
+    id_name = None
+    for form in soup.find_all("form"):
+        names = [i.get("name") or "" for i in form.find_all("input")]
+        id_name = next((n for n in names
+                        if re.search(r"(?:brd|ntt|bbs|board|article|wr)_?(?:no|id|sn)$", n, re.I)), None)
+        if id_name:
+            break
+    if not id_name:
+        return None
+    sep = "&" if "?" in base else "?"
+    det = re.sub(r"(?i)list", "View", base, count=1) + f"{sep}{id_name}={m_id.group(1)}"
+    return det, anchor_txt, True
 
 
 def _origin_check(s, item, ry):
@@ -1168,7 +1196,8 @@ def _origin_check(s, item, ry):
     _text = body_text(r.text)
     # 목록 페이지를 원문으로 삼지 않는다 — 상세를 찾아 들어가고, 못 찾으면 손을 뗀다.
     if _looks_like_list(_text):
-        det = _find_detail_in_list(_list_soup(r), url, item.get("title"))
+        found = _find_detail_in_list(_list_soup(r), url, item.get("title"))
+        det, anchor_txt, constructed = found if found else (None, "", False)
         if not det or det == url:
             item["originIsList"] = True   # 헬스체크·알림이 '링크가 목록'임을 알 수 있게
             return
@@ -1180,8 +1209,15 @@ def _origin_check(s, item, ry):
         if _is_dead_origin(r):
             item["originIsList"] = True
             return
-        item["officialUrl"], url = det, det
         _text = body_text(r.text)
+        # 조립한 주소는 추측이다 — 그 글의 제목이 실제로 열린 페이지에 있어야 믿는다.
+        # (href 로 직접 딴 주소는 게시판이 준 것이라 그대로 신뢰 — 기존 동작 유지)
+        if constructed:
+            norm = lambda t: re.sub(r"[^가-힣A-Za-z0-9]", "", t or "")
+            if norm(anchor_txt)[:24] not in norm(_text):
+                item["originIsList"] = True
+                return
+        item["officialUrl"], url = det, det
     rawstore.stash(item.get("id"), "page", _text,
                    url=url, title=item.get("title"))
     if not item.get("deadline"):

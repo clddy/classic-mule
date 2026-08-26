@@ -46,7 +46,8 @@ const OFFICIAL_ITEMS = ((window.CRAWLED && window.CRAWLED.items) || []).map(j =>
   perfPeriod: j.perfPeriod, perfPlace: j.perfPlace, perfSchedule: j.perfSchedule,
   teamComp: j.teamComp, dayOff: j.dayOff,
   addr: j.addr, lat: j.lat, lng: j.lng,
-  url: j.url, officialUrl: j.officialUrl, isNew: j.isNew, firstSeen: j.firstSeen, source: j.source
+  url: j.url, officialUrl: j.officialUrl, originIsList: j.originIsList,
+  isNew: j.isNew, firstSeen: j.firstSeen, source: j.source
 }));
 
 let COMMUNITY_ITEMS = JOBS.map(j => ({
@@ -632,7 +633,11 @@ function openOfficial(key) {
   const officialOk = j.officialUrl && !PORTAL_RE.test(j.officialUrl);
   actReset(act);
   if (officialOk) {
-    act.textContent = "공식 공고 페이지 바로가기 ↗";
+    // 원문 링크가 게시판 목록인 공고(originIsList — 광신대처럼 상세 주소가 함수 호출이라
+    // 못 딴 경우)는 라벨을 정직하게 — '공식 공고 페이지'라 해 놓고 목록에 떨어뜨리면
+    // 방문자는 링크가 깨졌다고 느낀다 (2026-08-26 사용자 지적).
+    act.textContent = j.originIsList
+      ? "기관 게시판에서 공고 찾기 ↗" : "공식 공고 페이지 바로가기 ↗";
     act.href = j.officialUrl;
   } else if (isAggregator) {
     // 포털 직접게시글 — 포털로 보내지 않고 연락처로 지원

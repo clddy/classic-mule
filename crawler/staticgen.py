@@ -63,6 +63,10 @@ def _apply(j):
     """상세 페이지의 지원 경로 — (라벨, href|None). 포털로는 절대 내보내지 않는다."""
     ou = j.get("officialUrl")
     if ou and not PORTAL_RE.search(ou):
+        # 목록으로 가는 링크에 '공식 공고 페이지'라 적으면 방문자는 링크가 깨졌다고
+        # 느낀다 (광신대, 2026-08-26 사용자 지적) — jobs.js 와 같은 라벨 규칙.
+        if j.get("originIsList"):
+            return "기관 게시판에서 공고 찾기 ↗", ou
         return "공식 공고 페이지 바로가기 ↗", ou
     if PORTAL_RE.search(j.get("source") or ""):
         if j.get("applyEmail"):

@@ -1,6 +1,6 @@
 {
  "updatedAt": "2026-08-26",
- "count": 1278,
+ "count": 1281,
  "items": {
   "f7b1c263744b9ece": {
    "id": "f7b1c263744b9ece",
@@ -32552,7 +32552,7 @@
    "deadlineFrom": "raw",
    "kind": "강사",
    "tier": "교육 — 학교",
-   "inst": "전체",
+   "inst": "목관",
    "instDetails": [
     "관악"
    ],
@@ -32626,7 +32626,7 @@
    "deadlineFrom": "raw",
    "kind": "교원",
    "tier": "교육 — 학교",
-   "inst": "전체",
+   "inst": "목관",
    "instDetails": [
     "관악"
    ],
@@ -32831,7 +32831,7 @@
    "deadlineFrom": "raw",
    "kind": "교원",
    "tier": "교육 — 학교",
-   "inst": "전체",
+   "inst": "목관",
    "instDetails": [
     "관악"
    ],
@@ -32901,7 +32901,8 @@
    "tier": "교육 — 취미·입문",
    "inst": "현악",
    "instDetails": [
-    "바이올린"
+    "바이올린",
+    "관악"
    ],
    "ageGroup": "성인",
    "obri": false,
@@ -32984,6 +32985,100 @@
    "firstSeen": "2026-08-25",
    "lastSeen": "2026-08-26",
    "days": 2
+  },
+  "f8f82bbb03d7c268": {
+   "id": "f8f82bbb03d7c268",
+   "org": "기안초등학교",
+   "region": "경기",
+   "source": "goe.go.kr",
+   "channel": "edu_goe",
+   "layer": "C",
+   "title": "[기안초] 4학년 문화예술교육(음악) 강사 채용",
+   "url": "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=57952",
+   "date": "2026-08-26",
+   "deadline": "2026-09-01",
+   "deadlineFrom": "raw",
+   "kind": "강사",
+   "tier": "교육 — 취미·입문",
+   "inst": "목관",
+   "instDetails": [
+    "관악"
+   ],
+   "ageGroup": "성인",
+   "obri": false,
+   "certReq": "무관",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "personnel": "1명",
+   "bodyExcerpt": "면접일시 : 1 차 서류심사 통과자에 한해 2026. · 해당 분야의 전문적인 능력을 가진 자 또는 자격증 소지자 · 운영 기간 : 2026 년 10 월 ~11 월 날짜 협의((월요일 혹은 금요일로 주 1 일 총 4 주) 각 반별 4 차시 총 16 차시 · 2 차 심사 : 면접전형 2026.9.3.(목) 15:00, 온라인 화상(ZOOM) 으로 실시",
+   "workPeriod": "2026.10.11 ~ 2026.11.02",
+   "workHours": "16시간",
+   "contact": "070-4021-7078",
+   "email": "flyingsk@korea.kr",
+   "addr": "경기 화성시 효행구 기안길 18(기안동)",
+   "orgAffil": "경기교육청",
+   "firstSeen": "2026-08-26",
+   "lastSeen": "2026-08-26",
+   "days": 1
+  },
+  "ed1579552659910f": {
+   "id": "ed1579552659910f",
+   "org": "전주서중학교",
+   "region": "전북",
+   "source": "jbe.go.kr",
+   "channel": "edu_jbe",
+   "layer": "C",
+   "title": "[전주서중] 기간제교사(음악) 채용",
+   "url": "https://www.jbe.go.kr/board/view.jbe?boardId=BBS_0000130&menuCd=DOM_000000103004006000&paging=ok&startPage=1&searchOperation=AND&dataSid=1169021",
+   "date": "2026-08-26",
+   "deadline": "2026-08-28",
+   "deadlineFrom": "raw",
+   "kind": "교원",
+   "tier": "교육 — 학교",
+   "inst": "전체",
+   "instDetails": [],
+   "ageGroup": "성인",
+   "obri": false,
+   "certReq": "예",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "bodyExcerpt": "공고에 ‘채용의 제한’ 부분 명시 2. · 지침 [붙임 2] 기간제교원 채용 공고(예시) 다운로드 지침",
+   "workPeriod": "2026.09.07 ~ 2026.12.19",
+   "workHours": "전일제 근무(1일 8시간)",
+   "ageLimit": "제한 없음",
+   "contact": "0637142703",
+   "email": "seoms2667@korea.kr",
+   "addr": "전북특별자치도 전주시 완산구 당산로 2 전주서중학교",
+   "firstSeen": "2026-08-26",
+   "lastSeen": "2026-08-26",
+   "days": 1
+  },
+  "e099f21ba2e30c19": {
+   "id": "e099f21ba2e30c19",
+   "org": "천주교 수원교구(성가대·반주)",
+   "region": "경기",
+   "source": "casuwon.or.kr",
+   "channel": "g_casuwon",
+   "layer": "B",
+   "title": "[성복동성당] 라우다떼 성가대(오전미사) 반주자 모집",
+   "url": "https://www.casuwon.or.kr/info/recruit/112755",
+   "date": "2026-08-26",
+   "kind": "반주",
+   "tier": "연주",
+   "inst": "건반",
+   "instDetails": [
+    "피아노"
+   ],
+   "ageGroup": "성인",
+   "obri": true,
+   "certReq": "무관",
+   "degreeReq": "무관",
+   "careerReq": "필요",
+   "bodyExcerpt": "지원자격: 천주교 신자로서 오르간, 피아노 전공자(성가대 반주 유경험자 우대) 4. · 제출기한: 채용시 6. · 제출방법: 이메일: sungbok@casuwon.or.kr 또는 방문접수 8",
+   "email": "sungbok@casuwon.or.kr",
+   "firstSeen": "2026-08-26",
+   "lastSeen": "2026-08-26",
+   "days": 1
   }
  }
 }
