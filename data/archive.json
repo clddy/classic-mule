@@ -1,6 +1,6 @@
 {
  "updatedAt": "2026-08-26",
- "count": 1281,
+ "count": 1282,
  "items": {
   "f7b1c263744b9ece": {
    "id": "f7b1c263744b9ece",
@@ -33082,6 +33082,40 @@
    "days": 1,
    "addr": "경기 용인시 수지구 도마치로 89번길 4-17",
    "addrFrom": "postal"
+  },
+  "06a4638df46ce1c1": {
+   "id": "06a4638df46ce1c1",
+   "org": "인천미산초등학교병설유치원",
+   "region": "인천",
+   "source": "ice.go.kr",
+   "channel": "edu_ice",
+   "layer": "C",
+   "title": "[인천미산초] 병설유치원 음악 특성화 프로그램 외부강사 모집",
+   "url": "https://www.ice.go.kr/ice/na/ntt/selectNttInfo.do?nttSn=3382658&mi=10997&bbsId=1981",
+   "date": "2026-08-26",
+   "deadline": "2026-08-31",
+   "deadlineFrom": "raw",
+   "kind": "강사",
+   "tier": "교육 — 취미·입문",
+   "inst": "전체",
+   "instDetails": [],
+   "ageGroup": "성인",
+   "obri": false,
+   "certReq": "무관",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "personnel": "1명",
+   "bodyExcerpt": "인천미산초등학교병설유치원에서는 특성화 프로그램 운영과 관련하여 아래와 같이 특성화 프로그램 위탁 강사를 모집하오니, 관심 있는 분들의 많은 지원 바랍니다 . · 해당 분야에 전문적인 능력을 가진 자 또는 자격증 소지자 · 유치원 특성화프로그램 개인위탁 외부강사 활동에 제한이 없는 자 * 프로그램 과목별 주 1 회 수업(만 3~5 세 통합 1 반)",
+   "qualification": "해당 분야에 전문적인 능력을 가진 자 또는 자격증 소지자 · 직무 수행의 결격사유나 유아 지도 시 건강에 이상이 없는 자",
+   "hiringOrg": "인천광역시교육청대상명 : 인천광역시교육청(https://www.ice.go.kr)",
+   "contact": "032-452-3983",
+   "addr": "인천광역시 부평구 원적로",
+   "lat": 37.504509,
+   "lng": 126.709681,
+   "addrFrom": "geo",
+   "firstSeen": "2026-08-26",
+   "lastSeen": "2026-08-26",
+   "days": 1
   }
  }
 }
