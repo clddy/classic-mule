@@ -1,5 +1,5 @@
 {
- "collectedAt": "2026-08-26 16:34",
+ "collectedAt": "2026-08-26 16:43",
  "heldNoOrigin": 0,
  "sourceCount": 87,
  "okCount": 86,
@@ -1204,7 +1204,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
@@ -1244,10 +1244,10 @@
    "instDetails": [],
    "channel": "edu_jbe",
    "layer": "C",
+   "contact": "0637142703",
+   "email": "seoms2667@korea.kr",
    "orgBoard": "전주서중학교(전북교육청)",
    "addr": "전북특별자치도 전주시 완산구 당산로 2 전주서중학교",
-   "email": "seoms2667@korea.kr",
-   "contact": "0637142703",
    "workPeriod": "2026.09.07 ~ 2026.12.19",
    "workHours": "전일제 근무(1일 8시간)",
    "ageLimit": "제한 없음",
@@ -1349,8 +1349,7 @@
    "ageGroup": "성인",
    "inst": "현악",
    "instDetails": [
-    "바이올린",
-    "관악"
+    "바이올린"
    ],
    "channel": "edu_seoul",
    "layer": "C",
@@ -1386,7 +1385,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
@@ -1414,7 +1413,6 @@
    "nonMusic": null,
    "url": "https://www.artinfokorea.com/jobs/480",
    "date": "2026-08-24",
-   "deadline": "2026-08-31",
    "kind": "지휘",
    "tier": "연주",
    "obri": false,
@@ -1429,10 +1427,10 @@
    "officialUrl": "https://www.yangju.go.kr/www/selectEminwonView.do?pageUnit=10&pageIndex=1&searchCnd=all&key=4075&not_ancmt_mgt_no=67570&ofr_pageSize=10",
    "channel": "artinfo",
    "layer": "A",
-   "dlHint": null,
    "contact": "031-8082-5652",
    "pay": "기본급 1,990,000원/월, 연주수당 150,000원/회",
    "workHours": "1일 4시간 30분(주2회)",
+   "deadline": "2026-08-31",
    "deadlineFrom": "raw",
    "firstSeen": "2026-08-19",
    "isNew": false,
@@ -1565,7 +1563,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
@@ -1641,7 +1639,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],

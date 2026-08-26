@@ -146,22 +146,6 @@ window.ESHARE_ROOMS = {
    "verified": "2026-08-26"
   },
   {
-   "name": "505호(개인연습실-높은도)",
-   "category": "public",
-   "region": "경기",
-   "addr": "경기도 화성시 동탄순환대로20길 6",
-   "lat": 37.1893028942215,
-   "lng": 127.123896533869,
-   "price": null,
-   "free": false,
-   "spaces": "",
-   "booking_url": "https://yeyak.hscity.go.kr/facilityDetail.do?facilityIdx=306",
-   "rooms": null,
-   "apply_method": "온라인 예약",
-   "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-26"
-  },
-  {
    "name": "506호(개인연습실-시)",
    "category": "public",
    "region": "경기",
@@ -210,22 +194,6 @@ window.ESHARE_ROOMS = {
    "verified": "2026-08-26"
   },
   {
-   "name": "509호(개인연습실-파)",
-   "category": "public",
-   "region": "경기",
-   "addr": "경기도 화성시 동탄순환대로20길 6",
-   "lat": 37.1893028942215,
-   "lng": 127.123896533869,
-   "price": null,
-   "free": false,
-   "spaces": "",
-   "booking_url": "https://yeyak.hscity.go.kr/facilityDetail.do?facilityIdx=310",
-   "rooms": null,
-   "apply_method": "온라인 예약",
-   "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-26"
-  },
-  {
    "name": "510호(개인연습실-미)",
    "category": "public",
    "region": "경기",
@@ -236,22 +204,6 @@ window.ESHARE_ROOMS = {
    "free": false,
    "spaces": "",
    "booking_url": "https://yeyak.hscity.go.kr/facilityDetail.do?facilityIdx=311",
-   "rooms": null,
-   "apply_method": "온라인 예약",
-   "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-26"
-  },
-  {
-   "name": "511호(개인연습실-레)",
-   "category": "public",
-   "region": "경기",
-   "addr": "경기도 화성시 동탄순환대로20길 6",
-   "lat": 37.1893028942215,
-   "lng": 127.123896533869,
-   "price": null,
-   "free": false,
-   "spaces": "",
-   "booking_url": "https://yeyak.hscity.go.kr/facilityDetail.do?facilityIdx=312",
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
@@ -286,12 +238,12 @@ window.ESHARE_ROOMS = {
    "booking_url": "https://members.ggcf.kr/facilities?orgs%5B%5D=8&start_dt=&end_dt=&usages%5B%5D=4",
    "rooms": [
     {
-     "name": "합주실",
+     "name": "개인연습실",
      "free": false,
      "bookTo": "https://members.ggcf.kr/facilities?orgs%5B%5D=8&start_dt=&end_dt=&usages%5B%5D=4"
     },
     {
-     "name": "개인연습실",
+     "name": "합주실",
      "free": false,
      "bookTo": "https://members.ggcf.kr/facilities?orgs%5B%5D=8&start_dt=&end_dt=&usages%5B%5D=4"
     }
@@ -345,12 +297,12 @@ window.ESHARE_ROOMS = {
    "booking_url": "https://www.gunpocf.or.kr/cf/lease/leaseSchdul/100002",
    "rooms": [
     {
-     "name": "연습실A",
+     "name": "연습실B",
      "free": false,
      "bookTo": "https://www.gunpocf.or.kr/cf/lease/leaseSchdul/100002"
     },
     {
-     "name": "연습실B",
+     "name": "연습실A",
      "free": false,
      "bookTo": "https://www.gunpocf.or.kr/cf/lease/leaseSchdul/100002"
     }
@@ -368,16 +320,11 @@ window.ESHARE_ROOMS = {
    "lng": 126.91940307617188,
    "price": null,
    "free": false,
-   "spaces": "연습실 5실",
+   "spaces": "연습실 4실",
    "booking_url": "https://www.gunpocf.or.kr/cf/lease/leaseSchdul/100003",
    "rooms": [
     {
-     "name": "개인연습실2",
-     "free": false,
-     "bookTo": "https://www.gunpocf.or.kr/cf/lease/leaseSchdul/100003"
-    },
-    {
-     "name": "마루연습실",
+     "name": "개인연습실1",
      "free": false,
      "bookTo": "https://www.gunpocf.or.kr/cf/lease/leaseSchdul/100003"
     },
@@ -387,12 +334,12 @@ window.ESHARE_ROOMS = {
      "bookTo": "https://www.gunpocf.or.kr/cf/lease/leaseSchdul/100003"
     },
     {
-     "name": "개인연습실1",
+     "name": "밴드연습실",
      "free": false,
      "bookTo": "https://www.gunpocf.or.kr/cf/lease/leaseSchdul/100003"
     },
     {
-     "name": "밴드연습실",
+     "name": "마루연습실",
      "free": false,
      "bookTo": "https://www.gunpocf.or.kr/cf/lease/leaseSchdul/100003"
     }
@@ -482,6 +429,22 @@ window.ESHARE_ROOMS = {
    "verified": "2026-08-26"
   },
   {
+   "name": "마두청소년수련관 5층 연습실",
+   "category": "public",
+   "region": "경기",
+   "addr": "경기 고양시 일산동구 일산로 220",
+   "lat": 37.65599822998047,
+   "lng": 126.78959655761719,
+   "price": null,
+   "free": false,
+   "spaces": "아늘",
+   "booking_url": "https://www.gcyf.or.kr/md/bbs/content.php?co_id=madoo_02_3",
+   "rooms": null,
+   "apply_method": "온라인 예약",
+   "src": "공공개방자원(공유누리 경유)",
+   "verified": "2026-08-26"
+  },
+  {
    "name": "본부사옥 연습실",
    "category": "public",
    "region": "경기",
@@ -510,7 +473,7 @@ window.ESHARE_ROOMS = {
    "booking_url": "https://www.bcf.or.kr/base/rental/select?menuLevel=2&menuNo=60",
    "rooms": [
     {
-     "name": "중연습실1",
+     "name": "대연습실2",
      "free": false,
      "bookTo": "https://www.bcf.or.kr/base/rental/select?menuLevel=2&menuNo=60"
     },
@@ -520,12 +483,12 @@ window.ESHARE_ROOMS = {
      "bookTo": "https://www.bcf.or.kr/base/rental/select?menuLevel=2&menuNo=60"
     },
     {
-     "name": "대연습실2",
+     "name": "대연습실1",
      "free": false,
      "bookTo": "https://www.bcf.or.kr/base/rental/select?menuLevel=2&menuNo=60"
     },
     {
-     "name": "대연습실1",
+     "name": "중연습실1",
      "free": false,
      "bookTo": "https://www.bcf.or.kr/base/rental/select?menuLevel=2&menuNo=60"
     }
@@ -659,32 +622,17 @@ window.ESHARE_ROOMS = {
    "booking_url": "https://bcf.or.kr/bcc/rental/select?siteKind=3&menuLevel=3&menuNo=104",
    "rooms": [
     {
-     "name": "대연습실 2",
-     "free": true,
-     "bookTo": "https://bcf.or.kr/bcc/rental/select?siteKind=3&menuLevel=3&menuNo=104"
-    },
-    {
-     "name": "어쿠스틱 연습실",
-     "free": true,
-     "bookTo": "https://bcf.or.kr/bcc/rental/select?siteKind=3&menuLevel=3&menuNo=104"
-    },
-    {
      "name": "밴드연습실",
      "free": true,
      "bookTo": "https://bcf.or.kr/bcc/rental/select?siteKind=3&menuLevel=3&menuNo=104"
     },
     {
-     "name": "개인연습실 4",
-     "free": true,
-     "bookTo": "https://bcf.or.kr/bcc/rental/select?siteKind=3&menuLevel=3&menuNo=104"
-    },
-    {
-     "name": "개인연습실 1",
-     "free": true,
-     "bookTo": "https://bcf.or.kr/bcc/rental/select?siteKind=3&menuLevel=3&menuNo=104"
-    },
-    {
      "name": "개인연습실 5",
+     "free": true,
+     "bookTo": "https://bcf.or.kr/bcc/rental/select?siteKind=3&menuLevel=3&menuNo=104"
+    },
+    {
+     "name": "대연습실 2",
      "free": true,
      "bookTo": "https://bcf.or.kr/bcc/rental/select?siteKind=3&menuLevel=3&menuNo=104"
     },
@@ -695,6 +643,21 @@ window.ESHARE_ROOMS = {
     },
     {
      "name": "개인연습실 2",
+     "free": true,
+     "bookTo": "https://bcf.or.kr/bcc/rental/select?siteKind=3&menuLevel=3&menuNo=104"
+    },
+    {
+     "name": "개인연습실 4",
+     "free": true,
+     "bookTo": "https://bcf.or.kr/bcc/rental/select?siteKind=3&menuLevel=3&menuNo=104"
+    },
+    {
+     "name": "어쿠스틱 연습실",
+     "free": true,
+     "bookTo": "https://bcf.or.kr/bcc/rental/select?siteKind=3&menuLevel=3&menuNo=104"
+    },
+    {
+     "name": "개인연습실 1",
      "free": true,
      "bookTo": "https://bcf.or.kr/bcc/rental/select?siteKind=3&menuLevel=3&menuNo=104"
     },
@@ -782,17 +745,17 @@ window.ESHARE_ROOMS = {
    "price": null,
    "free": false,
    "spaces": "연습실 3실",
-   "booking_url": "https://share.gg.go.kr/facilityListO/view?instiCode=1240025&facilityId=F0002&eshare=1",
+   "booking_url": "https://share.gg.go.kr/facilityListO/view?instiCode=1240025&facilityId=F0003&eshare=1",
    "rooms": [
-    {
-     "name": "합주실 A",
-     "free": false,
-     "bookTo": "https://share.gg.go.kr/facilityListO/view?instiCode=1240025&facilityId=F0002&eshare=1"
-    },
     {
      "name": "합주실 B",
      "free": false,
      "bookTo": "https://share.gg.go.kr/facilityListO/view?instiCode=1240025&facilityId=F0003&eshare=1"
+    },
+    {
+     "name": "합주실 A",
+     "free": false,
+     "bookTo": "https://share.gg.go.kr/facilityListO/view?instiCode=1240025&facilityId=F0002&eshare=1"
     },
     {
      "name": "녹음실",
@@ -940,22 +903,12 @@ window.ESHARE_ROOMS = {
    "booking_url": "",
    "rooms": [
     {
-     "name": "음악실 413호",
-     "free": false,
-     "bookTo": ""
-    },
-    {
-     "name": "음악실 415호",
-     "free": false,
-     "bookTo": ""
-    },
-    {
-     "name": "음악실 507호",
-     "free": false,
-     "bookTo": ""
-    },
-    {
      "name": "음악실 509호",
+     "free": false,
+     "bookTo": ""
+    },
+    {
+     "name": "음악실 413호",
      "free": false,
      "bookTo": ""
     },
@@ -965,7 +918,17 @@ window.ESHARE_ROOMS = {
      "bookTo": ""
     },
     {
+     "name": "음악실 415호",
+     "free": false,
+     "bookTo": ""
+    },
+    {
      "name": "음악실 515호",
+     "free": false,
+     "bookTo": ""
+    },
+    {
+     "name": "음악실 507호",
      "free": false,
      "bookTo": ""
     }
@@ -1003,12 +966,17 @@ window.ESHARE_ROOMS = {
    "booking_url": "",
    "rooms": [
     {
-     "name": "연습실 1",
+     "name": "연습실 2",
      "free": true,
      "bookTo": ""
     },
     {
-     "name": "연습실 2",
+     "name": "음악연습실",
+     "free": true,
+     "bookTo": ""
+    },
+    {
+     "name": "연습실 1",
      "free": true,
      "bookTo": ""
     },
@@ -1019,11 +987,6 @@ window.ESHARE_ROOMS = {
     },
     {
      "name": "연습실 4",
-     "free": true,
-     "bookTo": ""
-    },
-    {
-     "name": "음악연습실",
      "free": true,
      "bookTo": ""
     }
@@ -1216,7 +1179,12 @@ window.ESHARE_ROOMS = {
    "booking_url": "",
    "rooms": [
     {
-     "name": "제4연습실",
+     "name": "제3연습실",
+     "free": false,
+     "bookTo": ""
+    },
+    {
+     "name": "제1연습실",
      "free": false,
      "bookTo": ""
     },
@@ -1226,12 +1194,7 @@ window.ESHARE_ROOMS = {
      "bookTo": ""
     },
     {
-     "name": "제3연습실",
-     "free": false,
-     "bookTo": ""
-    },
-    {
-     "name": "제1연습실",
+     "name": "제4연습실",
      "free": false,
      "bookTo": ""
     }
@@ -1413,12 +1376,12 @@ window.ESHARE_ROOMS = {
    "booking_url": "",
    "rooms": [
     {
-     "name": "생활문화센터 1층 소연습실",
+     "name": "생활문화센터 2층 대연습실",
      "free": true,
      "bookTo": ""
     },
     {
-     "name": "생활문화센터 2층 대연습실",
+     "name": "생활문화센터 1층 소연습실",
      "free": true,
      "bookTo": ""
     }
