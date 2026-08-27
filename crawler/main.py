@@ -748,6 +748,27 @@ def _line_value(ln):
 def _body_excerpt(soup, title=None, org=None):
     return _body_excerpt_text(soup.get_text("\n", strip=True), title=title, org=org)
 
+def _insts_from_fields(item):
+    """이미 채워 둔 필드(모집·요약·담당업무·전공)에서 악기·성부를 읽어 태그를 채운다.
+
+    본문 훑기와 달리 이 값들은 검증을 거친 것이라 곡목을 악기로 오인할 위험이 없다.
+    태그가 이미 있으면 건드리지 않는다.
+    """
+    if item.get("instDetails"):
+        return
+    blob = " ".join(str(item.get(k) or "") for k in
+                    ("personnel", "recruitSummary", "duty", "subject", "positions"))
+    if not blob.strip():
+        return
+    grp, dets = classify_insts(blob)
+    if dets:
+        _merge_insts(item, grp, dets)
+    elif grp and grp not in ("전체", "기타"):
+        # 세부 악기는 못 읽었지만 군은 분명하다('성악가 00명') — 군 이름을 그대로 태그로
+        # 단다. 필터(js/jobs.js instMatches)가 '군 이름이 그대로 태그된' 경우를 이미 받는다.
+        _merge_insts(item, grp, [grp])
+
+
 def _merge_insts(item, grp, dets):
     """추출된 악기를 기존 태그와 합친다 — 제목 추출분을 지우지 않는다(악기명 보존 원칙)."""
     if not dets:
@@ -2756,6 +2777,7 @@ def run(force_all=False):
         for _pf in ("workPeriod", "perfPeriod"):
             if it.get(_pf):
                 it[_pf] = normalize_period(it[_pf])
+        _insts_from_fields(it)      # 모집·담당업무 칸에만 적힌 악기·성부를 태그로
         it["certReq"] = cert_required(it["tier"], it["title"], qtext)
         # 교원자격증을 요구하는 초·중·고/교육청 채용은 제목 어휘가 뭐든 학교 수업이다 —
         # 어휘 규칙이 놓친 '방과후 시간강사'류를 자격 신호로 받아낸다 (워크오더 08-16 §3)
