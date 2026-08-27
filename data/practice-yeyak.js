@@ -1,5 +1,5 @@
 window.YEYAK_ROOMS = {
- "fetched": "2026-08-26",
+ "fetched": "2026-08-27",
  "items": [
   {
    "name": "구로구 천왕역 버들마을활력소 동아리연습실",
@@ -159,7 +159,7 @@ window.YEYAK_ROOMS = {
    "price": "무료",
    "selection": "심사",
    "apply_method": "인터넷",
-   "apply_timing": "2026.09.01 09:00 ~ 2026.09.14 20:00",
+   "apply_timing": "2026.09.01 09:00 ~ 2026.09.30 20:00",
    "eligibility": "",
    "hours": "2026.10.01 ~ 2026.10.31",
    "phone": "성동문화재단 / 02-2204-7554",

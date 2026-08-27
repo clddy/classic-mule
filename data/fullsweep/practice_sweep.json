@@ -1,5 +1,5 @@
 {
- "date": "2026-08-26",
+ "date": "2026-08-27",
  "src": "eshare.go.kr",
  "count": 316,
  "dropped": 322,
@@ -1522,6 +1522,17 @@
    "lo": 126.968937,
    "kw": "밴드"
   },
+  "EF10D635795": {
+   "name": "충전 밴드쏘",
+   "addr": "경기 고양시 덕양구 고양대로 1695",
+   "sido": "경기",
+   "free": false,
+   "cls": "기타 공구·기계·기기",
+   "bookTo": "https://share.gg.go.kr/goods/view?id=11161&eshare=1",
+   "la": 37.649777903709,
+   "lo": 126.87008600751,
+   "kw": "밴드"
+  },
   "EJ24P5742660": {
    "name": "평생학습-성전면 밴드",
    "addr": "전남광주통합특별시 강진군 강진읍 영랑로1길 10",
@@ -1874,6 +1885,83 @@
    "lo": 126.903900734498,
    "kw": "밴드"
   },
+  "HH13E859495": {
+   "name": "세라밴드",
+   "addr": "경기 의왕시 부곡시장길 75",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=59770&eshare=1",
+   "la": 37.318703253148,
+   "lo": 126.95678291717,
+   "kw": "밴드"
+  },
+  "HH08E859040": {
+   "name": "[26년 제3기] 세라밴드",
+   "addr": "경기 의왕시 찬우물길 11",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=58484&eshare=1",
+   "la": 37.353600058729,
+   "lo": 126.97152265434,
+   "kw": "밴드"
+  },
+  "HH11E859265": {
+   "name": "[26년 제3기]세라밴드",
+   "addr": "경기 의왕시 안양판교로 232",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=58412&eshare=1",
+   "la": 37.388731273569,
+   "lo": 126.99636875842,
+   "kw": "밴드"
+  },
+  "HG25E858210": {
+   "name": "세라밴드",
+   "addr": "경기 의왕시 갈미로 71",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=58330&eshare=1",
+   "la": 37.378283962037,
+   "lo": 126.97559670442,
+   "kw": "밴드"
+  },
+  "HD02E850283": {
+   "name": "[26년 제2기] 세라밴드",
+   "addr": "경기 의왕시 찬우물길 11",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=50673&eshare=1",
+   "la": 37.353600058729,
+   "lo": 126.97152265434,
+   "kw": "밴드"
+  },
+  "HD14E850918": {
+   "name": "[26년 제2기]세라밴드",
+   "addr": "경기 의왕시 안양판교로 232",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=50607&eshare=1",
+   "la": 37.388731273569,
+   "lo": 126.99636875842,
+   "kw": "밴드"
+  },
+  "HH06E858800": {
+   "name": "[고천동] 건강밴드",
+   "addr": "경기 의왕시 사천로 11",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=58710&eshare=1",
+   "la": 37.345801562119,
+   "lo": 126.97689571963,
+   "kw": "밴드"
+  },
   "CB01N002877": {
    "name": "411호(밴드연습실M)",
    "addr": "경기도 화성시 동탄순환대로20길 6",
@@ -1940,17 +2028,6 @@
    "lo": 127.06400299072266,
    "kw": "밴드"
   },
-  "EF10D635795": {
-   "name": "충전 밴드쏘",
-   "addr": "경기 고양시 덕양구 고양대로 1695",
-   "sido": "경기",
-   "free": false,
-   "cls": "기타 공구·기계·기기",
-   "bookTo": "https://share.gg.go.kr/goods/view?id=11161&eshare=1",
-   "la": 37.649777903709,
-   "lo": 126.87008600751,
-   "kw": "밴드"
-  },
   "HC21E849737": {
    "name": "[고천동] 건강밴드",
    "addr": "경기 의왕시 사천로 11",
@@ -1960,83 +2037,6 @@
    "bookTo": "https://share.gg.go.kr/lecture/view?id=50387&eshare=1",
    "la": 37.345801562119,
    "lo": 126.97689571963,
-   "kw": "밴드"
-  },
-  "HH13E859495": {
-   "name": "세라밴드",
-   "addr": "경기 의왕시 부곡시장길 75",
-   "sido": "경기",
-   "free": false,
-   "cls": "건강/체육프로그램",
-   "bookTo": "https://share.gg.go.kr/lecture/view?id=59770&eshare=1",
-   "la": 37.318703253148,
-   "lo": 126.95678291717,
-   "kw": "밴드"
-  },
-  "HH06E858800": {
-   "name": "[고천동] 건강밴드",
-   "addr": "경기 의왕시 사천로 11",
-   "sido": "경기",
-   "free": false,
-   "cls": "건강/체육프로그램",
-   "bookTo": "https://share.gg.go.kr/lecture/view?id=58710&eshare=1",
-   "la": 37.345801562119,
-   "lo": 126.97689571963,
-   "kw": "밴드"
-  },
-  "HH08E859040": {
-   "name": "[26년 제3기] 세라밴드",
-   "addr": "경기 의왕시 찬우물길 11",
-   "sido": "경기",
-   "free": false,
-   "cls": "건강/체육프로그램",
-   "bookTo": "https://share.gg.go.kr/lecture/view?id=58484&eshare=1",
-   "la": 37.353600058729,
-   "lo": 126.97152265434,
-   "kw": "밴드"
-  },
-  "HH11E859265": {
-   "name": "[26년 제3기]세라밴드",
-   "addr": "경기 의왕시 안양판교로 232",
-   "sido": "경기",
-   "free": false,
-   "cls": "건강/체육프로그램",
-   "bookTo": "https://share.gg.go.kr/lecture/view?id=58412&eshare=1",
-   "la": 37.388731273569,
-   "lo": 126.99636875842,
-   "kw": "밴드"
-  },
-  "HG25E858210": {
-   "name": "세라밴드",
-   "addr": "경기 의왕시 갈미로 71",
-   "sido": "경기",
-   "free": false,
-   "cls": "건강/체육프로그램",
-   "bookTo": "https://share.gg.go.kr/lecture/view?id=58330&eshare=1",
-   "la": 37.378283962037,
-   "lo": 126.97559670442,
-   "kw": "밴드"
-  },
-  "HD02E850283": {
-   "name": "[26년 제2기] 세라밴드",
-   "addr": "경기 의왕시 찬우물길 11",
-   "sido": "경기",
-   "free": false,
-   "cls": "건강/체육프로그램",
-   "bookTo": "https://share.gg.go.kr/lecture/view?id=50673&eshare=1",
-   "la": 37.353600058729,
-   "lo": 126.97152265434,
-   "kw": "밴드"
-  },
-  "HD14E850918": {
-   "name": "[26년 제2기]세라밴드",
-   "addr": "경기 의왕시 안양판교로 232",
-   "sido": "경기",
-   "free": false,
-   "cls": "건강/체육프로그램",
-   "bookTo": "https://share.gg.go.kr/lecture/view?id=50607&eshare=1",
-   "la": 37.388731273569,
-   "lo": 126.99636875842,
    "kw": "밴드"
   },
   "DJ26Q3122960": {
@@ -2138,6 +2138,17 @@
    "lo": 128.091744012716,
    "kw": "피아노"
   },
+  "HG16D857415": {
+   "name": "두 대의 피아노로 들여다보는 전쟁, 그리고 인간",
+   "addr": "인천 남동구 예술로 149",
+   "sido": "인천",
+   "free": false,
+   "cls": "공연프로그램",
+   "bookTo": "https://www.incheon.go.kr/res/RE050101/pblprfrDspyView?resveProgrmSeCode=C&resveGroupSn=5&progrmSn=10935",
+   "la": 37.4475889154018,
+   "lo": 126.700055774871,
+   "kw": "피아노"
+  },
   "EJ17R3924983": {
    "name": "이동식디지털피아노",
    "addr": "전남광주통합특별시 광산구 단전1길 14 (하남동)",
@@ -2149,6 +2160,17 @@
    "lo": 126.7993957517001,
    "kw": "피아노"
   },
+  "HH20E860216": {
+   "name": "토요피아노E_가을학기(사회교육)",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=60166&eshare=1",
+   "la": 37.326275367734,
+   "lo": 126.8535055695,
+   "kw": "피아노"
+  },
   "CF10U3202674": {
    "name": "춤추는 뽀로로피아노",
    "addr": "전남광주통합특별시 남구 양림로 73 (양림동)",
@@ -2158,39 +2180,6 @@
    "bookTo": "https://blog.naver.com/namgulib08/222840427455",
    "la": 35.1379510675181,
    "lo": 126.916880184452,
-   "kw": "피아노"
-  },
-  "FJ10M5931277": {
-   "name": "피아노",
-   "addr": "강원특별자치도 태백시 황지로 75 (황지동)",
-   "sido": "강원특별자치도",
-   "free": true,
-   "cls": "교양/학습프로그램",
-   "bookTo": "",
-   "la": 37.1655656908478,
-   "lo": 128.991507044156,
-   "kw": "피아노"
-  },
-  "HE14E852931": {
-   "name": "토요피아노E_여름학기[사회교육]",
-   "addr": "경기 안산시 상록구 삼일로 696",
-   "sido": "경기",
-   "free": false,
-   "cls": "건강/체육프로그램",
-   "bookTo": "https://share.gg.go.kr/lecture/view?id=53548&eshare=1",
-   "la": 37.326275367734,
-   "lo": 126.8535055695,
-   "kw": "피아노"
-  },
-  "HG16D857415": {
-   "name": "두 대의 피아노로 들여다보는 전쟁, 그리고 인간",
-   "addr": "인천 남동구 예술로 149",
-   "sido": "인천",
-   "free": false,
-   "cls": "공연프로그램",
-   "bookTo": "https://www.incheon.go.kr/res/RE050101/pblprfrDspyView?resveProgrmSeCode=C&resveGroupSn=5&progrmSn=10935",
-   "la": 37.4475889154018,
-   "lo": 126.700055774871,
    "kw": "피아노"
   },
   "HH21E860360": {
@@ -2277,17 +2266,6 @@
    "free": false,
    "cls": "건강/체육프로그램",
    "bookTo": "https://share.gg.go.kr/lecture/view?id=60167&eshare=1",
-   "la": 37.326275367734,
-   "lo": 126.8535055695,
-   "kw": "피아노"
-  },
-  "HH20E860216": {
-   "name": "토요피아노E_가을학기(사회교육)",
-   "addr": "경기 안산시 상록구 삼일로 696",
-   "sido": "경기",
-   "free": false,
-   "cls": "건강/체육프로그램",
-   "bookTo": "https://share.gg.go.kr/lecture/view?id=60166&eshare=1",
    "la": 37.326275367734,
    "lo": 126.8535055695,
    "kw": "피아노"
@@ -2431,17 +2409,6 @@
    "free": false,
    "cls": "건강/체육프로그램",
    "bookTo": "https://share.gg.go.kr/lecture/view?id=56208&eshare=1",
-   "la": 37.326275367734,
-   "lo": 126.8535055695,
-   "kw": "피아노"
-  },
-  "HF20E855992": {
-   "name": "토요피아노E(7,8월)_여름학기[사회교육]",
-   "addr": "경기 안산시 상록구 삼일로 696",
-   "sido": "경기",
-   "free": false,
-   "cls": "건강/체육프로그램",
-   "bookTo": "https://share.gg.go.kr/lecture/view?id=56196&eshare=1",
    "la": 37.326275367734,
    "lo": 126.8535055695,
    "kw": "피아노"
@@ -2919,6 +2886,39 @@
    "lo": 126.8535055695,
    "kw": "피아노"
   },
+  "HF20E855992": {
+   "name": "토요피아노E(7,8월)_여름학기[사회교육]",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=56196&eshare=1",
+   "la": 37.326275367734,
+   "lo": 126.8535055695,
+   "kw": "피아노"
+  },
+  "FJ10M5931277": {
+   "name": "피아노",
+   "addr": "강원특별자치도 태백시 황지로 75 (황지동)",
+   "sido": "강원특별자치도",
+   "free": true,
+   "cls": "교양/학습프로그램",
+   "bookTo": "",
+   "la": 37.1655656908478,
+   "lo": 128.991507044156,
+   "kw": "피아노"
+  },
+  "HE14E852931": {
+   "name": "토요피아노E_여름학기[사회교육]",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=53548&eshare=1",
+   "la": 37.326275367734,
+   "lo": 126.8535055695,
+   "kw": "피아노"
+  },
   "EE10K0155920": {
    "name": "레일피아노(남광주역)",
    "addr": "전남광주통합특별시 동구 제봉로 지하 1 (학동)",
@@ -3084,15 +3084,15 @@
    "lo": 126.98909759521484,
    "kw": "공연연습"
   },
-  "FA11D698480": {
-   "name": "녹음실┃ 포천음악창작소",
+  "HC13E848600": {
+   "name": "[포천음악창작소] 4월 모이면 음악이된다",
    "addr": "경기 포천시 호국로 1423",
    "sido": "경기",
-   "free": false,
-   "cls": "주민편의시설 등",
-   "bookTo": "https://share.gg.go.kr/facilityListO/view?instiCode=1240025&facilityId=F0001&eshare=1",
-   "la": 37.88582992553711,
-   "lo": 127.19180297851562,
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=49541&eshare=1",
+   "la": 37.885832632026,
+   "lo": 127.19180048848,
    "kw": "음악창작소"
   },
   "HH20E860111": {
@@ -3436,17 +3436,6 @@
    "lo": 127.19180048848,
    "kw": "음악창작소"
   },
-  "HC13E848600": {
-   "name": "[포천음악창작소] 4월 모이면 음악이된다",
-   "addr": "경기 포천시 호국로 1423",
-   "sido": "경기",
-   "free": true,
-   "cls": "건강/체육프로그램",
-   "bookTo": "https://share.gg.go.kr/lecture/view?id=49541&eshare=1",
-   "la": 37.885832632026,
-   "lo": 127.19180048848,
-   "kw": "음악창작소"
-  },
   "HC13E848608": {
    "name": "[포천음악창작소] 4월 전자드럼 프로그램",
    "addr": "경기 포천시 호국로 1423",
@@ -3478,6 +3467,17 @@
    "bookTo": "https://share.gg.go.kr/lecture/view?id=49511&eshare=1",
    "la": 37.885832632026,
    "lo": 127.19180048848,
+   "kw": "음악창작소"
+  },
+  "FA11D698480": {
+   "name": "녹음실┃ 포천음악창작소",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": false,
+   "cls": "주민편의시설 등",
+   "bookTo": "https://share.gg.go.kr/facilityListO/view?instiCode=1240025&facilityId=F0001&eshare=1",
+   "la": 37.88582992553711,
+   "lo": 127.19180297851562,
    "kw": "음악창작소"
   }
  }

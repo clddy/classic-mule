@@ -1,5 +1,5 @@
 {
- "collectedAt": "2026-08-27 12:37",
+ "collectedAt": "2026-08-27 18:09",
  "heldNoOrigin": 0,
  "sourceCount": 87,
  "okCount": 86,
@@ -390,7 +390,7 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 1,
+   "raw": 0,
    "kept": 1,
    "drop": {
     "만료": 0,
@@ -1111,10 +1111,9 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 1,
+   "raw": 0,
    "kept": 0,
    "drop": {
-    "무관": 1,
     "만료": 0,
     "오래됨": 0
    }
@@ -1207,8 +1206,7 @@
    "ageGroup": "성인",
    "inst": "금관",
    "instDetails": [
-    "트럼펫",
-    "관악"
+    "트럼펫"
    ],
    "channel": "edu_seoul",
    "layer": "C",
@@ -1245,7 +1243,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
@@ -1321,28 +1319,28 @@
    ],
    "channel": "edu_goe",
    "layer": "C",
-   "contact": "070-4021-7078",
    "email": "flyingsk@korea.kr",
-   "workPeriod": "2026.10.11 ~ 2026.11.02",
-   "workHours": "16시간",
-   "personnel": "1명",
    "addr": "경기 화성시 효행구 기안길 18(기안동)",
-   "bodyExcerpt": "면접일시 : 1 차 서류심사 통과자에 한해 2026. · 해당 분야의 전문적인 능력을 가진 자 또는 자격증 소지자 · 운영 기간 : 2026 년 10 월 ~11 월 날짜 협의((월요일 혹은 금요일로 주 1 일 총 4 주) 각 반별 4 차시 총 16 차시 · 2 차 심사 : 면접전형 2026.9.3.(목) 15:00, 온라인 화상(ZOOM) 으로 실시",
-   "deadline": "2026-09-01",
-   "deadlineFrom": "raw",
    "orgAffil": "경기교육청",
    "firstSeen": "2026-08-26",
    "isNew": true,
+   "contact": "070-4021-7078",
+   "workPeriod": "2026.10.11 ~ 2026.11.02",
+   "workHours": "16시간",
+   "personnel": "1명",
+   "bodyExcerpt": "면접일시 : 1 차 서류심사 통과자에 한해 2026. · 해당 분야의 전문적인 능력을 가진 자 또는 자격증 소지자 · 운영 기간 : 2026 년 10 월 ~11 월 날짜 협의((월요일 혹은 금요일로 주 1 일 총 4 주) 각 반별 4 차시 총 16 차시 · 2 차 심사 : 면접전형 2026.9.3.(목) 15:00, 온라인 화상(ZOOM) 으로 실시",
+   "deadline": "2026-09-01",
+   "deadlineFrom": "raw",
    "extVer": 94
   },
   {
-   "id": "625804afa601819f",
+   "id": "7d01c8034e1db350",
    "org": "전주서중학교",
    "region": "전북",
    "source": "jbe.go.kr",
    "title": "[전주서중] 기간제교사(음악) 채용",
    "nonMusic": null,
-   "url": "https://www.jbe.go.kr/board/view.jbe?boardId=BBS_0000130&menuCd=DOM_000000103004006000&paging=ok&startPage=2&searchOperation=AND&dataSid=1169021",
+   "url": "https://www.jbe.go.kr/board/view.jbe?boardId=BBS_0000130&menuCd=DOM_000000103004006000&paging=ok&startPage=3&searchOperation=AND&dataSid=1169021",
    "date": "2026-08-26",
    "kind": "교원",
    "tier": "교육 — 학교",
@@ -1370,7 +1368,7 @@
    "extVer": 94
   },
   {
-   "id": "06a4638df46ce1c1",
+   "id": "8c119419270bfa29",
    "org": "인천미산초등학교병설유치원",
    "region": "인천",
    "source": "ice.go.kr",
@@ -1389,11 +1387,10 @@
    "instDetails": [],
    "channel": "edu_ice",
    "layer": "C",
+   "orgBoard": "인천교육청(학교 채용)",
    "qualification": "해당 분야에 전문적인 능력을 가진 자 또는 자격증 소지자 · 직무 수행의 결격사유나 유아 지도 시 건강에 이상이 없는 자",
    "contact": "032-452-3983",
-   "orgBoard": "인천교육청(학교 채용)",
    "personnel": "1명",
-   "hiringOrg": "인천광역시교육청대상명 : 인천광역시교육청(https://www.ice.go.kr)",
    "bodyExcerpt": "인천미산초등학교병설유치원에서는 특성화 프로그램 운영과 관련하여 아래와 같이 특성화 프로그램 위탁 강사를 모집하오니, 관심 있는 분들의 많은 지원 바랍니다 . · 해당 분야에 전문적인 능력을 가진 자 또는 자격증 소지자 · 유치원 특성화프로그램 개인위탁 외부강사 활동에 제한이 없는 자 * 프로그램 과목별 주 1 회 수업(만 3~5 세 통합 1 반)",
    "deadline": "2026-08-31",
    "deadlineFrom": "raw",
@@ -1401,7 +1398,8 @@
    "lat": 37.504509,
    "lng": 126.709681,
    "addrFrom": "geo",
-   "firstSeen": "2026-08-26",
+   "hiringOrg": "인천광역시교육청대상명 : 인천광역시교육청(https://www.ice.go.kr)",
+   "firstSeen": "2026-08-27",
    "isNew": true,
    "extVer": 94
   },
@@ -2013,7 +2011,7 @@
    "extVer": 94
   },
   {
-   "id": "b8d40230ab676f50",
+   "id": "fe341607ad0fc788",
    "org": "인천검단꿈유치원",
    "region": "인천",
    "source": "ice.go.kr",
