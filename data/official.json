@@ -1,8 +1,8 @@
 {
- "collectedAt": "2026-08-28 07:13",
+ "collectedAt": "2026-08-28 14:43",
  "heldNoOrigin": 0,
  "sourceCount": 87,
- "okCount": 80,
+ "okCount": 86,
  "instTotal": 75,
  "sources": [
   {
@@ -11,10 +11,12 @@
    "layer": "A",
    "poll": "daily",
    "ok": true,
-   "raw": 1,
+   "raw": 4,
    "kept": 1,
    "drop": {
-    "만료": 0,
+    "무관": 1,
+    "비음악": 1,
+    "만료": 1,
     "오래됨": 0
    }
   },
@@ -121,7 +123,7 @@
    "raw": 1,
    "kept": 0,
    "drop": {
-    "무관": 1,
+    "비음악": 1,
     "만료": 0,
     "오래됨": 0
    }
@@ -147,10 +149,10 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 21,
+   "raw": 22,
    "kept": 0,
    "drop": {
-    "무관": 17,
+    "무관": 18,
     "비음악": 4,
     "만료": 0,
     "오래됨": 0
@@ -162,9 +164,11 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
+   "raw": 10,
    "kept": 0,
    "drop": {
+    "무관": 5,
+    "비음악": 5,
     "만료": 0,
     "오래됨": 0
    }
@@ -190,9 +194,11 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
+   "raw": 30,
    "kept": 0,
    "drop": {
+    "무관": 21,
+    "비음악": 9,
     "만료": 0,
     "오래됨": 0
    }
@@ -372,10 +378,10 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 10,
-   "kept": 7,
+   "raw": 13,
+   "kept": 9,
    "drop": {
-    "무관": 3,
+    "무관": 4,
     "만료": 0,
     "오래됨": 0
    }
@@ -386,7 +392,7 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
+   "raw": 1,
    "kept": 1,
    "drop": {
     "만료": 0,
@@ -400,7 +406,7 @@
    "poll": "daily",
    "ok": true,
    "raw": 0,
-   "kept": 1,
+   "kept": 0,
    "drop": {
     "만료": 0,
     "오래됨": 0
@@ -412,7 +418,7 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 1,
+   "raw": 0,
    "kept": 1,
    "drop": {
     "만료": 0,
@@ -439,8 +445,8 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 1,
-   "kept": 1,
+   "raw": 0,
+   "kept": 2,
    "drop": {
     "만료": 0,
     "오래됨": 0
@@ -452,10 +458,10 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
+   "raw": 4,
    "kept": 0,
    "drop": {
-    "만료": 0,
+    "만료": 4,
     "오래됨": 0
    }
   },
@@ -582,9 +588,13 @@
    "name": "고양문화재단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 0,
    "kept": 0,
-   "error": "TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.artgy.or.kr/CU/CU0101M.aspx\", waiting unti"
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_gfac",
@@ -781,9 +791,14 @@
    "name": "안산시립합창단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 8,
    "kept": 0,
-   "error": "ConnectTimeout: HTTPSConnectionPool(host='ansanarts.com', port=443): Max retries exceeded with url: /bbs/board.php?bo_table=notice (Caus"
+   "drop": {
+    "무관": 4,
+    "오래됨": 4,
+    "만료": 0
+   }
   },
   {
    "id": "g_i_gurigokr",
@@ -803,9 +818,14 @@
    "name": "순천시립합창단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 2,
    "kept": 0,
-   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.suncheon.go.kr', port=443): Max retries exceeded with url: /scart/community/0001;jsessioni"
+   "drop": {
+    "무관": 2,
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_i_andonggokr",
@@ -827,9 +847,13 @@
    "name": "경기문화재단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 0,
    "kept": 0,
-   "error": "HTTPError: 403 Forbidden"
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_i_hcforkr",
@@ -889,9 +913,13 @@
    "name": "동해문화관광재단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 0,
    "kept": 0,
-   "error": "HTTPError: 403 Forbidden"
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_i_cfscorkr",
@@ -1070,9 +1098,14 @@
    "name": "안산시립합창단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 6,
    "kept": 0,
-   "error": "ConnectTimeout: HTTPSConnectionPool(host='ansanarts.com', port=443): Max retries exceeded with url: /bbs/board.php?bo_table=notice (Caus"
+   "drop": {
+    "오래됨": 3,
+    "무관": 3,
+    "만료": 0
+   }
   },
   {
    "id": "g_pajucf",
@@ -1080,9 +1113,10 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
+   "raw": 1,
    "kept": 0,
    "drop": {
+    "무관": 1,
     "만료": 0,
     "오래됨": 0
    }
@@ -1146,15 +1180,125 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
-   "kept": 0,
+   "raw": 12,
+   "kept": 10,
+   "declared": 12,
    "drop": {
+    "비음악": 2,
     "만료": 0,
     "오래됨": 0
    }
   }
  ],
  "items": [
+  {
+   "id": "ab5652fbeb7a5d66",
+   "org": "송곡여자고등학교",
+   "region": "서울",
+   "source": "work.sen.go.kr",
+   "title": "[송곡여고] 오케스트라 악기강사 채용",
+   "nonMusic": null,
+   "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=109320",
+   "date": "2026-08-28",
+   "kind": "강사",
+   "tier": "교육 — 취미·입문",
+   "obri": false,
+   "certReq": "무관",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "ageGroup": "성인",
+   "inst": "현악",
+   "instDetails": [
+    "바이올린",
+    "첼로",
+    "관악"
+   ],
+   "channel": "edu_seoul",
+   "layer": "C",
+   "contact": "02-6328-7016",
+   "email": "saeromle@sen.go.kr",
+   "pay": "시간당40,000원",
+   "workPeriod": "2026.09.08 ~ 2026.12.22",
+   "personnel": "1명",
+   "addr": "서울특별시 중랑구 양원역로 67(망우동)",
+   "duty": "오케스트라 악기강사(바이올린, 첼로)",
+   "deadline": "2026-08-31",
+   "deadlineFrom": "raw",
+   "orgAffil": "서울시교육청",
+   "firstSeen": "2026-08-28",
+   "isNew": true,
+   "extVer": 96
+  },
+  {
+   "id": "ba335c03de151cb7",
+   "org": "상암중학교",
+   "region": "서울",
+   "source": "work.sen.go.kr",
+   "title": "[상암중] 시간강사 채용",
+   "nonMusic": null,
+   "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=109321",
+   "date": "2026-08-28",
+   "kind": "강사",
+   "tier": "교육 — 학교",
+   "obri": false,
+   "certReq": "무관",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "ageGroup": "성인",
+   "inst": "목관",
+   "instDetails": [
+    "관악"
+   ],
+   "channel": "edu_seoul",
+   "layer": "C",
+   "contact": "010-8642-1202",
+   "email": "mkchei@naver.com",
+   "workPeriod": "2026.09.21 ~ 2026.09.23",
+   "personnel": "총 1명",
+   "addr": "서울 마포구 상암산로1길 26(상암동)",
+   "duty": "음악",
+   "deadline": "2026-08-31",
+   "deadlineFrom": "raw",
+   "orgAffil": "서울시교육청",
+   "firstSeen": "2026-08-28",
+   "isNew": true,
+   "extVer": 96
+  },
+  {
+   "id": "77bb3eb5a8713177",
+   "org": "능평초등학교",
+   "region": "경기",
+   "source": "goe.go.kr",
+   "title": "[능평초] 1학년 음악강사 모집",
+   "nonMusic": null,
+   "url": "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=58231",
+   "date": "2026-08-28",
+   "kind": "강사",
+   "tier": "교육 — 취미·입문",
+   "obri": false,
+   "certReq": "무관",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "ageGroup": "성인",
+   "inst": "전체",
+   "instDetails": [],
+   "channel": "edu_goe",
+   "layer": "C",
+   "contact": "070-4021-7078",
+   "email": "npcho@korea.kr",
+   "pay": "체육 교육 오카리나, 동요지도 등 음악 분야 1명 주 5회(40분) 총 60시간 30,000원",
+   "workPeriod": "2026.11.01 ~ 2026.12.12",
+   "workHours": "60시간",
+   "personnel": "1명",
+   "addr": "경기 광주시 창뜰아랫길 14-3(능평동)",
+   "bodyExcerpt": "응시자격 · 올바른 교육관을 가지고 해당 분야를 전문적으로 다루거나 관련 분야 전공자 및 자격증 소지자 · 국민건강보험공단 건강검진결과통보서(최근 2 년 이내) 또는 일반채용신체검사서(최근 1 년 이내)· 본 채용계획은 사정에 의하여 변경될 수 있으며, 변경된 사항은 재공고 후 시행할 예정입니다",
+   "deadline": "2026-09-03",
+   "deadlineFrom": "raw",
+   "orgAffil": "경기교육청",
+   "firstSeen": "2026-08-28",
+   "isNew": true,
+   "extVer": 96
+  },
   {
    "id": "5ce4299ab3e1d24a",
    "org": "꿈의 오케스트라",
@@ -1189,7 +1333,7 @@
    "deadlineFrom": "raw",
    "firstSeen": "2026-08-28",
    "isNew": true,
-   "extVer": 94
+   "extVer": 96
   },
   {
    "id": "58e198170e46f2df",
@@ -1209,7 +1353,8 @@
    "ageGroup": "성인",
    "inst": "금관",
    "instDetails": [
-    "트럼펫"
+    "트럼펫",
+    "관악"
    ],
    "channel": "edu_seoul",
    "layer": "C",
@@ -1228,7 +1373,7 @@
    "orgBoard": "서울동교초등학교",
    "firstSeen": "2026-08-27",
    "isNew": true,
-   "extVer": 94
+   "extVer": 96
   },
   {
    "id": "85997ce5b231e939",
@@ -1246,7 +1391,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "전체",
+   "inst": "목관",
    "instDetails": [
     "관악"
    ],
@@ -1264,7 +1409,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-27",
    "isNew": true,
-   "extVer": 94
+   "extVer": 96
   },
   {
    "id": "d96ab31202030ef6",
@@ -1298,43 +1443,44 @@
    "deadlineFrom": "raw",
    "firstSeen": "2026-08-27",
    "isNew": true,
-   "extVer": 94
+   "extVer": 96
   },
   {
-   "id": "f8f82bbb03d7c268",
-   "org": "기안초등학교",
-   "region": "경기",
-   "source": "goe.go.kr",
-   "title": "[기안초] 4학년 문화예술교육(음악) 강사 채용",
+   "id": "fe341607ad0fc788",
+   "org": "인천검단꿈유치원",
+   "region": "인천",
+   "source": "ice.go.kr",
+   "title": "(긴급) 유치원 방과후과정 특성화 활동 음악 외부강사 모집",
    "nonMusic": null,
-   "url": "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=57952",
-   "date": "2026-08-26",
+   "url": "https://www.ice.go.kr/ice/na/ntt/selectNttInfo.do?nttSn=3382788&mi=10997&bbsId=1981",
+   "date": "2026-08-27",
    "kind": "강사",
    "tier": "교육 — 취미·입문",
    "obri": false,
-   "certReq": "무관",
+   "certReq": "아니오",
    "degreeReq": "무관",
-   "careerReq": "미기재",
+   "careerReq": "필요",
    "ageGroup": "성인",
    "inst": "전체",
-   "instDetails": [
-    "관악"
-   ],
-   "channel": "edu_goe",
+   "instDetails": [],
+   "channel": "edu_ice",
    "layer": "C",
-   "email": "flyingsk@korea.kr",
-   "addr": "경기 화성시 효행구 기안길 18(기안동)",
-   "orgAffil": "경기교육청",
-   "firstSeen": "2026-08-26",
-   "isNew": false,
-   "contact": "070-4021-7078",
-   "workPeriod": "2026.10.11 ~ 2026.11.02",
-   "workHours": "16시간",
+   "orgBoard": "인천교육청(학교 채용)",
+   "email": "geomdandream@ice.go.kr",
+   "addr": "인천광역시 검단구 이음1로",
+   "lat": 37.5919668,
+   "lng": 126.7189677,
+   "addrFrom": "geo",
+   "firstSeen": "2026-08-27",
+   "isNew": true,
+   "qualification": "1 . 전공학과 졸업 및 이수자로 일정한 자격을 갖춘 강사",
+   "contact": "032-430-3927",
    "personnel": "1명",
-   "bodyExcerpt": "면접일시 : 1 차 서류심사 통과자에 한해 2026. · 해당 분야의 전문적인 능력을 가진 자 또는 자격증 소지자 · 운영 기간 : 2026 년 10 월 ~11 월 날짜 협의((월요일 혹은 금요일로 주 1 일 총 4 주) 각 반별 4 차시 총 16 차시 · 2 차 심사 : 면접전형 2026.9.3.(목) 15:00, 온라인 화상(ZOOM) 으로 실시",
-   "deadline": "2026-09-01",
+   "hiringOrg": "인천광역시교육청대상명 : 인천광역시교육청(https://www.ice.go.kr)",
+   "bodyExcerpt": "활동 요일 및 시간 협의 가능 Ⅱ 자격요건 1 . · 전공학과 졸업 및 이수자로 일정한 자격을 갖춘 강사 2. · 관련 자격증을 소지한 강사 및 유경험자 3. · 유치원 활동에 적극적인 지원 의지가 있으며 성실히 근무할 수 있는 자 Ⅲ 모집절차 및 일정 1",
+   "deadline": "2026-08-31",
    "deadlineFrom": "raw",
-   "extVer": 94
+   "extVer": 96
   },
   {
    "id": "7d01c8034e1db350",
@@ -1356,19 +1502,55 @@
    "instDetails": [],
    "channel": "edu_jbe",
    "layer": "C",
-   "contact": "0637142703",
-   "email": "seoms2667@korea.kr",
    "orgBoard": "전주서중학교(전북교육청)",
    "addr": "전북특별자치도 전주시 완산구 당산로 2 전주서중학교",
+   "email": "seoms2667@korea.kr",
+   "firstSeen": "2026-08-27",
+   "isNew": false,
+   "contact": "0637142703",
    "workPeriod": "2026.09.07 ~ 2026.12.19",
    "workHours": "전일제 근무(1일 8시간)",
    "ageLimit": "제한 없음",
    "bodyExcerpt": "공고에 ‘채용의 제한’ 부분 명시 2. · 지침 [붙임 2] 기간제교원 채용 공고(예시) 다운로드 지침",
    "deadline": "2026-08-28",
    "deadlineFrom": "raw",
+   "extVer": 96
+  },
+  {
+   "id": "8c119419270bfa29",
+   "org": "인천미산초등학교병설유치원",
+   "region": "인천",
+   "source": "ice.go.kr",
+   "title": "[인천미산초] 병설유치원 음악 특성화 프로그램 외부강사 모집",
+   "nonMusic": null,
+   "url": "https://www.ice.go.kr/ice/na/ntt/selectNttInfo.do?nttSn=3382658&mi=10997&bbsId=1981",
+   "date": "2026-08-26",
+   "kind": "강사",
+   "tier": "교육 — 취미·입문",
+   "obri": false,
+   "certReq": "무관",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "ageGroup": "성인",
+   "inst": "전체",
+   "instDetails": [],
+   "channel": "edu_ice",
+   "layer": "C",
+   "orgBoard": "인천교육청(학교 채용)",
+   "addr": "인천광역시 부평구 원적로",
+   "lat": 37.504509,
+   "lng": 126.709681,
+   "addrFrom": "geo",
    "firstSeen": "2026-08-27",
    "isNew": false,
-   "extVer": 94
+   "qualification": "해당 분야에 전문적인 능력을 가진 자 또는 자격증 소지자 · 직무 수행의 결격사유나 유아 지도 시 건강에 이상이 없는 자",
+   "contact": "032-452-3983",
+   "personnel": "1명",
+   "hiringOrg": "인천광역시교육청대상명 : 인천광역시교육청(https://www.ice.go.kr)",
+   "bodyExcerpt": "인천미산초등학교병설유치원에서는 특성화 프로그램 운영과 관련하여 아래와 같이 특성화 프로그램 위탁 강사를 모집하오니, 관심 있는 분들의 많은 지원 바랍니다 . · 해당 분야에 전문적인 능력을 가진 자 또는 자격증 소지자 · 유치원 특성화프로그램 개인위탁 외부강사 활동에 제한이 없는 자 * 프로그램 과목별 주 1 회 수업(만 3~5 세 통합 1 반)",
+   "deadline": "2026-08-31",
+   "deadlineFrom": "raw",
+   "extVer": 96
   },
   {
    "id": "e099f21ba2e30c19",
@@ -1393,17 +1575,14 @@
    ],
    "channel": "g_casuwon",
    "layer": "B",
-   "dlHint": [
-    "주교 신자로서 오르간, 피아노 전공자(성가대 반주 유경험자 우대) 4. 제출서류: 이력서(사진부착), 교적사본 5. 제출기한: 채용시 6. 봉  사 료: 유급(면",
-    "반주 유경험자 우대) 4. 제출서류: 이력서(사진부착), 교적사본 5. 제출기한: 채용시 6. 봉  사 료: 유급(면담시 안내) 7. 제출방법: 이메일: sung"
-   ],
    "addr": "경기 용인시 수지구 도마치로 89번길 4-17",
    "addrFrom": "postal",
    "email": "sungbok@casuwon.or.kr",
    "bodyExcerpt": "지원자격: 천주교 신자로서 오르간, 피아노 전공자(성가대 반주 유경험자 우대) 4. · 제출기한: 채용시 6. · 제출방법: 이메일: sungbok@casuwon.or.kr 또는 방문접수 8",
+   "deadlineNote": "상시",
    "firstSeen": "2026-08-26",
    "isNew": false,
-   "extVer": 94
+   "extVer": 96
   },
   {
    "id": "311cef60305a6ede",
@@ -1423,7 +1602,8 @@
    "ageGroup": "성인",
    "inst": "현악",
    "instDetails": [
-    "바이올린"
+    "바이올린",
+    "관악"
    ],
    "channel": "edu_seoul",
    "layer": "C",
@@ -1441,7 +1621,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-25",
    "isNew": false,
-   "extVer": 94
+   "extVer": 96
   },
   {
    "id": "ee0d661436e7a1ca",
@@ -1452,6 +1632,7 @@
    "nonMusic": null,
    "url": "https://www.artinfokorea.com/jobs/480",
    "date": "2026-08-24",
+   "deadline": "2026-08-31",
    "kind": "지휘",
    "tier": "연주",
    "obri": false,
@@ -1466,14 +1647,14 @@
    "officialUrl": "https://www.yangju.go.kr/www/selectEminwonView.do?pageUnit=10&pageIndex=1&searchCnd=all&key=4075&not_ancmt_mgt_no=67570&ofr_pageSize=10",
    "channel": "artinfo",
    "layer": "A",
+   "dlHint": null,
    "contact": "031-8082-5652",
    "pay": "기본급 1,990,000원/월, 연주수당 150,000원/회",
    "workHours": "1일 4시간 30분(주2회)",
-   "deadline": "2026-08-31",
    "deadlineFrom": "raw",
    "firstSeen": "2026-08-19",
    "isNew": false,
-   "extVer": 94
+   "extVer": 96
   },
   {
    "id": "5d5183294251f902",
@@ -1509,7 +1690,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-24",
    "isNew": false,
-   "extVer": 94
+   "extVer": 96
   },
   {
    "id": "c227067b5acf6e1c",
@@ -1527,7 +1708,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "전체",
+   "inst": "목관",
    "instDetails": [
     "관악"
    ],
@@ -1547,7 +1728,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-24",
    "isNew": false,
-   "extVer": 94
+   "extVer": 96
   },
   {
    "id": "e29203a6b490758a",
@@ -1565,7 +1746,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "전체",
+   "inst": "목관",
    "instDetails": [
     "관악"
    ],
@@ -1584,7 +1765,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-24",
    "isNew": false,
-   "extVer": 94
+   "extVer": 96
   },
   {
    "id": "b83667209a8cd77d",
@@ -1615,7 +1796,7 @@
    "deadlineNote": "상시",
    "firstSeen": "2026-08-19",
    "isNew": false,
-   "extVer": 94
+   "extVer": 96
   },
   {
    "id": "6cb1a301d8f777cc",
@@ -1653,7 +1834,7 @@
    "orgBoard": "울산문화예술회관(시립예술단)",
    "firstSeen": "2026-08-18",
    "isNew": false,
-   "extVer": 94
+   "extVer": 96
   },
   {
    "id": "11376188af16b7d1",
@@ -1690,7 +1871,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-19",
    "isNew": false,
-   "extVer": 94
+   "extVer": 96
   },
   {
    "id": "bd2c17f19933f651",
@@ -1722,7 +1903,7 @@
    "isNew": false,
    "personnel": "반주자",
    "pay": "30만원",
-   "extVer": 94
+   "extVer": 96
   },
   {
    "id": "3dc1300363d803e8",
@@ -1758,7 +1939,7 @@
    "addrFrom": "geo",
    "firstSeen": "2026-08-14",
    "isNew": false,
-   "extVer": 94
+   "extVer": 96
   },
   {
    "id": "0251912d3b918734",
@@ -1793,7 +1974,7 @@
    "pay": "월 40만원",
    "workHours": "매주 일요일 11시~12시(1시간)",
    "bodyExcerpt": "모집분야 : 주일예배 및 성가대 피아노 반주자 · 성가대 연습 : 주일 10시~10시 50분, 12시 10분~12시 50분(시간은 유동적임)· 지원자격 : 피아노 또는 음악 관련 전공자 및 교회 반주 경험자 우대 · 주요업무 : 주일예배 찬송가 및 예배 반주, 성가대 찬양 반주, 성가대 연습 반주",
-   "extVer": 94
+   "extVer": 96
   },
   {
    "id": "b2e199e32140e0ed",
@@ -1828,7 +2009,7 @@
    "personnel": "반주자",
    "pay": "20만원",
    "deadlineNote": "상시",
-   "extVer": 94
+   "extVer": 96
   },
   {
    "id": "5fbc7e4eb4f8d92d",
@@ -1862,44 +2043,7 @@
    "personnel": "반주자",
    "pay": "협의",
    "deadlineNote": "상시",
-   "extVer": 94
-  },
-  {
-   "id": "fe341607ad0fc788",
-   "org": "인천검단꿈유치원",
-   "region": "인천",
-   "source": "ice.go.kr",
-   "title": "(긴급) 유치원 방과후과정 특성화 활동 음악 외부강사 모집",
-   "nonMusic": null,
-   "url": "https://www.ice.go.kr/ice/na/ntt/selectNttInfo.do?nttSn=3382788&mi=10997&bbsId=1981",
-   "date": "2026-02-05",
-   "kind": "강사",
-   "tier": "교육 — 취미·입문",
-   "obri": false,
-   "certReq": "아니오",
-   "degreeReq": "무관",
-   "careerReq": "필요",
-   "ageGroup": "성인",
-   "inst": "전체",
-   "instDetails": [],
-   "channel": "edu_ice",
-   "layer": "C",
-   "qualification": "1 . 전공학과 졸업 및 이수자로 일정한 자격을 갖춘 강사",
-   "contact": "032-430-3927",
-   "email": "geomdandream@ice.go.kr",
-   "orgBoard": "인천교육청(학교 채용)",
-   "personnel": "1명",
-   "hiringOrg": "인천광역시교육청대상명 : 인천광역시교육청(https://www.ice.go.kr)",
-   "bodyExcerpt": "활동 요일 및 시간 협의 가능 Ⅱ 자격요건 1 . · 전공학과 졸업 및 이수자로 일정한 자격을 갖춘 강사 2. · 관련 자격증을 소지한 강사 및 유경험자 3. · 유치원 활동에 적극적인 지원 의지가 있으며 성실히 근무할 수 있는 자 Ⅲ 모집절차 및 일정 1",
-   "deadline": "2026-08-31",
-   "deadlineFrom": "raw",
-   "addr": "인천광역시 검단구 이음1로",
-   "lat": 37.5919668,
-   "lng": 126.7189677,
-   "addrFrom": "geo",
-   "firstSeen": "2026-08-27",
-   "isNew": false,
-   "extVer": 94
+   "extVer": 96
   }
  ]
 }

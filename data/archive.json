@@ -1,6 +1,6 @@
 {
  "updatedAt": "2026-08-28",
- "count": 1291,
+ "count": 1294,
  "items": {
   "f7b1c263744b9ece": {
    "id": "f7b1c263744b9ece",
@@ -32554,7 +32554,7 @@
    "deadlineFrom": "raw",
    "kind": "강사",
    "tier": "교육 — 학교",
-   "inst": "전체",
+   "inst": "목관",
    "instDetails": [
     "관악"
    ],
@@ -32628,7 +32628,7 @@
    "deadlineFrom": "raw",
    "kind": "교원",
    "tier": "교육 — 학교",
-   "inst": "전체",
+   "inst": "목관",
    "instDetails": [
     "관악"
    ],
@@ -32903,7 +32903,8 @@
    "tier": "교육 — 취미·입문",
    "inst": "현악",
    "instDetails": [
-    "바이올린"
+    "바이올린",
+    "관악"
    ],
    "ageGroup": "성인",
    "obri": false,
@@ -33021,8 +33022,8 @@
    "addr": "경기 화성시 효행구 기안길 18(기안동)",
    "orgAffil": "경기교육청",
    "firstSeen": "2026-08-26",
-   "lastSeen": "2026-08-28",
-   "days": 3
+   "lastSeen": "2026-08-27",
+   "days": 2
   },
   "ed1579552659910f": {
    "id": "ed1579552659910f",
@@ -33135,7 +33136,8 @@
    "tier": "미분류",
    "inst": "금관",
    "instDetails": [
-    "트럼펫"
+    "트럼펫",
+    "관악"
    ],
    "ageGroup": "성인",
    "obri": false,
@@ -33170,7 +33172,7 @@
    "deadlineFrom": "raw",
    "kind": "교원",
    "tier": "교육 — 학교",
-   "inst": "전체",
+   "inst": "목관",
    "instDetails": [
     "관악"
    ],
@@ -33354,8 +33356,8 @@
    "lng": 126.709681,
    "addrFrom": "geo",
    "firstSeen": "2026-08-27",
-   "lastSeen": "2026-08-27",
-   "days": 1
+   "lastSeen": "2026-08-28",
+   "days": 2
   },
   "fe341607ad0fc788": {
    "id": "fe341607ad0fc788",
@@ -33366,7 +33368,7 @@
    "layer": "C",
    "title": "(긴급) 유치원 방과후과정 특성화 활동 음악 외부강사 모집",
    "url": "https://www.ice.go.kr/ice/na/ntt/selectNttInfo.do?nttSn=3382788&mi=10997&bbsId=1981",
-   "date": "2026-02-05",
+   "date": "2026-08-27",
    "deadline": "2026-08-31",
    "deadlineFrom": "raw",
    "kind": "강사",
@@ -33391,6 +33393,40 @@
    "firstSeen": "2026-08-27",
    "lastSeen": "2026-08-28",
    "days": 2
+  },
+  "77bb3eb5a8713177": {
+   "id": "77bb3eb5a8713177",
+   "org": "능평초등학교",
+   "region": "경기",
+   "source": "goe.go.kr",
+   "channel": "edu_goe",
+   "layer": "C",
+   "title": "[능평초] 1학년 음악강사 모집",
+   "url": "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=58231",
+   "date": "2026-08-28",
+   "deadline": "2026-09-03",
+   "deadlineFrom": "raw",
+   "kind": "강사",
+   "tier": "교육 — 취미·입문",
+   "inst": "전체",
+   "instDetails": [],
+   "ageGroup": "성인",
+   "obri": false,
+   "certReq": "무관",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "personnel": "1명",
+   "bodyExcerpt": "응시자격 · 올바른 교육관을 가지고 해당 분야를 전문적으로 다루거나 관련 분야 전공자 및 자격증 소지자 · 국민건강보험공단 건강검진결과통보서(최근 2 년 이내) 또는 일반채용신체검사서(최근 1 년 이내)· 본 채용계획은 사정에 의하여 변경될 수 있으며, 변경된 사항은 재공고 후 시행할 예정입니다",
+   "pay": "체육 교육 오카리나, 동요지도 등 음악 분야 1명 주 5회(40분) 총 60시간 30,000원",
+   "workPeriod": "2026.11.01 ~ 2026.12.12",
+   "workHours": "60시간",
+   "contact": "070-4021-7078",
+   "email": "npcho@korea.kr",
+   "addr": "경기 광주시 창뜰아랫길 14-3(능평동)",
+   "orgAffil": "경기교육청",
+   "firstSeen": "2026-08-28",
+   "lastSeen": "2026-08-28",
+   "days": 1
   },
   "5ce4299ab3e1d24a": {
    "id": "5ce4299ab3e1d24a",
@@ -33422,6 +33458,77 @@
    "workHours": "주2일",
    "contact": "031-260-3374",
    "addr": "경기 용인시 수지구 포은대로 499(죽전동)",
+   "firstSeen": "2026-08-28",
+   "lastSeen": "2026-08-28",
+   "days": 1
+  },
+  "ab5652fbeb7a5d66": {
+   "id": "ab5652fbeb7a5d66",
+   "org": "송곡여자고등학교",
+   "region": "서울",
+   "source": "work.sen.go.kr",
+   "channel": "edu_seoul",
+   "layer": "C",
+   "title": "[송곡여고] 오케스트라 악기강사 채용",
+   "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=109320",
+   "date": "2026-08-28",
+   "deadline": "2026-08-31",
+   "deadlineFrom": "raw",
+   "kind": "강사",
+   "tier": "교육 — 취미·입문",
+   "inst": "현악",
+   "instDetails": [
+    "바이올린",
+    "첼로",
+    "관악"
+   ],
+   "ageGroup": "성인",
+   "obri": false,
+   "certReq": "무관",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "personnel": "1명",
+   "pay": "시간당40,000원",
+   "workPeriod": "2026.09.08 ~ 2026.12.22",
+   "duty": "오케스트라 악기강사(바이올린, 첼로)",
+   "contact": "02-6328-7016",
+   "email": "saeromle@sen.go.kr",
+   "addr": "서울특별시 중랑구 양원역로 67(망우동)",
+   "orgAffil": "서울시교육청",
+   "firstSeen": "2026-08-28",
+   "lastSeen": "2026-08-28",
+   "days": 1
+  },
+  "ba335c03de151cb7": {
+   "id": "ba335c03de151cb7",
+   "org": "상암중학교",
+   "region": "서울",
+   "source": "work.sen.go.kr",
+   "channel": "edu_seoul",
+   "layer": "C",
+   "title": "[상암중] 시간강사 채용",
+   "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=109321",
+   "date": "2026-08-28",
+   "deadline": "2026-08-31",
+   "deadlineFrom": "raw",
+   "kind": "강사",
+   "tier": "교육 — 학교",
+   "inst": "목관",
+   "instDetails": [
+    "관악"
+   ],
+   "ageGroup": "성인",
+   "obri": false,
+   "certReq": "무관",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "personnel": "총 1명",
+   "workPeriod": "2026.09.21 ~ 2026.09.23",
+   "duty": "음악",
+   "contact": "010-8642-1202",
+   "email": "mkchei@naver.com",
+   "addr": "서울 마포구 상암산로1길 26(상암동)",
+   "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-28",
    "lastSeen": "2026-08-28",
    "days": 1

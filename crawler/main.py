@@ -306,7 +306,7 @@ def find_attachments(soup, base_url):
                     cands.append((full, el.get_text(" ", strip=True)))
     return cands[:4]
 
-EXT_VER = 94         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
+EXT_VER = 96         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
                      # v32(2026-08-02): 모집분야 구획 악기 추출(insts_from_recruit_text) + 원문 보관층
                      # 24: work.sen 등록일(게시일) 추출 추가 — date=None이던 승계분을 다시 뽑게
                      # 25: body_text 도입 — 본문을 <header>에 넣는 사이트(대전교육청)의 마감일을
@@ -1567,6 +1567,30 @@ def _refill_from_raw(items, today):
                     n_dl += 1
                     if dl < today.isoformat():
                         log(f"  마감 소급: {it['title'][:30]} → {dl} (지난 마감을 뒤늦게 확인)")
+            elif re.search(r"남은기간\s*0000-00-00|상시 ?모집|상시 ?채용|채용 ?시 ?(?:까지|마감)"
+                           r"|충원 ?시 ?마감|(?:마감|기한|접수)\s*[:：]?\s*채용\s*시", _raw or ""):
+                # 상시 판정도 원문에서 자기치유해야 한다 — EXT_VER 리셋이 승계된 상시를
+                # 지우는데(08-26), 재유도가 enrich 에만 있으면 마감 있는 항목처럼 enrich 를
+                # 안 타는 경로에서 상시가 영영 복원되지 않는다 (성복동성당, 2026-08-28).
+                # '제출기한: 채용시'처럼 까지/마감이 안 붙는 표기도 라벨 문맥으로 받는다.
+                it["deadlineNote"] = "상시"
+        # 게시일이 마감보다 60일 넘게 앞서면 게시일 쪽을 의심한다 — 유치원이 '채용종료일'
+        # 연도를 잘못 적으면(2027→2026) 그 값이 게시일로 흘러들거나, 지난 공고를 수정
+        # 재게시하면 목록 등록일이 옛날 그대로다. 상세의 등록일이 진실이다
+        # (인천검단꿈유치원: date 02-05 vs 등록일 08-27, 마감 08-31 — 2026-08-28).
+        # enrich 가 아니라 여기 두는 이유: 마감이 이미 있는 항목은 enrich 를 타지 않는다.
+        if it.get("deadline") and it.get("date"):
+            try:
+                _gap = (date.fromisoformat(it["deadline"]) - date.fromisoformat(it["date"])).days
+            except ValueError:
+                _gap = 0
+            if _gap > 60:
+                m_reg = re.search(r"(?:등록일|작성일|게시일)\s*[:：]?\s*(20\d{2})[.\-/]\s*(\d{1,2})[.\-/]\s*(\d{1,2})",
+                                  re.sub(r"\s+", " ", _raw or ""))
+                if m_reg:
+                    _fresh = f"{m_reg.group(1)}-{int(m_reg.group(2)):02d}-{int(m_reg.group(3)):02d}"
+                    if _fresh != it["date"]:
+                        it["date"] = _fresh
     if n_ex or n_dl or n_fd:
         log(f"원문 보관층에서 복구: 요약 {n_ex}건 · 마감 {n_dl}건 · 조건항목 {n_fd}건")
 
@@ -2144,7 +2168,10 @@ def enrich_deadline(s, item, allow_render=True, details_only=False):
         dl = extract_deadline(page_text, ref_year=ry)
         if dl:
             item["deadline"] = dl
-        elif re.search(r"남은기간\s*0000-00-00|상시 ?모집|상시 ?채용|채용 ?시 ?(?:까지|마감)|충원 ?시 ?마감", page_text):
+        # '제출기한: 채용시'처럼 까지/마감이 안 붙는 표기도 있다 (성복동성당, 2026-08-28)
+        # — 마감·기한·접수 라벨 바로 뒤의 '채용시'만 상시로 읽는다 (맨 '채용시'는 흔한 낱말).
+        elif re.search(r"남은기간\s*0000-00-00|상시 ?모집|상시 ?채용|채용 ?시 ?(?:까지|마감)|충원 ?시 ?마감"
+                       r"|(?:마감|기한|접수)\s*[:：]?\s*채용\s*시", page_text):
             item["deadlineNote"] = "상시"
             return
             item["deadlineFrom"] = "page"
@@ -2201,6 +2228,21 @@ def enrich_deadline(s, item, allow_render=True, details_only=False):
                     item["deadlineFrom"] = "page-js"
             except Exception:
                 pass
+        # 게시일이 마감보다 60일 넘게 앞서면 게시일 쪽을 의심한다 — 학교가 지난 공고를
+        # 수정해 재게시하면 목록의 등록일은 옛날 그대로인데 상세엔 새 등록일이 있다
+        # (인천검단꿈유치원: 목록 02-05, 상세 등록일 08-27, 마감 08-31 — 2026-08-28).
+        # 헬스체크의 '[의심] 마감>게시+60일'이 매일 울리던 그 자리다.
+        if item.get("deadline") and item.get("date"):
+            try:
+                gap = (date.fromisoformat(item["deadline"]) - date.fromisoformat(item["date"])).days
+            except ValueError:
+                gap = 0
+            if gap > 60:
+                m_reg = re.search(r"(?:등록일|작성일|게시일)\s*[:：]?\s*(20\d{2})[.\-/]\s*(\d{1,2})[.\-/]\s*(\d{1,2})", page_text)
+                if m_reg:
+                    fresh = f"{m_reg.group(1)}-{int(m_reg.group(2)):02d}-{int(m_reg.group(3)):02d}"
+                    if fresh != item["date"]:
+                        item["date"] = fresh
         # 전 단계(본문→첨부→OCR→렌더)를 소진하고도 못 찾은 경우 — 단서만 채집해 둔다
         if not item.get("deadline") and not item.get("deadlineNote"):
             item["dlHint"] = _dl_hints(page_text)
