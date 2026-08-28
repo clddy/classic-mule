@@ -1,5 +1,5 @@
 {
- "collectedAt": "2026-08-28 14:43",
+ "collectedAt": "2026-08-28 14:52",
  "heldNoOrigin": 0,
  "sourceCount": 87,
  "okCount": 86,
@@ -54,9 +54,9 @@
    "poll": "daily",
    "ok": true,
    "raw": 28,
-   "kept": 0,
+   "kept": 1,
    "drop": {
-    "만료": 11,
+    "만료": 10,
     "무관": 4,
     "오래됨": 8,
     "비음악": 5
@@ -1192,6 +1192,37 @@
  ],
  "items": [
   {
+   "id": "cf18ce37bbd32b3f",
+   "org": "송곡여자고등학교(나라일터)",
+   "region": "서울",
+   "source": "gojobs.go.kr",
+   "title": "[송곡여고] 오케스트라 악기강사 모집",
+   "nonMusic": null,
+   "url": "https://www.gojobs.go.kr/apmView.do?empmnsn=302321&empmnsecode=020&menuNo=401",
+   "date": "2026-08-28",
+   "kind": "강사",
+   "tier": "교육 — 취미·입문",
+   "obri": false,
+   "certReq": "무관",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "ageGroup": "성인",
+   "inst": "현악",
+   "instDetails": [
+    "바이올린",
+    "첼로"
+   ],
+   "channel": "gojobs",
+   "layer": "A",
+   "addr": "세종특별자치시 정부2청사로 13",
+   "addrFrom": "postal",
+   "deadline": "2026-08-31",
+   "deadlineFrom": "meta",
+   "firstSeen": "2026-08-28",
+   "isNew": true,
+   "extVer": 96
+  },
+  {
    "id": "ab5652fbeb7a5d66",
    "org": "송곡여자고등학교",
    "region": "서울",
@@ -1353,8 +1384,7 @@
    "ageGroup": "성인",
    "inst": "금관",
    "instDetails": [
-    "트럼펫",
-    "관악"
+    "트럼펫"
    ],
    "channel": "edu_seoul",
    "layer": "C",
@@ -1391,7 +1421,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
@@ -1602,8 +1632,7 @@
    "ageGroup": "성인",
    "inst": "현악",
    "instDetails": [
-    "바이올린",
-    "관악"
+    "바이올린"
    ],
    "channel": "edu_seoul",
    "layer": "C",
@@ -1632,7 +1661,6 @@
    "nonMusic": null,
    "url": "https://www.artinfokorea.com/jobs/480",
    "date": "2026-08-24",
-   "deadline": "2026-08-31",
    "kind": "지휘",
    "tier": "연주",
    "obri": false,
@@ -1647,10 +1675,10 @@
    "officialUrl": "https://www.yangju.go.kr/www/selectEminwonView.do?pageUnit=10&pageIndex=1&searchCnd=all&key=4075&not_ancmt_mgt_no=67570&ofr_pageSize=10",
    "channel": "artinfo",
    "layer": "A",
-   "dlHint": null,
    "contact": "031-8082-5652",
    "pay": "기본급 1,990,000원/월, 연주수당 150,000원/회",
    "workHours": "1일 4시간 30분(주2회)",
+   "deadline": "2026-08-31",
    "deadlineFrom": "raw",
    "firstSeen": "2026-08-19",
    "isNew": false,
@@ -1708,7 +1736,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
@@ -1746,7 +1774,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],

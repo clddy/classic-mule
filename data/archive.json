@@ -1,6 +1,6 @@
 {
  "updatedAt": "2026-08-28",
- "count": 1294,
+ "count": 1295,
  "items": {
   "f7b1c263744b9ece": {
    "id": "f7b1c263744b9ece",
@@ -32554,7 +32554,7 @@
    "deadlineFrom": "raw",
    "kind": "강사",
    "tier": "교육 — 학교",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
@@ -32628,7 +32628,7 @@
    "deadlineFrom": "raw",
    "kind": "교원",
    "tier": "교육 — 학교",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
@@ -32903,8 +32903,7 @@
    "tier": "교육 — 취미·입문",
    "inst": "현악",
    "instDetails": [
-    "바이올린",
-    "관악"
+    "바이올린"
    ],
    "ageGroup": "성인",
    "obri": false,
@@ -33136,8 +33135,7 @@
    "tier": "미분류",
    "inst": "금관",
    "instDetails": [
-    "트럼펫",
-    "관악"
+    "트럼펫"
    ],
    "ageGroup": "성인",
    "obri": false,
@@ -33172,7 +33170,7 @@
    "deadlineFrom": "raw",
    "kind": "교원",
    "tier": "교육 — 학교",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
@@ -33529,6 +33527,36 @@
    "email": "mkchei@naver.com",
    "addr": "서울 마포구 상암산로1길 26(상암동)",
    "orgAffil": "서울시교육청",
+   "firstSeen": "2026-08-28",
+   "lastSeen": "2026-08-28",
+   "days": 1
+  },
+  "cf18ce37bbd32b3f": {
+   "id": "cf18ce37bbd32b3f",
+   "org": "송곡여자고등학교(나라일터)",
+   "region": "서울",
+   "source": "gojobs.go.kr",
+   "channel": "gojobs",
+   "layer": "A",
+   "title": "[송곡여고] 오케스트라 악기강사 모집",
+   "url": "https://www.gojobs.go.kr/apmView.do?empmnsn=302321&empmnsecode=020&menuNo=401",
+   "date": "2026-08-28",
+   "deadline": "2026-08-31",
+   "deadlineFrom": "meta",
+   "kind": "강사",
+   "tier": "교육 — 취미·입문",
+   "inst": "현악",
+   "instDetails": [
+    "바이올린",
+    "첼로"
+   ],
+   "ageGroup": "성인",
+   "obri": false,
+   "certReq": "무관",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "addr": "세종특별자치시 정부2청사로 13",
+   "addrFrom": "postal",
    "firstSeen": "2026-08-28",
    "lastSeen": "2026-08-28",
    "days": 1

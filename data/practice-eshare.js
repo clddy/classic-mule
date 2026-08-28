@@ -1,5 +1,5 @@
 window.ESHARE_ROOMS = {
- "fetched": "2026-08-27",
+ "fetched": "2026-08-28",
  "items": [
   {
    "name": "남산골문화센터",
@@ -15,7 +15,7 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "문화예술회관",
@@ -31,7 +31,7 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "원주생활문화센터",
@@ -47,7 +47,7 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "403호(밴드합주실)",
@@ -63,7 +63,7 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "407호(밴드연습실C)",
@@ -79,7 +79,7 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "408호(밴드연습실I)",
@@ -95,7 +95,7 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "409호(밴드연습실S)",
@@ -111,7 +111,7 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "410호(밴드연습실U)",
@@ -127,7 +127,7 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "411호(밴드연습실M)",
@@ -143,7 +143,23 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
+  },
+  {
+   "name": "505호(개인연습실-높은도)",
+   "category": "public",
+   "region": "경기",
+   "addr": "경기도 화성시 동탄순환대로20길 6",
+   "lat": 37.1893028942215,
+   "lng": 127.123896533869,
+   "price": null,
+   "free": false,
+   "spaces": "",
+   "booking_url": "https://yeyak.hscity.go.kr/facilityDetail.do?facilityIdx=306",
+   "rooms": null,
+   "apply_method": "온라인 예약",
+   "src": "공공개방자원(공유누리 경유)",
+   "verified": "2026-08-28"
   },
   {
    "name": "506호(개인연습실-시)",
@@ -159,7 +175,7 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "507호(개인연습실-라)",
@@ -175,7 +191,7 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "508호(개인연습실-솔)",
@@ -191,7 +207,23 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
+  },
+  {
+   "name": "509호(개인연습실-파)",
+   "category": "public",
+   "region": "경기",
+   "addr": "경기도 화성시 동탄순환대로20길 6",
+   "lat": 37.1893028942215,
+   "lng": 127.123896533869,
+   "price": null,
+   "free": false,
+   "spaces": "",
+   "booking_url": "https://yeyak.hscity.go.kr/facilityDetail.do?facilityIdx=310",
+   "rooms": null,
+   "apply_method": "온라인 예약",
+   "src": "공공개방자원(공유누리 경유)",
+   "verified": "2026-08-28"
   },
   {
    "name": "510호(개인연습실-미)",
@@ -207,7 +239,23 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
+  },
+  {
+   "name": "511호(개인연습실-레)",
+   "category": "public",
+   "region": "경기",
+   "addr": "경기도 화성시 동탄순환대로20길 6",
+   "lat": 37.1893028942215,
+   "lng": 127.123896533869,
+   "price": null,
+   "free": false,
+   "spaces": "",
+   "booking_url": "https://yeyak.hscity.go.kr/facilityDetail.do?facilityIdx=312",
+   "rooms": null,
+   "apply_method": "온라인 예약",
+   "src": "공공개방자원(공유누리 경유)",
+   "verified": "2026-08-28"
   },
   {
    "name": "512호(개인연습실-도)",
@@ -223,7 +271,7 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "경기창작캠퍼스",
@@ -250,7 +298,7 @@ window.ESHARE_ROOMS = {
    ],
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "공연동 연습실1",
@@ -266,7 +314,7 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "공연동 연습실2",
@@ -282,7 +330,7 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "군포문화예술회관",
@@ -309,7 +357,7 @@ window.ESHARE_ROOMS = {
    ],
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "군포시생활문화센터",
@@ -320,7 +368,7 @@ window.ESHARE_ROOMS = {
    "lng": 126.91940307617188,
    "price": null,
    "free": false,
-   "spaces": "연습실 4실",
+   "spaces": "연습실 5실",
    "booking_url": "https://www.gunpocf.or.kr/cf/lease/leaseSchdul/100003",
    "rooms": [
     {
@@ -334,7 +382,7 @@ window.ESHARE_ROOMS = {
      "bookTo": "https://www.gunpocf.or.kr/cf/lease/leaseSchdul/100003"
     },
     {
-     "name": "밴드연습실",
+     "name": "개인연습실2",
      "free": false,
      "bookTo": "https://www.gunpocf.or.kr/cf/lease/leaseSchdul/100003"
     },
@@ -342,11 +390,16 @@ window.ESHARE_ROOMS = {
      "name": "마루연습실",
      "free": false,
      "bookTo": "https://www.gunpocf.or.kr/cf/lease/leaseSchdul/100003"
+    },
+    {
+     "name": "밴드연습실",
+     "free": false,
+     "bookTo": "https://www.gunpocf.or.kr/cf/lease/leaseSchdul/100003"
     }
    ],
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "도당예술마당",
@@ -366,19 +419,19 @@ window.ESHARE_ROOMS = {
      "bookTo": "https://bcf.or.kr/bcc/rental/select?siteKind=1&menuLevel=3&menuNo=102"
     },
     {
-     "name": "소연습실1",
+     "name": "소연습실2",
      "free": true,
      "bookTo": "https://bcf.or.kr/bcc/rental/select?siteKind=1&menuLevel=3&menuNo=102"
     },
     {
-     "name": "소연습실2",
+     "name": "소연습실1",
      "free": true,
      "bookTo": "https://bcf.or.kr/bcc/rental/select?siteKind=1&menuLevel=3&menuNo=102"
     }
    ],
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "도시락(락밴드실)",
@@ -394,7 +447,7 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "동두천 생활문화센터",
@@ -410,7 +463,7 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "마두청소년수련관 2층 연습실",
@@ -426,7 +479,7 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "마두청소년수련관 5층 연습실",
@@ -442,7 +495,7 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "본부사옥 연습실",
@@ -458,7 +511,7 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "부천공연예술연습공간",
@@ -473,7 +526,7 @@ window.ESHARE_ROOMS = {
    "booking_url": "https://www.bcf.or.kr/base/rental/select?menuLevel=2&menuNo=60",
    "rooms": [
     {
-     "name": "대연습실2",
+     "name": "중연습실1",
      "free": false,
      "bookTo": "https://www.bcf.or.kr/base/rental/select?menuLevel=2&menuNo=60"
     },
@@ -488,14 +541,14 @@ window.ESHARE_ROOMS = {
      "bookTo": "https://www.bcf.or.kr/base/rental/select?menuLevel=2&menuNo=60"
     },
     {
-     "name": "중연습실1",
+     "name": "대연습실2",
      "free": false,
      "bookTo": "https://www.bcf.or.kr/base/rental/select?menuLevel=2&menuNo=60"
     }
    ],
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "성남문화의집 1층",
@@ -511,7 +564,7 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "아람마당",
@@ -527,7 +580,7 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "안산문화재단",
@@ -543,7 +596,7 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "연습실 달님",
@@ -559,7 +612,7 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "연습실 별님",
@@ -575,7 +628,7 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "연습실 햇님",
@@ -591,7 +644,7 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "연천 수레울아트홀",
@@ -607,7 +660,7 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "오정생활문화센터",
@@ -622,17 +675,27 @@ window.ESHARE_ROOMS = {
    "booking_url": "https://bcf.or.kr/bcc/rental/select?siteKind=3&menuLevel=3&menuNo=104",
    "rooms": [
     {
-     "name": "밴드연습실",
-     "free": true,
-     "bookTo": "https://bcf.or.kr/bcc/rental/select?siteKind=3&menuLevel=3&menuNo=104"
-    },
-    {
      "name": "개인연습실 5",
      "free": true,
      "bookTo": "https://bcf.or.kr/bcc/rental/select?siteKind=3&menuLevel=3&menuNo=104"
     },
     {
+     "name": "밴드연습실",
+     "free": true,
+     "bookTo": "https://bcf.or.kr/bcc/rental/select?siteKind=3&menuLevel=3&menuNo=104"
+    },
+    {
+     "name": "어쿠스틱 연습실",
+     "free": true,
+     "bookTo": "https://bcf.or.kr/bcc/rental/select?siteKind=3&menuLevel=3&menuNo=104"
+    },
+    {
      "name": "대연습실 2",
+     "free": true,
+     "bookTo": "https://bcf.or.kr/bcc/rental/select?siteKind=3&menuLevel=3&menuNo=104"
+    },
+    {
+     "name": "개인연습실 4",
      "free": true,
      "bookTo": "https://bcf.or.kr/bcc/rental/select?siteKind=3&menuLevel=3&menuNo=104"
     },
@@ -643,16 +706,6 @@ window.ESHARE_ROOMS = {
     },
     {
      "name": "개인연습실 2",
-     "free": true,
-     "bookTo": "https://bcf.or.kr/bcc/rental/select?siteKind=3&menuLevel=3&menuNo=104"
-    },
-    {
-     "name": "개인연습실 4",
-     "free": true,
-     "bookTo": "https://bcf.or.kr/bcc/rental/select?siteKind=3&menuLevel=3&menuNo=104"
-    },
-    {
-     "name": "어쿠스틱 연습실",
      "free": true,
      "bookTo": "https://bcf.or.kr/bcc/rental/select?siteKind=3&menuLevel=3&menuNo=104"
     },
@@ -669,7 +722,7 @@ window.ESHARE_ROOMS = {
    ],
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "음악공간",
@@ -685,7 +738,7 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "음악역1939 연습실(T-STATION)",
@@ -701,7 +754,7 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "음악연습실2",
@@ -717,7 +770,7 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "전체 합주실",
@@ -733,7 +786,7 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "포천음악창작소",
@@ -765,7 +818,7 @@ window.ESHARE_ROOMS = {
    ],
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "경남문화예술회관 지하1층",
@@ -780,19 +833,19 @@ window.ESHARE_ROOMS = {
    "booking_url": "",
    "rooms": [
     {
-     "name": "연습실-대",
+     "name": "연습실-소",
      "free": false,
      "bookTo": ""
     },
     {
-     "name": "연습실-소",
+     "name": "연습실-대",
      "free": false,
      "bookTo": ""
     }
    ],
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "과학어군탐지기 200 kHz 스프리트빔 와이드 밴드 트랜시버",
@@ -808,7 +861,7 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "북상면행정복지센터",
@@ -824,7 +877,7 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "신등면복지회관",
@@ -840,7 +893,7 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "쌍벽루아트홀",
@@ -856,7 +909,7 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "양산문화예술회관",
@@ -872,7 +925,7 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "웅양면복지회관",
@@ -888,7 +941,7 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "통영12스쿨플랫폼",
@@ -903,17 +956,7 @@ window.ESHARE_ROOMS = {
    "booking_url": "",
    "rooms": [
     {
-     "name": "음악실 509호",
-     "free": false,
-     "bookTo": ""
-    },
-    {
      "name": "음악실 413호",
-     "free": false,
-     "bookTo": ""
-    },
-    {
-     "name": "음악실 513호",
      "free": false,
      "bookTo": ""
     },
@@ -923,19 +966,29 @@ window.ESHARE_ROOMS = {
      "bookTo": ""
     },
     {
-     "name": "음악실 515호",
+     "name": "음악실 507호",
      "free": false,
      "bookTo": ""
     },
     {
-     "name": "음악실 507호",
+     "name": "음악실 509호",
+     "free": false,
+     "bookTo": ""
+    },
+    {
+     "name": "음악실 513호",
+     "free": false,
+     "bookTo": ""
+    },
+    {
+     "name": "음악실 515호",
      "free": false,
      "bookTo": ""
     }
    ],
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "중앙선 1942 안동역 D&T 공유연습실",
@@ -951,7 +1004,7 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "청송군 남관생활문화센터",
@@ -966,16 +1019,6 @@ window.ESHARE_ROOMS = {
    "booking_url": "",
    "rooms": [
     {
-     "name": "연습실 2",
-     "free": true,
-     "bookTo": ""
-    },
-    {
-     "name": "음악연습실",
-     "free": true,
-     "bookTo": ""
-    },
-    {
      "name": "연습실 1",
      "free": true,
      "bookTo": ""
@@ -986,14 +1029,24 @@ window.ESHARE_ROOMS = {
      "bookTo": ""
     },
     {
+     "name": "연습실 2",
+     "free": true,
+     "bookTo": ""
+    },
+    {
      "name": "연습실 4",
+     "free": true,
+     "bookTo": ""
+    },
+    {
+     "name": "음악연습실",
      "free": true,
      "bookTo": ""
     }
    ],
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "광주광역시용봉청소년문화의집",
@@ -1009,7 +1062,7 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "남구생활문화센터",
@@ -1025,7 +1078,7 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "동구청소년수련관 1층",
@@ -1041,7 +1094,7 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "빛고을시민문화관 대연습실",
@@ -1057,7 +1110,7 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "빛고을시민문화관 소연습실",
@@ -1073,7 +1126,7 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "빛고을시민문화관 중연습실",
@@ -1089,7 +1142,7 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "옥주골창작소",
@@ -1105,7 +1158,7 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "부산시민공원 문화예술촌 연습실1",
@@ -1121,7 +1174,7 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "부산시민공원 문화예술촌 연습실2",
@@ -1137,7 +1190,7 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "수영구 생활문화센터",
@@ -1164,7 +1217,7 @@ window.ESHARE_ROOMS = {
    ],
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "영도문화예술회관",
@@ -1184,12 +1237,12 @@ window.ESHARE_ROOMS = {
      "bookTo": ""
     },
     {
-     "name": "제1연습실",
+     "name": "제2연습실",
      "free": false,
      "bookTo": ""
     },
     {
-     "name": "제2연습실",
+     "name": "제1연습실",
      "free": false,
      "bookTo": ""
     },
@@ -1201,7 +1254,7 @@ window.ESHARE_ROOMS = {
    ],
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "<모두의 연습실> 1호점",
@@ -1217,7 +1270,7 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "<모두의 연습실> 2호점",
@@ -1233,7 +1286,7 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "[관악청년청]연습실(관악청년청 홈페이지 이용)",
@@ -1249,7 +1302,7 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "[중구교육지원센터",
@@ -1265,7 +1318,7 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "밴드 엑시테이션 주사 탐침 현미경",
@@ -1281,7 +1334,7 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "화곡8동 주민센터",
@@ -1297,7 +1350,7 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "1인 악기연습실",
@@ -1313,7 +1366,7 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "울산음악창작소",
@@ -1329,23 +1382,7 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
-  },
-  {
-   "name": "가좌청소년센터",
-   "category": "public",
-   "region": "인천",
-   "addr": "인천광역시 서해구 원적로7번길 12",
-   "lat": 37.48792998425187,
-   "lng": 126.67869668389454,
-   "price": "무료",
-   "free": true,
-   "spaces": "공연연습실1",
-   "booking_url": "",
-   "rooms": null,
-   "apply_method": "온라인 예약",
-   "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "가좌청소년센터",
@@ -1361,7 +1398,23 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
+  },
+  {
+   "name": "가좌청소년센터",
+   "category": "public",
+   "region": "인천",
+   "addr": "인천광역시 서해구 원적로7번길 12",
+   "lat": 37.48792998425187,
+   "lng": 126.67869668389454,
+   "price": "무료",
+   "free": true,
+   "spaces": "공연연습실1",
+   "booking_url": "",
+   "rooms": null,
+   "apply_method": "온라인 예약",
+   "src": "공공개방자원(공유누리 경유)",
+   "verified": "2026-08-28"
   },
   {
    "name": "개항장 문화마당",
@@ -1388,7 +1441,7 @@ window.ESHARE_ROOMS = {
    ],
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "고창전통문화공간 야외",
@@ -1404,7 +1457,7 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "배방청소년자유공간 비트 ON-밴드실 신청하기",
@@ -1420,7 +1473,7 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   },
   {
    "name": "청주산단 복합문화센터",
@@ -1436,7 +1489,7 @@ window.ESHARE_ROOMS = {
    "rooms": null,
    "apply_method": "온라인 예약",
    "src": "공공개방자원(공유누리 경유)",
-   "verified": "2026-08-27"
+   "verified": "2026-08-28"
   }
  ]
 };
