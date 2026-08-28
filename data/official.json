@@ -1,8 +1,8 @@
 {
- "collectedAt": "2026-08-28 18:08",
+ "collectedAt": "2026-08-28 23:47",
  "heldNoOrigin": 0,
- "sourceCount": 87,
- "okCount": 86,
+ "sourceCount": 91,
+ "okCount": 91,
  "instTotal": 75,
  "sources": [
   {
@@ -11,8 +11,9 @@
    "layer": "A",
    "poll": "daily",
    "ok": true,
-   "raw": 4,
+   "raw": 3,
    "kept": 1,
+   "carried": 1,
    "drop": {
     "무관": 1,
     "비음악": 1,
@@ -67,9 +68,14 @@
    "name": "기독정보넷(교회 반주)",
    "layer": "C",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 24,
    "kept": 4,
-   "error": "HTTPError: 403 Forbidden"
+   "drop": {
+    "무관": 3,
+    "만료": 17,
+    "오래됨": 0
+   }
   },
   {
    "id": "gne",
@@ -1174,6 +1180,59 @@
    }
   },
   {
+   "id": "g_art_incheon",
+   "name": "인천문화예술회관(시립예술단)",
+   "layer": "B",
+   "poll": "daily",
+   "ok": true,
+   "raw": 1,
+   "kept": 0,
+   "drop": {
+    "무관": 1,
+    "만료": 0,
+    "오래됨": 0
+   }
+  },
+  {
+   "id": "g_snart",
+   "name": "성남문화재단(시립예술단)",
+   "layer": "B",
+   "poll": "daily",
+   "ok": true,
+   "raw": 0,
+   "kept": 0,
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
+  },
+  {
+   "id": "g_gncaf",
+   "name": "강릉문화재단(시립예술단)",
+   "layer": "B",
+   "poll": "daily",
+   "ok": true,
+   "raw": 0,
+   "kept": 0,
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
+  },
+  {
+   "id": "g_gumi",
+   "name": "구미시립예술단(구미시)",
+   "layer": "B",
+   "poll": "daily",
+   "ok": true,
+   "raw": 0,
+   "kept": 0,
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
+  },
+  {
    "id": "hibrain",
    "name": "하이브레인넷(대학 음악채용)",
    "layer": "B",
@@ -1458,17 +1517,17 @@
    "channel": "artmore",
    "layer": "A",
    "applyEmail": "elsistema_yicf@naver.com",
+   "addr": "경기 용인시 수지구 포은대로 499(죽전동)",
+   "firstSeen": "2026-08-28",
+   "isNew": true,
    "qualification": "경력 3년 학력 대학교(4년)",
    "contact": "031-260-3374",
    "pay": "시급 43,000원",
    "workHours": "주2일",
    "personnel": "계약직 1명",
-   "addr": "경기 용인시 수지구 포은대로 499(죽전동)",
    "bodyExcerpt": "문의하기 입사 지원 완료 닫기 예술경영지원센터에서 직원 모집합니다. · 채용 공고에 입사 지원 했습니다",
    "deadline": "2026-09-02",
    "deadlineFrom": "raw",
-   "firstSeen": "2026-08-28",
-   "isNew": true,
    "extVer": 96
   },
   {
@@ -1994,10 +2053,10 @@
    "deadlineFrom": "cjob-남은기간",
    "denomination": "대한예수교 장로회 (합동",
    "documents": "이력서",
-   "firstSeen": "2026-08-14",
-   "isNew": false,
    "personnel": "반주자",
    "pay": "30만원",
+   "firstSeen": "2026-08-14",
+   "isNew": false,
    "extVer": 96
   },
   {
@@ -2061,14 +2120,14 @@
    "layer": "C",
    "deadlineFrom": "cjob-남은기간",
    "addr": "경기 부천시 오정구 상오정로 132 (오정동, 성은교회)",
-   "firstSeen": "2026-08-08",
-   "isNew": false,
    "personnel": "반주자",
    "qualification": "피아노 또는 음악 관련 전공자 및 교회 반주 경험자",
    "duty": "주일예배 및 성가대 피아노 반주자",
    "pay": "월 40만원",
    "workHours": "매주 일요일 11시~12시(1시간)",
    "bodyExcerpt": "모집분야 : 주일예배 및 성가대 피아노 반주자 · 성가대 연습 : 주일 10시~10시 50분, 12시 10분~12시 50분(시간은 유동적임)· 지원자격 : 피아노 또는 음악 관련 전공자 및 교회 반주 경험자 우대 · 주요업무 : 주일예배 찬송가 및 예배 반주, 성가대 찬양 반주, 성가대 연습 반주",
+   "firstSeen": "2026-08-08",
+   "isNew": false,
    "extVer": 96
   },
   {
@@ -2097,13 +2156,13 @@
    "deadlineFrom": "cjob-남은기간",
    "denomination": "예장 합동",
    "documents": "이력서",
-   "addr": "전북 김제시 황산면 남산로 334",
-   "regionBoard": "기타",
-   "firstSeen": "2026-08-08",
-   "isNew": false,
    "personnel": "반주자",
    "pay": "20만원",
+   "addr": "전북 김제시 황산면 남산로 334",
+   "regionBoard": "기타",
    "deadlineNote": "상시",
+   "firstSeen": "2026-08-08",
+   "isNew": false,
    "extVer": 96
   },
   {
@@ -2133,11 +2192,11 @@
    "addr": "경기 의왕시 경수대로 262 (오전동, 의왕서해그랑블(블루스퀘어))",
    "denomination": "순복음",
    "documents": "간단한 이력서",
-   "firstSeen": "2026-08-08",
-   "isNew": false,
    "personnel": "반주자",
    "pay": "협의",
    "deadlineNote": "상시",
+   "firstSeen": "2026-08-08",
+   "isNew": false,
    "extVer": 96
   }
  ]

@@ -2605,8 +2605,28 @@ def run(force_all=False):
                     for it in carried:
                         it.pop("extVer", None)
                     log(f"WARN {src['name']}: 0건 반환 — 이전 {len(carried)}건 승계 (서버 장애 추정)")
+            # 포털 첫 화면은 회전한다 — 최근 글에 밀려나면 **마감이 살아 있는 공고까지**
+            # 목록에서 사라진다. 아트모아의 '꿈의 오케스트라 용인' 첼로 강사(마감 9/2)가
+            # firstSeen 하루 만에 첫 화면에서 밀려 사이트에서 내려갔다 (2026-08-28).
+            # 이번 파싱에 없어도 마감이 남은 이전 수집분은 승계한다 — 만료·원문사망 정리가
+            # 매 회차 도는 데다 승계분은 extVer 를 지워 재검증 대상으로 남으므로,
+            # 취소된 공고가 유령으로 버티지는 못한다(마감이 지나면 어차피 걷힌다).
+            _have = {i["id"] for i in kept}
+            n_rot = 0
+            for _p in prev_items:
+                if _p.get("channel") != src["id"] or _p["id"] in _have:
+                    continue
+                if ((_p.get("deadline") and _p["deadline"] >= today.isoformat())
+                        or _p.get("deadlineNote") == "상시"):
+                    _p.pop("extVer", None)
+                    kept.append(_p)
+                    n_rot += 1
+            if n_rot:
+                log(f"  목록 회전 승계 {n_rot}건 — 마감이 남았는데 첫 화면에서 밀려난 공고")
             all_items.extend(kept)
             stat = {**meta, "ok": True, "raw": len(raw), "kept": len(kept)}
+            if n_rot:
+                stat["carried"] = n_rot
             dec = DECLARED_TOTALS.get(src["id"])
             if dec is not None:                    # 목록이 스스로 밝힌 건수 (파서 자기검증)
                 stat["declared"] = dec

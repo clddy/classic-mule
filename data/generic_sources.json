@@ -1327,5 +1327,42 @@
   "board_label": "구인구직",
   "needs_js": false,
   "title_pat": "(성가대|성가|반주|오르가니스트|지휘|찬양|전례음악).{0,12}(모집|구인|채용|모십니다|구합니다|위촉)"
+ },
+ {
+  "id": "art_incheon",
+  "name": "인천문화예술회관(시립예술단)",
+  "region": "인천",
+  "board_url": "https://www.incheon.go.kr/art/ART040102",
+  "board_label": "채용/공모",
+  "needs_js": false,
+  "note": "인천시향·시립합창단·시립무용단 채용이 이 게시판에 올라온다 (2026-08-28 실측: 시립청소년교향악단 단원 모집 확인)"
+ },
+ {
+  "id": "snart",
+  "name": "성남문화재단(시립예술단)",
+  "region": "경기",
+  "board_url": "https://www.snart.or.kr/main/pst/list.do?pst_id=recruit",
+  "board_label": "채용안내",
+  "needs_js": false,
+  "note": "성남시향·시립합창단·시립국악단 운영 주체. 등록일 열이 있어 _row_date 가 읽는다"
+ },
+ {
+  "id": "gncaf",
+  "name": "강릉문화재단(시립예술단)",
+  "region": "강원",
+  "board_url": "https://www.gncaf.or.kr/ko/community/recruit",
+  "board_label": "입찰/채용",
+  "needs_js": false,
+  "note": "강릉시향·시립합창단 운영 주체"
+ },
+ {
+  "id": "gumi",
+  "name": "구미시립예술단(구미시)",
+  "region": "경북",
+  "board_url": "https://www.gumi.go.kr/job/saeol/gosi/list.do?seCode=98&mid=0101010000",
+  "board_label": "채용·일자리(새올)",
+  "needs_js": true,
+  "strict": true,
+  "note": "2026-07-11 ba0c548 덮어쓰기로 유실됐다 48일 만에 복구 (2026-08-28)"
  }
 ]
