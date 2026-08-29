@@ -1,8 +1,8 @@
 {
- "collectedAt": "2026-08-30 01:41",
+ "collectedAt": "2026-08-30 02:16",
  "heldNoOrigin": 0,
  "sourceCount": 91,
- "okCount": 86,
+ "okCount": 90,
  "instTotal": 75,
  "sources": [
   {
@@ -68,14 +68,9 @@
    "name": "기독정보넷(교회 반주)",
    "layer": "C",
    "poll": "daily",
-   "ok": true,
-   "raw": 24,
+   "ok": false,
    "kept": 4,
-   "drop": {
-    "무관": 3,
-    "만료": 17,
-    "오래됨": 0
-   }
+   "error": "HTTPError: 521 <none>"
   },
   {
    "id": "gne",
@@ -170,9 +165,11 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
+   "raw": 10,
    "kept": 0,
    "drop": {
+    "무관": 5,
+    "비음악": 5,
     "만료": 0,
     "오래됨": 0
    }
@@ -198,9 +195,11 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
+   "raw": 30,
    "kept": 0,
    "drop": {
+    "무관": 21,
+    "비음악": 9,
     "만료": 0,
     "오래됨": 0
    }
@@ -461,10 +460,10 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
+   "raw": 4,
    "kept": 0,
    "drop": {
-    "만료": 0,
+    "만료": 4,
     "오래됨": 0
    }
   },
@@ -591,9 +590,13 @@
    "name": "고양문화재단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 0,
    "kept": 0,
-   "error": "TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.artgy.or.kr/CU/CU0101M.aspx\", waiting unti"
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_gfac",
@@ -790,9 +793,14 @@
    "name": "안산시립합창단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 8,
    "kept": 0,
-   "error": "ConnectTimeout: HTTPSConnectionPool(host='ansanarts.com', port=443): Max retries exceeded with url: /bbs/board.php?bo_table=notice (Caus"
+   "drop": {
+    "무관": 4,
+    "오래됨": 4,
+    "만료": 0
+   }
   },
   {
    "id": "g_i_gurigokr",
@@ -812,9 +820,14 @@
    "name": "순천시립합창단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 2,
    "kept": 0,
-   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.suncheon.go.kr', port=443): Max retries exceeded with url: /scart/community/0001;jsessioni"
+   "drop": {
+    "무관": 2,
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_i_andonggokr",
@@ -902,9 +915,13 @@
    "name": "동해문화관광재단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 0,
    "kept": 0,
-   "error": "HTTPError: 403 Forbidden"
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_i_cfscorkr",
@@ -1083,9 +1100,14 @@
    "name": "안산시립합창단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 6,
    "kept": 0,
-   "error": "ConnectTimeout: HTTPSConnectionPool(host='ansanarts.com', port=443): Max retries exceeded with url: /bbs/board.php?bo_table=notice (Caus"
+   "drop": {
+    "오래됨": 3,
+    "무관": 3,
+    "만료": 0
+   }
   },
   {
    "id": "g_pajucf",
@@ -1212,9 +1234,11 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
-   "kept": 0,
+   "raw": 11,
+   "kept": 9,
+   "declared": 11,
    "drop": {
+    "비음악": 2,
     "만료": 0,
     "오래됨": 0
    }
@@ -1250,7 +1274,7 @@
    "deadlineFrom": "meta",
    "firstSeen": "2026-08-28",
    "isNew": false,
-   "extVer": 96
+   "extVer": 97
   },
   {
    "id": "ab5652fbeb7a5d66",
@@ -1288,7 +1312,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-28",
    "isNew": false,
-   "extVer": 96
+   "extVer": 97
   },
   {
    "id": "bc4142e9b2e1430e",
@@ -1324,7 +1348,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-28",
    "isNew": false,
-   "extVer": 96
+   "extVer": 97
   },
   {
    "id": "ba335c03de151cb7",
@@ -1359,7 +1383,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-28",
    "isNew": false,
-   "extVer": 96
+   "extVer": 97
   },
   {
    "id": "3f64bae5fba05ec6",
@@ -1396,7 +1420,7 @@
    "duty": "3,5학년 영어 및 6학년 음악",
    "deadline": "2026-09-06",
    "deadlineFrom": "raw",
-   "extVer": 96
+   "extVer": 97
   },
   {
    "id": "ecb2a81ace54c759",
@@ -1429,7 +1453,7 @@
    "orgAffil": "경기교육청",
    "firstSeen": "2026-08-28",
    "isNew": false,
-   "extVer": 96
+   "extVer": 97
   },
   {
    "id": "77bb3eb5a8713177",
@@ -1453,7 +1477,7 @@
    "layer": "C",
    "contact": "070-4021-7078",
    "email": "npcho@korea.kr",
-   "pay": "체육 교육 오카리나, 동요지도 등 음악 분야 1명 주 5회(40분) 총 60시간 30,000원",
+   "pay": "30,000원",
    "workPeriod": "2026.11.01 ~ 2026.12.12",
    "workHours": "60시간",
    "personnel": "1명",
@@ -1464,7 +1488,7 @@
    "orgAffil": "경기교육청",
    "firstSeen": "2026-08-28",
    "isNew": false,
-   "extVer": 96
+   "extVer": 97
   },
   {
    "id": "5ce4299ab3e1d24a",
@@ -1500,7 +1524,7 @@
    "bodyExcerpt": "문의하기 입사 지원 완료 닫기 예술경영지원센터에서 직원 모집합니다. · 채용 공고에 입사 지원 했습니다",
    "deadline": "2026-09-02",
    "deadlineFrom": "raw",
-   "extVer": 96
+   "extVer": 97
   },
   {
    "id": "58e198170e46f2df",
@@ -1520,13 +1544,14 @@
    "ageGroup": "성인",
    "inst": "금관",
    "instDetails": [
-    "트럼펫"
+    "트럼펫",
+    "관악"
    ],
    "channel": "edu_seoul",
    "layer": "C",
    "contact": "02-324-5091",
    "email": "webmaster@sen.go.kr",
-   "pay": "주 2회 2차시 운영, 차시당 50,000원",
+   "pay": "50,000원",
    "workPeriod": "2026.09.07 ~ 2026.11.20(만족도 70% 이상 시 다음 기수 재계약)",
    "workHours": "수, 금 8:00~8:50",
    "personnel": "1명",
@@ -1539,7 +1564,7 @@
    "orgBoard": "서울동교초등학교",
    "firstSeen": "2026-08-27",
    "isNew": false,
-   "extVer": 96
+   "extVer": 97
   },
   {
    "id": "85997ce5b231e939",
@@ -1557,7 +1582,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "전체",
+   "inst": "목관",
    "instDetails": [
     "관악"
    ],
@@ -1575,7 +1600,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-27",
    "isNew": false,
-   "extVer": 96
+   "extVer": 97
   },
   {
    "id": "d96ab31202030ef6",
@@ -1609,7 +1634,7 @@
    "deadlineFrom": "raw",
    "firstSeen": "2026-08-27",
    "isNew": false,
-   "extVer": 96
+   "extVer": 97
   },
   {
    "id": "fe341607ad0fc788",
@@ -1646,7 +1671,7 @@
    "bodyExcerpt": "활동 요일 및 시간 협의 가능 Ⅱ 자격요건 1 . · 전공학과 졸업 및 이수자로 일정한 자격을 갖춘 강사 2. · 관련 자격증을 소지한 강사 및 유경험자 3. · 유치원 활동에 적극적인 지원 의지가 있으며 성실히 근무할 수 있는 자 Ⅲ 모집절차 및 일정 1",
    "deadline": "2026-08-31",
    "deadlineFrom": "raw",
-   "extVer": 96
+   "extVer": 97
   },
   {
    "id": "8c119419270bfa29",
@@ -1682,7 +1707,7 @@
    "bodyExcerpt": "인천미산초등학교병설유치원에서는 특성화 프로그램 운영과 관련하여 아래와 같이 특성화 프로그램 위탁 강사를 모집하오니, 관심 있는 분들의 많은 지원 바랍니다 . · 해당 분야에 전문적인 능력을 가진 자 또는 자격증 소지자 · 유치원 특성화프로그램 개인위탁 외부강사 활동에 제한이 없는 자 * 프로그램 과목별 주 1 회 수업(만 3~5 세 통합 1 반)",
    "deadline": "2026-08-31",
    "deadlineFrom": "raw",
-   "extVer": 96
+   "extVer": 97
   },
   {
    "id": "e099f21ba2e30c19",
@@ -1714,7 +1739,7 @@
    "deadlineNote": "상시",
    "firstSeen": "2026-08-26",
    "isNew": false,
-   "extVer": 96
+   "extVer": 97
   },
   {
    "id": "311cef60305a6ede",
@@ -1734,7 +1759,8 @@
    "ageGroup": "성인",
    "inst": "현악",
    "instDetails": [
-    "바이올린"
+    "바이올린",
+    "관악"
    ],
    "channel": "edu_seoul",
    "layer": "C",
@@ -1752,7 +1778,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-25",
    "isNew": false,
-   "extVer": 96
+   "extVer": 97
   },
   {
    "id": "ee0d661436e7a1ca",
@@ -1763,6 +1789,7 @@
    "nonMusic": null,
    "url": "https://www.artinfokorea.com/jobs/480",
    "date": "2026-08-24",
+   "deadline": "2026-08-31",
    "kind": "지휘",
    "tier": "연주",
    "obri": false,
@@ -1777,14 +1804,14 @@
    "officialUrl": "https://www.yangju.go.kr/www/selectEminwonView.do?pageUnit=10&pageIndex=1&searchCnd=all&key=4075&not_ancmt_mgt_no=67570&ofr_pageSize=10",
    "channel": "artinfo",
    "layer": "A",
+   "dlHint": null,
    "contact": "031-8082-5652",
    "pay": "기본급 1,990,000원/월, 연주수당 150,000원/회",
    "workHours": "1일 4시간 30분(주2회)",
-   "deadline": "2026-08-31",
    "deadlineFrom": "raw",
    "firstSeen": "2026-08-19",
    "isNew": false,
-   "extVer": 96
+   "extVer": 97
   },
   {
    "id": "e29203a6b490758a",
@@ -1802,7 +1829,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "전체",
+   "inst": "목관",
    "instDetails": [
     "관악"
    ],
@@ -1821,7 +1848,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-24",
    "isNew": false,
-   "extVer": 96
+   "extVer": 97
   },
   {
    "id": "b83667209a8cd77d",
@@ -1852,7 +1879,7 @@
    "deadlineNote": "상시",
    "firstSeen": "2026-08-19",
    "isNew": false,
-   "extVer": 96
+   "extVer": 97
   },
   {
    "id": "6cb1a301d8f777cc",
@@ -1890,7 +1917,7 @@
    "orgBoard": "울산문화예술회관(시립예술단)",
    "firstSeen": "2026-08-18",
    "isNew": false,
-   "extVer": 96
+   "extVer": 97
   },
   {
    "id": "11376188af16b7d1",
@@ -1927,7 +1954,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-19",
    "isNew": false,
-   "extVer": 96
+   "extVer": 97
   },
   {
    "id": "bd2c17f19933f651",
@@ -1955,11 +1982,11 @@
    "deadlineFrom": "cjob-남은기간",
    "denomination": "대한예수교 장로회 (합동",
    "documents": "이력서",
-   "personnel": "반주자",
-   "pay": "30만원",
    "firstSeen": "2026-08-14",
    "isNew": false,
-   "extVer": 96
+   "personnel": "반주자",
+   "pay": "30만원",
+   "extVer": 97
   },
   {
    "id": "0251912d3b918734",
@@ -1986,15 +2013,15 @@
    "layer": "C",
    "deadlineFrom": "cjob-남은기간",
    "addr": "경기 부천시 오정구 상오정로 132 (오정동, 성은교회)",
+   "firstSeen": "2026-08-08",
+   "isNew": false,
    "personnel": "반주자",
    "qualification": "피아노 또는 음악 관련 전공자 및 교회 반주 경험자",
    "duty": "주일예배 및 성가대 피아노 반주자",
    "pay": "월 40만원",
    "workHours": "매주 일요일 11시~12시(1시간)",
    "bodyExcerpt": "모집분야 : 주일예배 및 성가대 피아노 반주자 · 성가대 연습 : 주일 10시~10시 50분, 12시 10분~12시 50분(시간은 유동적임)· 지원자격 : 피아노 또는 음악 관련 전공자 및 교회 반주 경험자 우대 · 주요업무 : 주일예배 찬송가 및 예배 반주, 성가대 찬양 반주, 성가대 연습 반주",
-   "firstSeen": "2026-08-08",
-   "isNew": false,
-   "extVer": 96
+   "extVer": 97
   },
   {
    "id": "b2e199e32140e0ed",
@@ -2022,14 +2049,14 @@
    "deadlineFrom": "cjob-남은기간",
    "denomination": "예장 합동",
    "documents": "이력서",
-   "personnel": "반주자",
-   "pay": "20만원",
    "addr": "전북 김제시 황산면 남산로 334",
    "regionBoard": "기타",
-   "deadlineNote": "상시",
    "firstSeen": "2026-08-08",
    "isNew": false,
-   "extVer": 96
+   "personnel": "반주자",
+   "pay": "20만원",
+   "deadlineNote": "상시",
+   "extVer": 97
   },
   {
    "id": "5fbc7e4eb4f8d92d",
@@ -2058,12 +2085,12 @@
    "addr": "경기 의왕시 경수대로 262 (오전동, 의왕서해그랑블(블루스퀘어))",
    "denomination": "순복음",
    "documents": "간단한 이력서",
+   "firstSeen": "2026-08-08",
+   "isNew": false,
    "personnel": "반주자",
    "pay": "협의",
    "deadlineNote": "상시",
-   "firstSeen": "2026-08-08",
-   "isNew": false,
-   "extVer": 96
+   "extVer": 97
   }
  ]
 }
