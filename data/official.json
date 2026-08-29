@@ -1,8 +1,8 @@
 {
- "collectedAt": "2026-08-29 18:09",
+ "collectedAt": "2026-08-30 01:41",
  "heldNoOrigin": 0,
  "sourceCount": 91,
- "okCount": 91,
+ "okCount": 86,
  "instTotal": 75,
  "sources": [
   {
@@ -170,11 +170,9 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 10,
+   "raw": 0,
    "kept": 0,
    "drop": {
-    "무관": 5,
-    "비음악": 5,
     "만료": 0,
     "오래됨": 0
    }
@@ -200,11 +198,9 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 30,
+   "raw": 0,
    "kept": 0,
    "drop": {
-    "무관": 21,
-    "비음악": 9,
     "만료": 0,
     "오래됨": 0
    }
@@ -426,7 +422,7 @@
    "poll": "daily",
    "ok": true,
    "raw": 0,
-   "kept": 1,
+   "kept": 0,
    "drop": {
     "만료": 0,
     "오래됨": 0
@@ -465,10 +461,10 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 4,
+   "raw": 0,
    "kept": 0,
    "drop": {
-    "만료": 4,
+    "만료": 0,
     "오래됨": 0
    }
   },
@@ -595,13 +591,9 @@
    "name": "고양문화재단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 0,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.artgy.or.kr/CU/CU0101M.aspx\", waiting unti"
   },
   {
    "id": "g_gfac",
@@ -798,14 +790,9 @@
    "name": "안산시립합창단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 8,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "무관": 4,
-    "오래됨": 4,
-    "만료": 0
-   }
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='ansanarts.com', port=443): Max retries exceeded with url: /bbs/board.php?bo_table=notice (Caus"
   },
   {
    "id": "g_i_gurigokr",
@@ -825,14 +812,9 @@
    "name": "순천시립합창단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 2,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "무관": 2,
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.suncheon.go.kr', port=443): Max retries exceeded with url: /scart/community/0001;jsessioni"
   },
   {
    "id": "g_i_andonggokr",
@@ -920,13 +902,9 @@
    "name": "동해문화관광재단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 0,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "HTTPError: 403 Forbidden"
   },
   {
    "id": "g_i_cfscorkr",
@@ -1105,14 +1083,9 @@
    "name": "안산시립합창단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 6,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "오래됨": 3,
-    "무관": 3,
-    "만료": 0
-   }
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='ansanarts.com', port=443): Max retries exceeded with url: /bbs/board.php?bo_table=notice (Caus"
   },
   {
    "id": "g_pajucf",
@@ -1239,11 +1212,9 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 11,
-   "kept": 9,
-   "declared": 11,
+   "raw": 0,
+   "kept": 0,
    "drop": {
-    "비음악": 2,
     "만료": 0,
     "오래됨": 0
    }
@@ -1278,7 +1249,7 @@
    "deadline": "2026-08-31",
    "deadlineFrom": "meta",
    "firstSeen": "2026-08-28",
-   "isNew": true,
+   "isNew": false,
    "extVer": 96
   },
   {
@@ -1316,7 +1287,7 @@
    "deadlineFrom": "raw",
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-28",
-   "isNew": true,
+   "isNew": false,
    "extVer": 96
   },
   {
@@ -1352,7 +1323,7 @@
    "deadlineFrom": "raw",
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-28",
-   "isNew": true,
+   "isNew": false,
    "extVer": 96
   },
   {
@@ -1387,7 +1358,7 @@
    "deadlineFrom": "raw",
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-28",
-   "isNew": true,
+   "isNew": false,
    "extVer": 96
   },
   {
@@ -1416,7 +1387,7 @@
    "addr": "서울특별시 서초구 방배로 260(방배동)",
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-28",
-   "isNew": true,
+   "isNew": false,
    "contact": "010-3036-2066",
    "pay": "시급 25,000원",
    "workPeriod": "2026.09.07 ~ 2026.09.18",
@@ -1457,7 +1428,7 @@
    "deadlineFrom": "raw",
    "orgAffil": "경기교육청",
    "firstSeen": "2026-08-28",
-   "isNew": true,
+   "isNew": false,
    "extVer": 96
   },
   {
@@ -1492,7 +1463,7 @@
    "deadlineFrom": "raw",
    "orgAffil": "경기교육청",
    "firstSeen": "2026-08-28",
-   "isNew": true,
+   "isNew": false,
    "extVer": 96
   },
   {
