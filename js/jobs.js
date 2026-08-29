@@ -3,7 +3,10 @@
 const TODAY = new Date(Date.now() + 9 * 3600 * 1000).toISOString().slice(0, 10);
 
 // 집계 포털(매개체) 도메인 — 출처로 표기하지 않고, 링크로도 내보내지 않는다
-const PORTAL_RE = /artinfokorea|artmore|hibrain|jobkorea|saramin|albamon|cleaneye|gojobs|work\.go\.kr\/portal/i;
+// gojobs(나라일터)는 포털이 아니라 원천이다 — 기관이 직접 게시한다(CLAUDE.md 소스 판정,
+// cjob 을 원천으로 본 근거 전례). 여기 남아 있던 탓에 나라일터 공고의 버튼이 통째로
+// 사라졌다(링크 억제 + 연락처 없음 → 버튼 없음, 송곡여고 2026-08-30 사용자 발견).
+const PORTAL_RE = /artinfokorea|artmore|hibrain|jobkorea|saramin|albamon|cleaneye|work\.go\.kr\/portal/i;
 // 카드/모달에 보여줄 출처: 포털이면 감추고, 기관 원문이 있으면 그 도메인, 그마저 없으면 빈값
 function sourceLabel(j) {
   if (j.source && !PORTAL_RE.test(j.source)) return j.source;

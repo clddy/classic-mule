@@ -24,7 +24,8 @@ from slug import build as build_slug  # noqa: E402
 BASE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  # podium/
 SITE = "https://podiumclassical.kr"
 # js/jobs.js PORTAL_RE와 같은 목록 — 두 곳이 어긋나면 한쪽에서만 포털 링크가 샌다
-PORTAL_RE = re.compile(r"artinfokorea|artmore|hibrain|jobkorea|saramin|albamon|cleaneye|gojobs|work\.go\.kr/portal", re.I)
+# gojobs(나라일터)는 원천 — 목록에서 뺐다 (jobs.js PORTAL_RE 와 함께, 2026-08-30)
+PORTAL_RE = re.compile(r"artinfokorea|artmore|hibrain|jobkorea|saramin|albamon|cleaneye|work\.go\.kr/portal", re.I)
 
 XML_HEAD = '<?xml version="1.0" encoding="UTF-8"?>' + chr(10)
 URLSET_OPEN = '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' + chr(10)

@@ -435,6 +435,27 @@ def check_description(rep, items, hist):
         rep.add("LOW", "설명", f"설명 빈약: 제목 반복 {dup}건 · 30자 미만 {thin}건")
 
 
+def check_apply_path(rep, items):
+    """지원 경로가 아예 없는 카드 — 링크도 연락처도 없으면 방문자는 막다른 골목이다.
+
+    화면 버튼 규칙(staticgen._apply)을 그대로 재사용한다 — 판정 규칙을 여기 복제하면
+    화면과 표류한다. 송곡여고(나라일터)가 화면 PORTAL_RE 와 크롤러 목록의 어긋남으로
+    버튼 없이 나갔고, 사용자가 발견했다 (2026-08-30) — 다음부터는 이 검사가 먼저 운다.
+    """
+    try:
+        from staticgen import _apply
+    except Exception:
+        return
+    dead = []
+    for j in items:
+        label, href = _apply(j)
+        if not label or not href:
+            dead.append(j.get("title", "")[:26])
+    if dead:
+        rep.add("MED", "지원경로",
+                f"링크도 연락처도 없는 카드 {len(dead)}건 — 예: {'; '.join(dead[:3])}")
+
+
 def check_sitemap(rep):
     """구글 서치콘솔에 사이트맵이 등록돼 있고 정상 처리되는가.
 
@@ -744,6 +765,7 @@ def main():
     check_fields(rep, items)
     check_encoding(rep, items)
     check_description(rep, items, hist)
+    check_apply_path(rep, items)
     # 2순위 — 데이터 품질
     check_dupes(rep, items)
     check_dates(rep, items, today)

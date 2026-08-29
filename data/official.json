@@ -1,5 +1,5 @@
 {
- "collectedAt": "2026-08-30 02:25",
+ "collectedAt": "2026-08-30 03:33",
  "heldNoOrigin": 0,
  "sourceCount": 91,
  "okCount": 91,
@@ -773,10 +773,10 @@
    "poll": "daily",
    "ok": true,
    "raw": 8,
-   "kept": 0,
+   "kept": 3,
    "drop": {
     "무관": 3,
-    "만료": 5,
+    "만료": 2,
     "오래됨": 0
    }
   },
@@ -1251,37 +1251,6 @@
  ],
  "items": [
   {
-   "id": "cf18ce37bbd32b3f",
-   "org": "송곡여자고등학교(나라일터)",
-   "region": "서울",
-   "source": "gojobs.go.kr",
-   "title": "[송곡여고] 오케스트라 악기강사 모집",
-   "nonMusic": null,
-   "url": "https://www.gojobs.go.kr/apmView.do?empmnsn=302321&empmnsecode=020&menuNo=401",
-   "date": "2026-08-28",
-   "kind": "강사",
-   "tier": "교육 — 취미·입문",
-   "obri": false,
-   "certReq": "무관",
-   "degreeReq": "무관",
-   "careerReq": "미기재",
-   "ageGroup": "성인",
-   "inst": "현악",
-   "instDetails": [
-    "바이올린",
-    "첼로"
-   ],
-   "channel": "gojobs",
-   "layer": "A",
-   "addr": "세종특별자치시 정부2청사로 13",
-   "addrFrom": "postal",
-   "deadline": "2026-08-31",
-   "deadlineFrom": "meta",
-   "firstSeen": "2026-08-28",
-   "isNew": false,
-   "extVer": 97
-  },
-  {
    "id": "ab5652fbeb7a5d66",
    "org": "송곡여자고등학교",
    "region": "서울",
@@ -1317,7 +1286,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-28",
    "isNew": false,
-   "extVer": 97
+   "extVer": 102
   },
   {
    "id": "bc4142e9b2e1430e",
@@ -1353,7 +1322,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-28",
    "isNew": false,
-   "extVer": 97
+   "extVer": 102
   },
   {
    "id": "ba335c03de151cb7",
@@ -1388,7 +1357,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-28",
    "isNew": false,
-   "extVer": 97
+   "extVer": 102
   },
   {
    "id": "3f64bae5fba05ec6",
@@ -1425,7 +1394,7 @@
    "duty": "3,5학년 영어 및 6학년 음악",
    "deadline": "2026-09-06",
    "deadlineFrom": "raw",
-   "extVer": 97
+   "extVer": 102
   },
   {
    "id": "ecb2a81ace54c759",
@@ -1458,7 +1427,7 @@
    "orgAffil": "경기교육청",
    "firstSeen": "2026-08-28",
    "isNew": false,
-   "extVer": 97
+   "extVer": 102
   },
   {
    "id": "77bb3eb5a8713177",
@@ -1493,7 +1462,7 @@
    "orgAffil": "경기교육청",
    "firstSeen": "2026-08-28",
    "isNew": false,
-   "extVer": 97
+   "extVer": 102
   },
   {
    "id": "5ce4299ab3e1d24a",
@@ -1529,7 +1498,7 @@
    "bodyExcerpt": "문의하기 입사 지원 완료 닫기 예술경영지원센터에서 직원 모집합니다. · 채용 공고에 입사 지원 했습니다",
    "deadline": "2026-09-02",
    "deadlineFrom": "raw",
-   "extVer": 97
+   "extVer": 102
   },
   {
    "id": "58e198170e46f2df",
@@ -1568,7 +1537,7 @@
    "orgBoard": "서울동교초등학교",
    "firstSeen": "2026-08-27",
    "isNew": false,
-   "extVer": 97
+   "extVer": 102
   },
   {
    "id": "85997ce5b231e939",
@@ -1604,7 +1573,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-27",
    "isNew": false,
-   "extVer": 97
+   "extVer": 102
   },
   {
    "id": "d96ab31202030ef6",
@@ -1638,7 +1607,7 @@
    "deadlineFrom": "raw",
    "firstSeen": "2026-08-27",
    "isNew": false,
-   "extVer": 97
+   "extVer": 102
   },
   {
    "id": "fe341607ad0fc788",
@@ -1675,7 +1644,7 @@
    "bodyExcerpt": "활동 요일 및 시간 협의 가능 Ⅱ 자격요건 1 . · 전공학과 졸업 및 이수자로 일정한 자격을 갖춘 강사 2. · 관련 자격증을 소지한 강사 및 유경험자 3. · 유치원 활동에 적극적인 지원 의지가 있으며 성실히 근무할 수 있는 자 Ⅲ 모집절차 및 일정 1",
    "deadline": "2026-08-31",
    "deadlineFrom": "raw",
-   "extVer": 97
+   "extVer": 102
   },
   {
    "id": "8c119419270bfa29",
@@ -1711,7 +1680,7 @@
    "bodyExcerpt": "인천미산초등학교병설유치원에서는 특성화 프로그램 운영과 관련하여 아래와 같이 특성화 프로그램 위탁 강사를 모집하오니, 관심 있는 분들의 많은 지원 바랍니다 . · 해당 분야에 전문적인 능력을 가진 자 또는 자격증 소지자 · 유치원 특성화프로그램 개인위탁 외부강사 활동에 제한이 없는 자 * 프로그램 과목별 주 1 회 수업(만 3~5 세 통합 1 반)",
    "deadline": "2026-08-31",
    "deadlineFrom": "raw",
-   "extVer": 97
+   "extVer": 102
   },
   {
    "id": "e099f21ba2e30c19",
@@ -1743,7 +1712,7 @@
    "deadlineNote": "상시",
    "firstSeen": "2026-08-26",
    "isNew": false,
-   "extVer": 97
+   "extVer": 102
   },
   {
    "id": "311cef60305a6ede",
@@ -1781,7 +1750,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-25",
    "isNew": false,
-   "extVer": 97
+   "extVer": 102
   },
   {
    "id": "ee0d661436e7a1ca",
@@ -1813,7 +1782,7 @@
    "deadlineFrom": "raw",
    "firstSeen": "2026-08-19",
    "isNew": false,
-   "extVer": 97
+   "extVer": 102
   },
   {
    "id": "e29203a6b490758a",
@@ -1850,7 +1819,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-24",
    "isNew": false,
-   "extVer": 97
+   "extVer": 102
   },
   {
    "id": "b83667209a8cd77d",
@@ -1881,7 +1850,7 @@
    "deadlineNote": "상시",
    "firstSeen": "2026-08-19",
    "isNew": false,
-   "extVer": 97
+   "extVer": 102
   },
   {
    "id": "6cb1a301d8f777cc",
@@ -1919,7 +1888,7 @@
    "orgBoard": "울산문화예술회관(시립예술단)",
    "firstSeen": "2026-08-18",
    "isNew": false,
-   "extVer": 97
+   "extVer": 102
   },
   {
    "id": "11376188af16b7d1",
@@ -1956,7 +1925,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-19",
    "isNew": false,
-   "extVer": 97
+   "extVer": 102
   },
   {
    "id": "bd2c17f19933f651",
@@ -1988,7 +1957,7 @@
    "pay": "30만원",
    "firstSeen": "2026-08-14",
    "isNew": false,
-   "extVer": 97
+   "extVer": 102
   },
   {
    "id": "0251912d3b918734",
@@ -2023,7 +1992,7 @@
    "bodyExcerpt": "모집분야 : 주일예배 및 성가대 피아노 반주자 · 성가대 연습 : 주일 10시~10시 50분, 12시 10분~12시 50분(시간은 유동적임)· 지원자격 : 피아노 또는 음악 관련 전공자 및 교회 반주 경험자 우대 · 주요업무 : 주일예배 찬송가 및 예배 반주, 성가대 찬양 반주, 성가대 연습 반주",
    "firstSeen": "2026-08-08",
    "isNew": false,
-   "extVer": 97
+   "extVer": 102
   },
   {
    "id": "b2e199e32140e0ed",
@@ -2058,7 +2027,7 @@
    "deadlineNote": "상시",
    "firstSeen": "2026-08-08",
    "isNew": false,
-   "extVer": 97
+   "extVer": 102
   },
   {
    "id": "5fbc7e4eb4f8d92d",
@@ -2092,7 +2061,7 @@
    "deadlineNote": "상시",
    "firstSeen": "2026-08-08",
    "isNew": false,
-   "extVer": 97
+   "extVer": 102
   }
  ]
 }

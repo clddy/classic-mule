@@ -306,7 +306,7 @@ def find_attachments(soup, base_url):
                     cands.append((full, el.get_text(" ", strip=True)))
     return cands[:4]
 
-EXT_VER = 97         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
+EXT_VER = 102         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
                      # v32(2026-08-02): 모집분야 구획 악기 추출(insts_from_recruit_text) + 원문 보관층
                      # 24: work.sen 등록일(게시일) 추출 추가 — date=None이던 승계분을 다시 뽑게
                      # 25: body_text 도입 — 본문을 <header>에 넣는 사이트(대전교육청)의 마감일을
@@ -1104,7 +1104,7 @@ _NOT_ORIGIN = re.compile(
 _ORIGIN_HINT = re.compile(r"\.or\.kr|\.go\.kr|\.ac\.kr|\.re\.kr", re.I)
 
 
-def _trace_origin(soup, page_text, item):
+def _trace_origin(soup, page_text, item, anchors_only=False):
     """집계본 본문에서 원출처(기관 홈페이지·공고 원문)를 역추적한다.
 
     찾으면 officialUrl 로 앉힌다 — 그 뒤 링크 검증·마감 추출은 기존 원문 경로가 이어받는다.
@@ -1112,10 +1112,45 @@ def _trace_origin(soup, page_text, item):
     """
     if item.get("officialUrl"):
         return None
+    src_dom = (item.get("source") or "").lower()
+    # 1순위: 앵커 글자가 원문을 가리키는 링크 — 포털이 '여기가 원문'이라고 손가락질해
+    # 주는 것이라 도메인 힌트 추측보다 강하다 (2026-08-30 사용자 지시: gojobs 의
+    # '관련링크 바로가기'뿐 아니라 모든 포털의 이 신호를 핵심 정보로 쓴다).
+    # '홈페이지'는 안 받는다 — 기관 첫 화면이지 공고 원문이 아니다 (플랫폼엘 08-26 결정).
+    for tier, need_ctx in ((r"원본\s*사이트|원문|관련\s*링크|공고\s*바로가기", False),
+                           (r"바로\s*가기", True)):
+        for a in soup.find_all("a", href=True):
+            h = (a["href"] or "").strip()
+            if not h.startswith("http") or _NOT_ORIGIN.search(h):
+                continue
+            if src_dom and src_dom in h.lower():
+                continue                      # 포털 자기 자신으로 도는 링크
+            if not re.search(tier, a.get_text(" ", strip=True) or ""):
+                continue
+            # 맨 '바로가기'는 헤프다 — 나라일터 낡은 템플릿의 유관기관 바로가기(wa.or.kr)를
+            # 여러 공고가 원문으로 물었다 (2026-08-30 시뮬레이션에서 발각). 같은 표 행에
+            # '관련링크/원문' 낱말이 있을 때만 받는다.
+            if need_ctx:
+                # 라벨은 th, 바로가기는 td 에 있다 — 행(tr) 단위로 봐야 '관련링크'가 보인다
+                parent = a.find_parent("tr") or a.find_parent(["li", "p", "dd", "div"])
+                ctx = parent.get_text(" ", strip=True)[:80] if parent else ""
+                if not re.search(r"관련\s*링크|원문|원본", ctx):
+                    continue
+            item["officialUrl"] = h
+            item["originTraced"] = True   # _origin_check 가 열어서 제목 대조로 검증한다
+            item["originTraceVer"] = EXT_VER   # 리셋이 이번 회차의 추적을 지우지 않게
+            return h
+    if anchors_only:
+        # 빠른 패스(검증 없이 채택)에서는 앵커 신호까지만 — 도메인 힌트 추측은 푸터의
+        # '관련 사이트' 링크(wa.or.kr)를 물 수 있어, 열어서 대조하는 enrich 경로 전용이다.
+        return None
+    # 2순위: 도메인 힌트 추측 (기존 경로)
     cands = []
     for a in soup.find_all("a", href=True):
         href = (a["href"] or "").strip()
         if not href.startswith("http") or _NOT_ORIGIN.search(href):
+            continue
+        if src_dom and src_dom in href.lower():
             continue
         if _ORIGIN_HINT.search(href):
             cands.append(href)
@@ -1130,6 +1165,7 @@ def _trace_origin(soup, page_text, item):
     cands.sort(key=lambda u: (u.count("/") < 4, len(u)))
     item["officialUrl"] = cands[0]
     item["originTraced"] = True
+    item["originTraceVer"] = EXT_VER
     return cands[0]
 
 
@@ -1478,6 +1514,12 @@ def _refill_from_raw(items, today):
         # 운영기관(교구·교육청)이면 지도 핀이 엉뚱한 본부에 찍힌다 (성복동성당, 2026-08-26).
         if not it.get("addr"):
             av = addr_from_text(_raw)
+            # 우편번호 꼴도 사이트 푸터에 흔하다 — 나라일터 푸터의 인사혁신처 주소
+            # '(30128)세종… 정부2청사로'가 서울 학교 공고에 실렸다 (송곡여고, 2026-08-30).
+            # 공고의 지역과 주소의 시도가 어긋나면 남의 주소다. 반쯤 맞는 주소는 버린다.
+            if av and it.get("region") not in (None, "", "기타"):
+                if region_from(av) not in (it["region"], "기타"):
+                    av = None
             if av:
                 it["addr"] = av
                 it["addrFrom"] = "postal"
@@ -1834,7 +1876,10 @@ def _reset_stale_extracted(items):
             it.pop("deadlineNote", None)
         # 역추적으로 앉힌 원문도 짐작이다 — 비워야 _trace_origin 재실행 + 무관 페이지 검증을
         # 다시 거친다 (플랫폼엘 spaf.or.kr 오링크가 승계로 살아남았다, 2026-08-26).
-        if it.get("originTraced"):
+        # 단 이번 회차의 전용 패스가 **방금 딴** 원문(originTraceVer == 현재 버전)은 남긴다 —
+        # 이걸 빼먹어 새로 딴 관련링크를 리셋이 즉시 지웠고, 연계 중복 접기가 헛돌았다
+        # (송곡여고 2장, 2026-08-30). fresh 항목은 extVer 도장이 맨 끝에 찍혀 리셋을 지나간다.
+        if it.get("originTraced") and it.get("originTraceVer") != EXT_VER:
             it.pop("officialUrl", None)
             it.pop("originTraced", None)
         if any(it.get(f) for f in _EXTRACTED_FIELDS):
@@ -2121,7 +2166,9 @@ def enrich_deadline(s, item, allow_render=True, details_only=False):
         rawstore.stash(item.get("id"), "page", page_text, url=item.get("url"), title=item.get("title"))
         # 집계 포털 항목: 원문이 있으면 원문을 검증(죽은 링크 차단 + 진짜 마감일),
         # 원문이 없는 직접게시글이면 지원 연락처를 본문에서 확보한다.
-        if item.get("source") in AGGREGATORS:
+        # gojobs(나라일터)는 원천이지만 교육청 포털 공고를 연계 표출하기도 한다 —
+        # 상세의 '관련링크 바로가기'가 원문이라 역추적을 같이 태운다 (2026-08-30).
+        if item.get("source") in AGGREGATORS + ("gojobs.go.kr",):
             if item.get("officialUrl"):
                 _deepen_list_origin(s, item)   # 목록 origin이면 상세 공고까지 파고들기
                 _origin_check(s, item, ry)
@@ -2168,13 +2215,13 @@ def enrich_deadline(s, item, allow_render=True, details_only=False):
         dl = extract_deadline(page_text, ref_year=ry)
         if dl:
             item["deadline"] = dl
+            item["deadlineFrom"] = "page"
+            return
         # '제출기한: 채용시'처럼 까지/마감이 안 붙는 표기도 있다 (성복동성당, 2026-08-28)
         # — 마감·기한·접수 라벨 바로 뒤의 '채용시'만 상시로 읽는다 (맨 '채용시'는 흔한 낱말).
-        elif re.search(r"남은기간\s*0000-00-00|상시 ?모집|상시 ?채용|채용 ?시 ?(?:까지|마감)|충원 ?시 ?마감"
-                       r"|(?:마감|기한|접수)\s*[:：]?\s*채용\s*시", page_text):
+        if re.search(r"남은기간\s*0000-00-00|상시 ?모집|상시 ?채용|채용 ?시 ?(?:까지|마감)|충원 ?시 ?마감"
+                     r"|(?:마감|기한|접수)\s*[:：]?\s*채용\s*시", page_text):
             item["deadlineNote"] = "상시"
-            return
-            item["deadlineFrom"] = "page"
             return
         for furl, fname in find_attachments(soup, r.url):
             try:
@@ -2593,6 +2640,27 @@ def run(force_all=False):
             kept = [i for i in kept if i["deadline"] or i.get("deadlineNote") == "상시"
                     or not i["date"] or i["date"] >= old_cut]
             drop["오래됨"] += n_before - len(kept)
+            # 원문 역추적은 enrich 에 얹혀 있으면 안 된다 — 마감이 메타표에서 바로 나오는
+            # 항목은 enrich 를 아예 안 타서, gojobs 연계 공고의 '관련링크'가 영영 안 잡혔다
+            # (송곡여고 중복 카드, 2026-08-30 — '판정은 enrich 밖에서 자기치유' 오늘 세 번째).
+            # 전용 패스로 뗀다. **만료 정리 뒤에** 돈다 — 앞에서 돌리면 묵은 공고가 fetch
+            # 예산을 다 먹는다(나라일터엔 2022년 공고까지 걸려 있었다). 못 찾은 항목의
+            # 재시도는 추출기 버전이 오를 때만(표식) — 회차마다 다시 여는 낭비를 막는다.
+            if src["domain"] in AGGREGATORS + ("gojobs.go.kr",):
+                _tr_need = [i for i in kept
+                            if not i.get("officialUrl") and i.get("originTraceVer") != EXT_VER][:15]
+                n_tr = 0
+                for it in _tr_need:
+                    try:
+                        r_t = get(s, it["url"])
+                        soup_t = BeautifulSoup(r_t.text, "lxml")
+                        if _trace_origin(soup_t, body_text(r_t.text), it, anchors_only=True):
+                            n_tr += 1
+                    except Exception:
+                        pass
+                    it["originTraceVer"] = EXT_VER
+                if _tr_need:
+                    log(f"  원문 역추적 {len(_tr_need)}건 시도 → {n_tr}건 확보")
             # 소스가 비정상적으로 0건 반환(서버 다운 등) 시 이전 수집분 승계
             if not raw:
                 carried = [it for it in prev_items if it.get("channel") == src["id"]]
@@ -2745,10 +2813,44 @@ def run(force_all=False):
     if _hold:
         final[:] = [i for i in final if i not in _hold]
         log(f"[보류] 원출처 미확인 {len(_hold)}건 — " + "; ".join(i["title"][:24] for i in _hold[:3]))
-    _portal_src = AGGREGATORS + ("hibrain.net",)   # 링크를 내보내지 않기로 한 집계 포털들
-    _dead_end = [i for i in final
-                 if (i.get("source") or "") in _portal_src
-                 and not i.get("officialUrl") and not i.get("applyEmail") and not i.get("applyPhone")]
+    # 판정을 여기서 따로 만들지 않는다 — **화면이 버튼을 만드는 규칙(staticgen._apply)
+    # 그대로**다. 종전에는 이 필터가 자체 포털 목록(_portal_src)을 들고 있었는데, 화면의
+    # PORTAL_RE 와 어긋나면서 나라일터 공고가 버튼 없이 게시됐다(송곡여고, 2026-08-30).
+    # 방문자가 카드를 열고 할 수 있는 일이 없으면 그 카드는 정보가 아니라 소음이다 —
+    # 버튼을 못 만드는 공고는 게시하지 않는다. 같은 규칙을 헬스체크(check_apply_path)가
+    # 배포본에서 한 번 더 본다 — 여기가 뚫려도 다음 헬스체크가 운다.
+    # 연계 표출 중복 접기 — 어떤 카드의 원문(officialUrl)이 이미 게시 중인 다른 카드의
+    # 수집 주소(url)면 같은 공고다. 나라일터가 교육청 포털 공고를 미러링해 같은 자리가
+    # 두 장 떴다(송곡여고: gojobs 카드의 관련링크 = work.sen 카드, 2026-08-30).
+    # 직접 소스 쪽이 정보가 더 많으므로(주소·연락처) 그쪽을 남긴다.
+    def _norm_u(u):
+        return re.sub(r"^https?://", "", (u or "").strip().rstrip("/"))
+    # 같은 원문(officialUrl)을 가리키는 카드가 여럿이면 그것도 같은 공고다 —
+    # 필드가 많이 찬 쪽을 남긴다 (아트인포·나라일터가 같은 학교 공고를 각자 미러링하는 꼴).
+    _by_official = {}
+    for i in final:
+        k = _norm_u(i.get("officialUrl"))
+        if k:
+            _by_official.setdefault(k, []).append(i)
+    _dupes = []
+    for k, grp in _by_official.items():
+        if len(grp) > 1:
+            grp.sort(key=lambda x: -sum(1 for v in x.values() if v))
+            _dupes.extend(grp[1:])
+    if _dupes:
+        final = [i for i in final if i not in _dupes]
+        log(f"같은 원문 중복 접기 {len(_dupes)}건 — "
+            + "; ".join(f"{i.get('source')}/{i['title'][:20]}" for i in _dupes[:4]))
+    _by_url = {_norm_u(i.get("url")): i for i in final if i.get("url")}
+    _relay = [i for i in final
+              if i.get("officialUrl") and _norm_u(i["officialUrl"]) in _by_url
+              and _by_url[_norm_u(i["officialUrl"])] is not i]
+    if _relay:
+        final = [i for i in final if i not in _relay]
+        log(f"연계 중복 접기 {len(_relay)}건 — "
+            + "; ".join(f"{i.get('source')}/{i['title'][:20]}" for i in _relay[:4]))
+    import staticgen as _sg
+    _dead_end = [i for i in final if _sg._apply(i) == (None, None)]
     if _dead_end:
         final = [i for i in final if i not in _dead_end]
         log(f"지원경로 없음 {len(_dead_end)}건 제외 — "

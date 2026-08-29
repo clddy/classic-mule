@@ -33555,11 +33555,13 @@
    "certReq": "무관",
    "degreeReq": "무관",
    "careerReq": "미기재",
-   "addr": "세종특별자치시 정부2청사로 13",
-   "addrFrom": "postal",
+   "addr": "서울특별시 중랑구 양원역로",
+   "addrFrom": "geo",
    "firstSeen": "2026-08-28",
    "lastSeen": "2026-08-30",
-   "days": 3
+   "days": 3,
+   "lat": 37.6068609,
+   "lng": 127.1049732
   },
   "3f64bae5fba05ec6": {
    "id": "3f64bae5fba05ec6",
