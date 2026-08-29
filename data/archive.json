@@ -32628,7 +32628,7 @@
    "deadlineFrom": "raw",
    "kind": "교원",
    "tier": "교육 — 학교",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
@@ -32903,8 +32903,7 @@
    "tier": "교육 — 취미·입문",
    "inst": "현악",
    "instDetails": [
-    "바이올린",
-    "관악"
+    "바이올린"
    ],
    "ageGroup": "성인",
    "obri": false,
@@ -33136,8 +33135,7 @@
    "tier": "미분류",
    "inst": "금관",
    "instDetails": [
-    "트럼펫",
-    "관악"
+    "트럼펫"
    ],
    "ageGroup": "성인",
    "obri": false,
@@ -33172,7 +33170,7 @@
    "deadlineFrom": "raw",
    "kind": "교원",
    "tier": "교육 — 학교",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
