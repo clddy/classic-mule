@@ -1,8 +1,8 @@
 {
- "collectedAt": "2026-08-30 18:08",
+ "collectedAt": "2026-08-31 01:38",
  "heldNoOrigin": 0,
  "sourceCount": 91,
- "okCount": 91,
+ "okCount": 79,
  "instTotal": 75,
  "sources": [
   {
@@ -170,11 +170,9 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 10,
+   "raw": 0,
    "kept": 0,
    "drop": {
-    "무관": 5,
-    "비음악": 5,
     "만료": 0,
     "오래됨": 0
    }
@@ -200,11 +198,9 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 30,
+   "raw": 0,
    "kept": 0,
    "drop": {
-    "무관": 21,
-    "비음악": 9,
     "만료": 0,
     "오래됨": 0
    }
@@ -214,15 +210,9 @@
    "name": "울산문화예술회관",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 21,
+   "ok": false,
    "kept": 1,
-   "drop": {
-    "무관": 17,
-    "비음악": 1,
-    "만료": 2,
-    "오래됨": 0
-   }
+   "error": "ReadTimeout: HTTPSConnectionPool(host='www.ulsan.go.kr', port=443): Read timed out. (read timeout=20)"
   },
   {
    "id": "seoulphil",
@@ -385,8 +375,8 @@
    "poll": "daily",
    "ok": true,
    "raw": 9,
-   "kept": 9,
-   "carried": 3,
+   "kept": 7,
+   "carried": 1,
    "drop": {
     "무관": 3,
     "만료": 0,
@@ -465,10 +455,10 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 4,
+   "raw": 0,
    "kept": 0,
    "drop": {
-    "만료": 4,
+    "만료": 0,
     "오래됨": 0
    }
   },
@@ -568,13 +558,9 @@
    "name": "안양문화예술재단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 0,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://ayac.or.kr/base/menu/baseView?menuLevel=1&menu"
   },
   {
    "id": "g_uac",
@@ -785,54 +771,36 @@
    "name": "경상북도도립교향악단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 0,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "ConnectionError: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))"
   },
   {
    "id": "g_i_ansanartscom",
    "name": "안산시립합창단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 8,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "무관": 4,
-    "오래됨": 4,
-    "만료": 0
-   }
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='ansanarts.com', port=443): Max retries exceeded with url: /bbs/board.php?bo_table=notice (Caus"
   },
   {
    "id": "g_i_gurigokr",
    "name": "구리시립합창단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 0,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.guri.go.kr/www/selectBbsNttList.do?bbsNo=4"
   },
   {
    "id": "g_i_suncheongokr",
    "name": "순천시립합창단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 2,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "무관": 2,
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.suncheon.go.kr', port=443): Max retries exceeded with url: /scart/community/0001;jsessioni"
   },
   {
    "id": "g_i_andonggokr",
@@ -920,13 +888,9 @@
    "name": "동해문화관광재단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 0,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "HTTPError: 403 Forbidden"
   },
   {
    "id": "g_i_cfscorkr",
@@ -973,26 +937,18 @@
    "name": "목포시립예술단(교향악단·합창단)",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 0,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.mokpo.go.kr', port=443): Max retries exceeded with url: /www/mokpo_news/notification/incru"
   },
   {
    "id": "g_yeosu",
    "name": "여수시립예술단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 0,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.yeosu.go.kr', port=443): Max retries exceeded with url: /www/govt/news/recruit (Caused by "
   },
   {
    "id": "g_wonju",
@@ -1078,13 +1034,9 @@
    "name": "충남교육청(학교 채용)",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 0,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.cne.go.kr/boardCnts/list.do?boardID=642&m="
   },
   {
    "id": "g_daeguart_notice",
@@ -1105,14 +1057,9 @@
    "name": "안산시립합창단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 6,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "오래됨": 3,
-    "무관": 3,
-    "만료": 0
-   }
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='ansanarts.com', port=443): Max retries exceeded with url: /bbs/board.php?bo_table=notice (Caus"
   },
   {
    "id": "g_pajucf",
@@ -1146,13 +1093,9 @@
    "name": "구리아트홀(시립청소년교향악단)",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 0,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.guri.go.kr', port=443): Max retries exceeded with url: /www/selectBbsNttList.do?bbsNo=41&k"
   },
   {
    "id": "g_yeulmaru",
@@ -1239,11 +1182,9 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 11,
-   "kept": 9,
-   "declared": 11,
+   "raw": 0,
+   "kept": 0,
    "drop": {
-    "비음악": 2,
     "만료": 0,
     "오래됨": 0
    }
@@ -1715,44 +1656,6 @@
    "extVer": 102
   },
   {
-   "id": "311cef60305a6ede",
-   "org": "서울영화초등학교",
-   "region": "서울",
-   "source": "work.sen.go.kr",
-   "title": "[서울영화초] 오케스트라 강사 채용",
-   "nonMusic": null,
-   "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=109006",
-   "date": "2026-08-25",
-   "kind": "강사",
-   "tier": "교육 — 취미·입문",
-   "obri": false,
-   "certReq": "무관",
-   "degreeReq": "무관",
-   "careerReq": "미기재",
-   "ageGroup": "성인",
-   "inst": "현악",
-   "instDetails": [
-    "바이올린"
-   ],
-   "channel": "edu_seoul",
-   "layer": "C",
-   "email": "kimej740@younghwa.sen.es.kr",
-   "addr": "서울특별시 동작구 등용로8길 3(대방동)",
-   "orgAffil": "서울시교육청",
-   "firstSeen": "2026-08-25",
-   "isNew": false,
-   "contact": "02-824-6051",
-   "pay": "시급",
-   "workPeriod": "2026.09.01 ~ 2027.02.28",
-   "workHours": "14:40~16:30 / 주 1회 2시간, 15주",
-   "personnel": "1명",
-   "duty": "오케스트라 바이올린",
-   "bodyExcerpt": "공인된 자격증 사본, 각종 경력증명서",
-   "deadline": "2026-08-30",
-   "deadlineFrom": "raw",
-   "extVer": 102
-  },
-  {
    "id": "ee0d661436e7a1ca",
    "org": "양주시립교향악단",
    "region": "경기",
@@ -1782,43 +1685,6 @@
    "deadlineFrom": "raw",
    "firstSeen": "2026-08-19",
    "isNew": false,
-   "extVer": 102
-  },
-  {
-   "id": "e29203a6b490758a",
-   "org": "서울성일초등학교",
-   "region": "서울",
-   "source": "work.sen.go.kr",
-   "title": "[서울성일초] 기간제교사(5, 4음악) 채용",
-   "nonMusic": null,
-   "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=108897",
-   "date": "2026-08-24",
-   "kind": "교원",
-   "tier": "교육 — 학교",
-   "obri": false,
-   "certReq": "예",
-   "degreeReq": "무관",
-   "careerReq": "미기재",
-   "ageGroup": "성인",
-   "inst": "전체",
-   "instDetails": [
-    "관악"
-   ],
-   "channel": "edu_seoul",
-   "layer": "C",
-   "email": "adam1006@sen.go.kr",
-   "addr": "서울특별시 강동구 성내로15길 33",
-   "orgAffil": "서울시교육청",
-   "firstSeen": "2026-08-24",
-   "isNew": false,
-   "contact": "02-475-4641",
-   "workPeriod": "2026.10.06 ~ 2027.01.03",
-   "workHours": "전일제 근무(정규교사에 준함), 08:40~16:40",
-   "personnel": "총 1명",
-   "duty": "교과전담교사(5학년 영어, 4학년 음악)",
-   "bodyExcerpt": "계약기간: 2026.10.6.~2027.1.3",
-   "deadline": "2026-08-30",
-   "deadlineFrom": "raw",
    "extVer": 102
   },
   {
@@ -1875,19 +1741,19 @@
    "channel": "ulsan",
    "layer": "B",
    "program": "과제곡 및 초견곡 연주 - F. Chopin의 Etude 중 빠른 한 곡 - L. v. Beethoven의 Sonata 중 느린 한 악장 - 초견 연주 한 곡(당일 시험장에서 제시)",
+   "addr": "울산광역시 남구 번영로 200",
+   "addrFrom": "postal",
+   "orgBoard": "울산문화예술회관(시립예술단)",
+   "firstSeen": "2026-08-18",
+   "isNew": false,
    "qualification": "국내외 대학 관련 학과 졸업자(2026년 8월 졸업예정자 포함)",
    "contact": "052-226-8273",
    "duty": "합창단 정기·기획공연 출연 반주자 시립합창단 1명 · 찾아가는 예술단 공연 출연(피아노)",
-   "addr": "울산광역시 남구 번영로 200",
-   "addrFrom": "postal",
    "workPeriod": "2026.10.01 ~ 2027.03.31(6개월)",
    "workHours": "시립합창단 상임단원과 동일",
    "workPlace": "울산문화예술회관 등",
    "deadline": "2026-09-04",
    "deadlineFrom": "raw",
-   "orgBoard": "울산문화예술회관(시립예술단)",
-   "firstSeen": "2026-08-18",
-   "isNew": false,
    "extVer": 102
   },
   {
