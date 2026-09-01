@@ -1,8 +1,8 @@
 {
  "date": "2026-09-01",
  "total": 75,
- "covered": 1,
- "gapCount": 74,
+ "covered": 2,
+ "gapCount": 73,
  "gaps": [
   {
    "name": "서울시립교향악단",
@@ -151,11 +151,6 @@
   },
   {
    "name": "안산시립예술단",
-   "type": "예술단",
-   "region": "경기"
-  },
-  {
-   "name": "안양시립예술단",
    "type": "예술단",
    "region": "경기"
   },
