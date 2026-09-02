@@ -1,8 +1,8 @@
 {
- "collectedAt": "2026-09-02 18:07",
+ "collectedAt": "2026-09-03 01:34",
  "heldNoOrigin": 0,
  "sourceCount": 91,
- "okCount": 91,
+ "okCount": 83,
  "instTotal": 75,
  "sources": [
   {
@@ -12,8 +12,7 @@
    "poll": "daily",
    "ok": true,
    "raw": 1,
-   "kept": 2,
-   "carried": 1,
+   "kept": 1,
    "drop": {
     "만료": 0,
     "오래됨": 0
@@ -66,15 +65,9 @@
    "name": "기독정보넷(교회 반주)",
    "layer": "C",
    "poll": "daily",
-   "ok": true,
-   "raw": 23,
+   "ok": false,
    "kept": 4,
-   "carried": 1,
-   "drop": {
-    "무관": 3,
-    "만료": 17,
-    "오래됨": 0
-   }
+   "error": "HTTPError: 403 Forbidden"
   },
   {
    "id": "gne",
@@ -153,15 +146,9 @@
    "name": "수원시립예술단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 21,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "무관": 17,
-    "비음악": 4,
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "ConnectTimeout: HTTPConnectionPool(host='artsuwon.or.kr', port=80): Max retries exceeded with url: /?p=49 (Caused by ConnectTimeoutError"
   },
   {
    "id": "snart",
@@ -169,11 +156,9 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 10,
+   "raw": 0,
    "kept": 0,
    "drop": {
-    "무관": 6,
-    "비음악": 4,
     "만료": 0,
     "오래됨": 0
    }
@@ -199,11 +184,9 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 29,
+   "raw": 0,
    "kept": 0,
    "drop": {
-    "무관": 21,
-    "비음악": 8,
     "만료": 0,
     "오래됨": 0
    }
@@ -384,8 +367,8 @@
    "poll": "daily",
    "ok": true,
    "raw": 7,
-   "kept": 9,
-   "carried": 3,
+   "kept": 8,
+   "carried": 2,
    "drop": {
     "무관": 1,
     "만료": 0,
@@ -465,10 +448,10 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 4,
+   "raw": 0,
    "kept": 0,
    "drop": {
-    "만료": 4,
+    "만료": 0,
     "오래됨": 0
    }
   },
@@ -491,7 +474,7 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 1,
+   "raw": 0,
    "kept": 1,
    "drop": {
     "만료": 0,
@@ -798,14 +781,9 @@
    "name": "안산시립합창단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 8,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "무관": 4,
-    "오래됨": 4,
-    "만료": 0
-   }
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='ansanarts.com', port=443): Max retries exceeded with url: /bbs/board.php?bo_table=notice (Caus"
   },
   {
    "id": "g_i_gurigokr",
@@ -825,14 +803,9 @@
    "name": "순천시립합창단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 1,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "무관": 1,
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.suncheon.go.kr', port=443): Max retries exceeded with url: /scart/community/0001;jsessioni"
   },
   {
    "id": "g_i_andonggokr",
@@ -867,13 +840,9 @@
    "name": "화성시문화관광재단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 0,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.hcf.or.kr', port=443): Max retries exceeded with url: /hcf/60?chathead=%ED%99%94%EC%84%B1%"
   },
   {
    "id": "g_i_gokamsorkr",
@@ -973,13 +942,9 @@
    "name": "목포시립예술단(교향악단·합창단)",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 0,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.mokpo.go.kr', port=443): Max retries exceeded with url: /www/mokpo_news/notification/incru"
   },
   {
    "id": "g_yeosu",
@@ -1078,13 +1043,9 @@
    "name": "충남교육청(학교 채용)",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 0,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.cne.go.kr/boardCnts/list.do?boardID=642&m="
   },
   {
    "id": "g_daeguart_notice",
@@ -1105,14 +1066,9 @@
    "name": "안산시립합창단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 6,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "오래됨": 3,
-    "무관": 3,
-    "만료": 0
-   }
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='ansanarts.com', port=443): Max retries exceeded with url: /bbs/board.php?bo_table=notice (Caus"
   },
   {
    "id": "g_pajucf",
@@ -1239,49 +1195,15 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 8,
-   "kept": 7,
-   "declared": 8,
+   "raw": 0,
+   "kept": 0,
    "drop": {
-    "비음악": 1,
     "만료": 0,
     "오래됨": 0
    }
   }
  ],
  "items": [
-  {
-   "id": "f98854092c816c9c",
-   "org": "직접 게시",
-   "region": "기타",
-   "source": "artmore.kr",
-   "title": "후즈아트 클래식 크리에이터 크루 1기 모집",
-   "nonMusic": null,
-   "url": "https://www.artmore.kr/sub/recruit/search_view.do?rec_idx=94829",
-   "date": "2026-09-02",
-   "kind": "기타",
-   "tier": "미분류",
-   "obri": false,
-   "certReq": "무관",
-   "degreeReq": "무관",
-   "careerReq": "무관",
-   "ageGroup": "성인",
-   "inst": "전체",
-   "instDetails": [],
-   "channel": "artmore",
-   "layer": "A",
-   "officialUrl": "http://spaf.or.kr/2024/",
-   "originTraced": true,
-   "originTraceVer": 102,
-   "qualification": "경력무관 학력 고등학교",
-   "workHours": "주1일",
-   "bodyExcerpt": "연주자 ① 카메라 적응력: 카메라 앞 표정/리액션이 자연스럽게 나오는가 ② SNS 감각: 평소 릴스 · 문의하기 입사 지원 완료 닫기 예술경영지원센터에서 직원 모집합니다. · 채용 공고에 입사 지원 했습니다",
-   "deadline": "2026-09-13",
-   "deadlineFrom": "raw",
-   "firstSeen": "2026-09-02",
-   "isNew": true,
-   "extVer": 102
-  },
   {
    "id": "77f2e4f1297065fd",
    "org": "한강미디어고등학교",
@@ -1308,13 +1230,13 @@
    "email": "man5on988@sen.go.kr",
    "pay": "시급 25,000원",
    "workPeriod": "2026.09.14 ~ 2026.09.18",
+   "workHours": "전일제 근무",
    "personnel": "2명",
    "addr": "서울특별시 영등포구 선유로55길 22(양평동4가)",
    "duty": "음악(2학년 음악과 미디어), 디자인공예(광고콘텐츠제작 등)",
    "deadline": "2026-09-06",
    "deadlineFrom": "raw",
    "orgAffil": "서울시교육청",
-   "workHours": "전일제 근무",
    "firstSeen": "2026-09-02",
    "isNew": true,
    "extVer": 102
@@ -1478,7 +1400,7 @@
    "deadlineFrom": "raw",
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-09-01",
-   "isNew": true,
+   "isNew": false,
    "extVer": 102
   },
   {
@@ -1514,7 +1436,7 @@
    "deadlineFrom": "raw",
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-09-01",
-   "isNew": true,
+   "isNew": false,
    "extVer": 102
   },
   {
@@ -1544,7 +1466,7 @@
    "lng": 127.0908582,
    "addrFrom": "geo",
    "firstSeen": "2026-09-01",
-   "isNew": true,
+   "isNew": false,
    "contact": "070-4021-7078",
    "workPeriod": "2026.10.07 ~ 2026.12.09",
    "personnel": "1명",
@@ -1585,7 +1507,7 @@
    "deadline": "2026-09-04",
    "deadlineFrom": "raw",
    "firstSeen": "2026-09-01",
-   "isNew": true,
+   "isNew": false,
    "extVer": 102
   },
   {
@@ -1633,7 +1555,7 @@
    "deadlineFrom": "raw",
    "orgBoard": "연세대학교",
    "firstSeen": "2026-09-01",
-   "isNew": true,
+   "isNew": false,
    "extVer": 102
   },
   {
@@ -1695,11 +1617,14 @@
    "instDetails": [],
    "channel": "edu_sje",
    "layer": "C",
-   "qualification": "내국인으로 채용 분야 중등 교원자격증 소지자",
-   "contact": "044-320-4326",
    "addr": "세종특별자치시 한누리대로 2154",
    "addrFrom": "postal",
    "email": "borammds@naver.com",
+   "orgAffil": "세종교육청",
+   "firstSeen": "2026-09-01",
+   "isNew": false,
+   "qualification": "내국인으로 채용 분야 중등 교원자격증 소지자",
+   "contact": "044-320-4326",
    "workPeriod": "2026.10.12 ~ 2027.01.09",
    "workHours": "계약 기간 내 전일제 근무(교과업무, 업무분장 등)",
    "ageLimit": "*(만 65세) 미 해당자 * 계약 종료일 만 65세가 도래하는 날이 포함된 학기말까지 가능",
@@ -1707,9 +1632,6 @@
    "bodyExcerpt": "채용 절차 : 공고를 통한 채용 · 채용 응시 자격 : 내국인으로 채용 분야 중등 교원자격증 소지자 2. · 보수 : 공무원 보수규정 제 8 조에 따라 산정된 호봉의 봉급을 지급함 . · 접수 방법 : 직접 방문 또는 전자우편 접수(borammds@naver.com)",
    "deadline": "2026-09-07",
    "deadlineFrom": "raw",
-   "orgAffil": "세종교육청",
-   "firstSeen": "2026-09-01",
-   "isNew": false,
    "extVer": 102
   },
   {
@@ -1777,42 +1699,6 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-31",
    "isNew": false,
-   "extVer": 102
-  },
-  {
-   "id": "bc4142e9b2e1430e",
-   "org": "동원중학교",
-   "region": "서울",
-   "source": "work.sen.go.kr",
-   "title": "[동원중] 시간강사 채용 공고 (음악)",
-   "nonMusic": null,
-   "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=109325",
-   "date": "2026-08-28",
-   "kind": "강사",
-   "tier": "교육 — 학교",
-   "obri": false,
-   "certReq": "무관",
-   "degreeReq": "무관",
-   "careerReq": "미기재",
-   "ageGroup": "성인",
-   "inst": "목관",
-   "instDetails": [
-    "관악"
-   ],
-   "channel": "edu_seoul",
-   "layer": "C",
-   "email": "meent79@sen.go.kr",
-   "addr": "서울특별시 중랑구 양원역로 32(망우동)",
-   "orgAffil": "서울시교육청",
-   "firstSeen": "2026-08-28",
-   "isNew": false,
-   "contact": "02-493-8129",
-   "workPeriod": "2026.08.31 ~ 2026.09.11",
-   "ageLimit": "만 62세",
-   "personnel": "1명",
-   "duty": "음악",
-   "deadline": "2026-09-02",
-   "deadlineFrom": "raw",
    "extVer": 102
   },
   {
@@ -1917,42 +1803,6 @@
    "personnel": "1명",
    "bodyExcerpt": "응시자격 · 올바른 교육관을 가지고 해당 분야를 전문적으로 다루거나 관련 분야 전공자 및 자격증 소지자 · 국민건강보험공단 건강검진결과통보서(최근 2 년 이내) 또는 일반채용신체검사서(최근 1 년 이내)· 본 채용계획은 사정에 의하여 변경될 수 있으며, 변경된 사항은 재공고 후 시행할 예정입니다",
    "deadline": "2026-09-03",
-   "deadlineFrom": "raw",
-   "extVer": 102
-  },
-  {
-   "id": "5ce4299ab3e1d24a",
-   "org": "꿈의 오케스트라",
-   "region": "경기",
-   "source": "artmore.kr",
-   "title": "꿈의 오케스트라 '용인' 강사(첼로 1명) 모집",
-   "nonMusic": null,
-   "url": "https://www.artmore.kr/sub/recruit/search_view.do?rec_idx=94769",
-   "date": "2026-08-27",
-   "kind": "강사",
-   "tier": "교육 — 취미·입문",
-   "obri": false,
-   "certReq": "아니오",
-   "degreeReq": "무관",
-   "careerReq": "미기재",
-   "ageGroup": "성인",
-   "inst": "현악",
-   "instDetails": [
-    "첼로"
-   ],
-   "channel": "artmore",
-   "layer": "A",
-   "applyEmail": "elsistema_yicf@naver.com",
-   "addr": "경기 용인시 수지구 포은대로 499(죽전동)",
-   "firstSeen": "2026-08-28",
-   "isNew": false,
-   "qualification": "경력 3년 학력 대학교(4년)",
-   "contact": "031-260-3374",
-   "pay": "시급 43,000원",
-   "workHours": "주2일",
-   "personnel": "계약직 1명",
-   "bodyExcerpt": "문의하기 입사 지원 완료 닫기 예술경영지원센터에서 직원 모집합니다. · 채용 공고에 입사 지원 했습니다",
-   "deadline": "2026-09-02",
    "deadlineFrom": "raw",
    "extVer": 102
   },
@@ -2127,10 +1977,10 @@
    "deadlineFrom": "cjob-남은기간",
    "denomination": "대한예수교 장로회 (합동",
    "documents": "이력서",
-   "personnel": "반주자",
-   "pay": "30만원",
    "firstSeen": "2026-08-14",
    "isNew": false,
+   "personnel": "반주자",
+   "pay": "30만원",
    "extVer": 102
   },
   {
@@ -2194,13 +2044,13 @@
    "deadlineFrom": "cjob-남은기간",
    "denomination": "예장 합동",
    "documents": "이력서",
-   "personnel": "반주자",
-   "pay": "20만원",
    "addr": "전북 김제시 황산면 남산로 334",
    "regionBoard": "기타",
-   "deadlineNote": "상시",
    "firstSeen": "2026-08-08",
    "isNew": false,
+   "personnel": "반주자",
+   "pay": "20만원",
+   "deadlineNote": "상시",
    "extVer": 102
   },
   {
@@ -2230,11 +2080,11 @@
    "addr": "경기 의왕시 경수대로 262 (오전동, 의왕서해그랑블(블루스퀘어))",
    "denomination": "순복음",
    "documents": "간단한 이력서",
+   "firstSeen": "2026-08-08",
+   "isNew": false,
    "personnel": "반주자",
    "pay": "협의",
    "deadlineNote": "상시",
-   "firstSeen": "2026-08-08",
-   "isNew": false,
    "extVer": 102
   }
  ]
