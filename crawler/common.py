@@ -1780,6 +1780,22 @@ def parse_gne_detail(text):
 # 통째로 빠졌다 (양주시립교향악단 지휘자, 2026-08-23). 15만원만 보이면 오해를 부른다.
 # 연락처·이메일처럼 **모양으로** 찾는다 — 급여 낱말이 금액을 직접 데리고 다니는 꼴만 받고,
 # 여럿이면 모두 싣는다(기본급과 수당은 둘 다 알아야 할 조건이다).
+# '보수 : 아래의 표에 따름 구분 단가 적용기준 가호 전일제강사 160,000 …' — 값이 아니라
+# 표를 가리키는 안내다. 가리키는 표가 바로 뒤에 있으므로 거기서 단가를 집는다
+# (다정중, 2026-09-03). 단위 낱말 없이 금액만 있는 꼴이라 _PAY_SHAPE 가 못 잡던 자리다.
+_PAY_TABLE_REF = re.compile(
+    r"(?:보수|급여|강사료|수당)\s*[:：]?\s*(?:아래|하기|다음)\s*(?:의)?\s*표"
+    r"[^\d]{0,80}?([\d,]{5,})")
+
+
+def pay_from_table_ref(text):
+    """'보수: 아래 표에 따름' + 뒤따르는 단가표 → 첫 단가. 없으면 None."""
+    if not text:
+        return None
+    m = _PAY_TABLE_REF.search(squash_spaced_labels(re.sub(r"\s+", " ", text)))
+    return f"{m.group(1)}원" if m else None
+
+
 _PAY_SHAPE = re.compile(
     r"(?:기본급|기본\s*보수|월\s*급여|월\s*보수|월\s*정액|연봉|시급|시간당|일당|일급|회당|건당"
     r"|강사료|강사비|지도비|강의료|출연료|연주\s*수당|지도\s*수당|수당)"
@@ -1826,6 +1842,16 @@ def extract_fields(text):
                 v = _clean_field(key, val)
                 if not v:
                     continue
+                if key == "personnel" and v and not _shape_ok(key, v):
+                    # 라벨 절단이 인원을 잘라 먹는 꼴 — '채용 인원 - 악기활용수업 강사: 음악(1명)'
+                    # 에서 콜론 절단이 '악기활용수업'만 남겼다 (해마루, L4#14 2026-09-03).
+                    # 자른 조각이 아니라 원 후보에서 'X(N명)' 토큰을 되찾는다.
+                    m_p = re.search(r"[가-힣A-Za-z·/]{0,10}\s*\(?\s*\d{1,3}\s*명\s*\)?", val)
+                    if m_p:
+                        v2 = _clean_field(key, m_p.group(0))
+                        if v2 and _shape_ok(key, v2):
+                            out[key] = v2
+                            break
                 if _HEAD_RUN_LEAD.match(v) or (key in _SHAPE and not _shape_ok(key, v)):
                     # 칸 이름이 줄줄이 앞에 붙으면 값이 아니라 표 한 판이다 —
                     # '교과 구분 채용 기간 인원 비고 음악 기간제 교사 2026. 9. 14. ~ … 1명 …'
@@ -1873,7 +1899,9 @@ def extract_fields(text):
     # 이기는데, 그건 직무 설명이 아니라 자리 이름이라 값이 나빠진다
     # ('예배 전 찬양인도, 행정' → '전임전도사(남0명)').
     if "duty" not in out:
-        for val in _candidates(t, r"모집\s*분야|모집\s*부문|채용\s*분야", loose=False):
+        # '모집 분야 및 인원 : 핸드벨 강사 1명' — 콜론이 '인원' 뒤에 와서 라벨만으로는
+        # 후보가 안 생겼다 (오산원당초, 2026-09-03). '및 인원'까지 라벨로 삼킨다.
+        for val in _candidates(t, r"(?:모집|채용)\s*분야(?:\s*및\s*인원)?|모집\s*부문", loose=False):
             v = _clean_field("duty", val)
             if v:
                 out["duty"] = v
@@ -2083,6 +2111,14 @@ def _clean_field(key, raw):
     # 기간 칸과 같이 '시각부터 채택'하되, **앞부분에 인원이나 날짜가 있을 때만** 자른다 —
     # 무조건 자르면 '방과후 15:50~17:20'의 '방과후' 같은 정상 수식어까지 날아간다.
     if key == "workHours":
+        # 직함이 근무시간 행세를 한다 — '전일제 시간 강사'(신탄진중, L4#13 2026-09-03)가
+        # '전일제' 덕에 모양 검사를 통과했다. 다만 직함이 들어 있다고 다 버리면 안 된다:
+        # '시간제 음악 전담강사, 주당 24시간', '전일제 근무(정규교사에 준함), 08:40~16:40'
+        # 은 시간 정보를 제대로 담고 있다 (A/B에서 발각). **직함이면서 시간 신호가 하나도
+        # 없을 때만** 기각한다 — 시각·N시간·요일·주N회 중 아무것도 없으면 시간 값이 아니다.
+        if (re.search(r"강사|교사|교원|단원|채용|모집", val)
+                and not re.search(r"\d\s*:\s*\d|\d\s*시간|\d\s*교시|\d\s*차시|요일|주\s*\d", val)):
+            return None
         m_h = _TIME_START.search(val)
         head = val[:m_h.start()] if m_h else ""
         if m_h and head and (re.search(r"\d\s*명", head) or _DATE_START.search(head)):

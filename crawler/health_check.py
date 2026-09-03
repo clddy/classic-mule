@@ -628,9 +628,11 @@ _FILL_FIELDS = ("deadline", "pay", "workPeriod", "workHours", "personnel", "cont
 _PROSE_TAIL = re.compile(r"^(?:(?:과|와|이|가|은|는|을|를|에|의|도|만)\s|별[가-힣])")
 # 칸 이름만 적힌 자리 — 경남교육청은 접수기간이 비어 있어도 '접수기간 시작일 - 종료일'
 # 처럼 칸 이름을 그대로 그린다 (2026-08-22). 칸 이름은 값이 아니다.
-_PLACEHOLDER_VAL = re.compile(
-    r"^(?:시작일?|종료일?|구분|비고|기간|일자|날짜|미정|활동영역|프로그램명|활동방법|영역|명칭|인원)"
-    r"(?:\s*[-~/·]?\s*(?:시작일?|종료일?|구분|비고|기간|일자|날짜|미정|활동영역|프로그램명|활동방법|영역|명칭|인원))*$")
+_PH_W = (r"시작일?|종료일?|구\s?분|비\s?고|기간|일자|날짜|미정|활동영역|프로그램명|활동방법"
+         r"|영역|명칭|인\s?원|직\s?무|공고문\s?참조|공고문\s?참고|상세\s?참조|지원|문의")
+_PLACEHOLDER_VAL = re.compile(rf"^(?:{_PH_W})(?:\s*[-~/·:：]?\s*(?:{_PH_W}))*$")
+# 지원서 양식의 빈 기재란 — '연, 월) 년 월 ~ 년 월 년 월 ~ …' (꿈의오케 용인, 2026-09-03)
+_FORM_BLANK = re.compile(r"^[년월일연\s~∼\-.,()]+$")
 # 라벨이 겹쳐 적히는 자리 — '보수/임금', '과목 (담당업무)'. 겹친 라벨은 값이 아니다.
 _LABEL_ECHO = re.compile(r"^(?:임금|보수|급여|담당\s*업무|모집\s*분야|과목)\s*[)）]?\s*")
 # 보수 자리에 법령·조례 인용만 있으면 금액이 없는 것이다. QC 가 일부러 버리는 값이라
@@ -679,8 +681,10 @@ def _really_missing(t, pat, field):
         if field in ("duty", "workPeriod") and _FORM_CTX.search(t[max(0, m.start() - 140):m.end() + 140]):
             continue
         val = _value_after(t, m.end())
-        if len(val) < 2 or _PLACEHOLDER_VAL.match(val):
-            continue                      # 라벨만 있거나 칸 이름만 있는 자리
+        if len(val) < 2 or _PLACEHOLDER_VAL.match(val) or _FORM_BLANK.match(val):
+            continue                      # 라벨만 있거나 칸 이름·서식 빈칸뿐인 자리
+        if field == "pay" and re.fullmatch(r"(?:월\s?급|연\s?봉|시\s?급|일\s?급|일당|호봉)", val):
+            continue                      # 급여 형태만 적고 금액이 없는 칸 (선덕중 '월급', 2026-09-03)
         return True
     return False
 

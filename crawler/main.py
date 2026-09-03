@@ -11,7 +11,7 @@ from common import (new_session, get, relevant, extract_deadline, priority_deadl
                     classify_kind, classify_tier, is_obri, cert_required, degree_req, career_req, age_group,
                     region_from, EXCLUDE, compact_title, music_only_title, body_text, valid_addr,
                     insts_from_recruit_text, tls_blocked, curl_get, extract_fields, extract_contact, strip_navi,
-                    extract_email, DECLARED_TOTALS, addr_from_text)
+                    extract_email, DECLARED_TOTALS, addr_from_text, pay_from_table_ref)
 from sources import SOURCES
 from institutions import INSTITUTIONS
 import attach
@@ -306,7 +306,7 @@ def find_attachments(soup, base_url):
                     cands.append((full, el.get_text(" ", strip=True)))
     return cands[:4]
 
-EXT_VER = 102         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
+EXT_VER = 103         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
                      # v32(2026-08-02): 모집분야 구획 악기 추출(insts_from_recruit_text) + 원문 보관층
                      # 24: work.sen 등록일(게시일) 추출 추가 — date=None이던 승계분을 다시 뽑게
                      # 25: body_text 도입 — 본문을 <header>에 넣는 사이트(대전교육청)의 마감일을
@@ -1537,6 +1537,11 @@ def _refill_from_raw(items, today):
         _ps = pay_from_shape(_raw)
         if _ps and len(_ps) > len(str(it.get("pay") or "")):
             it["pay"] = _ps
+        # '보수: 아래 표에 따름' — 가리키는 표가 바로 뒤에 있다 (다정중, 2026-09-03)
+        if not it.get("pay"):
+            _pt = pay_from_table_ref(_raw)
+            if _pt:
+                it["pay"] = _pt
         fields = extract_fields(_raw)
         if fields:
             for k, v in fields.items():
@@ -1760,6 +1765,8 @@ _QC_FIELDS = ("pay", "workPeriod", "workHours", "workPlace", "duty", "ageLimit",
 # "빈칸이 있다면 과감히 빈칸으로" (2026-08-11 사용자 지시).
 _QC_MUST = {
     "workPeriod": re.compile(r"\d"),                              # 기간엔 숫자가 있어야 한다
+    # 인원엔 수가 있어야 한다 — '악기활용수업'이 인원 행세를 했다 (해마루, 2026-09-03)
+    "personnel": re.compile(r"\d|[Oo○]\s*명|약간|미정"),
     "perfPeriod": re.compile(r"\d"),
     "pay":        re.compile(r"[\d,]{2,}\s*(?:만\s*)?원|시급|일당|사례|협의|상담|추후|결정"),
     "contact":    re.compile(r"^0\d{1,2}-?\d{3,4}-?\d{4}$"),      # 전화번호 그 자체여야 한다
