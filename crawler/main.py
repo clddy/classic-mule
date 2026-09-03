@@ -306,7 +306,7 @@ def find_attachments(soup, base_url):
                     cands.append((full, el.get_text(" ", strip=True)))
     return cands[:4]
 
-EXT_VER = 103         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
+EXT_VER = 106         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
                      # v32(2026-08-02): 모집분야 구획 악기 추출(insts_from_recruit_text) + 원문 보관층
                      # 24: work.sen 등록일(게시일) 추출 추가 — date=None이던 승계분을 다시 뽑게
                      # 25: body_text 도입 — 본문을 <header>에 넣는 사이트(대전교육청)의 마감일을
@@ -1590,8 +1590,18 @@ def _refill_from_raw(items, today):
             # 첨부 공고문을 먼저 본다 — 게시판 상세는 그 사이트의 다른 공고 목록을 달고
             # 오는 곳이 많아 본문부터 훑으면 남의 날짜를 문다 (rawstore.attach_text 머리말).
             cands = _raw_deadlines(it)
-            dl = max(cands) if cands else extract_deadline(rawstore.all_text(it["id"]),
-                                                           ref_year=_ref_year(it))
+            # 후보 중 **근무기간 종료일과 같은 값은 접수 마감이 아니다** — 장위중은
+            # 접수 9/7·계약종료 2027-01-08 인데 max 가 계약종료를 골라 '마감 4개월 뒤'가
+            # 됐다 (2026-09-03). 지원자에게 마감은 '언제까지 내는가'다.
+            _wp_end = None
+            if it.get("workPeriod"):
+                _m_wp = re.findall(r"(20\d\d)[.\-/](\d{1,2})[.\-/](\d{1,2})", str(it["workPeriod"]))
+                if _m_wp:
+                    y, mo, dy = _m_wp[-1]
+                    _wp_end = f"{y}-{int(mo):02d}-{int(dy):02d}"
+            _c = [c for c in cands if c != _wp_end] or cands
+            dl = max(_c) if _c else extract_deadline(rawstore.all_text(it["id"]),
+                                                     ref_year=_ref_year(it))
             # 제목에만 마감이 적힌 공고('…모집(~8/14)')는 본문 규칙으로 안 잡힌다.
             # 수집 때는 deadline_from_title 이 봤지만 재추출 경로엔 그 단계가 없었다.
             if not dl:

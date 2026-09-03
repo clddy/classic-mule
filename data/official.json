@@ -1,5 +1,5 @@
 {
- "collectedAt": "2026-09-03 18:08",
+ "collectedAt": "2026-09-03 18:44",
  "heldNoOrigin": 0,
  "sourceCount": 91,
  "okCount": 91,
@@ -517,8 +517,7 @@
    "poll": "daily",
    "ok": true,
    "raw": 2,
-   "kept": 4,
-   "carried": 2,
+   "kept": 2,
    "drop": {
     "만료": 0,
     "오래됨": 0
@@ -1284,7 +1283,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-09-03",
    "isNew": true,
-   "extVer": 102
+   "extVer": 106
   },
   {
    "id": "d211550ab09435af",
@@ -1310,7 +1309,7 @@
    "layer": "C",
    "contact": "02-567-0215",
    "email": "jasminne@sen.go.kr",
-   "workPeriod": "2026.09.21 ~ 2026.12.19",
+   "workPeriod": "2026.09.21 ~ 2026.12.19(90일)",
    "workHours": "주 5일 40시간",
    "personnel": "1명",
    "addr": "서울특별시 강남구 역삼로 313(역삼동)",
@@ -1320,7 +1319,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-09-03",
    "isNew": true,
-   "extVer": 102
+   "extVer": 106
   },
   {
    "id": "5ef74988ce58d6ad",
@@ -1345,7 +1344,7 @@
    "contact": "070-4021-7078",
    "email": "rkddudwp@korea.kr",
    "workPeriod": "2026.09.21 ~ 2026.10.27",
-   "workHours": "시간제 근무 교과별 상이(표 참고)",
+   "workHours": "8시간",
    "ageLimit": "채용 상한 연령(교육공무원의 정년 62세와 동일) 미 해당자",
    "personnel": "o 음악강사 1명 o 체육강사 1명 o 수학강사 1명",
    "addr": "경기도 포천시 일동면 화동로 1079번길 28",
@@ -1355,7 +1354,7 @@
    "orgAffil": "경기교육청",
    "firstSeen": "2026-09-03",
    "isNew": true,
-   "extVer": 102
+   "extVer": 106
   },
   {
    "id": "1922c5738f74910e",
@@ -1382,6 +1381,7 @@
    "addr": "세종특별자치시 한누리대로 2154",
    "addrFrom": "postal",
    "email": "hysun33@naver.com",
+   "pay": "160,000원",
    "workPeriod": "2026.09.21./09.22./09.28.(3일)",
    "workHours": "총 15시간",
    "ageLimit": "*(만 65세) 미 해당자 *(계약종료일) 만 65세가 도래하는 날이 포함된 학기말까지 가능",
@@ -1392,7 +1392,7 @@
    "orgAffil": "세종교육청",
    "firstSeen": "2026-09-03",
    "isNew": true,
-   "extVer": 102
+   "extVer": 106
   },
   {
    "id": "77f2e4f1297065fd",
@@ -1429,7 +1429,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-09-02",
    "isNew": true,
-   "extVer": 102
+   "extVer": 106
   },
   {
    "id": "c46f9ee6ce872e75",
@@ -1461,7 +1461,7 @@
    "personnel": "3명",
    "deadline": "2026-09-08",
    "deadlineFrom": "raw",
-   "extVer": 102
+   "extVer": 106
   },
   {
    "id": "9ce6f5e79846793c",
@@ -1496,7 +1496,7 @@
    "bodyExcerpt": "신분 : 교육공무원 신분이 아니며, 「 기간제 및 단시간근로자 보호 등에 관한 법률 」 적용 · 보수 : 근무 시간을 계약사항으로 정하고 1 시간당 32,000 원을 지급함 3. · 면접 전형 : 지침에 의해 면접 전형 실시하지 않음 · 접수 방법 : 이메일(tlsfmdwnd@korea.kr) 또는 방문(용인신릉중학교 교무실, ☎ 031-286-1264)",
    "deadline": "2026-09-07",
    "deadlineFrom": "raw",
-   "extVer": 102
+   "extVer": 106
   },
   {
    "id": "346dc21d76a75dd2",
@@ -1526,7 +1526,7 @@
    "deadlineFrom": "raw",
    "firstSeen": "2026-09-03",
    "isNew": true,
-   "extVer": 102
+   "extVer": 106
   },
   {
    "id": "f193fa2c6948c885",
@@ -1555,7 +1555,7 @@
    "deadlineFrom": "raw",
    "firstSeen": "2026-09-03",
    "isNew": true,
-   "extVer": 102
+   "extVer": 106
   },
   {
    "id": "90f7bb8785c9a8a1",
@@ -1582,7 +1582,7 @@
    "contact": "02-903-3607",
    "email": "ljh0830@sen.go.kr",
    "workPeriod": "2026.09.28 ~ 2026.12.26",
-   "workHours": "전일제 근무",
+   "workHours": "08:15~16:15",
    "personnel": "1명",
    "addr": "서울특별시 도봉구 시루봉로 53(쌍문동)",
    "duty": "음악",
@@ -1591,7 +1591,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-09-01",
    "isNew": false,
-   "extVer": 102
+   "extVer": 106
   },
   {
    "id": "a3677f26f29f1fad",
@@ -1627,7 +1627,7 @@
    "personnel": "1명",
    "deadline": "2026-09-03",
    "deadlineFrom": "raw",
-   "extVer": 102
+   "extVer": 106
   },
   {
    "id": "1b7f47caba898dbb",
@@ -1664,7 +1664,7 @@
    "bodyExcerpt": "면접 결과 : 합격 대상자에 한하여 26.9.18.(금) 15:00 개별통보",
    "deadline": "2026-09-08",
    "deadlineFrom": "raw",
-   "extVer": 102
+   "extVer": 106
   },
   {
    "id": "d13e966d7cfd7ad9",
@@ -1698,7 +1698,7 @@
    "deadlineFrom": "raw",
    "firstSeen": "2026-09-01",
    "isNew": false,
-   "extVer": 102
+   "extVer": 106
   },
   {
    "id": "f0f7105154553adf",
@@ -1746,7 +1746,7 @@
    "orgBoard": "연세대학교",
    "firstSeen": "2026-09-01",
    "isNew": false,
-   "extVer": 102
+   "extVer": 106
   },
   {
    "id": "081bf8da3b1f4d51",
@@ -1785,7 +1785,7 @@
    "duty": "오케스트라 외부강사(바이올린, 첼로, 플루트)",
    "deadline": "2026-09-03",
    "deadlineFrom": "raw",
-   "extVer": 102
+   "extVer": 106
   },
   {
    "id": "d193537ec70c43e6",
@@ -1822,7 +1822,7 @@
    "orgAffil": "세종교육청",
    "firstSeen": "2026-09-01",
    "isNew": false,
-   "extVer": 102
+   "extVer": 106
   },
   {
    "id": "4929db7084d86e8d",
@@ -1852,7 +1852,7 @@
    ],
    "firstSeen": "2026-08-31",
    "isNew": false,
-   "extVer": 102
+   "extVer": 106
   },
   {
    "id": "6c2d34e32d5fd9c5",
@@ -1889,7 +1889,7 @@
    "duty": "음악",
    "deadline": "2026-09-03",
    "deadlineFrom": "raw",
-   "extVer": 102
+   "extVer": 106
   },
   {
    "id": "3f64bae5fba05ec6",
@@ -1926,7 +1926,7 @@
    "duty": "3,5학년 영어 및 6학년 음악",
    "deadline": "2026-09-06",
    "deadlineFrom": "raw",
-   "extVer": 102
+   "extVer": 106
   },
   {
    "id": "ecb2a81ace54c759",
@@ -1959,7 +1959,7 @@
    "personnel": "2명",
    "deadline": "2026-09-04",
    "deadlineFrom": "raw",
-   "extVer": 102
+   "extVer": 106
   },
   {
    "id": "77bb3eb5a8713177",
@@ -1994,7 +1994,7 @@
    "bodyExcerpt": "응시자격 · 올바른 교육관을 가지고 해당 분야를 전문적으로 다루거나 관련 분야 전공자 및 자격증 소지자 · 국민건강보험공단 건강검진결과통보서(최근 2 년 이내) 또는 일반채용신체검사서(최근 1 년 이내)· 본 채용계획은 사정에 의하여 변경될 수 있으며, 변경된 사항은 재공고 후 시행할 예정입니다",
    "deadline": "2026-09-03",
    "deadlineFrom": "raw",
-   "extVer": 102
+   "extVer": 106
   },
   {
    "id": "58e198170e46f2df",
@@ -2033,7 +2033,7 @@
    "bodyExcerpt": "해당 분야에 전문적인 능력을 가진 자 또는 자격증 소지자",
    "deadline": "2026-09-05",
    "deadlineFrom": "raw",
-   "extVer": 102
+   "extVer": 106
   },
   {
    "id": "b83667209a8cd77d",
@@ -2064,7 +2064,7 @@
    "deadlineNote": "상시",
    "firstSeen": "2026-08-19",
    "isNew": false,
-   "extVer": 102
+   "extVer": 106
   },
   {
    "id": "6cb1a301d8f777cc",
@@ -2101,7 +2101,7 @@
    "orgBoard": "울산문화예술회관(시립예술단)",
    "firstSeen": "2026-08-18",
    "isNew": false,
-   "extVer": 102
+   "extVer": 106
   },
   {
    "id": "11376188af16b7d1",
@@ -2138,7 +2138,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-19",
    "isNew": false,
-   "extVer": 102
+   "extVer": 106
   },
   {
    "id": "bd2c17f19933f651",
@@ -2170,7 +2170,7 @@
    "pay": "30만원",
    "firstSeen": "2026-08-14",
    "isNew": false,
-   "extVer": 102
+   "extVer": 106
   },
   {
    "id": "0251912d3b918734",
@@ -2205,7 +2205,7 @@
    "pay": "월 40만원",
    "workHours": "매주 일요일 11시~12시(1시간)",
    "bodyExcerpt": "모집분야 : 주일예배 및 성가대 피아노 반주자 · 성가대 연습 : 주일 10시~10시 50분, 12시 10분~12시 50분(시간은 유동적임)· 지원자격 : 피아노 또는 음악 관련 전공자 및 교회 반주 경험자 우대 · 주요업무 : 주일예배 찬송가 및 예배 반주, 성가대 찬양 반주, 성가대 연습 반주",
-   "extVer": 102
+   "extVer": 106
   },
   {
    "id": "b2e199e32140e0ed",
@@ -2240,7 +2240,7 @@
    "deadlineNote": "상시",
    "firstSeen": "2026-08-08",
    "isNew": false,
-   "extVer": 102
+   "extVer": 106
   },
   {
    "id": "5fbc7e4eb4f8d92d",
@@ -2265,8 +2265,8 @@
    ],
    "channel": "cjob",
    "layer": "C",
-   "deadlineFrom": "cjob-남은기간",
    "addr": "경기 의왕시 경수대로 262 (오전동, 의왕서해그랑블(블루스퀘어))",
+   "deadlineFrom": "cjob-남은기간",
    "denomination": "순복음",
    "documents": "간단한 이력서",
    "personnel": "반주자",
@@ -2274,7 +2274,7 @@
    "deadlineNote": "상시",
    "firstSeen": "2026-08-08",
    "isNew": false,
-   "extVer": 102
+   "extVer": 106
   }
  ]
 }
