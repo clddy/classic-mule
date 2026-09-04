@@ -1,8 +1,8 @@
 {
- "date": "2026-09-04",
+ "date": "2026-09-05",
  "total": 75,
- "covered": 2,
- "gapCount": 73,
+ "covered": 1,
+ "gapCount": 74,
  "gaps": [
   {
    "name": "서울시립교향악단",
@@ -68,6 +68,11 @@
    "name": "창원시립교향악단",
    "type": "교향악단",
    "region": "경남"
+  },
+  {
+   "name": "울산시립교향악단",
+   "type": "교향악단",
+   "region": "울산"
   },
   {
    "name": "국립오페라단",
@@ -372,8 +377,8 @@
  ],
  "master": {
   "total": 604,
-  "covered": 1,
-  "gapCount": 603,
+  "covered": 0,
+  "gapCount": 604,
   "byCategory": {
    "대학": {
     "total": 77,
@@ -385,7 +390,7 @@
    },
    "예술단": {
     "total": 54,
-    "covered": 1
+    "covered": 0
    },
    "지자체": {
     "total": 323,
@@ -887,6 +892,11 @@
     "name": "대전시립교향악단",
     "cat": "예술단",
     "region": "대전"
+   },
+   {
+    "name": "울산시립교향악단",
+    "cat": "예술단",
+    "region": "울산"
    },
    {
     "name": "경기필하모닉오케스트라",
