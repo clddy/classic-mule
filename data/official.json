@@ -1,8 +1,8 @@
 {
- "collectedAt": "2026-09-05 01:13",
+ "collectedAt": "2026-09-05 18:07",
  "heldNoOrigin": 0,
  "sourceCount": 91,
- "okCount": 86,
+ "okCount": 91,
  "instTotal": 75,
  "sources": [
   {
@@ -167,9 +167,11 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
+   "raw": 10,
    "kept": 0,
    "drop": {
+    "무관": 6,
+    "비음악": 4,
     "만료": 0,
     "오래됨": 0
    }
@@ -195,9 +197,11 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
+   "raw": 31,
    "kept": 0,
    "drop": {
+    "비음악": 9,
+    "무관": 22,
     "만료": 0,
     "오래됨": 0
    }
@@ -377,11 +381,10 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 6,
+   "raw": 5,
    "kept": 7,
    "carried": 2,
    "drop": {
-    "무관": 1,
     "만료": 0,
     "오래됨": 0
    }
@@ -447,7 +450,8 @@
    "poll": "daily",
    "ok": true,
    "raw": 1,
-   "kept": 1,
+   "kept": 2,
+   "carried": 1,
    "drop": {
     "만료": 0,
     "오래됨": 0
@@ -459,10 +463,10 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
+   "raw": 4,
    "kept": 0,
    "drop": {
-    "만료": 0,
+    "만료": 4,
     "오래됨": 0
    }
   },
@@ -485,7 +489,7 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
+   "raw": 2,
    "kept": 2,
    "drop": {
     "만료": 0,
@@ -512,7 +516,7 @@
    "poll": "daily",
    "ok": true,
    "raw": 0,
-   "kept": 2,
+   "kept": 1,
    "drop": {
     "만료": 0,
     "오래됨": 0
@@ -589,9 +593,13 @@
    "name": "고양문화재단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 0,
    "kept": 0,
-   "error": "TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.artgy.or.kr/CU/CU0101M.aspx\", waiting unti"
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_gfac",
@@ -788,9 +796,14 @@
    "name": "안산시립합창단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 8,
    "kept": 0,
-   "error": "ConnectTimeout: HTTPSConnectionPool(host='ansanarts.com', port=443): Max retries exceeded with url: /bbs/board.php?bo_table=notice (Caus"
+   "drop": {
+    "무관": 4,
+    "오래됨": 4,
+    "만료": 0
+   }
   },
   {
    "id": "g_i_gurigokr",
@@ -810,9 +823,14 @@
    "name": "순천시립합창단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 1,
    "kept": 0,
-   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.suncheon.go.kr', port=443): Max retries exceeded with url: /scart/community/0001;jsessioni"
+   "drop": {
+    "무관": 1,
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_i_andonggokr",
@@ -900,9 +918,13 @@
    "name": "동해문화관광재단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 0,
    "kept": 0,
-   "error": "HTTPError: 403 Forbidden"
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_i_cfscorkr",
@@ -1081,9 +1103,14 @@
    "name": "안산시립합창단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 6,
    "kept": 0,
-   "error": "ConnectTimeout: HTTPSConnectionPool(host='ansanarts.com', port=443): Max retries exceeded with url: /bbs/board.php?bo_table=notice (Caus"
+   "drop": {
+    "오래됨": 3,
+    "무관": 3,
+    "만료": 0
+   }
   },
   {
    "id": "g_pajucf",
@@ -1210,9 +1237,11 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
-   "kept": 0,
+   "raw": 7,
+   "kept": 6,
+   "declared": 7,
    "drop": {
+    "비음악": 1,
     "만료": 0,
     "오래됨": 0
    }
@@ -1254,6 +1283,44 @@
    "extVer": 106
   },
   {
+   "id": "c1e08a3bb6afa931",
+   "org": "인천신월초등학교",
+   "region": "인천",
+   "source": "ice.go.kr",
+   "title": "[인천신월초] 계약제 교원(기간제 교사, 5, 6학년, 음악전담) 채용 공고(1차)",
+   "nonMusic": null,
+   "url": "https://www.ice.go.kr/ice/na/ntt/selectNttInfo.do?nttSn=3383805&mi=10997&bbsId=1981",
+   "date": "2026-09-04",
+   "kind": "교원",
+   "tier": "교육 — 학교",
+   "obri": false,
+   "certReq": "예",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "ageGroup": "성인",
+   "inst": "전체",
+   "instDetails": [],
+   "channel": "edu_ice",
+   "layer": "C",
+   "orgBoard": "인천교육청(학교 채용)",
+   "qualification": "초등교사 자격증 소지자",
+   "contact": "032-629-6082",
+   "email": "dfdjsj@ice.go.kr",
+   "duty": "업무 있음",
+   "personnel": "1명",
+   "bodyExcerpt": "초등교사 자격증 소지자 · 채용기간 순 구분 담당 채용 사유 인원 기간 학년 및 수업시수 비고 1 교사 전담 출산 휴가로 인한 대체 1명 2026.9.23.~ 2026.12.21. · 수업시연은 초등 1 급자격증 소지자는 실시하지 않음 . · 제출방법 : 메일 접수(dfdjsj@ice.go.kr) 가능 단, 메일 접수 후 교무실로(032-629-6082) 통보 하여야함",
+   "deadline": "2026-09-07",
+   "deadlineFrom": "raw",
+   "addr": "인천광역시 남동구 인주대로",
+   "lat": 37.4486876,
+   "lng": 126.7244303,
+   "addrFrom": "geo",
+   "hiringOrg": "인천광역시교육청대상명 : 인천광역시교육청(https://www.ice.go.kr)",
+   "firstSeen": "2026-09-05",
+   "isNew": true,
+   "extVer": 106
+  },
+  {
    "id": "b1e85141786a7656",
    "org": "인천신월초등학교",
    "region": "인천",
@@ -1273,22 +1340,22 @@
    "instDetails": [],
    "channel": "edu_ice",
    "layer": "C",
-   "qualification": "초등교사 자격증 소지자",
-   "contact": "032-629-6082",
    "email": "dfdjsj@ice.go.kr",
    "orgBoard": "인천교육청(학교 채용)",
-   "duty": "업무 있음",
-   "personnel": "1명",
-   "hiringOrg": "인천광역시교육청대상명 : 인천광역시교육청(https://www.ice.go.kr)",
-   "bodyExcerpt": "초등교사 자격증 소지자 · 채용기간 순 구분 담당 채용 사유 인원 기간 학년 및 수업시수 비고 1 교사 전담 출산 휴가로 인한 대체 1명 2026.9.23.~ 2026.12.21. · 수업시연은 초등 1 급자격증 소지자는 실시하지 않음 . · 제출방법 : 메일 접수(dfdjsj@ice.go.kr) 가능 단, 메일 접수 후 교무실로(032-629-6082) 통보 하여야함",
-   "deadline": "2026-09-07",
-   "deadlineFrom": "raw",
    "addr": "인천광역시 남동구 인주대로",
    "lat": 37.4486876,
    "lng": 126.7244303,
    "addrFrom": "geo",
    "firstSeen": "2026-09-04",
    "isNew": true,
+   "qualification": "초등교사 자격증 소지자",
+   "contact": "032-629-6082",
+   "duty": "업무 있음",
+   "personnel": "1명",
+   "hiringOrg": "인천광역시교육청대상명 : 인천광역시교육청(https://www.ice.go.kr)",
+   "bodyExcerpt": "초등교사 자격증 소지자 · 채용기간 순 구분 담당 채용 사유 인원 기간 학년 및 수업시수 비고 1 교사 전담 출산 휴가로 인한 대체 1명 2026.9.23.~ 2026.12.21. · 수업시연은 초등 1 급자격증 소지자는 실시하지 않음 . · 제출방법 : 메일 접수(dfdjsj@ice.go.kr) 가능 단, 메일 접수 후 교무실로(032-629-6082) 통보 하여야함",
+   "deadline": "2026-09-07",
+   "deadlineFrom": "raw",
    "extVer": 106
   },
   {
@@ -1418,14 +1485,11 @@
    "instDetails": [],
    "channel": "edu_sje",
    "layer": "C",
+   "qualification": "내국인으로서 채용 분야 교원자격증 소지자",
+   "contact": "044-902-1901",
    "addr": "세종특별자치시 한누리대로 2154",
    "addrFrom": "postal",
    "email": "hysun33@naver.com",
-   "orgAffil": "세종교육청",
-   "firstSeen": "2026-09-04",
-   "isNew": false,
-   "qualification": "내국인으로서 채용 분야 교원자격증 소지자",
-   "contact": "044-902-1901",
    "pay": "160,000원",
    "workPeriod": "2026.09.21./09.22./09.28.(3일)",
    "workHours": "총 15시간",
@@ -1434,6 +1498,9 @@
    "bodyExcerpt": "3 응모 자격 및 자격 제한 · 심사 위원별 채점 결과 집계표에 의거 최고 득점자를 채용 예정자로 선정 . · 등록일시 : 2026/02/04 10:25 자료관리자 :(교육공무직원) 노사정책과 · 등록일시 : 2026/02/13 10:41 자료관리자 :(지방공무원 대체인력) 운영지원과",
    "deadline": "2026-09-09",
    "deadlineFrom": "raw",
+   "orgAffil": "세종교육청",
+   "firstSeen": "2026-09-04",
+   "isNew": false,
    "extVer": 106
   },
   {
@@ -1710,14 +1777,11 @@
    "instDetails": [],
    "channel": "edu_sje",
    "layer": "C",
+   "qualification": "내국인으로 채용 분야 중등 교원자격증 소지자",
+   "contact": "044-320-4326",
    "addr": "세종특별자치시 한누리대로 2154",
    "addrFrom": "postal",
    "email": "borammds@naver.com",
-   "orgAffil": "세종교육청",
-   "firstSeen": "2026-09-01",
-   "isNew": false,
-   "qualification": "내국인으로 채용 분야 중등 교원자격증 소지자",
-   "contact": "044-320-4326",
    "workPeriod": "2026.10.12 ~ 2027.01.09",
    "workHours": "계약 기간 내 전일제 근무(교과업무, 업무분장 등)",
    "ageLimit": "*(만 65세) 미 해당자 * 계약 종료일 만 65세가 도래하는 날이 포함된 학기말까지 가능",
@@ -1725,6 +1789,9 @@
    "bodyExcerpt": "채용 절차 : 공고를 통한 채용 · 채용 응시 자격 : 내국인으로 채용 분야 중등 교원자격증 소지자 2. · 보수 : 공무원 보수규정 제 8 조에 따라 산정된 호봉의 봉급을 지급함 . · 접수 방법 : 직접 방문 또는 전자우편 접수(borammds@naver.com)",
    "deadline": "2026-09-07",
    "deadlineFrom": "raw",
+   "orgAffil": "세종교육청",
+   "firstSeen": "2026-09-01",
+   "isNew": false,
    "extVer": 106
   },
   {

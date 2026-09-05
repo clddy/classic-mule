@@ -1,6 +1,6 @@
 {
  "updatedAt": "2026-09-05",
- "count": 1324,
+ "count": 1325,
  "items": {
   "f7b1c263744b9ece": {
    "id": "f7b1c263744b9ece",
@@ -34529,6 +34529,42 @@
    "firstSeen": "2026-09-04",
    "lastSeen": "2026-09-05",
    "days": 2
+  },
+  "c1e08a3bb6afa931": {
+   "id": "c1e08a3bb6afa931",
+   "org": "인천신월초등학교",
+   "region": "인천",
+   "source": "ice.go.kr",
+   "channel": "edu_ice",
+   "layer": "C",
+   "title": "[인천신월초] 계약제 교원(기간제 교사, 5, 6학년, 음악전담) 채용 공고(1차)",
+   "url": "https://www.ice.go.kr/ice/na/ntt/selectNttInfo.do?nttSn=3383805&mi=10997&bbsId=1981",
+   "date": "2026-09-04",
+   "deadline": "2026-09-07",
+   "deadlineFrom": "raw",
+   "kind": "교원",
+   "tier": "교육 — 학교",
+   "inst": "전체",
+   "instDetails": [],
+   "ageGroup": "성인",
+   "obri": false,
+   "certReq": "예",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "personnel": "1명",
+   "bodyExcerpt": "초등교사 자격증 소지자 · 채용기간 순 구분 담당 채용 사유 인원 기간 학년 및 수업시수 비고 1 교사 전담 출산 휴가로 인한 대체 1명 2026.9.23.~ 2026.12.21. · 수업시연은 초등 1 급자격증 소지자는 실시하지 않음 . · 제출방법 : 메일 접수(dfdjsj@ice.go.kr) 가능 단, 메일 접수 후 교무실로(032-629-6082) 통보 하여야함",
+   "qualification": "초등교사 자격증 소지자",
+   "duty": "업무 있음",
+   "hiringOrg": "인천광역시교육청대상명 : 인천광역시교육청(https://www.ice.go.kr)",
+   "contact": "032-629-6082",
+   "email": "dfdjsj@ice.go.kr",
+   "addr": "인천광역시 남동구 인주대로",
+   "lat": 37.4486876,
+   "lng": 126.7244303,
+   "addrFrom": "geo",
+   "firstSeen": "2026-09-05",
+   "lastSeen": "2026-09-05",
+   "days": 1
   }
  }
 }
