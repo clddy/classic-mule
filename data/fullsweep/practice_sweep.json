@@ -1,5 +1,5 @@
 {
- "date": "2026-09-06",
+ "date": "2026-09-07",
  "src": "eshare.go.kr",
  "count": 321,
  "dropped": 323,
@@ -1995,6 +1995,17 @@
    "lo": 127.007018448235,
    "kw": "밴드"
   },
+  "DK24D623341": {
+   "name": "아람마당(밴드마당)",
+   "addr": "경기 고양시 일산동구 중앙로 1286",
+   "sido": "경기",
+   "free": false,
+   "cls": "다목적실",
+   "bookTo": "https://www.gymadang.or.kr",
+   "la": 37.66147994995117,
+   "lo": 126.77439880371094,
+   "kw": "밴드"
+  },
   "HE18O853653": {
    "name": "밴드 쏘 (SHARPMAX MBS1400)",
    "addr": "경기 수원시 권선구 서둔로 166",
@@ -2103,17 +2114,6 @@
    "bookTo": "https://share.gg.go.kr/lecture/view?id=50387&eshare=1",
    "la": 37.345801562119,
    "lo": 126.97689571963,
-   "kw": "밴드"
-  },
-  "DK24D623341": {
-   "name": "아람마당(밴드마당)",
-   "addr": "경기 고양시 일산동구 중앙로 1286",
-   "sido": "경기",
-   "free": false,
-   "cls": "다목적실",
-   "bookTo": "https://www.gymadang.or.kr",
-   "la": 37.66147994995117,
-   "lo": 126.77439880371094,
    "kw": "밴드"
   },
   "GK28N3516219": {
@@ -2279,6 +2279,17 @@
    "bookTo": "https://share.gg.go.kr/lecture/view?id=45558&eshare=1",
    "la": 37.33044554102,
    "lo": 126.81678699111,
+   "kw": "피아노"
+  },
+  "HD16E851111": {
+   "name": "(사회교육)[5월]성인피아노A_봄학기",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=52003&eshare=1",
+   "la": 37.326275367734,
+   "lo": 126.8535055695,
    "kw": "피아노"
   },
   "HC20E849503": {
@@ -2596,17 +2607,6 @@
    "free": false,
    "cls": "건강/체육프로그램",
    "bookTo": "https://share.gg.go.kr/lecture/view?id=52399&eshare=1",
-   "la": 37.326275367734,
-   "lo": 126.8535055695,
-   "kw": "피아노"
-  },
-  "HD16E851111": {
-   "name": "(사회교육)[5월]성인피아노A_봄학기",
-   "addr": "경기 안산시 상록구 삼일로 696",
-   "sido": "경기",
-   "free": false,
-   "cls": "건강/체육프로그램",
-   "bookTo": "https://share.gg.go.kr/lecture/view?id=52003&eshare=1",
    "la": 37.326275367734,
    "lo": 126.8535055695,
    "kw": "피아노"
