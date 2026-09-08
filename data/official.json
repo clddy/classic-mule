@@ -1,8 +1,8 @@
 {
- "collectedAt": "2026-09-08 20:02",
+ "collectedAt": "2026-09-09 01:31",
  "heldNoOrigin": 1,
  "sourceCount": 91,
- "okCount": 91,
+ "okCount": 84,
  "instTotal": 75,
  "sources": [
   {
@@ -122,14 +122,9 @@
    "name": "대구문화예술회관(시향)",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 1,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "비음악": 1,
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='daeguartscenter.or.kr', port=443): Max retries exceeded with url: /index.do?menu_id=00001528 ("
   },
   {
    "id": "bscc",
@@ -167,11 +162,9 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 10,
+   "raw": 0,
    "kept": 0,
    "drop": {
-    "무관": 6,
-    "비음악": 4,
     "만료": 0,
     "오래됨": 0
    }
@@ -197,11 +190,9 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 34,
+   "raw": 0,
    "kept": 0,
    "drop": {
-    "무관": 24,
-    "비음악": 10,
     "만료": 0,
     "오래됨": 0
    }
@@ -397,8 +388,8 @@
    "poll": "daily",
    "ok": true,
    "raw": 1,
-   "kept": 3,
-   "carried": 2,
+   "kept": 2,
+   "carried": 1,
    "drop": {
     "만료": 0,
     "오래됨": 0
@@ -462,10 +453,10 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 4,
+   "raw": 0,
    "kept": 0,
    "drop": {
-    "만료": 4,
+    "만료": 0,
     "오래됨": 0
    }
   },
@@ -488,11 +479,10 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 1,
+   "raw": 0,
    "kept": 1,
-   "carried": 1,
    "drop": {
-    "만료": 1,
+    "만료": 0,
     "오래됨": 0
    }
   },
@@ -606,13 +596,9 @@
    "name": "강남문화재단(강남심포니)",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 0,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.gfac.or.kr', port=443): Max retries exceeded with url: /site/main/recruit/accordionList (C"
   },
   {
    "id": "g_sjcf",
@@ -796,14 +782,9 @@
    "name": "안산시립합창단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 8,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "무관": 4,
-    "오래됨": 4,
-    "만료": 0
-   }
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='ansanarts.com', port=443): Max retries exceeded with url: /bbs/board.php?bo_table=notice (Caus"
   },
   {
    "id": "g_i_gurigokr",
@@ -823,14 +804,9 @@
    "name": "순천시립합창단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 1,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "무관": 1,
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.suncheon.go.kr', port=443): Max retries exceeded with url: /scart/community/0001;jsessioni"
   },
   {
    "id": "g_i_andonggokr",
@@ -918,13 +894,9 @@
    "name": "동해문화관광재단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 0,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "HTTPError: 403 Forbidden"
   },
   {
    "id": "g_i_cfscorkr",
@@ -1089,28 +1061,18 @@
    "name": "대구문화예술회관 공지(시립합창단)",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 6,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "무관": 5,
-    "만료": 0,
-    "오래됨": 1
-   }
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.daeguartscenter.or.kr', port=443): Max retries exceeded with url: /index.do?menu_id=000015"
   },
   {
    "id": "g_ansanarts",
    "name": "안산시립합창단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 6,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "오래됨": 3,
-    "무관": 3,
-    "만료": 0
-   }
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='ansanarts.com', port=443): Max retries exceeded with url: /bbs/board.php?bo_table=notice (Caus"
   },
   {
    "id": "g_pajucf",
@@ -1237,9 +1199,8 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 5,
-   "kept": 5,
-   "declared": 5,
+   "raw": 0,
+   "kept": 0,
    "drop": {
     "만료": 0,
     "오래됨": 0
@@ -1461,7 +1422,7 @@
    "deadlineFrom": "raw",
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-09-07",
-   "isNew": true,
+   "isNew": false,
    "extVer": 110
   },
   {
@@ -1499,11 +1460,11 @@
    "deadlineFrom": "raw",
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-09-07",
-   "isNew": true,
+   "isNew": false,
    "extVer": 110
   },
   {
-   "id": "9af83a5b42071229",
+   "id": "043774941b13ed91",
    "org": "동화고등학교",
    "region": "경기",
    "source": "goe.go.kr",
@@ -1532,8 +1493,8 @@
    "deadline": "2026-09-09",
    "deadlineFrom": "raw",
    "orgAffil": "경기교육청",
-   "firstSeen": "2026-09-07",
-   "isNew": true,
+   "firstSeen": "2026-09-09",
+   "isNew": false,
    "extVer": 110
   },
   {
@@ -1566,7 +1527,7 @@
    "bodyExcerpt": "자격 조건 - 세례 후 3년 이상인 천주교 신자 - 전공자, 지휘 경험자 우대 3. · 마감 - 채용 시까지 6",
    "deadlineNote": "상시",
    "firstSeen": "2026-09-07",
-   "isNew": true,
+   "isNew": false,
    "extVer": 110
   },
   {
@@ -1604,75 +1565,6 @@
    "personnel": "1명",
    "bodyExcerpt": "3 응모 자격 및 자격 제한 · 심사 위원별 채점 결과 집계표에 의거 최고 득점자를 채용 예정자로 선정 . · 등록일시 : 2026/02/04 10:25 자료관리자 :(교육공무직원) 노사정책과 · 등록일시 : 2026/02/13 10:41 자료관리자 :(지방공무원 대체인력) 운영지원과",
    "deadline": "2026-09-09",
-   "deadlineFrom": "raw",
-   "extVer": 110
-  },
-  {
-   "id": "c46f9ee6ce872e75",
-   "org": "내손초등학교",
-   "region": "경기",
-   "source": "goe.go.kr",
-   "title": "[내손초] 1인1악기 강사 채용",
-   "nonMusic": null,
-   "url": "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=58723",
-   "date": "2026-09-02",
-   "kind": "강사",
-   "tier": "교육 — 취미·입문",
-   "obri": false,
-   "certReq": "아니오",
-   "degreeReq": "무관",
-   "careerReq": "미기재",
-   "ageGroup": "성인",
-   "inst": "목관",
-   "instDetails": [
-    "관악"
-   ],
-   "channel": "edu_goe",
-   "layer": "C",
-   "addr": "경기 의왕시 내손순환로 175(내손동)",
-   "orgAffil": "경기교육청",
-   "firstSeen": "2026-09-02",
-   "isNew": false,
-   "contact": "070-4021-7078",
-   "personnel": "3명",
-   "deadline": "2026-09-08",
-   "deadlineFrom": "raw",
-   "extVer": 110
-  },
-  {
-   "id": "1b7f47caba898dbb",
-   "org": "오산원당초등학교",
-   "region": "경기",
-   "source": "goe.go.kr",
-   "title": "[오산원당초] 특수학급 음악강사(핸드벨) 구인",
-   "nonMusic": null,
-   "url": "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=58550",
-   "date": "2026-09-01",
-   "kind": "강사",
-   "tier": "교육 — 취미·입문",
-   "obri": false,
-   "certReq": "무관",
-   "degreeReq": "무관",
-   "careerReq": "미기재",
-   "ageGroup": "성인",
-   "inst": "전체",
-   "instDetails": [],
-   "channel": "edu_goe",
-   "layer": "C",
-   "email": "sol210@korea.kr",
-   "orgAffil": "경기교육청",
-   "addr": "경기도 오산시 부원로87번길 37-7",
-   "lat": 37.1418752,
-   "lng": 127.0908582,
-   "addrFrom": "geo",
-   "firstSeen": "2026-09-01",
-   "isNew": false,
-   "contact": "070-4021-7078",
-   "workPeriod": "2026.10.07 ~ 2026.12.09",
-   "personnel": "1명",
-   "duty": "핸드벨 강사 1명",
-   "bodyExcerpt": "면접 결과 : 합격 대상자에 한하여 26.9.18.(금) 15:00 개별통보",
-   "deadline": "2026-09-08",
    "deadlineFrom": "raw",
    "extVer": 110
   },
