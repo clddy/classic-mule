@@ -140,6 +140,8 @@ const REGION_LIST = ["서울", "경기", "인천", "강원", "대전", "세종",
 // 통합 전에 수집된 글은 region이 아직 '광주'·'전남'이다 — 다음 크롤 전까지 화면에서 옮겨 읽는다.
 const REGION_MIGRATE = { "광주": "광주·전남", "전남": "광주·전남" };
 function regionOf(j){ const r = j.region || "기타"; return REGION_MIGRATE[r] || r; }
+// 어느 공고에나 붙는 상투구 — 이것만 있는 자격 값은 정보가 0이라 행을 만들지 않는다
+const QUAL_BOILER = /^(?:[^가-힣]*(?:결격|병역|성범죄|아동학대|신원조회|국가공무원법|채용 ?제한)[^·]*[·,]?\s*)+$/;
 const STATUSES = ["접수중", "마감임박", "기한 미정", "마감"];   // 상시모집은 접수중에 합류 (2026-08-26)
 
 // 기본 정렬은 마감 임박순 — '언제까지 지원 가능한가'가 이 보드의 1차 정보다 (2026-07-23)
@@ -519,9 +521,13 @@ function metaRows(j) {
   // 악기를 여기 또 붙이지 않는다 — 카드 위쪽에 태그로 이미 보인다 (2026-08-21)
   else if (j.personnel) rows.push(["모집", cleanVal(j.personnel)]);
   else if (insts) rows.push(["모집", insts + (senior ? " " + senior : "")]);
-  // 자격 행은 보여주지 않는다 (2026-08-23 사용자 지시) — 값 대부분이 어느 공고에나 붙는
-  // 상투구라 정보가 0이다('만 20세 이상인자 · 병역을 필한 자 또는 면제자'). 데이터는 계속
-  // 모은다: 자격증·학위·경력 필터(certReq/degreeReq/careerReq)와 수요 분석이 그걸 쓴다.
+  // 자격 행 부활 (2026-09-08 사용자 지시 — 08-23 의 "보여주지 않는다"를 뒤집는다).
+  // 그때 뺀 이유는 값 대부분이 상투구라서였는데, 이후 추출·QC 가 정리돼 지금은
+  // 실질 정보만 남는다("세례 후 3년 이상인 천주교 신자", "피아노 또는 음악 관련
+  // 전공자 및 교회 반주 경험자"). 그래도 상투구만 든 값은 여기서 한 번 거른다 —
+  // 어느 공고에나 붙는 말(결격사유·병역·성범죄 조회)만 있으면 정보가 0이다.
+  const qual = cleanVal(j.qualification);
+  if (qual && qual.length >= 6 && !QUAL_BOILER.test(qual)) rows.push(["자격", qual]);
   const reh = cleanVal(j.rehearsal || j.when);
   if (!j.rehearsalCount && reh && /\d/.test(reh)) rows.push(["리허설", reh]);
   const con = cleanVal(j.concertDate);

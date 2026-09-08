@@ -306,7 +306,7 @@ def find_attachments(soup, base_url):
                     cands.append((full, el.get_text(" ", strip=True)))
     return cands[:4]
 
-EXT_VER = 106         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
+EXT_VER = 110         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
                      # v32(2026-08-02): 모집분야 구획 악기 추출(insts_from_recruit_text) + 원문 보관층
                      # 24: work.sen 등록일(게시일) 추출 추가 — date=None이던 승계분을 다시 뽑게
                      # 25: body_text 도입 — 본문을 <header>에 넣는 사이트(대전교육청)의 마감일을
@@ -401,7 +401,11 @@ _QUAL_OK = re.compile(r"졸업|학위|학력|경력|이상|전공|재학|대학|
                       r"|자격증|소지|결격|임용|면허|수료")
 
 def _find_qualification(text):
-    q = _seg_after(text, r"지원 ?자격|응시 ?자격|자격 ?요건|참가 ?자격|모집 ?대상|지원 ?대상") \
+    # '취업지원대상'은 개인정보 수집 항목 목록의 낱말이지 이 공고의 지원 대상이 아니다 —
+    # 동의표가 본문 앞쪽에 있어 진짜 '자격 요건'보다 먼저 걸렸고, 그 조각이 자격으로 채택됐다.
+    # QC 가 동의표 조각으로 걸러 결국 빈칸이 되고, 그 탓에 certReq 까지 '무관'으로 남았다
+    # (동광초, L4#18 2026-09-08).
+    q = _seg_after(text, r"지원 ?자격|응시 ?자격|자격 ?요건|참가 ?자격|모집 ?대상|(?<!취업)지원 ?대상") \
         or _seg_after(text, r"자격(?!증)")
     if not (q and len(q) >= 5 and _QUAL_OK.search(q)):
         # hwp 열거형 '지원 자격 가. ○○ 나. ○○' — _seg_after 는 첫 마침표에서 값을 자르는데
@@ -435,6 +439,19 @@ def _find_qualification(text):
     # 라벨의 뒷조각만 남은 머리 — '조건 - 세례받은 지 3년 이상 된 신자' (동판교 성당).
     # 원문은 '자격 조건'인데 라벨이 '자격'까지만 잡혀 '조건'이 값에 남았다.
     q = re.sub(r"^(?:조건|요건|사항|기준)\s*[-–:：]?\s*", "", q)
+    # 라벨이 값 안으로 들어온 꼴 — '자격: 해당 교과 교원자격증 소지자'(동광초, 2026-09-08)
+    q = re.sub(r"^(?:응시\s*자격|지원\s*자격|자격)\s*[-–:：]\s*", "", q)
+    # 길어서 버려지는 것보다 앞절만 남기는 편이 낫다 — QC 의 90자 상한에 걸려
+    # 멀쩡한 자격이 통째로 사라졌다(신목고 93자·대전전자디자인고 108자, 2026-09-08).
+    # 단서를 달거나 제한 조항을 여는 표식(❑ ※ 다만, 단,)에서 끊는다 — 앞절이 본질이다.
+    if len(q) > 90:
+        head = re.split(r"\s*(?:[❍❑○●◎□■※]|다만,|단,)\s*", q)
+        head = next((h for h in head if len(h.strip(" ·-–")) >= 10), q)
+        cut = head.strip(" ·-–.")
+        if 10 <= len(cut) < len(q):
+            q = cut
+        # 잘라낸 앞절이 다시 라벨로 시작할 수 있다 — '응시자격 - 선발예정 표시과목의…'
+        q = re.sub(r"^(?:응시\s*자격|지원\s*자격|자격)\s*[-–:：]\s*", "", q)
     # 꼬리에 다음 절 번호가 딸려 온다 — '… 지휘 경험자 3' 의 3 은 '3. 마감:' 의 번호다.
     # 단위가 붙은 수('3년')는 값이므로 건드리지 않는다.
     q = re.sub(r"\s+\d{1,2}\s*$", "", q)
@@ -791,7 +808,9 @@ def _apply_meta_table(text, item):
     if org and 2 <= len(org) <= 30 and org != item.get("org"):
         item["orgBoard"] = item.get("org")
         item["org"] = org
-    for k in ("addr", "contact", "email"):
+    # 표가 밝힌 값은 본문 추측보다 정확하다 — 빈 칸만 채운다(기존 값이 더 구체적일 수 있다).
+    # 담당업무·근무시간·인원·채용기간은 대전교육청 표에 뻔히 있는데도 빠져 있었다 (2026-09-08).
+    for k in ("addr", "contact", "email", "duty", "workHours", "personnel", "workPeriod"):
         if meta.get(k) and not item.get(k):
             item[k] = meta[k]
     if meta.get("addr"):

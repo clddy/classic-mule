@@ -1,5 +1,5 @@
 {
- "collectedAt": "2026-09-08 18:07",
+ "collectedAt": "2026-09-08 19:54",
  "heldNoOrigin": 1,
  "sourceCount": 91,
  "okCount": 91,
@@ -450,7 +450,7 @@
    "poll": "daily",
    "ok": true,
    "raw": 0,
-   "kept": 1,
+   "kept": 0,
    "drop": {
     "만료": 0,
     "오래됨": 0
@@ -516,7 +516,7 @@
    "poll": "daily",
    "ok": true,
    "raw": 0,
-   "kept": 1,
+   "kept": 0,
    "drop": {
     "만료": 0,
     "오래됨": 0
@@ -1281,7 +1281,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-09-08",
    "isNew": true,
-   "extVer": 106
+   "extVer": 110
   },
   {
    "id": "225f11695977c8e9",
@@ -1308,16 +1308,16 @@
    "contact": "02-429-5641",
    "email": "ansy96@sen.go.kr",
    "workPeriod": "2026.10.01 ~ 2026.10.08",
+   "workHours": "시간제 근무",
    "personnel": "5명",
    "addr": "서울특별시 강동구 양재대로156길 57(고덕동)",
    "duty": "특수, 한문, 국어, 역사, 음악",
    "deadline": "2026-09-13",
    "deadlineFrom": "raw",
    "orgAffil": "서울시교육청",
-   "workHours": "시간제 근무",
    "firstSeen": "2026-09-08",
    "isNew": true,
-   "extVer": 106
+   "extVer": 110
   },
   {
    "id": "c2ffa6d6da5424fe",
@@ -1329,9 +1329,9 @@
    "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=109921",
    "date": "2026-09-08",
    "kind": "교원",
-   "tier": "교육 — 취미·입문",
+   "tier": "교육 — 학교",
    "obri": false,
-   "certReq": "무관",
+   "certReq": "예",
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
@@ -1341,8 +1341,10 @@
    ],
    "channel": "edu_seoul",
    "layer": "C",
+   "qualification": "내국인으로서 채용 분야 교원자격증 소지자(명예퇴직/정년퇴직자 포함) 로 만 69세까지 가능",
    "contact": "070-8720-5010",
    "email": "wlsgml7017@sen.go.kr",
+   "pay": "시간당 25,000원",
    "workPeriod": "2026.09.21 ~ 2026.10.21",
    "personnel": "6명",
    "addr": "서울특별시 양천구 안양천로 739(신정동)",
@@ -1350,10 +1352,9 @@
    "deadline": "2026-09-10",
    "deadlineFrom": "raw",
    "orgAffil": "서울시교육청",
-   "pay": "시간당 25,000원",
    "firstSeen": "2026-09-08",
    "isNew": true,
-   "extVer": 106
+   "extVer": 110
   },
   {
    "id": "0e3c852fea427102",
@@ -1390,14 +1391,14 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-09-08",
    "isNew": true,
-   "extVer": 106
+   "extVer": 110
   },
   {
    "id": "fc749e3cd725b719",
-   "org": "대전교육청(학교 채용)",
+   "org": "대전전자디자인고등학교",
    "region": "대전",
    "source": "dje.go.kr",
-   "title": "기간제 교원(음악) 채용",
+   "title": "[대전전자디자인고] 기간제 교원(음악) 채용",
    "nonMusic": null,
    "url": "https://www.dje.go.kr/boardCnts/view.do?boardID=54&boardSeq=3362969&lev=0&s=dje&m=030202",
    "date": "2026-09-08",
@@ -1412,16 +1413,18 @@
    "instDetails": [],
    "channel": "edu_dje",
    "layer": "C",
+   "orgBoard": "대전교육청(학교 채용)",
+   "qualification": "선발예정 표시과목의 중등학교 2급 정교사 이상 교원자격증 소지자 - 담임 및 담당 사무분장을 원활하게 수행할 수 있는 자",
    "contact": "042-611-8313",
-   "workPeriod": "2026.10.12 ~ 2027.01.09",
-   "personnel": "1명",
-   "bodyExcerpt": "구직 기간제교사 학교인력 채용공고 산학겸임.강사.명예교사신청 연수",
-   "deadline": "2026-09-11",
-   "deadlineFrom": "raw",
    "email": "djedh@korea.kr",
+   "personnel": "1명",
+   "workPeriod": "2026.10.12 ~ 2027.01.09",
+   "bodyExcerpt": "구직 기간제교사 학교인력 채용공고 산학겸임.강사.명예교사신청 연수",
+   "deadline": "2026-09-14",
+   "deadlineFrom": "raw",
    "firstSeen": "2026-09-08",
    "isNew": true,
-   "extVer": 106
+   "extVer": 110
   },
   {
    "id": "251b3ad0b2c5fb75",
@@ -1435,7 +1438,7 @@
    "kind": "교원",
    "tier": "교육 — 학교",
    "obri": false,
-   "certReq": "무관",
+   "certReq": "예",
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
@@ -1445,6 +1448,7 @@
    ],
    "channel": "edu_seoul",
    "layer": "C",
+   "qualification": "해당 교과 교원자격증 소지자",
    "contact": "02-891-0151",
    "email": "ecoandw2@sen.go.kr",
    "pay": "시급 25,000원",
@@ -1458,7 +1462,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-09-07",
    "isNew": true,
-   "extVer": 106
+   "extVer": 110
   },
   {
    "id": "83d183f38af81e01",
@@ -1472,7 +1476,7 @@
    "kind": "객원·대체",
    "tier": "교육 — 학교",
    "obri": false,
-   "certReq": "무관",
+   "certReq": "예",
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
@@ -1482,6 +1486,7 @@
    ],
    "channel": "edu_seoul",
    "layer": "C",
+   "qualification": "내국인으로서 채용 분야 교원자격증(음악) 소지자",
    "contact": "070-7492-1517",
    "email": "nine090@sen.go.kr",
    "pay": "시급 25,000원",
@@ -1495,7 +1500,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-09-07",
    "isNew": true,
-   "extVer": 106
+   "extVer": 110
   },
   {
    "id": "9af83a5b42071229",
@@ -1529,7 +1534,7 @@
    "orgAffil": "경기교육청",
    "firstSeen": "2026-09-07",
    "isNew": true,
-   "extVer": 106
+   "extVer": 110
   },
   {
    "id": "8db272fa3fb51c90",
@@ -1555,12 +1560,14 @@
    "channel": "g_casuwon",
    "layer": "B",
    "qualification": "세례 후 3년 이상인 천주교 신자 - 전공자, 지휘 경험자",
+   "contact": "010-8250-3696",
    "email": "sunbu@casuwon.or.kr",
+   "workHours": "미사: 주일 오전 10시 30분 - 연습: 매주 주일 미사 전 9시 00분 ~ 매주 수요일(오후 8시~10시)",
    "bodyExcerpt": "자격 조건 - 세례 후 3년 이상인 천주교 신자 - 전공자, 지휘 경험자 우대 3. · 마감 - 채용 시까지 6",
    "deadlineNote": "상시",
    "firstSeen": "2026-09-07",
    "isNew": true,
-   "extVer": 106
+   "extVer": 110
   },
   {
    "id": "2836ca522b10bff5",
@@ -1593,12 +1600,12 @@
    "pay": "160,000원",
    "workPeriod": "2026.09.21./09.22./09.28.(3일)",
    "workHours": "총 15시간",
-   "ageLimit": "*(만 65세) 미 해당자 *(계약종료일) 만 65세가 도래하는 날이 포함된 학기말까지 가능",
-   "personnel": "비 고 1중등(음악) 2026.09.21./09.22./09.28.(3일) 1명 시간강사",
+   "ageLimit": "(만 65세) 미 해당자",
+   "personnel": "1명",
    "bodyExcerpt": "3 응모 자격 및 자격 제한 · 심사 위원별 채점 결과 집계표에 의거 최고 득점자를 채용 예정자로 선정 . · 등록일시 : 2026/02/04 10:25 자료관리자 :(교육공무직원) 노사정책과 · 등록일시 : 2026/02/13 10:41 자료관리자 :(지방공무원 대체인력) 운영지원과",
    "deadline": "2026-09-09",
    "deadlineFrom": "raw",
-   "extVer": 106
+   "extVer": 110
   },
   {
    "id": "c46f9ee6ce872e75",
@@ -1630,7 +1637,7 @@
    "personnel": "3명",
    "deadline": "2026-09-08",
    "deadlineFrom": "raw",
-   "extVer": 106
+   "extVer": 110
   },
   {
    "id": "1b7f47caba898dbb",
@@ -1667,7 +1674,7 @@
    "bodyExcerpt": "면접 결과 : 합격 대상자에 한하여 26.9.18.(금) 15:00 개별통보",
    "deadline": "2026-09-08",
    "deadlineFrom": "raw",
-   "extVer": 106
+   "extVer": 110
   },
   {
    "id": "f0f7105154553adf",
@@ -1715,7 +1722,7 @@
    "orgBoard": "연세대학교",
    "firstSeen": "2026-09-01",
    "isNew": false,
-   "extVer": 106
+   "extVer": 110
   },
   {
    "id": "4929db7084d86e8d",
@@ -1745,7 +1752,7 @@
    ],
    "firstSeen": "2026-08-31",
    "isNew": false,
-   "extVer": 106
+   "extVer": 110
   },
   {
    "id": "11376188af16b7d1",
@@ -1782,7 +1789,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-19",
    "isNew": false,
-   "extVer": 106
+   "extVer": 110
   },
   {
    "id": "bd2c17f19933f651",
@@ -1814,7 +1821,7 @@
    "pay": "30만원",
    "firstSeen": "2026-08-14",
    "isNew": false,
-   "extVer": 106
+   "extVer": 110
   },
   {
    "id": "0251912d3b918734",
@@ -1849,7 +1856,7 @@
    "pay": "월 40만원",
    "workHours": "매주 일요일 11시~12시(1시간)",
    "bodyExcerpt": "모집분야 : 주일예배 및 성가대 피아노 반주자 · 성가대 연습 : 주일 10시~10시 50분, 12시 10분~12시 50분(시간은 유동적임)· 지원자격 : 피아노 또는 음악 관련 전공자 및 교회 반주 경험자 우대 · 주요업무 : 주일예배 찬송가 및 예배 반주, 성가대 찬양 반주, 성가대 연습 반주",
-   "extVer": 106
+   "extVer": 110
   },
   {
    "id": "b2e199e32140e0ed",
@@ -1884,7 +1891,7 @@
    "deadlineNote": "상시",
    "firstSeen": "2026-08-08",
    "isNew": false,
-   "extVer": 106
+   "extVer": 110
   },
   {
    "id": "5fbc7e4eb4f8d92d",
@@ -1909,8 +1916,8 @@
    ],
    "channel": "cjob",
    "layer": "C",
-   "deadlineFrom": "cjob-남은기간",
    "addr": "경기 의왕시 경수대로 262 (오전동, 의왕서해그랑블(블루스퀘어))",
+   "deadlineFrom": "cjob-남은기간",
    "denomination": "순복음",
    "documents": "간단한 이력서",
    "personnel": "반주자",
@@ -1918,7 +1925,7 @@
    "deadlineNote": "상시",
    "firstSeen": "2026-08-08",
    "isNew": false,
-   "extVer": 106
+   "extVer": 110
   }
  ]
 }

@@ -120,6 +120,10 @@ def _inject(path, marker, content):
         f.write(out)
 
 
+# js/jobs.js QUAL_BOILER 와 같은 목록 — 어긋나면 화면과 정적 페이지가 다른 것을 보여준다
+_QUAL_BOILER = re.compile(r"^(?:[^가-힣]*(?:결격|병역|성범죄|아동학대|신원조회|국가공무원법|채용 ?제한)[^·]*[·,]?\s*)+$")
+
+
 def _detail_rows(j):
     rows = [("기관", j.get("org")), ("지역", j.get("region")),
             ("마감", "접수중" if j.get("deadlineNote") == "상시"
@@ -144,8 +148,11 @@ def _detail_rows(j):
         rows.append(("근무기간", j["workPeriod"]))
     if j.get("workHours"):
         rows.append(("근무시간", j["workHours"]))
-    # 자격 행은 보여주지 않는다 (2026-08-23 사용자 지시) — 화면 모달과 같은 규칙.
-    # 값 대부분이 어느 공고에나 붙는 상투구라 정보가 0이다.
+    # 자격 행 부활 (2026-09-08 사용자 지시) — jobs.js metaRows 와 같은 규칙.
+    # 08-23 에 뺀 이유(상투구뿐)는 추출·QC 가 정리되며 사라졌다. 상투구만 든 값만 거른다.
+    qual = str(j.get("qualification") or "")
+    if len(qual) >= 6 and not _QUAL_BOILER.match(qual):
+        rows.append(("자격", qual))
     if j.get("pay"):
         rows.append(("페이", j["pay"]))
     if j.get("contract"):
