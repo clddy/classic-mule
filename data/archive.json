@@ -1,6 +1,6 @@
 {
- "updatedAt": "2026-09-07",
- "count": 1330,
+ "updatedAt": "2026-09-08",
+ "count": 1335,
  "items": {
   "f7b1c263744b9ece": {
    "id": "f7b1c263744b9ece",
@@ -1805,8 +1805,8 @@
     "피아노"
    ],
    "firstSeen": "2026-07-08",
-   "lastSeen": "2026-09-07",
-   "days": 42,
+   "lastSeen": "2026-09-08",
+   "days": 43,
    "deadline": "2026-12-31",
    "deadlineFrom": "cjob-남은기간",
    "date": "2026-07-03",
@@ -1872,8 +1872,8 @@
     "피아노"
    ],
    "firstSeen": "2026-07-08",
-   "lastSeen": "2026-09-07",
-   "days": 42,
+   "lastSeen": "2026-09-08",
+   "days": 43,
    "deadline": "2026-12-31",
    "deadlineFrom": "cjob-남은기간",
    "date": "2026-05-20",
@@ -10257,8 +10257,8 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "firstSeen": "2026-08-07",
-   "lastSeen": "2026-09-07",
-   "days": 32,
+   "lastSeen": "2026-09-08",
+   "days": 33,
    "deadline": "2026-09-18",
    "deadlineFrom": "cjob-남은기간",
    "bodyExcerpt": "모집분야 : 주일예배 및 성가대 피아노 반주자 · 성가대 연습 : 주일 10시~10시 50분, 12시 10분~12시 50분(시간은 유동적임)· 지원자격 : 피아노 또는 음악 관련 전공자 및 교회 반주 경험자 우대 · 주요업무 : 주일예배 찬송가 및 예배 반주, 성가대 찬양 반주, 성가대 연습 반주",
@@ -30149,8 +30149,8 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "firstSeen": "2026-08-14",
-   "lastSeen": "2026-09-07",
-   "days": 25,
+   "lastSeen": "2026-09-08",
+   "days": 26,
    "date": "2026-08-14",
    "deadline": "2026-09-30",
    "deadlineFrom": "cjob-남은기간",
@@ -31675,8 +31675,8 @@
    "addr": "서울특별시 동작구 사당로23길 57-14(사당동)",
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-19",
-   "lastSeen": "2026-09-07",
-   "days": 20,
+   "lastSeen": "2026-09-08",
+   "days": 21,
    "duty": "3학년 영어와 음악, 5학년 영어"
   },
   "020ed96538d30e4e": {
@@ -33757,8 +33757,8 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "firstSeen": "2026-08-31",
-   "lastSeen": "2026-09-07",
-   "days": 8
+   "lastSeen": "2026-09-08",
+   "days": 9
   },
   "6c2d34e32d5fd9c5": {
    "id": "6c2d34e32d5fd9c5",
@@ -33898,8 +33898,8 @@
    "addrFrom": "geo",
    "orgAffil": "경기교육청",
    "firstSeen": "2026-09-01",
-   "lastSeen": "2026-09-07",
-   "days": 7,
+   "lastSeen": "2026-09-08",
+   "days": 8,
    "duty": "핸드벨 강사 1명"
   },
   "d13e966d7cfd7ad9": {
@@ -33969,8 +33969,8 @@
    "lng": 126.9393747,
    "addrFrom": "geo",
    "firstSeen": "2026-09-01",
-   "lastSeen": "2026-09-07",
-   "days": 7
+   "lastSeen": "2026-09-08",
+   "days": 8
   },
   "2db806cec0c5aff9": {
    "id": "2db806cec0c5aff9",
@@ -34132,8 +34132,8 @@
    "addr": "경기 의왕시 내손순환로 175(내손동)",
    "orgAffil": "경기교육청",
    "firstSeen": "2026-09-02",
-   "lastSeen": "2026-09-07",
-   "days": 6
+   "lastSeen": "2026-09-08",
+   "days": 7
   },
   "9ce6f5e79846793c": {
    "id": "9ce6f5e79846793c",
@@ -34527,8 +34527,8 @@
    "addrFrom": "postal",
    "orgAffil": "세종교육청",
    "firstSeen": "2026-09-04",
-   "lastSeen": "2026-09-07",
-   "days": 4
+   "lastSeen": "2026-09-08",
+   "days": 5
   },
   "c1e08a3bb6afa931": {
    "id": "c1e08a3bb6afa931",
@@ -34594,8 +34594,8 @@
    "lng": 126.986213,
    "addrFrom": "geo",
    "firstSeen": "2026-09-06",
-   "lastSeen": "2026-09-07",
-   "days": 2
+   "lastSeen": "2026-09-08",
+   "days": 3
   },
   "251b3ad0b2c5fb75": {
    "id": "251b3ad0b2c5fb75",
@@ -34630,8 +34630,8 @@
    "addr": "서울특별시 금천구 탑골로10길 45(시흥동)",
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-09-07",
-   "lastSeen": "2026-09-07",
-   "days": 1
+   "lastSeen": "2026-09-08",
+   "days": 2
   },
   "83d183f38af81e01": {
    "id": "83d183f38af81e01",
@@ -34656,7 +34656,7 @@
    "certReq": "무관",
    "degreeReq": "무관",
    "careerReq": "미기재",
-   "personnel": "1명",
+   "personnel": "1명 <교과><인원><채 용 기 간><채용사유><수업시수><비 고> <음악><1><2026.9.28.(월)~2026.10.2.(금)><특별휴가><20시간><5일>",
    "pay": "시급 25,000원",
    "workPeriod": "2026.09.28 ~ 2026.10.02",
    "workHours": "총20시간",
@@ -34666,8 +34666,8 @@
    "addr": "서울특별시 강남구 도곡로43길 10(역삼동)",
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-09-07",
-   "lastSeen": "2026-09-07",
-   "days": 1
+   "lastSeen": "2026-09-08",
+   "days": 2
   },
   "9af83a5b42071229": {
    "id": "9af83a5b42071229",
@@ -34699,8 +34699,8 @@
    "addr": "경기 남양주시 경춘로 434(다산동)",
    "orgAffil": "경기교육청",
    "firstSeen": "2026-09-07",
-   "lastSeen": "2026-09-07",
-   "days": 1
+   "lastSeen": "2026-09-08",
+   "days": 2
   },
   "8db272fa3fb51c90": {
    "id": "8db272fa3fb51c90",
@@ -34727,7 +34727,178 @@
    "qualification": "세례 후 3년 이상인 천주교 신자 - 전공자, 지휘 경험자",
    "email": "sunbu@casuwon.or.kr",
    "firstSeen": "2026-09-07",
-   "lastSeen": "2026-09-07",
+   "lastSeen": "2026-09-08",
+   "days": 2
+  },
+  "3d22a9d469b62153": {
+   "id": "3d22a9d469b62153",
+   "org": "서울노원초등학교",
+   "region": "서울",
+   "source": "work.sen.go.kr",
+   "channel": "edu_seoul",
+   "layer": "C",
+   "title": "[서울노원초] 습식수채화, 창의음악 강사 채용",
+   "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=109942",
+   "date": "2026-09-08",
+   "deadline": "2026-09-10",
+   "deadlineFrom": "raw",
+   "kind": "강사",
+   "tier": "교육 — 취미·입문",
+   "inst": "목관",
+   "instDetails": [
+    "관악"
+   ],
+   "ageGroup": "성인",
+   "obri": false,
+   "certReq": "무관",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "personnel": "2명",
+   "pay": "시간당 40,000원",
+   "workPeriod": "2026.09.29 ~ 2026.12.28",
+   "duty": "습식수채화, 창의음악 학년예술교육",
+   "contact": "02-939-1894",
+   "email": "kingni2@sen.go.kr",
+   "addr": "서울특별시 노원구 동일로230",
+   "orgAffil": "서울시교육청",
+   "firstSeen": "2026-09-08",
+   "lastSeen": "2026-09-08",
+   "days": 1
+  },
+  "225f11695977c8e9": {
+   "id": "225f11695977c8e9",
+   "org": "명일중학교",
+   "region": "서울",
+   "source": "work.sen.go.kr",
+   "channel": "edu_seoul",
+   "layer": "C",
+   "title": "[명일중] 시간강사 채용공고(음악)",
+   "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=109943",
+   "date": "2026-09-08",
+   "deadline": "2026-09-13",
+   "deadlineFrom": "raw",
+   "kind": "강사",
+   "tier": "교육 — 학교",
+   "inst": "목관",
+   "instDetails": [
+    "관악"
+   ],
+   "ageGroup": "성인",
+   "obri": false,
+   "certReq": "무관",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "personnel": "5명",
+   "workPeriod": "2026.10.01 ~ 2026.10.08",
+   "workHours": "시간제 근무",
+   "duty": "특수, 한문, 국어, 역사, 음악",
+   "contact": "02-429-5641",
+   "email": "ansy96@sen.go.kr",
+   "addr": "서울특별시 강동구 양재대로156길 57(고덕동)",
+   "orgAffil": "서울시교육청",
+   "firstSeen": "2026-09-08",
+   "lastSeen": "2026-09-08",
+   "days": 1
+  },
+  "c2ffa6d6da5424fe": {
+   "id": "c2ffa6d6da5424fe",
+   "org": "신목고등학교",
+   "region": "서울",
+   "source": "work.sen.go.kr",
+   "channel": "edu_seoul",
+   "layer": "C",
+   "title": "[신목고] 시간제교원 채용(음악)",
+   "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=109921",
+   "date": "2026-09-08",
+   "deadline": "2026-09-10",
+   "deadlineFrom": "raw",
+   "kind": "교원",
+   "tier": "교육 — 취미·입문",
+   "inst": "목관",
+   "instDetails": [
+    "관악"
+   ],
+   "ageGroup": "성인",
+   "obri": false,
+   "certReq": "무관",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "personnel": "6명",
+   "pay": "시간당 25,000원",
+   "workPeriod": "2026.09.21 ~ 2026.10.21",
+   "duty": "시간제교원(국어, 영어, 수학, 음악, 보건, 체육)",
+   "contact": "070-8720-5010",
+   "email": "wlsgml7017@sen.go.kr",
+   "addr": "서울특별시 양천구 안양천로 739(신정동)",
+   "orgAffil": "서울시교육청",
+   "firstSeen": "2026-09-08",
+   "lastSeen": "2026-09-08",
+   "days": 1
+  },
+  "0e3c852fea427102": {
+   "id": "0e3c852fea427102",
+   "org": "서울이수초등학교",
+   "region": "서울",
+   "source": "work.sen.go.kr",
+   "channel": "edu_seoul",
+   "layer": "C",
+   "title": "[서울이수초] 초등예술하나(창의음악) 강사 채용",
+   "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=109893",
+   "date": "2026-09-08",
+   "deadline": "2026-09-14",
+   "deadlineFrom": "raw",
+   "kind": "강사",
+   "tier": "교육 — 취미·입문",
+   "inst": "목관",
+   "instDetails": [
+    "관악"
+   ],
+   "ageGroup": "성인",
+   "obri": false,
+   "certReq": "무관",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "personnel": "1명",
+   "pay": "시간당 42,000원",
+   "workPeriod": "2026.10.13 ~ 2026.11.10",
+   "workHours": "09:00 ~ 12:10",
+   "duty": "창의음악(2학년)",
+   "contact": "02-521-5282",
+   "email": "shalom115@sen.go.kr",
+   "addr": "서울특별시 서초구 방배천로4길 23(방배동)",
+   "orgAffil": "서울시교육청",
+   "firstSeen": "2026-09-08",
+   "lastSeen": "2026-09-08",
+   "days": 1
+  },
+  "fc749e3cd725b719": {
+   "id": "fc749e3cd725b719",
+   "org": "대전교육청(학교 채용)",
+   "region": "대전",
+   "source": "dje.go.kr",
+   "channel": "edu_dje",
+   "layer": "C",
+   "title": "기간제 교원(음악) 채용",
+   "url": "https://www.dje.go.kr/boardCnts/view.do?boardID=54&boardSeq=3362969&lev=0&s=dje&m=030202",
+   "date": "2026-09-08",
+   "deadline": "2026-09-11",
+   "deadlineFrom": "raw",
+   "kind": "교원",
+   "tier": "교육 — 학교",
+   "inst": "전체",
+   "instDetails": [],
+   "ageGroup": "성인",
+   "obri": false,
+   "certReq": "예",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "personnel": "1명",
+   "bodyExcerpt": "구직 기간제교사 학교인력 채용공고 산학겸임.강사.명예교사신청 연수",
+   "workPeriod": "2026.10.12 ~ 2027.01.09",
+   "contact": "042-611-8313",
+   "email": "djedh@korea.kr",
+   "firstSeen": "2026-09-08",
+   "lastSeen": "2026-09-08",
    "days": 1
   }
  }

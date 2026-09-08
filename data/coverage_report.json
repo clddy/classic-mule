@@ -1,5 +1,5 @@
 {
- "date": "2026-09-07",
+ "date": "2026-09-08",
  "total": 75,
  "covered": 1,
  "gapCount": 74,
@@ -377,8 +377,8 @@
  ],
  "master": {
   "total": 604,
-  "covered": 0,
-  "gapCount": 604,
+  "covered": 1,
+  "gapCount": 603,
   "byCategory": {
    "대학": {
     "total": 77,
@@ -394,7 +394,7 @@
    },
    "지자체": {
     "total": 323,
-    "covered": 0
+    "covered": 1
    },
    "공연장": {
     "total": 69,
@@ -1865,11 +1865,6 @@
    },
    {
     "name": "서울도봉문화원",
-    "cat": "지자체",
-    "region": "서울"
-   },
-   {
-    "name": "서울노원문화원",
     "cat": "지자체",
     "region": "서울"
    },
