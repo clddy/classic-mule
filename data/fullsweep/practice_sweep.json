@@ -1,8 +1,8 @@
 {
  "date": "2026-09-08",
  "src": "eshare.go.kr",
- "count": 320,
- "dropped": 321,
+ "count": 321,
+ "dropped": 320,
  "items": {
   "DK24D623969": {
    "name": "마두청소년수련관 2층 연습실(꼬물)",
@@ -1190,6 +1190,17 @@
    "bookTo": "https://share.gg.go.kr/facilityListO/view?instiCode=1280006&facilityId=F0006&eshare=1",
    "la": 37.90974044799805,
    "lo": 127.05660247802734,
+   "kw": "연습실"
+  },
+  "HI08S3830152": {
+   "name": "청양군 평생학습관 음악실",
+   "addr": "충남 청양군 청양읍 문화예술로 150",
+   "sido": "충남",
+   "free": true,
+   "cls": "공방·공작실·공연연습실",
+   "bookTo": "",
+   "la": 36.4523239795461,
+   "lo": 126.799678508622,
    "kw": "연습실"
   },
   "AA02A0000045": {

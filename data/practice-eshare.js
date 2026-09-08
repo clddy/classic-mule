@@ -1460,6 +1460,22 @@ window.ESHARE_ROOMS = {
    "verified": "2026-09-08"
   },
   {
+   "name": "청양군 평생학습관 음악실",
+   "category": "public",
+   "region": "충남",
+   "addr": "충남 청양군 청양읍 문화예술로 150",
+   "lat": 36.4523239795461,
+   "lng": 126.799678508622,
+   "price": "무료",
+   "free": true,
+   "spaces": "",
+   "booking_url": "",
+   "rooms": null,
+   "apply_method": "온라인 예약",
+   "src": "공공개방자원(공유누리 경유)",
+   "verified": "2026-09-08"
+  },
+  {
    "name": "청주산단 복합문화센터",
    "category": "public",
    "region": "충북",
