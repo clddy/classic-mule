@@ -1,8 +1,8 @@
 {
  "date": "2026-09-09",
  "total": 75,
- "covered": 1,
- "gapCount": 74,
+ "covered": 2,
+ "gapCount": 73,
  "gaps": [
   {
    "name": "서울시립교향악단",
@@ -48,11 +48,6 @@
    "name": "광주시립교향악단",
    "type": "교향악단",
    "region": "광주"
-  },
-  {
-   "name": "부산시립교향악단",
-   "type": "교향악단",
-   "region": "부산"
   },
   {
    "name": "수원시립교향악단",
@@ -377,8 +372,8 @@
  ],
  "master": {
   "total": 604,
-  "covered": 1,
-  "gapCount": 603,
+  "covered": 2,
+  "gapCount": 602,
   "byCategory": {
    "대학": {
     "total": 77,
@@ -390,7 +385,7 @@
    },
    "예술단": {
     "total": 54,
-    "covered": 0
+    "covered": 1
    },
    "지자체": {
     "total": 323,
@@ -867,11 +862,6 @@
     "name": "서울시립교향악단",
     "cat": "예술단",
     "region": "서울"
-   },
-   {
-    "name": "부산시립교향악단",
-    "cat": "예술단",
-    "region": "부산"
    },
    {
     "name": "대구시립교향악단",
