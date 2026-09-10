@@ -1,8 +1,8 @@
 {
- "collectedAt": "2026-09-11 01:20",
+ "collectedAt": "2026-09-11 07:39",
  "heldNoOrigin": 1,
  "sourceCount": 91,
- "okCount": 84,
+ "okCount": 91,
  "instTotal": 75,
  "sources": [
   {
@@ -122,9 +122,14 @@
    "name": "대구문화예술회관(시향)",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 2,
    "kept": 0,
-   "error": "ConnectTimeout: HTTPSConnectionPool(host='daeguartscenter.or.kr', port=443): Max retries exceeded with url: /index.do?menu_id=00001528 ("
+   "drop": {
+    "비음악": 2,
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "bscc",
@@ -162,9 +167,11 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
+   "raw": 10,
    "kept": 0,
    "drop": {
+    "무관": 7,
+    "비음악": 3,
     "만료": 0,
     "오래됨": 0
    }
@@ -190,9 +197,11 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
+   "raw": 34,
    "kept": 0,
    "drop": {
+    "무관": 24,
+    "비음악": 10,
     "만료": 0,
     "오래됨": 0
    }
@@ -452,10 +461,10 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
+   "raw": 4,
    "kept": 0,
    "drop": {
-    "만료": 0,
+    "만료": 4,
     "오래됨": 0
    }
   },
@@ -479,7 +488,7 @@
    "poll": "daily",
    "ok": true,
    "raw": 0,
-   "kept": 1,
+   "kept": 0,
    "drop": {
     "만료": 0,
     "오래됨": 0
@@ -582,9 +591,13 @@
    "name": "고양문화재단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 0,
    "kept": 0,
-   "error": "TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.artgy.or.kr/CU/CU0101M.aspx\", waiting unti"
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_gfac",
@@ -780,9 +793,14 @@
    "name": "안산시립합창단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 8,
    "kept": 0,
-   "error": "ConnectTimeout: HTTPSConnectionPool(host='ansanarts.com', port=443): Max retries exceeded with url: /bbs/board.php?bo_table=notice (Caus"
+   "drop": {
+    "무관": 4,
+    "오래됨": 4,
+    "만료": 0
+   }
   },
   {
    "id": "g_i_gurigokr",
@@ -802,9 +820,14 @@
    "name": "순천시립합창단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 1,
    "kept": 0,
-   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.suncheon.go.kr', port=443): Max retries exceeded with url: /scart/community/0001;jsessioni"
+   "drop": {
+    "무관": 1,
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_i_andonggokr",
@@ -892,9 +915,13 @@
    "name": "동해문화관광재단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 0,
    "kept": 0,
-   "error": "HTTPError: 403 Forbidden"
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_i_cfscorkr",
@@ -1059,18 +1086,28 @@
    "name": "대구문화예술회관 공지(시립합창단)",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 5,
    "kept": 0,
-   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.daeguartscenter.or.kr', port=443): Max retries exceeded with url: /index.do?menu_id=000015"
+   "drop": {
+    "무관": 5,
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_ansanarts",
    "name": "안산시립합창단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 6,
    "kept": 0,
-   "error": "ConnectTimeout: HTTPSConnectionPool(host='ansanarts.com', port=443): Max retries exceeded with url: /bbs/board.php?bo_table=notice (Caus"
+   "drop": {
+    "오래됨": 3,
+    "무관": 3,
+    "만료": 0
+   }
   },
   {
    "id": "g_pajucf",
@@ -1197,9 +1234,11 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
-   "kept": 0,
+   "raw": 5,
+   "kept": 4,
+   "declared": 5,
    "drop": {
+    "비음악": 1,
     "만료": 0,
     "오래됨": 0
    }
@@ -1228,18 +1267,18 @@
    ],
    "channel": "edu_seoul",
    "layer": "C",
+   "qualification": "해당분야 전공자 또는 전문가",
    "contact": "02-725-6451",
    "email": "aissem@sen.go.kr",
    "pay": "시간당 45,000원",
-   "workPeriod": "2026.09.10 ~ 2026.09.16",
+   "workPeriod": "2026.10.01 ~ 2026.11.05(학사 일정에 따라 수업이 없는 주간 있음)",
    "workHours": "주 5시간",
+   "duty": "음악 리라 수업(코티칭)",
    "personnel": "1명",
-   "addr": "서울특별시 종로구 필운대로1길 34(필운동)",
-   "duty": "음악 리라수업 코티칭",
+   "addr": "서울시 종로구 필운대로1길 342026",
    "deadline": "2026-09-16",
    "deadlineFrom": "raw",
    "orgAffil": "서울시교육청",
-   "qualification": "해당분야 전공자 또는 전문가",
    "firstSeen": "2026-09-11",
    "isNew": true,
    "extVer": 110
@@ -1293,7 +1332,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
