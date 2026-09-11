@@ -386,6 +386,26 @@ def _is_attach_name(text, pos):
     """"응시원서.hwp" 처럼 키워드 바로 뒤가 확장자면 첨부파일명이지 본문이 아니다."""
     return bool(re.match(r"\s*[_\-]?\s*\.(hwpx?|pdf|docx?|xlsx?|zip)", text[pos:pos + 8], re.I))
 
+
+# '응시원서 1부', '응시원서 양식 다운로드' — 제출서류 목록에 적힌 **서류 이름**이지
+# 접수 기간 라벨이 아니다. 확정 어휘로 받아 주면 그 윈도가 뒤쪽 아무 날짜나 물어 온다:
+# 부산시립소년소녀합창단은 '제출서류 … 응시원서 1부 … ※ 신규단원 O/T : 2026.11.19'
+# 를 삼켜 마감이 진짜 접수 마감(10-13)보다 37일 뒤로 밀렸다 (2026-09-11 헬스체크 [의심]).
+# 뒤에 수량·양식 어휘가 오면 서류 이름으로 보고 이 키워드를 건너뛴다.
+_DOC_ITEM_TAIL = re.compile(
+    r"\s*(?:\d+\s*부\b|[0-9]\s*장\b|양식|서식|사본|다운\s*로드|파일|첨부"
+    # 파일명 서식 — '응시원서_홍길동(응시자 이름)', '응시원서_2026.hwp'
+    r"|[_\-][가-힣0-9]"
+    # 절차 설명 — '전자우편으로 응시원서 접수 후, 접수번호 개별 회신'. 라벨이 아니라
+    # 문장이라 그 옆에 마감이 없다. 그런데도 확정 어휘로 받으면 300자 윈도가 달려 나가
+    # 상관없는 뒤쪽 날짜(신규단원 O/T 2026.11.19)를 물어 온다 (부산시립소년소녀합창단).
+    r"|\s*(?:접수|제출)?\s*(?:후\b|하[여시고면는]|합니다|해\s*주|바랍니다|완료)"
+    r")")
+
+
+def _is_doc_item(text, pos):
+    return bool(_DOC_ITEM_TAIL.match(text[pos:pos + 12]))
+
 def priority_deadlines(text, ref_year=None):
     """확정 어휘(원서접수·접수기간·남은기간…) 윈도에서 찾은 마감일 후보 **전부**.
 
@@ -400,7 +420,7 @@ def priority_deadlines(text, ref_year=None):
     text = squash_spaced_labels(re.sub(r"\s+", " ", text))
     out = []
     for kw in _KW_PRIORITY.finditer(text):
-        if _is_attach_name(text, kw.end()):
+        if _is_attach_name(text, kw.end()) or _is_doc_item(text, kw.end()):
             continue
         c = _window_deadline(_LIST_SEP.split(text[kw.start(): kw.start() + 300], 1)[0], ref_year)
         if c and c not in out:
@@ -425,7 +445,7 @@ def extract_deadline(text, ref_year=None, priority_only=False):
         return bool(re.match(r"\s*[_\-]?\s*\.(hwpx?|pdf|docx?|xlsx?|zip)", text[kw.end():kw.end() + 8], re.I))
 
     for kw in _KW_PRIORITY.finditer(text):
-        if _is_filename(kw):
+        if _is_filename(kw) or _is_doc_item(text, kw.end()):
             continue
         win = text[kw.start(): kw.start() + 300]
         if priority_only:
@@ -1581,7 +1601,10 @@ _FIELD_STOP = re.compile(
     # '…변경될 수 있음)사 . 지원자 중 전형위원회의에서…' (2026-08-11).
     # 앞 글자가 한글이면 낱말의 일부다('회사 .') — 그건 건드리지 않는다.
     r"(?:(?<=[)\]])|(?<=\s)|^)[가나다라마바사아자차카타파하]\s*\.\s"
-    r"|[•▪◦○●■□▶▷◇◆※📌🔹✅☎☞⇒→]|\s\d{1,2}\)\s*(?=[가-힣])|\[|\s\d\.\s(?=[가-힣])|(?:급여|보수|임금|처우|사례비|근무\s*기간|계약\s*기간"
+    # hwp 표를 평평하게 편 자리 — '1명 <교과><인원><채 용 기 간>…' (역삼중, L4#19 2026-09-11).
+    # 꺾쇠 토막이 둘 이상 붙어 나오면 그건 값이 아니라 표의 칸들이다.
+    r"|(?:<[^<>]{0,20}>){2,}"
+    r"|[•▪◦○●■□▶▷▸▹❍❑◇◆※📌🔹✅☎☞⇒→]|\s\d{1,2}\)\s*(?=[가-힣])|\[|\s\d\.\s(?=[가-힣])|(?:급여|보수|임금|처우|사례비|근무\s*기간|계약\s*기간"
     r"|근무\s*시간|담당\s*업무|주요\s*업무|나이|연령|근무\s*지|자격\s*요건|우대\s*사항|전형|제출|접수"
     r"|공연\s*기간|공연\s*장소|공연\s*스케[줄쥴]|팀\s*구성|휴일|모집\s*인원|모집\s*분야|제공\s*사항"
     r"|지원\s*방법|담당자|이메일)\s*[:：]"

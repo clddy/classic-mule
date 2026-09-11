@@ -1,5 +1,5 @@
 {
- "collectedAt": "2026-09-11 07:39",
+ "collectedAt": "2026-09-11 13:04",
  "heldNoOrigin": 1,
  "sourceCount": 91,
  "okCount": 91,
@@ -398,7 +398,9 @@
    "ok": true,
    "raw": 5,
    "kept": 5,
+   "carried": 1,
    "drop": {
+    "무관": 1,
     "만료": 0,
     "오래됨": 0
    }
@@ -422,8 +424,8 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
-   "kept": 0,
+   "raw": 2,
+   "kept": 2,
    "drop": {
     "만료": 0,
     "오래됨": 0
@@ -684,11 +686,11 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 9,
+   "raw": 8,
    "kept": 1,
    "drop": {
     "무관": 5,
-    "비음악": 2,
+    "비음악": 1,
     "만료": 1,
     "오래됨": 0
    }
@@ -712,10 +714,10 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 3,
+   "raw": 4,
    "kept": 0,
    "drop": {
-    "무관": 3,
+    "무관": 4,
     "만료": 0,
     "오래됨": 0
    }
@@ -1234,9 +1236,9 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 5,
-   "kept": 4,
-   "declared": 5,
+   "raw": 6,
+   "kept": 5,
+   "declared": 6,
    "drop": {
     "비음악": 1,
     "만료": 0,
@@ -1245,6 +1247,77 @@
   }
  ],
  "items": [
+  {
+   "id": "0cd0c7732b6141c8",
+   "org": "전주여울초등학교",
+   "region": "전북",
+   "source": "jbe.go.kr",
+   "title": "[전주여울초] 기간제교(통합 및 음악전담교사) 채용",
+   "nonMusic": null,
+   "url": "https://www.jbe.go.kr/board/view.jbe?boardId=BBS_0000130&menuCd=DOM_000000103004006000&paging=ok&startPage=1&searchOperation=AND&dataSid=1176832",
+   "date": "2026-09-14",
+   "kind": "기타",
+   "tier": "교육 — 학교",
+   "obri": false,
+   "certReq": "예",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "ageGroup": "성인",
+   "inst": "전체",
+   "instDetails": [],
+   "channel": "edu_jbe",
+   "layer": "C",
+   "orgBoard": "전주여울초등학교(전북교육청)",
+   "addr": "전북특별자치도 전주시 완산구 고사평8길 11 전주여울초등학교",
+   "contact": "063-255-9077",
+   "workPeriod": "2026.10.19 ~ 2026.12.26",
+   "workHours": "전일제 근무(1일 8시간)",
+   "ageLimit": "제한 없음",
+   "bodyExcerpt": "공고에 ‘채용의 제한’ 부분 명시 2. · 지침 [붙임 2] 기간제교원 채용 공고(예시) 다운로드 지침",
+   "deadline": "2026-09-17",
+   "deadlineFrom": "raw",
+   "email": "jslovejyd@naver.com",
+   "firstSeen": "2026-09-11",
+   "isNew": false,
+   "extVer": 112
+  },
+  {
+   "id": "cbd01d306405e5ed",
+   "org": "전일중학교",
+   "region": "전북",
+   "source": "jbe.go.kr",
+   "title": "[전일중] 클라리넷(오케스트라) 채용",
+   "nonMusic": null,
+   "url": "https://www.jbe.go.kr/board/view.jbe?boardId=BBS_0000130&menuCd=DOM_000000103004006000&paging=ok&startPage=2&searchOperation=AND&dataSid=1176730",
+   "date": "2026-09-11",
+   "kind": "기타",
+   "tier": "교육 — 학교",
+   "obri": false,
+   "certReq": "예",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "ageGroup": "성인",
+   "inst": "목관",
+   "instDetails": [
+    "클라리넷"
+   ],
+   "channel": "edu_jbe",
+   "layer": "C",
+   "orgBoard": "전일중학교(전북교육청)",
+   "addr": "전북특별자치도 전주시 덕진구 모래내6길 36 전일중학교",
+   "email": "syktj1202@naver.com",
+   "contact": "063-252-2709",
+   "duty": "모집부서 모집인원 비고 오케스트라-클라리넷 1명 결원에 따른 잔여 기간 강사 모집 합 계 1명",
+   "workPeriod": "2026.10.01 ~ 2026.12.31",
+   "workHours": "전일제 근무(1일 8시간)",
+   "ageLimit": "제한 없음",
+   "bodyExcerpt": "공고에 ‘채용의 제한’ 부분 명시 2. · 지침 [붙임 2] 기간제교원 채용 공고(예시) 다운로드 지침",
+   "deadline": "2026-09-15",
+   "deadlineFrom": "raw",
+   "firstSeen": "2026-09-11",
+   "isNew": true,
+   "extVer": 112
+  },
   {
    "id": "18895e13a2015f86",
    "org": "배화여자중학교",
@@ -1281,7 +1354,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-09-11",
    "isNew": true,
-   "extVer": 110
+   "extVer": 112
   },
   {
    "id": "31910b26cd0a03a1",
@@ -1314,7 +1387,7 @@
    "orgAffil": "경기교육청",
    "firstSeen": "2026-09-11",
    "isNew": true,
-   "extVer": 110
+   "extVer": 112
   },
   {
    "id": "c1bb5e52e4836a7e",
@@ -1332,7 +1405,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "전체",
+   "inst": "목관",
    "instDetails": [
     "관악"
    ],
@@ -1351,7 +1424,7 @@
    "orgAffil": "경기교육청",
    "firstSeen": "2026-09-11",
    "isNew": true,
-   "extVer": 110
+   "extVer": 112
   },
   {
    "id": "c3c4120502bf8369",
@@ -1378,8 +1451,8 @@
    "layer": "B",
    "contact": "051-607-3113",
    "email": "thjjang77@bscc.or.kr",
-   "personnel": "00명 ❍ 모집 조건 ▹ 주 3회 연습 참여 공연출연 및 - 초등학생 ~",
-   "deadline": "2026-11-19",
+   "personnel": "00명",
+   "deadline": "2026-10-13",
    "deadlineFrom": "raw",
    "addr": "부산광역시 남구 유엔평화로76번길",
    "lat": 35.1274889,
@@ -1387,7 +1460,7 @@
    "addrFrom": "geo",
    "firstSeen": "2026-09-09",
    "isNew": false,
-   "extVer": 110
+   "extVer": 112
   },
   {
    "id": "d4ffd6e961522db8",
@@ -1423,7 +1496,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-09-09",
    "isNew": false,
-   "extVer": 110
+   "extVer": 112
   },
   {
    "id": "3fdd35cbb82c0f4f",
@@ -1458,7 +1531,7 @@
    "orgAffil": "경기교육청",
    "firstSeen": "2026-09-09",
    "isNew": false,
-   "extVer": 110
+   "extVer": 112
   },
   {
    "id": "4a54d2969db71e8c",
@@ -1476,7 +1549,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "전체",
+   "inst": "목관",
    "instDetails": [
     "바순",
     "관악"
@@ -1494,7 +1567,7 @@
    "orgAffil": "경기교육청",
    "firstSeen": "2026-09-09",
    "isNew": false,
-   "extVer": 110
+   "extVer": 112
   },
   {
    "id": "05fd4b3129703894",
@@ -1518,15 +1591,7 @@
    ],
    "channel": "edu_goe",
    "layer": "C",
-   "contact": "070-4021-7078",
    "email": "waymaker213@gmail.com",
-   "workPeriod": "2026.10.01 ~ 2026.12.24",
-   "workHours": "1시간",
-   "personnel": "1명",
-   "duty": "음악, 체육 각 1명",
-   "bodyExcerpt": "해당 분야 전문자격증 소지자 또는 이전에 해당과목 관련 강사 이력이 있는 자",
-   "deadline": "2026-09-15",
-   "deadlineFrom": "raw",
    "orgAffil": "경기교육청",
    "addr": "경기도 고양시 덕양구 중앙로176번길 18-4",
    "lat": 37.6034456,
@@ -1534,7 +1599,15 @@
    "addrFrom": "geo",
    "firstSeen": "2026-09-09",
    "isNew": false,
-   "extVer": 110
+   "contact": "070-4021-7078",
+   "workPeriod": "2026.10.01 ~ 2026.12.24",
+   "workHours": "1시간",
+   "personnel": "1명",
+   "duty": "음악, 체육 각 1명",
+   "bodyExcerpt": "해당 분야 전문자격증 소지자 또는 이전에 해당과목 관련 강사 이력이 있는 자",
+   "deadline": "2026-09-15",
+   "deadlineFrom": "raw",
+   "extVer": 112
   },
   {
    "id": "225f11695977c8e9",
@@ -1570,7 +1643,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-09-08",
    "isNew": false,
-   "extVer": 110
+   "extVer": 112
   },
   {
    "id": "0e3c852fea427102",
@@ -1607,7 +1680,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-09-08",
    "isNew": false,
-   "extVer": 110
+   "extVer": 112
   },
   {
    "id": "fc749e3cd725b719",
@@ -1635,12 +1708,13 @@
    "isNew": false,
    "qualification": "선발예정 표시과목의 중등학교 2급 정교사 이상 교원자격증 소지자 - 담임 및 담당 사무분장을 원활하게 수행할 수 있는 자",
    "contact": "042-611-8313",
+   "duty": "담임 및 문화체육기획",
    "personnel": "1명",
    "workPeriod": "2026.10.12 ~ 2027.01.09",
    "bodyExcerpt": "구직 기간제교사 학교인력 채용공고 산학겸임.강사.명예교사신청 연수",
    "deadline": "2026-09-14",
    "deadlineFrom": "raw",
-   "extVer": 110
+   "extVer": 112
   },
   {
    "id": "251b3ad0b2c5fb75",
@@ -1678,7 +1752,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-09-07",
    "isNew": false,
-   "extVer": 110
+   "extVer": 112
   },
   {
    "id": "83d183f38af81e01",
@@ -1708,7 +1782,7 @@
    "pay": "시급 25,000원",
    "workPeriod": "2026.09.28 ~ 2026.10.02",
    "workHours": "총20시간",
-   "personnel": "1명 <교과><인원><채 용 기 간><채용사유><수업시수><비 고> <음악><1><2026.9.28.(월)~2026.10.2.(금)><특별휴가><20시간><5일>",
+   "personnel": "1명",
    "addr": "서울특별시 강남구 도곡로43길 10(역삼동)",
    "duty": "음악",
    "deadline": "2026-09-11",
@@ -1716,7 +1790,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-09-07",
    "isNew": false,
-   "extVer": 110
+   "extVer": 112
   },
   {
    "id": "8db272fa3fb51c90",
@@ -1749,7 +1823,7 @@
    "deadlineNote": "상시",
    "firstSeen": "2026-09-07",
    "isNew": false,
-   "extVer": 110
+   "extVer": 112
   },
   {
    "id": "f0f7105154553adf",
@@ -1797,7 +1871,7 @@
    "orgBoard": "연세대학교",
    "firstSeen": "2026-09-01",
    "isNew": false,
-   "extVer": 110
+   "extVer": 112
   },
   {
    "id": "4929db7084d86e8d",
@@ -1827,7 +1901,7 @@
    ],
    "firstSeen": "2026-08-31",
    "isNew": false,
-   "extVer": 110
+   "extVer": 112
   },
   {
    "id": "11376188af16b7d1",
@@ -1864,7 +1938,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-08-19",
    "isNew": false,
-   "extVer": 110
+   "extVer": 112
   },
   {
    "id": "bd2c17f19933f651",
@@ -1896,7 +1970,7 @@
    "pay": "30만원",
    "firstSeen": "2026-08-14",
    "isNew": false,
-   "extVer": 110
+   "extVer": 112
   },
   {
    "id": "0251912d3b918734",
@@ -1931,7 +2005,7 @@
    "pay": "월 40만원",
    "workHours": "매주 일요일 11시~12시(1시간)",
    "bodyExcerpt": "모집분야 : 주일예배 및 성가대 피아노 반주자 · 성가대 연습 : 주일 10시~10시 50분, 12시 10분~12시 50분(시간은 유동적임)· 지원자격 : 피아노 또는 음악 관련 전공자 및 교회 반주 경험자 우대 · 주요업무 : 주일예배 찬송가 및 예배 반주, 성가대 찬양 반주, 성가대 연습 반주",
-   "extVer": 110
+   "extVer": 112
   },
   {
    "id": "b2e199e32140e0ed",
@@ -1966,7 +2040,7 @@
    "deadlineNote": "상시",
    "firstSeen": "2026-08-08",
    "isNew": false,
-   "extVer": 110
+   "extVer": 112
   },
   {
    "id": "5fbc7e4eb4f8d92d",
@@ -1991,8 +2065,8 @@
    ],
    "channel": "cjob",
    "layer": "C",
-   "deadlineFrom": "cjob-남은기간",
    "addr": "경기 의왕시 경수대로 262 (오전동, 의왕서해그랑블(블루스퀘어))",
+   "deadlineFrom": "cjob-남은기간",
    "denomination": "순복음",
    "documents": "간단한 이력서",
    "personnel": "반주자",
@@ -2000,7 +2074,7 @@
    "deadlineNote": "상시",
    "firstSeen": "2026-08-08",
    "isNew": false,
-   "extVer": 110
+   "extVer": 112
   }
  ]
 }
