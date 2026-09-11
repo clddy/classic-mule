@@ -35059,7 +35059,7 @@
    "deadlineFrom": "raw",
    "kind": "강사",
    "tier": "교육 — 취미·입문",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "바순",
     "관악"
@@ -35202,7 +35202,7 @@
    "deadlineFrom": "raw",
    "kind": "강사",
    "tier": "교육 — 취미·입문",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
@@ -35286,10 +35286,11 @@
    "ageLimit": "제한 없음",
    "contact": "063-252-2709",
    "email": "syktj1202@naver.com",
-   "addr": "전북특별자치도 전주시 덕진구 모래내6길 36 전일중학교",
+   "addr": "전북 전주시 덕진구 모래내6길 36",
    "firstSeen": "2026-09-11",
    "lastSeen": "2026-09-11",
-   "days": 1
+   "days": 1,
+   "addrFrom": "postal"
   }
  }
 }
