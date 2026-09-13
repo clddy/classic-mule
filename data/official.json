@@ -1,8 +1,8 @@
 {
- "collectedAt": "2026-09-12 18:07",
+ "collectedAt": "2026-09-13 18:07",
  "heldNoOrigin": 1,
  "sourceCount": 91,
- "okCount": 91,
+ "okCount": 90,
  "instTotal": 75,
  "sources": [
   {
@@ -66,8 +66,8 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 23,
-   "kept": 4,
+   "raw": 24,
+   "kept": 5,
    "carried": 1,
    "drop": {
     "무관": 3,
@@ -1211,13 +1211,9 @@
    "name": "강릉문화재단(시립예술단)",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 0,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "ConnectionError: HTTPSConnectionPool(host='www.gncaf.or.kr', port=443): Max retries exceeded with url: /ko/community/recruit (Caused by N"
   },
   {
    "id": "g_gumi",
@@ -1238,9 +1234,9 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 6,
-   "kept": 5,
-   "declared": 6,
+   "raw": 5,
+   "kept": 4,
+   "declared": 5,
    "drop": {
     "비음악": 1,
     "만료": 0,
@@ -1284,6 +1280,38 @@
    "extVer": 112
   },
   {
+   "id": "8bd39a59f22eb510",
+   "org": "평강교회",
+   "region": "인천",
+   "source": "cjob.co.kr",
+   "title": "[평강교회] 반주자 구합니다.",
+   "nonMusic": null,
+   "url": "https://www.cjob.co.kr/bbs/board.php?bo_table=offerIG&wr_id=7796&c_jikjong=2&page=1",
+   "date": "2026-09-13",
+   "deadline": "2026-09-26",
+   "kind": "반주",
+   "tier": "연주",
+   "obri": true,
+   "certReq": "무관",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "ageGroup": "성인",
+   "inst": "건반",
+   "instDetails": [
+    "피아노"
+   ],
+   "channel": "cjob",
+   "layer": "C",
+   "addr": "인천 부평구 산청로 44 (산곡동)",
+   "deadlineFrom": "cjob-남은기간",
+   "documents": "이력서. 자기소개서",
+   "personnel": "반주자",
+   "pay": "50만원",
+   "firstSeen": "2026-09-13",
+   "isNew": true,
+   "extVer": 112
+  },
+  {
    "id": "9923be6868651004",
    "org": "다산새봄초등학교",
    "region": "경기",
@@ -1317,7 +1345,7 @@
    "deadlineFrom": "raw",
    "orgAffil": "경기교육청",
    "firstSeen": "2026-09-11",
-   "isNew": true,
+   "isNew": false,
    "extVer": 112
   },
   {
@@ -1355,7 +1383,7 @@
    "deadline": "2026-09-15",
    "deadlineFrom": "raw",
    "firstSeen": "2026-09-11",
-   "isNew": true,
+   "isNew": false,
    "extVer": 112
   },
   {
@@ -1395,7 +1423,7 @@
    "orgBoard": "연세대학교",
    "regionBoard": "강원",
    "firstSeen": "2026-09-11",
-   "isNew": true,
+   "isNew": false,
    "extVer": 112
   },
   {
