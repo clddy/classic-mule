@@ -1,8 +1,8 @@
 {
- "collectedAt": "2026-09-13 18:07",
+ "collectedAt": "2026-09-14 01:06",
  "heldNoOrigin": 1,
  "sourceCount": 91,
- "okCount": 90,
+ "okCount": 82,
  "instTotal": 75,
  "sources": [
   {
@@ -167,11 +167,9 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 10,
+   "raw": 0,
    "kept": 0,
    "drop": {
-    "무관": 7,
-    "비음악": 3,
     "만료": 0,
     "오래됨": 0
    }
@@ -197,11 +195,9 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 34,
+   "raw": 0,
    "kept": 0,
    "drop": {
-    "무관": 24,
-    "비음악": 10,
     "만료": 0,
     "오래됨": 0
    }
@@ -211,15 +207,9 @@
    "name": "울산문화예술회관",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 21,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "무관": 17,
-    "비음악": 1,
-    "만료": 3,
-    "오래됨": 0
-   }
+   "error": "ReadTimeout: HTTPSConnectionPool(host='www.ulsan.go.kr', port=443): Read timed out. (read timeout=20)"
   },
   {
    "id": "seoulphil",
@@ -381,8 +371,8 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 7,
-   "kept": 5,
+   "raw": 5,
+   "kept": 3,
    "drop": {
     "무관": 1,
     "비음악": 1,
@@ -397,8 +387,8 @@
    "poll": "daily",
    "ok": true,
    "raw": 4,
-   "kept": 6,
-   "carried": 3,
+   "kept": 5,
+   "carried": 2,
    "drop": {
     "무관": 1,
     "만료": 0,
@@ -465,10 +455,10 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 4,
+   "raw": 0,
    "kept": 0,
    "drop": {
-    "만료": 4,
+    "만료": 0,
     "오래됨": 0
    }
   },
@@ -595,13 +585,9 @@
    "name": "고양문화재단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 0,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.artgy.or.kr/CU/CU0101M.aspx\", waiting unti"
   },
   {
    "id": "g_gfac",
@@ -797,14 +783,9 @@
    "name": "안산시립합창단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 8,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "무관": 4,
-    "오래됨": 4,
-    "만료": 0
-   }
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='ansanarts.com', port=443): Max retries exceeded with url: /bbs/board.php?bo_table=notice (Caus"
   },
   {
    "id": "g_i_gurigokr",
@@ -824,14 +805,9 @@
    "name": "순천시립합창단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 1,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "무관": 1,
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.suncheon.go.kr', port=443): Max retries exceeded with url: /scart/community/0001;jsessioni"
   },
   {
    "id": "g_i_andonggokr",
@@ -919,13 +895,9 @@
    "name": "동해문화관광재단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 0,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "HTTPError: 403 Forbidden"
   },
   {
    "id": "g_i_cfscorkr",
@@ -972,26 +944,18 @@
    "name": "목포시립예술단(교향악단·합창단)",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 0,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.mokpo.go.kr', port=443): Max retries exceeded with url: /www/mokpo_news/notification/incru"
   },
   {
    "id": "g_yeosu",
    "name": "여수시립예술단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 0,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.yeosu.go.kr', port=443): Max retries exceeded with url: /www/govt/news/recruit (Caused by "
   },
   {
    "id": "g_wonju",
@@ -1077,13 +1041,9 @@
    "name": "충남교육청(학교 채용)",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 0,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.cne.go.kr/boardCnts/list.do?boardID=642&m="
   },
   {
    "id": "g_daeguart_notice",
@@ -1104,14 +1064,9 @@
    "name": "안산시립합창단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 6,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "오래됨": 3,
-    "무관": 3,
-    "만료": 0
-   }
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='ansanarts.com', port=443): Max retries exceeded with url: /bbs/board.php?bo_table=notice (Caus"
   },
   {
    "id": "g_pajucf",
@@ -1211,9 +1166,13 @@
    "name": "강릉문화재단(시립예술단)",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 0,
    "kept": 0,
-   "error": "ConnectionError: HTTPSConnectionPool(host='www.gncaf.or.kr', port=443): Max retries exceeded with url: /ko/community/recruit (Caused by N"
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_gumi",
@@ -1234,11 +1193,9 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 5,
-   "kept": 4,
-   "declared": 5,
+   "raw": 0,
+   "kept": 0,
    "drop": {
-    "비음악": 1,
     "만료": 0,
     "오래됨": 0
    }
@@ -1276,7 +1233,7 @@
    "deadline": "2026-09-17",
    "deadlineFrom": "raw",
    "firstSeen": "2026-09-11",
-   "isNew": false,
+   "isNew": true,
    "extVer": 112
   },
   {
@@ -1302,8 +1259,8 @@
    ],
    "channel": "cjob",
    "layer": "C",
-   "addr": "인천 부평구 산청로 44 (산곡동)",
    "deadlineFrom": "cjob-남은기간",
+   "addr": "인천 부평구 산청로 44 (산곡동)",
    "documents": "이력서. 자기소개서",
    "personnel": "반주자",
    "pay": "50만원",
@@ -1571,77 +1528,6 @@
    "extVer": 112
   },
   {
-   "id": "d4ffd6e961522db8",
-   "org": "구의중학교",
-   "region": "서울",
-   "source": "work.sen.go.kr",
-   "title": "[구의중] 시간강사 채용 공고(음악)",
-   "nonMusic": null,
-   "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=110053",
-   "date": "2026-09-09",
-   "kind": "강사",
-   "tier": "교육 — 학교",
-   "obri": false,
-   "certReq": "무관",
-   "degreeReq": "무관",
-   "careerReq": "미기재",
-   "ageGroup": "성인",
-   "inst": "목관",
-   "instDetails": [
-    "관악"
-   ],
-   "channel": "edu_seoul",
-   "layer": "C",
-   "contact": "02-6495-9406",
-   "email": "qkrwldo92@sen.go.kr",
-   "pay": "시급",
-   "workPeriod": "2026.10.08 ~ 2026.12.30(방학 기간 제외)",
-   "personnel": "1명",
-   "addr": "서울특별시 광진구 광나루로30길 80(화양동)",
-   "duty": "음악",
-   "deadline": "2026-09-13",
-   "deadlineFrom": "raw",
-   "orgAffil": "서울시교육청",
-   "firstSeen": "2026-09-09",
-   "isNew": false,
-   "extVer": 112
-  },
-  {
-   "id": "3fdd35cbb82c0f4f",
-   "org": "군포대야초등학교",
-   "region": "경기",
-   "source": "goe.go.kr",
-   "title": "[군포대야초] 계약제교원(음악 교과전담교사) 채용",
-   "nonMusic": null,
-   "url": "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=59481",
-   "date": "2026-09-09",
-   "kind": "교원",
-   "tier": "교육 — 학교",
-   "obri": false,
-   "certReq": "예",
-   "degreeReq": "무관",
-   "careerReq": "미기재",
-   "ageGroup": "성인",
-   "inst": "전체",
-   "instDetails": [],
-   "channel": "edu_goe",
-   "layer": "C",
-   "email": "dy3776@korea.kr",
-   "addr": "경기 군포시 대야2로 148(대야미동)",
-   "orgAffil": "경기교육청",
-   "firstSeen": "2026-09-09",
-   "isNew": false,
-   "contact": "070-4021-7078",
-   "duty": "초등 2 급 정교사 이상 자격증 소지자",
-   "workPeriod": "2026.10.12 ~ 2027.01.09",
-   "ageLimit": "62세 이내",
-   "personnel": "1명",
-   "bodyExcerpt": "채용내용 · 채용방법 · 비위면직자에 해당하거나 결격사유가 있을 경우 채용 불가 • 마약 · 대마 또는 향정신성의약품 중독자 검사 결과 확인서 • 잠복결핵 감염검진확인서 • 가족 채용 제한 여부 확인서(해당자만 제출) 별도 안내 4",
-   "deadline": "2026-09-13",
-   "deadlineFrom": "raw",
-   "extVer": 112
-  },
-  {
    "id": "4a54d2969db71e8c",
    "org": "노비따스음악중고등학교",
    "region": "경기",
@@ -1715,42 +1601,6 @@
    "bodyExcerpt": "해당 분야 전문자격증 소지자 또는 이전에 해당과목 관련 강사 이력이 있는 자",
    "deadline": "2026-09-15",
    "deadlineFrom": "raw",
-   "extVer": 112
-  },
-  {
-   "id": "225f11695977c8e9",
-   "org": "명일중학교",
-   "region": "서울",
-   "source": "work.sen.go.kr",
-   "title": "[명일중] 시간강사 채용공고(음악)",
-   "nonMusic": null,
-   "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=109943",
-   "date": "2026-09-08",
-   "kind": "강사",
-   "tier": "교육 — 학교",
-   "obri": false,
-   "certReq": "무관",
-   "degreeReq": "무관",
-   "careerReq": "미기재",
-   "ageGroup": "성인",
-   "inst": "목관",
-   "instDetails": [
-    "관악"
-   ],
-   "channel": "edu_seoul",
-   "layer": "C",
-   "contact": "02-429-5641",
-   "email": "ansy96@sen.go.kr",
-   "workPeriod": "2026.10.01 ~ 2026.10.08",
-   "workHours": "시간제 근무",
-   "personnel": "5명",
-   "addr": "서울특별시 강동구 양재대로156길 57(고덕동)",
-   "duty": "특수, 한문, 국어, 역사, 음악",
-   "deadline": "2026-09-13",
-   "deadlineFrom": "raw",
-   "orgAffil": "서울시교육청",
-   "firstSeen": "2026-09-08",
-   "isNew": false,
    "extVer": 112
   },
   {
