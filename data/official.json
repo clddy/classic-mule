@@ -1,8 +1,8 @@
 {
- "collectedAt": "2026-09-14 18:07",
+ "collectedAt": "2026-09-15 03:12",
  "heldNoOrigin": 1,
  "sourceCount": 91,
- "okCount": 91,
+ "okCount": 85,
  "instTotal": 75,
  "sources": [
   {
@@ -122,14 +122,9 @@
    "name": "대구문화예술회관(시향)",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 2,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "비음악": 2,
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='daeguartscenter.or.kr', port=443): Max retries exceeded with url: /index.do?menu_id=00001528 ("
   },
   {
    "id": "bscc",
@@ -167,11 +162,9 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 10,
+   "raw": 0,
    "kept": 0,
    "drop": {
-    "무관": 7,
-    "비음악": 3,
     "만료": 0,
     "오래됨": 0
    }
@@ -197,11 +190,9 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 35,
+   "raw": 0,
    "kept": 0,
    "drop": {
-    "무관": 25,
-    "비음악": 10,
     "만료": 0,
     "오래됨": 0
    }
@@ -260,8 +251,8 @@
    "drop": {
     "비음악": 3,
     "무관": 10,
-    "만료": 2,
-    "오래됨": 0
+    "만료": 1,
+    "오래됨": 1
    }
   },
   {
@@ -382,8 +373,7 @@
    "poll": "daily",
    "ok": true,
    "raw": 7,
-   "kept": 7,
-   "carried": 1,
+   "kept": 6,
    "drop": {
     "비음악": 1,
     "만료": 0,
@@ -463,10 +453,10 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 4,
+   "raw": 0,
    "kept": 0,
    "drop": {
-    "만료": 4,
+    "만료": 0,
     "오래됨": 0
    }
   },
@@ -795,14 +785,9 @@
    "name": "안산시립합창단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 8,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "무관": 4,
-    "오래됨": 4,
-    "만료": 0
-   }
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='ansanarts.com', port=443): Max retries exceeded with url: /bbs/board.php?bo_table=notice (Caus"
   },
   {
    "id": "g_i_gurigokr",
@@ -822,14 +807,9 @@
    "name": "순천시립합창단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 1,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "무관": 1,
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.suncheon.go.kr', port=443): Max retries exceeded with url: /scart/community/0001;jsessioni"
   },
   {
    "id": "g_i_andonggokr",
@@ -917,13 +897,9 @@
    "name": "동해문화관광재단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 0,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "HTTPError: 403 Forbidden"
   },
   {
    "id": "g_i_cfscorkr",
@@ -1088,27 +1064,18 @@
    "name": "대구문화예술회관 공지(시립합창단)",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 0,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.daeguartscenter.or.kr', port=443): Max retries exceeded with url: /index.do?menu_id=000015"
   },
   {
    "id": "g_ansanarts",
    "name": "안산시립합창단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 6,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "오래됨": 3,
-    "무관": 3,
-    "만료": 0
-   }
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='ansanarts.com', port=443): Max retries exceeded with url: /bbs/board.php?bo_table=notice (Caus"
   },
   {
    "id": "g_pajucf",
@@ -1235,11 +1202,9 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 4,
-   "kept": 3,
-   "declared": 4,
+   "raw": 0,
+   "kept": 0,
    "drop": {
-    "비음악": 1,
     "만료": 0,
     "오래됨": 0
    }
@@ -1269,6 +1234,7 @@
    ],
    "channel": "edu_seoul",
    "layer": "C",
+   "qualification": "해당분야 자격증 소지자 · 교육 공무원 임용 자격에 결격 사유가 없는 자",
    "contact": "02-6283-5649",
    "duty": "타악기 1명",
    "email": "escho322@naver.com",
@@ -1277,10 +1243,9 @@
    "workHours": "15:00~16:30",
    "personnel": "1명",
    "addr": "서울특별시 동대문구 천호대로47길 34(답십리동)",
-   "deadline": "2026-12-16",
+   "deadline": "2026-09-17",
    "deadlineFrom": "raw",
    "orgAffil": "서울시교육청",
-   "qualification": "해당분야 자격증 소지자 · 교육 공무원 임용 자격에 결격 사유가 없는 자",
    "firstSeen": "2026-09-14",
    "isNew": true,
    "extVer": 112
@@ -1321,44 +1286,6 @@
    "extVer": 112
   },
   {
-   "id": "b74216bbc6b97237",
-   "org": "세명컴퓨터고등학교",
-   "region": "서울",
-   "source": "work.sen.go.kr",
-   "title": "[세명컴퓨터고] 음악 시간강사 채용",
-   "nonMusic": null,
-   "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=110272",
-   "date": "2026-09-14",
-   "kind": "강사",
-   "tier": "교육 — 학교",
-   "obri": false,
-   "certReq": "예",
-   "degreeReq": "무관",
-   "careerReq": "미기재",
-   "ageGroup": "성인",
-   "inst": "목관",
-   "instDetails": [
-    "관악"
-   ],
-   "channel": "edu_seoul",
-   "layer": "C",
-   "contact": "02-354-1262",
-   "email": "webmaster@sen.go.kr",
-   "pay": "시간당 25,000원",
-   "workPeriod": "2026.10.26 ~ 2026.12.04",
-   "workHours": "요일별 시간표에 따라 다름",
-   "personnel": "1명",
-   "addr": "서울특별시 은평구 통일로92",
-   "duty": "음악",
-   "deadline": "2026-09-21",
-   "deadlineFrom": "raw",
-   "orgAffil": "서울시교육청",
-   "qualification": "해당 교과 교원 자격증 소지자",
-   "firstSeen": "2026-09-14",
-   "isNew": true,
-   "extVer": 112
-  },
-  {
    "id": "e45b3c7c36e0fc56",
    "org": "둔촌중학교",
    "region": "서울",
@@ -1380,6 +1307,7 @@
    ],
    "channel": "edu_seoul",
    "layer": "C",
+   "qualification": "내국인으로서 채용 분야 교원자격증 소지자",
    "contact": "02-489-7126",
    "email": "hhaw1752@sen.go.kr",
    "workPeriod": "2026.10.19 ~ 2027.01.04",
@@ -1390,7 +1318,6 @@
    "deadline": "2026-09-17",
    "deadlineFrom": "raw",
    "orgAffil": "서울시교육청",
-   "qualification": "내국인으로서 채용 분야 교원자격증 소지자",
    "firstSeen": "2026-09-14",
    "isNew": true,
    "extVer": 112
@@ -1411,7 +1338,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
@@ -1582,7 +1509,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "현악",
+   "inst": "전체",
    "instDetails": [
     "비올라"
    ],
@@ -1736,7 +1663,7 @@
    "personnel": "반주자",
    "pay": "50만원",
    "firstSeen": "2026-09-13",
-   "isNew": true,
+   "isNew": false,
    "extVer": 112
   },
   {
@@ -2071,77 +1998,6 @@
    "duty": "음악, 체육 각 1명",
    "bodyExcerpt": "해당 분야 전문자격증 소지자 또는 이전에 해당과목 관련 강사 이력이 있는 자",
    "deadline": "2026-09-15",
-   "deadlineFrom": "raw",
-   "extVer": 112
-  },
-  {
-   "id": "0e3c852fea427102",
-   "org": "서울이수초등학교",
-   "region": "서울",
-   "source": "work.sen.go.kr",
-   "title": "[서울이수초] 초등예술하나(창의음악) 강사 채용",
-   "nonMusic": null,
-   "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=109893",
-   "date": "2026-09-08",
-   "kind": "강사",
-   "tier": "교육 — 취미·입문",
-   "obri": false,
-   "certReq": "무관",
-   "degreeReq": "무관",
-   "careerReq": "미기재",
-   "ageGroup": "성인",
-   "inst": "목관",
-   "instDetails": [
-    "관악"
-   ],
-   "channel": "edu_seoul",
-   "layer": "C",
-   "email": "shalom115@sen.go.kr",
-   "addr": "서울특별시 서초구 방배천로4길 23(방배동)",
-   "orgAffil": "서울시교육청",
-   "firstSeen": "2026-09-08",
-   "isNew": false,
-   "contact": "02-521-5282",
-   "pay": "시간당 42,000원",
-   "workPeriod": "2026.10.13 ~ 2026.11.10",
-   "workHours": "09:00 ~ 12:10",
-   "personnel": "1명",
-   "duty": "창의음악(2학년)",
-   "deadline": "2026-09-14",
-   "deadlineFrom": "raw",
-   "extVer": 112
-  },
-  {
-   "id": "fc749e3cd725b719",
-   "org": "대전전자디자인고등학교",
-   "region": "대전",
-   "source": "dje.go.kr",
-   "title": "[대전전자디자인고] 기간제 교원(음악) 채용",
-   "nonMusic": null,
-   "url": "https://www.dje.go.kr/boardCnts/view.do?boardID=54&boardSeq=3362969&lev=0&s=dje&m=030202",
-   "date": "2026-09-08",
-   "kind": "교원",
-   "tier": "교육 — 학교",
-   "obri": false,
-   "certReq": "예",
-   "degreeReq": "무관",
-   "careerReq": "미기재",
-   "ageGroup": "성인",
-   "inst": "전체",
-   "instDetails": [],
-   "channel": "edu_dje",
-   "layer": "C",
-   "email": "djedh@korea.kr",
-   "orgBoard": "대전교육청(학교 채용)",
-   "firstSeen": "2026-09-08",
-   "isNew": false,
-   "qualification": "선발예정 표시과목의 중등학교 2급 정교사 이상 교원자격증 소지자 - 담임 및 담당 사무분장을 원활하게 수행할 수 있는 자",
-   "contact": "042-611-8313",
-   "duty": "담임 및 문화체육기획",
-   "personnel": "1명",
-   "workPeriod": "2026.10.12 ~ 2027.01.09",
-   "bodyExcerpt": "구직 기간제교사 학교인력 채용공고 산학겸임.강사.명예교사신청 연수",
-   "deadline": "2026-09-14",
    "deadlineFrom": "raw",
    "extVer": 112
   },
