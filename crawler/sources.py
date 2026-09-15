@@ -918,6 +918,34 @@ STRICT_ENSEMBLE_PAT = re.compile(
     r".{0,10}(단원|모집|채용|오디션|위촉|충원|초빙|상근)"
     r"|(상임|비상임|객원|시간제)\s*단원")
 
+# icms(대구문화예술회관 등) 게시판은 제목 링크가 href="javascript:" 에
+# onclick="fn_icms_navi_common('view','11215')" 뿐이다. 글번호만 있고 주소가 없으니
+# 범용 파서가 '자바스크립트 링크'로 보고 전부 버렸다 — 합창단·교향악단 공고가 줄지어
+# 있는데 원본 0건이었다 (2026-09-14 사이트가 실제 href 에서 onclick 으로 바꾼 날부터).
+# 상세는 목록 페이지의 <form name="board" method="get"> 에 글번호를 채워 보내는
+# GET 이라, 폼의 숨은 값(menu_id·bbsId)과 글번호로 같은 주소를 조립할 수 있다.
+# 예전 저장분 주소와 똑같은 꼴이다:
+#   index.do?menu_id=00001528&menu_link=/icms/bbs/selectBoardArticle.do&bbsId=BBS_00303&nttId=11215
+_ICMS_VIEW = re.compile(r"fn_icms_navi_common\(\s*'view'\s*,\s*'(\d+)'")
+
+
+def _icms_view_url(soup, a, board_url):
+    m = _ICMS_VIEW.search(a.get("onclick") or "")
+    if not m:
+        return None
+    form = soup.find("form", attrs={"name": "board"})
+    if not form:
+        return None
+    def val(name):
+        el = form.find("input", attrs={"name": name})
+        return el.get("value") if el else None
+    menu_id, bbs_id = val("menu_id"), val("bbsId")
+    if not (menu_id and bbs_id):
+        return None
+    return urljoin(board_url, f"index.do?menu_id={menu_id}&menu_link=/icms/bbs/selectBoardArticle.do"
+                              f"&bbsId={bbs_id}&nttId={m.group(1)}")
+
+
 def _make_generic_parser(entry):
     music_pat = (re.compile(entry["title_pat"]) if entry.get("title_pat")
                  else STRICT_ENSEMBLE_PAT if entry.get("strict") else MUSIC_PAT)
@@ -940,7 +968,10 @@ def _make_generic_parser(entry):
                 # 새올(표준 지자체 게시판) 등: 실제 permalink가 data-action에 있음
                 href = a.get("data-action") or ""
                 if not href or href.startswith(("javascript", "#", "mailto")):
-                    continue
+                    # icms 게시판: 링크가 onclick 의 글번호뿐이다 — 조립해서 쓴다
+                    href = _icms_view_url(soup, a, entry["board_url"]) or ""
+                    if not href:
+                        continue
             seen.add(t)
             items.append(make_item(entry["name"], entry["region"],
                                    urlparse(entry["board_url"]).netloc.removeprefix("www."),

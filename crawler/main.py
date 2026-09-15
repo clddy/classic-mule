@@ -306,7 +306,7 @@ def find_attachments(soup, base_url):
                     cands.append((full, el.get_text(" ", strip=True)))
     return cands[:4]
 
-EXT_VER = 112         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
+EXT_VER = 115         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
                      # v32(2026-08-02): 모집분야 구획 악기 추출(insts_from_recruit_text) + 원문 보관층
                      # 24: work.sen 등록일(게시일) 추출 추가 — date=None이던 승계분을 다시 뽑게
                      # 25: body_text 도입 — 본문을 <header>에 넣는 사이트(대전교육청)의 마감일을
@@ -466,6 +466,28 @@ _WP_DATE = re.compile(r"(20\d{2})\s*[.\-/년]\s*(\d{1,2})\s*[.\-/월]\s*(\d{1,2}
 _WP_TAIL = re.compile(r"[(（]([^)）]{2,40})[)）]\s*$")
 
 
+def _fix_end_year(start, end, text):
+    """끝 날짜가 시작보다 이르면 연도 오타다 — 학년도를 넘기는 기간을 쓰며 연도를 안 바꿨다.
+
+    경안중 '계약 기간 : 2026. 10. 2.(금) ~ 2026. 1. 29.(금)' — 2026-01-29 는 목요일이고
+    2027-01-29 가 금요일이다. 원문이 붙인 요일이 오타를 증명한다 (L4#27, 2026-09-15).
+    요일이 붙어 있으면 그 요일과 맞을 때만, 없으면 이듬해로 넘긴 끝이 시작 뒤 1년 안일 때만 고친다.
+    """
+    from datetime import date as _d
+    try:
+        s = _d(int(start[0]), int(start[1]), int(start[2]))
+        e = _d(int(end[0]), int(end[1]), int(end[2]))
+        e2 = _d(int(end[0]) + 1, int(end[1]), int(end[2]))
+    except ValueError:
+        return end
+    if e >= s or not (s < e2 <= _d(s.year + 1, s.month, min(s.day, 28))):
+        return end
+    m = re.search(rf"{int(end[1])}\s*[.\-/월]\s*{int(end[2])}\s*[.일]?\s*\(\s*([월화수목금토일])", text)
+    if m and "월화수목금토일"[e2.weekday()] != m.group(1):
+        return end
+    return (str(e2.year), end[1], end[2])
+
+
 def normalize_period(v):
     """근무·계약 기간을 'YYYY.MM.DD ~ YYYY.MM.DD' 로. 뒤의 짧은 단서는 괄호로 남긴다."""
     if not v:
@@ -486,6 +508,7 @@ def normalize_period(v):
     def fmt(d):
         y, m, dd = d
         return f"{y}.{int(m):02d}.{int(dd):02d}"
+    ds = [ds[0], _fix_end_year(ds[0], ds[1], t)] + ds[2:]
     out = f"{fmt(ds[0])} ~ {fmt(ds[1])}"
     m_tail = _WP_TAIL.search(t)
     # '(6개월)', '(학교 사정에 따라 연장 가능)' 처럼 기간을 보충하는 말만 살린다.
@@ -1636,6 +1659,19 @@ def _refill_from_raw(items, today):
             _c = [c for c in cands if c != _wp_end] or cands
             dl = max(_c) if _c else extract_deadline(rawstore.all_text(it["id"]),
                                                      ref_year=_ref_year(it))
+            # 후보가 한 달 넘게 흩어져 있으면 max 를 믿지 않는다 — 접수기간 뒤에 오는 전형
+            # 일정(합격자 서류 제출·면접·임용 준비)의 날짜가 섞였다는 뜻이다(만료 판정의
+            # '흩어짐 30일' 기준과 같다). 군산중앙여고는 접수 10.12~10.16 인데 '제1차 시험
+            # 합격자 제출기간 12.30~2027.01.04' 가 max 로 이겨 마감이 넉 달 뒤로 실렸다 —
+            # EXT_VER 를 올려 승계값이 초기화될 때마다 다시 틀어지는 잠복 버그였다 (2026-09-15).
+            # 그때는 **첫 확정 어휘 윈도**(공고문이 먼저 밝힌 접수기간)를 쓰되, 후보 안에
+            # 있는 값일 때만 받는다 — 첨부 공고문을 먼저 보는 것은 _raw_deadlines 와 같다.
+            if _c and _span_days(min(_c), max(_c)) > 30:
+                _ry = _ref_year(it)
+                _first = (extract_deadline(rawstore.attach_text(it["id"]), ref_year=_ry)
+                          or extract_deadline(rawstore.all_text(it["id"]), ref_year=_ry))
+                if _first in _c:
+                    dl = _first
             # 제목에만 마감이 적힌 공고('…모집(~8/14)')는 본문 규칙으로 안 잡힌다.
             # 수집 때는 deadline_from_title 이 봤지만 재추출 경로엔 그 단계가 없었다.
             if not dl:
@@ -1812,7 +1848,9 @@ _QC_MUST = {
     # 인원엔 수가 있어야 한다 — '악기활용수업'이 인원 행세를 했다 (해마루, 2026-09-03)
     "personnel": re.compile(r"\d|[Oo○]\s*명|약간|미정"),
     "perfPeriod": re.compile(r"\d"),
-    "pay":        re.compile(r"[\d,]{2,}\s*(?:만\s*)?원|시급|일당|사례|협의|상담|추후|결정"),
+    # '월급 2,300천원' — 공공 예술단은 천원 단위로 적는다. 이 꼴을 몰라 멀쩡한 급여가
+    # '모양 불일치'로 버려지고 [미추출]이 나흘째 떴다 (춘천시립예술단, 2026-09-15).
+    "pay":        re.compile(r"[\d,]{2,}\s*(?:만\s*|천\s*)?원|시급|일당|사례|협의|상담|추후|결정"),
     "contact":    re.compile(r"^0\d{1,2}-?\d{3,4}-?\d{4}$"),      # 전화번호 그 자체여야 한다
     # 인원 칸엔 숫자 대신 역할명이 오기도 한다 — 기독정보넷 '모시는분: 반주자'.
     # 짧은 순한글(콜론 없음)이면 역할명으로 인정한다. 첫 검수에서 이걸 몰라
