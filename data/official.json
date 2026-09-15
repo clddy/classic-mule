@@ -1,5 +1,5 @@
 {
- "collectedAt": "2026-09-15 17:37",
+ "collectedAt": "2026-09-15 18:07",
  "heldNoOrigin": 1,
  "sourceCount": 91,
  "okCount": 91,
@@ -198,10 +198,10 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 35,
+   "raw": 36,
    "kept": 0,
    "drop": {
-    "무관": 26,
+    "무관": 27,
     "비음악": 9,
     "만료": 0,
     "오래됨": 0
