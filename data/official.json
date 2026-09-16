@@ -1,8 +1,8 @@
 {
- "collectedAt": "2026-09-16 18:08",
+ "collectedAt": "2026-09-17 01:39",
  "heldNoOrigin": 1,
  "sourceCount": 91,
- "okCount": 91,
+ "okCount": 83,
  "instTotal": 75,
  "sources": [
   {
@@ -167,11 +167,9 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 10,
+   "raw": 0,
    "kept": 0,
    "drop": {
-    "무관": 7,
-    "비음악": 3,
     "만료": 0,
     "오래됨": 0
    }
@@ -197,11 +195,9 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 38,
+   "raw": 0,
    "kept": 0,
    "drop": {
-    "무관": 29,
-    "비음악": 9,
     "만료": 0,
     "오래됨": 0
    }
@@ -381,9 +377,9 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 9,
-   "kept": 9,
-   "carried": 2,
+   "raw": 8,
+   "kept": 7,
+   "carried": 1,
    "drop": {
     "무관": 1,
     "비음악": 1,
@@ -398,8 +394,8 @@
    "poll": "daily",
    "ok": true,
    "raw": 1,
-   "kept": 10,
-   "carried": 9,
+   "kept": 9,
+   "carried": 8,
    "drop": {
     "만료": 0,
     "오래됨": 0
@@ -464,10 +460,10 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 4,
+   "raw": 0,
    "kept": 0,
    "drop": {
-    "만료": 4,
+    "만료": 0,
     "오래됨": 0
    }
   },
@@ -594,26 +590,18 @@
    "name": "고양문화재단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 0,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.artgy.or.kr/CU/CU0101M.aspx\", waiting unti"
   },
   {
    "id": "g_gfac",
    "name": "강남문화재단(강남심포니)",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 0,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "ConnectionError: HTTPSConnectionPool(host='gfac.or.kr', port=443): Max retries exceeded with url: /site/main/recruit/accordionList (Cause"
   },
   {
    "id": "g_sjcf",
@@ -797,14 +785,9 @@
    "name": "안산시립합창단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 8,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "무관": 4,
-    "오래됨": 4,
-    "만료": 0
-   }
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='ansanarts.com', port=443): Max retries exceeded with url: /bbs/board.php?bo_table=notice (Caus"
   },
   {
    "id": "g_i_gurigokr",
@@ -824,14 +807,9 @@
    "name": "순천시립합창단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 1,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "무관": 1,
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.suncheon.go.kr', port=443): Max retries exceeded with url: /scart/community/0001;jsessioni"
   },
   {
    "id": "g_i_andonggokr",
@@ -853,13 +831,9 @@
    "name": "경기문화재단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 0,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "HTTPError: 403 Forbidden"
   },
   {
    "id": "g_i_hcforkr",
@@ -919,13 +893,9 @@
    "name": "동해문화관광재단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 0,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "HTTPError: 403 Forbidden"
   },
   {
    "id": "g_i_cfscorkr",
@@ -1090,28 +1060,18 @@
    "name": "대구문화예술회관 공지(시립합창단)",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 7,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "무관": 6,
-    "만료": 1,
-    "오래됨": 0
-   }
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='daeguartscenter.or.kr', port=443): Max retries exceeded with url: /index.do?menu_id=00001528 ("
   },
   {
    "id": "g_ansanarts",
    "name": "안산시립합창단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 6,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "오래됨": 3,
-    "무관": 3,
-    "만료": 0
-   }
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='ansanarts.com', port=443): Max retries exceeded with url: /bbs/board.php?bo_table=notice (Caus"
   },
   {
    "id": "g_pajucf",
@@ -1238,11 +1198,9 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 6,
-   "kept": 5,
-   "declared": 6,
+   "raw": 0,
+   "kept": 1,
    "drop": {
-    "비음악": 1,
     "만료": 0,
     "오래됨": 0
    }
@@ -1269,15 +1227,15 @@
    "instDetails": [],
    "channel": "edu_jbe",
    "layer": "C",
+   "email": "wanju2619@naver.com",
    "orgBoard": "학교법인 부림학원(완주고등학교)(전북교육청)",
    "addr": "전북특별자치도 완주군 봉동읍 봉동로 172 완주고등학교",
-   "email": "wanju2619@naver.com",
    "workPeriod": "2027-03-01",
-   "bodyExcerpt": "공고에 ‘채용의 제한’ 부분 명시 2. · 지침 [붙임 2] 기간제교원 채용 공고(예시) 다운로드 지침",
-   "deadline": "2026-09-16",
-   "deadlineFrom": "raw",
    "workHours": "전일제 근무(1일 8시간)",
    "ageLimit": "제한 없음",
+   "bodyExcerpt": "공고에 ‘채용의 제한’ 부분 명시 2. · 지침 [붙임 2] 기간제교원 채용 공고(예시) 다운로드 지침",
+   "deadline": "2027-01-05",
+   "deadlineFrom": "raw",
    "firstSeen": "2026-09-16",
    "isNew": false,
    "extVer": 115
@@ -1302,16 +1260,16 @@
    "instDetails": [],
    "channel": "edu_jbe",
    "layer": "C",
+   "contact": "0638611080",
+   "email": "hana7838@hanmail.net",
    "orgBoard": "학교법인삼성학원(함열여자고등학교)(전북교육청)",
    "addr": "전북특별자치도 익산시 함열읍 익산대로 1852 함열여자고등학교",
-   "email": "hana7838@hanmail.net",
-   "contact": "0638611080",
    "workPeriod": "2027-03-01",
+   "workHours": "전일제 근무(1일 8시간)",
+   "ageLimit": "제한 없음",
    "bodyExcerpt": "공고에 ‘채용의 제한’ 부분 명시 2. · 지침 [붙임 2] 기간제교원 채용 공고(예시) 다운로드 지침",
    "deadline": "2026-10-16",
    "deadlineFrom": "raw",
-   "workHours": "전일제 근무(1일 8시간)",
-   "ageLimit": "제한 없음",
    "firstSeen": "2026-09-16",
    "isNew": false,
    "extVer": 115
@@ -1405,16 +1363,16 @@
    "instDetails": [],
    "channel": "edu_jbe",
    "layer": "C",
+   "contact": "01022909301",
+   "email": "moon93017@hanmail.net",
    "orgBoard": "전주화산초등학교(전북교육청)",
    "addr": "전북특별자치도 전주시 완산구 따박골7길 20 전주화산초등학교",
-   "email": "moon93017@hanmail.net",
-   "contact": "01022909301",
    "workPeriod": "2026.10.06 ~ 2026.12.31",
+   "workHours": "전일제 근무(1일 8시간)",
+   "ageLimit": "제한 없음",
    "bodyExcerpt": "공고에 ‘채용의 제한’ 부분 명시 2. · 지침 [붙임 2] 기간제교원 채용 공고(예시) 다운로드 지침",
    "deadline": "2026-09-20",
    "deadlineFrom": "raw",
-   "workHours": "전일제 근무(1일 8시간)",
-   "ageLimit": "제한 없음",
    "firstSeen": "2026-09-16",
    "isNew": true,
    "extVer": 115
@@ -1452,7 +1410,7 @@
    "deadlineFrom": "raw",
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-09-15",
-   "isNew": true,
+   "isNew": false,
    "extVer": 115
   },
   {
@@ -1488,44 +1446,7 @@
    "deadlineFrom": "raw",
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-09-15",
-   "isNew": true,
-   "extVer": 115
-  },
-  {
-   "id": "e745c98915570ad3",
-   "org": "서울서래초등학교",
-   "region": "서울",
-   "source": "work.sen.go.kr",
-   "title": "[서울서래초] 교과전담(음악) 시간강사님을 모십니다.",
-   "nonMusic": null,
-   "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=110485",
-   "date": "2026-09-15",
-   "kind": "교원",
-   "tier": "교육 — 학교",
-   "obri": false,
-   "certReq": "무관",
-   "degreeReq": "무관",
-   "careerReq": "미기재",
-   "ageGroup": "성인",
-   "inst": "목관",
-   "instDetails": [
-    "관악"
-   ],
-   "channel": "edu_seoul",
-   "layer": "C",
-   "email": "webmaster@sen.go.kr",
-   "addr": "서울특별시 서초구 방배로 260(방배동)",
-   "orgAffil": "서울시교육청",
-   "firstSeen": "2026-09-15",
-   "isNew": true,
-   "contact": "010-3036-2066",
-   "pay": "시급 25,000원",
-   "workPeriod": "2026.09.16 ~ 2026.09.18",
-   "workHours": "14시간",
-   "personnel": "1명",
-   "duty": "5, 6학년 과학 및 6학년 음악(1시간)",
-   "deadline": "2026-09-16",
-   "deadlineFrom": "raw",
+   "isNew": false,
    "extVer": 115
   },
   {
@@ -1811,46 +1732,6 @@
    "extVer": 115
   },
   {
-   "id": "e4e726430dd13d53",
-   "org": "경안중학교",
-   "region": "경기",
-   "source": "goe.go.kr",
-   "title": "[경안중] 오케스트라 운영 외부강사 채용",
-   "nonMusic": null,
-   "url": "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=59882",
-   "date": "2026-09-14",
-   "kind": "강사",
-   "tier": "교육 — 취미·입문",
-   "obri": false,
-   "certReq": "무관",
-   "degreeReq": "무관",
-   "careerReq": "미기재",
-   "ageGroup": "성인",
-   "inst": "전체",
-   "instDetails": [
-    "비올라"
-   ],
-   "channel": "edu_goe",
-   "layer": "C",
-   "email": "kams4214@korea.kr",
-   "orgAffil": "경기교육청",
-   "addr": "경기도 광주시 순암로",
-   "lat": 37.3951152,
-   "lng": 127.2475806,
-   "addrFrom": "geo",
-   "firstSeen": "2026-09-14",
-   "isNew": false,
-   "contact": "070-4021-7078",
-   "workPeriod": "2026.10.02 ~ 2027.01.29",
-   "workHours": "2시간",
-   "personnel": "1명",
-   "duty": "분야 모집인원 운영조건 강사료 비고 비올라 강사 1명 -2시간(90분)*n 회(금요일 3:40~5:10 분) 1시간당 강사 40,000",
-   "bodyExcerpt": "해당 분야에 전문적인 능력을 가진 자 또는 자격증 소지자",
-   "deadline": "2026-09-16",
-   "deadlineFrom": "raw",
-   "extVer": 115
-  },
-  {
    "id": "51a5a672c0ba802d",
    "org": "시흥고등학교",
    "region": "경기",
@@ -1979,11 +1860,11 @@
    "addr": "서울특별시 서대문구 연세로50",
    "addrFrom": "postal",
    "email": "eunangela@yonsei.ac.kr",
+   "firstSeen": "2026-09-16",
+   "isNew": false,
    "bodyExcerpt": "임용일 전까지 박사학위 취득 가능한 자(임용일 전 박사학위 미 취득 시 임용 취소) 추가자격조건에 별도 자격이 명시되어 있는 경우 그 내용을 따름 · 대학(원) 별도의 신임교원 지원 제도는 해당 홈페이지 참조 · 임용 트랙은 추가자격요건에 명시되어 있지 않은 경우 정년트랙 또는 비정년트랙 강의/연구전담교원으로 임용할 수 있음",
    "deadline": "2026-10-02",
    "deadlineFrom": "raw",
-   "firstSeen": "2026-09-16",
-   "isNew": false,
    "extVer": 115
   },
   {
@@ -2055,44 +1936,6 @@
    "addrFrom": "geo",
    "orgBoard": "연세대학교",
    "regionBoard": "강원",
-   "firstSeen": "2026-09-11",
-   "isNew": false,
-   "extVer": 115
-  },
-  {
-   "id": "18895e13a2015f86",
-   "org": "배화여자중학교",
-   "region": "서울",
-   "source": "work.sen.go.kr",
-   "title": "[배화여중] 단기 음악과 코티칭 강사(리라) 채용",
-   "nonMusic": null,
-   "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=110087",
-   "date": "2026-09-10",
-   "kind": "강사",
-   "tier": "교육 — 취미·입문",
-   "obri": false,
-   "certReq": "무관",
-   "degreeReq": "무관",
-   "careerReq": "미기재",
-   "ageGroup": "성인",
-   "inst": "목관",
-   "instDetails": [
-    "관악"
-   ],
-   "channel": "edu_seoul",
-   "layer": "C",
-   "qualification": "해당분야 전공자 또는 전문가",
-   "contact": "02-725-6451",
-   "email": "aissem@sen.go.kr",
-   "pay": "시간당 45,000원",
-   "workPeriod": "2026.10.01 ~ 2026.11.05(학사 일정에 따라 수업이 없는 주간 있음)",
-   "workHours": "주 5시간",
-   "duty": "음악 리라 수업(코티칭)",
-   "personnel": "1명",
-   "addr": "서울시 종로구 필운대로1길 342026",
-   "deadline": "2026-09-16",
-   "deadlineFrom": "raw",
-   "orgAffil": "서울시교육청",
    "firstSeen": "2026-09-11",
    "isNew": false,
    "extVer": 115
