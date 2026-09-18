@@ -1,14 +1,9 @@
 {
- "date": "2026-09-17",
+ "date": "2026-09-18",
  "total": 75,
- "covered": 3,
- "gapCount": 72,
+ "covered": 4,
+ "gapCount": 71,
  "gaps": [
-  {
-   "name": "서울시립교향악단",
-   "type": "교향악단",
-   "region": "서울"
-  },
   {
    "name": "KBS교향악단",
    "type": "교향악단",
@@ -367,8 +362,8 @@
  ],
  "master": {
   "total": 604,
-  "covered": 2,
-  "gapCount": 602,
+  "covered": 5,
+  "gapCount": 599,
   "byCategory": {
    "대학": {
     "total": 77,
@@ -380,11 +375,11 @@
    },
    "예술단": {
     "total": 54,
-    "covered": 2
+    "covered": 4
    },
    "지자체": {
     "total": 323,
-    "covered": 0
+    "covered": 1
    },
    "공연장": {
     "total": 69,
@@ -854,11 +849,6 @@
     "region": "서울"
    },
    {
-    "name": "서울시립교향악단",
-    "cat": "예술단",
-    "region": "서울"
-   },
-   {
     "name": "대구시립교향악단",
     "cat": "예술단",
     "region": "대구"
@@ -995,11 +985,6 @@
    },
    {
     "name": "국립합창단",
-    "cat": "예술단",
-    "region": "서울"
-   },
-   {
-    "name": "서울시합창단",
     "cat": "예술단",
     "region": "서울"
    },
@@ -2235,11 +2220,6 @@
    },
    {
     "name": "구리문화원",
-    "cat": "지자체",
-    "region": "경기"
-   },
-   {
-    "name": "남양주문화원",
     "cat": "지자체",
     "region": "경기"
    },
