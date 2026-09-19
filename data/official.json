@@ -1,8 +1,8 @@
 {
- "collectedAt": "2026-09-19 01:20",
+ "collectedAt": "2026-09-19 18:08",
  "heldNoOrigin": 1,
  "sourceCount": 91,
- "okCount": 84,
+ "okCount": 91,
  "instTotal": 75,
  "sources": [
   {
@@ -167,9 +167,11 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
+   "raw": 10,
    "kept": 0,
    "drop": {
+    "비음악": 3,
+    "무관": 7,
     "만료": 0,
     "오래됨": 0
    }
@@ -195,9 +197,11 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
+   "raw": 39,
    "kept": 1,
    "drop": {
+    "비음악": 10,
+    "무관": 28,
     "만료": 0,
     "오래됨": 0
    }
@@ -337,9 +341,13 @@
    "name": "전주시(시립예술단)",
    "layer": "D",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 0,
    "kept": 0,
-   "error": "ReadTimeout: HTTPSConnectionPool(host='www.jeonju.go.kr', port=443): Read timed out. (read timeout=20)"
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "sac",
@@ -455,10 +463,10 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
+   "raw": 4,
    "kept": 0,
    "drop": {
-    "만료": 0,
+    "만료": 4,
     "오래됨": 0
    }
   },
@@ -585,9 +593,13 @@
    "name": "고양문화재단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 0,
    "kept": 0,
-   "error": "TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.artgy.or.kr/CU/CU0101M.aspx\", waiting unti"
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_gfac",
@@ -742,9 +754,15 @@
    "name": "전주시립교향악단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 7,
    "kept": 0,
-   "error": "ReadTimeout: HTTPSConnectionPool(host='art.jeonju.go.kr', port=443): Read timed out. (read timeout=20)"
+   "drop": {
+    "무관": 4,
+    "비음악": 3,
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_i_gunsangokr",
@@ -778,9 +796,14 @@
    "name": "안산시립합창단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 8,
    "kept": 0,
-   "error": "ConnectTimeout: HTTPSConnectionPool(host='ansanarts.com', port=443): Max retries exceeded with url: /bbs/board.php?bo_table=notice (Caus"
+   "drop": {
+    "무관": 4,
+    "오래됨": 4,
+    "만료": 0
+   }
   },
   {
    "id": "g_i_gurigokr",
@@ -800,9 +823,14 @@
    "name": "순천시립합창단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 1,
    "kept": 0,
-   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.suncheon.go.kr', port=443): Max retries exceeded with url: /scart/community/0001;jsessioni"
+   "drop": {
+    "무관": 1,
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_i_andonggokr",
@@ -890,9 +918,13 @@
    "name": "동해문화관광재단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 0,
    "kept": 0,
-   "error": "HTTPError: 403 Forbidden"
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_i_cfscorkr",
@@ -1072,9 +1104,14 @@
    "name": "안산시립합창단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 6,
    "kept": 0,
-   "error": "ConnectTimeout: HTTPSConnectionPool(host='ansanarts.com', port=443): Max retries exceeded with url: /bbs/board.php?bo_table=notice (Caus"
+   "drop": {
+    "오래됨": 3,
+    "무관": 3,
+    "만료": 0
+   }
   },
   {
    "id": "g_pajucf",
@@ -1200,9 +1237,11 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
-   "kept": 2,
+   "raw": 8,
+   "kept": 7,
+   "declared": 8,
    "drop": {
+    "비음악": 1,
     "만료": 0,
     "오래됨": 0
    }
@@ -1333,16 +1372,14 @@
    "channel": "artmore",
    "layer": "A",
    "deadlineFrom": "origin",
-   "contact": "02-6320-7066",
-   "email": "ch21@kead.or.kr",
-   "pay": "월급 1,500,000원",
-   "workHours": "주5일",
-   "personnel": "계약직 1명",
-   "bodyExcerpt": "문의하기 입사 지원 완료 닫기 예술경영지원센터에서 직원 모집합니다. · 채용 공고에 입사 지원 했습니다",
    "qualification": "표 모집분야 담당업무 채용 인원 응시자격 발달장애 예술인(장애인 제한, 계약직)",
+   "contact": "02-6320-7066",
    "duty": "채용 인원",
+   "email": "ch21@kead.or.kr",
+   "workHours": "4시간(9:00~13:30, 휴게시간 12:00~12:30)〇",
    "hiringOrg": "성명 - 제출서류명 ’ 으로 제출",
    "orgBoard": "서울시립교향악단",
+   "bodyExcerpt": "법원의 판결 또는 다른 법률에 따라 자격이 상실되거나 정지 된 자 7. · 블라인드 채용 및 기타사항 〇 서울시립교향악단은 블라인드 채용을 준수합니다 . · 〇 채용일정은 내부사정에 의하여 변경될 수 있습니다",
    "firstSeen": "2026-09-18",
    "isNew": true,
    "extVer": 115
@@ -1705,14 +1742,14 @@
    ],
    "channel": "cwcf",
    "layer": "B",
-   "email": "acutecritic@naver.com",
-   "firstSeen": "2026-09-17",
-   "isNew": false,
    "qualification": "대학및대학원생",
+   "email": "acutecritic@naver.com",
    "personnel": "6명(파트별최대 3명)ㅇ 제출서류",
    "duty": "바이올린, 첼로 바이올린첼로(김덕우)(김민지) 최대 3명 | 최대 3명 10:00~12:00 / 1인당 40분이내지도 ©",
    "deadline": "2026-10-16",
    "deadlineFrom": "raw",
+   "firstSeen": "2026-09-17",
+   "isNew": false,
    "extVer": 115
   },
   {
@@ -1950,17 +1987,17 @@
    "channel": "hibrain",
    "layer": "B",
    "subjectFrom": "attach",
+   "qualification": "(1)“공무원법”, “사립학교법”, “교육공무원법”에 명시된 결격사유가 없는 사람",
    "email": "htus_1@htus.ac.kr",
+   "bodyExcerpt": "접수기간 : 2026 년 9 월 17 일(목)~ 2026 년 10 월 2 일(금) 오후 6 시까지(전자우편으로만 접수)",
+   "deadline": "2026-10-07",
+   "deadlineFrom": "raw",
    "addr": "전남광주통합특별시 남구 제중로 77",
    "lat": 35.1395444,
    "lng": 126.9122454,
    "addrFrom": "geo",
    "firstSeen": "2026-09-18",
    "isNew": false,
-   "qualification": "(1)“공무원법”, “사립학교법”, “교육공무원법”에 명시된 결격사유가 없는 사람",
-   "bodyExcerpt": "접수기간 : 2026 년 9 월 17 일(목)~ 2026 년 10 월 2 일(금) 오후 6 시까지(전자우편으로만 접수)",
-   "deadline": "2026-10-07",
-   "deadlineFrom": "raw",
    "extVer": 115
   },
   {
@@ -2195,11 +2232,11 @@
    "addr": "서울특별시 서대문구 연세로50",
    "addrFrom": "postal",
    "email": "eunangela@yonsei.ac.kr",
-   "firstSeen": "2026-09-16",
-   "isNew": false,
    "bodyExcerpt": "임용일 전까지 박사학위 취득 가능한 자(임용일 전 박사학위 미 취득 시 임용 취소) 추가자격조건에 별도 자격이 명시되어 있는 경우 그 내용을 따름 · 대학(원) 별도의 신임교원 지원 제도는 해당 홈페이지 참조 · 임용 트랙은 추가자격요건에 명시되어 있지 않은 경우 정년트랙 또는 비정년트랙 강의/연구전담교원으로 임용할 수 있음",
    "deadline": "2026-10-02",
    "deadlineFrom": "raw",
+   "firstSeen": "2026-09-16",
+   "isNew": false,
    "extVer": 115
   },
   {
