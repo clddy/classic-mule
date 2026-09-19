@@ -1,8 +1,8 @@
 {
- "collectedAt": "2026-09-19 18:08",
+ "collectedAt": "2026-09-20 00:57",
  "heldNoOrigin": 1,
  "sourceCount": 91,
- "okCount": 91,
+ "okCount": 78,
  "instTotal": 75,
  "sources": [
   {
@@ -68,10 +68,10 @@
    "poll": "daily",
    "ok": true,
    "raw": 23,
-   "kept": 4,
+   "kept": 5,
    "drop": {
     "무관": 3,
-    "만료": 16,
+    "만료": 15,
     "오래됨": 0
    }
   },
@@ -122,14 +122,9 @@
    "name": "대구문화예술회관(시향)",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 2,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "비음악": 2,
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='daeguartscenter.or.kr', port=443): Max retries exceeded with url: /index.do?menu_id=00001528 ("
   },
   {
    "id": "bscc",
@@ -167,11 +162,9 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 10,
+   "raw": 0,
    "kept": 0,
    "drop": {
-    "비음악": 3,
-    "무관": 7,
     "만료": 0,
     "오래됨": 0
    }
@@ -197,11 +190,9 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 39,
+   "raw": 0,
    "kept": 1,
    "drop": {
-    "비음악": 10,
-    "무관": 28,
     "만료": 0,
     "오래됨": 0
    }
@@ -211,15 +202,9 @@
    "name": "울산문화예술회관",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 21,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "무관": 17,
-    "비음악": 1,
-    "만료": 3,
-    "오래됨": 0
-   }
+   "error": "ReadTimeout: HTTPSConnectionPool(host='www.ulsan.go.kr', port=443): Read timed out. (read timeout=20)"
   },
   {
    "id": "seoulphil",
@@ -463,10 +448,10 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 4,
+   "raw": 0,
    "kept": 0,
    "drop": {
-    "만료": 4,
+    "만료": 0,
     "오래됨": 0
    }
   },
@@ -566,13 +551,9 @@
    "name": "안양문화예술재단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 0,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://ayac.or.kr/base/menu/baseView?menuLevel=1&menu"
   },
   {
    "id": "g_uac",
@@ -796,41 +777,27 @@
    "name": "안산시립합창단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 8,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "무관": 4,
-    "오래됨": 4,
-    "만료": 0
-   }
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='ansanarts.com', port=443): Max retries exceeded with url: /bbs/board.php?bo_table=notice (Caus"
   },
   {
    "id": "g_i_gurigokr",
    "name": "구리시립합창단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 0,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.guri.go.kr/www/selectBbsNttList.do?bbsNo=4"
   },
   {
    "id": "g_i_suncheongokr",
    "name": "순천시립합창단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 1,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "무관": 1,
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.suncheon.go.kr', port=443): Max retries exceeded with url: /scart/community/0001;jsessioni"
   },
   {
    "id": "g_i_andonggokr",
@@ -918,13 +885,9 @@
    "name": "동해문화관광재단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 0,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "HTTPError: 403 Forbidden"
   },
   {
    "id": "g_i_cfscorkr",
@@ -972,26 +935,18 @@
    "name": "목포시립예술단(교향악단·합창단)",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 0,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.mokpo.go.kr', port=443): Max retries exceeded with url: /www/mokpo_news/notification/incru"
   },
   {
    "id": "g_yeosu",
    "name": "여수시립예술단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 0,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.yeosu.go.kr', port=443): Max retries exceeded with url: /www/govt/news/recruit (Caused by "
   },
   {
    "id": "g_wonju",
@@ -1077,41 +1032,27 @@
    "name": "충남교육청(학교 채용)",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 0,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.cne.go.kr/boardCnts/list.do?boardID=642&m="
   },
   {
    "id": "g_daeguart_notice",
    "name": "대구문화예술회관 공지(시립합창단)",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 7,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "무관": 6,
-    "만료": 1,
-    "오래됨": 0
-   }
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.daeguartscenter.or.kr', port=443): Max retries exceeded with url: /index.do?menu_id=000015"
   },
   {
    "id": "g_ansanarts",
    "name": "안산시립합창단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 6,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "오래됨": 3,
-    "무관": 3,
-    "만료": 0
-   }
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='ansanarts.com', port=443): Max retries exceeded with url: /bbs/board.php?bo_table=notice (Caus"
   },
   {
    "id": "g_pajucf",
@@ -1145,13 +1086,9 @@
    "name": "구리아트홀(시립청소년교향악단)",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 0,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.guri.go.kr', port=443): Max retries exceeded with url: /www/selectBbsNttList.do?bbsNo=41&k"
   },
   {
    "id": "g_yeulmaru",
@@ -1237,11 +1174,9 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 8,
-   "kept": 7,
-   "declared": 8,
+   "raw": 0,
+   "kept": 2,
    "drop": {
-    "비음악": 1,
     "만료": 0,
     "오래됨": 0
    }
@@ -1381,7 +1316,7 @@
    "orgBoard": "서울시립교향악단",
    "bodyExcerpt": "법원의 판결 또는 다른 법률에 따라 자격이 상실되거나 정지 된 자 7. · 블라인드 채용 및 기타사항 〇 서울시립교향악단은 블라인드 채용을 준수합니다 . · 〇 채용일정은 내부사정에 의하여 변경될 수 있습니다",
    "firstSeen": "2026-09-18",
-   "isNew": true,
+   "isNew": false,
    "extVer": 115
   },
   {
@@ -1419,7 +1354,7 @@
    "deadlineFrom": "raw",
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-09-18",
-   "isNew": true,
+   "isNew": false,
    "extVer": 115
   },
   {
@@ -1455,7 +1390,7 @@
    "deadlineFrom": "raw",
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-09-18",
-   "isNew": true,
+   "isNew": false,
    "extVer": 115
   },
   {
@@ -1491,7 +1426,7 @@
    "deadlineFrom": "raw",
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-09-18",
-   "isNew": true,
+   "isNew": false,
    "extVer": 115
   },
   {
@@ -1527,7 +1462,7 @@
    "deadlineFrom": "raw",
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-09-18",
-   "isNew": true,
+   "isNew": false,
    "extVer": 115
   },
   {
@@ -1561,7 +1496,7 @@
    "deadlineFrom": "raw",
    "orgAffil": "경기교육청",
    "firstSeen": "2026-09-18",
-   "isNew": true,
+   "isNew": false,
    "extVer": 115
   },
   {
@@ -1598,7 +1533,7 @@
    "deadlineFrom": "raw",
    "orgAffil": "경기교육청",
    "firstSeen": "2026-09-18",
-   "isNew": true,
+   "isNew": false,
    "extVer": 115
   },
   {
@@ -1632,7 +1567,7 @@
    "deadline": "2026-09-22",
    "deadlineFrom": "raw",
    "firstSeen": "2026-09-18",
-   "isNew": true,
+   "isNew": false,
    "extVer": 115
   },
   {
@@ -1742,14 +1677,14 @@
    ],
    "channel": "cwcf",
    "layer": "B",
-   "qualification": "대학및대학원생",
    "email": "acutecritic@naver.com",
+   "firstSeen": "2026-09-17",
+   "isNew": false,
+   "qualification": "대학및대학원생",
    "personnel": "6명(파트별최대 3명)ㅇ 제출서류",
    "duty": "바이올린, 첼로 바이올린첼로(김덕우)(김민지) 최대 3명 | 최대 3명 10:00~12:00 / 1인당 40분이내지도 ©",
    "deadline": "2026-10-16",
    "deadlineFrom": "raw",
-   "firstSeen": "2026-09-17",
-   "isNew": false,
    "extVer": 115
   },
   {
@@ -1987,17 +1922,17 @@
    "channel": "hibrain",
    "layer": "B",
    "subjectFrom": "attach",
-   "qualification": "(1)“공무원법”, “사립학교법”, “교육공무원법”에 명시된 결격사유가 없는 사람",
    "email": "htus_1@htus.ac.kr",
-   "bodyExcerpt": "접수기간 : 2026 년 9 월 17 일(목)~ 2026 년 10 월 2 일(금) 오후 6 시까지(전자우편으로만 접수)",
-   "deadline": "2026-10-07",
-   "deadlineFrom": "raw",
    "addr": "전남광주통합특별시 남구 제중로 77",
    "lat": 35.1395444,
    "lng": 126.9122454,
    "addrFrom": "geo",
    "firstSeen": "2026-09-18",
    "isNew": false,
+   "qualification": "(1)“공무원법”, “사립학교법”, “교육공무원법”에 명시된 결격사유가 없는 사람",
+   "bodyExcerpt": "접수기간 : 2026 년 9 월 17 일(목)~ 2026 년 10 월 2 일(금) 오후 6 시까지(전자우편으로만 접수)",
+   "deadline": "2026-10-07",
+   "deadlineFrom": "raw",
    "extVer": 115
   },
   {
@@ -2232,11 +2167,11 @@
    "addr": "서울특별시 서대문구 연세로50",
    "addrFrom": "postal",
    "email": "eunangela@yonsei.ac.kr",
+   "firstSeen": "2026-09-16",
+   "isNew": false,
    "bodyExcerpt": "임용일 전까지 박사학위 취득 가능한 자(임용일 전 박사학위 미 취득 시 임용 취소) 추가자격조건에 별도 자격이 명시되어 있는 경우 그 내용을 따름 · 대학(원) 별도의 신임교원 지원 제도는 해당 홈페이지 참조 · 임용 트랙은 추가자격요건에 명시되어 있지 않은 경우 정년트랙 또는 비정년트랙 강의/연구전담교원으로 임용할 수 있음",
    "deadline": "2026-10-02",
    "deadlineFrom": "raw",
-   "firstSeen": "2026-09-16",
-   "isNew": false,
    "extVer": 115
   },
   {
