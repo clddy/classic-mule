@@ -1,5 +1,5 @@
 {
- "date": "2026-09-19",
+ "date": "2026-09-20",
  "src": "eshare.go.kr",
  "count": 323,
  "dropped": 325,
@@ -1357,17 +1357,6 @@
    "lo": 127.007840082201,
    "kw": "밴드"
   },
-  "HE18O853653": {
-   "name": "밴드 쏘 (SHARPMAX MBS1400)",
-   "addr": "경기 수원시 권선구 서둔로 166",
-   "sido": "경기",
-   "free": true,
-   "cls": "농·어·축산업 기계·장비",
-   "bookTo": "https://share.gg.go.kr/cmmnGoods/view?goodsNo=42235&eshare=1",
-   "la": 37.266776271176,
-   "lo": 126.98501821855,
-   "kw": "밴드"
-  },
   "CD01O4207166": {
    "name": "과학어군탐지기 200 kHz 스프리트빔 와이드 밴드 트랜시버",
    "addr": "경상남도 통영시 통영해안로 2 경상대학교",
@@ -1423,39 +1412,6 @@
    "lo": 127.35454031347,
    "kw": "밴드"
   },
-  "HC21E849737": {
-   "name": "[고천동] 건강밴드",
-   "addr": "경기 의왕시 사천로 11",
-   "sido": "경기",
-   "free": false,
-   "cls": "건강/체육프로그램",
-   "bookTo": "https://www.uiwang.go.kr/reserve/edu/E03/eduView.do?currentMenuNo=624&resrId=RESR_000000000011114",
-   "la": 37.345801562119,
-   "lo": 126.97689571963,
-   "kw": "밴드"
-  },
-  "HH28E860619": {
-   "name": "중앙도서관 개관 20주년 기념 모아맘 밴드 락 공연 로킹 마마",
-   "addr": "경기 안산시 단원구 안산천남로 14",
-   "sido": "경기",
-   "free": true,
-   "cls": "건강/체육프로그램",
-   "bookTo": "http://reserve.ansan.go.kr/edu/E03/eduView.do?currentMenuNo=604&resrId=RESR_000000000020948",
-   "la": 37.30434560099,
-   "lo": 126.82115021867,
-   "kw": "밴드"
-  },
-  "HH13E859495": {
-   "name": "세라밴드",
-   "addr": "경기 의왕시 부곡시장길 75",
-   "sido": "경기",
-   "free": false,
-   "cls": "건강/체육프로그램",
-   "bookTo": "https://www.uiwang.go.kr/reserve/edu/E03/eduView.do?currentMenuNo=625&resrId=RESR_000000000012643",
-   "la": 37.318703253148,
-   "lo": 126.95678291717,
-   "kw": "밴드"
-  },
   "GG22B815501": {
    "name": "유아 흡연위해예방 놀이형 체험관 ‘노담밴드의 연주회 가는 길’",
    "addr": "경기 성남시 분당구 분당수서로 501 (정자동)",
@@ -1465,50 +1421,6 @@
    "bookTo": "https://test.nosmokeguide.go.kr/child/client/business-info/play",
    "la": 37.3784945143157,
    "lo": 127.106393759631,
-   "kw": "밴드"
-  },
-  "HH08E859040": {
-   "name": "[26년 제3기] 세라밴드",
-   "addr": "경기 의왕시 찬우물길 11",
-   "sido": "경기",
-   "free": false,
-   "cls": "건강/체육프로그램",
-   "bookTo": "https://www.uiwang.go.kr/reserve/edu/E03/eduView.do?currentMenuNo=626&resrId=RESR_000000000012344",
-   "la": 37.353600058729,
-   "lo": 126.97152265434,
-   "kw": "밴드"
-  },
-  "HH11E859265": {
-   "name": "[26년 제3기]세라밴드",
-   "addr": "경기 의왕시 안양판교로 232",
-   "sido": "경기",
-   "free": false,
-   "cls": "건강/체육프로그램",
-   "bookTo": "https://www.uiwang.go.kr/reserve/edu/E03/eduView.do?currentMenuNo=629&resrId=RESR_000000000012283",
-   "la": 37.388731273569,
-   "lo": 126.99636875842,
-   "kw": "밴드"
-  },
-  "HD02E850283": {
-   "name": "[26년 제2기] 세라밴드",
-   "addr": "경기 의왕시 찬우물길 11",
-   "sido": "경기",
-   "free": false,
-   "cls": "건강/체육프로그램",
-   "bookTo": "https://www.uiwang.go.kr/reserve/edu/E03/eduView.do?currentMenuNo=626&resrId=RESR_000000000011752",
-   "la": 37.353600058729,
-   "lo": 126.97152265434,
-   "kw": "밴드"
-  },
-  "HD14E850918": {
-   "name": "[26년 제2기]세라밴드",
-   "addr": "경기 의왕시 안양판교로 232",
-   "sido": "경기",
-   "free": false,
-   "cls": "건강/체육프로그램",
-   "bookTo": "https://www.uiwang.go.kr/reserve/edu/E03/eduView.do?currentMenuNo=629&resrId=RESR_000000000011694",
-   "la": 37.388731273569,
-   "lo": 126.99636875842,
    "kw": "밴드"
   },
   "BA05A0407028": {
@@ -1553,6 +1465,17 @@
    "bookTo": "https://www.zeus.go.kr/eshare/read/Z-201812095955?cloudId=201806110281",
    "la": 35.14456517502943,
    "lo": 129.03577492716727,
+   "kw": "밴드"
+  },
+  "EF10D635795": {
+   "name": "충전 밴드쏘",
+   "addr": "경기 고양시 덕양구 고양대로 1695",
+   "sido": "경기",
+   "free": false,
+   "cls": "기타 공구·기계·기기",
+   "bookTo": "https://www.goyang.go.kr/agr/userFrcnRentReqst/BD_selectUserFrcnList.do",
+   "la": 37.649777903709,
+   "lo": 126.87008600751,
    "kw": "밴드"
   },
   "BA05A0407819": {
@@ -1973,6 +1896,17 @@
    "lo": 127.123896533869,
    "kw": "밴드"
   },
+  "HE18O853653": {
+   "name": "밴드 쏘 (SHARPMAX MBS1400)",
+   "addr": "경기 수원시 권선구 서둔로 166",
+   "sido": "경기",
+   "free": true,
+   "cls": "농·어·축산업 기계·장비",
+   "bookTo": "https://share.gg.go.kr/cmmnGoods/view?goodsNo=42235&eshare=1",
+   "la": 37.266776271176,
+   "lo": 126.98501821855,
+   "kw": "밴드"
+  },
   "HB26J2530851": {
    "name": "배방청소년자유공간 비트 ON-밴드실 신청하기",
    "addr": "충남 아산시 배방읍 모산로 140-12",
@@ -1995,6 +1929,83 @@
    "lo": 127.06400299072266,
    "kw": "밴드"
   },
+  "HC21E849737": {
+   "name": "[고천동] 건강밴드",
+   "addr": "경기 의왕시 사천로 11",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://www.uiwang.go.kr/reserve/edu/E03/eduView.do?currentMenuNo=624&resrId=RESR_000000000011114",
+   "la": 37.345801562119,
+   "lo": 126.97689571963,
+   "kw": "밴드"
+  },
+  "HH28E860619": {
+   "name": "중앙도서관 개관 20주년 기념 모아맘 밴드 락 공연 로킹 마마",
+   "addr": "경기 안산시 단원구 안산천남로 14",
+   "sido": "경기",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "http://reserve.ansan.go.kr/edu/E03/eduView.do?currentMenuNo=604&resrId=RESR_000000000020948",
+   "la": 37.30434560099,
+   "lo": 126.82115021867,
+   "kw": "밴드"
+  },
+  "HH13E859495": {
+   "name": "세라밴드",
+   "addr": "경기 의왕시 부곡시장길 75",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://www.uiwang.go.kr/reserve/edu/E03/eduView.do?currentMenuNo=625&resrId=RESR_000000000012643",
+   "la": 37.318703253148,
+   "lo": 126.95678291717,
+   "kw": "밴드"
+  },
+  "HH08E859040": {
+   "name": "[26년 제3기] 세라밴드",
+   "addr": "경기 의왕시 찬우물길 11",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://www.uiwang.go.kr/reserve/edu/E03/eduView.do?currentMenuNo=626&resrId=RESR_000000000012344",
+   "la": 37.353600058729,
+   "lo": 126.97152265434,
+   "kw": "밴드"
+  },
+  "HH11E859265": {
+   "name": "[26년 제3기]세라밴드",
+   "addr": "경기 의왕시 안양판교로 232",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://www.uiwang.go.kr/reserve/edu/E03/eduView.do?currentMenuNo=629&resrId=RESR_000000000012283",
+   "la": 37.388731273569,
+   "lo": 126.99636875842,
+   "kw": "밴드"
+  },
+  "HD02E850283": {
+   "name": "[26년 제2기] 세라밴드",
+   "addr": "경기 의왕시 찬우물길 11",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://www.uiwang.go.kr/reserve/edu/E03/eduView.do?currentMenuNo=626&resrId=RESR_000000000011752",
+   "la": 37.353600058729,
+   "lo": 126.97152265434,
+   "kw": "밴드"
+  },
+  "HD14E850918": {
+   "name": "[26년 제2기]세라밴드",
+   "addr": "경기 의왕시 안양판교로 232",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://www.uiwang.go.kr/reserve/edu/E03/eduView.do?currentMenuNo=629&resrId=RESR_000000000011694",
+   "la": 37.388731273569,
+   "lo": 126.99636875842,
+   "kw": "밴드"
+  },
   "EJ28U4125254": {
    "name": "실버밴드동아리",
    "addr": "서울 성북구 보국문로 106-1 (정릉동)",
@@ -2015,17 +2026,6 @@
    "bookTo": "https://www.gymadang.or.kr",
    "la": 37.66147994995117,
    "lo": 126.77439880371094,
-   "kw": "밴드"
-  },
-  "EF10D635795": {
-   "name": "충전 밴드쏘",
-   "addr": "경기 고양시 덕양구 고양대로 1695",
-   "sido": "경기",
-   "free": false,
-   "cls": "기타 공구·기계·기기",
-   "bookTo": "https://www.goyang.go.kr/agr/userFrcnRentReqst/BD_selectUserFrcnList.do",
-   "la": 37.649777903709,
-   "lo": 126.87008600751,
    "kw": "밴드"
   },
   "HG25E858210": {
@@ -3161,6 +3161,17 @@
    "lo": 126.98909759521484,
    "kw": "공연연습"
   },
+  "FA11D698480": {
+   "name": "녹음실┃ 포천음악창작소",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": false,
+   "cls": "주민편의시설 등",
+   "bookTo": "https://share.gg.go.kr/facilityListO/view?instiCode=1240025&facilityId=F0001&eshare=1",
+   "la": 37.88582992553711,
+   "lo": 127.19180297851562,
+   "kw": "음악창작소"
+  },
   "HH20E860112": {
    "name": "[포천음악창작소] 9월 전자드럼",
    "addr": "경기 포천시 호국로 1423",
@@ -3179,6 +3190,17 @@
    "free": true,
    "cls": "건강/체육프로그램",
    "bookTo": "https://share.gg.go.kr/lecture/view?id=60689&eshare=1",
+   "la": 37.885832632026,
+   "lo": 127.19180048848,
+   "kw": "음악창작소"
+  },
+  "HE29E854375": {
+   "name": "[포천음악창작소] 6월 바이올린 프로그램(추가모집)",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=54625&eshare=1",
    "la": 37.885832632026,
    "lo": 127.19180048848,
    "kw": "음악창작소"
@@ -3502,17 +3524,6 @@
    "lo": 127.19180048848,
    "kw": "음악창작소"
   },
-  "HE29E854375": {
-   "name": "[포천음악창작소] 6월 바이올린 프로그램(추가모집)",
-   "addr": "경기 포천시 호국로 1423",
-   "sido": "경기",
-   "free": true,
-   "cls": "건강/체육프로그램",
-   "bookTo": "https://share.gg.go.kr/lecture/view?id=54625&eshare=1",
-   "la": 37.885832632026,
-   "lo": 127.19180048848,
-   "kw": "음악창작소"
-  },
   "HH20E860111": {
    "name": "[포천음악창작소] 9월 바이올린",
    "addr": "경기 포천시 호국로 1423",
@@ -3544,17 +3555,6 @@
    "bookTo": "https://share.gg.go.kr/lecture/view?id=51663&eshare=1",
    "la": 37.885832632026,
    "lo": 127.19180048848,
-   "kw": "음악창작소"
-  },
-  "FA11D698480": {
-   "name": "녹음실┃ 포천음악창작소",
-   "addr": "경기 포천시 호국로 1423",
-   "sido": "경기",
-   "free": false,
-   "cls": "주민편의시설 등",
-   "bookTo": "https://share.gg.go.kr/facilityListO/view?instiCode=1240025&facilityId=F0001&eshare=1",
-   "la": 37.88582992553711,
-   "lo": 127.19180297851562,
    "kw": "음악창작소"
   }
  }
