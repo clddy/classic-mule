@@ -362,8 +362,8 @@
  ],
  "master": {
   "total": 604,
-  "covered": 5,
-  "gapCount": 599,
+  "covered": 6,
+  "gapCount": 598,
   "byCategory": {
    "대학": {
     "total": 77,
@@ -383,7 +383,7 @@
    },
    "공연장": {
     "total": 69,
-    "covered": 0
+    "covered": 1
    },
    "공공기관": {
     "total": 5,
@@ -3360,11 +3360,6 @@
    },
    {
     "name": "진주경남문화예술회관",
-    "cat": "공연장",
-    "region": "경남"
-   },
-   {
-    "name": "통영시민문화회관",
     "cat": "공연장",
     "region": "경남"
    },
