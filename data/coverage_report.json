@@ -1,5 +1,5 @@
 {
- "date": "2026-09-21",
+ "date": "2026-09-22",
  "total": 75,
  "covered": 4,
  "gapCount": 71,
@@ -362,8 +362,8 @@
  ],
  "master": {
   "total": 604,
-  "covered": 6,
-  "gapCount": 598,
+  "covered": 5,
+  "gapCount": 599,
   "byCategory": {
    "대학": {
     "total": 77,
@@ -379,7 +379,7 @@
    },
    "지자체": {
     "total": 323,
-    "covered": 1
+    "covered": 0
    },
    "공연장": {
     "total": 69,
@@ -2220,6 +2220,11 @@
    },
    {
     "name": "구리문화원",
+    "cat": "지자체",
+    "region": "경기"
+   },
+   {
+    "name": "남양주문화원",
     "cat": "지자체",
     "region": "경기"
    },
