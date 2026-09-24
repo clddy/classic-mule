@@ -8,7 +8,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from common import (new_session, get, relevant, extract_deadline, priority_deadlines, deadline_from_title,
                     musician_relevant, youth_member, participant_only, student_target, dance_member, rope_skipping_only, school_title, tidy_personnel, parse_meta_table, parse_gne_detail, tidy_spacing, squash_spaced_labels, pay_from_shape, parse_recruit_table, summarize_recruit, find_position,
                     classify_insts, find_subject, find_music_subjects, find_music_courses,
-                    classify_kind, classify_tier, is_obri, cert_required, degree_req, career_req, age_group,
+                    classify_kind, classify_tier, is_obri, cert_required, degree_req, career_req, age_group, org_looks_junk,
                     region_from, EXCLUDE, compact_title, music_only_title, body_text, valid_addr,
                     insts_from_recruit_text, tls_blocked, curl_get, extract_fields, extract_contact, strip_navi,
                     extract_email, DECLARED_TOTALS, addr_from_text, pay_from_table_ref)
@@ -306,7 +306,7 @@ def find_attachments(soup, base_url):
                     cands.append((full, el.get_text(" ", strip=True)))
     return cands[:4]
 
-EXT_VER = 115         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
+EXT_VER = 116         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
                      # v32(2026-08-02): 모집분야 구획 악기 추출(insts_from_recruit_text) + 원문 보관층
                      # 24: work.sen 등록일(게시일) 추출 추가 — date=None이던 승계분을 다시 뽑게
                      # 25: body_text 도입 — 본문을 <header>에 넣는 사이트(대전교육청)의 마감일을
@@ -848,7 +848,8 @@ def _apply_meta_table(text, item):
         item["org"] = org
     # 표가 밝힌 값은 본문 추측보다 정확하다 — 빈 칸만 채운다(기존 값이 더 구체적일 수 있다).
     # 담당업무·근무시간·인원·채용기간은 대전교육청 표에 뻔히 있는데도 빠져 있었다 (2026-09-08).
-    for k in ("addr", "contact", "email", "duty", "workHours", "personnel", "workPeriod"):
+    for k in ("addr", "contact", "email", "duty", "workHours", "personnel", "workPeriod",
+              "hireType"):
         if meta.get(k) and not item.get(k):
             item[k] = meta[k]
     if meta.get("addr"):
@@ -1656,7 +1657,16 @@ def _refill_from_raw(items, today):
                 if _m_wp:
                     y, mo, dy = _m_wp[-1]
                     _wp_end = f"{y}-{int(mo):02d}-{int(dy):02d}"
-            _c = [c for c in cands if c != _wp_end] or cands
+            # 근무기간 종료일 제외는 **그 날짜가 접수 일정과 동떨어져 있을 때만** 한다.
+            # 접수 마감과 근무 종료가 같은 날인 공고가 실제로 있다 — 어람중 시간강사는
+            # 접수 9/23~10/8, 근무 9/28~10/8 이라 규칙이 정답(10-08)을 지워 09-23만 남겼고,
+            # 그건 과거라 게시 관문에 걸려 마감이 통째로 빈칸이 됐다 (2026-09-24).
+            # 장위중(접수 9/7·계약종료 2027-01-08)처럼 멀리 떨어진 경우는 그대로 걸러진다.
+            _c = cands
+            if _wp_end and _wp_end in cands and len(cands) > 1:
+                _others = [c for c in cands if c != _wp_end]
+                if _others and _span_days(max(_others), _wp_end) > 30:
+                    _c = _others
             dl = max(_c) if _c else extract_deadline(rawstore.all_text(it["id"]),
                                                      ref_year=_ref_year(it))
             # 후보가 한 달 넘게 흩어져 있으면 max 를 믿지 않는다 — 접수기간 뒤에 오는 전형
@@ -3017,6 +3027,11 @@ def run(force_all=False):
         it["ageGroup"] = age_group(it["title"], it.get("org", ""))
         it["kind"] = classify_kind(it["title"])
         it["tier"] = classify_tier(it["title"], it.get("org", ""))   # 등급 최신 로직 재적용
+        # 기관명이 안내문으로 오염된 채 승계될 수 있다 — org 는 재추출 대상(_EXTRACTED_FIELDS)이
+        # 아니라 한 번 잘못 들어가면 영영 남는다. 게시판이 알려준 원래 이름이 orgBoard 에
+        # 있으므로 되돌린다 ('성명 - 제출서류명 으로 제출' → '서울시립교향악단', L4#42 2026-09-24).
+        if org_looks_junk(it.get("org")) and it.get("orgBoard"):
+            it["org"], it["orgBoard"] = it["orgBoard"], None
         it["obri"] = is_obri(it["title"], it.get("org", ""))
         # 제목 정리도 순수 함수 — 압축 규칙(compact_title)을 승계 항목에 최신 로직으로 재적용
         it["title"] = compact_title(music_only_title(it["title"]))
@@ -3024,7 +3039,9 @@ def run(force_all=False):
         # 거쳤으므로, 이걸 빼면 규칙을 새로 넣은 날 기존 분이 옛 제목으로 남는다.
         it["title"] = school_title(it["title"], it.get("org"))
         # 자격 필드 — 본문(자격·요약)까지 반영해 정확도 향상
-        qtext = " ".join(str(it.get(f, "") or "") for f in ("title", "qualification", "bodyExcerpt", "recruitSummary"))
+        # hireType = 표가 밝힌 채용구분('정규 교원'). 제목이 깨진 공고의 유일한 신호다.
+        qtext = " ".join(str(it.get(f, "") or "") for f in ("title", "qualification", "bodyExcerpt",
+                                                            "recruitSummary", "hireType"))
         if it.get("personnel"):
             it["personnel"] = tidy_personnel(it["personnel"])
         for _pf in ("workPeriod", "perfPeriod"):

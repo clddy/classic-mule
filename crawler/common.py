@@ -752,6 +752,22 @@ def music_minor_in_hours(title):
     others = [int(n) for s, n in pairs if not re.search(r"음악|국악", s)]
     return bool(music) and bool(others) and max(others) > max(music)
 
+# '체육전담', '영어 교과전담' — 다른 교과를 맡는 자리. 과목명 뒤에 역할어가 바로 붙는다.
+_OTHER_SUBJECT_ROLE = re.compile(
+    r"(?:영어|수학|국어|사회|과학|도덕|윤리|한문|역사|지리|체육|미술|정보|컴퓨터|실과"
+    r"|기술가정|가정|기술|보건|간호|특수|유아|상담|진로|연극|무용|요리|조리)"
+    r"\s*(?:전담|교과\s*전담|전공\s*교사|교과\s*교사)")
+
+
+def _drop_org_tokens(title, org=""):
+    """기관·학교 이름을 제목에서 뺀 나머지 — '안양관악초'의 '관악'을 악기로 읽지 않기 위함."""
+    t = re.sub(r"\[[^\]]{2,25}\]", " ", title or "")
+    for token in re.split(r"[()\s·]", org or ""):
+        if len(token) >= 3:
+            t = t.replace(token, " ")
+    return t
+
+
 def musician_relevant(title, kind, org=""):
     """음악인(연주·지휘·반주·강사)이 대상인 공고인지 — 행정직·스태프는 제외.
     기관명 속 '오케스트라/합창단'이 음악 키워드로 오인되지 않도록 기관명을 제거 후 판정.
@@ -760,6 +776,11 @@ def musician_relevant(title, kind, org=""):
     if GUGAK_EXCLUDE.search(f"{title} {org}"):
         return False
     if music_minor_in_hours(title):     # 음악이 곁다리인 다과목 교사 채용
+        return False
+    # 다른 교과의 전담·교과교사 채용 — 음악과 무관하다. '체육전담 기간제교사'가
+    # 학교 이름(안양**관악**초)의 '관악' 때문에 악기 신호를 얻어 통과했다 (L4#39, 2026-09-24).
+    # _OTHER_SUBJECT 는 뒤에 한글이 붙으면 안 무는 규칙이라 '체육전담'을 통째로 놓친다.
+    if _OTHER_SUBJECT_ROLE.search(title) and not _MUSIC_STRONG.search(_drop_org_tokens(title, org)):
         return False
     if POP_EXCLUDE.search(f"{title} {org}"):   # 실용음악(대중·재즈 전공) 전면 제외
         return False
@@ -931,6 +952,25 @@ _FACILITY_KEEPER = re.compile(
     r"(?:실기실|연습실|연습 ?공간|악기|시설|공간|기자재)\s*(?:관리|감독|지킴이|당직|경비|운영\s*요원)")
 
 
+# 사립학교 법인 이름의 '학원'은 사설 학원이 아니다 — '학교법인 부림학원', '(서정학원)'.
+# 이 두 글자 때문에 _EDU_HOBBY·_CERT_NO_ROLE 이 동시에 걸려, 고등학교 정규교사 공고가
+# '교육 — 취미·입문' + 교원자격증 '아니오' 로 나갔다 (L4#28·29·33·35·36·40, 2026-09-24).
+_FOUNDATION = re.compile(r"(?:학교|재단|사회복지)?법인\s*[가-힣]{0,10}학원|\(\s*[가-힣]{1,8}학원\s*\)")
+
+
+def _strip_foundation(t):
+    return _FOUNDATION.sub(" ", t or "")
+
+
+# 학교 정규 교과 교원을 가리키는 말. _EDU_HOBBY 에 '초등학교|중학교|고등학교'가 들어 있어
+# **모든 학교 공고가 거기 걸리므로**, 이 규칙이 유일한 관문이다 — 표기를 빠뜨리면 그대로
+# 취미·입문이 된다. '정교사'만 알던 탓에 정규교사·정교원을 놓쳤고, 괄호가 끼어드는
+# '계약제 (기간제) 교원'(신암중, L4#44)도 못 잡았다.
+_SCHOOL_TEACHER = re.compile(
+    r"(?:기간제|계약[제직])\s*(?:\([^)]{0,10}\)\s*)?교[사원]"
+    r"|정규\s*교[사원]|정\s*교원|정교사|교과\s*전담|휴직\s*대체|시간\s*강사")
+
+
 def classify_tier(title, org=""):
     """연주 / 교육 — 대학 / 교육 — 입시·전공 / 교육 — 취미·입문 / 미분류.
     지시서 3-1 우선순위: 대학교원 → 입시·전공 → 취미·입문 → 연주 → 오브리연주 → 미분류.
@@ -948,8 +988,7 @@ def classify_tier(title, org=""):
         return "교육 — 입시·전공"
     # 학교 정규 교과 교원(교원자격증 요구 채용)은 취미·입문이 아니다 (워크오더 D10)
     # 시간강사도 학교 수업이다 — 대학 시간강사는 위의 대학 규칙이 먼저 문다 (워크오더 08-16 §3)
-    if re.search(r"기간제 ?교[사원]|계약[제직] ?교[사원]|정교사|교과 ?전담|휴직 ?대체"
-                 r"|시간 ?강사", t):
+    if _SCHOOL_TEACHER.search(_strip_foundation(t)):
         return "교육 — 학교"
     if _EDU_HOBBY.search(t):
         return "교육 — 취미·입문"
@@ -964,10 +1003,17 @@ def classify_tier(title, org=""):
 _CERT_YES = re.compile(r"정교사|교원 ?자격|교사 ?자격|교직 ?이수|임용|기간제 ?교[사원]|계약[제직] ?교[사원]|중등 ?교사|초등 ?교사|담임")
 _CERT_NO_ROLE = re.compile(r"방과 ?후|예술 ?강사|협력강사|늘봄|1 ?인 ?1 ?악기|꿈의 ?오케|학원|문화 ?센터|레슨|아카데미")
 
+# 자격증 판정에는 _SCHOOL_TEACHER 를 그대로 쓰면 안 된다 — 거기엔 '시간강사'가 들어 있어
+# **대학 시간강사까지 '예'** 가 된다(대학 교원은 교원자격증이 필요 없다. A/B 에서 92건이
+# 흔들려 발각, 2026-09-24). 학교 정규·기간제 교원을 콕 집는 좁은 규칙만 쓴다.
+_SCHOOL_REGULAR = re.compile(
+    r"정규\s*교[사원]|정\s*교원|(?:기간제|계약[제직])\s*(?:\([^)]{0,10}\)\s*)?교[사원]")
+
+
 def cert_required(tier, title, text=""):
     """교원자격증(정교사) 필요 여부: 예 / 아니오 / 무관. 확실치 않으면 무관."""
-    blob = f"{title} {text}"
-    if _CERT_YES.search(blob) and not _CERT_NO_ROLE.search(blob):
+    blob = _strip_foundation(f"{title} {text}")
+    if (_CERT_YES.search(blob) or _SCHOOL_REGULAR.search(blob)) and not _CERT_NO_ROLE.search(blob):
         return "예"
     if tier == "교육 — 대학":
         return "아니오"          # 대학 교원 = 교원자격증 불필요(사실)
@@ -1748,13 +1794,17 @@ _META_LAB = (r"기관명|채용\s*여부|주\s*소|전화\s*번호|팩스|담당
              # 진입 조건부터 막혀 표를 통째로 못 읽었다. 기관이 '대전교육청(학교 채용)'으로
              # 뭉치고 담당업무·근무시간이 화면에 뻔히 있는데도 빈칸이었다.
              r"|학교\s*\(\s*기관\s*\)\s*명|공고\s*번호|공고\s*기간|채용\s*기간|채용\s*인원"
-             r"|담당\s*업무|근무\s*시간|제출\s*서류|제출\s*장소|제출\s*방법|분류\s*선택")
+             r"|담당\s*업무|근무\s*시간|제출\s*서류|제출\s*장소|제출\s*방법|분류\s*선택"
+             # 전북교육청 칸 (2026-09-24) — 함열여고는 게시판 제목이 '명, 명, 정보컴퓨터
+             # 1명, 명, 명, 음악 1명.' 으로 깨져 '정규교사'라는 낱말이 아예 없었다.
+             # 표의 '채용구분 정규 교원' 이 유일하게 남은 신호다.
+             r"|채용\s*구분")
 _META_ROW = re.compile(rf"({_META_LAB})\s*[:：]?\s*(.*?)(?=\s*(?:{_META_LAB})\s*[:：]?\s|$)")
 _META_KEY = {"기관명": "org", "채용여부": "status", "주소": "addr", "전화번호": "contact",
              "담당자": "manager", "이메일": "email", "연락처": "contact",
              "마감일자": "deadline", "마감일": "deadline", "학교/기관": "org",
              "학교(기관)명": "org", "담당업무": "duty", "근무시간": "workHours",
-             "채용인원": "personnel", "채용기간": "workPeriod"}
+             "채용인원": "personnel", "채용기간": "workPeriod", "채용구분": "hireType"}
 # 표 칸이 값 대신 '공고문 참조'라고만 적는 일이 잦다 — 그건 값이 아니다 (2026-09-08)
 _META_REF_ONLY = re.compile(r"^(?:공고문|붙임\s*파일?|첨부\s*파일?|파일\s*첨부|상세\s*요강|아래|하기"
                             r"|해당\s*없음|없음|추후\s*공지|별도\s*안내)[\s가-힣]{0,6}$")
@@ -1781,6 +1831,13 @@ def parse_meta_table(text):
         i = m_alt.start()
     win = t[i:i + 500]   # 기관명부터 마감일자까지가 붙어 있다 — 한 창만 본다
     out = {}
+    # '채용구분'은 표 앞쪽(기관명보다 위)에 있어 이 창에 안 들어온다. 창을 넓히면
+    # 2026-09-08 에 잡은 회귀(창이 엉뚱한 데서 시작해 기관·주소를 잃는 것)가 되살아나므로,
+    # 값 꼴을 못 박아 전체 본문에서 이 칸만 따로 읽는다. 함열여고는 게시판 제목이 깨져
+    # '정규교사'라는 낱말이 아예 없고 이 칸만이 학교 정규교원임을 말해 준다 (2026-09-24).
+    m_ht = re.search(r"채용\s*구분\s*((?:정규|기간제|계약제|시간제|초빙|산학겸임)\s*교[사원])", t)
+    if m_ht:
+        out["hireType"] = re.sub(r"\s+", " ", m_ht.group(1)).strip()
     for m in _META_ROW.finditer(win):
         lab = re.sub(r"\s+", "", m.group(1))
         val = m.group(2).strip(" .,·-–:：")
@@ -1905,6 +1962,11 @@ def pay_from_shape(text):
     seen, out = set(), []
     for m in _PAY_SHAPE.finditer(t):
         v = tidy_spacing(m.group(0))
+        # 여는 괄호만 물고 끊긴 조각을 떼어 낸다 — '회당 200,000원(회당' 처럼 남으면
+        # 이어 붙인 값이 '괄호 미폐합'으로 QC 에 통째로 버려진다 (신한SOL·서일문화예고,
+        # 2026-09-24 미추출 급여). _clean_field 의 같은 규칙이 이 경로는 안 탄다.
+        if v.count("(") > v.count(")"):
+            v = v[:v.rindex("(")].strip(" ,·-–")
         key = re.sub(r"\D", "", v)          # 같은 금액이 되풀이되면 한 번만
         if key and key not in seen:
             seen.add(key)
@@ -2178,6 +2240,17 @@ def tidy_spacing(v):
     return t.strip(" .,·-–")
 
 
+# 기관명 자리에 들어오면 안 되는 말 — 제출서류 안내문의 '회사명'이 라벨로 걸린다.
+# '제출파일명은 "지원 회사명 - 성명 - 제출서류명" 으로 제출' 에서 기관명이
+# '성명 - 제출서류명 으로 제출' 이 됐다 (서울시립교향악단, L4#42 2026-09-24).
+_HIRING_ORG_JUNK = re.compile(r"제출|성명|파일\s*명|예시|지원서|서류|양식|이메일|메일")
+
+
+def org_looks_junk(v):
+    """기관명 자리에 안내문이 들어왔는가 — 이미 저장된 값을 되돌리기 위한 공개 판정."""
+    return bool(v) and bool(_HIRING_ORG_JUNK.search(str(v)))
+
+
 def _clean_field(key, raw):
     """값 하나를 다듬고 검사한다. 쓸 수 없으면 None을 돌려 다음 후보로 넘긴다."""
     # 값이 대괄호로 시작하면 여는 괄호만 뗀다 — '[겸임 11명 / 초빙 18명]'을 _FIELD_STOP 의
@@ -2236,6 +2309,8 @@ def _clean_field(key, raw):
             val = val[m_w.start():].strip(" .,·-–")
     # 기간 칸과 같이 '시각부터 채택'하되, **앞부분에 인원이나 날짜가 있을 때만** 자른다 —
     # 무조건 자르면 '방과후 15:50~17:20'의 '방과후' 같은 정상 수식어까지 날아간다.
+    if key == "hiringOrg" and _HIRING_ORG_JUNK.search(val):
+        return None
     if key == "workHours":
         # '전일제 근무'만으로는 몇 시부터 몇 시까지인지 알 수 없다 — 같은 공고에
         # '일 8시간 근무'·'08:40~16:40'이 함께 있으면 그쪽이 지원 판단에 쓸모 있다.

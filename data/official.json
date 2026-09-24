@@ -1,8 +1,8 @@
 {
- "collectedAt": "2026-09-24 01:35",
+ "collectedAt": "2026-09-24 15:07",
  "heldNoOrigin": 1,
  "sourceCount": 91,
- "okCount": 87,
+ "okCount": 91,
  "instTotal": 75,
  "sources": [
   {
@@ -167,9 +167,11 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
+   "raw": 10,
    "kept": 0,
    "drop": {
+    "무관": 6,
+    "비음악": 4,
     "만료": 0,
     "오래됨": 0
    }
@@ -195,9 +197,11 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
+   "raw": 40,
    "kept": 1,
    "drop": {
+    "무관": 30,
+    "비음악": 9,
     "만료": 0,
     "오래됨": 0
    }
@@ -393,10 +397,10 @@
    "ok": true,
    "raw": 5,
    "kept": 8,
-   "carried": 5,
+   "carried": 4,
    "drop": {
     "비음악": 1,
-    "만료": 1,
+    "만료": 0,
     "오래됨": 0
    }
   },
@@ -459,10 +463,10 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
+   "raw": 4,
    "kept": 0,
    "drop": {
-    "만료": 0,
+    "만료": 4,
     "오래됨": 0
    }
   },
@@ -485,10 +489,10 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
-   "kept": 1,
+   "raw": 1,
+   "kept": 0,
    "drop": {
-    "만료": 0,
+    "만료": 1,
     "오래됨": 0
    }
   },
@@ -602,9 +606,13 @@
    "name": "강남문화재단(강남심포니)",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 0,
    "kept": 0,
-   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.gfac.or.kr', port=443): Max retries exceeded with url: /site/main/recruit/accordionList (C"
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_sjcf",
@@ -815,9 +823,14 @@
    "name": "순천시립합창단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 1,
    "kept": 0,
-   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.suncheon.go.kr', port=443): Max retries exceeded with url: /scart/community/0001;jsessioni"
+   "drop": {
+    "무관": 1,
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_i_andonggokr",
@@ -905,9 +918,13 @@
    "name": "동해문화관광재단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 0,
    "kept": 0,
-   "error": "HTTPError: 403 Forbidden"
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_i_cfscorkr",
@@ -995,9 +1012,13 @@
    "name": "대전문화재단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 0,
    "kept": 0,
-   "error": "TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://dcaf.or.kr/web/board.do?menuIdx=377\", waiting "
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_i_cjcultureorg",
@@ -1217,9 +1238,11 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
-   "kept": 2,
+   "raw": 9,
+   "kept": 8,
+   "declared": 9,
    "drop": {
+    "비음악": 1,
     "만료": 0,
     "오래됨": 0
    }
@@ -1236,9 +1259,9 @@
    "url": "https://www.jbe.go.kr/board/view.jbe?boardId=BBS_0000130&menuCd=DOM_000000103004006000&paging=ok&startPage=3&searchOperation=AND&dataSid=1178664",
    "date": "2026-12-29",
    "kind": "기타",
-   "tier": "교육 — 취미·입문",
+   "tier": "교육 — 학교",
    "obri": false,
-   "certReq": "아니오",
+   "certReq": "예",
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
@@ -1251,13 +1274,14 @@
    "email": "wanju2619@naver.com",
    "firstSeen": "2026-09-17",
    "isNew": false,
+   "hireType": "정규교사",
    "workPeriod": "2027-03-01",
    "workHours": "전일제 근무(1일 8시간)",
    "ageLimit": "제한 없음",
    "bodyExcerpt": "공고에 ‘채용의 제한’ 부분 명시 2. · 지침 [붙임 2] 기간제교원 채용 공고(예시) 다운로드 지침",
    "deadline": "2027-01-05",
    "deadlineFrom": "raw",
-   "extVer": 115
+   "extVer": 116
   },
   {
    "id": "ba62d46474c7d8eb",
@@ -1269,9 +1293,9 @@
    "url": "https://www.jbe.go.kr/board/view.jbe?boardId=BBS_0000130&menuCd=DOM_000000103004006000&paging=ok&startPage=3&searchOperation=AND&dataSid=1178542",
    "date": "2026-10-12",
    "kind": "기타",
-   "tier": "교육 — 취미·입문",
+   "tier": "교육 — 학교",
    "obri": false,
-   "certReq": "아니오",
+   "certReq": "예",
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
@@ -1284,6 +1308,7 @@
    "addr": "전북특별자치도 익산시 함열읍 익산대로 1852 함열여자고등학교",
    "firstSeen": "2026-09-16",
    "isNew": false,
+   "hireType": "정규 교원",
    "contact": "0638611080",
    "workPeriod": "2027-03-01",
    "workHours": "전일제 근무(1일 8시간)",
@@ -1291,7 +1316,7 @@
    "bodyExcerpt": "공고에 ‘채용의 제한’ 부분 명시 2. · 지침 [붙임 2] 기간제교원 채용 공고(예시) 다운로드 지침",
    "deadline": "2026-10-16",
    "deadlineFrom": "raw",
-   "extVer": 115
+   "extVer": 116
   },
   {
    "id": "2a79c4878d411417",
@@ -1303,9 +1328,9 @@
    "url": "https://www.jbe.go.kr/board/view.jbe?boardId=BBS_0000130&menuCd=DOM_000000103004006000&paging=ok&startPage=2&searchOperation=AND&dataSid=1178159",
    "date": "2026-10-12",
    "kind": "기타",
-   "tier": "교육 — 취미·입문",
+   "tier": "교육 — 학교",
    "obri": false,
-   "certReq": "아니오",
+   "certReq": "예",
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
@@ -1318,6 +1343,7 @@
    "addr": "전북특별자치도 군산시 축동2길 27 군산중앙여자고등학교",
    "firstSeen": "2026-09-15",
    "isNew": false,
+   "hireType": "정규교사",
    "contact": "063-465-1601",
    "workPeriod": "2027-03-01",
    "workHours": "전일제 근무(1일 8시간)",
@@ -1325,7 +1351,7 @@
    "bodyExcerpt": "공고에 ‘채용의 제한’ 부분 명시 2. · 지침 [붙임 2] 기간제교원 채용 공고(예시) 다운로드 지침",
    "deadline": "2026-10-16",
    "deadlineFrom": "raw",
-   "extVer": 115
+   "extVer": 116
   },
   {
    "id": "49d9394ed891e6ef",
@@ -1353,6 +1379,7 @@
    "qualification": "경력 3년 학력 대학교(4년)",
    "contact": "070-8891-4849",
    "email": "recruit@withu.or.kr",
+   "pay": "회당 200,000원, 회당 100,000원",
    "workHours": "주1일",
    "workPlace": "경상남도 김해시 서상동 신한은행 영업점 3층 합주실",
    "personnel": "신한SOL하모니 오케스트라 지휘자 1명",
@@ -1364,7 +1391,7 @@
    "deadlineFrom": "raw",
    "firstSeen": "2026-09-23",
    "isNew": true,
-   "extVer": 115
+   "extVer": 116
   },
   {
    "id": "ad3e73fead238bff",
@@ -1396,11 +1423,46 @@
    "layer": "A",
    "officialUrl": "https://www.jcf.or.kr/",
    "originTraced": true,
-   "originTraceVer": 115,
+   "originTraceVer": 116,
    "dlHint": null,
    "firstSeen": "2026-09-23",
    "isNew": true,
-   "extVer": 115
+   "extVer": 116
+  },
+  {
+   "id": "570dd11962dd96b2",
+   "org": "어람중학교",
+   "region": "경기",
+   "source": "goe.go.kr",
+   "title": "[어람중] 남양주시 시간강사(음악) 채용 공고(2026.9.28~10.8)",
+   "nonMusic": null,
+   "url": "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=60982",
+   "date": "2026-09-23",
+   "kind": "강사",
+   "tier": "교육 — 학교",
+   "obri": false,
+   "certReq": "예",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "ageGroup": "성인",
+   "inst": "전체",
+   "instDetails": [],
+   "channel": "edu_goe",
+   "layer": "C",
+   "contact": "070-4021-7078",
+   "email": "back72@daum.net",
+   "workPeriod": "2026.09.28 ~ 2026.10.08",
+   "workHours": "26시간",
+   "ageLimit": "70세(채용일 기준 만 70세 생일이 지나지 않은 자)",
+   "personnel": "음악(1명)",
+   "addr": "경기 남양주시 오남읍 진건오남로550번길 35",
+   "bodyExcerpt": "채용 응시 자격 : 내국인으로서 채용 분야 교원자격증 소지자 2. · 보수 : 실제 강의할 시간 수에 따라 계약서에 명기하되, 시간당 강사료를 고려하여 시간당 산정액 또는 월정액을 계약 내용에 따라 지급 · 자격 : 해당 교과 교원 자격증 소지자 · 접수방법 : 이메일(back72@daum.net) 제출 또는 우편, 방문(어람중학교 1 층 교무실, ☎ 031-575-0583)",
+   "deadline": "2026-10-08",
+   "deadlineFrom": "raw",
+   "orgAffil": "경기교육청",
+   "firstSeen": "2026-09-24",
+   "isNew": true,
+   "extVer": 116
   },
   {
    "id": "603d289dcf099710",
@@ -1432,7 +1494,7 @@
    "orgAffil": "경기교육청",
    "firstSeen": "2026-09-23",
    "isNew": true,
-   "extVer": 115
+   "extVer": 116
   },
   {
    "id": "37f3e057eeaf9d9c",
@@ -1459,6 +1521,7 @@
    "email": "jslovejyd@naver.com",
    "firstSeen": "2026-09-22",
    "isNew": true,
+   "hireType": "계약제 교원",
    "contact": "063-255-9077",
    "workPeriod": "2026.10.19 ~ 2026.12.24",
    "workHours": "전일제 근무(1일 8시간)",
@@ -1466,7 +1529,7 @@
    "bodyExcerpt": "공고에 ‘채용의 제한’ 부분 명시 2. · 지침 [붙임 2] 기간제교원 채용 공고(예시) 다운로드 지침",
    "deadline": "2026-09-28",
    "deadlineFrom": "raw",
-   "extVer": 115
+   "extVer": 116
   },
   {
    "id": "67a3c401da0ae858",
@@ -1497,7 +1560,7 @@
    ],
    "firstSeen": "2026-09-23",
    "isNew": true,
-   "extVer": 115
+   "extVer": 116
   },
   {
    "id": "3ec8a79430f38f5f",
@@ -1528,7 +1591,7 @@
    "deadlineFrom": "raw",
    "firstSeen": "2026-09-23",
    "isNew": false,
-   "extVer": 115
+   "extVer": 116
   },
   {
    "id": "d7746c750ea492af",
@@ -1540,9 +1603,9 @@
    "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=110892",
    "date": "2026-09-22",
    "kind": "교원",
-   "tier": "교육 — 취미·입문",
+   "tier": "교육 — 학교",
    "obri": false,
-   "certReq": "무관",
+   "certReq": "예",
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
@@ -1566,7 +1629,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-09-22",
    "isNew": false,
-   "extVer": 115
+   "extVer": 116
   },
   {
    "id": "fd7bb672c615eea1",
@@ -1601,7 +1664,7 @@
    "orgAffil": "경기교육청",
    "firstSeen": "2026-09-22",
    "isNew": false,
-   "extVer": 115
+   "extVer": 116
   },
   {
    "id": "b9d8a40fb52967ff",
@@ -1637,7 +1700,7 @@
    "bodyExcerpt": "채용 응시 자격 : 내국인으로서 채용 분야 교원자격증 소지자 2. · 계약 기간 : 1 년 범위 내 기간을 정하여 계약 과목 인원 구분 기간 음악 1명 기간제 2026.10.6. · 보수 : 공무원보수규정 제 8 조에 따라 산정된 호봉의 봉급을 지급하되, 고정급으로 한다 . · 자격 : 해당 교과 교원 자격증 소지자",
    "deadline": "2026-09-27",
    "deadlineFrom": "raw",
-   "extVer": 115
+   "extVer": 116
   },
   {
    "id": "02e1c5c95999042d",
@@ -1671,7 +1734,7 @@
    "personnel": "1명",
    "deadline": "2026-09-28",
    "deadlineFrom": "raw",
-   "extVer": 115
+   "extVer": 116
   },
   {
    "id": "f7936dcae31a8433",
@@ -1698,6 +1761,7 @@
    "email": "moon93017@hanmail.net",
    "firstSeen": "2026-09-22",
    "isNew": false,
+   "hireType": "기간제교원",
    "contact": "01022909301",
    "workPeriod": "2026.10.06 ~ 2026.12.31",
    "workHours": "전일제 근무(1일 8시간)",
@@ -1705,7 +1769,7 @@
    "bodyExcerpt": "공고에 ‘채용의 제한’ 부분 명시 2. · 지침 [붙임 2] 기간제교원 채용 공고(예시) 다운로드 지침",
    "deadline": "2026-09-29",
    "deadlineFrom": "raw",
-   "extVer": 115
+   "extVer": 116
   },
   {
    "id": "eaac88c780bf7a1b",
@@ -1739,7 +1803,7 @@
    "bodyExcerpt": "중등 1, 2 급 정교사 및 중등음악교사 해당 자격증 소지자 - 국가공무원법 제 33 조 임용 결격사유에 해당되지 아니한 · 보수 : 초등학교 계약직(시간강사) 교원 보수 규정에 의함 · 자격 : 위의 채용 분야 참조 · 접수 방법 : 이메일(dy3776@korea.kr), 또는 방문접수",
    "deadline": "2026-09-24",
    "deadlineFrom": "raw",
-   "extVer": 115
+   "extVer": 116
   },
   {
    "id": "918187ce91fd282f",
@@ -1776,7 +1840,7 @@
    "bodyExcerpt": "공고에 ‘채용의 제한’ 부분 명시 2. · 지침 [붙임 2] 기간제교원 채용 공고(예시) 다운로드 지침",
    "deadline": "2026-09-26",
    "deadlineFrom": "raw",
-   "extVer": 115
+   "extVer": 116
   },
   {
    "id": "538123ecbb6836ac",
@@ -1811,7 +1875,7 @@
    "deadlineFrom": "raw",
    "firstSeen": "2026-09-22",
    "isNew": false,
-   "extVer": 115
+   "extVer": 116
   },
   {
    "id": "e60a793fa3ef31b4",
@@ -1845,11 +1909,11 @@
    "bodyExcerpt": "채용 시 .~2027.1.8. · 퇴직일로부터 1 년이 경과하지 않은 명예퇴직 교원은 응시자격 없음 3. · 접수방법 : 이메일(parkhs412@ice.go.kr) 또는 직접 제출(우편접수 및 팩스 불가) 4",
    "deadline": "2026-09-26",
    "deadlineFrom": "raw",
-   "extVer": 115
+   "extVer": 116
   },
   {
    "id": "c5c7fdf58651a523",
-   "org": "성명 - 제출서류명 ’ 으로 제출",
+   "org": "서울시립교향악단",
    "region": "서울",
    "source": "artmore.kr",
    "title": "(재)서울시립교향악단 발달장애 예술인 모집 (기간제(장애인 제한) 채용)",
@@ -1871,16 +1935,15 @@
    "layer": "A",
    "deadlineFrom": "origin",
    "email": "ch21@kead.or.kr",
-   "orgBoard": "서울시립교향악단",
+   "orgBoard": null,
    "firstSeen": "2026-09-18",
    "isNew": false,
    "qualification": "표 모집분야 담당업무 채용 인원 응시자격 발달장애 예술인(장애인 제한, 계약직)",
    "contact": "02-6320-7066",
    "duty": "채용 인원",
    "workHours": "4시간(9:00~13:30, 휴게시간 12:00~12:30)〇",
-   "hiringOrg": "성명 - 제출서류명 ’ 으로 제출",
    "bodyExcerpt": "법원의 판결 또는 다른 법률에 따라 자격이 상실되거나 정지 된 자 7. · 블라인드 채용 및 기타사항 〇 서울시립교향악단은 블라인드 채용을 준수합니다 . · 〇 채용일정은 내부사정에 의하여 변경될 수 있습니다",
-   "extVer": 115
+   "extVer": 116
   },
   {
    "id": "600aa70dc4807cfc",
@@ -1918,7 +1981,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-09-18",
    "isNew": false,
-   "extVer": 115
+   "extVer": 116
   },
   {
    "id": "9aa552dd720602c5",
@@ -1944,6 +2007,7 @@
    "layer": "C",
    "contact": "070-7457-6273",
    "email": "yuriellkim@sen.go.kr",
+   "pay": "시간당 25,000원",
    "workPeriod": "2026.10.07 ~ 2027.01.08(단, 수업 종료시 계약도 종료됨)",
    "workHours": "월, 금요일 08:20~10:10(2차시)· 화요일 15:00~15:50(1차시)· 수요일 13:00~13:50(1차시)",
    "personnel": "1명",
@@ -1954,7 +2018,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-09-18",
    "isNew": false,
-   "extVer": 115
+   "extVer": 116
   },
   {
    "id": "407613e6953672b4",
@@ -1976,8 +2040,6 @@
    "instDetails": [],
    "channel": "artmore",
    "layer": "A",
-   "officialUrl": "http://spaf.or.kr/2024/",
-   "originTraced": true,
    "originTraceVer": 115,
    "applyEmail": "gh6730@hanmail.net",
    "applyPhone": "010-3901-6730",
@@ -1992,7 +2054,7 @@
    "bodyExcerpt": "근무조건: 신입-수습기간 3개월 / 경력직-2년이상 주 5일 근무*업무 특성상 주말근무 가능하며 주말근무시 근무시간계산후 평일에 대체 휴무 2. · 급여: 면접 후 결정 *첨부서류_ 이력서, 자기소개서(별도양식없음) 3. · 문의하기 입사 지원 완료 닫기 예술경영지원센터에서 직원 모집합니다. · 채용 공고에 입사 지원 했습니다",
    "deadline": "2026-09-30",
    "deadlineFrom": "raw",
-   "extVer": 115
+   "extVer": 116
   },
   {
    "id": "4f0f8d0fbedd46d8",
@@ -2018,50 +2080,15 @@
    ],
    "channel": "cwcf",
    "layer": "B",
-   "email": "acutecritic@naver.com",
-   "firstSeen": "2026-09-17",
-   "isNew": false,
    "qualification": "대학및대학원생",
+   "email": "acutecritic@naver.com",
    "personnel": "6명(파트별최대 3명)ㅇ 제출서류",
    "duty": "바이올린, 첼로 바이올린첼로(김덕우)(김민지) 최대 3명 | 최대 3명 10:00~12:00 / 1인당 40분이내지도 ©",
    "deadline": "2026-10-16",
    "deadlineFrom": "raw",
-   "extVer": 115
-  },
-  {
-   "id": "df8fb7add5b69a1f",
-   "org": "안양관악초등학교",
-   "region": "경기",
-   "source": "goe.go.kr",
-   "title": "[안양관악초] 계약제교원(2026. 10. 1.자 체육전담 기간제교사) 채용",
-   "nonMusic": null,
-   "url": "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=60399",
-   "date": "2026-09-17",
-   "kind": "교원",
-   "tier": "교육 — 학교",
-   "obri": false,
-   "certReq": "예",
-   "degreeReq": "무관",
-   "careerReq": "미기재",
-   "ageGroup": "성인",
-   "inst": "목관",
-   "instDetails": [],
-   "channel": "edu_goe",
-   "layer": "C",
-   "email": "kwanak@korea.kr",
-   "addr": "경기 안양시 동안구 일동로 201(관양동)",
-   "orgAffil": "경기교육청",
    "firstSeen": "2026-09-17",
    "isNew": false,
-   "contact": "070-4021-7078",
-   "workPeriod": "2026.10.01 ~ 2026.11.27",
-   "workHours": "적용(전일제 근무)",
-   "ageLimit": "만 62세",
-   "personnel": "초등 기간제(체육전담) 교사 1명",
-   "bodyExcerpt": "보수 : 공무원보수규정 제 8 조에 따라 산정된 호봉의 봉급을 지급하되, 고정급으로 한다 . · 자격 : 해당 채용분야 교원자격증 소지자 · 접수 방법 : 이메일(kwanak@korea.kr) 또는 방문 · 기타 채용과 관련한 문의사항은 안양관악초등학교 교무실(031-422-4824) 로 문의하시기 바랍니다",
-   "deadline": "2026-10-01",
-   "deadlineFrom": "raw",
-   "extVer": 115
+   "extVer": 116
   },
   {
    "id": "b07109a2b6f6bc88",
@@ -2085,18 +2112,18 @@
    "channel": "hibrain",
    "layer": "B",
    "subjectFrom": "attach",
+   "qualification": "(1)“공무원법”, “사립학교법”, “교육공무원법”에 명시된 결격사유가 없는 사람",
    "email": "htus_1@htus.ac.kr",
+   "bodyExcerpt": "접수기간 : 2026 년 9 월 17 일(목)~ 2026 년 10 월 2 일(금) 오후 6 시까지(전자우편으로만 접수)",
+   "deadline": "2026-10-07",
+   "deadlineFrom": "raw",
    "addr": "전남광주통합특별시 남구 제중로 77",
    "lat": 35.1395444,
    "lng": 126.9122454,
    "addrFrom": "geo",
    "firstSeen": "2026-09-18",
    "isNew": false,
-   "qualification": "(1)“공무원법”, “사립학교법”, “교육공무원법”에 명시된 결격사유가 없는 사람",
-   "bodyExcerpt": "접수기간 : 2026 년 9 월 17 일(목)~ 2026 년 10 월 2 일(금) 오후 6 시까지(전자우편으로만 접수)",
-   "deadline": "2026-10-07",
-   "deadlineFrom": "raw",
-   "extVer": 115
+   "extVer": 116
   },
   {
    "id": "a20a0e58a0d21ea7",
@@ -2108,9 +2135,9 @@
    "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=110491",
    "date": "2026-09-15",
    "kind": "기타",
-   "tier": "교육 — 취미·입문",
+   "tier": "교육 — 학교",
    "obri": false,
-   "certReq": "아니오",
+   "certReq": "예",
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
@@ -2132,7 +2159,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-09-15",
    "isNew": false,
-   "extVer": 115
+   "extVer": 116
   },
   {
    "id": "0e8eeb53f1dfa324",
@@ -2166,7 +2193,7 @@
    "bodyExcerpt": "응시 자격(해당 교과) 중등 교원자격증 소지자 4. · 채용 일정 일정 내용 비고 2026.09.14.(월)~ 채용시까지 전화 접수 및 이메일 서류접수(eunkyems@korea.kr) 5. · 채용예정분야와 관련된 석사학위를 취득한 자 3. · 기타 위 각호의 1 에 상당하는 자격 또는 능력이 있다고 인정되는 자 다호 22,000원 1",
    "deadline": "2026-09-25",
    "deadlineFrom": "raw",
-   "extVer": 115
+   "extVer": 116
   },
   {
    "id": "459dd612bb1ed9ab",
@@ -2196,12 +2223,12 @@
    "addr": "서울특별시 서대문구 연세로50",
    "addrFrom": "postal",
    "email": "eunangela@yonsei.ac.kr",
-   "firstSeen": "2026-09-16",
-   "isNew": false,
    "bodyExcerpt": "임용일 전까지 박사학위 취득 가능한 자(임용일 전 박사학위 미 취득 시 임용 취소) 추가자격조건에 별도 자격이 명시되어 있는 경우 그 내용을 따름 · 대학(원) 별도의 신임교원 지원 제도는 해당 홈페이지 참조 · 임용 트랙은 추가자격요건에 명시되어 있지 않은 경우 정년트랙 또는 비정년트랙 강의/연구전담교원으로 임용할 수 있음",
    "deadline": "2026-10-02",
    "deadlineFrom": "raw",
-   "extVer": 115
+   "firstSeen": "2026-09-16",
+   "isNew": false,
+   "extVer": 116
   },
   {
    "id": "8bd39a59f22eb510",
@@ -2233,7 +2260,7 @@
    "pay": "50만원",
    "firstSeen": "2026-09-13",
    "isNew": false,
-   "extVer": 115
+   "extVer": 116
   },
   {
    "id": "dd32b3bd221db597",
@@ -2274,7 +2301,7 @@
    "regionBoard": "강원",
    "firstSeen": "2026-09-11",
    "isNew": false,
-   "extVer": 115
+   "extVer": 116
   },
   {
    "id": "c3c4120502bf8369",
@@ -2310,7 +2337,7 @@
    "addrFrom": "geo",
    "firstSeen": "2026-09-09",
    "isNew": false,
-   "extVer": 115
+   "extVer": 116
   },
   {
    "id": "8db272fa3fb51c90",
@@ -2343,7 +2370,7 @@
    "workHours": "미사: 주일 오전 10시 30분 - 연습: 매주 주일 미사 전 9시 00분 ~ 매주 수요일(오후 8시~10시)",
    "bodyExcerpt": "자격 조건 - 세례 후 3년 이상인 천주교 신자 - 전공자, 지휘 경험자 우대 3. · 마감 - 채용 시까지 6",
    "deadlineNote": "상시",
-   "extVer": 115
+   "extVer": 116
   },
   {
    "id": "bd2c17f19933f651",
@@ -2375,7 +2402,7 @@
    "pay": "30만원",
    "firstSeen": "2026-08-14",
    "isNew": false,
-   "extVer": 115
+   "extVer": 116
   },
   {
    "id": "b2e199e32140e0ed",
@@ -2410,7 +2437,7 @@
    "deadlineNote": "상시",
    "firstSeen": "2026-08-08",
    "isNew": false,
-   "extVer": 115
+   "extVer": 116
   },
   {
    "id": "5fbc7e4eb4f8d92d",
@@ -2444,7 +2471,7 @@
    "deadlineNote": "상시",
    "firstSeen": "2026-08-08",
    "isNew": false,
-   "extVer": 115
+   "extVer": 116
   }
  ]
 }
