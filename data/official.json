@@ -1,5 +1,5 @@
 {
- "collectedAt": "2026-09-24 20:24",
+ "collectedAt": "2026-09-25 18:07",
  "heldNoOrigin": 1,
  "sourceCount": 91,
  "okCount": 91,
@@ -212,10 +212,10 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 21,
+   "raw": 20,
    "kept": 0,
    "drop": {
-    "무관": 18,
+    "무관": 17,
     "만료": 3,
     "오래됨": 0
    }
@@ -396,8 +396,8 @@
    "poll": "daily",
    "ok": true,
    "raw": 5,
-   "kept": 8,
-   "carried": 4,
+   "kept": 7,
+   "carried": 3,
    "drop": {
     "비음악": 1,
     "만료": 0,
@@ -1390,7 +1390,7 @@
    "deadline": "2026-10-07",
    "deadlineFrom": "raw",
    "firstSeen": "2026-09-23",
-   "isNew": true,
+   "isNew": false,
    "extVer": 116
   },
   {
@@ -1426,7 +1426,7 @@
    "originTraceVer": 116,
    "dlHint": null,
    "firstSeen": "2026-09-23",
-   "isNew": true,
+   "isNew": false,
    "extVer": 116
   },
   {
@@ -1461,7 +1461,7 @@
    "deadlineFrom": "raw",
    "orgAffil": "경기교육청",
    "firstSeen": "2026-09-24",
-   "isNew": true,
+   "isNew": false,
    "extVer": 116
   },
   {
@@ -1493,7 +1493,7 @@
    "deadlineFrom": "raw",
    "orgAffil": "경기교육청",
    "firstSeen": "2026-09-23",
-   "isNew": true,
+   "isNew": false,
    "extVer": 116
   },
   {
@@ -1520,7 +1520,7 @@
    "addr": "전북특별자치도 전주시 완산구 고사평8길 11 전주여울초등학교",
    "email": "jslovejyd@naver.com",
    "firstSeen": "2026-09-22",
-   "isNew": true,
+   "isNew": false,
    "hireType": "계약제 교원",
    "contact": "063-255-9077",
    "workPeriod": "2026.10.19 ~ 2026.12.24",
@@ -1559,7 +1559,7 @@
     "추천서 문의 : 사무실 (223-6691) 목록가기 교구내 성폭력 피해 접수처 부서전화안내 후원부서안내 부서 웹사이트 수원교구 제1대리구 제2대리구 교구법원 학교"
    ],
    "firstSeen": "2026-09-23",
-   "isNew": true,
+   "isNew": false,
    "extVer": 116
   },
   {
@@ -1768,40 +1768,6 @@
    "ageLimit": "제한 없음",
    "bodyExcerpt": "공고에 ‘채용의 제한’ 부분 명시 2. · 지침 [붙임 2] 기간제교원 채용 공고(예시) 다운로드 지침",
    "deadline": "2026-09-29",
-   "deadlineFrom": "raw",
-   "extVer": 116
-  },
-  {
-   "id": "eaac88c780bf7a1b",
-   "org": "군포대야초등학교",
-   "region": "경기",
-   "source": "goe.go.kr",
-   "title": "[군포대야초] 계약제교원(음악 교과전담) 채용 공고(3차)",
-   "nonMusic": null,
-   "url": "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=60727",
-   "date": "2026-09-21",
-   "kind": "교원",
-   "tier": "교육 — 학교",
-   "obri": false,
-   "certReq": "예",
-   "degreeReq": "무관",
-   "careerReq": "미기재",
-   "ageGroup": "성인",
-   "inst": "전체",
-   "instDetails": [],
-   "channel": "edu_goe",
-   "layer": "C",
-   "email": "dy3776@korea.kr",
-   "addr": "경기 군포시 대야2로 148(대야미동)",
-   "orgAffil": "경기교육청",
-   "firstSeen": "2026-09-21",
-   "isNew": false,
-   "contact": "070-4021-7078",
-   "workPeriod": "2026.10.12 ~ 2027.01.09",
-   "ageLimit": "임용 상한 연령(교육공무원의 정년 62세와 동일) 미 해당자",
-   "personnel": "1명",
-   "bodyExcerpt": "중등 1, 2 급 정교사 및 중등음악교사 해당 자격증 소지자 - 국가공무원법 제 33 조 임용 결격사유에 해당되지 아니한 · 보수 : 초등학교 계약직(시간강사) 교원 보수 규정에 의함 · 자격 : 위의 채용 분야 참조 · 접수 방법 : 이메일(dy3776@korea.kr), 또는 방문접수",
-   "deadline": "2026-09-24",
    "deadlineFrom": "raw",
    "extVer": 116
   },
