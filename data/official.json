@@ -1,8 +1,8 @@
 {
- "collectedAt": "2026-09-25 18:07",
+ "collectedAt": "2026-09-26 02:05",
  "heldNoOrigin": 1,
  "sourceCount": 91,
- "okCount": 91,
+ "okCount": 85,
  "instTotal": 75,
  "sources": [
   {
@@ -122,14 +122,9 @@
    "name": "대구문화예술회관(시향)",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 2,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "비음악": 2,
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='daeguartscenter.or.kr', port=443): Max retries exceeded with url: /index.do?menu_id=00001528 ("
   },
   {
    "id": "bscc",
@@ -167,11 +162,9 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 10,
+   "raw": 0,
    "kept": 0,
    "drop": {
-    "무관": 6,
-    "비음악": 4,
     "만료": 0,
     "오래됨": 0
    }
@@ -197,11 +190,9 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 40,
+   "raw": 0,
    "kept": 1,
    "drop": {
-    "무관": 30,
-    "비음악": 9,
     "만료": 0,
     "오래됨": 0
    }
@@ -396,8 +387,8 @@
    "poll": "daily",
    "ok": true,
    "raw": 5,
-   "kept": 7,
-   "carried": 3,
+   "kept": 6,
+   "carried": 2,
    "drop": {
     "비음악": 1,
     "만료": 0,
@@ -463,10 +454,10 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 4,
+   "raw": 0,
    "kept": 0,
    "drop": {
-    "만료": 4,
+    "만료": 0,
     "오래됨": 0
    }
   },
@@ -489,10 +480,10 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 1,
+   "raw": 0,
    "kept": 0,
    "drop": {
-    "만료": 1,
+    "만료": 0,
     "오래됨": 0
    }
   },
@@ -593,13 +584,9 @@
    "name": "고양문화재단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 0,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.artgy.or.kr/CU/CU0101M.aspx\", waiting unti"
   },
   {
    "id": "g_gfac",
@@ -823,14 +810,9 @@
    "name": "순천시립합창단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 1,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "무관": 1,
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.suncheon.go.kr', port=443): Max retries exceeded with url: /scart/community/0001;jsessioni"
   },
   {
    "id": "g_i_andonggokr",
@@ -852,13 +834,9 @@
    "name": "경기문화재단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 0,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "HTTPError: 403 Forbidden"
   },
   {
    "id": "g_i_hcforkr",
@@ -918,13 +896,9 @@
    "name": "동해문화관광재단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 0,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "HTTPError: 403 Forbidden"
   },
   {
    "id": "g_i_cfscorkr",
@@ -1090,14 +1064,9 @@
    "name": "대구문화예술회관 공지(시립합창단)",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 7,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "무관": 6,
-    "만료": 1,
-    "오래됨": 0
-   }
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.daeguartscenter.or.kr', port=443): Max retries exceeded with url: /index.do?menu_id=000015"
   },
   {
    "id": "g_ansanarts",
@@ -1238,11 +1207,9 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 9,
-   "kept": 8,
-   "declared": 9,
+   "raw": 0,
+   "kept": 2,
    "drop": {
-    "비음악": 1,
     "만료": 0,
     "오래됨": 0
    }
@@ -2046,14 +2013,14 @@
    ],
    "channel": "cwcf",
    "layer": "B",
-   "qualification": "대학및대학원생",
    "email": "acutecritic@naver.com",
+   "firstSeen": "2026-09-17",
+   "isNew": false,
+   "qualification": "대학및대학원생",
    "personnel": "6명(파트별최대 3명)ㅇ 제출서류",
    "duty": "바이올린, 첼로 바이올린첼로(김덕우)(김민지) 최대 3명 | 최대 3명 10:00~12:00 / 1인당 40분이내지도 ©",
    "deadline": "2026-10-16",
    "deadlineFrom": "raw",
-   "firstSeen": "2026-09-17",
-   "isNew": false,
    "extVer": 116
   },
   {
@@ -2078,17 +2045,17 @@
    "channel": "hibrain",
    "layer": "B",
    "subjectFrom": "attach",
-   "qualification": "(1)“공무원법”, “사립학교법”, “교육공무원법”에 명시된 결격사유가 없는 사람",
    "email": "htus_1@htus.ac.kr",
-   "bodyExcerpt": "접수기간 : 2026 년 9 월 17 일(목)~ 2026 년 10 월 2 일(금) 오후 6 시까지(전자우편으로만 접수)",
-   "deadline": "2026-10-07",
-   "deadlineFrom": "raw",
    "addr": "전남광주통합특별시 남구 제중로 77",
    "lat": 35.1395444,
    "lng": 126.9122454,
    "addrFrom": "geo",
    "firstSeen": "2026-09-18",
    "isNew": false,
+   "qualification": "(1)“공무원법”, “사립학교법”, “교육공무원법”에 명시된 결격사유가 없는 사람",
+   "bodyExcerpt": "접수기간 : 2026 년 9 월 17 일(목)~ 2026 년 10 월 2 일(금) 오후 6 시까지(전자우편으로만 접수)",
+   "deadline": "2026-10-07",
+   "deadlineFrom": "raw",
    "extVer": 116
   },
   {
@@ -2128,40 +2095,6 @@
    "extVer": 116
   },
   {
-   "id": "0e8eeb53f1dfa324",
-   "org": "은계중학교",
-   "region": "경기",
-   "source": "goe.go.kr",
-   "title": "[은계중] 시간강사 교원 채용 공고(음악)",
-   "nonMusic": null,
-   "url": "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=59843",
-   "date": "2026-09-14",
-   "kind": "교원",
-   "tier": "교육 — 학교",
-   "obri": false,
-   "certReq": "예",
-   "degreeReq": "석사",
-   "careerReq": "미기재",
-   "ageGroup": "성인",
-   "inst": "전체",
-   "instDetails": [],
-   "channel": "edu_goe",
-   "layer": "C",
-   "email": "eunkyems@korea.kr",
-   "addr": "경기도 시흥시 대은로 111번길 10(대야동, 은계중학교)",
-   "orgAffil": "경기교육청",
-   "firstSeen": "2026-09-14",
-   "isNew": false,
-   "contact": "070-4021-7078",
-   "workPeriod": "2026.10.06 ~ 2026.10.15",
-   "workHours": "21시간",
-   "personnel": "1명",
-   "bodyExcerpt": "응시 자격(해당 교과) 중등 교원자격증 소지자 4. · 채용 일정 일정 내용 비고 2026.09.14.(월)~ 채용시까지 전화 접수 및 이메일 서류접수(eunkyems@korea.kr) 5. · 채용예정분야와 관련된 석사학위를 취득한 자 3. · 기타 위 각호의 1 에 상당하는 자격 또는 능력이 있다고 인정되는 자 다호 22,000원 1",
-   "deadline": "2026-09-25",
-   "deadlineFrom": "raw",
-   "extVer": 116
-  },
-  {
    "id": "459dd612bb1ed9ab",
    "org": "연세대학교",
    "region": "서울",
@@ -2189,11 +2122,11 @@
    "addr": "서울특별시 서대문구 연세로50",
    "addrFrom": "postal",
    "email": "eunangela@yonsei.ac.kr",
+   "firstSeen": "2026-09-16",
+   "isNew": false,
    "bodyExcerpt": "임용일 전까지 박사학위 취득 가능한 자(임용일 전 박사학위 미 취득 시 임용 취소) 추가자격조건에 별도 자격이 명시되어 있는 경우 그 내용을 따름 · 대학(원) 별도의 신임교원 지원 제도는 해당 홈페이지 참조 · 임용 트랙은 추가자격요건에 명시되어 있지 않은 경우 정년트랙 또는 비정년트랙 강의/연구전담교원으로 임용할 수 있음",
    "deadline": "2026-10-02",
    "deadlineFrom": "raw",
-   "firstSeen": "2026-09-16",
-   "isNew": false,
    "extVer": 116
   },
   {
