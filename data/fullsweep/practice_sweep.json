@@ -1,5 +1,5 @@
 {
- "date": "2026-09-25",
+ "date": "2026-09-26",
  "src": "eshare.go.kr",
  "count": 323,
  "dropped": 325,
@@ -1918,6 +1918,17 @@
    "lo": 127.007018448235,
    "kw": "밴드"
   },
+  "DK24D623341": {
+   "name": "아람마당(밴드마당)",
+   "addr": "경기 고양시 일산동구 중앙로 1286",
+   "sido": "경기",
+   "free": false,
+   "cls": "다목적실",
+   "bookTo": "https://www.gymadang.or.kr",
+   "la": 37.66147994995117,
+   "lo": 126.77439880371094,
+   "kw": "밴드"
+  },
   "HE18O853653": {
    "name": "밴드 쏘 (SHARPMAX MBS1400)",
    "addr": "경기 수원시 권선구 서둔로 166",
@@ -2015,17 +2026,6 @@
    "bookTo": "https://www.uiwang.go.kr/reserve/edu/E03/eduView.do?currentMenuNo=627&resrId=RESR_000000000012248",
    "la": 37.378283962037,
    "lo": 126.97559670442,
-   "kw": "밴드"
-  },
-  "DK24D623341": {
-   "name": "아람마당(밴드마당)",
-   "addr": "경기 고양시 일산동구 중앙로 1286",
-   "sido": "경기",
-   "free": false,
-   "cls": "다목적실",
-   "bookTo": "https://www.gymadang.or.kr",
-   "la": 37.66147994995117,
-   "lo": 126.77439880371094,
    "kw": "밴드"
   },
   "HH13E859495": {
@@ -2169,6 +2169,28 @@
    "bookTo": "",
    "la": 37.1655656908478,
    "lo": 128.991507044156,
+   "kw": "피아노"
+  },
+  "HG16D857415": {
+   "name": "두 대의 피아노로 들여다보는 전쟁, 그리고 인간",
+   "addr": "인천 남동구 예술로 149",
+   "sido": "인천",
+   "free": false,
+   "cls": "공연프로그램",
+   "bookTo": "https://www.incheon.go.kr/res/RE050101/pblprfrDspyView?resveProgrmSeCode=C&resveGroupSn=5&progrmSn=10935",
+   "la": 37.4475889154018,
+   "lo": 126.700055774871,
+   "kw": "피아노"
+  },
+  "HB11E846484": {
+   "name": "소극장_한별피아노학원(2/28)[대관수입_단원]",
+   "addr": "경기 안산시 단원구 화정천서로 369",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "http://reserve.ansan.go.kr/edu/E06/eduView.do?currentMenuNo=616&resrId=RESR_000000000013524",
+   "la": 37.33044554102,
+   "lo": 126.81678699111,
    "kw": "피아노"
   },
   "HH20E860216": {
@@ -2831,17 +2853,6 @@
    "lo": 126.81678699111,
    "kw": "피아노"
   },
-  "HB11E846484": {
-   "name": "소극장_한별피아노학원(2/28)[대관수입_단원]",
-   "addr": "경기 안산시 단원구 화정천서로 369",
-   "sido": "경기",
-   "free": false,
-   "cls": "건강/체육프로그램",
-   "bookTo": "http://reserve.ansan.go.kr/edu/E06/eduView.do?currentMenuNo=616&resrId=RESR_000000000013524",
-   "la": 37.33044554102,
-   "lo": 126.81678699111,
-   "kw": "피아노"
-  },
   "HB11E846596": {
    "name": "코딩특강(아두이노초음파피아노)_겨울특강[사회교육_단원]",
    "addr": "경기 안산시 단원구 화정천서로 369",
@@ -2886,15 +2897,26 @@
    "lo": 126.8535055695,
    "kw": "피아노"
   },
-  "HG16D857415": {
-   "name": "두 대의 피아노로 들여다보는 전쟁, 그리고 인간",
-   "addr": "인천 남동구 예술로 149",
-   "sido": "인천",
+  "HB11E846362": {
+   "name": "토요피아노D[2월]_겨울학기[사회교육_상록]",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
    "free": false,
-   "cls": "공연프로그램",
-   "bookTo": "https://www.incheon.go.kr/res/RE050101/pblprfrDspyView?resveProgrmSeCode=C&resveGroupSn=5&progrmSn=10935",
-   "la": 37.4475889154018,
-   "lo": 126.700055774871,
+   "cls": "건강/체육프로그램",
+   "bookTo": "http://reserve.ansan.go.kr/edu/E03/eduView.do?currentMenuNo=604&resrId=RESR_000000000013776",
+   "la": 37.326275367734,
+   "lo": 126.8535055695,
+   "kw": "피아노"
+  },
+  "HD16E851113": {
+   "name": "(사회교육)[5월]성인피아노E_봄학기",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "http://reserve.ansan.go.kr/edu/E03/eduView.do?currentMenuNo=604&resrId=RESR_000000000016825",
+   "la": 37.326275367734,
+   "lo": 126.8535055695,
    "kw": "피아노"
   },
   "HF20E855981": {
@@ -2963,17 +2985,6 @@
    "lo": 126.81678699111,
    "kw": "피아노"
   },
-  "HB11E846362": {
-   "name": "토요피아노D[2월]_겨울학기[사회교육_상록]",
-   "addr": "경기 안산시 상록구 삼일로 696",
-   "sido": "경기",
-   "free": false,
-   "cls": "건강/체육프로그램",
-   "bookTo": "http://reserve.ansan.go.kr/edu/E03/eduView.do?currentMenuNo=604&resrId=RESR_000000000013776",
-   "la": 37.326275367734,
-   "lo": 126.8535055695,
-   "kw": "피아노"
-  },
   "HB11E846353": {
    "name": "성인피아노D[2월]_겨울학기[사회교육_상록]",
    "addr": "경기 안산시 상록구 삼일로 696",
@@ -2981,17 +2992,6 @@
    "free": false,
    "cls": "건강/체육프로그램",
    "bookTo": "http://reserve.ansan.go.kr/edu/E03/eduView.do?currentMenuNo=604&resrId=RESR_000000000013786",
-   "la": 37.326275367734,
-   "lo": 126.8535055695,
-   "kw": "피아노"
-  },
-  "HD16E851113": {
-   "name": "(사회교육)[5월]성인피아노E_봄학기",
-   "addr": "경기 안산시 상록구 삼일로 696",
-   "sido": "경기",
-   "free": false,
-   "cls": "건강/체육프로그램",
-   "bookTo": "http://reserve.ansan.go.kr/edu/E03/eduView.do?currentMenuNo=604&resrId=RESR_000000000016825",
    "la": 37.326275367734,
    "lo": 126.8535055695,
    "kw": "피아노"
@@ -3172,6 +3172,17 @@
    "lo": 127.19180297851562,
    "kw": "음악창작소"
   },
+  "HD30E852078": {
+   "name": "[포천음악창작소] 5월 가곡 클래스(추가모집)",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=52724&eshare=1",
+   "la": 37.885832632026,
+   "lo": 127.19180048848,
+   "kw": "음악창작소"
+  },
   "HD30E852077": {
    "name": "[포천음악창작소] 5월 바이올린 프로그램(추가모집)",
    "addr": "경기 포천시 호국로 1423",
@@ -3311,17 +3322,6 @@
    "free": true,
    "cls": "건강/체육프로그램",
    "bookTo": "https://share.gg.go.kr/lecture/view?id=53559&eshare=1",
-   "la": 37.885832632026,
-   "lo": 127.19180048848,
-   "kw": "음악창작소"
-  },
-  "HD30E852078": {
-   "name": "[포천음악창작소] 5월 가곡 클래스(추가모집)",
-   "addr": "경기 포천시 호국로 1423",
-   "sido": "경기",
-   "free": true,
-   "cls": "건강/체육프로그램",
-   "bookTo": "https://share.gg.go.kr/lecture/view?id=52724&eshare=1",
    "la": 37.885832632026,
    "lo": 127.19180048848,
    "kw": "음악창작소"
@@ -3502,6 +3502,17 @@
    "lo": 127.19180048848,
    "kw": "음악창작소"
   },
+  "HE29E854375": {
+   "name": "[포천음악창작소] 6월 바이올린 프로그램(추가모집)",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=54625&eshare=1",
+   "la": 37.885832632026,
+   "lo": 127.19180048848,
+   "kw": "음악창작소"
+  },
   "HF17E855684": {
    "name": "[포천음악창작소] 7월 보컬레슨(대중가요)",
    "addr": "경기 포천시 호국로 1423",
@@ -3542,17 +3553,6 @@
    "free": true,
    "cls": "건강/체육프로그램",
    "bookTo": "https://share.gg.go.kr/lecture/view?id=54627&eshare=1",
-   "la": 37.885832632026,
-   "lo": 127.19180048848,
-   "kw": "음악창작소"
-  },
-  "HE29E854375": {
-   "name": "[포천음악창작소] 6월 바이올린 프로그램(추가모집)",
-   "addr": "경기 포천시 호국로 1423",
-   "sido": "경기",
-   "free": true,
-   "cls": "건강/체육프로그램",
-   "bookTo": "https://share.gg.go.kr/lecture/view?id=54625&eshare=1",
    "la": 37.885832632026,
    "lo": 127.19180048848,
    "kw": "음악창작소"
