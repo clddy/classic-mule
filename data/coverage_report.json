@@ -1,8 +1,8 @@
 {
  "date": "2026-09-29",
  "total": 75,
- "covered": 4,
- "gapCount": 71,
+ "covered": 5,
+ "gapCount": 70,
  "gaps": [
   {
    "name": "KBS교향악단",
@@ -67,11 +67,6 @@
   {
    "name": "국립합창단",
    "type": "합창단",
-   "region": "서울"
-  },
-  {
-   "name": "서울시예술단(세종)",
-   "type": "예술단",
    "region": "서울"
   },
   {
