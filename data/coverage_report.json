@@ -1,8 +1,8 @@
 {
- "date": "2026-09-30",
+ "date": "2026-10-01",
  "total": 75,
- "covered": 6,
- "gapCount": 69,
+ "covered": 7,
+ "gapCount": 68,
  "gaps": [
   {
    "name": "KBS교향악단",
@@ -98,11 +98,6 @@
    "name": "김해시립예술단",
    "type": "예술단",
    "region": "경남"
-  },
-  {
-   "name": "구미시립예술단",
-   "type": "예술단",
-   "region": "경북"
   },
   {
    "name": "군산시립예술단",
