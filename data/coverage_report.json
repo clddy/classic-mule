@@ -1,8 +1,8 @@
 {
  "date": "2026-09-30",
  "total": 75,
- "covered": 5,
- "gapCount": 70,
+ "covered": 6,
+ "gapCount": 69,
  "gaps": [
   {
    "name": "KBS교향악단",
@@ -23,11 +23,6 @@
    "name": "부천필하모닉",
    "type": "교향악단",
    "region": "경기"
-  },
-  {
-   "name": "인천시립교향악단",
-   "type": "교향악단",
-   "region": "인천"
   },
   {
    "name": "대전시립교향악단",
@@ -357,8 +352,8 @@
  ],
  "master": {
   "total": 604,
-  "covered": 7,
-  "gapCount": 597,
+  "covered": 8,
+  "gapCount": 596,
   "byCategory": {
    "대학": {
     "total": 77,
@@ -370,7 +365,7 @@
    },
    "예술단": {
     "total": 54,
-    "covered": 4
+    "covered": 5
    },
    "지자체": {
     "total": 323,
@@ -847,11 +842,6 @@
     "name": "대구시립교향악단",
     "cat": "예술단",
     "region": "대구"
-   },
-   {
-    "name": "인천시립교향악단",
-    "cat": "예술단",
-    "region": "인천"
    },
    {
     "name": "광주시립교향악단",
