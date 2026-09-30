@@ -232,8 +232,15 @@ _PAY_UNIT = [(r"시급|시간\s*당", "HOUR"), (r"일당|일\s*급", "DAY"),
              (r"주급|주\s*당", "WEEK"), (r"월급|월\s*액|월\s*보수|세전\s*월|월\s*\d", "MONTH"),
              (r"연봉|연\s*급", "YEAR")]
 # 직무 → 고용형태. 확실한 것만 매긴다 — 모르면 키 자체를 생략한다.
+# kind → schema.org employmentType. **빠진 직종이 있으면 그 공고만 항목이 통째로 없어진다** —
+# 반주(최대 분류)·기타·지휘·솔리스트가 표에 없어 게시의 절반 이상이 employmentType 없이
+# 나갔고, 구글 서치콘솔이 '채용 정보 구조화된 데이터 문제'로 통지했다 (2026-09-30).
+# '기타'는 추측해서 아무 값이나 넣지 않고 schema.org 가 정한 OTHER 를 쓴다 — '분류 안 됨'을
+# 규정값으로 정직하게 말하는 자리다. kind 를 새로 만들면 여기도 같이 채울 것.
 _EMP = {"교수": "PART_TIME", "강사": "PART_TIME", "단원": "PART_TIME",
-        "객원·대체": "TEMPORARY", "직원": "FULL_TIME", "교원": "CONTRACTOR"}
+        "객원·대체": "TEMPORARY", "직원": "FULL_TIME", "교원": "CONTRACTOR",
+        "반주": "PART_TIME", "지휘": "PART_TIME", "솔리스트": "TEMPORARY",
+        "기타": "OTHER"}
 
 
 def _base_salary(j):
