@@ -1,8 +1,8 @@
 {
  "date": "2026-10-01",
  "total": 75,
- "covered": 7,
- "gapCount": 68,
+ "covered": 8,
+ "gapCount": 67,
  "gaps": [
   {
    "name": "KBS교향악단",
@@ -190,11 +190,6 @@
    "region": "강원"
   },
   {
-   "name": "통영국제음악제",
-   "type": "축제",
-   "region": "경남"
-  },
-  {
    "name": "온누리교회",
    "type": "교회",
    "region": "서울"
@@ -347,8 +342,8 @@
  ],
  "master": {
   "total": 604,
-  "covered": 8,
-  "gapCount": 596,
+  "covered": 9,
+  "gapCount": 595,
   "byCategory": {
    "대학": {
     "total": 77,
@@ -368,7 +363,7 @@
    },
    "공연장": {
     "total": 69,
-    "covered": 0
+    "covered": 1
    },
    "공공기관": {
     "total": 5,
@@ -1372,11 +1367,6 @@
     "name": "울산문화예술회관",
     "cat": "공연장",
     "region": "울산"
-   },
-   {
-    "name": "통영국제음악당",
-    "cat": "공연장",
-    "region": "경남"
    },
    {
     "name": "제주아트센터",
