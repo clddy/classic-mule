@@ -1,5 +1,5 @@
 {
- "date": "2026-10-01",
+ "date": "2026-10-02",
  "src": "eshare.go.kr",
  "count": 328,
  "dropped": 320,
@@ -1379,59 +1379,26 @@
    "lo": 129.019842802063,
    "kw": "음악실"
   },
-  "HG25E858210": {
-   "name": "세라밴드",
-   "addr": "경기 의왕시 갈미로 71",
+  "HC21E849737": {
+   "name": "[고천동] 건강밴드",
+   "addr": "경기 의왕시 사천로 11",
    "sido": "경기",
    "free": false,
    "cls": "건강/체육프로그램",
-   "bookTo": "https://www.uiwang.go.kr/reserve/edu/E03/eduView.do?currentMenuNo=627&resrId=RESR_000000000012248",
-   "la": 37.378283962037,
-   "lo": 126.97559670442,
+   "bookTo": "https://www.uiwang.go.kr/reserve/edu/E03/eduView.do?currentMenuNo=624&resrId=RESR_000000000011114",
+   "la": 37.345801562119,
+   "lo": 126.97689571963,
    "kw": "밴드"
   },
-  "HH13E859495": {
-   "name": "세라밴드",
-   "addr": "경기 의왕시 부곡시장길 75",
-   "sido": "경기",
-   "free": false,
-   "cls": "건강/체육프로그램",
-   "bookTo": "https://www.uiwang.go.kr/reserve/edu/E03/eduView.do?currentMenuNo=625&resrId=RESR_000000000012643",
-   "la": 37.318703253148,
-   "lo": 126.95678291717,
-   "kw": "밴드"
-  },
-  "HH11E859265": {
-   "name": "[26년 제3기]세라밴드",
+  "HD14E850918": {
+   "name": "[26년 제2기]세라밴드",
    "addr": "경기 의왕시 안양판교로 232",
    "sido": "경기",
    "free": false,
    "cls": "건강/체육프로그램",
-   "bookTo": "https://www.uiwang.go.kr/reserve/edu/E03/eduView.do?currentMenuNo=629&resrId=RESR_000000000012283",
+   "bookTo": "https://www.uiwang.go.kr/reserve/edu/E03/eduView.do?currentMenuNo=629&resrId=RESR_000000000011694",
    "la": 37.388731273569,
    "lo": 126.99636875842,
-   "kw": "밴드"
-  },
-  "HH08E859040": {
-   "name": "[26년 제3기] 세라밴드",
-   "addr": "경기 의왕시 찬우물길 11",
-   "sido": "경기",
-   "free": false,
-   "cls": "건강/체육프로그램",
-   "bookTo": "https://www.uiwang.go.kr/reserve/edu/E03/eduView.do?currentMenuNo=626&resrId=RESR_000000000012344",
-   "la": 37.353600058729,
-   "lo": 126.97152265434,
-   "kw": "밴드"
-  },
-  "HH28E860619": {
-   "name": "중앙도서관 개관 20주년 기념 모아맘 밴드 락 공연 로킹 마마",
-   "addr": "경기 안산시 단원구 안산천남로 14",
-   "sido": "경기",
-   "free": true,
-   "cls": "건강/체육프로그램",
-   "bookTo": "http://reserve.ansan.go.kr/edu/E03/eduView.do?currentMenuNo=604&resrId=RESR_000000000020948",
-   "la": 37.30434560099,
-   "lo": 126.82115021867,
    "kw": "밴드"
   },
   "HD02E850283": {
@@ -1445,15 +1412,59 @@
    "lo": 126.97152265434,
    "kw": "밴드"
   },
-  "HC21E849737": {
-   "name": "[고천동] 건강밴드",
-   "addr": "경기 의왕시 사천로 11",
+  "HG25E858210": {
+   "name": "세라밴드",
+   "addr": "경기 의왕시 갈미로 71",
    "sido": "경기",
    "free": false,
    "cls": "건강/체육프로그램",
-   "bookTo": "https://www.uiwang.go.kr/reserve/edu/E03/eduView.do?currentMenuNo=624&resrId=RESR_000000000011114",
-   "la": 37.345801562119,
-   "lo": 126.97689571963,
+   "bookTo": "https://www.uiwang.go.kr/reserve/edu/E03/eduView.do?currentMenuNo=627&resrId=RESR_000000000012248",
+   "la": 37.378283962037,
+   "lo": 126.97559670442,
+   "kw": "밴드"
+  },
+  "HH11E859265": {
+   "name": "[26년 제3기]세라밴드",
+   "addr": "경기 의왕시 안양판교로 232",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://www.uiwang.go.kr/reserve/edu/E03/eduView.do?currentMenuNo=629&resrId=RESR_000000000012283",
+   "la": 37.388731273569,
+   "lo": 126.99636875842,
+   "kw": "밴드"
+  },
+  "HH28E860619": {
+   "name": "중앙도서관 개관 20주년 기념 모아맘 밴드 락 공연 로킹 마마",
+   "addr": "경기 안산시 단원구 안산천남로 14",
+   "sido": "경기",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "http://reserve.ansan.go.kr/edu/E03/eduView.do?currentMenuNo=604&resrId=RESR_000000000020948",
+   "la": 37.30434560099,
+   "lo": 126.82115021867,
+   "kw": "밴드"
+  },
+  "HH13E859495": {
+   "name": "세라밴드",
+   "addr": "경기 의왕시 부곡시장길 75",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://www.uiwang.go.kr/reserve/edu/E03/eduView.do?currentMenuNo=625&resrId=RESR_000000000012643",
+   "la": 37.318703253148,
+   "lo": 126.95678291717,
+   "kw": "밴드"
+  },
+  "HH08E859040": {
+   "name": "[26년 제3기] 세라밴드",
+   "addr": "경기 의왕시 찬우물길 11",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://www.uiwang.go.kr/reserve/edu/E03/eduView.do?currentMenuNo=626&resrId=RESR_000000000012344",
+   "la": 37.353600058729,
+   "lo": 126.97152265434,
    "kw": "밴드"
   },
   "EF10D635795": {
@@ -1465,17 +1476,6 @@
    "bookTo": "https://www.goyang.go.kr/agr/userFrcnRentReqst/BD_selectUserFrcnList.do",
    "la": 37.649777903709,
    "lo": 126.87008600751,
-   "kw": "밴드"
-  },
-  "HD14E850918": {
-   "name": "[26년 제2기]세라밴드",
-   "addr": "경기 의왕시 안양판교로 232",
-   "sido": "경기",
-   "free": false,
-   "cls": "건강/체육프로그램",
-   "bookTo": "https://www.uiwang.go.kr/reserve/edu/E03/eduView.do?currentMenuNo=629&resrId=RESR_000000000011694",
-   "la": 37.388731273569,
-   "lo": 126.99636875842,
    "kw": "밴드"
   },
   "HE18O853653": {
@@ -3249,46 +3249,13 @@
    "lo": 127.19180048848,
    "kw": "음악창작소"
   },
-  "HD30E852081": {
-   "name": "[포천음악창작소] 5월 전자드럼 프로그램(추가모집)",
+  "HC13E848600": {
+   "name": "[포천음악창작소] 4월 모이면 음악이된다",
    "addr": "경기 포천시 호국로 1423",
    "sido": "경기",
    "free": true,
    "cls": "건강/체육프로그램",
-   "bookTo": "https://share.gg.go.kr/lecture/view?id=52721&eshare=1",
-   "la": 37.885832632026,
-   "lo": 127.19180048848,
-   "kw": "음악창작소"
-  },
-  "HD30E852080": {
-   "name": "[포천음악창작소] 5월 녹음실 운용 기초 프로그램 A(추가모집)",
-   "addr": "경기 포천시 호국로 1423",
-   "sido": "경기",
-   "free": true,
-   "cls": "건강/체육프로그램",
-   "bookTo": "https://share.gg.go.kr/lecture/view?id=52722&eshare=1",
-   "la": 37.885832632026,
-   "lo": 127.19180048848,
-   "kw": "음악창작소"
-  },
-  "HD30E852079": {
-   "name": "[포천음악창작소] 5월 녹음실 운용 기초 프로그램 B(추가모집)",
-   "addr": "경기 포천시 호국로 1423",
-   "sido": "경기",
-   "free": true,
-   "cls": "건강/체육프로그램",
-   "bookTo": "https://share.gg.go.kr/lecture/view?id=52723&eshare=1",
-   "la": 37.885832632026,
-   "lo": 127.19180048848,
-   "kw": "음악창작소"
-  },
-  "HD30E852078": {
-   "name": "[포천음악창작소] 5월 가곡 클래스(추가모집)",
-   "addr": "경기 포천시 호국로 1423",
-   "sido": "경기",
-   "free": true,
-   "cls": "건강/체육프로그램",
-   "bookTo": "https://share.gg.go.kr/lecture/view?id=52724&eshare=1",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=49541&eshare=1",
    "la": 37.885832632026,
    "lo": 127.19180048848,
    "kw": "음악창작소"
@@ -3300,6 +3267,160 @@
    "free": true,
    "cls": "건강/체육프로그램",
    "bookTo": "https://share.gg.go.kr/lecture/view?id=52725&eshare=1",
+   "la": 37.885832632026,
+   "lo": 127.19180048848,
+   "kw": "음악창작소"
+  },
+  "HE14E852922": {
+   "name": "[포천음악창작소] 6월 플루트 프로그램",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=53559&eshare=1",
+   "la": 37.885832632026,
+   "lo": 127.19180048848,
+   "kw": "음악창작소"
+  },
+  "HE14E852921": {
+   "name": "[포천음악창작소] 6월 바이올린 프로그램",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=53561&eshare=1",
+   "la": 37.885832632026,
+   "lo": 127.19180048848,
+   "kw": "음악창작소"
+  },
+  "HE14E852920": {
+   "name": "[포천음악창작소] 6월 전자드럼 프로그램",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=53562&eshare=1",
+   "la": 37.885832632026,
+   "lo": 127.19180048848,
+   "kw": "음악창작소"
+  },
+  "HE14E852919": {
+   "name": "[포천음악창작소] 6월 리코더 프로그램",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=53563&eshare=1",
+   "la": 37.885832632026,
+   "lo": 127.19180048848,
+   "kw": "음악창작소"
+  },
+  "HE14E852918": {
+   "name": "[포천음악창작소] 6월 청년 보컬레슨 프로그램 A",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=53564&eshare=1",
+   "la": 37.885832632026,
+   "lo": 127.19180048848,
+   "kw": "음악창작소"
+  },
+  "HE14E852917": {
+   "name": "[포천음악창작소] 6월 청년 보컬레슨 프로그램 B",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=53566&eshare=1",
+   "la": 37.885832632026,
+   "lo": 127.19180048848,
+   "kw": "음악창작소"
+  },
+  "HE29E854375": {
+   "name": "[포천음악창작소] 6월 바이올린 프로그램(추가모집)",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=54625&eshare=1",
+   "la": 37.885832632026,
+   "lo": 127.19180048848,
+   "kw": "음악창작소"
+  },
+  "HE29E854373": {
+   "name": "[포천음악창작소] 6월 전자드럼 프로그램(추가모집)",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=54627&eshare=1",
+   "la": 37.885832632026,
+   "lo": 127.19180048848,
+   "kw": "음악창작소"
+  },
+  "HG16E857553": {
+   "name": "[포천음악창작소] 8월 오카리나",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=57846&eshare=1",
+   "la": 37.885832632026,
+   "lo": 127.19180048848,
+   "kw": "음악창작소"
+  },
+  "HG17E857731": {
+   "name": "[포천음악창작소] 8월 전자드럼",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=57962&eshare=1",
+   "la": 37.885832632026,
+   "lo": 127.19180048848,
+   "kw": "음악창작소"
+  },
+  "HG17E857730": {
+   "name": "[포천음악창작소] 8월 보컬레슨(대중가요)",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=57963&eshare=1",
+   "la": 37.885832632026,
+   "lo": 127.19180048848,
+   "kw": "음악창작소"
+  },
+  "HH20E860113": {
+   "name": "[포천음악창작소] 9월 보컬레슨(대중가요)",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=60689&eshare=1",
+   "la": 37.885832632026,
+   "lo": 127.19180048848,
+   "kw": "음악창작소"
+  },
+  "HH20E860112": {
+   "name": "[포천음악창작소] 9월 전자드럼",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=60690&eshare=1",
+   "la": 37.885832632026,
+   "lo": 127.19180048848,
+   "kw": "음악창작소"
+  },
+  "HH20E860111": {
+   "name": "[포천음악창작소] 9월 바이올린",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=60692&eshare=1",
    "la": 37.885832632026,
    "lo": 127.19180048848,
    "kw": "음악창작소"
@@ -3392,79 +3513,46 @@
    "lo": 127.19180048848,
    "kw": "음악창작소"
   },
-  "HE14E852922": {
-   "name": "[포천음악창작소] 6월 플루트 프로그램",
+  "HD30E852081": {
+   "name": "[포천음악창작소] 5월 전자드럼 프로그램(추가모집)",
    "addr": "경기 포천시 호국로 1423",
    "sido": "경기",
    "free": true,
    "cls": "건강/체육프로그램",
-   "bookTo": "https://share.gg.go.kr/lecture/view?id=53559&eshare=1",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=52721&eshare=1",
    "la": 37.885832632026,
    "lo": 127.19180048848,
    "kw": "음악창작소"
   },
-  "HE14E852921": {
-   "name": "[포천음악창작소] 6월 바이올린 프로그램",
+  "HD30E852080": {
+   "name": "[포천음악창작소] 5월 녹음실 운용 기초 프로그램 A(추가모집)",
    "addr": "경기 포천시 호국로 1423",
    "sido": "경기",
    "free": true,
    "cls": "건강/체육프로그램",
-   "bookTo": "https://share.gg.go.kr/lecture/view?id=53561&eshare=1",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=52722&eshare=1",
    "la": 37.885832632026,
    "lo": 127.19180048848,
    "kw": "음악창작소"
   },
-  "HE14E852920": {
-   "name": "[포천음악창작소] 6월 전자드럼 프로그램",
+  "HD30E852079": {
+   "name": "[포천음악창작소] 5월 녹음실 운용 기초 프로그램 B(추가모집)",
    "addr": "경기 포천시 호국로 1423",
    "sido": "경기",
    "free": true,
    "cls": "건강/체육프로그램",
-   "bookTo": "https://share.gg.go.kr/lecture/view?id=53562&eshare=1",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=52723&eshare=1",
    "la": 37.885832632026,
    "lo": 127.19180048848,
    "kw": "음악창작소"
   },
-  "HE14E852919": {
-   "name": "[포천음악창작소] 6월 리코더 프로그램",
+  "HD30E852078": {
+   "name": "[포천음악창작소] 5월 가곡 클래스(추가모집)",
    "addr": "경기 포천시 호국로 1423",
    "sido": "경기",
    "free": true,
    "cls": "건강/체육프로그램",
-   "bookTo": "https://share.gg.go.kr/lecture/view?id=53563&eshare=1",
-   "la": 37.885832632026,
-   "lo": 127.19180048848,
-   "kw": "음악창작소"
-  },
-  "HE14E852918": {
-   "name": "[포천음악창작소] 6월 청년 보컬레슨 프로그램 A",
-   "addr": "경기 포천시 호국로 1423",
-   "sido": "경기",
-   "free": true,
-   "cls": "건강/체육프로그램",
-   "bookTo": "https://share.gg.go.kr/lecture/view?id=53564&eshare=1",
-   "la": 37.885832632026,
-   "lo": 127.19180048848,
-   "kw": "음악창작소"
-  },
-  "HE29E854375": {
-   "name": "[포천음악창작소] 6월 바이올린 프로그램(추가모집)",
-   "addr": "경기 포천시 호국로 1423",
-   "sido": "경기",
-   "free": true,
-   "cls": "건강/체육프로그램",
-   "bookTo": "https://share.gg.go.kr/lecture/view?id=54625&eshare=1",
-   "la": 37.885832632026,
-   "lo": 127.19180048848,
-   "kw": "음악창작소"
-  },
-  "HE29E854373": {
-   "name": "[포천음악창작소] 6월 전자드럼 프로그램(추가모집)",
-   "addr": "경기 포천시 호국로 1423",
-   "sido": "경기",
-   "free": true,
-   "cls": "건강/체육프로그램",
-   "bookTo": "https://share.gg.go.kr/lecture/view?id=54627&eshare=1",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=52724&eshare=1",
    "la": 37.885832632026,
    "lo": 127.19180048848,
    "kw": "음악창작소"
@@ -3502,39 +3590,6 @@
    "lo": 127.19180048848,
    "kw": "음악창작소"
   },
-  "HG17E857731": {
-   "name": "[포천음악창작소] 8월 전자드럼",
-   "addr": "경기 포천시 호국로 1423",
-   "sido": "경기",
-   "free": true,
-   "cls": "건강/체육프로그램",
-   "bookTo": "https://share.gg.go.kr/lecture/view?id=57962&eshare=1",
-   "la": 37.885832632026,
-   "lo": 127.19180048848,
-   "kw": "음악창작소"
-  },
-  "HG17E857730": {
-   "name": "[포천음악창작소] 8월 보컬레슨(대중가요)",
-   "addr": "경기 포천시 호국로 1423",
-   "sido": "경기",
-   "free": true,
-   "cls": "건강/체육프로그램",
-   "bookTo": "https://share.gg.go.kr/lecture/view?id=57963&eshare=1",
-   "la": 37.885832632026,
-   "lo": 127.19180048848,
-   "kw": "음악창작소"
-  },
-  "HG16E857553": {
-   "name": "[포천음악창작소] 8월 오카리나",
-   "addr": "경기 포천시 호국로 1423",
-   "sido": "경기",
-   "free": true,
-   "cls": "건강/체육프로그램",
-   "bookTo": "https://share.gg.go.kr/lecture/view?id=57846&eshare=1",
-   "la": 37.885832632026,
-   "lo": 127.19180048848,
-   "kw": "음악창작소"
-  },
   "HG17E857749": {
    "name": "[포천음악창작소] 8월 바이올린",
    "addr": "경기 포천시 호국로 1423",
@@ -3542,61 +3597,6 @@
    "free": true,
    "cls": "건강/체육프로그램",
    "bookTo": "https://share.gg.go.kr/lecture/view?id=57941&eshare=1",
-   "la": 37.885832632026,
-   "lo": 127.19180048848,
-   "kw": "음악창작소"
-  },
-  "HH20E860113": {
-   "name": "[포천음악창작소] 9월 보컬레슨(대중가요)",
-   "addr": "경기 포천시 호국로 1423",
-   "sido": "경기",
-   "free": true,
-   "cls": "건강/체육프로그램",
-   "bookTo": "https://share.gg.go.kr/lecture/view?id=60689&eshare=1",
-   "la": 37.885832632026,
-   "lo": 127.19180048848,
-   "kw": "음악창작소"
-  },
-  "HH20E860112": {
-   "name": "[포천음악창작소] 9월 전자드럼",
-   "addr": "경기 포천시 호국로 1423",
-   "sido": "경기",
-   "free": true,
-   "cls": "건강/체육프로그램",
-   "bookTo": "https://share.gg.go.kr/lecture/view?id=60690&eshare=1",
-   "la": 37.885832632026,
-   "lo": 127.19180048848,
-   "kw": "음악창작소"
-  },
-  "HH20E860111": {
-   "name": "[포천음악창작소] 9월 바이올린",
-   "addr": "경기 포천시 호국로 1423",
-   "sido": "경기",
-   "free": true,
-   "cls": "건강/체육프로그램",
-   "bookTo": "https://share.gg.go.kr/lecture/view?id=60692&eshare=1",
-   "la": 37.885832632026,
-   "lo": 127.19180048848,
-   "kw": "음악창작소"
-  },
-  "HC13E848600": {
-   "name": "[포천음악창작소] 4월 모이면 음악이된다",
-   "addr": "경기 포천시 호국로 1423",
-   "sido": "경기",
-   "free": true,
-   "cls": "건강/체육프로그램",
-   "bookTo": "https://share.gg.go.kr/lecture/view?id=49541&eshare=1",
-   "la": 37.885832632026,
-   "lo": 127.19180048848,
-   "kw": "음악창작소"
-  },
-  "HE14E852917": {
-   "name": "[포천음악창작소] 6월 청년 보컬레슨 프로그램 B",
-   "addr": "경기 포천시 호국로 1423",
-   "sido": "경기",
-   "free": true,
-   "cls": "건강/체육프로그램",
-   "bookTo": "https://share.gg.go.kr/lecture/view?id=53566&eshare=1",
    "la": 37.885832632026,
    "lo": 127.19180048848,
    "kw": "음악창작소"

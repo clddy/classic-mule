@@ -1,6 +1,6 @@
 {
  "updatedAt": "2026-10-02",
- "count": 1443,
+ "count": 1444,
  "items": {
   "f7b1c263744b9ece": {
    "id": "f7b1c263744b9ece",
@@ -35924,7 +35924,7 @@
    "deadlineFrom": "raw",
    "kind": "기타",
    "tier": "교육 — 학교",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
@@ -36161,7 +36161,7 @@
    "deadlineFrom": "raw",
    "kind": "교수",
    "tier": "교육 — 대학",
-   "inst": "성악",
+   "inst": "전체",
    "instDetails": [
     "소프라노",
     "성악"
@@ -36295,7 +36295,7 @@
    "deadlineFrom": "raw",
    "kind": "기타",
    "tier": "미분류",
-   "inst": "현악",
+   "inst": "전체",
    "instDetails": [
     "바이올린",
     "첼로",
@@ -38150,7 +38150,7 @@
    "deadlineFrom": "raw",
    "kind": "기타",
    "tier": "미분류",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "바순",
     "지휘"
@@ -38448,7 +38448,7 @@
    "deadlineFrom": "raw",
    "kind": "강사",
    "tier": "교육 — 학교",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
@@ -38558,6 +38558,39 @@
    "email": "skarkdud@sen.go.kr",
    "addr": "서울특별시 양천구 남부순환로 380(신월동)",
    "orgAffil": "서울시교육청",
+   "firstSeen": "2026-10-02",
+   "lastSeen": "2026-10-02",
+   "days": 1
+  },
+  "607b2c4f9d2087d4": {
+   "id": "607b2c4f9d2087d4",
+   "org": "부천부곡중학교",
+   "region": "경기",
+   "source": "goe.go.kr",
+   "channel": "edu_goe",
+   "layer": "C",
+   "title": "[부천부곡중] 음악 시간강사 채용",
+   "url": "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=61827",
+   "date": "2026-10-02",
+   "deadline": "2026-10-07",
+   "deadlineFrom": "raw",
+   "kind": "강사",
+   "tier": "교육 — 학교",
+   "inst": "목관",
+   "instDetails": [
+    "관악"
+   ],
+   "ageGroup": "성인",
+   "obri": false,
+   "certReq": "무관",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "personnel": "1명",
+   "workPeriod": "2026.10.21 ~ 2026.10.23",
+   "contact": "070-4021-7078",
+   "email": "ohjiyeon@korea.kr",
+   "addr": "경기 부천시 원미구 부흥로 284(중동)",
+   "orgAffil": "경기교육청",
    "firstSeen": "2026-10-02",
    "lastSeen": "2026-10-02",
    "days": 1

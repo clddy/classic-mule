@@ -1,5 +1,5 @@
 {
- "collectedAt": "2026-10-02 14:13",
+ "collectedAt": "2026-10-02 14:22",
  "heldNoOrigin": 0,
  "sourceCount": 91,
  "okCount": 90,
@@ -186,7 +186,8 @@
    "raw": 10,
    "kept": 1,
    "drop": {
-    "비음악": 8,
+    "비음악": 7,
+    "무관": 1,
     "만료": 1,
     "오래됨": 0
    }
@@ -396,8 +397,8 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 5,
-   "kept": 10,
+   "raw": 6,
+   "kept": 11,
    "carried": 5,
    "drop": {
     "만료": 0,
@@ -424,7 +425,7 @@
    "poll": "daily",
    "ok": true,
    "raw": 0,
-   "kept": 4,
+   "kept": 3,
    "drop": {
     "만료": 0,
     "오래됨": 0
@@ -1347,6 +1348,40 @@
    "extVer": 117
   },
   {
+   "id": "607b2c4f9d2087d4",
+   "org": "부천부곡중학교",
+   "region": "경기",
+   "source": "goe.go.kr",
+   "title": "[부천부곡중] 음악 시간강사 채용",
+   "nonMusic": null,
+   "url": "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=61827",
+   "date": "2026-10-02",
+   "kind": "강사",
+   "tier": "교육 — 학교",
+   "obri": false,
+   "certReq": "무관",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "ageGroup": "성인",
+   "inst": "목관",
+   "instDetails": [
+    "관악"
+   ],
+   "channel": "edu_goe",
+   "layer": "C",
+   "contact": "070-4021-7078",
+   "email": "ohjiyeon@korea.kr",
+   "workPeriod": "2026.10.21 ~ 2026.10.23",
+   "personnel": "1명",
+   "addr": "경기 부천시 원미구 부흥로 284(중동)",
+   "deadline": "2026-10-07",
+   "deadlineFrom": "raw",
+   "orgAffil": "경기교육청",
+   "firstSeen": "2026-10-02",
+   "isNew": true,
+   "extVer": 117
+  },
+  {
    "id": "b606efe215fcc876",
    "org": "영동중학교",
    "region": "경기",
@@ -1465,7 +1500,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
@@ -1592,7 +1627,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "미성년",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "바순",
     "지휘"
@@ -2050,6 +2085,7 @@
    ],
    "channel": "edu_seoul",
    "layer": "C",
+   "qualification": "교과별 교원 자격증 소지자 및 해당분야 지도 유경험자",
    "contact": "02-6273-8111",
    "email": "skarkdud@sen.go.kr",
    "pay": "시간당 25,000원",
@@ -2060,7 +2096,6 @@
    "deadline": "2026-10-08",
    "deadlineFrom": "raw",
    "orgAffil": "서울시교육청",
-   "qualification": "교과별 교원 자격증 소지자 및 해당분야 지도 유경험자",
    "firstSeen": "2026-10-02",
    "isNew": false,
    "extVer": 117
@@ -2287,7 +2322,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "현악",
+   "inst": "전체",
    "instDetails": [
     "바이올린",
     "첼로",
@@ -2356,7 +2391,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
@@ -2393,7 +2428,7 @@
    "degreeReq": "박사",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "성악",
+   "inst": "전체",
    "instDetails": [
     "소프라노",
     "성악"
@@ -2547,8 +2582,8 @@
    ],
    "channel": "cjob",
    "layer": "C",
-   "addr": "경기 의왕시 경수대로 262 (오전동, 의왕서해그랑블(블루스퀘어))",
    "deadlineFrom": "cjob-남은기간",
+   "addr": "경기 의왕시 경수대로 262 (오전동, 의왕서해그랑블(블루스퀘어))",
    "denomination": "순복음",
    "documents": "간단한 이력서",
    "personnel": "반주자",
