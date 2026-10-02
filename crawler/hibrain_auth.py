@@ -12,6 +12,15 @@
 """
 import pathlib, time, sys, os
 
+# cp949 콘솔에서 한글 로그의 em-dash 하나에 print 가 터져, 정작 사람에게 할 말
+# ("화면에서 직접 체크해 주세요")이 UnicodeEncodeError 로 죽고 스크립트째 멈췄다
+# (2026-10-02). CLAUDE.md 에 적힌 함정인데 이 스크립트만 빠져 있었다.
+try:
+    sys.stdout.reconfigure(encoding="utf-8")
+    sys.stderr.reconfigure(encoding="utf-8")
+except Exception:
+    pass
+
 HERE = pathlib.Path(__file__).resolve().parent
 PROFILE = str(HERE / ".hibrain-profile")   # 로그인 세션 본체 (.gitignore)
 OK_MARK = HERE / ".hibrain-ok"             # 마지막 로그인 확인 시각 (.gitignore)
@@ -83,6 +92,29 @@ def _load_cookies(ctx):
     return False
 
 
+def _tick_autologin(page):
+    """'자동로그인'을 켠다 — 이게 꺼진 채 로그인하면 **세션 쿠키만** 발급돼 브라우저가
+    닫히는 순간 사라진다. 그래서 매 크롤이 로그아웃 상태로 시작하고, 재로그인에 성공해도
+    또 세션 쿠키라 다음 회차에 똑같이 끊겼다 (2026-10-02).
+
+    하이브레인이 이 체크박스를 **숨김 요소**(커스텀 스타일)로 바꾸면서 `page.check()` 가
+    force=True 로도 'Element is not visible' 로 실패한다 — 보이지 않는 입력은 JS 로 켠다.
+    실측: JS 로 켜고 로그인하면 영구 쿠키 3개가 발급되고 재시작 후에도 세션이 살아 있다.
+    """
+    try:
+        page.check("#isAutoSignin", timeout=2000, force=True)
+        return True
+    except Exception:
+        pass
+    try:
+        page.eval_on_selector(
+            "#isAutoSignin",
+            "el => { el.checked = true; el.dispatchEvent(new Event('change', {bubbles:true})); }")
+        return bool(page.eval_on_selector("#isAutoSignin", "el => el.checked"))
+    except Exception:
+        return False
+
+
 def _auto_relogin(page):
     """.env 자격증명으로 헤드리스 자동 재로그인. 성공 True.
     (하이브레인 로그인 폼: userid/passwd POST, CAPTCHA 없음 — 2026-07 확인)"""
@@ -93,10 +125,8 @@ def _auto_relogin(page):
     try:
         page.goto(LOGIN_URL, wait_until="domcontentloaded", timeout=25000)
         page.wait_for_timeout(800)
-        try:
-            page.check("#isAutoSignin", timeout=3000, force=True)   # 자동로그인 → 영구 쿠키
-        except Exception:
-            pass
+        if not _tick_autologin(page):      # 자동로그인 → 영구 쿠키
+            print("  [warn] 자동로그인 체크 실패 — 세션 쿠키만 받을 수 있다")
         page.fill("#userid", uid)
         page.fill("#passwd", pw)
         page.click("#submit-btn")
@@ -126,11 +156,10 @@ def setup():
         page = ctx.pages[0] if ctx.pages else ctx.new_page()
         page.goto(LOGIN_URL, wait_until="domcontentloaded")
         # '자동로그인' 체크 → 영구 쿠키 발급 (세션 쿠키만 받아 하루 만에 풀리는 것 방지)
-        try:
-            page.check("#isAutoSignin", timeout=3000, force=True)
+        if _tick_autologin(page):
             print("  [i] '자동로그인' 체크함 (세션 영구 유지)")
-        except Exception:
-            print("  [i] 자동로그인 체크박스를 못 찾음 — 화면에서 직접 체크해 주세요")
+        else:
+            print("  [i] 자동로그인 체크박스를 못 켰습니다. 화면에서 직접 체크해 주세요")
         # .env 자격증명이 있으면 아이디/비번 자동 입력 (제출은 사람이 확인)
         env = _load_env()
         if env.get("HIBRAIN_ID") and env.get("HIBRAIN_PW"):
