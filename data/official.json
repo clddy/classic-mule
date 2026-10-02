@@ -1,8 +1,8 @@
 {
- "collectedAt": "2026-10-02 14:22",
+ "collectedAt": "2026-10-02 14:55",
  "heldNoOrigin": 0,
  "sourceCount": 91,
- "okCount": 90,
+ "okCount": 91,
  "instTotal": 75,
  "sources": [
   {
@@ -397,9 +397,9 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 6,
+   "raw": 4,
    "kept": 11,
-   "carried": 5,
+   "carried": 7,
    "drop": {
     "만료": 0,
     "오래됨": 0
@@ -864,9 +864,13 @@
    "name": "화성시문화관광재단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 0,
    "kept": 0,
-   "error": "ReadTimeout: HTTPSConnectionPool(host='www.hcf.or.kr', port=443): Read timed out. (read timeout=20)"
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_i_gokamsorkr",
@@ -1275,7 +1279,7 @@
    "bodyExcerpt": "공고에 ‘채용의 제한’ 부분 명시 2. · 지침 [붙임 2] 기간제교원 채용 공고(예시) 다운로드 지침",
    "deadline": "2027-01-05",
    "deadlineFrom": "raw",
-   "extVer": 117
+   "extVer": 118
   },
   {
    "id": "ba62d46474c7d8eb",
@@ -1310,7 +1314,7 @@
    "bodyExcerpt": "공고에 ‘채용의 제한’ 부분 명시 2. · 지침 [붙임 2] 기간제교원 채용 공고(예시) 다운로드 지침",
    "deadline": "2026-10-16",
    "deadlineFrom": "raw",
-   "extVer": 117
+   "extVer": 118
   },
   {
    "id": "2a79c4878d411417",
@@ -1345,7 +1349,7 @@
    "bodyExcerpt": "공고에 ‘채용의 제한’ 부분 명시 2. · 지침 [붙임 2] 기간제교원 채용 공고(예시) 다운로드 지침",
    "deadline": "2026-10-16",
    "deadlineFrom": "raw",
-   "extVer": 117
+   "extVer": 118
   },
   {
    "id": "607b2c4f9d2087d4",
@@ -1379,7 +1383,7 @@
    "orgAffil": "경기교육청",
    "firstSeen": "2026-10-02",
    "isNew": true,
-   "extVer": 117
+   "extVer": 118
   },
   {
    "id": "b606efe215fcc876",
@@ -1414,7 +1418,7 @@
    "orgAffil": "경기교육청",
    "firstSeen": "2026-10-01",
    "isNew": true,
-   "extVer": 117
+   "extVer": 118
   },
   {
    "id": "8bffcf6393ad1c05",
@@ -1449,7 +1453,43 @@
    "orgAffil": "경기교육청",
    "firstSeen": "2026-10-01",
    "isNew": true,
-   "extVer": 117
+   "extVer": 118
+  },
+  {
+   "id": "5cb8caf1b6afbe84",
+   "org": "초월중학교",
+   "region": "경기",
+   "source": "goe.go.kr",
+   "title": "[초월중] 음악 시간강사 채용",
+   "nonMusic": null,
+   "url": "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=61698",
+   "date": "2026-10-01",
+   "kind": "강사",
+   "tier": "교육 — 학교",
+   "obri": false,
+   "certReq": "예",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "ageGroup": "성인",
+   "inst": "목관",
+   "instDetails": [
+    "관악"
+   ],
+   "channel": "edu_goe",
+   "layer": "C",
+   "contact": "070-4021-7078",
+   "email": "chdnjf4704@korea.kr",
+   "workPeriod": "2026.10.26 ~ 2026.10.30",
+   "workHours": "19시간",
+   "personnel": "1명",
+   "addr": "경기 광주시 초월읍 도곡길21번길 28",
+   "bodyExcerpt": "(총 19 시간)* 채용 응시 자격 : 내국인으로서(해당 과목) 중등학교 교원자격증 소지자 2. · 지원 서와 자기소개서를 이메일로 접수 : chdnjf4704 @korea.kr 또는 인편접수(교무실)",
+   "deadline": "2026-10-04",
+   "deadlineFrom": "raw",
+   "orgAffil": "경기교육청",
+   "firstSeen": "2026-10-01",
+   "isNew": true,
+   "extVer": 118
   },
   {
    "id": "a12f29bbd3a6850d",
@@ -1473,52 +1513,16 @@
    ],
    "channel": "edu_goe",
    "layer": "C",
+   "addr": "경기 안양시 만안구 삼덕로 49(안양동)",
+   "orgAffil": "경기교육청",
+   "firstSeen": "2026-10-01",
+   "isNew": true,
    "contact": "070-4021-7078",
    "workPeriod": "2026.11.02 ~ 2027.01.30",
    "personnel": "1명",
-   "addr": "경기 안양시 만안구 삼덕로 49(안양동)",
    "deadline": "2026-10-07",
    "deadlineFrom": "raw",
-   "orgAffil": "경기교육청",
-   "firstSeen": "2026-10-01",
-   "isNew": true,
-   "extVer": 117
-  },
-  {
-   "id": "5cb8caf1b6afbe84",
-   "org": "초월중학교",
-   "region": "경기",
-   "source": "goe.go.kr",
-   "title": "[초월중] 음악 시간강사 채용",
-   "nonMusic": null,
-   "url": "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=61698",
-   "date": "2026-10-01",
-   "kind": "강사",
-   "tier": "교육 — 학교",
-   "obri": false,
-   "certReq": "예",
-   "degreeReq": "무관",
-   "careerReq": "미기재",
-   "ageGroup": "성인",
-   "inst": "전체",
-   "instDetails": [
-    "관악"
-   ],
-   "channel": "edu_goe",
-   "layer": "C",
-   "contact": "070-4021-7078",
-   "email": "chdnjf4704@korea.kr",
-   "workPeriod": "2026.10.26 ~ 2026.10.30",
-   "workHours": "19시간",
-   "personnel": "1명",
-   "addr": "경기 광주시 초월읍 도곡길21번길 28",
-   "bodyExcerpt": "(총 19 시간)* 채용 응시 자격 : 내국인으로서(해당 과목) 중등학교 교원자격증 소지자 2. · 지원 서와 자기소개서를 이메일로 접수 : chdnjf4704 @korea.kr 또는 인편접수(교무실)",
-   "deadline": "2026-10-04",
-   "deadlineFrom": "raw",
-   "orgAffil": "경기교육청",
-   "firstSeen": "2026-10-01",
-   "isNew": true,
-   "extVer": 117
+   "extVer": 118
   },
   {
    "id": "88797fb93f723a0e",
@@ -1547,7 +1551,7 @@
    "qualification": "만 18 세이상의대한민국국민, 해외동포, 국내거주외국인",
    "firstSeen": "2026-10-01",
    "isNew": true,
-   "extVer": 117
+   "extVer": 118
   },
   {
    "id": "f9fb3178f03dfe36",
@@ -1579,7 +1583,7 @@
    "deadlineNote": "상시",
    "firstSeen": "2026-10-01",
    "isNew": true,
-   "extVer": 117
+   "extVer": 118
   },
   {
    "id": "a174b4922e89d143",
@@ -1609,7 +1613,7 @@
    "orgBoard": "구미시립예술단(구미시)",
    "firstSeen": "2026-10-01",
    "isNew": true,
-   "extVer": 117
+   "extVer": 118
   },
   {
    "id": "b3925bd811731bd2",
@@ -1627,7 +1631,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "미성년",
-   "inst": "전체",
+   "inst": "목관",
    "instDetails": [
     "바순",
     "지휘"
@@ -1644,7 +1648,7 @@
    "orgBoard": "인천문화예술회관(시립예술단)",
    "firstSeen": "2026-09-30",
    "isNew": false,
-   "extVer": 117
+   "extVer": 118
   },
   {
    "id": "bf7a3a6328c5f1a3",
@@ -1682,7 +1686,7 @@
    "duty": "시간강사(음악)",
    "deadline": "2026-10-02",
    "deadlineFrom": "raw",
-   "extVer": 117
+   "extVer": 118
   },
   {
    "id": "32e8c41da30160ff",
@@ -1704,19 +1708,19 @@
    "instDetails": [],
    "channel": "edu_goe",
    "layer": "C",
-   "contact": "070-4021-7078",
    "email": "ghkekawnd25@korea.kr",
-   "workPeriod": "2026.10.26 ~ 2026.10.30",
-   "ageLimit": "임용 상한 연령(만 62세 이내) 미 해당자",
-   "personnel": "1명",
    "addr": "경기 화성시 효행구 봉담읍 상리1길 166",
-   "bodyExcerpt": "자격 : 해당교과 중등 2 급 정교사 이상 자격증 소지자로 기간제교사 임용에 결격사유가 없는 · 6.(화) 이후 대상자 개별통보 2 차 면접 2026. · 대리 접수인 준비물 : 지원자 인장, 대리인 신분증, 위임장 5",
-   "deadline": "2026-10-06",
-   "deadlineFrom": "raw",
    "orgAffil": "경기교육청",
    "firstSeen": "2026-09-30",
    "isNew": false,
-   "extVer": 117
+   "contact": "070-4021-7078",
+   "workPeriod": "2026.10.26 ~ 2026.10.30",
+   "ageLimit": "임용 상한 연령(만 62세 이내) 미 해당자",
+   "personnel": "1명",
+   "bodyExcerpt": "자격 : 해당교과 중등 2 급 정교사 이상 자격증 소지자로 기간제교사 임용에 결격사유가 없는 · 6.(화) 이후 대상자 개별통보 2 차 면접 2026. · 대리 접수인 준비물 : 지원자 인장, 대리인 신분증, 위임장 5",
+   "deadline": "2026-10-06",
+   "deadlineFrom": "raw",
+   "extVer": 118
   },
   {
    "id": "a4f99d246ebc1ec4",
@@ -1728,7 +1732,7 @@
    "url": "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=61550",
    "date": "2026-09-30",
    "kind": "강사",
-   "tier": "교육 — 취미·입문",
+   "tier": "교육 — 학교",
    "obri": false,
    "certReq": "무관",
    "degreeReq": "무관",
@@ -1751,7 +1755,7 @@
    "personnel": "1명",
    "deadline": "2026-10-16",
    "deadlineFrom": "raw",
-   "extVer": 117
+   "extVer": 118
   },
   {
    "id": "42c1fdc1b37a95d2",
@@ -1783,7 +1787,7 @@
    "addrFrom": "geo",
    "firstSeen": "2026-09-29",
    "isNew": false,
-   "extVer": 117
+   "extVer": 118
   },
   {
    "id": "4946a4c31fac4ce1",
@@ -1817,7 +1821,7 @@
    "addrFrom": "geo",
    "firstSeen": "2026-09-29",
    "isNew": false,
-   "extVer": 117
+   "extVer": 118
   },
   {
    "id": "b3f9c15524759639",
@@ -1850,7 +1854,7 @@
    "bodyExcerpt": "해당 교과 중등 2 급 정교사 이상 교원 자격증 소지자 . · 공무원 채용기준에 따른 결격사유가 없는",
    "deadline": "2026-10-02",
    "deadlineFrom": "raw",
-   "extVer": 117
+   "extVer": 118
   },
   {
    "id": "b727513f4cf0bea0",
@@ -1885,7 +1889,7 @@
    "bodyExcerpt": "해당 분야에 전문적인 능력을 가진 자 또는 자격증 소지자",
    "deadline": "2026-10-08",
    "deadlineFrom": "raw",
-   "extVer": 117
+   "extVer": 118
   },
   {
    "id": "8b989f1045b3c289",
@@ -1919,7 +1923,7 @@
    "bodyExcerpt": "초 ․ 중등교육법 제 21 조 ② 항의 규정에 의한 해당 교과 교원자격증 소지자 · 채용 조건은 인천광역시교육청 계약제교원 운영 지침에 의함 · 응시 희망자는 자격 요건 등이 적합한가를 우선 판단하여 원서를 이메일 또는 우편 접수하기 바 라며, 기재 사항은 수정할 수 없습니다 . · 응시원서나 각종 증명서의 기재 내용이 사실과 다르거나 계약제교원 채용에 관한 규정을 위반한 자는 임용을 정지 또는 무효로 하며, 합격을 취소할 수",
    "deadline": "2026-10-11",
    "deadlineFrom": "raw",
-   "extVer": 117
+   "extVer": 118
   },
   {
    "id": "1b5558275b33b6ab",
@@ -1972,7 +1976,7 @@
    "email": "sevil2000@korea.kr",
    "pay": "(수석단원) 월 1,500천원,(정단원) 월 1,200천원",
    "workPeriod": "2026.11.10 ~ 2027.11.09",
-   "workHours": "09:30~15:",
+   "workHours": "09:30~15:30",
    "workPlace": "충북도립교향악단",
    "personnel": "호른 1명",
    "duty": "비상임단원 10명 구 분 모집분야(악기) 모집인원 비 고 악 단(비상임) 수석단원 호른 1명 위촉기간 1년 이내 정단원 바이올린 7명 비올라 1명 첼로 1명",
@@ -1986,7 +1990,7 @@
    "regionBoard": "충북",
    "firstSeen": "2026-09-29",
    "isNew": false,
-   "extVer": 117
+   "extVer": 118
   },
   {
    "id": "803c5c9f60f7be0b",
@@ -2018,14 +2022,14 @@
    "email": "sevil2000@korea.kr",
    "pay": "(수석단원) 월 1,500천원,(정단원) 월 1,200천원",
    "workPeriod": "2026.11.10 ~ 2027.11.09",
-   "workHours": "09:30~15:",
+   "workHours": "09:30~15:30",
    "workPlace": "충북도립교향악단",
    "duty": "비상임단원 10명 구 분 모집분야(악기) 모집인원 비고 수석단원 호른 1명 바이올린 7명 정단원 비올라 1명 첼로 1명",
    "deadline": "2026-10-08",
    "deadlineFrom": "raw",
    "firstSeen": "2026-09-28",
    "isNew": false,
-   "extVer": 117
+   "extVer": 118
   },
   {
    "id": "ad3e73fead238bff",
@@ -2057,11 +2061,11 @@
    "layer": "A",
    "officialUrl": "https://www.jcf.or.kr/",
    "originTraced": true,
-   "originTraceVer": 117,
+   "originTraceVer": 118,
    "dlHint": null,
    "firstSeen": "2026-09-23",
    "isNew": false,
-   "extVer": 117
+   "extVer": 118
   },
   {
    "id": "9ffaa7bbb2d78020",
@@ -2098,7 +2102,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-10-02",
    "isNew": false,
-   "extVer": 117
+   "extVer": 118
   },
   {
    "id": "118bbf2f6e3df12a",
@@ -2134,7 +2138,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-09-29",
    "isNew": false,
-   "extVer": 117
+   "extVer": 118
   },
   {
    "id": "49d9394ed891e6ef",
@@ -2174,7 +2178,7 @@
    "bodyExcerpt": "문의하기 입사 지원 완료 닫기 예술경영지원센터에서 직원 모집합니다. · 채용 공고에 입사 지원 했습니다",
    "deadline": "2026-10-07",
    "deadlineFrom": "raw",
-   "extVer": 117
+   "extVer": 118
   },
   {
    "id": "570dd11962dd96b2",
@@ -2209,7 +2213,7 @@
    "bodyExcerpt": "채용 응시 자격 : 내국인으로서 채용 분야 교원자격증 소지자 2. · 보수 : 실제 강의할 시간 수에 따라 계약서에 명기하되, 시간당 강사료를 고려하여 시간당 산정액 또는 월정액을 계약 내용에 따라 지급 · 자격 : 해당 교과 교원 자격증 소지자 · 접수방법 : 이메일(back72@daum.net) 제출 또는 우편, 방문(어람중학교 1 층 교무실, ☎ 031-575-0583)",
    "deadline": "2026-10-08",
    "deadlineFrom": "raw",
-   "extVer": 117
+   "extVer": 118
   },
   {
    "id": "603d289dcf099710",
@@ -2242,7 +2246,7 @@
    "personnel": "3명",
    "deadline": "2026-10-05",
    "deadlineFrom": "raw",
-   "extVer": 117
+   "extVer": 118
   },
   {
    "id": "67a3c401da0ae858",
@@ -2273,7 +2277,7 @@
    ],
    "firstSeen": "2026-09-23",
    "isNew": false,
-   "extVer": 117
+   "extVer": 118
   },
   {
    "id": "3ec8a79430f38f5f",
@@ -2304,7 +2308,7 @@
    "isNew": false,
    "deadline": "2026-11-03",
    "deadlineFrom": "raw",
-   "extVer": 117
+   "extVer": 118
   },
   {
    "id": "4f0f8d0fbedd46d8",
@@ -2322,7 +2326,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "전체",
+   "inst": "현악",
    "instDetails": [
     "바이올린",
     "첼로",
@@ -2338,7 +2342,7 @@
    "deadlineFrom": "raw",
    "firstSeen": "2026-09-17",
    "isNew": false,
-   "extVer": 117
+   "extVer": 118
   },
   {
    "id": "b07109a2b6f6bc88",
@@ -2373,7 +2377,7 @@
    "addrFrom": "geo",
    "firstSeen": "2026-09-18",
    "isNew": false,
-   "extVer": 117
+   "extVer": 118
   },
   {
    "id": "a20a0e58a0d21ea7",
@@ -2391,7 +2395,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "전체",
+   "inst": "목관",
    "instDetails": [
     "관악"
    ],
@@ -2410,7 +2414,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-09-15",
    "isNew": false,
-   "extVer": 117
+   "extVer": 118
   },
   {
    "id": "459dd612bb1ed9ab",
@@ -2428,7 +2432,7 @@
    "degreeReq": "박사",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "전체",
+   "inst": "성악",
    "instDetails": [
     "소프라노",
     "성악"
@@ -2445,7 +2449,7 @@
    "deadlineFrom": "raw",
    "firstSeen": "2026-09-16",
    "isNew": false,
-   "extVer": 117
+   "extVer": 118
   },
   {
    "id": "dd32b3bd221db597",
@@ -2486,7 +2490,7 @@
    "bodyExcerpt": "17시까지) 작성일 2026.09.11 작성자 음악대학 게시글 내용 춘천시립예술단(합창단) 에서는 상임단원(테너) 을 아래와 같이 모집합니다",
    "deadline": "2026-10-22",
    "deadlineFrom": "raw",
-   "extVer": 117
+   "extVer": 118
   },
   {
    "id": "c3c4120502bf8369",
@@ -2522,7 +2526,7 @@
    "addrFrom": "geo",
    "firstSeen": "2026-09-09",
    "isNew": false,
-   "extVer": 117
+   "extVer": 118
   },
   {
    "id": "b2e199e32140e0ed",
@@ -2557,7 +2561,7 @@
    "deadlineNote": "상시",
    "firstSeen": "2026-08-08",
    "isNew": false,
-   "extVer": 117
+   "extVer": 118
   },
   {
    "id": "5fbc7e4eb4f8d92d",
@@ -2582,8 +2586,8 @@
    ],
    "channel": "cjob",
    "layer": "C",
-   "deadlineFrom": "cjob-남은기간",
    "addr": "경기 의왕시 경수대로 262 (오전동, 의왕서해그랑블(블루스퀘어))",
+   "deadlineFrom": "cjob-남은기간",
    "denomination": "순복음",
    "documents": "간단한 이력서",
    "personnel": "반주자",
@@ -2591,7 +2595,7 @@
    "deadlineNote": "상시",
    "firstSeen": "2026-08-08",
    "isNew": false,
-   "extVer": 117
+   "extVer": 118
   }
  ]
 }
