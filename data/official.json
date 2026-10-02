@@ -1,8 +1,8 @@
 {
- "collectedAt": "2026-10-02 15:03",
+ "collectedAt": "2026-10-03 02:59",
  "heldNoOrigin": 0,
  "sourceCount": 91,
- "okCount": 90,
+ "okCount": 80,
  "instTotal": 75,
  "sources": [
   {
@@ -108,29 +108,18 @@
    "name": "인천문화예술회관",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 10,
+   "ok": false,
    "kept": 1,
-   "drop": {
-    "비음악": 3,
-    "무관": 6,
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.incheon.go.kr', port=443): Max retries exceeded with url: /art/ART040102 (Caused by Connec"
   },
   {
    "id": "daegu",
    "name": "대구문화예술회관(시향)",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 4,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "비음악": 4,
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='daeguartscenter.or.kr', port=443): Max retries exceeded with url: /index.do?menu_id=00001528 ("
   },
   {
    "id": "bscc",
@@ -168,11 +157,9 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 10,
+   "raw": 0,
    "kept": 0,
    "drop": {
-    "무관": 7,
-    "비음악": 3,
     "만료": 0,
     "오래됨": 0
    }
@@ -197,11 +184,9 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 28,
+   "raw": 0,
    "kept": 1,
    "drop": {
-    "무관": 23,
-    "비음악": 4,
     "만료": 0,
     "오래됨": 0
    }
@@ -381,8 +366,7 @@
    "poll": "daily",
    "ok": true,
    "raw": 5,
-   "kept": 4,
-   "carried": 1,
+   "kept": 3,
    "drop": {
     "무관": 1,
     "비음악": 1,
@@ -396,9 +380,9 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 4,
-   "kept": 11,
-   "carried": 7,
+   "raw": 7,
+   "kept": 13,
+   "carried": 6,
    "drop": {
     "만료": 0,
     "오래됨": 0
@@ -462,10 +446,10 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 4,
+   "raw": 0,
    "kept": 0,
    "drop": {
-    "만료": 4,
+    "만료": 0,
     "오래됨": 0
    }
   },
@@ -488,10 +472,10 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 1,
+   "raw": 0,
    "kept": 0,
    "drop": {
-    "만료": 1,
+    "만료": 0,
     "오래됨": 0
    }
   },
@@ -592,13 +576,9 @@
    "name": "고양문화재단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 0,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.artgy.or.kr/CU/CU0101M.aspx\", waiting unti"
   },
   {
    "id": "g_gfac",
@@ -686,10 +666,10 @@
    "poll": "daily",
    "ok": true,
    "raw": 10,
-   "kept": 2,
+   "kept": 1,
    "drop": {
+    "무관": 6,
     "비음악": 2,
-    "무관": 5,
     "만료": 1,
     "오래됨": 0
    }
@@ -846,13 +826,9 @@
    "name": "경기문화재단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 0,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "HTTPError: 403 Forbidden"
   },
   {
    "id": "g_i_hcforkr",
@@ -912,13 +888,9 @@
    "name": "동해문화관광재단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 0,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "HTTPError: 403 Forbidden"
   },
   {
    "id": "g_i_cfscorkr",
@@ -966,26 +938,18 @@
    "name": "목포시립예술단(교향악단·합창단)",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 0,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.mokpo.go.kr', port=443): Max retries exceeded with url: /www/mokpo_news/notification/incru"
   },
   {
    "id": "g_yeosu",
    "name": "여수시립예술단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 0,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.yeosu.go.kr', port=443): Max retries exceeded with url: /www/govt/news/recruit (Caused by "
   },
   {
    "id": "g_wonju",
@@ -1071,28 +1035,18 @@
    "name": "충남교육청(학교 채용)",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 0,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.cne.go.kr/boardCnts/list.do?boardID=642&m="
   },
   {
    "id": "g_daeguart_notice",
    "name": "대구문화예술회관 공지(시립합창단)",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 9,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "비음악": 2,
-    "무관": 6,
-    "만료": 1,
-    "오래됨": 0
-   }
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.daeguartscenter.or.kr', port=443): Max retries exceeded with url: /index.do?menu_id=000015"
   },
   {
    "id": "g_ansanarts",
@@ -1127,8 +1081,8 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 2,
-   "kept": 1,
+   "raw": 1,
+   "kept": 0,
    "drop": {
     "무관": 1,
     "만료": 0,
@@ -1179,13 +1133,9 @@
    "name": "인천문화예술회관(시립예술단)",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 1,
-   "kept": 1,
-   "drop": {
-    "만료": 0,
-    "오래됨": 0
-   }
+   "ok": false,
+   "kept": 0,
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.incheon.go.kr', port=443): Max retries exceeded with url: /art/ART040102 (Caused by Connec"
   },
   {
    "id": "g_snart",
@@ -1232,10 +1182,8 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 7,
-   "kept": 8,
-   "carried": 1,
-   "declared": 7,
+   "raw": 0,
+   "kept": 2,
    "drop": {
     "만료": 0,
     "오래됨": 0
@@ -1348,6 +1296,109 @@
    "extVer": 118
   },
   {
+   "id": "7ad9e504d8a72822",
+   "org": "영덕고등학교",
+   "region": "경기",
+   "source": "goe.go.kr",
+   "title": "[영덕고] 기간제교원 모집(음악)",
+   "nonMusic": null,
+   "url": "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=61899",
+   "date": "2026-10-02",
+   "kind": "교원",
+   "tier": "교육 — 학교",
+   "obri": false,
+   "certReq": "예",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "ageGroup": "성인",
+   "inst": "목관",
+   "instDetails": [
+    "관악"
+   ],
+   "channel": "edu_goe",
+   "layer": "C",
+   "contact": "070-4021-7078",
+   "email": "agathamh@korea.kr",
+   "workPeriod": "2026.10.16 ~ 2026.11.27",
+   "workHours": "90시간",
+   "personnel": "1명",
+   "addr": "경기 수원시 영통구 매영로 334(영통동)",
+   "bodyExcerpt": "제출 서류 1) 공통 : ① 지원서 ② 자기소개서(별표 1,2 참조) 2) 가산점 부여 대상자 : 해당 증빙 서류",
+   "deadline": "2026-10-06",
+   "deadlineFrom": "raw",
+   "orgAffil": "경기교육청",
+   "firstSeen": "2026-10-03",
+   "isNew": true,
+   "extVer": 118
+  },
+  {
+   "id": "73051b96d3d1d989",
+   "org": "진접중학교",
+   "region": "경기",
+   "source": "goe.go.kr",
+   "title": "[진접중] 계약제 교원(시간강사) 채용 공고-음악",
+   "nonMusic": null,
+   "url": "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=61889",
+   "date": "2026-10-02",
+   "kind": "교원",
+   "tier": "교육 — 학교",
+   "obri": false,
+   "certReq": "예",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "ageGroup": "성인",
+   "inst": "전체",
+   "instDetails": [],
+   "channel": "edu_goe",
+   "layer": "C",
+   "contact": "070-4021-7078",
+   "workPeriod": "2026.10.07 ~ 2026.10.16",
+   "workHours": "22시간",
+   "personnel": "1명",
+   "addr": "경기 남양주시 진접읍 금강로 1641-1",
+   "bodyExcerpt": "채용 응시 자격 : 내국인으로서 채용 분야 교원자격증 소지자 2. · 보수 : 공무원보수규정 제 8 조에 따라 산정된 호봉의 봉급을 지급하되, 고정급으로 한다 . · 자격 : 해당 교과 교원 자격증 소지자 · 대리 접수인 준비물 : 지원자 인장, 대리인 신분증, 위임증 7",
+   "deadline": "2026-10-05",
+   "deadlineFrom": "raw",
+   "orgAffil": "경기교육청",
+   "firstSeen": "2026-10-03",
+   "isNew": true,
+   "extVer": 118
+  },
+  {
+   "id": "28104eae191b5a2b",
+   "org": "과천중학교",
+   "region": "경기",
+   "source": "goe.go.kr",
+   "title": "[과천중] 계약제교원(음악 시간강사) 채용",
+   "nonMusic": null,
+   "url": "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=61886",
+   "date": "2026-10-02",
+   "kind": "교원",
+   "tier": "교육 — 학교",
+   "obri": false,
+   "certReq": "예",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "ageGroup": "성인",
+   "inst": "목관",
+   "instDetails": [
+    "관악"
+   ],
+   "channel": "edu_goe",
+   "layer": "C",
+   "contact": "070-4021-7078",
+   "email": "gwacheon1@korea.kr",
+   "workPeriod": "2026.11.23 ~ 2026.11.27",
+   "personnel": "1명",
+   "addr": "경기 과천시 희망4길 33(중앙동) 2층",
+   "deadline": "2026-10-08",
+   "deadlineFrom": "raw",
+   "orgAffil": "경기교육청",
+   "firstSeen": "2026-10-03",
+   "isNew": true,
+   "extVer": 118
+  },
+  {
    "id": "607b2c4f9d2087d4",
    "org": "부천부곡중학교",
    "region": "경기",
@@ -1413,7 +1464,7 @@
    "deadlineFrom": "raw",
    "orgAffil": "경기교육청",
    "firstSeen": "2026-10-01",
-   "isNew": true,
+   "isNew": false,
    "extVer": 118
   },
   {
@@ -1448,7 +1499,7 @@
    "deadlineFrom": "raw",
    "orgAffil": "경기교육청",
    "firstSeen": "2026-10-01",
-   "isNew": true,
+   "isNew": false,
    "extVer": 118
   },
   {
@@ -1484,7 +1535,7 @@
    "deadlineFrom": "raw",
    "orgAffil": "경기교육청",
    "firstSeen": "2026-10-01",
-   "isNew": true,
+   "isNew": false,
    "extVer": 118
   },
   {
@@ -1512,7 +1563,7 @@
    "addr": "경기 안양시 만안구 삼덕로 49(안양동)",
    "orgAffil": "경기교육청",
    "firstSeen": "2026-10-01",
-   "isNew": true,
+   "isNew": false,
    "contact": "070-4021-7078",
    "workPeriod": "2026.11.02 ~ 2027.01.30",
    "personnel": "1명",
@@ -1546,7 +1597,7 @@
    "deadlineFrom": "ocr",
    "qualification": "만 18 세이상의대한민국국민, 해외동포, 국내거주외국인",
    "firstSeen": "2026-10-01",
-   "isNew": true,
+   "isNew": false,
    "extVer": 118
   },
   {
@@ -1578,7 +1629,7 @@
    "bodyExcerpt": "자격 조건 - 세례 후 3 년 이상인 천주교 신자 - 전공자, 지휘 경험자 우대 3. · 마감 - 채용 시까지 6",
    "deadlineNote": "상시",
    "firstSeen": "2026-10-01",
-   "isNew": true,
+   "isNew": false,
    "extVer": 118
   },
   {
@@ -1608,7 +1659,7 @@
    "deadlineFrom": "raw",
    "orgBoard": "구미시립예술단(구미시)",
    "firstSeen": "2026-10-01",
-   "isNew": true,
+   "isNew": false,
    "extVer": 118
   },
   {
@@ -1634,53 +1685,15 @@
    ],
    "channel": "incheon",
    "layer": "B",
-   "contact": "032-420-2736",
    "email": "icpo1966@gmail.com",
+   "orgBoard": "인천문화예술회관(시립예술단)",
+   "firstSeen": "2026-09-30",
+   "isNew": false,
+   "contact": "032-420-2736",
    "personnel": "‣ 참가자(레슨): 2명",
    "duty": "바순",
    "bodyExcerpt": "앙상블연주자로 활약 ‣ 예원학교, 서울예고, 베를린 국립음악대학 수석을 거쳐 2014년부터 현재까지 베를린 국립 예술대학에 출강하여 후학 양성 중 · 모집분야 및 연주곡 · 모집분야 : 바순 · 연주곡(참가자 해당): 10분 이내 자유곡 1곡(소나타 또는 콘체르토 단악장)‣ 청강자 : 20명 이내(신청자 대상 추첨 선발)",
    "deadline": "2026-10-23",
-   "deadlineFrom": "raw",
-   "orgBoard": "인천문화예술회관(시립예술단)",
-   "firstSeen": "2026-09-30",
-   "isNew": false,
-   "extVer": 118
-  },
-  {
-   "id": "bf7a3a6328c5f1a3",
-   "org": "가락중학교",
-   "region": "서울",
-   "source": "work.sen.go.kr",
-   "title": "[가락중] 시간강사(음악) 채용",
-   "nonMusic": null,
-   "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=111206",
-   "date": "2026-09-30",
-   "kind": "강사",
-   "tier": "교육 — 학교",
-   "obri": false,
-   "certReq": "예",
-   "degreeReq": "무관",
-   "careerReq": "미기재",
-   "ageGroup": "성인",
-   "inst": "목관",
-   "instDetails": [
-    "관악"
-   ],
-   "channel": "edu_seoul",
-   "layer": "C",
-   "email": "pse9198@hanmail.net",
-   "addr": "서울특별시 송파구 송이로 45(송파동)",
-   "orgAffil": "서울시교육청",
-   "firstSeen": "2026-09-30",
-   "isNew": false,
-   "qualification": "내국인으로서 채용 분야 교원자격증 소지자",
-   "contact": "02-2143-3136",
-   "pay": "시간당 25,000원",
-   "workPeriod": "2026.10.06 ~ 2027.01.05",
-   "workHours": "11:35~12:20",
-   "personnel": "1명",
-   "duty": "시간강사(음악)",
-   "deadline": "2026-10-02",
    "deadlineFrom": "raw",
    "extVer": 118
   },
@@ -1817,39 +1830,6 @@
    "addrFrom": "geo",
    "firstSeen": "2026-09-29",
    "isNew": false,
-   "extVer": 118
-  },
-  {
-   "id": "b3f9c15524759639",
-   "org": "부명중학교",
-   "region": "경기",
-   "source": "goe.go.kr",
-   "title": "[부명중] 기간제교원 채용 공고 (음악)",
-   "nonMusic": null,
-   "url": "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=61456",
-   "date": "2026-09-29",
-   "kind": "교원",
-   "tier": "교육 — 학교",
-   "obri": false,
-   "certReq": "예",
-   "degreeReq": "무관",
-   "careerReq": "미기재",
-   "ageGroup": "성인",
-   "inst": "전체",
-   "instDetails": [],
-   "channel": "edu_goe",
-   "layer": "C",
-   "email": "ylee214@korea.kr",
-   "addr": "경기 부천시 원미구 조마루로 182(중동)",
-   "orgAffil": "경기교육청",
-   "firstSeen": "2026-09-29",
-   "isNew": false,
-   "contact": "070-4021-7078",
-   "workPeriod": "2026.10.07 ~ 2026.11.27",
-   "personnel": "음악 1명",
-   "bodyExcerpt": "해당 교과 중등 2 급 정교사 이상 교원 자격증 소지자 . · 공무원 채용기준에 따른 결격사유가 없는",
-   "deadline": "2026-10-02",
-   "deadlineFrom": "raw",
    "extVer": 118
   },
   {
@@ -2330,49 +2310,14 @@
    ],
    "channel": "cwcf",
    "layer": "B",
-   "qualification": "대학및대학원생",
    "email": "acutecritic@naver.com",
+   "firstSeen": "2026-09-17",
+   "isNew": false,
+   "qualification": "대학및대학원생",
    "personnel": "6명(파트별최대 3명)ㅇ 제출서류",
    "duty": "바이올린, 첼로 바이올린첼로(김덕우)(김민지) 최대 3명 | 최대 3명 10:00~12:00 / 1인당 40분이내지도 ©",
    "deadline": "2026-10-16",
    "deadlineFrom": "raw",
-   "firstSeen": "2026-09-17",
-   "isNew": false,
-   "extVer": 118
-  },
-  {
-   "id": "b07109a2b6f6bc88",
-   "org": "호남신학대학교",
-   "region": "광주·전남",
-   "source": "hibrain.net",
-   "title": "[호남신학대학교] 교수학습센터 연구원 모집",
-   "nonMusic": null,
-   "url": "https://www.hibrain.net/recruitment/recruits/3598925",
-   "date": "2026-09-17",
-   "kind": "기타",
-   "tier": "교육 — 대학",
-   "obri": false,
-   "certReq": "아니오",
-   "degreeReq": "무관",
-   "careerReq": "미기재",
-   "ageGroup": "성인",
-   "inst": "전체",
-   "instDetails": [],
-   "officialUrl": "https://www.htus.ac.kr/board/board.php?b_id=028&m=&page=1&w_id=1203",
-   "channel": "hibrain",
-   "layer": "B",
-   "subjectFrom": "attach",
-   "qualification": "(1)“공무원법”, “사립학교법”, “교육공무원법”에 명시된 결격사유가 없는 사람",
-   "email": "htus_1@htus.ac.kr",
-   "bodyExcerpt": "접수기간 : 2026 년 9 월 17 일(목)~ 2026 년 10 월 2 일(금) 오후 6 시까지(전자우편으로만 접수)",
-   "deadline": "2026-10-02",
-   "deadlineFrom": "raw",
-   "addr": "전남광주통합특별시 남구 제중로 77",
-   "lat": 35.1395444,
-   "lng": 126.9122454,
-   "addrFrom": "geo",
-   "firstSeen": "2026-09-18",
-   "isNew": false,
    "extVer": 118
   },
   {
@@ -2410,41 +2355,6 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-09-15",
    "isNew": false,
-   "extVer": 118
-  },
-  {
-   "id": "459dd612bb1ed9ab",
-   "org": "연세대학교",
-   "region": "서울",
-   "source": "hibrain.net",
-   "title": "[연세대학교] 전임교원 초빙",
-   "nonMusic": null,
-   "url": "https://www.hibrain.net/recruitment/recruits/3598243",
-   "date": "2026-09-14",
-   "kind": "교수",
-   "tier": "교육 — 대학",
-   "obri": false,
-   "certReq": "예",
-   "degreeReq": "박사",
-   "careerReq": "미기재",
-   "ageGroup": "성인",
-   "inst": "성악",
-   "instDetails": [
-    "소프라노",
-    "성악"
-   ],
-   "officialUrl": "https://faculty.yonsei.ac.kr/opening.php?mid=m02&lang=ko&uid=261&act=view",
-   "channel": "hibrain",
-   "layer": "B",
-   "subjectFrom": "attach",
-   "addr": "서울특별시 서대문구 연세로50",
-   "addrFrom": "postal",
-   "email": "eunangela@yonsei.ac.kr",
-   "firstSeen": "2026-09-16",
-   "isNew": false,
-   "bodyExcerpt": "임용일 전까지 박사학위 취득 가능한 자(임용일 전 박사학위 미 취득 시 임용 취소) 추가자격조건에 별도 자격이 명시되어 있는 경우 그 내용을 따름 · 대학(원) 별도의 신임교원 지원 제도는 해당 홈페이지 참조 · 임용 트랙은 추가자격요건에 명시되어 있지 않은 경우 정년트랙 또는 비정년트랙 강의/연구전담교원으로 임용할 수 있음",
-   "deadline": "2026-10-02",
-   "deadlineFrom": "raw",
    "extVer": 118
   },
   {
