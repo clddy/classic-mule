@@ -35924,7 +35924,7 @@
    "deadlineFrom": "raw",
    "kind": "기타",
    "tier": "교육 — 학교",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
@@ -36295,7 +36295,7 @@
    "deadlineFrom": "raw",
    "kind": "기타",
    "tier": "미분류",
-   "inst": "현악",
+   "inst": "전체",
    "instDetails": [
     "바이올린",
     "첼로",
@@ -38150,7 +38150,7 @@
    "deadlineFrom": "raw",
    "kind": "기타",
    "tier": "미분류",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "바순",
     "지휘"
@@ -38448,7 +38448,7 @@
    "deadlineFrom": "raw",
    "kind": "강사",
    "tier": "교육 — 학교",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
