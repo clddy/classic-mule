@@ -1,5 +1,5 @@
 {
- "collectedAt": "2026-10-03 14:58",
+ "collectedAt": "2026-10-03 18:06",
  "heldNoOrigin": 0,
  "sourceCount": 91,
  "okCount": 91,
@@ -11,11 +11,11 @@
    "layer": "A",
    "poll": "daily",
    "ok": true,
-   "raw": 1,
+   "raw": 2,
    "kept": 1,
    "carried": 1,
    "drop": {
-    "비음악": 1,
+    "비음악": 2,
     "만료": 0,
     "오래됨": 0
    }
@@ -186,7 +186,8 @@
    "raw": 10,
    "kept": 1,
    "drop": {
-    "비음악": 8,
+    "비음악": 7,
+    "무관": 1,
     "만료": 1,
     "오래됨": 0
    }
@@ -1367,8 +1368,7 @@
    "ageGroup": "성인",
    "inst": "목관",
    "instDetails": [
-    "바순",
-    "관악"
+    "바순"
    ],
    "channel": "edu_goe",
    "layer": "C",
