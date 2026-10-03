@@ -1,6 +1,6 @@
 {
  "updatedAt": "2026-10-03",
- "count": 1447,
+ "count": 1448,
  "items": {
   "f7b1c263744b9ece": {
    "id": "f7b1c263744b9ece",
@@ -38609,7 +38609,7 @@
    "deadlineFrom": "raw",
    "kind": "교원",
    "tier": "교육 — 학교",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
@@ -38690,6 +38690,44 @@
    "contact": "070-4021-7078",
    "email": "gwacheon1@korea.kr",
    "addr": "경기 과천시 희망4길 33(중앙동) 2층",
+   "orgAffil": "경기교육청",
+   "firstSeen": "2026-10-03",
+   "lastSeen": "2026-10-03",
+   "days": 1
+  },
+  "92460ea0b56a3791": {
+   "id": "92460ea0b56a3791",
+   "org": "신풍초등학교",
+   "region": "경기",
+   "source": "goe.go.kr",
+   "channel": "edu_goe",
+   "layer": "C",
+   "title": "[신풍초] 오케스트라 강사 채용 2차",
+   "url": "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=61909",
+   "date": "2026-10-03",
+   "deadline": "2026-10-11",
+   "deadlineFrom": "raw",
+   "kind": "강사",
+   "tier": "교육 — 취미·입문",
+   "inst": "목관",
+   "instDetails": [
+    "바순",
+    "관악"
+   ],
+   "ageGroup": "성인",
+   "obri": false,
+   "certReq": "무관",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "personnel": "1명",
+   "bodyExcerpt": "보수 지급 : 수익자 부담금으로 수당 형태로 지급 4. · 접수 기간 : 2026 년 10 월 6 일 ~11 일까지 · 실기 곡의 악보는 지원 접수자에게만 응시원서에 기재된 E 메일로 별도 송부함",
+   "workPeriod": "2027년 2월 28일",
+   "contact": "070-4021-7078",
+   "email": "jy7531@korea.kr",
+   "addr": "경기도 수원시 영통구 도청로17번길 24",
+   "lat": 37.2859796,
+   "lng": 127.0532827,
+   "addrFrom": "geo",
    "orgAffil": "경기교육청",
    "firstSeen": "2026-10-03",
    "lastSeen": "2026-10-03",

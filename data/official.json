@@ -1,8 +1,8 @@
 {
- "collectedAt": "2026-10-03 02:59",
+ "collectedAt": "2026-10-03 14:58",
  "heldNoOrigin": 0,
  "sourceCount": 91,
- "okCount": 80,
+ "okCount": 91,
  "instTotal": 75,
  "sources": [
   {
@@ -108,18 +108,29 @@
    "name": "인천문화예술회관",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 11,
    "kept": 1,
-   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.incheon.go.kr', port=443): Max retries exceeded with url: /art/ART040102 (Caused by Connec"
+   "drop": {
+    "비음악": 3,
+    "무관": 7,
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "daegu",
    "name": "대구문화예술회관(시향)",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 4,
    "kept": 0,
-   "error": "ConnectTimeout: HTTPSConnectionPool(host='daeguartscenter.or.kr', port=443): Max retries exceeded with url: /index.do?menu_id=00001528 ("
+   "drop": {
+    "비음악": 4,
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "bscc",
@@ -157,9 +168,11 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
+   "raw": 10,
    "kept": 0,
    "drop": {
+    "무관": 7,
+    "비음악": 3,
     "만료": 0,
     "오래됨": 0
    }
@@ -184,9 +197,11 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
+   "raw": 28,
    "kept": 1,
    "drop": {
+    "무관": 23,
+    "비음악": 4,
     "만료": 0,
     "오래됨": 0
    }
@@ -380,8 +395,8 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 7,
-   "kept": 13,
+   "raw": 8,
+   "kept": 14,
    "carried": 6,
    "drop": {
     "만료": 0,
@@ -446,10 +461,10 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
+   "raw": 4,
    "kept": 0,
    "drop": {
-    "만료": 0,
+    "만료": 4,
     "오래됨": 0
    }
   },
@@ -472,10 +487,10 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
+   "raw": 1,
    "kept": 0,
    "drop": {
-    "만료": 0,
+    "만료": 1,
     "오래됨": 0
    }
   },
@@ -576,9 +591,13 @@
    "name": "고양문화재단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 0,
    "kept": 0,
-   "error": "TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.artgy.or.kr/CU/CU0101M.aspx\", waiting unti"
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_gfac",
@@ -802,9 +821,13 @@
    "name": "순천시립합창단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 0,
    "kept": 0,
-   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.suncheon.go.kr', port=443): Max retries exceeded with url: /scart/community/0001;jsessioni"
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_i_andonggokr",
@@ -826,9 +849,13 @@
    "name": "경기문화재단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 0,
    "kept": 0,
-   "error": "HTTPError: 403 Forbidden"
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_i_hcforkr",
@@ -888,9 +915,13 @@
    "name": "동해문화관광재단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 0,
    "kept": 0,
-   "error": "HTTPError: 403 Forbidden"
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_i_cfscorkr",
@@ -938,18 +969,26 @@
    "name": "목포시립예술단(교향악단·합창단)",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 0,
    "kept": 0,
-   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.mokpo.go.kr', port=443): Max retries exceeded with url: /www/mokpo_news/notification/incru"
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_yeosu",
    "name": "여수시립예술단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 0,
    "kept": 0,
-   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.yeosu.go.kr', port=443): Max retries exceeded with url: /www/govt/news/recruit (Caused by "
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_wonju",
@@ -1035,18 +1074,28 @@
    "name": "충남교육청(학교 채용)",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 0,
    "kept": 0,
-   "error": "TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.cne.go.kr/boardCnts/list.do?boardID=642&m="
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_daeguart_notice",
    "name": "대구문화예술회관 공지(시립합창단)",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 9,
    "kept": 0,
-   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.daeguartscenter.or.kr', port=443): Max retries exceeded with url: /index.do?menu_id=000015"
+   "drop": {
+    "비음악": 2,
+    "무관": 6,
+    "만료": 1,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_ansanarts",
@@ -1133,9 +1182,13 @@
    "name": "인천문화예술회관(시립예술단)",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
-   "kept": 0,
-   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.incheon.go.kr', port=443): Max retries exceeded with url: /art/ART040102 (Caused by Connec"
+   "ok": true,
+   "raw": 1,
+   "kept": 1,
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_snart",
@@ -1182,8 +1235,9 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
-   "kept": 2,
+   "raw": 6,
+   "kept": 6,
+   "declared": 6,
    "drop": {
     "만료": 0,
     "오래됨": 0
@@ -1296,6 +1350,52 @@
    "extVer": 118
   },
   {
+   "id": "92460ea0b56a3791",
+   "org": "신풍초등학교",
+   "region": "경기",
+   "source": "goe.go.kr",
+   "title": "[신풍초] 오케스트라 강사 채용 2차",
+   "nonMusic": null,
+   "url": "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=61909",
+   "date": "2026-10-03",
+   "kind": "강사",
+   "tier": "교육 — 취미·입문",
+   "obri": false,
+   "certReq": "무관",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "ageGroup": "성인",
+   "inst": "목관",
+   "instDetails": [
+    "바순",
+    "관악"
+   ],
+   "channel": "edu_goe",
+   "layer": "C",
+   "recruitParts": [
+    {
+     "part": "바순",
+     "position": "",
+     "count": "1"
+    }
+   ],
+   "contact": "070-4021-7078",
+   "email": "jy7531@korea.kr",
+   "workPeriod": "2027년 2월 28일",
+   "personnel": "1명",
+   "bodyExcerpt": "보수 지급 : 수익자 부담금으로 수당 형태로 지급 4. · 접수 기간 : 2026 년 10 월 6 일 ~11 일까지 · 실기 곡의 악보는 지원 접수자에게만 응시원서에 기재된 E 메일로 별도 송부함",
+   "deadline": "2026-10-11",
+   "deadlineFrom": "raw",
+   "orgAffil": "경기교육청",
+   "addr": "경기도 수원시 영통구 도청로17번길 24",
+   "lat": 37.2859796,
+   "lng": 127.0532827,
+   "addrFrom": "geo",
+   "firstSeen": "2026-10-03",
+   "isNew": true,
+   "extVer": 118
+  },
+  {
    "id": "7ad9e504d8a72822",
    "org": "영덕고등학교",
    "region": "경기",
@@ -1311,7 +1411,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
@@ -1685,16 +1785,16 @@
    ],
    "channel": "incheon",
    "layer": "B",
-   "email": "icpo1966@gmail.com",
-   "orgBoard": "인천문화예술회관(시립예술단)",
-   "firstSeen": "2026-09-30",
-   "isNew": false,
    "contact": "032-420-2736",
+   "email": "icpo1966@gmail.com",
    "personnel": "‣ 참가자(레슨): 2명",
    "duty": "바순",
    "bodyExcerpt": "앙상블연주자로 활약 ‣ 예원학교, 서울예고, 베를린 국립음악대학 수석을 거쳐 2014년부터 현재까지 베를린 국립 예술대학에 출강하여 후학 양성 중 · 모집분야 및 연주곡 · 모집분야 : 바순 · 연주곡(참가자 해당): 10분 이내 자유곡 1곡(소나타 또는 콘체르토 단악장)‣ 청강자 : 20명 이내(신청자 대상 추첨 선발)",
    "deadline": "2026-10-23",
    "deadlineFrom": "raw",
+   "orgBoard": "인천문화예술회관(시립예술단)",
+   "firstSeen": "2026-09-30",
+   "isNew": false,
    "extVer": 118
   },
   {
@@ -2310,14 +2410,14 @@
    ],
    "channel": "cwcf",
    "layer": "B",
-   "email": "acutecritic@naver.com",
-   "firstSeen": "2026-09-17",
-   "isNew": false,
    "qualification": "대학및대학원생",
+   "email": "acutecritic@naver.com",
    "personnel": "6명(파트별최대 3명)ㅇ 제출서류",
    "duty": "바이올린, 첼로 바이올린첼로(김덕우)(김민지) 최대 3명 | 최대 3명 10:00~12:00 / 1인당 40분이내지도 ©",
    "deadline": "2026-10-16",
    "deadlineFrom": "raw",
+   "firstSeen": "2026-09-17",
+   "isNew": false,
    "extVer": 118
   },
   {
