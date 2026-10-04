@@ -1,5 +1,5 @@
 {
- "collectedAt": "2026-10-03 18:06",
+ "collectedAt": "2026-10-04 18:07",
  "heldNoOrigin": 0,
  "sourceCount": 91,
  "okCount": 91,
@@ -11,11 +11,11 @@
    "layer": "A",
    "poll": "daily",
    "ok": true,
-   "raw": 2,
+   "raw": 1,
    "kept": 1,
    "carried": 1,
    "drop": {
-    "비음악": 2,
+    "비음악": 1,
     "만료": 0,
     "오래됨": 0
    }
@@ -186,8 +186,7 @@
    "raw": 10,
    "kept": 1,
    "drop": {
-    "비음악": 7,
-    "무관": 1,
+    "비음악": 8,
     "만료": 1,
     "오래됨": 0
    }
@@ -397,8 +396,8 @@
    "poll": "daily",
    "ok": true,
    "raw": 8,
-   "kept": 14,
-   "carried": 6,
+   "kept": 15,
+   "carried": 7,
    "drop": {
     "만료": 0,
     "오래됨": 0
@@ -1428,7 +1427,7 @@
    "deadlineFrom": "raw",
    "orgAffil": "경기교육청",
    "firstSeen": "2026-10-03",
-   "isNew": true,
+   "isNew": false,
    "extVer": 118
   },
   {
@@ -1461,7 +1460,7 @@
    "deadlineFrom": "raw",
    "orgAffil": "경기교육청",
    "firstSeen": "2026-10-03",
-   "isNew": true,
+   "isNew": false,
    "extVer": 118
   },
   {
@@ -1495,7 +1494,7 @@
    "deadlineFrom": "raw",
    "orgAffil": "경기교육청",
    "firstSeen": "2026-10-03",
-   "isNew": true,
+   "isNew": false,
    "extVer": 118
   },
   {
@@ -1529,7 +1528,7 @@
    "deadlineFrom": "raw",
    "orgAffil": "경기교육청",
    "firstSeen": "2026-10-02",
-   "isNew": true,
+   "isNew": false,
    "extVer": 118
   },
   {
@@ -1603,7 +1602,7 @@
    "extVer": 118
   },
   {
-   "id": "5cb8caf1b6afbe84",
+   "id": "b9657f967426cb54",
    "org": "초월중학교",
    "region": "경기",
    "source": "goe.go.kr",
@@ -1618,7 +1617,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "전체",
+   "inst": "목관",
    "instDetails": [
     "관악"
    ],
@@ -1634,7 +1633,7 @@
    "deadline": "2026-10-04",
    "deadlineFrom": "raw",
    "orgAffil": "경기교육청",
-   "firstSeen": "2026-10-01",
+   "firstSeen": "2026-10-04",
    "isNew": false,
    "extVer": 118
   },
