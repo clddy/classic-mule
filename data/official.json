@@ -1,8 +1,8 @@
 {
- "collectedAt": "2026-10-05 01:54",
+ "collectedAt": "2026-10-05 18:08",
  "heldNoOrigin": 0,
  "sourceCount": 91,
- "okCount": 85,
+ "okCount": 90,
  "instTotal": 75,
  "sources": [
   {
@@ -123,9 +123,14 @@
    "name": "대구문화예술회관(시향)",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 4,
    "kept": 0,
-   "error": "ConnectTimeout: HTTPSConnectionPool(host='daeguartscenter.or.kr', port=443): Max retries exceeded with url: /index.do?menu_id=00001528 ("
+   "drop": {
+    "비음악": 4,
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "bscc",
@@ -163,9 +168,11 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
+   "raw": 10,
    "kept": 0,
    "drop": {
+    "무관": 7,
+    "비음악": 3,
     "만료": 0,
     "오래됨": 0
    }
@@ -190,9 +197,11 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
+   "raw": 28,
    "kept": 1,
    "drop": {
+    "무관": 23,
+    "비음악": 4,
     "만료": 0,
     "오래됨": 0
    }
@@ -371,8 +380,9 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 5,
+   "raw": 4,
    "kept": 3,
+   "carried": 1,
    "drop": {
     "무관": 1,
     "비음악": 1,
@@ -387,8 +397,8 @@
    "poll": "daily",
    "ok": true,
    "raw": 7,
-   "kept": 14,
-   "carried": 7,
+   "kept": 13,
+   "carried": 6,
    "drop": {
     "만료": 0,
     "오래됨": 0
@@ -452,10 +462,10 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
+   "raw": 4,
    "kept": 0,
    "drop": {
-    "만료": 0,
+    "만료": 4,
     "오래됨": 0
    }
   },
@@ -478,10 +488,10 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
+   "raw": 1,
    "kept": 0,
    "drop": {
-    "만료": 0,
+    "만료": 1,
     "오래됨": 0
    }
   },
@@ -582,9 +592,13 @@
    "name": "고양문화재단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 0,
    "kept": 0,
-   "error": "TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.artgy.or.kr/CU/CU0101M.aspx\", waiting unti"
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_gfac",
@@ -808,9 +822,13 @@
    "name": "순천시립합창단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 0,
    "kept": 0,
-   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.suncheon.go.kr', port=443): Max retries exceeded with url: /scart/community/0001;jsessioni"
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_i_andonggokr",
@@ -832,15 +850,6 @@
    "name": "경기문화재단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
-   "kept": 0,
-   "error": "HTTPError: 403 Forbidden"
-  },
-  {
-   "id": "g_i_hcforkr",
-   "name": "화성시문화관광재단",
-   "layer": "B",
-   "poll": "daily",
    "ok": true,
    "raw": 0,
    "kept": 0,
@@ -848,6 +857,15 @@
     "만료": 0,
     "오래됨": 0
    }
+  },
+  {
+   "id": "g_i_hcforkr",
+   "name": "화성시문화관광재단",
+   "layer": "B",
+   "poll": "daily",
+   "ok": false,
+   "kept": 0,
+   "error": "ReadTimeout: HTTPSConnectionPool(host='www.hcf.or.kr', port=443): Read timed out. (read timeout=20)"
   },
   {
    "id": "g_i_gokamsorkr",
@@ -894,9 +912,13 @@
    "name": "동해문화관광재단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 0,
    "kept": 0,
-   "error": "HTTPError: 403 Forbidden"
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_i_cfscorkr",
@@ -1062,9 +1084,15 @@
    "name": "대구문화예술회관 공지(시립합창단)",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 9,
    "kept": 0,
-   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.daeguartscenter.or.kr', port=443): Max retries exceeded with url: /index.do?menu_id=000015"
+   "drop": {
+    "비음악": 2,
+    "무관": 6,
+    "만료": 1,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_ansanarts",
@@ -1204,8 +1232,9 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
-   "kept": 0,
+   "raw": 6,
+   "kept": 6,
+   "declared": 6,
    "drop": {
     "만료": 0,
     "오래됨": 0
@@ -2133,18 +2162,18 @@
    ],
    "channel": "edu_seoul",
    "layer": "C",
-   "qualification": "해당 교과 교원자격증 소지자",
-   "contact": "070-5052-7311",
    "email": "mtmind@naver.com",
-   "workPeriod": "2026.10.19 ~ 2026.12.09",
-   "personnel": "6명",
    "addr": "서울특별시 송파구 중대로 247(오금동)",
-   "duty": "일반사회, 국어, 지리, 화학, 역사, 음악",
-   "deadline": "2026-10-05",
-   "deadlineFrom": "raw",
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-09-29",
    "isNew": false,
+   "qualification": "해당 교과 교원자격증 소지자",
+   "contact": "070-5052-7311",
+   "workPeriod": "2026.10.19 ~ 2026.12.09",
+   "personnel": "6명",
+   "duty": "일반사회, 국어, 지리, 화학, 역사, 음악",
+   "deadline": "2026-10-05",
+   "deadlineFrom": "raw",
    "extVer": 118
   },
   {
@@ -2341,14 +2370,14 @@
    ],
    "channel": "cwcf",
    "layer": "B",
-   "email": "acutecritic@naver.com",
-   "firstSeen": "2026-09-17",
-   "isNew": false,
    "qualification": "대학및대학원생",
+   "email": "acutecritic@naver.com",
    "personnel": "6명(파트별최대 3명)ㅇ 제출서류",
    "duty": "바이올린, 첼로 바이올린첼로(김덕우)(김민지) 최대 3명 | 최대 3명 10:00~12:00 / 1인당 40분이내지도 ©",
    "deadline": "2026-10-16",
    "deadlineFrom": "raw",
+   "firstSeen": "2026-09-17",
+   "isNew": false,
    "extVer": 118
   },
   {
