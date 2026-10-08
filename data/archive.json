@@ -1,6 +1,6 @@
 {
- "updatedAt": "2026-10-07",
- "count": 1462,
+ "updatedAt": "2026-10-08",
+ "count": 1468,
  "items": {
   "f7b1c263744b9ece": {
    "id": "f7b1c263744b9ece",
@@ -1805,8 +1805,8 @@
     "피아노"
    ],
    "firstSeen": "2026-07-08",
-   "lastSeen": "2026-10-07",
-   "days": 71,
+   "lastSeen": "2026-10-08",
+   "days": 72,
    "deadline": "2026-12-31",
    "deadlineFrom": "cjob-남은기간",
    "date": "2026-07-03",
@@ -1872,8 +1872,8 @@
     "피아노"
    ],
    "firstSeen": "2026-07-08",
-   "lastSeen": "2026-10-07",
-   "days": 71,
+   "lastSeen": "2026-10-08",
+   "days": 72,
    "deadline": "2026-12-31",
    "deadlineFrom": "cjob-남은기간",
    "date": "2026-05-20",
@@ -34973,8 +34973,8 @@
    "lng": 129.0939818,
    "addrFrom": "geo",
    "firstSeen": "2026-09-09",
-   "lastSeen": "2026-10-07",
-   "days": 28
+   "lastSeen": "2026-10-08",
+   "days": 29
   },
   "d4ffd6e961522db8": {
    "id": "d4ffd6e961522db8",
@@ -35429,8 +35429,8 @@
    "lng": 126.9393747,
    "addrFrom": "geo",
    "firstSeen": "2026-09-11",
-   "lastSeen": "2026-10-07",
-   "days": 27,
+   "lastSeen": "2026-10-08",
+   "days": 28,
    "pay": "단원 1호봉 기준 월급 2,300천원 상당(추계액)"
   },
   "8bd39a59f22eb510": {
@@ -35907,8 +35907,8 @@
    "email": "susie9714@jbedu.kr",
    "addr": "전북특별자치도 군산시 축동2길 27 군산중앙여자고등학교",
    "firstSeen": "2026-09-15",
-   "lastSeen": "2026-10-07",
-   "days": 23
+   "lastSeen": "2026-10-08",
+   "days": 24
   },
   "a20a0e58a0d21ea7": {
    "id": "a20a0e58a0d21ea7",
@@ -35942,8 +35942,8 @@
    "addr": "서울특별시 중구 매봉18길 111(신당동)",
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-09-15",
-   "lastSeen": "2026-10-07",
-   "days": 23,
+   "lastSeen": "2026-10-08",
+   "days": 24,
    "bodyExcerpt": "서울시교육청 위탁 채용 과목(음악-실용음악_보컬, 체육-실용무용): 교육청 접수사이트에 직접 접수"
   },
   "e745c98915570ad3": {
@@ -36077,8 +36077,8 @@
    "email": "hana7838@hanmail.net",
    "addr": "전북특별자치도 익산시 함열읍 익산대로 1852 함열여자고등학교",
    "firstSeen": "2026-09-16",
-   "lastSeen": "2026-10-07",
-   "days": 22
+   "lastSeen": "2026-10-08",
+   "days": 23
   },
   "3300256de1af1c65": {
    "id": "3300256de1af1c65",
@@ -36207,8 +36207,8 @@
    "email": "wanju2619@naver.com",
    "addr": "전북특별자치도 완주군 봉동읍 봉동로 172 완주고등학교",
    "firstSeen": "2026-09-17",
-   "lastSeen": "2026-10-07",
-   "days": 21
+   "lastSeen": "2026-10-08",
+   "days": 22
   },
   "f170ea9f5c6463e2": {
    "id": "f170ea9f5c6463e2",
@@ -36311,8 +36311,8 @@
    "duty": "바이올린, 첼로 바이올린첼로(김덕우)(김민지) 최대 3명 | 최대 3명 10:00~12:00 / 1인당 40분이내지도 ©",
    "email": "acutecritic@naver.com",
    "firstSeen": "2026-09-17",
-   "lastSeen": "2026-10-07",
-   "days": 21
+   "lastSeen": "2026-10-08",
+   "days": 22
   },
   "712f605322cb1721": {
    "id": "712f605322cb1721",
@@ -37496,8 +37496,8 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "firstSeen": "2026-09-23",
-   "lastSeen": "2026-10-07",
-   "days": 15
+   "lastSeen": "2026-10-08",
+   "days": 16
   },
   "570dd11962dd96b2": {
    "id": "570dd11962dd96b2",
@@ -37530,8 +37530,8 @@
    "addr": "경기 남양주시 오남읍 진건오남로550번길 35",
    "orgAffil": "경기교육청",
    "firstSeen": "2026-09-23",
-   "lastSeen": "2026-10-07",
-   "days": 15
+   "lastSeen": "2026-10-08",
+   "days": 16
   },
   "603d289dcf099710": {
    "id": "603d289dcf099710",
@@ -37587,8 +37587,8 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "firstSeen": "2026-09-23",
-   "lastSeen": "2026-10-07",
-   "days": 15
+   "lastSeen": "2026-10-08",
+   "days": 16
   },
   "3ec8a79430f38f5f": {
    "id": "3ec8a79430f38f5f",
@@ -37616,8 +37616,8 @@
    "careerReq": "미기재",
    "email": "audition@seoulphil.or.kr",
    "firstSeen": "2026-09-23",
-   "lastSeen": "2026-10-07",
-   "days": 15
+   "lastSeen": "2026-10-08",
+   "days": 16
   },
   "803c5c9f60f7be0b": {
    "id": "803c5c9f60f7be0b",
@@ -37654,8 +37654,8 @@
    "contact": "043-220-3843",
    "email": "sevil2000@korea.kr",
    "firstSeen": "2026-09-28",
-   "lastSeen": "2026-10-07",
-   "days": 10
+   "lastSeen": "2026-10-08",
+   "days": 11
   },
   "6a34a2487069ff3c": {
    "id": "6a34a2487069ff3c",
@@ -37786,8 +37786,8 @@
    "lng": 126.9756026,
    "addrFrom": "geo",
    "firstSeen": "2026-09-29",
-   "lastSeen": "2026-10-07",
-   "days": 9
+   "lastSeen": "2026-10-08",
+   "days": 10
   },
   "4946a4c31fac4ce1": {
    "id": "4946a4c31fac4ce1",
@@ -37817,8 +37817,8 @@
    "lng": 126.9756026,
    "addrFrom": "geo",
    "firstSeen": "2026-09-29",
-   "lastSeen": "2026-10-07",
-   "days": 9
+   "lastSeen": "2026-10-08",
+   "days": 10
   },
   "34d90cedea482b18": {
    "id": "34d90cedea482b18",
@@ -37957,8 +37957,8 @@
    "addr": "경기 가평군 설악면 한서로210번길 325",
    "orgAffil": "경기교육청",
    "firstSeen": "2026-09-29",
-   "lastSeen": "2026-10-07",
-   "days": 9
+   "lastSeen": "2026-10-08",
+   "days": 10
   },
   "89ad7c5f1173bd6c": {
    "id": "89ad7c5f1173bd6c",
@@ -38056,8 +38056,8 @@
    "email": "yhc890120@ice.go.kr",
    "addr": "인천광역시 부평구 영성중로 54",
    "firstSeen": "2026-09-29",
-   "lastSeen": "2026-10-07",
-   "days": 9
+   "lastSeen": "2026-10-08",
+   "days": 10
   },
   "1b5558275b33b6ab": {
    "id": "1b5558275b33b6ab",
@@ -38098,8 +38098,8 @@
    "lng": 126.9393747,
    "addrFrom": "geo",
    "firstSeen": "2026-09-29",
-   "lastSeen": "2026-10-07",
-   "days": 9
+   "lastSeen": "2026-10-08",
+   "days": 10
   },
   "118bbf2f6e3df12a": {
    "id": "118bbf2f6e3df12a",
@@ -38166,8 +38166,8 @@
    "contact": "032-420-2736",
    "email": "icpo1966@gmail.com",
    "firstSeen": "2026-09-30",
-   "lastSeen": "2026-10-07",
-   "days": 8
+   "lastSeen": "2026-10-08",
+   "days": 9
   },
   "bf7a3a6328c5f1a3": {
    "id": "bf7a3a6328c5f1a3",
@@ -38270,8 +38270,8 @@
    "addr": "경기 화성시 동탄구 동탄원천로 289-17(능동)",
    "orgAffil": "경기교육청",
    "firstSeen": "2026-09-30",
-   "lastSeen": "2026-10-07",
-   "days": 8
+   "lastSeen": "2026-10-08",
+   "days": 9
   },
   "0ca1815b8e9b1b74": {
    "id": "0ca1815b8e9b1b74",
@@ -38331,8 +38331,8 @@
    "workHours": "(12:00 ~ 13:00 제외) 내 접수 가능 ？ 우편접수의 경우 접수 마감일 18:00 까지 도착분에 한하며, 접수여부를 본인이 유선으로 확인하여야 함",
    "contact": "054-480-4564",
    "firstSeen": "2026-10-01",
-   "lastSeen": "2026-10-07",
-   "days": 7
+   "lastSeen": "2026-10-08",
+   "days": 8
   },
   "b606efe215fcc876": {
    "id": "b606efe215fcc876",
@@ -38365,8 +38365,8 @@
    "addr": "경기 수원시 영통구 망포로84번길 3(망포동) 3",
    "orgAffil": "경기교육청",
    "firstSeen": "2026-10-01",
-   "lastSeen": "2026-10-07",
-   "days": 7
+   "lastSeen": "2026-10-08",
+   "days": 8
   },
   "8bffcf6393ad1c05": {
    "id": "8bffcf6393ad1c05",
@@ -38399,8 +38399,8 @@
    "addr": "경기 안성시 공도읍 송원길 21-6",
    "orgAffil": "경기교육청",
    "firstSeen": "2026-10-01",
-   "lastSeen": "2026-10-07",
-   "days": 7
+   "lastSeen": "2026-10-08",
+   "days": 8
   },
   "a12f29bbd3a6850d": {
    "id": "a12f29bbd3a6850d",
@@ -38494,8 +38494,8 @@
    "careerReq": "미기재",
    "qualification": "만 18 세이상의대한민국국민, 해외동포, 국내거주외국인",
    "firstSeen": "2026-10-01",
-   "lastSeen": "2026-10-07",
-   "days": 7
+   "lastSeen": "2026-10-08",
+   "days": 8
   },
   "f9fb3178f03dfe36": {
    "id": "f9fb3178f03dfe36",
@@ -38523,8 +38523,8 @@
    "workHours": "미사 : 주일 오전 10시 30분 - 연습 : 매주 주일 미사 전 9시 00분 ~ 매주 목요일(오후 8시 30분 ~ 10시)",
    "email": "gungri@casuwon.or.kr",
    "firstSeen": "2026-10-01",
-   "lastSeen": "2026-10-07",
-   "days": 7
+   "lastSeen": "2026-10-08",
+   "days": 8
   },
   "9ffaa7bbb2d78020": {
    "id": "9ffaa7bbb2d78020",
@@ -38559,8 +38559,8 @@
    "addr": "서울특별시 양천구 남부순환로 380(신월동)",
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-10-02",
-   "lastSeen": "2026-10-07",
-   "days": 6
+   "lastSeen": "2026-10-08",
+   "days": 7
   },
   "607b2c4f9d2087d4": {
    "id": "607b2c4f9d2087d4",
@@ -38692,8 +38692,8 @@
    "addr": "경기 과천시 희망4길 33(중앙동) 2층",
    "orgAffil": "경기교육청",
    "firstSeen": "2026-10-03",
-   "lastSeen": "2026-10-07",
-   "days": 5
+   "lastSeen": "2026-10-08",
+   "days": 6
   },
   "92460ea0b56a3791": {
    "id": "92460ea0b56a3791",
@@ -38729,8 +38729,8 @@
    "addrFrom": "geo",
    "orgAffil": "경기교육청",
    "firstSeen": "2026-10-03",
-   "lastSeen": "2026-10-07",
-   "days": 5
+   "lastSeen": "2026-10-08",
+   "days": 6
   },
   "b9657f967426cb54": {
    "id": "b9657f967426cb54",
@@ -38830,8 +38830,8 @@
    "addr": "경기 화성시 동탄구 동탄원천로 315-26(능동)",
    "orgAffil": "경기교육청",
    "firstSeen": "2026-10-06",
-   "lastSeen": "2026-10-07",
-   "days": 2
+   "lastSeen": "2026-10-08",
+   "days": 3
   },
   "f726ca271b06a395": {
    "id": "f726ca271b06a395",
@@ -38868,8 +38868,8 @@
    "addrFrom": "geo",
    "orgAffil": "경기교육청",
    "firstSeen": "2026-10-06",
-   "lastSeen": "2026-10-07",
-   "days": 2
+   "lastSeen": "2026-10-08",
+   "days": 3
   },
   "befb1dfd29f7d8b6": {
    "id": "befb1dfd29f7d8b6",
@@ -38901,8 +38901,8 @@
    "addr": "경기 하남시 위례순환로 323(학암동)",
    "orgAffil": "경기교육청",
    "firstSeen": "2026-10-06",
-   "lastSeen": "2026-10-07",
-   "days": 2
+   "lastSeen": "2026-10-08",
+   "days": 3
   },
   "59a9fe5e1792af9c": {
    "id": "59a9fe5e1792af9c",
@@ -38936,8 +38936,8 @@
    "addr": "경기 수원시 영통구 도청로17번길 24(이의동)",
    "orgAffil": "경기교육청",
    "firstSeen": "2026-10-06",
-   "lastSeen": "2026-10-07",
-   "days": 2
+   "lastSeen": "2026-10-08",
+   "days": 3
   },
   "c7fd8dec56e0151a": {
    "id": "c7fd8dec56e0151a",
@@ -38973,8 +38973,8 @@
    "addrFrom": "geo",
    "orgAffil": "경기교육청",
    "firstSeen": "2026-10-06",
-   "lastSeen": "2026-10-07",
-   "days": 2
+   "lastSeen": "2026-10-08",
+   "days": 3
   },
   "1f473f7e4f22f588": {
    "id": "1f473f7e4f22f588",
@@ -39003,8 +39003,8 @@
    "workPeriod": "2026.10.20.(화)~",
    "contact": "051-860-0643",
    "firstSeen": "2026-10-06",
-   "lastSeen": "2026-10-07",
-   "days": 2
+   "lastSeen": "2026-10-08",
+   "days": 3
   },
   "f3919faeb2f113c0": {
    "id": "f3919faeb2f113c0",
@@ -39084,8 +39084,8 @@
    "contact": "032-420-2742",
    "email": "iypo2026@gmail.com",
    "firstSeen": "2026-10-07",
-   "lastSeen": "2026-10-07",
-   "days": 1
+   "lastSeen": "2026-10-08",
+   "days": 2
   },
   "264e180b253c535e": {
    "id": "264e180b253c535e",
@@ -39112,8 +39112,8 @@
    "contact": "055-268-7936",
    "email": "hsyoon@cwcf.or.kr",
    "firstSeen": "2026-10-07",
-   "lastSeen": "2026-10-07",
-   "days": 1
+   "lastSeen": "2026-10-08",
+   "days": 2
   },
   "05fa526a664f9509": {
    "id": "05fa526a664f9509",
@@ -39129,7 +39129,7 @@
    "deadlineFrom": "raw",
    "kind": "교원",
    "tier": "교육 — 학교",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
@@ -39150,8 +39150,8 @@
    "addr": "서울특별시 강북구 인수봉로 269",
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-10-07",
-   "lastSeen": "2026-10-07",
-   "days": 1
+   "lastSeen": "2026-10-08",
+   "days": 2
   },
   "7bf318d67935eb48": {
    "id": "7bf318d67935eb48",
@@ -39167,7 +39167,7 @@
    "deadlineFrom": "raw",
    "kind": "강사",
    "tier": "교육 — 취미·입문",
-   "inst": "현악",
+   "inst": "전체",
    "instDetails": [
     "바이올린",
     "트럼펫"
@@ -39187,8 +39187,8 @@
    "addr": "경기 과천시 코오롱로 53(별양동)",
    "orgAffil": "경기교육청",
    "firstSeen": "2026-10-07",
-   "lastSeen": "2026-10-07",
-   "days": 1
+   "lastSeen": "2026-10-08",
+   "days": 2
   },
   "bd263bd12094ba4a": {
    "id": "bd263bd12094ba4a",
@@ -39220,6 +39220,207 @@
    "addr": "전북특별자치도 부안군 부안읍 당산로 1 부안중학교",
    "firstSeen": "2026-10-07",
    "lastSeen": "2026-10-07",
+   "days": 1
+  },
+  "96cea0772652f1a7": {
+   "id": "96cea0772652f1a7",
+   "org": "강신중학교",
+   "region": "서울",
+   "source": "work.sen.go.kr",
+   "channel": "edu_seoul",
+   "layer": "C",
+   "title": "[강신중] 오케스트라 강사 채용",
+   "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=111716",
+   "date": "2026-10-08",
+   "deadline": "2026-10-11",
+   "deadlineFrom": "raw",
+   "kind": "강사",
+   "tier": "교육 — 취미·입문",
+   "inst": "현악",
+   "instDetails": [
+    "바이올린",
+    "클라리넷",
+    "트럼펫",
+    "관악"
+   ],
+   "ageGroup": "성인",
+   "obri": false,
+   "certReq": "무관",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "personnel": "3명",
+   "workPeriod": "2026.10.21 ~ 2026.12.18",
+   "duty": "오케스트라(바이올린, 클라리넷, 트럼펫)",
+   "contact": "070-5130-8229",
+   "email": "hkcpianof@sen.go.kr",
+   "addr": "서울특별시 양천구 남부순환로 604(신월동)",
+   "orgAffil": "서울시교육청",
+   "firstSeen": "2026-10-08",
+   "lastSeen": "2026-10-08",
+   "days": 1
+  },
+  "450800f80e9f6f53": {
+   "id": "450800f80e9f6f53",
+   "org": "잠실여자중학교",
+   "region": "서울",
+   "source": "work.sen.go.kr",
+   "channel": "edu_seoul",
+   "layer": "C",
+   "title": "[잠실여중] 음악 강사 채용",
+   "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=111779",
+   "date": "2026-10-08",
+   "deadline": "2026-10-12",
+   "deadlineFrom": "raw",
+   "kind": "강사",
+   "tier": "교육 — 학교",
+   "inst": "목관",
+   "instDetails": [
+    "관악"
+   ],
+   "ageGroup": "성인",
+   "obri": false,
+   "certReq": "예",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "personnel": "1명",
+   "qualification": "내국인 중 해당 교과 교원 자격증 소지자",
+   "workPeriod": "2026.10.14 ~ 2026.12.30",
+   "duty": "음악",
+   "contact": "02-2140-8014",
+   "email": "cat0927@sen.go.kr",
+   "addr": "서울특별시 송파구 송파대로38길 8(송파동)",
+   "orgAffil": "서울시교육청",
+   "firstSeen": "2026-10-08",
+   "lastSeen": "2026-10-08",
+   "days": 1
+  },
+  "95f69c023fc76cd7": {
+   "id": "95f69c023fc76cd7",
+   "org": "동화고등학교",
+   "region": "경기",
+   "source": "goe.go.kr",
+   "channel": "edu_goe",
+   "layer": "C",
+   "title": "[동화고] 기간제교사 채용공고문(음악)(13호)",
+   "url": "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=62302",
+   "date": "2026-10-08",
+   "deadline": "2026-10-11",
+   "deadlineFrom": "raw",
+   "kind": "교원",
+   "tier": "교육 — 학교",
+   "inst": "전체",
+   "instDetails": [],
+   "ageGroup": "성인",
+   "obri": false,
+   "certReq": "예",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "personnel": "1명",
+   "bodyExcerpt": "퇴직교원 기간제교원을 제외하고는 감독적 지위에 임용할 수 없음(교육공무원법 제 32 조 제 2 항)· 보수 : 공무원보수규정 제 8 조에 따라 산정된 호봉의 봉급을 지급하되, 고정급으로 한다 . · 복무 : 원칙적으로 계약에 의하되, 교원복무사항 등을 준용 4 응시 자격 · 자격 : 해당 교과 교원 자격증 소지자",
+   "workPeriod": "2026.10.14 ~ 2027.02.28",
+   "workHours": "8시간",
+   "ageLimit": "임용 상한 연령(교육공무원의 정년 만 62세와 동일) 미 해당자 - 다 만, 2차 공고는 65세까지, 3차공고는 70세까지 지원 가능(임용일 기준)",
+   "contact": "070-4021-7078",
+   "addr": "경기 남양주시 경춘로 434(다산동)",
+   "orgAffil": "경기교육청",
+   "firstSeen": "2026-10-08",
+   "lastSeen": "2026-10-08",
+   "days": 1
+  },
+  "f98bce400cb68da6": {
+   "id": "f98bce400cb68da6",
+   "org": "성사고등학교",
+   "region": "경기",
+   "source": "goe.go.kr",
+   "channel": "edu_goe",
+   "layer": "C",
+   "title": "[성사고] 기간제교원(음악) 채용",
+   "url": "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=62279",
+   "date": "2026-10-08",
+   "deadline": "2026-10-16",
+   "deadlineFrom": "raw",
+   "kind": "교원",
+   "tier": "교육 — 학교",
+   "inst": "전체",
+   "instDetails": [],
+   "ageGroup": "성인",
+   "obri": false,
+   "certReq": "예",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "personnel": "1명",
+   "bodyExcerpt": "채용 응시 자격 : 내국인으로서 채용 분야 교원자격증 소지자 · 보수 : 공무원보수규정 제 8 조에 따라 산정된 호봉의 봉급을 지급하되, 고정급으로 한다 . · 자격 : 해당 교과 교원 자격증 소지자 · 접수방법 : 이메일(goodmind74@korea.kr) 또는 방문(성사고등학교 2 층 교무실, ☎ 031-960-9006)",
+   "qualification": "내국인으로서 채용 분야 교원자격증 소지자",
+   "workPeriod": "2026.11.04 ~ 2026.12.03",
+   "workHours": "40시간",
+   "ageLimit": "임용 상한 연령(교육공무원의 만 62세와 동일) 미 해당자",
+   "contact": "070-4021-7078",
+   "email": "goodmind74@korea.kr",
+   "addr": "경기 고양시 덕양구 호국로 869(성사동)",
+   "orgAffil": "경기교육청",
+   "firstSeen": "2026-10-08",
+   "lastSeen": "2026-10-08",
+   "days": 1
+  },
+  "e32b76e42c4f8aef": {
+   "id": "e32b76e42c4f8aef",
+   "org": "부산교육청(학교인력채용)",
+   "region": "부산",
+   "source": "pen.go.kr",
+   "channel": "edu_pen",
+   "layer": "C",
+   "title": "[정관고] 기간제 교사 채용 공고(음악)",
+   "url": "http://www.pen.go.kr/main/na/ntt/selectNttInfo.do?nttSn=1181536&mi=30367&bbsId=2364",
+   "date": "2026-10-08",
+   "deadline": "2026-10-15",
+   "deadlineFrom": "raw",
+   "kind": "교원",
+   "tier": "교육 — 학교",
+   "inst": "전체",
+   "instDetails": [],
+   "ageGroup": "성인",
+   "obri": false,
+   "certReq": "예",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "bodyExcerpt": "채용 채용/시험정보 학교인력채용 등록중",
+   "workPeriod": "2026.11.11 ~ 2027.02.08",
+   "contact": "051-860-0643",
+   "email": "y30s20@naver.com",
+   "firstSeen": "2026-10-08",
+   "lastSeen": "2026-10-08",
+   "days": 1
+  },
+  "17c8d7da91bb74cf": {
+   "id": "17c8d7da91bb74cf",
+   "org": "부안중학교",
+   "region": "전북",
+   "source": "jbe.go.kr",
+   "channel": "edu_jbe",
+   "layer": "C",
+   "title": "[부안중] 음악 채용",
+   "url": "https://www.jbe.go.kr/board/view.jbe?boardId=BBS_0000130&menuCd=DOM_000000103004006000&paging=ok&startPage=3&searchOperation=AND&dataSid=1186838",
+   "date": "2026-10-07",
+   "deadline": "2026-10-13",
+   "deadlineFrom": "raw",
+   "kind": "기타",
+   "tier": "교육 — 학교",
+   "inst": "전체",
+   "instDetails": [],
+   "ageGroup": "성인",
+   "obri": false,
+   "certReq": "예",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "bodyExcerpt": "공고에 ‘채용의 제한’ 부분 명시 2. · 지침 [붙임 2] 기간제교원 채용 공고(예시) 다운로드 지침",
+   "workPeriod": "2026.10.19 ~ 2026.10.30",
+   "workHours": "전일제 근무(1일 8시간)",
+   "ageLimit": "제한 없음",
+   "contact": "010-9410-5739",
+   "email": "buan2704@korea.kr",
+   "addr": "전북특별자치도 부안군 부안읍 당산로 1 부안중학교",
+   "firstSeen": "2026-10-08",
+   "lastSeen": "2026-10-08",
    "days": 1
   }
  }
