@@ -1,5 +1,5 @@
 {
- "date": "2026-10-08",
+ "date": "2026-10-09",
  "total": 75,
  "covered": 8,
  "gapCount": 67,
@@ -342,8 +342,8 @@
  ],
  "master": {
   "total": 604,
-  "covered": 9,
-  "gapCount": 595,
+  "covered": 6,
+  "gapCount": 598,
   "byCategory": {
    "대학": {
     "total": 77,
@@ -359,7 +359,7 @@
    },
    "지자체": {
     "total": 323,
-    "covered": 3
+    "covered": 0
    },
    "공연장": {
     "total": 69,
@@ -2194,6 +2194,11 @@
     "region": "경기"
    },
    {
+    "name": "남양주문화원",
+    "cat": "지자체",
+    "region": "경기"
+   },
+   {
     "name": "오산문화원",
     "cat": "지자체",
     "region": "경기"
@@ -3010,6 +3015,16 @@
    },
    {
     "name": "하남문화재단",
+    "cat": "지자체",
+    "region": "경기"
+   },
+   {
+    "name": "남양주시문화재단",
+    "cat": "지자체",
+    "region": "경기"
+   },
+   {
+    "name": "양주시문화재단",
     "cat": "지자체",
     "region": "경기"
    },

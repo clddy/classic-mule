@@ -1,25 +1,25 @@
 {
  "https://www.sejongpac.or.kr/": {
   "firstSeen": "2026-09-29",
-  "tries": 10,
+  "tries": 11,
   "reported": true,
-  "lastTry": "2026-10-08",
+  "lastTry": "2026-10-09",
   "title": "(재)세종문화회관 예술단 직책단원(극단 지도위원, 소년소녀합창 지휘자) 공개채용",
   "org": "세종문화회관"
  },
  "https://www.sejongpac.or.kr/portal/bbs/B0000065/view.do?nttId=50176&menuNo=200571&pageIndex=1": {
   "firstSeen": "2026-09-29",
-  "tries": 10,
+  "tries": 11,
   "reported": true,
-  "lastTry": "2026-10-08",
+  "lastTry": "2026-10-09",
   "title": "(재)세종문화회관 예술단 직책단원(극단 지도위원, 소년소녀합창 연습지휘자) 공개채용",
   "org": "세종문화회관(서울시예술단)"
  },
  "https://www.jcf.or.kr/": {
   "firstSeen": "2026-09-23",
-  "tries": 16,
+  "tries": 17,
   "reported": true,
-  "lastTry": "2026-10-08",
+  "lastTry": "2026-10-09",
   "title": "제물포구 구립 여성합창단 성악지도자 모집",
   "org": "제물포구 구립 여성합창단"
  }
