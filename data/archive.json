@@ -1,6 +1,6 @@
 {
  "updatedAt": "2026-10-09",
- "count": 1468,
+ "count": 1469,
  "items": {
   "f7b1c263744b9ece": {
    "id": "f7b1c263744b9ece",
@@ -39422,6 +39422,35 @@
    "firstSeen": "2026-10-08",
    "lastSeen": "2026-10-09",
    "days": 2
+  },
+  "3f6eac31b677e97c": {
+   "id": "3f6eac31b677e97c",
+   "org": "부산교육청(학교인력채용)",
+   "region": "부산",
+   "source": "pen.go.kr",
+   "channel": "edu_pen",
+   "layer": "C",
+   "title": "[정관고] 기간제 교사 채용 공고(음악)",
+   "url": "http://www.pen.go.kr/main/na/ntt/selectNttInfo.do?nttSn=1181536&mi=30367&bbsId=2364",
+   "date": "2026-10-08",
+   "deadline": "2026-10-15",
+   "deadlineFrom": "raw",
+   "kind": "교원",
+   "tier": "교육 — 학교",
+   "inst": "전체",
+   "instDetails": [],
+   "ageGroup": "성인",
+   "obri": false,
+   "certReq": "예",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "bodyExcerpt": "채용 채용/시험정보 학교인력채용 등록중",
+   "workPeriod": "2026.11.11 ~ 2027.02.08",
+   "contact": "051-860-0643",
+   "email": "y30s20@naver.com",
+   "firstSeen": "2026-10-09",
+   "lastSeen": "2026-10-09",
+   "days": 1
   }
  }
 }
