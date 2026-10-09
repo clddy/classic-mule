@@ -1,8 +1,8 @@
 {
- "collectedAt": "2026-10-09 18:08",
+ "collectedAt": "2026-10-10 03:21",
  "heldNoOrigin": 0,
  "sourceCount": 91,
- "okCount": 90,
+ "okCount": 86,
  "instTotal": 75,
  "sources": [
   {
@@ -11,10 +11,9 @@
    "layer": "A",
    "poll": "daily",
    "ok": true,
-   "raw": 1,
+   "raw": 0,
    "kept": 0,
    "drop": {
-    "비음악": 1,
     "만료": 0,
     "오래됨": 0
    }
@@ -66,14 +65,9 @@
    "name": "기독정보넷(교회 반주)",
    "layer": "C",
    "poll": "daily",
-   "ok": true,
-   "raw": 24,
-   "kept": 3,
-   "drop": {
-    "무관": 3,
-    "만료": 18,
-    "오래됨": 0
-   }
+   "ok": false,
+   "kept": 2,
+   "error": "HTTPError: 403 Forbidden"
   },
   {
    "id": "gne",
@@ -168,11 +162,9 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 10,
+   "raw": 0,
    "kept": 0,
    "drop": {
-    "무관": 7,
-    "비음악": 3,
     "만료": 0,
     "오래됨": 0
    }
@@ -198,11 +190,9 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 29,
+   "raw": 0,
    "kept": 2,
    "drop": {
-    "무관": 23,
-    "비음악": 4,
     "만료": 0,
     "오래됨": 0
    }
@@ -464,10 +454,10 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 4,
+   "raw": 0,
    "kept": 0,
    "drop": {
-    "만료": 4,
+    "만료": 0,
     "오래됨": 0
    }
   },
@@ -517,8 +507,8 @@
    "poll": "daily",
    "ok": true,
    "raw": 1,
-   "kept": 3,
-   "carried": 2,
+   "kept": 2,
+   "carried": 1,
    "drop": {
     "만료": 0,
     "오래됨": 0
@@ -595,13 +585,9 @@
    "name": "고양문화재단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 0,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.artgy.or.kr/CU/CU0101M.aspx\", waiting unti"
   },
   {
    "id": "g_gfac",
@@ -826,13 +812,9 @@
    "name": "순천시립합창단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 0,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.suncheon.go.kr', port=443): Max retries exceeded with url: /scart/community/0001;jsessioni"
   },
   {
    "id": "g_i_andonggokr",
@@ -916,13 +898,9 @@
    "name": "동해문화관광재단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 0,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "HTTPError: 403 Forbidden"
   },
   {
    "id": "g_i_cfscorkr",
@@ -1235,9 +1213,8 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 5,
-   "kept": 5,
-   "declared": 5,
+   "raw": 0,
+   "kept": 0,
    "drop": {
     "만료": 0,
     "오래됨": 0
@@ -1384,7 +1361,7 @@
    "deadlineFrom": "raw",
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-10-08",
-   "isNew": true,
+   "isNew": false,
    "extVer": 118
   },
   {
@@ -1420,7 +1397,7 @@
    "deadlineFrom": "raw",
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-10-08",
-   "isNew": true,
+   "isNew": false,
    "extVer": 118
   },
   {
@@ -1454,7 +1431,7 @@
    "deadlineFrom": "raw",
    "orgAffil": "경기교육청",
    "firstSeen": "2026-10-08",
-   "isNew": true,
+   "isNew": false,
    "extVer": 118
   },
   {
@@ -1490,7 +1467,7 @@
    "deadlineFrom": "raw",
    "orgAffil": "경기교육청",
    "firstSeen": "2026-10-08",
-   "isNew": true,
+   "isNew": false,
    "extVer": 118
   },
   {
@@ -1520,7 +1497,7 @@
    "deadline": "2026-10-15",
    "deadlineFrom": "raw",
    "firstSeen": "2026-10-09",
-   "isNew": true,
+   "isNew": false,
    "extVer": 118
   },
   {
@@ -1592,13 +1569,13 @@
    "instDetails": [],
    "channel": "cwcf",
    "layer": "B",
-   "contact": "055-268-7936",
    "email": "hsyoon@cwcf.or.kr",
+   "firstSeen": "2026-10-07",
+   "isNew": false,
+   "contact": "055-268-7936",
    "pay": "건당 50,000원",
    "deadline": "2026-12-12",
    "deadlineFrom": "raw",
-   "firstSeen": "2026-10-07",
-   "isNew": false,
    "extVer": 118
   },
   {
@@ -2366,14 +2343,14 @@
    ],
    "channel": "cwcf",
    "layer": "B",
-   "qualification": "대학및대학원생",
    "email": "acutecritic@naver.com",
+   "firstSeen": "2026-09-17",
+   "isNew": false,
+   "qualification": "대학및대학원생",
    "personnel": "6명(파트별최대 3명)ㅇ 제출서류",
    "duty": "바이올린, 첼로 바이올린첼로(김덕우)(김민지) 최대 3명 | 최대 3명 10:00~12:00 / 1인당 40분이내지도 ©",
    "deadline": "2026-10-16",
    "deadlineFrom": "raw",
-   "firstSeen": "2026-09-17",
-   "isNew": false,
    "extVer": 118
   },
   {
@@ -2516,13 +2493,13 @@
    "deadlineFrom": "cjob-남은기간",
    "denomination": "예장 합동",
    "documents": "이력서",
-   "personnel": "반주자",
-   "pay": "20만원",
    "addr": "전북 김제시 황산면 남산로 334",
    "regionBoard": "기타",
-   "deadlineNote": "상시",
    "firstSeen": "2026-08-08",
    "isNew": false,
+   "personnel": "반주자",
+   "pay": "20만원",
+   "deadlineNote": "상시",
    "extVer": 118
   },
   {
@@ -2552,11 +2529,11 @@
    "addr": "경기 의왕시 경수대로 262 (오전동, 의왕서해그랑블(블루스퀘어))",
    "denomination": "순복음",
    "documents": "간단한 이력서",
+   "firstSeen": "2026-08-08",
+   "isNew": false,
    "personnel": "반주자",
    "pay": "협의",
    "deadlineNote": "상시",
-   "firstSeen": "2026-08-08",
-   "isNew": false,
    "extVer": 118
   }
  ]
