@@ -1,8 +1,8 @@
 {
- "collectedAt": "2026-10-10 18:08",
+ "collectedAt": "2026-10-11 02:19",
  "heldNoOrigin": 0,
  "sourceCount": 91,
- "okCount": 90,
+ "okCount": 88,
  "instTotal": 75,
  "sources": [
   {
@@ -65,14 +65,9 @@
    "name": "기독정보넷(교회 반주)",
    "layer": "C",
    "poll": "daily",
-   "ok": true,
-   "raw": 24,
-   "kept": 3,
-   "drop": {
-    "무관": 3,
-    "만료": 18,
-    "오래됨": 0
-   }
+   "ok": false,
+   "kept": 2,
+   "error": "HTTPError: 403 Forbidden"
   },
   {
    "id": "gne",
@@ -167,11 +162,9 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 10,
+   "raw": 0,
    "kept": 0,
    "drop": {
-    "무관": 7,
-    "비음악": 3,
     "만료": 0,
     "오래됨": 0
    }
@@ -196,11 +189,9 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 29,
+   "raw": 0,
    "kept": 2,
    "drop": {
-    "무관": 23,
-    "비음악": 4,
     "만료": 0,
     "오래됨": 0
    }
@@ -395,8 +386,8 @@
    "poll": "daily",
    "ok": true,
    "raw": 5,
-   "kept": 10,
-   "carried": 7,
+   "kept": 11,
+   "carried": 8,
    "drop": {
     "무관": 2,
     "만료": 0,
@@ -462,10 +453,10 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 4,
+   "raw": 0,
    "kept": 0,
    "drop": {
-    "만료": 4,
+    "만료": 0,
     "오래됨": 0
    }
   },
@@ -867,7 +858,7 @@
    "poll": "daily",
    "ok": false,
    "kept": 0,
-   "error": "ReadTimeout: HTTPSConnectionPool(host='www.hcf.or.kr', port=443): Read timed out. (read timeout=20)"
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.hcf.or.kr', port=443): Max retries exceeded with url: /hcf/60?chathead=%ED%99%94%EC%84%B1%"
   },
   {
    "id": "g_i_gokamsorkr",
@@ -914,13 +905,9 @@
    "name": "동해문화관광재단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 0,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "HTTPError: 403 Forbidden"
   },
   {
    "id": "g_i_cfscorkr",
@@ -1233,9 +1220,8 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 5,
-   "kept": 5,
-   "declared": 5,
+   "raw": 0,
+   "kept": 0,
    "drop": {
     "만료": 0,
     "오래됨": 0
@@ -1422,7 +1408,7 @@
    "extVer": 118
   },
   {
-   "id": "95f69c023fc76cd7",
+   "id": "14218fcc05002312",
    "org": "동화고등학교",
    "region": "경기",
    "source": "goe.go.kr",
@@ -1451,7 +1437,7 @@
    "deadline": "2026-10-11",
    "deadlineFrom": "raw",
    "orgAffil": "경기교육청",
-   "firstSeen": "2026-10-08",
+   "firstSeen": "2026-10-11",
    "isNew": false,
    "extVer": 118
   },
@@ -1590,13 +1576,13 @@
    "instDetails": [],
    "channel": "cwcf",
    "layer": "B",
-   "contact": "055-268-7936",
    "email": "hsyoon@cwcf.or.kr",
+   "firstSeen": "2026-10-07",
+   "isNew": false,
+   "contact": "055-268-7936",
    "pay": "건당 50,000원",
    "deadline": "2026-12-12",
    "deadlineFrom": "raw",
-   "firstSeen": "2026-10-07",
-   "isNew": false,
    "extVer": 118
   },
   {
@@ -2364,14 +2350,14 @@
    ],
    "channel": "cwcf",
    "layer": "B",
-   "qualification": "대학및대학원생",
    "email": "acutecritic@naver.com",
+   "firstSeen": "2026-09-17",
+   "isNew": false,
+   "qualification": "대학및대학원생",
    "personnel": "6명(파트별최대 3명)ㅇ 제출서류",
    "duty": "바이올린, 첼로 바이올린첼로(김덕우)(김민지) 최대 3명 | 최대 3명 10:00~12:00 / 1인당 40분이내지도 ©",
    "deadline": "2026-10-16",
    "deadlineFrom": "raw",
-   "firstSeen": "2026-09-17",
-   "isNew": false,
    "extVer": 118
   },
   {
@@ -2514,13 +2500,13 @@
    "deadlineFrom": "cjob-남은기간",
    "denomination": "예장 합동",
    "documents": "이력서",
-   "personnel": "반주자",
-   "pay": "20만원",
    "addr": "전북 김제시 황산면 남산로 334",
    "regionBoard": "기타",
-   "deadlineNote": "상시",
    "firstSeen": "2026-08-08",
    "isNew": false,
+   "personnel": "반주자",
+   "pay": "20만원",
+   "deadlineNote": "상시",
    "extVer": 118
   },
   {
@@ -2550,11 +2536,11 @@
    "addr": "경기 의왕시 경수대로 262 (오전동, 의왕서해그랑블(블루스퀘어))",
    "denomination": "순복음",
    "documents": "간단한 이력서",
+   "firstSeen": "2026-08-08",
+   "isNew": false,
    "personnel": "반주자",
    "pay": "협의",
    "deadlineNote": "상시",
-   "firstSeen": "2026-08-08",
-   "isNew": false,
    "extVer": 118
   }
  ]
