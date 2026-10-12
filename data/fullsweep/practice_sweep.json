@@ -1,5 +1,5 @@
 {
- "date": "2026-10-11",
+ "date": "2026-10-12",
  "src": "eshare.go.kr",
  "count": 328,
  "dropped": 320,
@@ -1412,6 +1412,17 @@
    "lo": 126.97152265434,
    "kw": "밴드"
   },
+  "HH13E859495": {
+   "name": "세라밴드",
+   "addr": "경기 의왕시 부곡시장길 75",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://www.uiwang.go.kr/reserve/edu/E03/eduView.do?currentMenuNo=625&resrId=RESR_000000000012643",
+   "la": 37.318703253148,
+   "lo": 126.95678291717,
+   "kw": "밴드"
+  },
   "HG25E858210": {
    "name": "세라밴드",
    "addr": "경기 의왕시 갈미로 71",
@@ -1443,17 +1454,6 @@
    "bookTo": "https://www.uiwang.go.kr/reserve/edu/E03/eduView.do?currentMenuNo=626&resrId=RESR_000000000012344",
    "la": 37.353600058729,
    "lo": 126.97152265434,
-   "kw": "밴드"
-  },
-  "HH13E859495": {
-   "name": "세라밴드",
-   "addr": "경기 의왕시 부곡시장길 75",
-   "sido": "경기",
-   "free": false,
-   "cls": "건강/체육프로그램",
-   "bookTo": "https://www.uiwang.go.kr/reserve/edu/E03/eduView.do?currentMenuNo=625&resrId=RESR_000000000012643",
-   "la": 37.318703253148,
-   "lo": 126.95678291717,
    "kw": "밴드"
   },
   "HH28E860619": {
@@ -2391,6 +2391,28 @@
    "lo": 126.8535055695,
    "kw": "피아노"
   },
+  "HD16E851308": {
+   "name": "(4~5월)청소년피아노A_봄학기[사회교육_상록]",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "http://reserve.ansan.go.kr/edu/E03/eduView.do?currentMenuNo=604&resrId=RESR_000000000016040",
+   "la": 37.326275367734,
+   "lo": 126.8535055695,
+   "kw": "피아노"
+  },
+  "HC19E849242": {
+   "name": "(4~5월)토요피아노B_봄학기[사회교육_상록]",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "http://reserve.ansan.go.kr/edu/E03/eduView.do?currentMenuNo=604&resrId=RESR_000000000016041",
+   "la": 37.326275367734,
+   "lo": 126.8535055695,
+   "kw": "피아노"
+  },
   "HC20E849503": {
    "name": "(4~5월)성인피아노E_봄학기[사회교육_상록]",
    "addr": "경기 안산시 상록구 삼일로 696",
@@ -2420,28 +2442,6 @@
    "free": false,
    "cls": "건강/체육프로그램",
    "bookTo": "http://reserve.ansan.go.kr/edu/E03/eduView.do?currentMenuNo=604&resrId=RESR_000000000016102",
-   "la": 37.326275367734,
-   "lo": 126.8535055695,
-   "kw": "피아노"
-  },
-  "HD16E851308": {
-   "name": "(4~5월)청소년피아노A_봄학기[사회교육_상록]",
-   "addr": "경기 안산시 상록구 삼일로 696",
-   "sido": "경기",
-   "free": false,
-   "cls": "건강/체육프로그램",
-   "bookTo": "http://reserve.ansan.go.kr/edu/E03/eduView.do?currentMenuNo=604&resrId=RESR_000000000016040",
-   "la": 37.326275367734,
-   "lo": 126.8535055695,
-   "kw": "피아노"
-  },
-  "HC19E849242": {
-   "name": "(4~5월)토요피아노B_봄학기[사회교육_상록]",
-   "addr": "경기 안산시 상록구 삼일로 696",
-   "sido": "경기",
-   "free": false,
-   "cls": "건강/체육프로그램",
-   "bookTo": "http://reserve.ansan.go.kr/edu/E03/eduView.do?currentMenuNo=604&resrId=RESR_000000000016041",
    "la": 37.326275367734,
    "lo": 126.8535055695,
    "kw": "피아노"
@@ -2479,17 +2479,6 @@
    "lo": 126.8535055695,
    "kw": "피아노"
   },
-  "HD22E851788": {
-   "name": "(사회교육)[5월]토요피아노C_봄학기",
-   "addr": "경기 안산시 상록구 삼일로 696",
-   "sido": "경기",
-   "free": false,
-   "cls": "건강/체육프로그램",
-   "bookTo": "http://reserve.ansan.go.kr/edu/E03/eduView.do?currentMenuNo=604&resrId=RESR_000000000016980",
-   "la": 37.326275367734,
-   "lo": 126.8535055695,
-   "kw": "피아노"
-  },
   "HD16E851111": {
    "name": "(사회교육)[5월]성인피아노A_봄학기",
    "addr": "경기 안산시 상록구 삼일로 696",
@@ -2501,15 +2490,15 @@
    "lo": 126.8535055695,
    "kw": "피아노"
   },
-  "HF03E854579": {
-   "name": "소극장_한별피아노학원(7/2)[대관수입_단원]",
-   "addr": "경기 안산시 단원구 화정천서로 369",
+  "HD22E851788": {
+   "name": "(사회교육)[5월]토요피아노C_봄학기",
+   "addr": "경기 안산시 상록구 삼일로 696",
    "sido": "경기",
    "free": false,
    "cls": "건강/체육프로그램",
-   "bookTo": "http://reserve.ansan.go.kr/edu/E06/eduView.do?currentMenuNo=616&resrId=RESR_000000000018164",
-   "la": 37.33044554102,
-   "lo": 126.81678699111,
+   "bookTo": "http://reserve.ansan.go.kr/edu/E03/eduView.do?currentMenuNo=604&resrId=RESR_000000000016980",
+   "la": 37.326275367734,
+   "lo": 126.8535055695,
    "kw": "피아노"
   },
   "HE14E852932": {
@@ -2622,6 +2611,17 @@
    "lo": 126.8535055695,
    "kw": "피아노"
   },
+  "HF03E854579": {
+   "name": "소극장_한별피아노학원(7/2)[대관수입_단원]",
+   "addr": "경기 안산시 단원구 화정천서로 369",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "http://reserve.ansan.go.kr/edu/E06/eduView.do?currentMenuNo=616&resrId=RESR_000000000018164",
+   "la": 37.33044554102,
+   "lo": 126.81678699111,
+   "kw": "피아노"
+  },
   "HF20E855993": {
    "name": "청소년피아노A(7,8월)_여름학기[사회교육]",
    "addr": "경기 안산시 상록구 삼일로 696",
@@ -2721,39 +2721,6 @@
    "lo": 126.81678699111,
    "kw": "피아노"
   },
-  "HG17E857669": {
-   "name": "성인피아노E(8월)_여름학기(사회교육)",
-   "addr": "경기 안산시 상록구 삼일로 696",
-   "sido": "경기",
-   "free": false,
-   "cls": "건강/체육프로그램",
-   "bookTo": "http://reserve.ansan.go.kr/edu/E03/eduView.do?currentMenuNo=604&resrId=RESR_000000000019766",
-   "la": 37.326275367734,
-   "lo": 126.8535055695,
-   "kw": "피아노"
-  },
-  "HG17E857668": {
-   "name": "성인피아노C(8월)_여름학기(사회교육)",
-   "addr": "경기 안산시 상록구 삼일로 696",
-   "sido": "경기",
-   "free": false,
-   "cls": "건강/체육프로그램",
-   "bookTo": "http://reserve.ansan.go.kr/edu/E03/eduView.do?currentMenuNo=604&resrId=RESR_000000000019767",
-   "la": 37.326275367734,
-   "lo": 126.8535055695,
-   "kw": "피아노"
-  },
-  "HG17E857667": {
-   "name": "성인피아노A(8월)_여름학기(사회교육)",
-   "addr": "경기 안산시 상록구 삼일로 696",
-   "sido": "경기",
-   "free": false,
-   "cls": "건강/체육프로그램",
-   "bookTo": "http://reserve.ansan.go.kr/edu/E03/eduView.do?currentMenuNo=604&resrId=RESR_000000000019768",
-   "la": 37.326275367734,
-   "lo": 126.8535055695,
-   "kw": "피아노"
-  },
   "HG17E857683": {
    "name": "청소년피아노A(8월)_여름학기(사회교육)",
    "addr": "경기 안산시 상록구 삼일로 696",
@@ -2798,46 +2765,35 @@
    "lo": 126.8535055695,
    "kw": "피아노"
   },
-  "HH21E860363": {
-   "name": "성인피아노D_가을학기(사회교육)",
+  "HG17E857669": {
+   "name": "성인피아노E(8월)_여름학기(사회교육)",
    "addr": "경기 안산시 상록구 삼일로 696",
    "sido": "경기",
    "free": false,
    "cls": "건강/체육프로그램",
-   "bookTo": "http://reserve.ansan.go.kr/edu/E03/eduView.do?currentMenuNo=604&resrId=RESR_000000000020898",
+   "bookTo": "http://reserve.ansan.go.kr/edu/E03/eduView.do?currentMenuNo=604&resrId=RESR_000000000019766",
    "la": 37.326275367734,
    "lo": 126.8535055695,
    "kw": "피아노"
   },
-  "HH21E860362": {
-   "name": "성인피아노C_가을학기(사회교육)",
+  "HG17E857668": {
+   "name": "성인피아노C(8월)_여름학기(사회교육)",
    "addr": "경기 안산시 상록구 삼일로 696",
    "sido": "경기",
    "free": false,
    "cls": "건강/체육프로그램",
-   "bookTo": "http://reserve.ansan.go.kr/edu/E03/eduView.do?currentMenuNo=604&resrId=RESR_000000000020899",
+   "bookTo": "http://reserve.ansan.go.kr/edu/E03/eduView.do?currentMenuNo=604&resrId=RESR_000000000019767",
    "la": 37.326275367734,
    "lo": 126.8535055695,
    "kw": "피아노"
   },
-  "HH21E860361": {
-   "name": "성인피아노B_가을학기(사회교육)",
+  "HG17E857667": {
+   "name": "성인피아노A(8월)_여름학기(사회교육)",
    "addr": "경기 안산시 상록구 삼일로 696",
    "sido": "경기",
    "free": false,
    "cls": "건강/체육프로그램",
-   "bookTo": "http://reserve.ansan.go.kr/edu/E03/eduView.do?currentMenuNo=604&resrId=RESR_000000000020900",
-   "la": 37.326275367734,
-   "lo": 126.8535055695,
-   "kw": "피아노"
-  },
-  "HH21E860360": {
-   "name": "성인피아노A_가을학기(사회교육)",
-   "addr": "경기 안산시 상록구 삼일로 696",
-   "sido": "경기",
-   "free": false,
-   "cls": "건강/체육프로그램",
-   "bookTo": "http://reserve.ansan.go.kr/edu/E03/eduView.do?currentMenuNo=604&resrId=RESR_000000000020901",
+   "bookTo": "http://reserve.ansan.go.kr/edu/E03/eduView.do?currentMenuNo=604&resrId=RESR_000000000019768",
    "la": 37.326275367734,
    "lo": 126.8535055695,
    "kw": "피아노"
@@ -2904,6 +2860,50 @@
    "free": false,
    "cls": "건강/체육프로그램",
    "bookTo": "http://reserve.ansan.go.kr/edu/E03/eduView.do?currentMenuNo=604&resrId=RESR_000000000020580",
+   "la": 37.326275367734,
+   "lo": 126.8535055695,
+   "kw": "피아노"
+  },
+  "HH21E860363": {
+   "name": "성인피아노D_가을학기(사회교육)",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "http://reserve.ansan.go.kr/edu/E03/eduView.do?currentMenuNo=604&resrId=RESR_000000000020898",
+   "la": 37.326275367734,
+   "lo": 126.8535055695,
+   "kw": "피아노"
+  },
+  "HH21E860362": {
+   "name": "성인피아노C_가을학기(사회교육)",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "http://reserve.ansan.go.kr/edu/E03/eduView.do?currentMenuNo=604&resrId=RESR_000000000020899",
+   "la": 37.326275367734,
+   "lo": 126.8535055695,
+   "kw": "피아노"
+  },
+  "HH21E860361": {
+   "name": "성인피아노B_가을학기(사회교육)",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "http://reserve.ansan.go.kr/edu/E03/eduView.do?currentMenuNo=604&resrId=RESR_000000000020900",
+   "la": 37.326275367734,
+   "lo": 126.8535055695,
+   "kw": "피아노"
+  },
+  "HH21E860360": {
+   "name": "성인피아노A_가을학기(사회교육)",
+   "addr": "경기 안산시 상록구 삼일로 696",
+   "sido": "경기",
+   "free": false,
+   "cls": "건강/체육프로그램",
+   "bookTo": "http://reserve.ansan.go.kr/edu/E03/eduView.do?currentMenuNo=604&resrId=RESR_000000000020901",
    "la": 37.326275367734,
    "lo": 126.8535055695,
    "kw": "피아노"
@@ -3403,28 +3403,6 @@
    "lo": 127.19180048848,
    "kw": "음악창작소"
   },
-  "HE29E854375": {
-   "name": "[포천음악창작소] 6월 바이올린 프로그램(추가모집)",
-   "addr": "경기 포천시 호국로 1423",
-   "sido": "경기",
-   "free": true,
-   "cls": "건강/체육프로그램",
-   "bookTo": "https://share.gg.go.kr/lecture/view?id=54625&eshare=1",
-   "la": 37.885832632026,
-   "lo": 127.19180048848,
-   "kw": "음악창작소"
-  },
-  "HE29E854373": {
-   "name": "[포천음악창작소] 6월 전자드럼 프로그램(추가모집)",
-   "addr": "경기 포천시 호국로 1423",
-   "sido": "경기",
-   "free": true,
-   "cls": "건강/체육프로그램",
-   "bookTo": "https://share.gg.go.kr/lecture/view?id=54627&eshare=1",
-   "la": 37.885832632026,
-   "lo": 127.19180048848,
-   "kw": "음악창작소"
-  },
   "HE14E852922": {
    "name": "[포천음악창작소] 6월 플루트 프로그램",
    "addr": "경기 포천시 호국로 1423",
@@ -3491,6 +3469,28 @@
    "lo": 127.19180048848,
    "kw": "음악창작소"
   },
+  "HE29E854375": {
+   "name": "[포천음악창작소] 6월 바이올린 프로그램(추가모집)",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=54625&eshare=1",
+   "la": 37.885832632026,
+   "lo": 127.19180048848,
+   "kw": "음악창작소"
+  },
+  "HE29E854373": {
+   "name": "[포천음악창작소] 6월 전자드럼 프로그램(추가모집)",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=54627&eshare=1",
+   "la": 37.885832632026,
+   "lo": 127.19180048848,
+   "kw": "음악창작소"
+  },
   "HF17E855686": {
    "name": "[포천음악창작소] 7월 바이올린",
    "addr": "경기 포천시 호국로 1423",
@@ -3531,6 +3531,17 @@
    "free": true,
    "cls": "건강/체육프로그램",
    "bookTo": "https://share.gg.go.kr/lecture/view?id=57846&eshare=1",
+   "la": 37.885832632026,
+   "lo": 127.19180048848,
+   "kw": "음악창작소"
+  },
+  "HG17E857749": {
+   "name": "[포천음악창작소] 8월 바이올린",
+   "addr": "경기 포천시 호국로 1423",
+   "sido": "경기",
+   "free": true,
+   "cls": "건강/체육프로그램",
+   "bookTo": "https://share.gg.go.kr/lecture/view?id=57941&eshare=1",
    "la": 37.885832632026,
    "lo": 127.19180048848,
    "kw": "음악창작소"
@@ -3586,17 +3597,6 @@
    "free": true,
    "cls": "건강/체육프로그램",
    "bookTo": "https://share.gg.go.kr/lecture/view?id=60692&eshare=1",
-   "la": 37.885832632026,
-   "lo": 127.19180048848,
-   "kw": "음악창작소"
-  },
-  "HG17E857749": {
-   "name": "[포천음악창작소] 8월 바이올린",
-   "addr": "경기 포천시 호국로 1423",
-   "sido": "경기",
-   "free": true,
-   "cls": "건강/체육프로그램",
-   "bookTo": "https://share.gg.go.kr/lecture/view?id=57941&eshare=1",
    "la": 37.885832632026,
    "lo": 127.19180048848,
    "kw": "음악창작소"

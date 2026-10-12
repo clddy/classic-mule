@@ -1,5 +1,5 @@
 {
- "collectedAt": "2026-10-12 16:41",
+ "collectedAt": "2026-10-12 16:50",
  "heldNoOrigin": 0,
  "sourceCount": 91,
  "okCount": 91,
@@ -108,8 +108,7 @@
    "poll": "daily",
    "ok": true,
    "raw": 12,
-   "kept": 2,
-   "carried": 1,
+   "kept": 1,
    "drop": {
     "무관": 8,
     "비음악": 3,
@@ -198,8 +197,7 @@
    "poll": "daily",
    "ok": true,
    "raw": 29,
-   "kept": 2,
-   "carried": 1,
+   "kept": 1,
    "drop": {
     "무관": 24,
     "비음악": 4,
@@ -1298,15 +1296,17 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
    "channel": "edu_seoul",
    "layer": "C",
+   "qualification": "내국인으로서 채용 분야 교원자격증 소지자",
    "contact": "02-944-9479",
    "email": "sgone01@sen.go.kr",
    "workPeriod": "2026.11.02 ~ 2027.01.14",
+   "workHours": "전일제 근무",
    "personnel": "1명",
    "addr": "서울특별시 강북구 인수봉로 269",
    "duty": "영어(음악)",
@@ -1314,8 +1314,6 @@
    "deadline": "2026-10-16",
    "deadlineFrom": "raw",
    "orgAffil": "서울시교육청",
-   "qualification": "내국인으로서 채용 분야 교원자격증 소지자",
-   "workHours": "전일제 근무",
    "firstSeen": "2026-10-12",
    "isNew": true,
    "extVer": 119
@@ -1336,7 +1334,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
@@ -1372,7 +1370,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
@@ -2363,7 +2361,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "현악",
+   "inst": "전체",
    "instDetails": [
     "바이올린",
     "첼로",
@@ -2397,7 +2395,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
@@ -2553,8 +2551,8 @@
    ],
    "channel": "cjob",
    "layer": "C",
-   "addr": "경기 의왕시 경수대로 262 (오전동, 의왕서해그랑블(블루스퀘어))",
    "deadlineFrom": "cjob-남은기간",
+   "addr": "경기 의왕시 경수대로 262 (오전동, 의왕서해그랑블(블루스퀘어))",
    "denomination": "순복음",
    "documents": "간단한 이력서",
    "personnel": "반주자",
