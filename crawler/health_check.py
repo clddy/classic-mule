@@ -344,6 +344,17 @@ def check_dupes(rep, items):
                 f"중복 노출 {len(dupes)}건 (예: {ex[0].get('title', '')[:35]} — {srcs})")
 
 
+def _deadline_confirmed(item, d):
+    """마감이 원문의 확정 어휘(접수기간·원서접수…) 윈도에서 그대로 나오는가."""
+    try:
+        import rawstore
+        from common import extract_deadline
+        text = rawstore.all_text(item.get("id")) or ""
+        return bool(text) and extract_deadline(text, ref_year=int(d[:4]), priority_only=True) == d
+    except Exception:
+        return False
+
+
 def check_dates(rep, items, today):
     t = date.fromisoformat(today)
     bad_fmt, far, too_old = [], [], []
@@ -640,7 +651,10 @@ _LABEL_ECHO = re.compile(r"^(?:임금|보수|급여|담당\s*업무|모집\s*분
 # '보수 : 시간당 강사 수당 지급기준에 준한다'(망포중, 2026-08-22)처럼 다른 기준을
 # 가리키기만 하는 것도 금액이 없는 것이다 — 원문에 없는 값을 매일 내놓으라고 조를 뿐이다.
 _PAY_NO_AMOUNT = re.compile(r"보수\s*규정|보수규정|조례|시행\s*규칙|지침|호봉|산정"
-                            r"|지급\s*기준|기준에\s*준|기준에\s*따|내부\s*규정")
+                            r"|지급\s*기준|기준에\s*준|기준에\s*따|내부\s*규정"
+                            # '보수 : 시간당 강사 수당 지급 수당에 의거 지급' — 금액 없이 근거만
+                            # 가리킨다. 뽑을 값이 없는데 [미추출]로 셌다 (평촌중, 2026-10-12)
+                            r"|에\s*의거|에\s*의함|에\s*따라\s*지급")
 _PAY_AMOUNT = re.compile(r"[\d,]{2,}\s*(?:만\s*)?원|시급|일당|월급|협의")
 # 지원자가 채울 서식(응시원서·이력서·경력증명서)의 흔적. 앞은 서식 이름, 뒤는 hwp 표 머리로
 # 글자마다 벌어진 칸 이름이다 — '자격증'처럼 붙여 쓴 낱말은 지원자격 산문에도 흔해서
@@ -783,6 +797,11 @@ def main():
         if d and g and DATE_RE.match(d) and DATE_RE.match(g):
             try:
                 if (date.fromisoformat(d) - date.fromisoformat(g)).days > 60:
+                    # 원문이 '접수기간 … ~ 그 날짜' 라고 직접 밝혔으면 오추출이 아니다 — 공고를
+                    # 일찍 낸 것뿐이다. 인천시립청소년교향악단(공고 10.7, 접수 12.9~12.15)이
+                    # 마감 때까지 두 달 내내 같은 알림을 낼 참이었다 (2026-10-12).
+                    if _deadline_confirmed(i, d):
+                        continue
                     rep.add("MED", "의심",
                             f"마감({d})이 게시({g})+60일 초과 — {i.get('title','')[:26]}")
             except ValueError:

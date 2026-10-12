@@ -562,7 +562,11 @@ _PARTICIPANT = re.compile(
     # 연주자 개인이 지원할 자리가 아니다 (2026-08-07 통영 '모두의 오케스트라 페스티벌 참가
     # 오케스트라 모집'). 흔한 유형은 아니지만 개인 공고와 섞이면 헛걸음을 만든다.
     r"|참가\s*(?:오케스트라|합창단|앙상블|밴드|팀)"
-    r"|(?:오케스트라|합창단|앙상블|동호회|단체)\s*모집(?!\s*공고문)")
+    r"|(?:오케스트라|합창단|앙상블|동호회|단체)\s*모집"
+    # 원고를 쓰는 시민필진·기자단·서포터즈, 수업을 듣는 청강자 — 음악 일자리가 아니다.
+    # '웹진 『문화누리』 시민필진 모집'(L4#57), '마스터클래스 참가자 및 청강자 모집'이
+    # 게시됐다 (2026-10-12). '참가자 및 …' 는 '참가자 모집' 규칙을 낱말 하나로 비껴갔다.
+    r"|필진|기자단|서포터즈|청강자|참[여가]자\s*및(?!\s*공고문)")
 # 위 참가자 신호가 있어도 실제 '채용 직무'가 함께 있으면 구인이므로 보호(예: 체험단 강사 모집)
 # 사람이 아니라 '단위'를 받는 공모 — 통영국제음악재단 '스쿨콘서트 참가 학교 모집'
 # (2026-08-23). 공연을 보러 올 학교를 받는 것이라 어떤 뜻으로도 채용이 아니다.
@@ -1951,8 +1955,31 @@ def pay_from_table_ref(text):
     """'보수: 아래 표에 따름' + 뒤따르는 단가표 → 첫 단가. 없으면 None."""
     if not text:
         return None
-    m = _PAY_TABLE_REF.search(squash_spaced_labels(re.sub(r"\s+", " ", text)))
-    return f"{m.group(1)}원" if m else None
+    t = squash_spaced_labels(re.sub(r"\s+", " ", text))
+    m = _PAY_TABLE_REF.search(t)
+    if m:
+        return f"{m.group(1)}원"
+    return _pay_from_part_table(t)
+
+
+# 파트별 보수표 — '파트 지도 요일 및 시간 보수(현재) 채용인원 오보에 화(파트연습)_14:30~15:20
+# 7 만 원 1 명 바순 수(심화지도)_14:30~16:30 8 만 원 1 명' (신풍초 오케스트라 강사).
+# 금액이 라벨에서 멀리 떨어진 표 칸에 있어 어느 규칙에도 안 걸렸고, 같은 학교 공고가 올라올
+# 때마다 [미추출 급여]가 며칠씩 떴다 (2026-10-02·10-12). 금액만 나열하면 어느 파트인지
+# 사라지므로 **파트 이름과 짝지어** 싣는다. 단위(회당·월)는 원문도 밝히지 않아 덧붙이지 않는다.
+_PART_PAY_HEAD = re.compile(r"보수\s*\(\s*현재\s*\)")
+_PART_PAY_ROW = re.compile(r"([가-힣]{2,7})\s+[월화수목금토일][^원]{0,60}?(\d{1,3})\s*만\s*원")
+
+
+def _pay_from_part_table(t):
+    m = _PART_PAY_HEAD.search(t)
+    if not m:
+        return None
+    seg = re.split(r"\s\d\s*\.\s", t[m.end():m.end() + 400], 1)[0]
+    rows = [(a, n) for a, n in _PART_PAY_ROW.findall(seg) if a not in ("채용인원", "시간")]
+    if not rows:
+        return None
+    return " · ".join(f"{a} {n}만원" for a, n in rows[:4])
 
 
 _PAY_SHAPE = re.compile(
