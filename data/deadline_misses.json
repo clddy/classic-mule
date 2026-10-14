@@ -1,9 +1,9 @@
 {
  "https://music.yonsei.ac.kr/music/notice1.do?mode=view&articleNo=482056&article.offset=0&articleLimit=10": {
   "firstSeen": "2026-10-13",
-  "tries": 2,
-  "reported": false,
-  "lastTry": "2026-10-14",
+  "tries": 3,
+  "reported": true,
+  "lastTry": "2026-10-15",
   "title": "[연세대학교] 파크로쉬 리조트 앤 웰니스 리사이틀 공연 연주자 모집",
   "org": "연세대학교",
   "hint": [
@@ -13,25 +13,25 @@
  },
  "https://www.jcf.or.kr/": {
   "firstSeen": "2026-09-23",
-  "tries": 22,
+  "tries": 23,
   "reported": true,
-  "lastTry": "2026-10-14",
+  "lastTry": "2026-10-15",
   "title": "제물포구 구립 여성합창단 성악지도자 모집",
   "org": "제물포구 구립 여성합창단"
  },
  "https://www.sejongpac.or.kr/": {
   "firstSeen": "2026-09-29",
-  "tries": 16,
+  "tries": 17,
   "reported": true,
-  "lastTry": "2026-10-14",
+  "lastTry": "2026-10-15",
   "title": "(재)세종문화회관 예술단 직책단원(극단 지도위원, 소년소녀합창 지휘자) 공개채용",
   "org": "세종문화회관"
  },
  "https://www.sejongpac.or.kr/portal/bbs/B0000065/view.do?nttId=50176&menuNo=200571&pageIndex=1": {
   "firstSeen": "2026-09-29",
-  "tries": 16,
+  "tries": 17,
   "reported": true,
-  "lastTry": "2026-10-14",
+  "lastTry": "2026-10-15",
   "title": "(재)세종문화회관 예술단 직책단원(극단 지도위원, 소년소녀합창 연습지휘자) 공개채용",
   "org": "세종문화회관(서울시예술단)"
  }
