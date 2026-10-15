@@ -1,8 +1,8 @@
 {
- "collectedAt": "2026-10-15 01:58",
+ "collectedAt": "2026-10-15 18:07",
  "heldNoOrigin": 0,
  "sourceCount": 91,
- "okCount": 87,
+ "okCount": 91,
  "instTotal": 75,
  "sources": [
   {
@@ -65,9 +65,14 @@
    "name": "기독정보넷(교회 반주)",
    "layer": "C",
    "poll": "daily",
-   "ok": false,
-   "kept": 3,
-   "error": "HTTPError: 403 Forbidden"
+   "ok": true,
+   "raw": 24,
+   "kept": 4,
+   "drop": {
+    "무관": 3,
+    "만료": 17,
+    "오래됨": 0
+   }
   },
   {
    "id": "gne",
@@ -162,9 +167,11 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
+   "raw": 10,
    "kept": 0,
    "drop": {
+    "무관": 7,
+    "비음악": 3,
     "만료": 0,
     "오래됨": 0
    }
@@ -189,9 +196,11 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
+   "raw": 31,
    "kept": 1,
    "drop": {
+    "무관": 26,
+    "비음악": 4,
     "만료": 0,
     "오래됨": 0
    }
@@ -316,9 +325,11 @@
    "layer": "D",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
+   "raw": 20,
    "kept": 0,
    "drop": {
+    "무관": 17,
+    "비음악": 3,
     "만료": 0,
     "오래됨": 0
    }
@@ -369,8 +380,8 @@
    "poll": "daily",
    "ok": true,
    "raw": 6,
-   "kept": 5,
-   "carried": 1,
+   "kept": 6,
+   "carried": 2,
    "drop": {
     "무관": 1,
     "비음악": 1,
@@ -412,8 +423,8 @@
    "poll": "daily",
    "ok": true,
    "raw": 2,
-   "kept": 5,
-   "carried": 3,
+   "kept": 7,
+   "carried": 5,
    "drop": {
     "만료": 0,
     "오래됨": 0
@@ -451,10 +462,10 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
+   "raw": 4,
    "kept": 0,
    "drop": {
-    "만료": 0,
+    "만료": 4,
     "오래됨": 0
    }
   },
@@ -581,9 +592,13 @@
    "name": "고양문화재단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 0,
    "kept": 0,
-   "error": "TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.artgy.or.kr/CU/CU0101M.aspx\", waiting unti"
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_gfac",
@@ -712,11 +727,10 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 3,
+   "raw": 2,
    "kept": 3,
    "carried": 1,
    "drop": {
-    "비음악": 1,
     "만료": 0,
     "오래됨": 0
    }
@@ -808,9 +822,13 @@
    "name": "순천시립합창단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 0,
    "kept": 0,
-   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.suncheon.go.kr', port=443): Max retries exceeded with url: /scart/community/0001;jsessioni"
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_i_andonggokr",
@@ -898,9 +916,13 @@
    "name": "동해문화관광재단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 0,
    "kept": 0,
-   "error": "HTTPError: 403 Forbidden"
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_i_cfscorkr",
@@ -1214,8 +1236,9 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
-   "kept": 0,
+   "raw": 10,
+   "kept": 10,
+   "declared": 10,
    "drop": {
     "만료": 0,
     "오래됨": 0
@@ -1258,6 +1281,113 @@
    "extVer": 119
   },
   {
+   "id": "140ebd2902057d03",
+   "org": "만경여자고등학교",
+   "region": "전북",
+   "source": "jbe.go.kr",
+   "title": "[만경여고] 기간제교사(음악) 채용",
+   "nonMusic": null,
+   "url": "https://www.jbe.go.kr/board/view.jbe?boardId=BBS_0000130&menuCd=DOM_000000103004006000&paging=ok&startPage=1&searchOperation=AND&dataSid=1199753",
+   "date": "2026-10-16",
+   "kind": "교원",
+   "tier": "교육 — 학교",
+   "obri": false,
+   "certReq": "예",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "ageGroup": "성인",
+   "inst": "전체",
+   "instDetails": [],
+   "channel": "edu_jbe",
+   "layer": "C",
+   "orgBoard": "만경여자고등학교(전북교육청)",
+   "addr": "전북특별자치도 김제시 만경읍 만경로 823 만경여자고등학교 행정실",
+   "email": "knk3460@naver.com",
+   "hireType": "기간제교사",
+   "contact": "063-542-5881",
+   "workPeriod": "2026.11.02 ~ 2026.12.31",
+   "bodyExcerpt": "공고에 ‘채용의 제한’ 부분 명시 2. · 지침 [붙임 2] 기간제교원 채용 공고(예시) 다운로드 지침",
+   "deadline": "2026-10-22",
+   "deadlineFrom": "raw",
+   "workHours": "전일제 근무(1일 8시간)",
+   "ageLimit": "제한 없음",
+   "firstSeen": "2026-10-15",
+   "isNew": false,
+   "extVer": 119
+  },
+  {
+   "id": "f916e69be1b837ff",
+   "org": "서울강일초등학교",
+   "region": "서울",
+   "source": "work.sen.go.kr",
+   "title": "[서울강일초] 및 음악교과 시간강사 구인",
+   "nonMusic": null,
+   "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=112208",
+   "date": "2026-10-15",
+   "kind": "강사",
+   "tier": "교육 — 학교",
+   "obri": false,
+   "certReq": "예",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "ageGroup": "성인",
+   "inst": "목관",
+   "instDetails": [
+    "관악"
+   ],
+   "channel": "edu_seoul",
+   "layer": "C",
+   "contact": "010-5595-0939",
+   "email": "webmaster@sen.go.kr",
+   "pay": "시급 25,000원",
+   "workPeriod": "2026.11.23 ~ 2026.11.27",
+   "workHours": "요일별로 다름",
+   "personnel": "1명",
+   "addr": "서울특별시 강동구 아리수로98길 24(강일동)",
+   "duty": "6학년 과학, 3학년 음악",
+   "bodyExcerpt": "자격: 초등교사 자격증 소지자 4",
+   "deadline": "2026-10-16",
+   "deadlineFrom": "raw",
+   "orgAffil": "서울시교육청",
+   "firstSeen": "2026-10-15",
+   "isNew": true,
+   "extVer": 119
+  },
+  {
+   "id": "c23216ab01a3508e",
+   "org": "서울사이버대학교",
+   "region": "서울",
+   "source": "hibrain.net",
+   "title": "[서울사이버대학교] 전임교원 초빙",
+   "nonMusic": null,
+   "url": "https://www.hibrain.net/recruitment/recruits/3601185",
+   "date": null,
+   "kind": "교수",
+   "tier": "교육 — 대학",
+   "obri": false,
+   "certReq": "예",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "ageGroup": "성인",
+   "inst": "성악",
+   "instDetails": [
+    "소프라노",
+    "성악"
+   ],
+   "officialUrl": "https://www.iscu.ac.kr/01_aboutcollege/10_01_teachers_view.asp?Board_Id=127&Page=1&PageSize=10&SeqNo=792004",
+   "channel": "hibrain",
+   "layer": "B",
+   "subjectFrom": "attach",
+   "addr": "서울특별시 강북구 솔매로49길 60",
+   "addrFrom": "postal",
+   "qualification": "대학교원자격기준등에관한규정(대통령령) 에의한교수자격기준에해당하는자 · 사립학교법및기타법령상 WA AS 결격사유가없는 At",
+   "deadline": "2026-10-23",
+   "deadlineFrom": "raw",
+   "firstSeen": "2026-10-15",
+   "isNew": true,
+   "extVer": 119
+  },
+  {
    "id": "9fd353decdb192a5",
    "org": "솔로몬교회",
    "region": "경기",
@@ -1283,14 +1413,14 @@
    "deadlineFrom": "cjob-남은기간",
    "denomination": "합동총회",
    "documents": "이력서,자기소개서",
+   "personnel": "반주자",
+   "pay": "협의",
    "addr": "경기도 부천시 고강로",
    "lat": 37.5303937,
    "lng": 126.8165665,
    "addrFrom": "geo",
    "firstSeen": "2026-10-14",
    "isNew": true,
-   "personnel": "반주자",
-   "pay": "협의",
    "extVer": 119
   },
   {
@@ -1315,20 +1445,20 @@
    ],
    "channel": "edu_seoul",
    "layer": "C",
-   "contact": "02-2244-4941",
    "email": "webmaster@sen.go.kr",
+   "addr": "서울특별시 동대문구 망우로6길 48(휘경동)",
+   "orgAffil": "서울시교육청",
+   "firstSeen": "2026-10-14",
+   "isNew": true,
+   "contact": "02-2244-4941",
    "pay": "시급 25,000원",
    "workPeriod": "2026.10.15 ~ 2026.12.17",
    "workHours": "매주 목요일 2-4교시",
    "personnel": "1명",
-   "addr": "서울특별시 동대문구 망우로6길 48(휘경동)",
    "duty": "음악교과교사",
    "bodyExcerpt": "초등교사자격증 소지자 또는 중등교사(음악교과) 자격증 소지자 3",
    "deadline": "2026-10-21",
    "deadlineFrom": "raw",
-   "orgAffil": "서울시교육청",
-   "firstSeen": "2026-10-14",
-   "isNew": true,
    "extVer": 119
   },
   {
@@ -1403,13 +1533,13 @@
    "extVer": 119
   },
   {
-   "id": "8205d4fb31078264",
+   "id": "2f82fb96426d6009",
    "org": "이리남성여자중학교",
    "region": "전북",
    "source": "jbe.go.kr",
    "title": "[이리남성여중] 기간제교원(음악 1명) 채용",
    "nonMusic": null,
-   "url": "https://www.jbe.go.kr/board/view.jbe?boardId=BBS_0000130&menuCd=DOM_000000103004006000&paging=ok&startPage=2&searchOperation=AND&dataSid=1189650",
+   "url": "https://www.jbe.go.kr/board/view.jbe?boardId=BBS_0000130&menuCd=DOM_000000103004006000&paging=ok&startPage=3&searchOperation=AND&dataSid=1189650",
    "date": "2026-10-14",
    "kind": "교원",
    "tier": "교육 — 학교",
@@ -1422,19 +1552,19 @@
    "instDetails": [],
    "channel": "edu_jbe",
    "layer": "C",
+   "orgBoard": "이리남성여자중학교(전북교육청)",
+   "email": "daman5@jbedu.kr",
+   "hireType": "기간제교원",
    "contact": "070-4944-3538",
    "addr": "전북 익산시 동서로 35길 41",
    "addrFrom": "postal",
-   "email": "daman5@jbedu.kr",
-   "orgBoard": "이리남성여자중학교(전북교육청)",
    "workPeriod": "2026.10.26 ~ 2026.12.04",
-   "hireType": "기간제교원",
-   "workHours": "전일제 근무(1일 8시간)",
-   "ageLimit": "제한 없음",
    "bodyExcerpt": "공고에 ‘채용의 제한’ 부분 명시 2. · 지침 [붙임 2] 기간제교원 채용 공고(예시) 다운로드 지침",
    "deadline": "2026-10-18",
    "deadlineFrom": "raw",
-   "firstSeen": "2026-10-14",
+   "workHours": "전일제 근무(1일 8시간)",
+   "ageLimit": "제한 없음",
+   "firstSeen": "2026-10-15",
    "isNew": true,
    "extVer": 119
   },
@@ -1541,15 +1671,15 @@
    "email": "lovewhch@jbedu.kr",
    "orgBoard": "전주만성중학교(전북교육청)",
    "addr": "전북특별자치도 전주시 덕진구 오공로 99 전주만성중학교",
-   "workPeriod": "2026.10.19 ~ 2026.12.18",
    "hireType": "기간제교사",
+   "firstSeen": "2026-10-14",
+   "isNew": false,
+   "workPeriod": "2026.10.19 ~ 2026.12.18",
    "workHours": "전일제 근무(1일 8시간)",
    "ageLimit": "제한 없음",
    "bodyExcerpt": "공고에 ‘채용의 제한’ 부분 명시 2. · 지침 [붙임 2] 기간제교원 채용 공고(예시) 다운로드 지침",
    "deadline": "2026-10-15",
    "deadlineFrom": "raw",
-   "firstSeen": "2026-10-14",
-   "isNew": false,
    "extVer": 119
   },
   {
@@ -2381,14 +2511,14 @@
    ],
    "channel": "cwcf",
    "layer": "B",
-   "email": "acutecritic@naver.com",
-   "firstSeen": "2026-09-17",
-   "isNew": false,
    "qualification": "대학및대학원생",
+   "email": "acutecritic@naver.com",
    "personnel": "6명(파트별최대 3명)ㅇ 제출서류",
    "duty": "바이올린, 첼로 바이올린첼로(김덕우)(김민지) 최대 3명 | 최대 3명 10:00~12:00 / 1인당 40분이내지도 ©",
    "deadline": "2026-10-16",
    "deadlineFrom": "raw",
+   "firstSeen": "2026-09-17",
+   "isNew": false,
    "extVer": 119
   },
   {
@@ -2495,13 +2625,13 @@
    "deadlineFrom": "cjob-남은기간",
    "denomination": "예장 합동",
    "documents": "이력서",
-   "addr": "전북 김제시 황산면 남산로 334",
-   "regionBoard": "기타",
-   "firstSeen": "2026-08-08",
-   "isNew": false,
    "personnel": "반주자",
    "pay": "20만원",
+   "addr": "전북 김제시 황산면 남산로 334",
+   "regionBoard": "기타",
    "deadlineNote": "상시",
+   "firstSeen": "2026-08-08",
+   "isNew": false,
    "extVer": 119
   },
   {
@@ -2531,11 +2661,11 @@
    "addr": "경기 의왕시 경수대로 262 (오전동, 의왕서해그랑블(블루스퀘어))",
    "denomination": "순복음",
    "documents": "간단한 이력서",
-   "firstSeen": "2026-08-08",
-   "isNew": false,
    "personnel": "반주자",
    "pay": "협의",
    "deadlineNote": "상시",
+   "firstSeen": "2026-08-08",
+   "isNew": false,
    "extVer": 119
   }
  ]
