@@ -11,7 +11,8 @@ from common import (new_session, get, relevant, extract_deadline, priority_deadl
                     classify_kind, classify_tier, is_obri, cert_required, degree_req, career_req, age_group, org_looks_junk,
                     region_from, EXCLUDE, compact_title, music_only_title, body_text, valid_addr,
                     insts_from_recruit_text, tls_blocked, curl_get, extract_fields, extract_contact, strip_navi,
-                    extract_email, DECLARED_TOTALS, addr_from_text, pay_from_table_ref)
+                    extract_email, DECLARED_TOTALS, addr_from_text, pay_from_table_ref,
+                    program_table)
 from sources import SOURCES
 from institutions import INSTITUTIONS
 import attach
@@ -306,7 +307,7 @@ def find_attachments(soup, base_url):
                     cands.append((full, el.get_text(" ", strip=True)))
     return cands[:4]
 
-EXT_VER = 119         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
+EXT_VER = 120         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
                      # v32(2026-08-02): 모집분야 구획 악기 추출(insts_from_recruit_text) + 원문 보관층
                      # 24: work.sen 등록일(게시일) 추출 추가 — date=None이던 승계분을 다시 뽑게
                      # 25: body_text 도입 — 본문을 <header>에 넣는 사이트(대전교육청)의 마감일을
@@ -607,6 +608,10 @@ def _find_duty(text):
         if text[m.end():m.end() + 1] in (")", "）"):
             continue
         v = _duty_from_seg(text[m.end():m.end() + 260])
+        # 표 칸이 '공고문참조'만 말하면 값이 아니다 — 여기서 멈추면 다음 라벨('모집 분야')을
+        # 아예 안 본다 (신탄진중, 2026-10-17). 그런 값은 건너뛰고 다음 라벨로 넘어간다.
+        if v and re.match(r"^\s*(?:공고문|붙임|첨부|상세\s*요강|하기|아래)\s*(?:파일)?\s*(?:참조|참고)?\s*$", v):
+            continue
         if v:
             return v
     return None
@@ -1567,6 +1572,14 @@ def _refill_from_raw(items, today):
             dv = _find_duty(_raw)
             if dv:
                 it["duty"] = dv
+        # 프로그램 표 — '프로그램 명 / 인원 / 운영 조건 / 위탁료' (신탄진중 방과후 강사).
+        # 담당업무·근무시간이 다 이 표 한 줄에만 있다. 빈 칸만 채운다.
+        if not it.get("duty") or not it.get("workHours"):
+            _pt = program_table(_raw)
+            if _pt.get("duty") and not it.get("duty"):
+                it["duty"] = _pt["duty"]
+            if _pt.get("workHours") and not it.get("workHours"):
+                it["workHours"] = _pt["workHours"]
         # 주소 — 라벨 없이 우편번호만 달고 오는 꼴('문 의: … (16807)용인시 …').
         # 주소가 없으면 org 이름 좌표(_attach_coords)로 넘어가는데, org 가 게시판
         # 운영기관(교구·교육청)이면 지도 핀이 엉뚱한 본부에 찍힌다 (성복동성당, 2026-08-26).

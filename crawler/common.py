@@ -1951,6 +1951,34 @@ _PAY_TABLE_REF = re.compile(
     r"[^\d]{0,80}?([\d,]{5,})")
 
 
+# 프로그램 표 — '1. 모집 분야 및 인원 / 프로그램 명 인원 운영 조건 위탁료 비고 /
+# 바이올린 1명 매주 화요일 10:05~12:40 및 금요일 09:10~12:40 시간당 35,000원'.
+# 학교 방과후·교육프로그램 강사 공고가 담당업무·근무시간을 이 표 한 줄로만 준다
+# (신탄진중, 2026-10-17 [미추출 분야]). 머리말이 이 꼴일 때만 읽는다.
+_PROGRAM_HEAD = re.compile(r"프로그램\s*명\s+인원\s+운영\s*조건")
+_PROGRAM_ROW = re.compile(
+    r"([가-힣A-Za-z·]{2,14})\s+\d+\s*명\s+(.{4,80}?)\s+(?:시간당|회당|월|건당)\s*[\d,]+\s*원")
+
+
+def program_table(text):
+    """프로그램 표 첫 행 → {'duty': 프로그램명, 'workHours': 운영 조건}. 없으면 빈 dict."""
+    if not text:
+        return {}
+    t = squash_spaced_labels(re.sub(r"\s+", " ", text))
+    m = _PROGRAM_HEAD.search(t)
+    if not m:
+        return {}
+    seg = t[m.end():m.end() + 300]
+    r = _PROGRAM_ROW.search(seg)
+    if not r:
+        return {}
+    out = {"duty": r.group(1).strip()}
+    wh = _clean_field("workHours", r.group(2))
+    if wh:
+        out["workHours"] = wh
+    return out
+
+
 def pay_from_table_ref(text):
     """'보수: 아래 표에 따름' + 뒤따르는 단가표 → 첫 단가. 없으면 None."""
     if not text:
