@@ -1,6 +1,6 @@
 {
  "updatedAt": "2026-10-18",
- "count": 1500,
+ "count": 1501,
  "items": {
   "f7b1c263744b9ece": {
    "id": "f7b1c263744b9ece",
@@ -40500,6 +40500,39 @@
    "days": 3,
    "workHours": "매주 화요일 10:05~12:40 및 금요일 09:10~12:40",
    "duty": "바이올린"
+  },
+  "36f887c2a5dd7cbf": {
+   "id": "36f887c2a5dd7cbf",
+   "org": "서울경인초등학교",
+   "region": "서울",
+   "source": "work.sen.go.kr",
+   "channel": "edu_seoul",
+   "layer": "C",
+   "title": "[서울경인초] 10/21(수), 10/22(목) 6학년 음악교과전담교사 구인",
+   "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=112358",
+   "date": "2026-10-18",
+   "deadline": "2026-10-20",
+   "deadlineFrom": "raw",
+   "kind": "교원",
+   "tier": "교육 — 학교",
+   "inst": "전체",
+   "instDetails": [],
+   "ageGroup": "성인",
+   "obri": false,
+   "certReq": "무관",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "personnel": "1명",
+   "bodyExcerpt": "채용공고지원 기관명 지원서 신규작성과 작성된 지원서를 선택 후 수정 할 수 있습니다",
+   "pay": "시급 25,000원",
+   "workPeriod": "2026.10.21 ~ 2026.10.22",
+   "duty": "6학년 음악교과전담교사",
+   "contact": "010-5646-9570",
+   "addr": "서울특별시 양천구 안양천로 1009(목동)",
+   "orgAffil": "서울시교육청",
+   "firstSeen": "2026-10-18",
+   "lastSeen": "2026-10-18",
+   "days": 1
   }
  }
 }
