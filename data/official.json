@@ -1,8 +1,8 @@
 {
- "collectedAt": "2026-10-18 18:07",
+ "collectedAt": "2026-10-19 00:50",
  "heldNoOrigin": 0,
  "sourceCount": 91,
- "okCount": 91,
+ "okCount": 85,
  "instTotal": 75,
  "sources": [
   {
@@ -66,14 +66,9 @@
    "name": "기독정보넷(교회 반주)",
    "layer": "C",
    "poll": "daily",
-   "ok": true,
-   "raw": 24,
-   "kept": 4,
-   "drop": {
-    "무관": 3,
-    "만료": 17,
-    "오래됨": 0
-   }
+   "ok": false,
+   "kept": 3,
+   "error": "HTTPError: 403 Forbidden"
   },
   {
    "id": "gne",
@@ -122,15 +117,9 @@
    "name": "대구문화예술회관(시향)",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 4,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "무관": 1,
-    "비음악": 3,
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='daeguartscenter.or.kr', port=443): Max retries exceeded with url: /index.do?menu_id=00001528 ("
   },
   {
    "id": "bscc",
@@ -168,11 +157,9 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 10,
+   "raw": 0,
    "kept": 0,
    "drop": {
-    "무관": 8,
-    "비음악": 2,
     "만료": 0,
     "오래됨": 0
    }
@@ -197,12 +184,10 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 32,
+   "raw": 0,
    "kept": 0,
    "drop": {
-    "무관": 27,
-    "비음악": 4,
-    "만료": 1,
+    "만료": 0,
     "오래됨": 0
    }
   },
@@ -211,14 +196,9 @@
    "name": "울산문화예술회관",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 15,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "무관": 12,
-    "만료": 3,
-    "오래됨": 0
-   }
+   "error": "ReadTimeout: HTTPSConnectionPool(host='www.ulsan.go.kr', port=443): Read timed out. (read timeout=20)"
   },
   {
    "id": "seoulphil",
@@ -326,11 +306,9 @@
    "layer": "D",
    "poll": "daily",
    "ok": true,
-   "raw": 20,
+   "raw": 0,
    "kept": 0,
    "drop": {
-    "무관": 17,
-    "비음악": 3,
     "만료": 0,
     "오래됨": 0
    }
@@ -424,8 +402,8 @@
    "poll": "daily",
    "ok": true,
    "raw": 1,
-   "kept": 3,
-   "carried": 2,
+   "kept": 2,
+   "carried": 1,
    "drop": {
     "만료": 0,
     "오래됨": 0
@@ -464,10 +442,10 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 4,
+   "raw": 0,
    "kept": 0,
    "drop": {
-    "만료": 4,
+    "만료": 0,
     "오래됨": 0
    }
   },
@@ -688,11 +666,11 @@
    "poll": "daily",
    "ok": true,
    "raw": 10,
-   "kept": 1,
+   "kept": 0,
    "drop": {
     "비음악": 2,
     "무관": 6,
-    "만료": 1,
+    "만료": 2,
     "오래됨": 0
    }
   },
@@ -824,13 +802,9 @@
    "name": "순천시립합창단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 0,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.suncheon.go.kr', port=443): Max retries exceeded with url: /scart/community/0001;jsessioni"
   },
   {
    "id": "g_i_andonggokr",
@@ -918,13 +892,9 @@
    "name": "동해문화관광재단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 0,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "HTTPError: 403 Forbidden"
   },
   {
    "id": "g_i_cfscorkr",
@@ -1089,15 +1059,9 @@
    "name": "대구문화예술회관 공지(시립합창단)",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 9,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "비음악": 2,
-    "무관": 6,
-    "만료": 1,
-    "오래됨": 0
-   }
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.daeguartscenter.or.kr', port=443): Max retries exceeded with url: /index.do?menu_id=000015"
   },
   {
    "id": "g_ansanarts",
@@ -1239,9 +1203,8 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 8,
-   "kept": 8,
-   "declared": 8,
+   "raw": 0,
+   "kept": 1,
    "drop": {
     "만료": 0,
     "오래됨": 0
@@ -1530,13 +1493,13 @@
    "channel": "hibrain",
    "layer": "B",
    "subjectFrom": "attach",
-   "qualification": "대학교원자격기준등에관한규정(대통령령) 에의한교수자격기준에해당하는자 · 사립학교법및기타법령상 WA AS 결격사유가없는 At",
    "addr": "서울특별시 강북구 솔매로49길 60",
    "addrFrom": "postal",
-   "deadline": "2026-10-23",
-   "deadlineFrom": "raw",
    "firstSeen": "2026-10-15",
    "isNew": false,
+   "qualification": "대학교원자격기준등에관한규정(대통령령) 에의한교수자격기준에해당하는자 · 사립학교법및기타법령상 WA AS 결격사유가없는 At",
+   "deadline": "2026-10-23",
+   "deadlineFrom": "raw",
    "extVer": 120
   },
   {
@@ -1565,14 +1528,14 @@
    "deadlineFrom": "cjob-남은기간",
    "denomination": "합동총회",
    "documents": "이력서,자기소개서",
-   "personnel": "반주자",
-   "pay": "협의",
    "addr": "경기도 부천시 고강로",
    "lat": 37.5303937,
    "lng": 126.8165665,
    "addrFrom": "geo",
    "firstSeen": "2026-10-14",
    "isNew": false,
+   "personnel": "반주자",
+   "pay": "협의",
    "extVer": 120
   },
   {
@@ -1644,42 +1607,6 @@
    "personnel": "음악 1명",
    "bodyExcerpt": "채용 응시 자격: 내국인으로서 채용 분야 교원자격증 소지자 2. · 계약 기간(1년 범위 내 기간을 정하여 계약) 모집구분 모집인원 채용기간 및 계약기간 비고 음악 1 2026. · 보수: 공무원보수규정 제8조에 따라 산정된 호봉의 봉급을 지급하되, 고정급으로 한다. · 대리 접수인 준비물: 지원자 인장, 대리인 신분증, 위임증 6",
    "deadline": "2026-10-19",
-   "deadlineFrom": "raw",
-   "extVer": 120
-  },
-  {
-   "id": "2f82fb96426d6009",
-   "org": "이리남성여자중학교",
-   "region": "전북",
-   "source": "jbe.go.kr",
-   "title": "[이리남성여중] 기간제교원(음악 1명) 채용",
-   "nonMusic": null,
-   "url": "https://www.jbe.go.kr/board/view.jbe?boardId=BBS_0000130&menuCd=DOM_000000103004006000&paging=ok&startPage=3&searchOperation=AND&dataSid=1189650",
-   "date": "2026-10-14",
-   "kind": "교원",
-   "tier": "교육 — 학교",
-   "obri": false,
-   "certReq": "예",
-   "degreeReq": "무관",
-   "careerReq": "미기재",
-   "ageGroup": "성인",
-   "inst": "전체",
-   "instDetails": [],
-   "channel": "edu_jbe",
-   "layer": "C",
-   "addr": "전북 익산시 동서로 35길 41",
-   "addrFrom": "postal",
-   "email": "daman5@jbedu.kr",
-   "orgBoard": "이리남성여자중학교(전북교육청)",
-   "hireType": "기간제교원",
-   "firstSeen": "2026-10-15",
-   "isNew": false,
-   "contact": "070-4944-3538",
-   "workPeriod": "2026.10.26 ~ 2026.12.04",
-   "workHours": "전일제 근무(1일 8시간)",
-   "ageLimit": "제한 없음",
-   "bodyExcerpt": "공고에 ‘채용의 제한’ 부분 명시 2. · 지침 [붙임 2] 기간제교원 채용 공고(예시) 다운로드 지침",
-   "deadline": "2026-10-18",
    "deadlineFrom": "raw",
    "extVer": 120
   },
@@ -2053,33 +1980,6 @@
    "extVer": 120
   },
   {
-   "id": "88797fb93f723a0e",
-   "org": "통영국제음악재단",
-   "region": "경남",
-   "source": "timf.org",
-   "title": "윤이상국제음악콩쿠르 자원활동가 모집",
-   "nonMusic": null,
-   "url": "https://www.timf.org/kr/sub/timf/notice.asp?mode=view&bid=1&s_type=&s_keyword=&s_cate=&idx=3827&page=1",
-   "date": "2026-10-01",
-   "deadline": "2026-10-18",
-   "kind": "기타",
-   "tier": "미분류",
-   "obri": false,
-   "certReq": "무관",
-   "degreeReq": "무관",
-   "careerReq": "미기재",
-   "ageGroup": "성인",
-   "inst": "전체",
-   "instDetails": [],
-   "channel": "g_timf",
-   "layer": "B",
-   "deadlineFrom": "ocr",
-   "qualification": "만 18 세이상의대한민국국민, 해외동포, 국내거주외국인",
-   "firstSeen": "2026-10-01",
-   "isNew": false,
-   "extVer": 120
-  },
-  {
    "id": "f9fb3178f03dfe36",
    "org": "천주교 수원교구(성가대·반주)",
    "region": "경기",
@@ -2275,13 +2175,13 @@
    "deadlineFrom": "cjob-남은기간",
    "denomination": "예장 합동",
    "documents": "이력서",
-   "personnel": "반주자",
-   "pay": "20만원",
    "addr": "전북 김제시 황산면 남산로 334",
    "regionBoard": "기타",
-   "deadlineNote": "상시",
    "firstSeen": "2026-08-08",
    "isNew": false,
+   "personnel": "반주자",
+   "pay": "20만원",
+   "deadlineNote": "상시",
    "extVer": 120
   },
   {
@@ -2311,11 +2211,11 @@
    "addr": "경기 의왕시 경수대로 262 (오전동, 의왕서해그랑블(블루스퀘어))",
    "denomination": "순복음",
    "documents": "간단한 이력서",
+   "firstSeen": "2026-08-08",
+   "isNew": false,
    "personnel": "반주자",
    "pay": "협의",
    "deadlineNote": "상시",
-   "firstSeen": "2026-08-08",
-   "isNew": false,
    "extVer": 120
   }
  ]
