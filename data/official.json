@@ -1,8 +1,8 @@
 {
- "collectedAt": "2026-10-19 18:07",
+ "collectedAt": "2026-10-20 03:43",
  "heldNoOrigin": 0,
  "sourceCount": 91,
- "okCount": 91,
+ "okCount": 86,
  "instTotal": 75,
  "sources": [
   {
@@ -65,14 +65,9 @@
    "name": "기독정보넷(교회 반주)",
    "layer": "C",
    "poll": "daily",
-   "ok": true,
-   "raw": 24,
-   "kept": 4,
-   "drop": {
-    "무관": 3,
-    "만료": 17,
-    "오래됨": 0
-   }
+   "ok": false,
+   "kept": 3,
+   "error": "HTTPError: 403 Forbidden"
   },
   {
    "id": "gne",
@@ -167,11 +162,9 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 10,
+   "raw": 0,
    "kept": 0,
    "drop": {
-    "무관": 8,
-    "비음악": 2,
     "만료": 0,
     "오래됨": 0
    }
@@ -196,11 +189,9 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 32,
+   "raw": 0,
    "kept": 1,
    "drop": {
-    "무관": 27,
-    "비음악": 4,
     "만료": 0,
     "오래됨": 0
    }
@@ -325,11 +316,9 @@
    "layer": "D",
    "poll": "daily",
    "ok": true,
-   "raw": 20,
+   "raw": 0,
    "kept": 0,
    "drop": {
-    "무관": 17,
-    "비음악": 3,
     "만료": 0,
     "오래됨": 0
    }
@@ -396,8 +385,8 @@
    "poll": "daily",
    "ok": true,
    "raw": 1,
-   "kept": 5,
-   "carried": 4,
+   "kept": 4,
+   "carried": 3,
    "drop": {
     "만료": 0,
     "오래됨": 0
@@ -436,10 +425,10 @@
    "poll": "daily",
    "ok": true,
    "raw": 2,
-   "kept": 1,
+   "kept": 0,
    "drop": {
     "무관": 1,
-    "만료": 0,
+    "만료": 1,
     "오래됨": 0
    }
   },
@@ -462,10 +451,10 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 4,
+   "raw": 0,
    "kept": 0,
    "drop": {
-    "만료": 4,
+    "만료": 0,
     "오래됨": 0
    }
   },
@@ -593,13 +582,9 @@
    "name": "고양문화재단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 0,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.artgy.or.kr/CU/CU0101M.aspx\", waiting unti"
   },
   {
    "id": "g_gfac",
@@ -823,13 +808,9 @@
    "name": "순천시립합창단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 0,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.suncheon.go.kr', port=443): Max retries exceeded with url: /scart/community/0001;jsessioni"
   },
   {
    "id": "g_i_andonggokr",
@@ -851,13 +832,9 @@
    "name": "경기문화재단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 0,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "HTTPError: 403 Forbidden"
   },
   {
    "id": "g_i_hcforkr",
@@ -917,13 +894,9 @@
    "name": "동해문화관광재단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 0,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "HTTPError: 403 Forbidden"
   },
   {
    "id": "g_i_cfscorkr",
@@ -1238,9 +1211,8 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 8,
-   "kept": 8,
-   "declared": 8,
+   "raw": 0,
+   "kept": 1,
    "drop": {
     "만료": 0,
     "오래됨": 0
@@ -1305,9 +1277,10 @@
    ],
    "channel": "edu_seoul",
    "layer": "C",
+   "qualification": "해당 분야에 전문적인 능력을 가진 자 또는 자격증 소지자",
    "contact": "02-514-5981",
    "email": "eonbukes@sen.go.kr",
-   "workPeriod": "2026.12.02 ~ 2027.02.17",
+   "workPeriod": "2026.12.02 ~ 2027.02.17(1년 이내 연장)",
    "workHours": "수요일 13:50~15:20",
    "personnel": "1명",
    "addr": "서울특별시 강남구 삼성로135길 42(청담동)",
@@ -1315,7 +1288,6 @@
    "deadline": "2026-10-26",
    "deadlineFrom": "raw",
    "orgAffil": "서울시교육청",
-   "qualification": "해당 분야에 전문적인 능력을 가진 자 또는 자격증 소지자",
    "firstSeen": "2026-10-19",
    "isNew": true,
    "extVer": 120
@@ -1411,7 +1383,7 @@
    "addr": "서울특별시 양천구 안양천로 1009(목동)",
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-10-18",
-   "isNew": true,
+   "isNew": false,
    "contact": "010-5646-9570",
    "pay": "시급 25,000원",
    "workPeriod": "2026.10.21 ~ 2026.10.22",
@@ -1533,48 +1505,6 @@
    "extVer": 120
   },
   {
-   "id": "c7265698010de9b1",
-   "org": "신탄진중학교",
-   "region": "대전",
-   "source": "dje.go.kr",
-   "title": "[신탄진중] 음악교육프로그램 강사 모집",
-   "nonMusic": null,
-   "url": "https://www.dje.go.kr/boardCnts/view.do?boardID=54&boardSeq=3365530&lev=0&s=dje&m=030202",
-   "date": "2026-10-16",
-   "kind": "강사",
-   "tier": "교육 — 학교",
-   "obri": false,
-   "certReq": "예",
-   "degreeReq": "무관",
-   "careerReq": "미기재",
-   "ageGroup": "성인",
-   "inst": "현악",
-   "instDetails": [
-    "바이올린"
-   ],
-   "channel": "edu_dje",
-   "layer": "C",
-   "qualification": "대학 졸업자 또는 이와 동등 이상의 학력이 있는 자로서 해당",
-   "contact": "042-930-0604",
-   "duty": "바이올린",
-   "workHours": "매주 화요일 10:05~12:40 및 금요일 09:10~12:40",
-   "email": "s0600@hanmail.net",
-   "orgBoard": "대전교육청(학교 채용)",
-   "personnel": "1명",
-   "workPeriod": "2026.10.30 ~ 2026.12.31",
-   "pay": "시간당 35,000원",
-   "bodyExcerpt": "구직 기간제교사 학교인력 채용공고 산학겸임.강사.명예교사신청 연수",
-   "deadline": "2026-10-19",
-   "deadlineFrom": "raw",
-   "addr": "대전광역시 대덕구 석봉로 15",
-   "lat": 36.4477547,
-   "lng": 127.4232558,
-   "addrFrom": "geo",
-   "firstSeen": "2026-10-16",
-   "isNew": false,
-   "extVer": 120
-  },
-  {
    "id": "2d1146fdc9cfd49b",
    "org": "동탄중앙초등학교",
    "region": "경기",
@@ -1635,13 +1565,13 @@
    "channel": "hibrain",
    "layer": "B",
    "subjectFrom": "attach",
-   "qualification": "대학교원자격기준등에관한규정(대통령령) 에의한교수자격기준에해당하는자 · 사립학교법및기타법령상 WA AS 결격사유가없는 At",
    "addr": "서울특별시 강북구 솔매로49길 60",
    "addrFrom": "postal",
-   "deadline": "2026-10-23",
-   "deadlineFrom": "raw",
    "firstSeen": "2026-10-15",
    "isNew": false,
+   "qualification": "대학교원자격기준등에관한규정(대통령령) 에의한교수자격기준에해당하는자 · 사립학교법및기타법령상 WA AS 결격사유가없는 At",
+   "deadline": "2026-10-23",
+   "deadlineFrom": "raw",
    "extVer": 120
   },
   {
@@ -1670,14 +1600,14 @@
    "deadlineFrom": "cjob-남은기간",
    "denomination": "합동총회",
    "documents": "이력서,자기소개서",
-   "personnel": "반주자",
-   "pay": "협의",
    "addr": "경기도 부천시 고강로",
    "lat": 37.5303937,
    "lng": 126.8165665,
    "addrFrom": "geo",
    "firstSeen": "2026-10-14",
    "isNew": false,
+   "personnel": "반주자",
+   "pay": "협의",
    "extVer": 120
   },
   {
@@ -1715,40 +1645,6 @@
    "duty": "음악교과교사",
    "bodyExcerpt": "초등교사자격증 소지자 또는 중등교사(음악교과) 자격증 소지자 3",
    "deadline": "2026-10-21",
-   "deadlineFrom": "raw",
-   "extVer": 120
-  },
-  {
-   "id": "ffc74916212c6bc8",
-   "org": "창의고등학교",
-   "region": "경기",
-   "source": "goe.go.kr",
-   "title": "[창의고] 계약제교원(기간제교사) 채용 공고(음악)",
-   "nonMusic": null,
-   "url": "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=10502&pbancSn=62813",
-   "date": "2026-10-14",
-   "kind": "교원",
-   "tier": "교육 — 학교",
-   "obri": false,
-   "certReq": "예",
-   "degreeReq": "무관",
-   "careerReq": "미기재",
-   "ageGroup": "성인",
-   "inst": "전체",
-   "instDetails": [],
-   "channel": "edu_goe",
-   "layer": "C",
-   "email": "shinri2017@korea.kr",
-   "addr": "경기 화성시 동탄구 동탄신리천로1길 66(목동)",
-   "orgAffil": "경기교육청",
-   "firstSeen": "2026-10-14",
-   "isNew": false,
-   "contact": "070-4021-7078",
-   "workPeriod": "2026.10.26 ~ 2026.12.31",
-   "workHours": "전일제 근무",
-   "personnel": "음악 1명",
-   "bodyExcerpt": "채용 응시 자격: 내국인으로서 채용 분야 교원자격증 소지자 2. · 계약 기간(1년 범위 내 기간을 정하여 계약) 모집구분 모집인원 채용기간 및 계약기간 비고 음악 1 2026. · 보수: 공무원보수규정 제8조에 따라 산정된 호봉의 봉급을 지급하되, 고정급으로 한다. · 대리 접수인 준비물: 지원자 인장, 대리인 신분증, 위임증 6",
-   "deadline": "2026-10-19",
    "deadlineFrom": "raw",
    "extVer": 120
   },
@@ -2274,14 +2170,14 @@
    ],
    "channel": "cwcf",
    "layer": "B",
-   "qualification": "대학생, 대학원생및졸업생",
    "email": "acutecritic@naver.com",
+   "firstSeen": "2026-10-19",
+   "isNew": false,
+   "qualification": "대학생, 대학원생및졸업생",
    "personnel": "6명(파트별최대 3명)ㅇ 제출서류",
    "duty": "바이올린, 첼로 바이올린첼로(김덕우)(김민지) 최대 3명 | 최대 3명 10:00~12:00 / 1인당 40분이내지도 ©",
    "deadline": "2026-10-23",
    "deadlineFrom": "raw",
-   "firstSeen": "2026-10-19",
-   "isNew": false,
    "extVer": 120
   },
   {
@@ -2351,13 +2247,13 @@
    "deadlineFrom": "cjob-남은기간",
    "denomination": "예장 합동",
    "documents": "이력서",
-   "personnel": "반주자",
-   "pay": "20만원",
    "addr": "전북 김제시 황산면 남산로 334",
    "regionBoard": "기타",
-   "deadlineNote": "상시",
    "firstSeen": "2026-08-08",
    "isNew": false,
+   "personnel": "반주자",
+   "pay": "20만원",
+   "deadlineNote": "상시",
    "extVer": 120
   },
   {
@@ -2387,11 +2283,11 @@
    "addr": "경기 의왕시 경수대로 262 (오전동, 의왕서해그랑블(블루스퀘어))",
    "denomination": "순복음",
    "documents": "간단한 이력서",
+   "firstSeen": "2026-08-08",
+   "isNew": false,
    "personnel": "반주자",
    "pay": "협의",
    "deadlineNote": "상시",
-   "firstSeen": "2026-08-08",
-   "isNew": false,
    "extVer": 120
   }
  ]
