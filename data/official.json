@@ -1,8 +1,8 @@
 {
- "collectedAt": "2026-10-21 01:46",
+ "collectedAt": "2026-10-21 02:12",
  "heldNoOrigin": 0,
  "sourceCount": 91,
- "okCount": 87,
+ "okCount": 91,
  "instTotal": 75,
  "sources": [
   {
@@ -67,9 +67,14 @@
    "name": "기독정보넷(교회 반주)",
    "layer": "C",
    "poll": "daily",
-   "ok": false,
-   "kept": 3,
-   "error": "HTTPError: 403 Forbidden"
+   "ok": true,
+   "raw": 24,
+   "kept": 5,
+   "drop": {
+    "무관": 3,
+    "만료": 16,
+    "오래됨": 0
+   }
   },
   {
    "id": "gne",
@@ -164,9 +169,11 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
+   "raw": 10,
    "kept": 0,
    "drop": {
+    "무관": 8,
+    "비음악": 2,
     "만료": 0,
     "오래됨": 0
    }
@@ -191,9 +198,11 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
+   "raw": 32,
    "kept": 1,
    "drop": {
+    "무관": 27,
+    "비음악": 4,
     "만료": 0,
     "오래됨": 0
    }
@@ -318,9 +327,11 @@
    "layer": "D",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
+   "raw": 20,
    "kept": 0,
    "drop": {
+    "무관": 17,
+    "비음악": 3,
     "만료": 0,
     "오래됨": 0
    }
@@ -454,10 +465,10 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
+   "raw": 4,
    "kept": 0,
    "drop": {
-    "만료": 0,
+    "만료": 4,
     "오래됨": 0
    }
   },
@@ -598,9 +609,13 @@
    "name": "강남문화재단(강남심포니)",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 0,
    "kept": 0,
-   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.gfac.or.kr', port=443): Max retries exceeded with url: /site/main/recruit/accordionList (C"
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_sjcf",
@@ -811,9 +826,13 @@
    "name": "순천시립합창단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 0,
    "kept": 0,
-   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.suncheon.go.kr', port=443): Max retries exceeded with url: /scart/community/0001;jsessioni"
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_i_andonggokr",
@@ -901,9 +920,13 @@
    "name": "동해문화관광재단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 0,
    "kept": 0,
-   "error": "HTTPError: 403 Forbidden"
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_i_cfscorkr",
@@ -1218,8 +1241,9 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
-   "kept": 1,
+   "raw": 8,
+   "kept": 8,
+   "declared": 8,
    "drop": {
     "만료": 0,
     "오래됨": 0
@@ -1277,7 +1301,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "금관",
+   "inst": "전체",
    "instDetails": [
     "트럼펫",
     "소프라노"
@@ -1289,6 +1313,7 @@
    "bodyExcerpt": "모집인원 : 3명(교향악단 트럼펫 수석 1, 합창단 소프라노 1, 무용단 한국무용 1) 붙임 1",
    "deadline": "2026-11-06",
    "deadlineFrom": "raw",
+   "contact": "061-270-8539",
    "firstSeen": "2026-10-21",
    "isNew": true,
    "extVer": 120
@@ -1490,17 +1515,17 @@
    "instDetails": [],
    "channel": "edu_jbe",
    "layer": "C",
+   "email": "sabana@jbedu.kr",
    "orgBoard": "문창초등학교(전북교육청)",
    "addr": "전북특별자치도 군산시 공항로 394 문창초등학교",
-   "email": "sabana@jbedu.kr",
    "workPeriod": "2026.10.26 ~ 2026.11.13",
-   "bodyExcerpt": "공고에 ‘채용의 제한’ 부분 명시 2. · 지침 [붙임 2] 기간제교원 채용 공고(예시) 다운로드 지침",
-   "deadline": "2026-10-22",
-   "deadlineFrom": "raw",
    "pay": "시간당 30,000원",
    "workHours": "전일제 근무(1일 8시간)",
    "duty": "음악, 과학 교과전담 교사(주당 18차시)",
    "ageLimit": "제한 없음",
+   "bodyExcerpt": "공고에 ‘채용의 제한’ 부분 명시 2. · 지침 [붙임 2] 기간제교원 채용 공고(예시) 다운로드 지침",
+   "deadline": "2026-10-22",
+   "deadlineFrom": "raw",
    "firstSeen": "2026-10-21",
    "isNew": true,
    "extVer": 120
@@ -1534,6 +1559,38 @@
    "deadlineFrom": "raw",
    "firstSeen": "2026-10-21",
    "isNew": true,
+   "extVer": 120
+  },
+  {
+   "id": "a3cfa1763a77d545",
+   "org": "청주영광교회",
+   "region": "충북",
+   "source": "cjob.co.kr",
+   "title": "[청주영광교회] 교회예배반주자 모십니다",
+   "nonMusic": null,
+   "url": "https://www.cjob.co.kr/bbs/board.php?bo_table=offerIG&wr_id=7815&c_jikjong=2&page=1",
+   "date": "2026-10-19",
+   "deadline": "2026-11-20",
+   "kind": "반주",
+   "tier": "연주",
+   "obri": true,
+   "certReq": "무관",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "ageGroup": "성인",
+   "inst": "건반",
+   "instDetails": [
+    "피아노"
+   ],
+   "channel": "cjob",
+   "layer": "C",
+   "addr": "충북 청주시 서원구 충렬로 22 (사직동, 영광교회)",
+   "deadlineFrom": "cjob-남은기간",
+   "denomination": "통합",
+   "personnel": "반주자",
+   "pay": "협의",
+   "firstSeen": "2026-10-21",
+   "isNew": false,
    "extVer": 120
   },
   {
@@ -1693,7 +1750,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
@@ -1776,13 +1833,13 @@
    "channel": "hibrain",
    "layer": "B",
    "subjectFrom": "attach",
+   "qualification": "대학교원자격기준등에관한규정(대통령령) 에의한교수자격기준에해당하는자 · 사립학교법및기타법령상 WA AS 결격사유가없는 At",
    "addr": "서울특별시 강북구 솔매로49길 60",
    "addrFrom": "postal",
-   "firstSeen": "2026-10-15",
-   "isNew": false,
-   "qualification": "대학교원자격기준등에관한규정(대통령령) 에의한교수자격기준에해당하는자 · 사립학교법및기타법령상 WA AS 결격사유가없는 At",
    "deadline": "2026-10-23",
    "deadlineFrom": "raw",
+   "firstSeen": "2026-10-15",
+   "isNew": false,
    "extVer": 120
   },
   {
@@ -1811,14 +1868,14 @@
    "deadlineFrom": "cjob-남은기간",
    "denomination": "합동총회",
    "documents": "이력서,자기소개서",
+   "personnel": "반주자",
+   "pay": "협의",
    "addr": "경기도 부천시 고강로",
    "lat": 37.5303937,
    "lng": 126.8165665,
    "addrFrom": "geo",
    "firstSeen": "2026-10-14",
    "isNew": false,
-   "personnel": "반주자",
-   "pay": "협의",
    "extVer": 120
   },
   {
@@ -2265,7 +2322,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "현악",
+   "inst": "전체",
    "instDetails": [
     "바이올린",
     "첼로",
@@ -2273,14 +2330,14 @@
    ],
    "channel": "cwcf",
    "layer": "B",
-   "email": "acutecritic@naver.com",
-   "firstSeen": "2026-10-19",
-   "isNew": false,
    "qualification": "대학생, 대학원생및졸업생",
+   "email": "acutecritic@naver.com",
    "personnel": "6명(파트별최대 3명)ㅇ 제출서류",
    "duty": "바이올린, 첼로 바이올린첼로(김덕우)(김민지) 최대 3명 | 최대 3명 10:00~12:00 / 1인당 40분이내지도 ©",
    "deadline": "2026-10-23",
    "deadlineFrom": "raw",
+   "firstSeen": "2026-10-19",
+   "isNew": false,
    "extVer": 120
   },
   {
@@ -2350,13 +2407,13 @@
    "deadlineFrom": "cjob-남은기간",
    "denomination": "예장 합동",
    "documents": "이력서",
-   "addr": "전북 김제시 황산면 남산로 334",
-   "regionBoard": "기타",
-   "firstSeen": "2026-08-08",
-   "isNew": false,
    "personnel": "반주자",
    "pay": "20만원",
+   "addr": "전북 김제시 황산면 남산로 334",
+   "regionBoard": "기타",
    "deadlineNote": "상시",
+   "firstSeen": "2026-08-08",
+   "isNew": false,
    "extVer": 120
   },
   {
@@ -2386,11 +2443,11 @@
    "addr": "경기 의왕시 경수대로 262 (오전동, 의왕서해그랑블(블루스퀘어))",
    "denomination": "순복음",
    "documents": "간단한 이력서",
-   "firstSeen": "2026-08-08",
-   "isNew": false,
    "personnel": "반주자",
    "pay": "협의",
    "deadlineNote": "상시",
+   "firstSeen": "2026-08-08",
+   "isNew": false,
    "extVer": 120
   }
  ]

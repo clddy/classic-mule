@@ -1,6 +1,6 @@
 {
  "updatedAt": "2026-10-21",
- "count": 1512,
+ "count": 1513,
  "items": {
   "f7b1c263744b9ece": {
    "id": "f7b1c263744b9ece",
@@ -40651,7 +40651,7 @@
    "deadlineFrom": "raw",
    "kind": "기타",
    "tier": "미분류",
-   "inst": "현악",
+   "inst": "전체",
    "instDetails": [
     "바이올린",
     "첼로",
@@ -40685,7 +40685,7 @@
    "deadlineFrom": "raw",
    "kind": "단원",
    "tier": "연주",
-   "inst": "금관",
+   "inst": "전체",
    "instDetails": [
     "트럼펫",
     "소프라노"
@@ -40699,7 +40699,8 @@
    "bodyExcerpt": "모집인원 : 3명(교향악단 트럼펫 수석 1, 합창단 소프라노 1, 무용단 한국무용 1) 붙임 1",
    "firstSeen": "2026-10-21",
    "lastSeen": "2026-10-21",
-   "days": 1
+   "days": 1,
+   "contact": "061-270-8539"
   },
   "aba4a75134c2866c": {
    "id": "aba4a75134c2866c",
@@ -40881,7 +40882,7 @@
    "deadlineFrom": "raw",
    "kind": "강사",
    "tier": "교육 — 학교",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
@@ -40900,6 +40901,36 @@
    "email": "webmaster@sen.go.kr",
    "addr": "서울특별시 강동구 아리수로98길 24(강일동)",
    "orgAffil": "서울시교육청",
+   "firstSeen": "2026-10-21",
+   "lastSeen": "2026-10-21",
+   "days": 1
+  },
+  "a3cfa1763a77d545": {
+   "id": "a3cfa1763a77d545",
+   "org": "청주영광교회",
+   "region": "충북",
+   "source": "cjob.co.kr",
+   "channel": "cjob",
+   "layer": "C",
+   "title": "[청주영광교회] 교회예배반주자 모십니다",
+   "url": "https://www.cjob.co.kr/bbs/board.php?bo_table=offerIG&wr_id=7815&c_jikjong=2&page=1",
+   "date": "2026-10-19",
+   "deadline": "2026-11-20",
+   "deadlineFrom": "cjob-남은기간",
+   "kind": "반주",
+   "tier": "연주",
+   "inst": "건반",
+   "instDetails": [
+    "피아노"
+   ],
+   "ageGroup": "성인",
+   "obri": true,
+   "certReq": "무관",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "personnel": "반주자",
+   "pay": "협의",
+   "addr": "충북 청주시 서원구 충렬로 22 (사직동, 영광교회)",
    "firstSeen": "2026-10-21",
    "lastSeen": "2026-10-21",
    "days": 1

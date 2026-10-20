@@ -1,5 +1,5 @@
 window.YEYAK_ROOMS = {
- "fetched": "2026-10-19",
+ "fetched": "2026-10-21",
  "items": [
   {
    "name": "중랑생활문화센터 다목적연습실",
@@ -302,7 +302,7 @@ window.YEYAK_ROOMS = {
    "src": "yeyak.seoul.go.kr"
   },
   {
-   "name": "&lt;2026 더 임팩트&gt; 지정배&nbsp;피아노&nbsp;리사이틀 | 빛을&nbsp;향하여",
+   "name": "[공연취소] 지정배&nbsp;피아노&nbsp;리사이틀 | 빛을&nbsp;향하여",
    "category": "public",
    "region": "서울",
    "addr": "석촌호수 아뜰리에",
