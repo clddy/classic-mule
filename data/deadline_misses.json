@@ -1,25 +1,37 @@
 {
+ "http://spaf.or.kr/2024/": {
+  "firstSeen": "2026-10-23",
+  "tries": 1,
+  "reported": false,
+  "lastTry": "2026-10-23",
+  "title": "연수단원 모집",
+  "org": "직접 게시",
+  "hint": [
+   "용 근무조건 급여조건 근무시간/형태 4대보험 퇴직금 지급 방법 전형방법 접수마감일 전형방법 접수방법 제출서류 준비물 우대사항 전공 자격 컴퓨터 활용능력 병역특례채",
+   "근무조건 급여조건 근무시간/형태 4대보험 퇴직금 지급 방법 전형방법 접수마감일 전형방법 접수방법 제출서류 준비물 우대사항 전공 자격 컴퓨터 활용능력 병역특례채용희"
+  ]
+ },
  "https://www.jcf.or.kr/": {
   "firstSeen": "2026-09-23",
-  "tries": 30,
+  "tries": 31,
   "reported": true,
-  "lastTry": "2026-10-22",
+  "lastTry": "2026-10-23",
   "title": "제물포구 구립 여성합창단 성악지도자 모집",
   "org": "제물포구 구립 여성합창단"
  },
  "https://www.sejongpac.or.kr/": {
   "firstSeen": "2026-09-29",
-  "tries": 24,
+  "tries": 25,
   "reported": true,
-  "lastTry": "2026-10-22",
+  "lastTry": "2026-10-23",
   "title": "(재)세종문화회관 예술단 직책단원(극단 지도위원, 소년소녀합창 지휘자) 공개채용",
   "org": "세종문화회관"
  },
  "https://www.sejongpac.or.kr/portal/bbs/B0000065/view.do?nttId=50176&menuNo=200571&pageIndex=1": {
   "firstSeen": "2026-09-29",
-  "tries": 24,
+  "tries": 25,
   "reported": true,
-  "lastTry": "2026-10-22",
+  "lastTry": "2026-10-23",
   "title": "(재)세종문화회관 예술단 직책단원(극단 지도위원, 소년소녀합창 연습지휘자) 공개채용",
   "org": "세종문화회관(서울시예술단)"
  }

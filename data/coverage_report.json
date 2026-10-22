@@ -1,8 +1,8 @@
 {
- "date": "2026-10-22",
+ "date": "2026-10-23",
  "total": 75,
- "covered": 6,
- "gapCount": 69,
+ "covered": 5,
+ "gapCount": 70,
  "gaps": [
   {
    "name": "KBS교향악단",
@@ -83,6 +83,11 @@
    "name": "충남교향악단(천안)",
    "type": "교향악단",
    "region": "충남"
+  },
+  {
+   "name": "춘천시립교향악단",
+   "type": "교향악단",
+   "region": "강원"
   },
   {
    "name": "원주시립교향악단",
@@ -352,8 +357,8 @@
  ],
  "master": {
   "total": 604,
-  "covered": 4,
-  "gapCount": 600,
+  "covered": 3,
+  "gapCount": 601,
   "byCategory": {
    "대학": {
     "total": 77,
@@ -365,7 +370,7 @@
    },
    "예술단": {
     "total": 54,
-    "covered": 4
+    "covered": 3
    },
    "지자체": {
     "total": 323,
@@ -910,6 +915,11 @@
    },
    {
     "name": "강릉시립교향악단",
+    "cat": "예술단",
+    "region": "강원"
+   },
+   {
+    "name": "춘천시립교향악단",
     "cat": "예술단",
     "region": "강원"
    },
