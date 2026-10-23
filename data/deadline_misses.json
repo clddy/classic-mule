@@ -1,4 +1,12 @@
 {
+ "https://lecturer.snu.ac.kr/adm/public/hurt/lect/frame/oio/NoticeMattrDetail.jsp?srnum=3246&nowPage=1": {
+  "firstSeen": "2026-10-23",
+  "tries": 1,
+  "reported": false,
+  "lastTry": "2026-10-23",
+  "title": "[서울대학교] 사범대학 강사 모집 (2차)",
+  "org": "서울대학교"
+ },
  "http://spaf.or.kr/2024/": {
   "firstSeen": "2026-10-23",
   "tries": 1,
