@@ -92,8 +92,45 @@
   td.hg.off{background:var(--wash)}
   td.hg.on{background:var(--claret);color:#fff;font-weight:600}
   .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .grid2 > *{min-width:0}
   @media(max-width:760px){.grid2{grid-template-columns:1fr}}
-  .note{font-size:.78rem;color:var(--ink-soft);margin:8px 0 0}
+  .grid4{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px}
+  .grid4 > *{min-width:0}
+  .note{font-size:.78rem;color:var(--ink-soft);margin:10px 0 0}
+
+  /* 섹션 카드 — 표가 쭉 이어지지 않게 한 덩어리씩 묶는다 */
+  .card{background:var(--paper);border:1px solid var(--line);border-radius:6px;
+    padding:16px 18px 14px;margin-top:16px;min-width:0}
+  .grid2 > .card{margin-top:0}
+  .grid2.cards{margin-top:16px}
+  /* 카드 두 장을 나란히 두기엔 좁으면 출처 이름이 말줄임으로 뭉개진다 — 일찍 한 줄로 */
+  @media(max-width:960px){.grid2.cards{grid-template-columns:1fr}}
+  .card h2{margin:0 0 12px;padding:0;border:0;display:flex;align-items:baseline;
+    flex-wrap:wrap;gap:2px 8px}
+  .card h2 .sub{margin-left:0}
+  .card h3{font-size:.78rem;font-weight:600;color:var(--ink-soft);margin:0 0 6px}
+  .card .kpis{margin-bottom:14px}
+  .card .kpi{background:var(--ivory)}
+  .card table{border-color:var(--line)}
+  .card table tbody tr:hover td{background:#faf8f3}
+  .card table.hourgrid tbody tr:hover td{background:inherit}
+  .card table.hourgrid tbody tr:hover td.hg.on{background:var(--claret)}
+  .card table.hourgrid tbody tr:hover td.hg.off{background:var(--wash)}
+  .mini{background:var(--ivory);border:1px solid var(--line);border-radius:4px;padding:10px}
+  .mini table{font-size:.8rem}
+  .mini td,.mini th{padding:5px 8px}
+
+  /* 표 페이지 넘김 */
+  .pager{display:flex;align-items:center;justify-content:flex-end;gap:6px;margin-top:8px;
+    font-size:.75rem;color:var(--ink-soft);font-variant-numeric:tabular-nums}
+  .pager .cnt{margin-right:auto;color:var(--grey)}
+  .pager button{font:inherit;width:28px;height:26px;border:1px solid var(--line);
+    background:var(--paper);color:var(--ink);border-radius:4px;cursor:pointer;line-height:1}
+  .pager button:hover:not(:disabled){border-color:var(--claret);color:var(--claret)}
+  .pager button:disabled{color:var(--line);cursor:default}
+  .pager .pg{min-width:44px;text-align:center}
+  .bar{position:sticky;top:0;z-index:5;background:var(--ivory);padding:8px 0;
+    border-bottom:1px solid var(--line)}
   .empty{color:var(--grey);font-size:.85rem;padding:14px 0}
   code{background:var(--wash);padding:1px 5px;border-radius:2px;font-size:.85em}
 </style>
@@ -233,6 +270,7 @@ document.querySelectorAll(".bar button").forEach(function (b) {
     document.querySelectorAll(".bar button").forEach(function (x) { x.classList.remove("on"); });
     b.classList.add("on");
     RANGE = +b.dataset.days;
+    PAGES = {};
     render();
   };
 });
@@ -277,12 +315,74 @@ function sorted(map, limit) {
   a.sort(function (x, y) { return y[1] - x[1]; });
   return limit ? a.slice(0, limit) : a;
 }
-function table(head, rows, empty) {
+// 표는 전부 쪽 단위로 끊는다 — 줄이 많아 화면이 세로로 끝없이 늘어나는 걸 막는다.
+// 줄은 다 그려 두고 setupPagers()가 보이는 쪽만 남긴다. 쪽 번호는 PAGES 에 표 id 별로
+// 들고 있어서 봇 표시 체크처럼 다시 그려도 보던 쪽에 그대로 머문다.
+var PAGES = {};
+function paged(id, per, cls, head, rows) {
+  return '<div class="pt" data-id="' + id + '" data-per="' + (per || 8) + '">' +
+    '<div class="scroll"><table' + (cls ? ' class="' + cls + '"' : "") + "><thead>" + head +
+    "</thead><tbody>" + rows.join("") + "</tbody></table></div></div>";
+}
+function table(head, rows, empty, id, per) {
   if (!rows.length) return '<div class="empty">' + (empty || "기록 없음") + "</div>";
   var h = head.map(function (c) {
     return '<th' + (c[1] ? ' class="num"' : "") + ">" + esc(c[0]) + "</th>";
   }).join("");
-  return '<div class="scroll"><table><tr>' + h + "</tr>" + rows.join("") + "</table></div>";
+  return paged(id, per, "", "<tr>" + h + "</tr>", rows);
+}
+function setupPagers() {
+  REFIT = [];
+  document.querySelectorAll("#app .pt").forEach(function (box) {
+    var id = box.dataset.id, per = +box.dataset.per;
+    var trs = box.querySelectorAll("tbody > tr"), total = trs.length;
+    var pages = Math.ceil(total / per);
+    if (pages <= 1) return;
+    var bar = document.createElement("div");
+    bar.className = "pager";
+    bar.innerHTML = '<span class="cnt"></span><button type="button" aria-label="이전 쪽">‹</button>' +
+      '<span class="pg"></span><button type="button" aria-label="다음 쪽">›</button>';
+    box.appendChild(bar);
+    var cnt = bar.querySelector(".cnt"), pg = bar.querySelector(".pg"),
+        btn = bar.querySelectorAll("button"), sc = box.querySelector(".scroll");
+    function show(p) {
+      p = Math.max(0, Math.min(pages - 1, p));
+      PAGES[id] = p;
+      for (var i = 0; i < total; i++) trs[i].hidden = (i < p * per || i >= (p + 1) * per);
+      cnt.textContent = (p * per + 1) + "–" + Math.min(total, (p + 1) * per) + " · 총 " + n(total);
+      pg.textContent = (p + 1) + " / " + pages;
+      btn[0].disabled = p === 0;
+      btn[1].disabled = p === pages - 1;
+    }
+    // 마지막 쪽이 짧아도 넘김 단추가 위로 튀지 않게 첫 쪽 높이를 바닥으로 깐다.
+    // 폭이 바뀌면 줄바꿈이 달라져 높이도 달라지므로 창 크기가 바뀔 때마다 다시 잰다.
+    function fit() {
+      var cur = PAGES[id] || 0;
+      sc.style.minHeight = "";
+      show(0);
+      sc.style.minHeight = sc.offsetHeight + "px";
+      show(cur);
+    }
+    fit();
+    REFIT.push(fit);
+    btn[0].onclick = function () { show(PAGES[id] - 1); };
+    btn[1].onclick = function () { show(PAGES[id] + 1); };
+  });
+}
+var REFIT = [], refitTimer = 0;
+window.addEventListener("resize", function () {
+  clearTimeout(refitTimer);
+  refitTimer = setTimeout(function () { REFIT.forEach(function (f) { f(); }); }, 120);
+});
+function card(title, sub, body, cls) {
+  return '<section class="card' + (cls ? " " + cls : "") + '"><h2>' + title +
+    (sub ? ' <span class="sub">' + sub + "</span>" : "") + "</h2>" + body + "</section>";
+}
+function kpis(list) {
+  return '<div class="kpis">' + list.map(function (c) {
+    return '<div class="kpi' + (c[3] ? " accent" : "") + '"><div class="k">' + c[0] +
+      '</div><div class="v">' + c[1] + '</div><div class="n">' + esc(c[2]) + "</div></div>";
+  }).join("") + "</div>";
 }
 // 막대 차트 — 배경(연한)=전체, 앞(진한)=참여. 의존성 없이 SVG 로 직접 그린다.
 function bars(items, opt) {
@@ -343,6 +443,7 @@ function hourGrid(a) {
   var days = keys().slice().reverse();
   if (!days.length) return '<div class="empty">기록 없음</div>';
   var head = '<tr><th>날짜</th>';
+  // 날짜가 쌓이면 이 표가 제일 길어진다 — 한 쪽에 일주일씩.
   for (var h = 0; h < 24; h++) {
     var night = (h >= 22 || h <= 5);
     head += '<th class="num hg' + (night ? " night" : "") + '">' + h + "</th>";
@@ -359,10 +460,10 @@ function hourGrid(a) {
     }
     var dt = new Date(d + "T00:00:00");
     var wd = ["일", "월", "화", "수", "목", "금", "토"][dt.getDay()];
-    return "<tr><td>" + esc(d.slice(5).replace("-", "/")) + " (" + wd + ")</td>" + cells +
-      '<td class="num">' + n(tot) + "</td></tr>";
-  }).join("");
-  return '<div class="scroll"><table class="hourgrid">' + head + body + "</table></div>";
+    return '<tr><td style="white-space:nowrap">' + esc(d.slice(5).replace("-", "/")) +
+      " (" + wd + ")</td>" + cells + '<td class="num">' + n(tot) + "</td></tr>";
+  });
+  return paged("hours", 7, "hourgrid", head, body);
 }
 
 // ── 집계 ──────────────────────────────────────────────────────────────────
@@ -458,20 +559,16 @@ function render() {
   var botSess = a.sessions - a.engaged;
   var H = [];
 
-  H.push('<div class="kpis">' + [
+  H.push(kpis([
     ["참여 세션", n(a.engaged), "봇 제외 · 전체 " + n(a.sessions), 1],
     ["공고 열람", n(jv), "job_view", 0],
     ["원문 이동", n(ob), "전환 " + pct(ob, jv), 1],
     ["필터 사용", n(ev.filter_use || 0), "빈손 " + n(ev.filter_empty || 0) + "회", 0],
     ["재방문 세션", n(ret), "전체 세션의 " + pct(ret, a.sessions), 0],
     ["평균 참여시간", dur(a.engaged ? a.sec / a.engaged : 0), "참여 세션당", 0]
-  ].map(function (c) {
-    return '<div class="kpi' + (c[3] ? " accent" : "") + '"><div class="k">' + c[0] +
-      '</div><div class="v">' + c[1] + '</div><div class="n">' + esc(c[2]) + "</div></div>";
-  }).join("") + "</div>");
+  ]));
 
-  H.push('<h2>일별 <span class="sub">진한 막대 = 참여 세션 · 연한 막대 = 전체(봇 포함)</span></h2>');
-  H.push(bars(a.daily, { h: 110 }));
+  H.push(card("일별", "진한 막대 = 참여 세션 · 연한 막대 = 전체(봇 포함)", bars(a.daily, { h: 110 })));
 
   // ── 검색 노출 (Search Console) ───────────────────────────────────────────
   // GA4 와 보는 시점이 다르다: 여기는 '들어오기 전'(검색결과에 뜬 순간)이다.
@@ -480,39 +577,40 @@ function render() {
     (SEARCH.days || []).forEach(function (r) { si += r[1]; sc += r[2]; });
     var named = 0;
     (SEARCH.queries || []).forEach(function (r) { named += r[1]; });
-    H.push('<h2>구글 검색 <span class="sub">' + esc(SEARCH.from || "") + " ~ " +
-           esc(SEARCH.to || "") + ' · 검색결과에 뜬 횟수(노출)와 순위</span></h2>');
-    H.push('<div class="kpis">' + [
+    var G = [];
+    G.push(kpis([
       ["노출", n(si), "검색결과에 뜬 횟수"],
       ["클릭", n(sc), "CTR " + pct(sc, si)],
       ["검색어 확보", n(named), "노출의 " + pct(named, si) + "만 검색어를 알 수 있음"]
-    ].map(function (c) {
-      return '<div class="kpi"><div class="k">' + c[0] + '</div><div class="v">' + c[1] +
-        '</div><div class="n">' + esc(c[2]) + "</div></div>";
-    }).join("") + "</div>");
-    H.push('<div class="grid2"><div>');
-    H.push(table([["검색어", 0], ["노출", 1], ["클릭", 1], ["순위", 1]],
+    ]));
+    G.push('<div class="grid2"><div>');
+    G.push("<h3>검색어</h3>");
+    G.push(table([["검색어", 0], ["노출", 1], ["클릭", 1], ["순위", 1]],
       (SEARCH.queries || []).slice().sort(function (x, y) { return y[1] - x[1]; })
         .map(function (r) {
           return '<tr><td class="t">' + esc(r[0]) + '</td><td class="num">' + n(r[1]) +
             '</td><td class="num">' + n(r[2]) + '</td><td class="num">' + r[3] + "</td></tr>";
-        }), "검색어 데이터 없음"));
-    H.push('<p class="note">구글은 소수만 검색한 질의를 개인 식별 우려로 숨깁니다. ' +
+        }), "검색어 데이터 없음", "q", 10));
+    G.push('<p class="note">구글은 소수만 검색한 질의를 개인 식별 우려로 숨깁니다. ' +
            '트래픽이 적을수록 더 많이 가려지니, 여기 안 보이는 노출이 대부분인 게 정상입니다.</p>');
-    H.push("</div><div>");
-    H.push(table([["뜬 페이지", 0], ["노출", 1], ["클릭", 1], ["순위", 1]],
+    G.push("</div><div>");
+    G.push("<h3>뜬 페이지</h3>");
+    G.push(table([["뜬 페이지", 0], ["노출", 1], ["클릭", 1], ["순위", 1]],
       (SEARCH.pages || []).slice().sort(function (x, y) { return y[1] - x[1]; })
         .map(function (r) {
           return '<tr><td class="t">' + pageLabel(r[0]) +
             '</td><td class="num">' + n(r[1]) + '</td><td class="num">' + n(r[2]) +
             '</td><td class="num">' + r[3] + "</td></tr>";
-        }), "페이지 데이터 없음"));
-    H.push(table([["기기", 0], ["노출", 1], ["클릭", 1], ["순위", 1]],
+        }), "페이지 데이터 없음", "spage", 6));
+    G.push('<h3 style="margin-top:14px">기기</h3>');
+    G.push(table([["기기", 0], ["노출", 1], ["클릭", 1], ["순위", 1]],
       (SEARCH.devices || []).map(function (r) {
         return "<tr><td>" + esc(r[0]) + '</td><td class="num">' + n(r[1]) +
           '</td><td class="num">' + n(r[2]) + '</td><td class="num">' + r[3] + "</td></tr>";
-      })));
-    H.push("</div></div>");
+      }), "", "dev", 4));
+    G.push("</div></div>");
+    H.push(card("구글 검색", esc(SEARCH.from || "") + " ~ " + esc(SEARCH.to || "") +
+                " · 검색결과에 뜬 횟수(노출)와 순위", G.join("")));
 
     // 색인 상태 — 노출이 0인 이유가 '순위가 낮아서'인지 '구글이 페이지를 아예 모르는지'는
     // 이것으로만 갈린다. 사이트맵에 올린 주소 전부를 URL 검사 API로 매일 확인한다.
@@ -521,40 +619,35 @@ function render() {
       var okN = ix.filter(function (r) { return r[1] === "PASS"; }).length;
       var unknown = ix.filter(function (r) { return /unknown/i.test(r[2] || ""); }).length;
       var smTotal = SEARCH.sitemapTotal || 0;
-      H.push('<h2>색인 상태 <span class="sub">사이트맵 ' + (smTotal ? n(smTotal) + '개 중 ' : "") +
-             n(ix.length) + '개를 확인한 결과 (회전 표본)</span></h2>');
-      H.push('<div class="kpis">' + [
-        ["색인됨", n(okN), "확인한 " + n(ix.length) + "개 중 " + pct(okN, ix.length), 1],
-        ["구글이 모름", n(unknown), "크롤조차 안 해 간 주소", 0],
-        ["아직 미확인", n(Math.max(0, smTotal - ix.length)), "사이트맵에는 있으나 미검사", 0]
-      ].map(function (c) {
-        return '<div class="kpi' + (c[3] ? " accent" : "") + '"><div class="k">' + c[0] +
-          '</div><div class="v">' + c[1] + '</div><div class="n">' + esc(c[2]) + "</div></div>";
-      }).join("") + "</div>");
       var order = { PASS: 0, PARTIAL: 1, NEUTRAL: 2, FAIL: 3 };
-      H.push(table([["주소", 0], ["상태", 0], ["마지막 크롤", 0], ["확인일", 0]],
-        ix.slice().sort(function (x, y) {
-          return (order[x[1]] === undefined ? 9 : order[x[1]]) -
-                 (order[y[1]] === undefined ? 9 : order[y[1]]);
-        }).map(function (r) {
-          var good = r[1] === "PASS";
-          return '<tr class="' + (good ? "" : "bot") + '"><td class="t">' + pageLabel(r[0]) +
-            "</td><td>" + (good ? '<span class="tag ret">색인됨</span>'
-                                : '<span class="tag">' + esc(r[2]) + "</span>") +
-            "</td><td>" + esc(r[3] || "—") + "</td>" +
-            "<td>" + esc(r[4] || "—") + "</td></tr>";
-        })));
-      H.push('<p class="note">"URL is unknown to Google"은 색인 실패가 아니라 ' +
-             '<b>구글이 그 주소를 한 번도 방문한 적 없음</b>을 뜻합니다. ' +
-             '사이트맵은 2026-08-19에 제출했으니 그 뒤 변화를 여기서 추적합니다. ' +
-             '한 건 확인에 7.5초가 걸려 공고 상세는 회차당 8개씩 돌아가며 봅니다 — ' +
-             '<b>위 비율은 확인한 표본 기준이지 사이트 전체가 아닙니다.</b> ' +
-             '확인일이 오래된 줄은 그만큼 옛 상태입니다.</p>');
+      H.push(card("색인 상태", "사이트맵 " + (smTotal ? n(smTotal) + "개 중 " : "") +
+                  n(ix.length) + "개를 확인한 결과 (회전 표본)",
+        kpis([
+          ["색인됨", n(okN), "확인한 " + n(ix.length) + "개 중 " + pct(okN, ix.length), 1],
+          ["구글이 모름", n(unknown), "크롤조차 안 해 간 주소", 0],
+          ["아직 미확인", n(Math.max(0, smTotal - ix.length)), "사이트맵에는 있으나 미검사", 0]
+        ]) +
+        table([["주소", 0], ["상태", 0], ["마지막 크롤", 0], ["확인일", 0]],
+          ix.slice().sort(function (x, y) {
+            return (order[x[1]] === undefined ? 9 : order[x[1]]) -
+                   (order[y[1]] === undefined ? 9 : order[y[1]]);
+          }).map(function (r) {
+            var good = r[1] === "PASS";
+            return '<tr class="' + (good ? "" : "bot") + '"><td class="t">' + pageLabel(r[0]) +
+              "</td><td>" + (good ? '<span class="tag ret">색인됨</span>'
+                                  : '<span class="tag">' + esc(r[2]) + "</span>") +
+              "</td><td>" + esc(r[3] || "—") + "</td>" +
+              "<td>" + esc(r[4] || "—") + "</td></tr>";
+          }), "", "idx", 8) +
+        '<p class="note">"URL is unknown to Google"은 색인 실패가 아니라 ' +
+        '<b>구글이 그 주소를 한 번도 방문한 적 없음</b>을 뜻합니다. ' +
+        '사이트맵은 2026-08-19에 제출했으니 그 뒤 변화를 여기서 추적합니다. ' +
+        '한 건 확인에 7.5초가 걸려 공고 상세는 회차당 8개씩 돌아가며 봅니다 — ' +
+        '<b>위 비율은 확인한 표본 기준이지 사이트 전체가 아닙니다.</b> ' +
+        '확인일이 오래된 줄은 그만큼 옛 상태입니다.</p>'));
     }
   }
 
-  H.push('<div class="grid2"><div>');
-  H.push('<h2>유입 경로 <span class="sub">누가 데려왔나</span></h2>');
   var srows = Object.keys(a.src).map(function (k) { return [k, a.src[k]]; })
     .sort(function (x, y) { return y[1][2] - x[1][2] || y[1][0] - x[1][0]; })
     .filter(function (r) { return showBots || r[1][2] > 0; })
@@ -565,10 +658,6 @@ function render() {
         '<td class="num">' + n(v[2]) + '</td><td class="num">' + n(v[0]) + "</td>" +
         '<td class="num">' + n(v[4]) + '</td><td class="num">' + dur(v[3]) + "</td></tr>";
     });
-  H.push(table([["출처", 0], ["참여", 1], ["세션", 1], ["PV", 1], ["체류", 1]], srows));
-  H.push("</div></div>");
-
-  H.push('<h2>어디서 왔나 — 자세히 <span class="sub">실제 참조 URL을 풀어서</span></h2>');
   var rrows = Object.keys(a.ref).map(function (k) { return [k, a.ref[k]]; })
     .sort(function (x, y) { return y[1][1] - x[1][1] || y[1][0] - x[1][0]; })
     .filter(function (r) { return refLabel(r[0]).where !== "사이트 내부 이동"; })
@@ -578,12 +667,16 @@ function render() {
         '<td class="t">' + esc(L.detail || "—") + "</td>" +
         '<td class="num">' + n(v[1]) + '</td><td class="num">' + n(v[0]) + "</td></tr>";
     });
-  H.push(table([["출처", 0], ["무엇을 거쳐서", 0], ["참여", 1], ["세션", 1]], rrows,
-               "참조 URL 데이터 없음"));
-  H.push('<p class="note">사이트 내부 이동은 뺐습니다. 네이버 블로그 유입은 어느 글인지와, ' +
-         '그 사람이 블로그에 닿기까지 쓴 검색어까지 실려 옵니다.</p>');
+  H.push('<div class="grid2 cards">');
+  H.push(card("유입 경로", "누가 데려왔나",
+    table([["출처", 0], ["참여", 1], ["세션", 1], ["PV", 1], ["체류", 1]], srows, "", "src", 8)));
+  H.push(card("어디서 왔나 — 자세히", "실제 참조 URL을 풀어서",
+    table([["출처", 0], ["무엇을 거쳐서", 0], ["참여", 1], ["세션", 1]], rrows,
+          "참조 URL 데이터 없음", "ref", 8) +
+    '<p class="note">사이트 내부 이동은 뺐습니다. 네이버 블로그 유입은 어느 글인지와, ' +
+    '그 사람이 블로그에 닿기까지 쓴 검색어까지 실려 옵니다.</p>'));
+  H.push("</div>");
 
-  H.push('<h2>첫 화면 <span class="sub">출처별로 어느 페이지에 처음 닿았나</span></h2>');
   var lrows = Object.keys(a.land).map(function (k) { return [k.split("|"), a.land[k]]; })
     .sort(function (x, y) { return y[1][1] - x[1][1] || y[1][0] - x[1][0]; })
     .filter(function (r) { return r[0][1]; })
@@ -594,16 +687,16 @@ function render() {
         '<td class="num">' + n(v[1]) + '</td><td class="num">' + n(v[0]) +
         '</td><td class="num">' + n(v[2]) + "</td></tr>";
     });
-  H.push(table([["출처", 0], ["첫 페이지", 0], ["참여", 1], ["세션", 1], ["PV", 1]], lrows));
+  H.push(card("첫 화면", "출처별로 어느 페이지에 처음 닿았나",
+    table([["출처", 0], ["첫 페이지", 0], ["참여", 1], ["세션", 1], ["PV", 1]], lrows, "", "land", 8)));
 
   // 날짜 x 시각 표. 기간을 뭉갠 24칸 막대로는 "요즘 언제 오나"를 못 본다 —
   // 알림 발송 시각을 정하려면 최근 며칠의 시각 분포가 그대로 보여야 한다.
-  H.push('<h2>방문 시간대 <span class="sub">날짜 × 시각 · 숫자는 세션 수 · 진한 칸이 사람(참여)</span></h2>');
-  H.push(hourGrid(a));
-  H.push('<p class="note">진한 칸 = 참여 세션이 있었던 시각(사람). 연한 칸 = 세션은 있었지만 ' +
-         '참여 0(봇·자동접속). 밤·새벽(22~5시)은 열 머리를 초록으로 표시했습니다.</p>');
+  H.push(card("방문 시간대", "날짜 × 시각 · 숫자는 세션 수 · 진한 칸이 사람(참여)",
+    hourGrid(a) +
+    '<p class="note">진한 칸 = 참여 세션이 있었던 시각(사람). 연한 칸 = 세션은 있었지만 ' +
+    '참여 0(봇·자동접속). 밤·새벽(22~5시)은 열 머리를 초록으로 표시했습니다.</p>'));
 
-  H.push('<h2>방문자 <span class="sub">도시 · 기기 · 브라우저</span></h2>');
   var arows = Object.keys(a.aud).map(function (k) { return [k, a.aud[k]]; })
     .sort(function (x, y) { return y[1][2] - x[1][2] || y[1][0] - x[1][0]; })
     .filter(function (r) { return showBots || r[1][2] > 0; })
@@ -616,16 +709,16 @@ function render() {
         '<td class="num">' + n(v[2]) + '</td><td class="num">' + n(v[0]) + "</td>" +
         '<td class="num">' + n(v[4]) + '</td><td class="num">' + dur(v[3]) + "</td></tr>";
     });
-  H.push(table([["도시", 0], ["기기", 0], ["", 0], ["참여", 1], ["세션", 1],
-                ["PV", 1], ["체류", 1]], arows));
-  if (!showBots && botSess > 0)
-    H.push('<p class="note">참여 0인 자동 접속 ' + n(botSess) +
-           '세션은 숨겼습니다 — 위 체크박스로 볼 수 있습니다.</p>');
+  H.push(card("방문자", "도시 · 기기 · 브라우저",
+    table([["도시", 0], ["기기", 0], ["", 0], ["참여", 1], ["세션", 1],
+           ["PV", 1], ["체류", 1]], arows, "", "aud", 8) +
+    (!showBots && botSess > 0
+      ? '<p class="note">참여 0인 자동 접속 ' + n(botSess) +
+        '세션은 숨겼습니다 — 위 체크박스로 볼 수 있습니다.</p>' : "")));
 
   // 사용자 지시(2026-08-19): 궁금한 것은 "결과가 몇 건이었나"가 아니라
   // **무엇을 걸렀나** 자체다. 그래서 조합을 빈도순으로 앞세우고 결과 건수는 곁들인다.
-  H.push('<h2>무엇을 찾고 있나 <span class="sub">필터 조합 · 많이 쓴 순 · 공급(크롤)과 대조할 유일한 축</span></h2>');
-  var crows = Object.keys(a.combos).map(function (k) { return [k.split(""), a.combos[k]]; })
+  var crows = Object.keys(a.combos).map(function (k) { return [k.split("\u0001"), a.combos[k]]; })
     .sort(function (x, y) { return y[1].n - x[1].n || x[1].min - y[1].min; })
     .map(function (r) {
       var p = r[0], c = r[1], cells = [];
@@ -641,40 +734,43 @@ function render() {
         '<td class="num">' + span + "건" +
         (c.max <= 3 ? ' <span class="tag">거의 빈손</span>' : "") + "</td></tr>";
     });
-  H.push(table([["직종", 0], ["악기", 0], ["지역", 0], ["그 밖", 0], ["쓴 횟수", 1], ["나온 결과", 1]],
-    crows, "필터 조합 데이터 없음"));
-  H.push('<p class="note">한 줄이 실제로 켠 필터 한 벌입니다. 순서만 다른 조합은 합쳤고, ' +
-         '같은 조합도 날마다 공고가 들고 나므로 결과는 범위로 적었습니다. ' +
-         '결과 3건 이하는 사실상 헛걸음이라 표시해 뒀습니다.</p>');
+  H.push(card("무엇을 찾고 있나", "필터 조합 · 많이 쓴 순 · 공급(크롤)과 대조할 유일한 축",
+    table([["직종", 0], ["악기", 0], ["지역", 0], ["그 밖", 0], ["쓴 횟수", 1], ["나온 결과", 1]],
+      crows, "필터 조합 데이터 없음", "combo", 10) +
+    '<p class="note">한 줄이 실제로 켠 필터 한 벌입니다. 순서만 다른 조합은 합쳤고, ' +
+    '같은 조합도 날마다 공고가 들고 나므로 결과는 범위로 적었습니다. ' +
+    '결과 3건 이하는 사실상 헛걸음이라 표시해 뒀습니다.</p>'));
 
   // 사용자 지시: 무엇이 열렸나(제목)보다 **어떤 종류가 열렸나**가 궁금하다.
   // 그래서 '많이 열린 공고' 표를 빼고 성격 축을 늘렸다.
-  H.push('<h2>열린 공고의 성격 <span class="sub">방문자가 실제로 펼쳐 본 공고들의 속성 분포</span></h2>');
   var CH = [["직종", a.kind], ["직무군", a.tier], ["악기", a.inst], ["지역", a.jregion],
             ["마감 임박도", a.dday], ["교원자격 요건", a.cert], ["경력 요건", a.career],
             ["원문 이동처", a.dest]];
-  H.push('<div class="grid2">');
-  CH.forEach(function (c) {
-    var rows = sorted(c[1], 8).map(function (r) {
-      return "<tr><td>" + esc(r[0]) + '</td><td class="num">' + n(r[1]) + "</td></tr>";
-    });
-    H.push("<div>" + table([[c[0], 0], ["횟수", 1]], rows, "데이터 없음") + "</div>");
-  });
+  H.push(card("열린 공고의 성격", "방문자가 실제로 펼쳐 본 공고들의 속성 분포",
+    '<div class="grid4">' + CH.map(function (c, i) {
+      var rows = sorted(c[1]).map(function (r) {
+        return '<tr><td class="t">' + esc(r[0]) + '</td><td class="num">' + n(r[1]) + "</td></tr>";
+      });
+      return '<div class="mini">' + table([[c[0], 0], ["횟수", 1]], rows, "데이터 없음", "ch" + i, 5) +
+        "</div>";
+    }).join("") + "</div>"));
+
+  H.push('<div class="grid2 cards">');
+  H.push(card("페이지", "",
+    table([["경로", 0], ["PV", 1], ["체류", 1]],
+      Object.keys(a.pages).map(function (k) { return [k, a.pages[k]]; })
+        .sort(function (x, y) { return y[1][1] - x[1][1] || y[1][0] - x[1][0]; })
+        .map(function (r) {
+          return '<tr><td class="t">' + pageLabel(r[0]) + '</td><td class="num">' + n(r[1][0]) +
+            '</td><td class="num">' + dur(r[1][1]) + "</td></tr>";
+        }), "", "pages", 10)));
+  H.push(card("이벤트", "",
+    table([["이름", 0], ["횟수", 1]], sorted(ev).map(function (r) {
+      return "<tr><td>" + esc(r[0]) + '</td><td class="num">' + n(r[1]) + "</td></tr>"; }),
+      "", "ev", 10)));
   H.push("</div>");
-  H.push('<div class="grid2"><div>');
-  H.push('<h2>페이지</h2>');
-  H.push(table([["경로", 0], ["PV", 1], ["체류", 1]],
-    Object.keys(a.pages).map(function (k) { return [k, a.pages[k]]; })
-      .sort(function (x, y) { return y[1][1] - x[1][1] || y[1][0] - x[1][0]; })
-      .map(function (r) {
-        return '<tr><td class="t">' + pageLabel(r[0]) + '</td><td class="num">' + n(r[1][0]) +
-          '</td><td class="num">' + dur(r[1][1]) + "</td></tr>";
-      })));
-  H.push('<h2>이벤트</h2>');
-  H.push(table([["이름", 0], ["횟수", 1]], sorted(ev).map(function (r) {
-    return "<tr><td>" + esc(r[0]) + '</td><td class="num">' + n(r[1]) + "</td></tr>"; })));
-  H.push("</div></div>");
 
   document.getElementById("app").innerHTML = H.join("");
+  setupPagers();
 }
 </script>
