@@ -167,7 +167,7 @@
 // ── 데이터 확보 ────────────────────────────────────────────────────────────
 var API = "https://podium-feedback.ohmjin314.workers.dev/api/dash";
 var KEYNAME = "podium_dash_key";
-var DAYS = null, SEARCH = null, JOBS = {}, RANGE = 14;
+var DAYS = null, SEARCH = null, JOBS = {}, RANGE = 14, RANGES = null;
 
 function getKey() { try { return localStorage.getItem(KEYNAME) || ""; } catch (e) { return ""; } }
 function setKey(k) { try { localStorage.setItem(KEYNAME, k); } catch (e) {} }
@@ -210,6 +210,7 @@ function loadRemote(key) {
 
 function apply(doc) {
   DAYS = (doc.traffic || {}).days || {};
+  RANGES = (doc.traffic || {}).ranges || null;
   SEARCH = doc.search || null;
   var ks = Object.keys(DAYS).sort();
   var up = (doc.traffic || {}).updatedAt;
@@ -467,6 +468,30 @@ function hourGrid(a) {
 }
 
 // ── 집계 ──────────────────────────────────────────────────────────────────
+// '지휘|교수'와 '교수|지휘'는 같은 필터다 — 고른 순서까지 다른 조합으로 세면 표가 쪼개진다.
+function comboKey(row) {
+  return row.slice(0, 5).map(function (x) {
+    if (x === "(not set)" || !x) return "";
+    return x.split("|").sort().join("|");
+  }).join("\u0001");                         // bands|insts|regions|toggles|query
+}
+
+// 사용자 수는 날짜별 값을 더하면 '연인원'이 된다 — traffic.py 가 기간 버튼별로 GA4 에
+// 따로 물어 둔 값(ranges)을 쓴다. 그 구간의 끝이 지금 데이터의 마지막 날과 다르면
+// 다른 기간의 숫자이므로 쓰지 않는다.
+function rangeUsers() {
+  var R = RANGES && RANGES[RANGE ? String(RANGE) : "all"];
+  var ks = Object.keys(DAYS).sort();
+  if (!R || R.to !== ks[ks.length - 1]) return null;
+  var by = {};
+  (R.comboUsers || []).forEach(function (row) {
+    // 순서만 다른 조합을 합친 줄은 사람을 겹쳐 셀 수 있다 — 드물고 작아서 그냥 더한다
+    var k = comboKey(row);
+    by[k] = (by[k] || 0) + row[5];
+  });
+  return { total: R.filterUsers || 0, by: by };
+}
+
 function aggregate() {
   var a = {
     sessions: 0, users: 0, newUsers: 0, engaged: 0, sec: 0, pv: 0,
@@ -518,11 +543,7 @@ function aggregate() {
       // 안 싣는 이벤트가 전부 (not set) 한 줄로 뭉쳐 오는데, 그걸 0건으로 읽으면
       // '조건 없음 · 0건 · 130회'라는 없는 빈손이 만들어진다.
       if (!/^\d+$/.test(row[5])) return;
-      // '지휘|교수'와 '교수|지휘'는 같은 필터다 — 고른 순서까지 다른 조합으로 세면 표가 쪼개진다.
-      var k = row.slice(0, 5).map(function (x) {
-        if (x === "(not set)" || !x) return "";
-        return x.split("|").sort().join("|");
-      }).join("");                          // bands|insts|regions|toggles|query
+      var k = comboKey(row);
       // 같은 조합도 날마다 결과 수가 다르다(공고가 들고 난다). 마지막 값만 남기면
       // '이 필터는 늘 1건'인지 '그날만 1건'인지 구분이 사라진다 — 범위로 들고 있는다.
       var v = +row[5];
@@ -557,13 +578,15 @@ function render() {
     if (k.split("|")[4] === "returning") ret += a.aud[k][0];
   });
   var botSess = a.sessions - a.engaged;
+  var RU = rangeUsers();
   var H = [];
 
   H.push(kpis([
     ["참여 세션", n(a.engaged), "봇 제외 · 전체 " + n(a.sessions), 1],
     ["공고 열람", n(jv), "job_view", 0],
     ["원문 이동", n(ob), "전환 " + pct(ob, jv), 1],
-    ["필터 사용", n(ev.filter_use || 0), "빈손 " + n(ev.filter_empty || 0) + "회", 0],
+    ["필터 사용", n(ev.filter_use || 0),
+     (RU ? n(RU.total) + "명이 사용 · " : "") + "빈손 " + n(ev.filter_empty || 0) + "회", 0],
     ["재방문 세션", n(ret), "전체 세션의 " + pct(ret, a.sessions), 0],
     ["평균 참여시간", dur(a.engaged ? a.sec / a.engaged : 0), "참여 세션당", 0]
   ]));
@@ -718,10 +741,11 @@ function render() {
 
   // 사용자 지시(2026-08-19): 궁금한 것은 "결과가 몇 건이었나"가 아니라
   // **무엇을 걸렀나** 자체다. 그래서 조합을 빈도순으로 앞세우고 결과 건수는 곁들인다.
-  var crows = Object.keys(a.combos).map(function (k) { return [k.split("\u0001"), a.combos[k]]; })
+  var crows = Object.keys(a.combos).map(function (k) { return [k.split("\u0001"), a.combos[k], k]; })
     .sort(function (x, y) { return y[1].n - x[1].n || x[1].min - y[1].min; })
     .map(function (r) {
       var p = r[0], c = r[1], cells = [];
+      var who = RU ? (RU.by[r[2]] ? n(RU.by[r[2]]) + "명" : "—") : "—";
       cells.push(p[0] ? esc(p[0].replace(/\|/g, " + ")) : "—");   // 직종
       cells.push(p[1] ? esc(p[1].replace(/\|/g, " + ")) : "—");   // 악기
       cells.push(p[2] ? esc(p[2].replace(/\|/g, " + ")) : "—");   // 지역
@@ -731,13 +755,18 @@ function render() {
       cells.push(extra.join(" · ") || "—");
       var span = (c.min === c.max) ? n(c.min) : n(c.min) + "~" + n(c.max);
       return "<tr><td>" + cells.join("</td><td>") + '</td><td class="num">' + n(c.n) + "회</td>" +
+        '<td class="num">' + who + "</td>" +
         '<td class="num">' + span + "건" +
         (c.max <= 3 ? ' <span class="tag">거의 빈손</span>' : "") + "</td></tr>";
     });
   H.push(card("무엇을 찾고 있나", "필터 조합 · 많이 쓴 순 · 공급(크롤)과 대조할 유일한 축",
-    table([["직종", 0], ["악기", 0], ["지역", 0], ["그 밖", 0], ["쓴 횟수", 1], ["나온 결과", 1]],
+    table([["직종", 0], ["악기", 0], ["지역", 0], ["그 밖", 0], ["쓴 횟수", 1], ["사용자", 1],
+           ["나온 결과", 1]],
       crows, "필터 조합 데이터 없음", "combo", 10) +
-    '<p class="note">한 줄이 실제로 켠 필터 한 벌입니다. 순서만 다른 조합은 합쳤고, ' +
+    '<p class="note"><b>쓴 횟수와 사용자를 같이 보세요</b> — 한 사람이 매일 같은 필터를 걸면 ' +
+    '횟수만 커집니다. 사용자는 이 기간 동안 그 조합을 쓴 서로 다른 사람 수입니다' +
+    (RU ? "" : ' (이 기간의 사용자 수는 아직 집계 전이라 —로 표시)') + '. ' +
+    '한 줄이 실제로 켠 필터 한 벌입니다. 순서만 다른 조합은 합쳤고, ' +
     '같은 조합도 날마다 공고가 들고 나므로 결과는 범위로 적었습니다. ' +
     '결과 3건 이하는 사실상 헛걸음이라 표시해 뒀습니다.</p>'));
 
