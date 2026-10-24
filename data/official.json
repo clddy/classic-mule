@@ -1,5 +1,5 @@
 {
- "collectedAt": "2026-10-24 12:53",
+ "collectedAt": "2026-10-24 13:02",
  "heldNoOrigin": 0,
  "sourceCount": 91,
  "okCount": 91,
@@ -12,7 +12,7 @@
    "poll": "daily",
    "ok": true,
    "raw": 0,
-   "kept": 1,
+   "kept": 0,
    "drop": {
     "만료": 0,
     "오래됨": 0
@@ -382,8 +382,8 @@
    "poll": "daily",
    "ok": true,
    "raw": 7,
-   "kept": 6,
-   "carried": 2,
+   "kept": 5,
+   "carried": 1,
    "drop": {
     "비음악": 2,
     "무관": 1,
@@ -1370,7 +1370,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
@@ -1618,7 +1618,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "금관",
+   "inst": "전체",
    "instDetails": [
     "트럼펫",
     "소프라노"
@@ -2259,8 +2259,8 @@
    ],
    "channel": "cjob",
    "layer": "C",
-   "addr": "경기 의왕시 경수대로 262 (오전동, 의왕서해그랑블(블루스퀘어))",
    "deadlineFrom": "cjob-남은기간",
+   "addr": "경기 의왕시 경수대로 262 (오전동, 의왕서해그랑블(블루스퀘어))",
    "denomination": "순복음",
    "documents": "간단한 이력서",
    "personnel": "반주자",

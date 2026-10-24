@@ -59,7 +59,17 @@ ENV = os.path.join(os.path.dirname(os.path.abspath(__file__)), ".env")
 # 이 앞은 아무리 당겨도 0이라 백필 대상이 아니다.
 FIRST_DAY = "2026-08-06"
 
-SCHEMA = 4          # 이 값이 오르면 옛 형식으로 저장된 날짜는 다시 당긴다
+SCHEMA = 5          # 이 값이 오르면 옛 형식으로 저장된 날짜는 다시 당긴다
+# v5 (2026-10-24): 필터·공고 축을 그 값을 싣는 이벤트로만 한정. 이전엔 이벤트를 거르지
+# 않아 session_start 까지 같이 셌다 — 열어 둔 탭에서 30분 뒤 필터를 누르면 GA4 가 새 세션을
+# 열면서 session_start 에 그 첫 이벤트의 파라미터를 그대로 복사한다. 지휘 필터 '56회' 중
+# 19회가 그 복사본이었다(실제 filter_use 34회, 사용자 6명).
+FILTER_EVENTS = ["filter_use", "filter_empty"]
+JOB_EVENTS = ["job_view", "job_outbound"]
+
+# 대시보드 기간 버튼(최근 7일·14일·전체)과 같은 구간. 사용자 수는 날짜별 값을 더할 수
+# 없으므로('연인원' — 같은 사람이 날마다 다시 세진다) 구간 단위로 GA4 에 따로 묻는다.
+RANGES = {"7": 7, "14": 14, "all": 0}
 
 
 def _load_env():
@@ -84,41 +94,58 @@ def _load():
         return {"days": {}}
 
 
-def pull(day):
-    """GA4 Data API 에서 day(YYYY-MM-DD) 하루치를 통째로 당긴다."""
+def _query(start, end):
+    """[start, end] 구간을 묻는 run/counts/rows 세 함수. events 를 주면 그 이벤트만 센다."""
     from google.analytics.data_v1beta import BetaAnalyticsDataClient
-    from google.analytics.data_v1beta.types import DateRange, Dimension, Metric, RunReportRequest
+    from google.analytics.data_v1beta.types import (DateRange, Dimension, Filter,
+                                                    FilterExpression, Metric, RunReportRequest)
     prop = "properties/%s" % os.environ["GA4_PROPERTY_ID"]
     client = BetaAnalyticsDataClient()
 
-    def run(dims, mets, limit=5000):
+    def run(dims, mets, limit=5000, events=None):
         req = RunReportRequest(
             property=prop,
-            date_ranges=[DateRange(start_date=day, end_date=day)],
+            date_ranges=[DateRange(start_date=start, end_date=end)],
             dimensions=[Dimension(name=d) for d in dims],
             metrics=[Metric(name=m) for m in mets],
             limit=limit,
         )
+        if events:
+            req.dimension_filter = FilterExpression(filter=Filter(
+                field_name="eventName",
+                in_list_filter=Filter.InListFilter(values=list(events))))
         r = client.run_report(req)
         return [([v.value for v in row.dimension_values],
                  [v.value for v in row.metric_values]) for row in r.rows]
 
-    def counts(dim, metric="eventCount"):
+    def counts(dim, metric="eventCount", events=None):
         """단일 차원 → {값: 수}. 맞춤측정기준 미등록 기간은 (not set) 뿐이라 빈 dict 가 된다."""
         try:
-            return {d[0]: int(m[0]) for d, m in run([dim], [metric])
+            return {d[0]: int(m[0]) for d, m in run([dim], [metric], events=events)
                     if d[0] not in ("", "(not set)")}
         except Exception as e:
             print("  (%s 스킵: %s)" % (dim, type(e).__name__), file=sys.stderr)
             return {}
 
-    def rows(dims, mets):
+    def rows(dims, mets, events=None):
         try:
-            return [d + [int(float(x)) for x in m] for d, m in run(dims, mets)]
+            return [d + [int(float(x)) for x in m] for d, m in run(dims, mets, events=events)]
         except Exception as e:
             print("  (%s 스킵: %s)" % ("/".join(dims) or "totals", type(e).__name__),
                   file=sys.stderr)
             return []
+
+    return run, counts, rows
+
+
+# 필터 조합의 축 — 하루치(filterCombos)와 구간 사용자 수(ranges)가 같은 순서를 쓴다.
+COMBO_DIMS = ["customEvent:f_bands", "customEvent:f_insts", "customEvent:f_regions",
+              "customEvent:f_toggles", "customEvent:f_query"]
+
+
+def pull(day):
+    """GA4 Data API 에서 day(YYYY-MM-DD) 하루치를 통째로 당긴다."""
+    run, counts, rows = _query(day, day)
 
     # 세션 계열 지표 묶음 — 어느 차원으로 쪼개든 같은 다섯 개를 본다.
     S = ["sessions", "totalUsers", "engagedSessions", "userEngagementDuration", "screenPageViews"]
@@ -146,27 +173,48 @@ def pull(day):
     rec["hours"] = {d[0]: [int(m[0]), int(m[1])]
                     for d, m in run(["hour"], ["sessions", "engagedSessions"])}
 
-    rec["jobs"] = counts("customEvent:job_id")
-    rec["filters"] = {"bands": counts("customEvent:f_bands"),
-                      "results": counts("customEvent:f_results"),
-                      "insts": counts("customEvent:f_insts"),
-                      "regions": counts("customEvent:f_regions")}
+    # 맞춤측정기준은 그 값을 싣는 이벤트로만 센다 — 안 그러면 session_start 복사본이 섞인다
+    rec["jobs"] = counts("customEvent:job_id", events=["job_view"])
+    FE = FILTER_EVENTS
+    rec["filters"] = {"bands": counts("customEvent:f_bands", events=FE),
+                      "results": counts("customEvent:f_results", events=FE),
+                      "insts": counts("customEvent:f_insts", events=FE),
+                      "regions": counts("customEvent:f_regions", events=FE)}
     # 축별 집계(filters)는 "무엇을 많이 걸렀나"까지만 답한다. "**무엇을 켰을 때** 결과가
     # 없었나"는 축을 쪼갠 순간 사라지는 정보라, 조합을 통째로 한 줄로 받아 둔다.
-    rec["filterCombos"] = rows(["customEvent:f_bands", "customEvent:f_insts",
-                                "customEvent:f_regions", "customEvent:f_toggles",
-                                "customEvent:f_query", "customEvent:f_results"],
-                               ["eventCount"])
+    rec["filterCombos"] = rows(COMBO_DIMS + ["customEvent:f_results"], ["eventCount"], events=FE)
     # 열린 공고의 '성격' — 무엇이 열렸나(제목)보다 어떤 종류가 열렸나가 수요 신호다
-    rec["jobmeta"] = {"kind": counts("customEvent:job_kind"),
-                      "tier": counts("customEvent:job_tier"),
-                      "inst": counts("customEvent:job_inst"),
-                      "dday": counts("customEvent:job_dday"),
-                      "region": counts("customEvent:job_region"),
-                      "cert": counts("customEvent:job_cert"),
-                      "career": counts("customEvent:job_career"),
-                      "dest": counts("customEvent:dest")}
+    JE = JOB_EVENTS
+    rec["jobmeta"] = {"kind": counts("customEvent:job_kind", events=JE),
+                      "tier": counts("customEvent:job_tier", events=JE),
+                      "inst": counts("customEvent:job_inst", events=JE),
+                      "dday": counts("customEvent:job_dday", events=JE),
+                      "region": counts("customEvent:job_region", events=JE),
+                      "cert": counts("customEvent:job_cert", events=JE),
+                      "career": counts("customEvent:job_career", events=JE),
+                      "dest": counts("customEvent:dest", events=["job_outbound"])}
     return rec
+
+
+def pull_ranges(last):
+    """대시보드 기간 버튼별 '고유 사용자 수' — 필터 조합마다 몇 명이 썼나.
+
+    날짜별 저장분으로는 못 만든다(같은 사람이 날마다 다시 세진다). 그래서 구간 끝(last,
+    = 저장된 마지막 날)을 기준으로 7일·14일·전체 구간을 GA4 에 통째로 묻는다.
+    대시보드는 'to' 가 자기 데이터의 마지막 날과 같을 때만 이 값을 쓴다."""
+    end = datetime.strptime(last, "%Y-%m-%d").date()
+    out = {}
+    for name, n in RANGES.items():
+        start = (end - timedelta(days=n - 1)).isoformat() if n else FIRST_DAY
+        run, counts, rows = _query(start, last)
+        out[name] = {
+            "from": start, "to": last,
+            # 필터를 한 번이라도 쓴 사람 수 (조합별 합이 아니다 — 여러 조합을 쓴 사람은 한 명)
+            "filterUsers": sum(r[-1] for r in rows([], ["totalUsers"], events=FILTER_EVENTS)),
+            # [직종, 악기, 지역, 토글, 검색어, 사용자, 횟수]
+            "comboUsers": rows(COMBO_DIMS, ["totalUsers", "eventCount"], events=FILTER_EVENTS),
+        }
+    return out
 
 
 def _targets(doc, start):
@@ -191,8 +239,9 @@ def main(argv):
         start = argv[argv.index("--from") + 1]
     doc = _load()
     days = _targets(doc, start)
-    if not days:
-        print("traffic: 새로 당길 날 없음 (최신 %s)" % max(doc["days"], default="-"))
+    last = max(doc["days"], default=None)
+    if not days and doc.get("ranges", {}).get("all", {}).get("to") == last:
+        print("traffic: 새로 당길 날 없음 (최신 %s)" % (last or "-"))
         return 0
 
     ok, fail = 0, 0
@@ -214,8 +263,14 @@ def main(argv):
         print("traffic: %s 세션 %s(참여 %s) 사용자 %s PV %s"
               % (day, t["sessions"], t["engaged"], t["users"], t["pv"]))
 
-    if not ok:
+    if days and not ok:
         return 1
+    # 구간 사용자 수는 마지막 날이 바뀔 때마다 새로 묻는다 (실패해도 날짜별 저장은 살린다)
+    try:
+        doc["ranges"] = pull_ranges(max(doc["days"]))
+        print("traffic: 구간 사용자 수 갱신 (~%s)" % max(doc["days"]))
+    except Exception as e:
+        print("traffic: 구간 사용자 수 실패 %s: %s" % (type(e).__name__, e), file=sys.stderr)
     doc["updatedAt"] = date.today().isoformat()
     doc["schema"] = SCHEMA
     tmp = OUT + ".tmp"
