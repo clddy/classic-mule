@@ -40685,7 +40685,7 @@
    "deadlineFrom": "raw",
    "kind": "단원",
    "tier": "연주",
-   "inst": "전체",
+   "inst": "금관",
    "instDetails": [
     "트럼펫",
     "소프라노"
@@ -41207,7 +41207,9 @@
    "addrFrom": "geo",
    "firstSeen": "2026-10-22",
    "lastSeen": "2026-10-24",
-   "days": 3
+   "days": 3,
+   "personnel": "1명",
+   "duty": "성악과 마스터클래스 (객원교수)"
   },
   "34f2c042a6e4b070": {
    "id": "34f2c042a6e4b070",
@@ -41273,7 +41275,9 @@
    "addrFrom": "geo",
    "firstSeen": "2026-10-22",
    "lastSeen": "2026-10-24",
-   "days": 3
+   "days": 3,
+   "personnel": "1명",
+   "duty": "작곡과 마스터클래스 (객원교수)"
   },
   "caeadec746f431f5": {
    "id": "caeadec746f431f5",
@@ -41348,7 +41352,7 @@
    "deadlineFrom": "raw",
    "kind": "기타",
    "tier": "교육 — 학교",
-   "inst": "전체",
+   "inst": "목관",
    "instDetails": [
     "관악"
    ],

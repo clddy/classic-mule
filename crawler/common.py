@@ -727,7 +727,10 @@ _MUSIC_STRONG = re.compile(
 # 국악은 별도 사이트(풍류)로 분리 — 포디엄(서양 클래식)에서는 국악 공고 전면 제외
 GUGAK_EXCLUDE = re.compile(
     r"국악|창극|판소리|가야금|거문고|아쟁|해금|대금|소금|단소|태평소|생황"
-    r"|정가|시조창|사물놀이|풍물|농악|시나위|병창|고법|꽹과리|정악|산조|장구|장고")
+    r"|정가|시조창|사물놀이|풍물|농악|시나위|병창|고법|꽹과리|정악|산조|장구|장고"
+    # '한국음악과' = 국악과. 국립전통예고 방과후 강사(한국음악과)가 걸러지지 않고 게시됐다
+    # (L4#70·71, 2026-10-24). 맨 '한국음악'은 한국음악협회(서양 음악 포함) 같은 이름에 걸리므로 과(科)까지 본다.
+    r"|한국음악과|한국\s*음악\s*전공")
 
 # 포디엄 = 서양 클래식(성악·기악·지휘·작곡·이론) 전용. 실용음악(대중·재즈)·무용은 범위 밖 → 제외.
 # 단, '무용 반주자'처럼 무용을 위해 연주하는 클래식 연주자(반주·피아노)는 음악인이므로 NONMUSIC_ART(약필터)로 별도 처리.
@@ -1960,23 +1963,38 @@ _PROGRAM_ROW = re.compile(
     r"([가-힣A-Za-z·]{2,14})\s+\d+\s*명\s+(.{4,80}?)\s+(?:시간당|회당|월|건당)\s*[\d,]+\s*원")
 
 
+# 대학 모집분야 표 — '1. 모집 분야 / 소속 모집 분야 채용 구분 채용 인원 전화번호 지원서 제출처 /
+# 성악과 마스터클래스 객원교수 1 02-2123-3018 …' (연세대 음악대학 비전임교원, 2026-10-24
+# [미추출 분야]). 머리가 이 꼴일 때만 읽는다.
+_FACULTY_HEAD = re.compile(
+    r"소속\s+모집\s*분야\s+채용\s*구분\s+채용\s*인원"
+    r"(?:\s+(?:전화\s*번호|연락처|지원서\s*제출처|제출처|이메일|비고))*")
+_FACULTY_ROW = re.compile(
+    r"([가-힣]{2,12})\s+([가-힣A-Za-z·()\s]{2,30}?)\s+"
+    r"(객원교수|겸임교수|초빙교수|강의전담교수|산학협력교수|시간강사|강사|교수)\s+(\d{1,2})(?=\s)")
+
+
 def program_table(text):
-    """프로그램 표 첫 행 → {'duty': 프로그램명, 'workHours': 운영 조건}. 없으면 빈 dict."""
+    """학교·대학 공고의 모집 표 첫 행 → {'duty', 'workHours', 'personnel'} 중 읽힌 것. 없으면 빈 dict."""
     if not text:
         return {}
     t = squash_spaced_labels(re.sub(r"\s+", " ", text))
     m = _PROGRAM_HEAD.search(t)
-    if not m:
-        return {}
-    seg = t[m.end():m.end() + 300]
-    r = _PROGRAM_ROW.search(seg)
-    if not r:
-        return {}
-    out = {"duty": r.group(1).strip()}
-    wh = _clean_field("workHours", r.group(2))
-    if wh:
-        out["workHours"] = wh
-    return out
+    if m:
+        r = _PROGRAM_ROW.search(t[m.end():m.end() + 300])
+        if r:
+            out = {"duty": r.group(1).strip()}
+            wh = _clean_field("workHours", r.group(2))
+            if wh:
+                out["workHours"] = wh
+            return out
+    m = _FACULTY_HEAD.search(t)
+    if m:
+        r = _FACULTY_ROW.search(t[m.end():m.end() + 300])
+        if r and int(r.group(4)) > 0:
+            return {"duty": f"{r.group(1)} {r.group(2).strip()} ({r.group(3)})",
+                    "personnel": f"{int(r.group(4))}명"}
+    return {}
 
 
 def pay_from_table_ref(text):
@@ -2382,6 +2400,12 @@ def _clean_field(key, raw):
     # 무조건 자르면 '방과후 15:50~17:20'의 '방과후' 같은 정상 수식어까지 날아간다.
     if key == "hiringOrg" and _HIRING_ORG_JUNK.search(val):
         return None
+    # 숫자가 전부 0인 인원·시간은 자리표시다 — '0명'(국립전통예고), '00시간'(용인신봉초)
+    # 이 실제 값처럼 실렸다 (L4#71·73, 2026-10-24). 모르는 값은 빈칸이 낫다.
+    if key in ("personnel", "workHours"):
+        _digits = re.findall(r"\d", val)
+        if _digits and set(_digits) == {"0"}:
+            return None
     if key == "workHours":
         # '전일제 근무'만으로는 몇 시부터 몇 시까지인지 알 수 없다 — 같은 공고에
         # '일 8시간 근무'·'08:40~16:40'이 함께 있으면 그쪽이 지원 판단에 쓸모 있다.

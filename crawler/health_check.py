@@ -694,6 +694,10 @@ def _really_missing(t, pat, field):
         # 마감·급여는 '응시원서 접수' 옆이 제자리라 이 규칙에서 뺀다.
         if field in ("duty", "workPeriod") and _FORM_CTX.search(t[max(0, m.start() - 140):m.end() + 140]):
             continue
+        # 마감은 날짜다 — 라벨 뒤에 숫자가 하나도 없으면 뽑을 값이 없는 빈 서식이다.
+        # 아트모아 직접게시 '연수단원 모집'은 본문이 값 없는 포털 서식뿐이었다 (2026-10-24).
+        if field == "deadline" and not re.search(r"\d", win):
+            continue
         val = _value_after(t, m.end())
         if len(val) < 2 or _PLACEHOLDER_VAL.match(val) or _FORM_BLANK.match(val):
             continue                      # 라벨만 있거나 칸 이름·서식 빈칸뿐인 자리
