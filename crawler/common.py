@@ -801,6 +801,12 @@ def musician_relevant(title, kind, org=""):
     # 참가자·학생 선발(구인 아님) — 승계 경로로 들어온 항목도 최종 필터에서 확실히 제거
     if _PARTICIPANT.search(title) and not _HIRE_ROLE.search(title):
         return False
+    # '연수단원'은 대개 예술경영지원센터 '예술기반 청년일자리' 사업의 기획·학예·사업팀 연수생이다
+    # (예울마루 예술사업팀, 플랫폼엘 학예팀, 익스트림뷰 공연기획·연출보조 — 2026-10-24).
+    # 악단·악기·성악 같은 음악 어휘가 제목에 함께 있을 때만 연주 자리로 본다.
+    if re.search(r"연수\s*단원", title) and not re.search(
+            _MUSIC_STRONG.pattern + r"|교향|관현악|필하모닉|심포니|악단|합창단|연주", title):
+        return False
     t = re.sub(r"사무 ?단원|기획운영단원|연수 ?단원", "", title)
     # 제목 속 단체명(국립·시립 ○○단, [괄호 접두어])은 음악 키워드 판정에서 제외
     t = re.sub(r"\[[^\]]{2,25}\]|[가-힣A-Za-z()]{0,12}(?:국립|시립|구립|도립)[가-힣]{0,8}단", "", t)

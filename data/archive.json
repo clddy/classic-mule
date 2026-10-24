@@ -40685,7 +40685,7 @@
    "deadlineFrom": "raw",
    "kind": "단원",
    "tier": "연주",
-   "inst": "전체",
+   "inst": "금관",
    "instDetails": [
     "트럼펫",
     "소프라노"
@@ -41352,7 +41352,7 @@
    "deadlineFrom": "raw",
    "kind": "기타",
    "tier": "교육 — 학교",
-   "inst": "전체",
+   "inst": "목관",
    "instDetails": [
     "관악"
    ],

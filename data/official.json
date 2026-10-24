@@ -1,5 +1,5 @@
 {
- "collectedAt": "2026-10-24 13:02",
+ "collectedAt": "2026-10-24 13:23",
  "heldNoOrigin": 0,
  "sourceCount": 91,
  "okCount": 91,
@@ -1161,7 +1161,8 @@
    "raw": 1,
    "kept": 0,
    "drop": {
-    "만료": 1,
+    "비음악": 1,
+    "만료": 0,
     "오래됨": 0
    }
   },
@@ -1281,7 +1282,7 @@
    "bodyExcerpt": "공고에 ‘채용의 제한’ 부분 명시 2. · 지침 [붙임 2] 기간제교원 채용 공고(예시) 다운로드 지침",
    "deadline": "2027-01-05",
    "deadlineFrom": "raw",
-   "extVer": 121
+   "extVer": 122
   },
   {
    "id": "7d7423ecd43797c5",
@@ -1317,7 +1318,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-10-24",
    "isNew": true,
-   "extVer": 121
+   "extVer": 122
   },
   {
    "id": "c58a2a7481873221",
@@ -1352,7 +1353,7 @@
    "orgAffil": "경기교육청",
    "firstSeen": "2026-10-23",
    "isNew": true,
-   "extVer": 121
+   "extVer": 122
   },
   {
    "id": "82cd52f0a940f353",
@@ -1370,7 +1371,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "전체",
+   "inst": "목관",
    "instDetails": [
     "관악"
    ],
@@ -1388,7 +1389,7 @@
    "orgAffil": "경기교육청",
    "firstSeen": "2026-10-23",
    "isNew": true,
-   "extVer": 121
+   "extVer": 122
   },
   {
    "id": "b0f9ba9bdfe468d5",
@@ -1423,7 +1424,7 @@
    "orgAffil": "경기교육청",
    "firstSeen": "2026-10-23",
    "isNew": true,
-   "extVer": 121
+   "extVer": 122
   },
   {
    "id": "06dacba0e50506d0",
@@ -1455,7 +1456,7 @@
    "addrFrom": "geo",
    "firstSeen": "2026-10-23",
    "isNew": true,
-   "extVer": 121
+   "extVer": 122
   },
   {
    "id": "2c8f57701c3b68df",
@@ -1492,7 +1493,7 @@
    "addrFrom": "geo",
    "firstSeen": "2026-10-22",
    "isNew": false,
-   "extVer": 121,
+   "extVer": 122,
    "subject": "성악"
   },
   {
@@ -1528,7 +1529,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-10-21",
    "isNew": false,
-   "extVer": 121
+   "extVer": 122
   },
   {
    "id": "da5476dfb09aa262",
@@ -1565,7 +1566,7 @@
    "bodyExcerpt": "채용인원: 1명 4. · 초등교사자격 및 중등 음악교과 자격있으신 분도 환영합니다",
    "deadline": "2026-10-26",
    "deadlineFrom": "raw",
-   "extVer": 121
+   "extVer": 122
   },
   {
    "id": "6570ab92f18604cc",
@@ -1600,7 +1601,7 @@
    "bodyExcerpt": "채용 응시 자격 : * 내국인으로서 채용 분야 교원자격증 소지자 *2 차 공고로 만 65 세까지 지원 가능 ·(2 개월 28 일) 영재학급운영 및 2027 영재학급 대상자 선발 · 대리 접수인 준비물 : 지원자 인장, 대리인 신분증, 위임증 4",
    "deadline": "2026-10-26",
    "deadlineFrom": "raw",
-   "extVer": 121
+   "extVer": 122
   },
   {
    "id": "f7e217147cecda9a",
@@ -1618,7 +1619,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "전체",
+   "inst": "금관",
    "instDetails": [
     "트럼펫",
     "소프라노"
@@ -1633,7 +1634,7 @@
    "deadlineFrom": "raw",
    "firstSeen": "2026-10-21",
    "isNew": false,
-   "extVer": 121
+   "extVer": 122
   },
   {
    "id": "242b9e7c9d9a6e3f",
@@ -1668,7 +1669,7 @@
    "deadlineNote": "상시",
    "firstSeen": "2026-10-11",
    "isNew": false,
-   "extVer": 121
+   "extVer": 122
   },
   {
    "id": "ad3e73fead238bff",
@@ -1700,11 +1701,11 @@
    "layer": "A",
    "officialUrl": "https://www.jcf.or.kr/",
    "originTraced": true,
-   "originTraceVer": 121,
+   "originTraceVer": 122,
    "dlHint": null,
    "firstSeen": "2026-09-23",
    "isNew": false,
-   "extVer": 121
+   "extVer": 122
   },
   {
    "id": "aba4a75134c2866c",
@@ -1740,7 +1741,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-10-21",
    "isNew": false,
-   "extVer": 121
+   "extVer": 122
   },
   {
    "id": "9a7dd9b52897486e",
@@ -1771,7 +1772,7 @@
    "bodyExcerpt": "채용 채용/시험정보 학교인력채용 등록중",
    "deadline": "2026-10-26",
    "deadlineFrom": "raw",
-   "extVer": 121
+   "extVer": 122
   },
   {
    "id": "a3cfa1763a77d545",
@@ -1803,7 +1804,7 @@
    "isNew": false,
    "personnel": "반주자",
    "pay": "협의",
-   "extVer": 121
+   "extVer": 122
   },
   {
    "id": "143dd14ce06f716c",
@@ -1841,7 +1842,7 @@
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-10-19",
    "isNew": false,
-   "extVer": 121
+   "extVer": 122
   },
   {
    "id": "a643edd9ea773793",
@@ -1876,7 +1877,7 @@
    "addrFrom": "geo",
    "firstSeen": "2026-10-22",
    "isNew": false,
-   "extVer": 121,
+   "extVer": 122,
    "subject": "작곡"
   },
   {
@@ -1913,7 +1914,7 @@
    "addrFrom": "geo",
    "firstSeen": "2026-10-14",
    "isNew": false,
-   "extVer": 121
+   "extVer": 122
   },
   {
    "id": "d2adf97ca8ce2389",
@@ -1956,7 +1957,7 @@
    "bodyExcerpt": "응시자격 : 2027년 1월 1일 기준 13세 이상 ~ 24세 이하인 자(2003년 1월 1일 이후 출생자 ~ 2014년 12월 31일 이전 출생자)· 접수방법 : 이메일 iypo2026@gmail.com(방문 또는 우편접수 불가)· 인천문화예술회관 홈페이지 참조(https://www.incheon.go.kr/art/ART040102/3090396) 붙임",
    "deadline": "2026-12-15",
    "deadlineFrom": "raw",
-   "extVer": 121
+   "extVer": 122
   },
   {
    "id": "4b8074633186fe30",
@@ -1988,7 +1989,7 @@
    "deadlineNote": "상시",
    "firstSeen": "2026-10-13",
    "isNew": false,
-   "extVer": 121
+   "extVer": 122
   },
   {
    "id": "208452c16c9f2216",
@@ -2021,7 +2022,7 @@
    "email": "mary@casuwon.or.kr",
    "firstSeen": "2026-10-12",
    "isNew": false,
-   "extVer": 121
+   "extVer": 122
   },
   {
    "id": "c47ea57de3f53a34",
@@ -2070,7 +2071,7 @@
    "orgBoard": "인천문화예술회관(시립예술단)",
    "firstSeen": "2026-10-07",
    "isNew": false,
-   "extVer": 121
+   "extVer": 122
   },
   {
    "id": "f9fb3178f03dfe36",
@@ -2102,7 +2103,7 @@
    "workHours": "미사 : 주일 오전 10시 30분 - 연습 : 매주 주일 미사 전 9시 00분 ~ 매주 목요일(오후 8시 30분 ~ 10시)",
    "bodyExcerpt": "자격 조건 - 세례 후 3 년 이상인 천주교 신자 - 전공자, 지휘 경험자 우대 3. · 마감 - 채용 시까지 6",
    "deadlineNote": "상시",
-   "extVer": 121
+   "extVer": 122
   },
   {
    "id": "42c1fdc1b37a95d2",
@@ -2134,7 +2135,7 @@
    "addrFrom": "geo",
    "firstSeen": "2026-09-29",
    "isNew": false,
-   "extVer": 121
+   "extVer": 122
   },
   {
    "id": "4946a4c31fac4ce1",
@@ -2168,7 +2169,7 @@
    "addrFrom": "geo",
    "firstSeen": "2026-09-29",
    "isNew": false,
-   "extVer": 121
+   "extVer": 122
   },
   {
    "id": "3ec8a79430f38f5f",
@@ -2199,7 +2200,7 @@
    "isNew": false,
    "deadline": "2026-11-03",
    "deadlineFrom": "raw",
-   "extVer": 121
+   "extVer": 122
   },
   {
    "id": "b2e199e32140e0ed",
@@ -2234,7 +2235,7 @@
    "deadlineNote": "상시",
    "firstSeen": "2026-08-08",
    "isNew": false,
-   "extVer": 121
+   "extVer": 122
   },
   {
    "id": "5fbc7e4eb4f8d92d",
@@ -2259,8 +2260,8 @@
    ],
    "channel": "cjob",
    "layer": "C",
-   "deadlineFrom": "cjob-남은기간",
    "addr": "경기 의왕시 경수대로 262 (오전동, 의왕서해그랑블(블루스퀘어))",
+   "deadlineFrom": "cjob-남은기간",
    "denomination": "순복음",
    "documents": "간단한 이력서",
    "personnel": "반주자",
@@ -2268,7 +2269,7 @@
    "deadlineNote": "상시",
    "firstSeen": "2026-08-08",
    "isNew": false,
-   "extVer": 121
+   "extVer": 122
   }
  ]
 }

@@ -307,7 +307,7 @@ def find_attachments(soup, base_url):
                     cands.append((full, el.get_text(" ", strip=True)))
     return cands[:4]
 
-EXT_VER = 121         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
+EXT_VER = 122         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
                      # v32(2026-08-02): 모집분야 구획 악기 추출(insts_from_recruit_text) + 원문 보관층
                      # 24: work.sen 등록일(게시일) 추출 추가 — date=None이던 승계분을 다시 뽑게
                      # 25: body_text 도입 — 본문을 <header>에 넣는 사이트(대전교육청)의 마감일을
@@ -1167,6 +1167,23 @@ _NOT_ORIGIN = re.compile(
 _ORIGIN_HINT = re.compile(r"\.or\.kr|\.go\.kr|\.ac\.kr|\.re\.kr", re.I)
 
 
+_CHROME_CLASS = re.compile(r"footer|family|gnb|lnb|sitemap", re.I)
+
+
+def _in_site_chrome(a):
+    """링크가 사이트 틀(푸터·상단 메뉴·패밀리사이트 목록) 안에 있는가.
+    아트모아 푸터의 '서울국제공연예술제'(spaf.or.kr)가 공고 원문으로 두 번 앉았다
+    (플랫폼엘 2026-08-26, 연수단원 2026-10-24)."""
+    for p in a.parents:
+        # <header> 는 안 본다 — 본문을 header 안에 넣는 사이트가 있다(대전교육청).
+        if p.name in ("footer", "nav"):
+            return True
+        tag = " ".join(p.get("class") or []) + " " + (p.get("id") or "")
+        if _CHROME_CLASS.search(tag):
+            return True
+    return False
+
+
 def _trace_origin(soup, page_text, item, anchors_only=False):
     """집계본 본문에서 원출처(기관 홈페이지·공고 원문)를 역추적한다.
 
@@ -1180,7 +1197,9 @@ def _trace_origin(soup, page_text, item, anchors_only=False):
     # 주는 것이라 도메인 힌트 추측보다 강하다 (2026-08-30 사용자 지시: gojobs 의
     # '관련링크 바로가기'뿐 아니라 모든 포털의 이 신호를 핵심 정보로 쓴다).
     # '홈페이지'는 안 받는다 — 기관 첫 화면이지 공고 원문이 아니다 (플랫폼엘 08-26 결정).
-    for tier, need_ctx in ((r"원본\s*사이트|원문|관련\s*링크|공고\s*바로가기", False),
+    # '채용정보 제공사이트로 이동' = 아트모아가 고용24 등 원 게시처로 보내는 버튼 (2026-10-24).
+    # 이걸 몰라 2순위 도메인 추측이 푸터 패밀리사이트(spaf.or.kr)를 원문으로 물었다.
+    for tier, need_ctx in ((r"원본\s*사이트|원문|관련\s*링크|공고\s*바로가기|제공\s*사이트", False),
                            (r"바로\s*가기", True)):
         for a in soup.find_all("a", href=True):
             h = (a["href"] or "").strip()
@@ -1213,6 +1232,8 @@ def _trace_origin(soup, page_text, item, anchors_only=False):
         href = (a["href"] or "").strip()
         if not href.startswith("http") or _NOT_ORIGIN.search(href):
             continue
+        if _in_site_chrome(a):
+            continue                          # 푸터·메뉴의 패밀리사이트는 원문이 아니다
         if src_dom and src_dom in href.lower():
             continue
         if _ORIGIN_HINT.search(href):
@@ -2758,21 +2779,7 @@ def run(force_all=False):
             # 전용 패스로 뗀다. **만료 정리 뒤에** 돈다 — 앞에서 돌리면 묵은 공고가 fetch
             # 예산을 다 먹는다(나라일터엔 2022년 공고까지 걸려 있었다). 못 찾은 항목의
             # 재시도는 추출기 버전이 오를 때만(표식) — 회차마다 다시 여는 낭비를 막는다.
-            if src["domain"] in AGGREGATORS + ("gojobs.go.kr",):
-                _tr_need = [i for i in kept
-                            if not i.get("officialUrl") and i.get("originTraceVer") != EXT_VER][:15]
-                n_tr = 0
-                for it in _tr_need:
-                    try:
-                        r_t = get(s, it["url"])
-                        soup_t = BeautifulSoup(r_t.text, "lxml")
-                        if _trace_origin(soup_t, body_text(r_t.text), it, anchors_only=True):
-                            n_tr += 1
-                    except Exception:
-                        pass
-                    it["originTraceVer"] = EXT_VER
-                if _tr_need:
-                    log(f"  원문 역추적 {len(_tr_need)}건 시도 → {n_tr}건 확보")
+            # (패스 본체는 승계 아래로 옮겼다 — 승계분도 같이 태우기 위해서다.)
             # 소스가 비정상적으로 0건 반환(서버 다운 등) 시 이전 수집분 승계
             if not raw:
                 carried = [it for it in prev_items if it.get("channel") == src["id"]]
@@ -2803,6 +2810,30 @@ def run(force_all=False):
                     n_rot += 1
             if n_rot:
                 log(f"  목록 회전 승계 {n_rot}건 — 마감이 남았는데 첫 화면에서 밀려난 공고")
+            # 원문 역추적 패스 — 승계분까지 태운다. 승계분은 enrich 를 안 타서, 지난 버전에
+            # 짐작으로 앉힌 원문이 final 의 리셋(_reset_stale_extracted)에 지워진 채 다시 찾을
+            # 기회가 없었다: 아트모아가 0건을 돌려준 날 EXT_VER 를 올리자 '연수단원 모집'이
+            # 원문을 잃고 '지원경로 없음'으로 내려갔다 (2026-10-24). 낡은 짐작 원문은 리셋과
+            # 똑같이 여기서 먼저 비우고 앵커 신호로 다시 찾는다 — 못 찾아도 리셋과 같은 결과다.
+            if src["domain"] in AGGREGATORS + ("gojobs.go.kr",):
+                for it in kept:
+                    if it.get("originTraced") and it.get("originTraceVer") != EXT_VER:
+                        it.pop("officialUrl", None)
+                        it.pop("originTraced", None)
+                _tr_need = [i for i in kept
+                            if not i.get("officialUrl") and i.get("originTraceVer") != EXT_VER][:15]
+                n_tr = 0
+                for it in _tr_need:
+                    try:
+                        r_t = get(s, it["url"])
+                        soup_t = BeautifulSoup(r_t.text, "lxml")
+                        if _trace_origin(soup_t, body_text(r_t.text), it, anchors_only=True):
+                            n_tr += 1
+                    except Exception:
+                        pass
+                    it["originTraceVer"] = EXT_VER
+                if _tr_need:
+                    log(f"  원문 역추적 {len(_tr_need)}건 시도 → {n_tr}건 확보")
             all_items.extend(kept)
             stat = {**meta, "ok": True, "raw": len(raw), "kept": len(kept)}
             if n_rot:
