@@ -489,7 +489,7 @@ function rangeUsers() {
     var k = comboKey(row);
     by[k] = (by[k] || 0) + row[5];
   });
-  return { total: R.filterUsers || 0, by: by };
+  return { total: R.filterUsers || 0, by: by, jobs: R.jobUsers || {} };
 }
 
 function aggregate() {
@@ -741,8 +741,10 @@ function render() {
 
   // 사용자 지시(2026-08-19): 궁금한 것은 "결과가 몇 건이었나"가 아니라
   // **무엇을 걸렀나** 자체다. 그래서 조합을 빈도순으로 앞세우고 결과 건수는 곁들인다.
+  // 사람 수가 있으면 사람 수 순 — 횟수순이면 한 사람이 매일 거는 필터가 맨 위를 차지한다
+  function cu(r) { return RU ? (RU.by[r[2]] || 0) : 0; }
   var crows = Object.keys(a.combos).map(function (k) { return [k.split("\u0001"), a.combos[k], k]; })
-    .sort(function (x, y) { return y[1].n - x[1].n || x[1].min - y[1].min; })
+    .sort(function (x, y) { return cu(y) - cu(x) || y[1].n - x[1].n || x[1].min - y[1].min; })
     .map(function (r) {
       var p = r[0], c = r[1], cells = [];
       var who = RU ? (RU.by[r[2]] ? n(RU.by[r[2]]) + "명" : "—") : "—";
@@ -759,7 +761,8 @@ function render() {
         '<td class="num">' + span + "건" +
         (c.max <= 3 ? ' <span class="tag">거의 빈손</span>' : "") + "</td></tr>";
     });
-  H.push(card("무엇을 찾고 있나", "필터 조합 · 많이 쓴 순 · 공급(크롤)과 대조할 유일한 축",
+  H.push(card("무엇을 찾고 있나", "필터 조합 · " + (RU ? "많은 사람이 쓴 순" : "많이 쓴 순") +
+              " · 공급(크롤)과 대조할 유일한 축",
     table([["직종", 0], ["악기", 0], ["지역", 0], ["그 밖", 0], ["쓴 횟수", 1], ["사용자", 1],
            ["나온 결과", 1]],
       crows, "필터 조합 데이터 없음", "combo", 10) +
@@ -772,17 +775,26 @@ function render() {
 
   // 사용자 지시: 무엇이 열렸나(제목)보다 **어떤 종류가 열렸나**가 궁금하다.
   // 그래서 '많이 열린 공고' 표를 빼고 성격 축을 늘렸다.
-  var CH = [["직종", a.kind], ["직무군", a.tier], ["악기", a.inst], ["지역", a.jregion],
-            ["마감 임박도", a.dday], ["교원자격 요건", a.cert], ["경력 요건", a.career],
-            ["원문 이동처", a.dest]];
-  H.push(card("열린 공고의 성격", "방문자가 실제로 펼쳐 본 공고들의 속성 분포",
+  var CH = [["직종", a.kind, "kind"], ["직무군", a.tier, "tier"], ["악기", a.inst, "inst"],
+            ["지역", a.jregion, "region"], ["마감 임박도", a.dday, "dday"],
+            ["교원자격 요건", a.cert, "cert"], ["경력 요건", a.career, "career"],
+            ["원문 이동처", a.dest, "dest"]];
+  H.push(card("열린 공고의 성격", "방문자가 실제로 펼쳐 본 공고들의 속성 분포" +
+              (RU ? " · 많은 사람이 본 순" : ""),
     '<div class="grid4">' + CH.map(function (c, i) {
-      var rows = sorted(c[1]).map(function (r) {
-        return '<tr><td class="t">' + esc(r[0]) + '</td><td class="num">' + n(r[1]) + "</td></tr>";
+      var U = RU && RU.jobs[c[2]];
+      var rows = sorted(c[1]);
+      if (U) rows.sort(function (x, y) { return (U[y[0]] || 0) - (U[x[0]] || 0) || y[1] - x[1]; });
+      rows = rows.map(function (r) {
+        return '<tr><td class="t">' + esc(r[0]) + '</td>' +
+          (U ? '<td class="num">' + (U[r[0]] ? n(U[r[0]]) + "명" : "—") + "</td>" : "") +
+          '<td class="num">' + n(r[1]) + "</td></tr>";
       });
-      return '<div class="mini">' + table([[c[0], 0], ["횟수", 1]], rows, "데이터 없음", "ch" + i, 5) +
-        "</div>";
-    }).join("") + "</div>"));
+      var head = U ? [[c[0], 0], ["사람", 1], ["횟수", 1]] : [[c[0], 0], ["횟수", 1]];
+      return '<div class="mini">' + table(head, rows, "데이터 없음", "ch" + i, 5) + "</div>";
+    }).join("") + "</div>" +
+    '<p class="note">사람 = 이 기간에 그 성격의 공고를 열거나 원문으로 넘어간 서로 다른 사람 수. ' +
+    '횟수는 한 사람이 같은 공고를 여러 번 열면 그만큼 늘어납니다.</p>'));
 
   H.push('<div class="grid2 cards">');
   H.push(card("페이지", "",

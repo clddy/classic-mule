@@ -141,6 +141,11 @@ def _query(start, end):
 # 필터 조합의 축 — 하루치(filterCombos)와 구간 사용자 수(ranges)가 같은 순서를 쓴다.
 COMBO_DIMS = ["customEvent:f_bands", "customEvent:f_insts", "customEvent:f_regions",
               "customEvent:f_toggles", "customEvent:f_query"]
+# 열린 공고의 성격 축 — 하루치(jobmeta)와 구간 사용자 수(jobUsers)가 같은 이름을 쓴다.
+JOBMETA_DIMS = [("kind", "customEvent:job_kind"), ("tier", "customEvent:job_tier"),
+                ("inst", "customEvent:job_inst"), ("dday", "customEvent:job_dday"),
+                ("region", "customEvent:job_region"), ("cert", "customEvent:job_cert"),
+                ("career", "customEvent:job_career"), ("dest", "customEvent:dest")]
 
 
 def pull(day):
@@ -184,15 +189,8 @@ def pull(day):
     # 없었나"는 축을 쪼갠 순간 사라지는 정보라, 조합을 통째로 한 줄로 받아 둔다.
     rec["filterCombos"] = rows(COMBO_DIMS + ["customEvent:f_results"], ["eventCount"], events=FE)
     # 열린 공고의 '성격' — 무엇이 열렸나(제목)보다 어떤 종류가 열렸나가 수요 신호다
-    JE = JOB_EVENTS
-    rec["jobmeta"] = {"kind": counts("customEvent:job_kind", events=JE),
-                      "tier": counts("customEvent:job_tier", events=JE),
-                      "inst": counts("customEvent:job_inst", events=JE),
-                      "dday": counts("customEvent:job_dday", events=JE),
-                      "region": counts("customEvent:job_region", events=JE),
-                      "cert": counts("customEvent:job_cert", events=JE),
-                      "career": counts("customEvent:job_career", events=JE),
-                      "dest": counts("customEvent:dest", events=["job_outbound"])}
+    rec["jobmeta"] = {ax: counts(dim, events=["job_outbound"] if ax == "dest" else JOB_EVENTS)
+                      for ax, dim in JOBMETA_DIMS}
     return rec
 
 
@@ -213,6 +211,11 @@ def pull_ranges(last):
             "filterUsers": sum(r[-1] for r in rows([], ["totalUsers"], events=FILTER_EVENTS)),
             # [직종, 악기, 지역, 토글, 검색어, 사용자, 횟수]
             "comboUsers": rows(COMBO_DIMS, ["totalUsers", "eventCount"], events=FILTER_EVENTS),
+            # 열린 공고의 성격 — 축별 {값: 사용자 수}. 한 사람이 같은 공고를 매일 열면
+            # 횟수만 커지므로, 이 표도 사람 수로 봐야 수요가 보인다.
+            "jobUsers": {ax: counts(dim, "totalUsers",
+                                    events=["job_outbound"] if ax == "dest" else JOB_EVENTS)
+                         for ax, dim in JOBMETA_DIMS},
         }
     return out
 
@@ -240,7 +243,9 @@ def main(argv):
     doc = _load()
     days = _targets(doc, start)
     last = max(doc["days"], default=None)
-    if not days and doc.get("ranges", {}).get("all", {}).get("to") == last:
+    rall = doc.get("ranges", {}).get("all", {})
+    # 구간 값은 마지막 날이 같고 지금 형식(jobUsers 포함)이면 다시 묻지 않는다
+    if not days and rall.get("to") == last and "jobUsers" in rall:
         print("traffic: 새로 당길 날 없음 (최신 %s)" % (last or "-"))
         return 0
 
