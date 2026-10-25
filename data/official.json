@@ -2,7 +2,7 @@
  "collectedAt": "2026-10-25 14:18",
  "heldNoOrigin": 0,
  "sourceCount": 91,
- "okCount": 91,
+ "okCount": 88,
  "instTotal": 75,
  "sources": [
   {
@@ -66,15 +66,9 @@
    "name": "기독정보넷(교회 반주)",
    "layer": "C",
    "poll": "daily",
-   "ok": true,
-   "raw": 24,
-   "kept": 5,
-   "carried": 1,
-   "drop": {
-    "무관": 3,
-    "만료": 17,
-    "오래됨": 0
-   }
+   "ok": false,
+   "kept": 4,
+   "error": "HTTPError: 403 Forbidden"
   },
   {
    "id": "gne",
@@ -169,11 +163,9 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 10,
+   "raw": 0,
    "kept": 0,
    "drop": {
-    "무관": 8,
-    "비음악": 2,
     "만료": 0,
     "오래됨": 0
    }
@@ -198,12 +190,10 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 34,
+   "raw": 0,
    "kept": 0,
    "drop": {
-    "무관": 29,
-    "비음악": 4,
-    "만료": 1,
+    "만료": 0,
     "오래됨": 0
    }
   },
@@ -463,10 +453,10 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 4,
+   "raw": 0,
    "kept": 0,
    "drop": {
-    "만료": 4,
+    "만료": 0,
     "오래됨": 0
    }
   },
@@ -823,13 +813,9 @@
    "name": "순천시립합창단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 0,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.suncheon.go.kr', port=443): Max retries exceeded with url: /scart/community/0001;jsessioni"
   },
   {
    "id": "g_i_andonggokr",
@@ -917,13 +903,9 @@
    "name": "동해문화관광재단",
    "layer": "B",
    "poll": "daily",
-   "ok": true,
-   "raw": 0,
+   "ok": false,
    "kept": 0,
-   "drop": {
-    "만료": 0,
-    "오래됨": 0
-   }
+   "error": "HTTPError: 403 Forbidden"
   },
   {
    "id": "g_i_cfscorkr",
@@ -1240,9 +1222,8 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 7,
-   "kept": 7,
-   "declared": 7,
+   "raw": 0,
+   "kept": 1,
    "drop": {
     "만료": 0,
     "오래됨": 0
@@ -2043,14 +2024,14 @@
    "deadlineFrom": "cjob-남은기간",
    "denomination": "합동총회",
    "documents": "이력서,자기소개서",
-   "personnel": "반주자",
-   "pay": "협의",
    "addr": "경기도 부천시 고강로",
    "lat": 37.5303937,
    "lng": 126.8165665,
    "addrFrom": "geo",
    "firstSeen": "2026-10-14",
    "isNew": false,
+   "personnel": "반주자",
+   "pay": "협의",
    "extVer": 122
   },
   {
@@ -2399,13 +2380,13 @@
    "deadlineFrom": "cjob-남은기간",
    "denomination": "예장 합동",
    "documents": "이력서",
-   "personnel": "반주자",
-   "pay": "20만원",
    "addr": "전북 김제시 황산면 남산로 334",
    "regionBoard": "기타",
-   "deadlineNote": "상시",
    "firstSeen": "2026-08-08",
    "isNew": false,
+   "personnel": "반주자",
+   "pay": "20만원",
+   "deadlineNote": "상시",
    "extVer": 122
   },
   {
@@ -2435,11 +2416,11 @@
    "addr": "경기 의왕시 경수대로 262 (오전동, 의왕서해그랑블(블루스퀘어))",
    "denomination": "순복음",
    "documents": "간단한 이력서",
+   "firstSeen": "2026-08-08",
+   "isNew": false,
    "personnel": "반주자",
    "pay": "협의",
    "deadlineNote": "상시",
-   "firstSeen": "2026-08-08",
-   "isNew": false,
    "extVer": 122
   }
  ]
