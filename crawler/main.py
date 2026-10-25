@@ -1541,7 +1541,12 @@ def _music_from_origin(s, item):
         courses = find_music_courses(blob)   # 담당 교과목(무엇을 가르치는지) 패널 노출용
         if courses:
             item["courses"] = courses
-    elif len(re.sub(r"\s", "", blob)) > 800:   # 교과목표를 충분히 읽었는데 음악 0 → 비음악
+    # 비음악 '확정'은 첨부(분야표·교과목표)를 실제로 읽었을 때만 내린다. 원문 본문은 찾는
+    # 데는 쓰지만 없다는 증거는 못 된다 — 하이브레인이 준 원문이 공고가 아니라 채용 안내
+    # 대문(한양대 site.hanyang.ac.kr/ko/web/faculty)이나 접수 대행 첫 화면(우석대
+    # jinhakpro)이면 글자는 800자를 넘는데 분야표는 없다. 그걸로 '비음악 확정'을 내려
+    # 음악학 카테고리 공고가 조용히 사라졌다 (2026-10-25).
+    elif len(re.sub(r"\s", "", "\n".join(texts))) > 800:   # 첨부를 충분히 읽었는데 음악 0
         item["nonMusic"] = True
     else:
         item["musicUnverified"] = True

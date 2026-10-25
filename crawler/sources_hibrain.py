@@ -48,20 +48,35 @@ def _org(title, text):
 
 
 def _origin(soup):
-    """상세의 '원본사이트 바로가기'(대학 공식 공고) 링크. 없으면 홈페이지 바로가기."""
-    home = None
+    """상세에서 대학 쪽 링크를 고른다 — 지원 사이트 > 본문이 지목한 접수 도메인 > 대학 홈페이지.
+
+    2026-10 무렵 하이브레인이 상세 마크업을 바꿨다. '원본사이트 바로가기'·'홈페이지' 라는
+    글자가 사라지고, 지원 링크는 그냥 '바로가기', 대학 홈페이지는 링크 글자가 주소 자체
+    ('http://www.hongik.ac.kr/')가 됐다. 낱말만 보던 탓에 원문을 하나도 못 찾았고,
+    그래서 매일 8~10건을 수집하고도 '지원경로 없음'으로 거의 다 버리고 있었다
+    (2주간 최종 게시 0~1건, 2026-10-25 규명).
+    """
+    body = soup.get_text(" ", strip=True)
+    # 본문이 접수처 도메인을 직접 지목하는 경우 — '홈페이지(prad.knu.ac.kr)에서 온라인으로 접수'
+    named = set(re.findall(r"홈페이지\s*[(（]\s*([\w.-]+\.(?:ac|or|go|co)\.kr)", body))
+    apply_, named_hit, home = None, None, None
     for a in soup.find_all("a", href=True):
         h = a["href"]
         if "hibrain" in h or not h.startswith("http"):
             continue
-        if re.search(r"facebook|instagram|twitter|higrad|apps\.apple|play\.google|kakao|youtube", h):
+        if re.search(r"facebook|instagram|twitter|x\.com|higrad|apps\.apple|play\.google"
+                     r"|kakao|youtube|ftc\.go\.kr", h):
             continue
         t = a.get_text(" ", strip=True)
-        if "원본사이트" in t:
+        if "원본사이트" in t:                       # 옛 마크업
             return h
-        if "홈페이지" in t and not home:
+        if not apply_ and re.search(r"바로가기|지원하기|온라인\s*지원|접수", t):
+            apply_ = h
+        if not named_hit and any(d in h for d in named):
+            named_hit = h
+        if not home and ("홈페이지" in t or re.match(r"https?://", t)):
             home = h
-    return home
+    return apply_ or named_hit or home
 
 
 # 목록 왼쪽 분류 패널이 '음악학(5)'처럼 건수를 스스로 적어 둔다. 그 수와 우리가 읽은 수가
@@ -118,6 +133,13 @@ def parse_hibrain(s):
         start, deadline = _dates(txt)
         it = make_item(_org(title, txt), _region(txt), "hibrain.net",
                        title, DETAIL + i, date=start, deadline=deadline)
+        # 하이브레인 '접수기간'은 사이트가 구조화해 주는 값이다(본문 추측이 아님). 출처를
+        # 안 적으면 main._reset_stale_extracted 가 '추출 짐작값'으로 보고 지운다 — 그 뒤
+        # 원문 보관층에서 되살리려 해도 보관된 건 대학 원문 페이지라 접수기간이 없어서,
+        # 백석대·홍익대(10/26)·서울대(11/3) 마감이 통째로 빈칸이 됐다 (2026-10-25).
+        # cjob '남은기간'처럼 소스가 준 값으로 표시해 리셋을 비켜 가게 한다.
+        if deadline:
+            it["deadlineFrom"] = "hibrain"
         origin = _origin(ds)
         if origin:
             it["officialUrl"] = origin
