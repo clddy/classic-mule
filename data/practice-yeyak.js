@@ -1,5 +1,5 @@
 window.YEYAK_ROOMS = {
- "fetched": "2026-10-26",
+ "fetched": "2026-10-27",
  "items": [
   {
    "name": "중랑생활문화센터 다목적연습실",
