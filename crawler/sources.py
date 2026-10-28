@@ -129,12 +129,17 @@ def parse_daegu(s):
     r = get(s, "https://daeguartscenter.or.kr/index.do?menu_id=00001528")
     items = []
     for tr in re.findall(r"<tr[^>]*>[\s\S]*?</tr>", r.text):
-        m = re.search(r"fn_icms_navi_common\('view','(\d+)'\)[^>]*>([^<]{6,90})</a>", tr)
+        # 사이트가 인자 사이에 공백을 넣기 시작했다('view', '11333') — 붙은 꼴만 알던 탓에
+        # 2026-10-27 부터 원본 0건이 됐다. 공백 유무 둘 다 받는다.
+        m = re.search(r"fn_icms_navi_common\(\s*'view'\s*,\s*'(\d+)'\s*\)[^>]*>\s*([^<]{6,90}?)\s*</a>", tr)
         if not m:
             continue
         nid, title = m.group(1), m.group(2).strip()
         d = re.search(r"(20\d{2})-(\d{2})-(\d{2})", tr)
-        url = f"https://daeguartscenter.or.kr/index.do?menu_id=00001528&nttId={nid}"
+        # '&nttId=' 만 붙인 주소는 상세가 아니라 목록을 연다 — 상세 GET 주소로 조립한다
+        # (sources._icms_view_url 과 같은 꼴, 같은 게시판을 보는 합창단 소스와 id 가 맞물린다).
+        url = ("https://www.daeguartscenter.or.kr/index.do?menu_id=00001528"
+               f"&menu_link=/icms/bbs/selectBoardArticle.do&bbsId=BBS_00303&nttId={nid}")
         items.append(make_item("대구문화예술회관(시립교향악단)", "대구", "daeguartscenter.or.kr",
                                title, url, date=d.group(0) if d else None))
     return items
