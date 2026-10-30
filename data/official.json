@@ -1,8 +1,8 @@
 {
- "collectedAt": "2026-10-30 03:24",
+ "collectedAt": "2026-10-30 18:07",
  "heldNoOrigin": 0,
  "sourceCount": 91,
- "okCount": 88,
+ "okCount": 91,
  "instTotal": 75,
  "sources": [
   {
@@ -11,9 +11,10 @@
    "layer": "A",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
+   "raw": 1,
    "kept": 0,
    "drop": {
+    "무관": 1,
     "만료": 0,
     "오래됨": 0
    }
@@ -66,9 +67,15 @@
    "name": "기독정보넷(교회 반주)",
    "layer": "C",
    "poll": "daily",
-   "ok": false,
-   "kept": 4,
-   "error": "HTTPError: 403 Forbidden"
+   "ok": true,
+   "raw": 24,
+   "kept": 5,
+   "carried": 1,
+   "drop": {
+    "무관": 3,
+    "만료": 17,
+    "오래됨": 0
+   }
   },
   {
    "id": "gne",
@@ -118,10 +125,10 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 10,
+   "raw": 12,
    "kept": 0,
    "drop": {
-    "무관": 6,
+    "무관": 8,
     "비음악": 4,
     "만료": 0,
     "오래됨": 0
@@ -136,8 +143,7 @@
    "raw": 15,
    "kept": 0,
    "drop": {
-    "무관": 12,
-    "비음악": 2,
+    "무관": 14,
     "만료": 1,
     "오래됨": 0
    }
@@ -163,9 +169,11 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
+   "raw": 10,
    "kept": 0,
    "drop": {
+    "무관": 8,
+    "비음악": 2,
     "만료": 0,
     "오래됨": 0
    }
@@ -190,10 +198,12 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
+   "raw": 36,
    "kept": 0,
    "drop": {
-    "만료": 0,
+    "무관": 31,
+    "비음악": 4,
+    "만료": 1,
     "오래됨": 0
    }
   },
@@ -387,9 +397,9 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 3,
+   "raw": 2,
    "kept": 4,
-   "carried": 1,
+   "carried": 2,
    "drop": {
     "만료": 0,
     "오래됨": 0
@@ -414,9 +424,9 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 1,
-   "kept": 2,
-   "carried": 1,
+   "raw": 2,
+   "kept": 4,
+   "carried": 2,
    "drop": {
     "만료": 0,
     "오래됨": 0
@@ -454,10 +464,10 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
+   "raw": 4,
    "kept": 0,
    "drop": {
-    "만료": 0,
+    "만료": 4,
     "오래됨": 0
    }
   },
@@ -507,7 +517,7 @@
    "poll": "daily",
    "ok": true,
    "raw": 0,
-   "kept": 2,
+   "kept": 1,
    "drop": {
     "만료": 0,
     "오래됨": 0
@@ -720,8 +730,8 @@
    "poll": "daily",
    "ok": true,
    "raw": 2,
-   "kept": 2,
-   "carried": 1,
+   "kept": 3,
+   "carried": 2,
    "drop": {
     "만료": 1,
     "오래됨": 0
@@ -814,9 +824,13 @@
    "name": "순천시립합창단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 0,
    "kept": 0,
-   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.suncheon.go.kr', port=443): Max retries exceeded with url: /scart/community/0001;jsessioni"
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_i_andonggokr",
@@ -824,11 +838,11 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 5,
+   "raw": 6,
    "kept": 0,
    "drop": {
+    "무관": 2,
     "비음악": 1,
-    "무관": 1,
     "만료": 3,
     "오래됨": 0
    }
@@ -904,9 +918,13 @@
    "name": "동해문화관광재단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 0,
    "kept": 0,
-   "error": "HTTPError: 403 Forbidden"
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_i_cfscorkr",
@@ -1155,8 +1173,8 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 3,
-   "kept": 4,
+   "raw": 2,
+   "kept": 3,
    "carried": 1,
    "drop": {
     "만료": 0,
@@ -1222,9 +1240,11 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
-   "kept": 6,
+   "raw": 11,
+   "kept": 9,
+   "declared": 11,
    "drop": {
+    "비음악": 2,
     "만료": 0,
     "오래됨": 0
    }
@@ -1266,13 +1286,79 @@
    "extVer": 122
   },
   {
-   "id": "47d758d9bab7a690",
+   "id": "c1c9139e567ab3ec",
+   "org": "동신대학교",
+   "region": "광주·전남",
+   "source": "hibrain.net",
+   "title": "[동신대학교] 전임교원 초빙",
+   "nonMusic": null,
+   "url": "https://www.hibrain.net/recruitment/recruits/3604245",
+   "date": "2026-11-12",
+   "deadline": "2026-11-16",
+   "kind": "교수",
+   "tier": "교육 — 대학",
+   "obri": false,
+   "certReq": "아니오",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "ageGroup": "성인",
+   "inst": "전체",
+   "instDetails": [],
+   "personnel": null,
+   "subject": null,
+   "deadlineFrom": "hibrain",
+   "officialUrl": "https://dsu.ac.kr/professor/20261030/index.php",
+   "channel": "hibrain",
+   "layer": "B",
+   "musicUnverified": true,
+   "addr": "전남광주통합특별시 나주시 동신대길9",
+   "addrFrom": "postal",
+   "firstSeen": "2026-10-30",
+   "isNew": false,
+   "extVer": 122
+  },
+  {
+   "id": "f943e5745007975a",
+   "org": "전북외국어고등학교",
+   "region": "전북",
+   "source": "jbe.go.kr",
+   "title": "[전북외국어고] 음악 채용",
+   "nonMusic": null,
+   "url": "https://www.jbe.go.kr/board/view.jbe?boardId=BBS_0000130&menuCd=DOM_000000103004006000&paging=ok&startPage=1&searchOperation=AND&dataSid=1205891",
+   "date": "2026-10-30",
+   "kind": "기타",
+   "tier": "교육 — 학교",
+   "obri": false,
+   "certReq": "예",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "ageGroup": "성인",
+   "inst": "전체",
+   "instDetails": [],
+   "channel": "edu_jbe",
+   "layer": "C",
+   "orgBoard": "전북외국어고등학교(전북교육청)",
+   "addr": "전북특별자치도 군산시 해망로 525 본교무실",
+   "email": "wjsqnrdhlrh@hanmail.net",
+   "hireType": "기간제교사",
+   "workPeriod": "2026.11.02 ~ 2027.01.29",
+   "bodyExcerpt": "공고에 ‘채용의 제한’ 부분 명시 2. · 지침 [붙임 2] 기간제교원 채용 공고(예시) 다운로드 지침",
+   "deadline": "2026-11-02",
+   "deadlineFrom": "raw",
+   "workHours": "전일제 근무(1일 8시간)",
+   "ageLimit": "제한 없음",
+   "firstSeen": "2026-10-30",
+   "isNew": true,
+   "extVer": 122
+  },
+  {
+   "id": "7f470470a340f83f",
    "org": "군산동고등학교",
    "region": "전북",
    "source": "jbe.go.kr",
    "title": "[군산동고] 음악 채용",
    "nonMusic": null,
-   "url": "https://www.jbe.go.kr/board/view.jbe?boardId=BBS_0000130&menuCd=DOM_000000103004006000&paging=ok&startPage=1&searchOperation=AND&dataSid=1205395",
+   "url": "https://www.jbe.go.kr/board/view.jbe?boardId=BBS_0000130&menuCd=DOM_000000103004006000&paging=ok&startPage=2&searchOperation=AND&dataSid=1205395",
    "date": "2026-10-29",
    "kind": "기타",
    "tier": "교육 — 학교",
@@ -1285,18 +1371,52 @@
    "instDetails": [],
    "channel": "edu_jbe",
    "layer": "C",
-   "contact": "063-450-1104",
-   "email": "gsdong2386@hanmail.net",
    "orgBoard": "군산동고등학교(전북교육청)",
    "addr": "전북특별자치도 군산시 달여길 50 군산동고등학교",
+   "email": "gsdong2386@hanmail.net",
+   "contact": "063-450-1104",
    "workPeriod": "2026.11.09 ~ 2026.11.18",
-   "pay": "시간당 30,000원",
-   "workHours": "전일제 근무(1일 8시간)",
-   "ageLimit": "제한 없음",
    "bodyExcerpt": "공고에 ‘채용의 제한’ 부분 명시 2. · 지침 [붙임 2] 기간제교원 채용 공고(예시) 다운로드 지침",
    "deadline": "2026-10-31",
    "deadlineFrom": "raw",
-   "firstSeen": "2026-10-29",
+   "pay": "시간당 30,000원",
+   "workHours": "전일제 근무(1일 8시간)",
+   "ageLimit": "제한 없음",
+   "firstSeen": "2026-10-30",
+   "isNew": true,
+   "extVer": 122
+  },
+  {
+   "id": "8aee13aaf469ff2a",
+   "org": "연세대학교",
+   "region": "서울",
+   "source": "music.yonsei.ac.kr",
+   "title": "[연세대학교] 모집 공고 및 지원신청 안내 (기악 및 성악전공자)",
+   "nonMusic": null,
+   "url": "https://music.yonsei.ac.kr/music/notice1.do?mode=view&articleNo=483441&article.offset=0&articleLimit=10",
+   "date": "2026-10-29",
+   "kind": "기타",
+   "tier": "미분류",
+   "obri": false,
+   "certReq": "무관",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "ageGroup": "성인",
+   "inst": "성악",
+   "instDetails": [
+    "성악"
+   ],
+   "channel": "g_i_musicyonseiackr",
+   "layer": "B",
+   "deadline": "2026-11-27",
+   "deadlineFrom": "raw",
+   "addr": "서울특별시 서대문구 연세로 50",
+   "lat": 37.567836,
+   "lng": 126.9393747,
+   "addrFrom": "geo",
+   "qualification": "대한민국 국적의 만18세~30세(공고일 기준) 기악 및 성악 전공자",
+   "email": "ilshin.scholarship@gmail.com",
+   "firstSeen": "2026-10-30",
    "isNew": true,
    "extVer": 122
   },
@@ -1322,10 +1442,7 @@
    ],
    "channel": "g_i_musicyonseiackr",
    "layer": "B",
-   "qualification": "대한민국 국적의 만18세~30세(공고일 기준) 기악 및 성악 전공자",
    "email": "ilshin.scholarship@gmail.com",
-   "deadline": "2026-11-27",
-   "deadlineFrom": "raw",
    "addr": "서울특별시 서대문구 연세로 50",
    "lat": 37.567836,
    "lng": 126.9393747,
@@ -1333,6 +1450,9 @@
    "orgBoard": "연세대학교",
    "firstSeen": "2026-10-29",
    "isNew": true,
+   "qualification": "대한민국 국적의 만18세~30세(공고일 기준) 기악 및 성악 전공자",
+   "deadline": "2026-11-27",
+   "deadlineFrom": "raw",
    "extVer": 122
   },
   {
@@ -1500,18 +1620,18 @@
    "instDetails": [],
    "channel": "edu_goe",
    "layer": "C",
-   "contact": "070-4021-7078",
    "email": "smile26815@korea.kr",
-   "workPeriod": "2026.11.26 ~ 2026.11.30",
-   "workHours": "14시간",
-   "personnel": "음악과 1명, 사회과 1명",
    "addr": "경기 화성시 동탄구 동탄산척로1길 23(송동)",
-   "bodyExcerpt": "채용 응시 자격 : 내국인으로서 채용 분야 교원자격증 소지자 2. · 보수 : 실제 근무 시간 수에 따라 계약서에 명기하되, 시간당 강사료를 고려하여 시간당 산정액 또는 월정액을 계약 내용에 따라 지급 · 자격 : 해당 교과 교원 자격증 소지자 · 대리 접수인 준비물 : 지원자 인장, 대리인 신분증, 위임증 7",
-   "deadline": "2026-11-06",
-   "deadlineFrom": "raw",
    "orgAffil": "경기교육청",
    "firstSeen": "2026-10-28",
    "isNew": false,
+   "contact": "070-4021-7078",
+   "workPeriod": "2026.11.26 ~ 2026.11.30",
+   "workHours": "14시간",
+   "personnel": "음악과 1명, 사회과 1명",
+   "bodyExcerpt": "채용 응시 자격 : 내국인으로서 채용 분야 교원자격증 소지자 2. · 보수 : 실제 근무 시간 수에 따라 계약서에 명기하되, 시간당 강사료를 고려하여 시간당 산정액 또는 월정액을 계약 내용에 따라 지급 · 자격 : 해당 교과 교원 자격증 소지자 · 대리 접수인 준비물 : 지원자 인장, 대리인 신분증, 위임증 7",
+   "deadline": "2026-11-06",
+   "deadlineFrom": "raw",
    "extVer": 122
   },
   {
@@ -1915,10 +2035,13 @@
    "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
+   "personnel": null,
+   "subject": null,
    "officialUrl": "https://prad.knu.ac.kr/hmpg/main/main.knu",
    "channel": "hibrain",
    "layer": "B",
    "musicUnverified": true,
+   "contact": "053-950-2043",
    "email": "mina812@knu.ac.kr",
    "addr": "대구광역시 북구 대학로 80",
    "lat": 35.8905697,
@@ -1926,7 +2049,6 @@
    "addrFrom": "geo",
    "firstSeen": "2026-10-25",
    "isNew": false,
-   "contact": "053-950-2043",
    "extVer": 122
   },
   {
@@ -1956,9 +2078,9 @@
    "musicUnverified": true,
    "addr": "서울특별시 성동구 왕십리로 222",
    "addrFrom": "postal",
+   "deadlineNote": "상시",
    "firstSeen": "2026-10-25",
    "isNew": false,
-   "deadlineNote": "상시",
    "extVer": 122
   },
   {
@@ -2193,14 +2315,14 @@
    "deadlineFrom": "cjob-남은기간",
    "denomination": "합동총회",
    "documents": "이력서,자기소개서",
+   "personnel": "반주자",
+   "pay": "협의",
    "addr": "경기도 부천시 고강로",
    "lat": 37.5303937,
    "lng": 126.8165665,
    "addrFrom": "geo",
    "firstSeen": "2026-10-14",
    "isNew": false,
-   "personnel": "반주자",
-   "pay": "협의",
    "extVer": 122
   },
   {
@@ -2482,13 +2604,13 @@
    "deadlineFrom": "cjob-남은기간",
    "denomination": "예장 합동",
    "documents": "이력서",
-   "addr": "전북 김제시 황산면 남산로 334",
-   "regionBoard": "기타",
-   "firstSeen": "2026-08-08",
-   "isNew": false,
    "personnel": "반주자",
    "pay": "20만원",
+   "addr": "전북 김제시 황산면 남산로 334",
+   "regionBoard": "기타",
    "deadlineNote": "상시",
+   "firstSeen": "2026-08-08",
+   "isNew": false,
    "extVer": 122
   },
   {
@@ -2518,11 +2640,11 @@
    "addr": "경기 의왕시 경수대로 262 (오전동, 의왕서해그랑블(블루스퀘어))",
    "denomination": "순복음",
    "documents": "간단한 이력서",
-   "firstSeen": "2026-08-08",
-   "isNew": false,
    "personnel": "반주자",
    "pay": "협의",
    "deadlineNote": "상시",
+   "firstSeen": "2026-08-08",
+   "isNew": false,
    "extVer": 122
   }
  ]
