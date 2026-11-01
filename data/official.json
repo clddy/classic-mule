@@ -1,8 +1,8 @@
 {
- "collectedAt": "2026-11-01 02:13",
+ "collectedAt": "2026-11-01 18:07",
  "heldNoOrigin": 0,
  "sourceCount": 91,
- "okCount": 85,
+ "okCount": 91,
  "instTotal": 75,
  "sources": [
   {
@@ -68,9 +68,15 @@
    "name": "기독정보넷(교회 반주)",
    "layer": "C",
    "poll": "daily",
-   "ok": false,
-   "kept": 4,
-   "error": "HTTPError: 403 Forbidden"
+   "ok": true,
+   "raw": 24,
+   "kept": 5,
+   "carried": 1,
+   "drop": {
+    "무관": 3,
+    "만료": 17,
+    "오래됨": 0
+   }
   },
   {
    "id": "gne",
@@ -164,9 +170,11 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
+   "raw": 10,
    "kept": 0,
    "drop": {
+    "무관": 8,
+    "비음악": 2,
     "만료": 0,
     "오래됨": 0
    }
@@ -191,10 +199,12 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
+   "raw": 36,
    "kept": 0,
    "drop": {
-    "만료": 0,
+    "무관": 31,
+    "비음악": 4,
+    "만료": 1,
     "오래됨": 0
    }
   },
@@ -372,9 +382,9 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 6,
+   "raw": 5,
    "kept": 6,
-   "carried": 2,
+   "carried": 3,
    "drop": {
     "무관": 1,
     "비음악": 1,
@@ -455,10 +465,10 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
+   "raw": 4,
    "kept": 0,
    "drop": {
-    "만료": 0,
+    "만료": 4,
     "오래됨": 0
    }
   },
@@ -585,9 +595,13 @@
    "name": "고양문화재단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 0,
    "kept": 0,
-   "error": "TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.artgy.or.kr/CU/CU0101M.aspx\", waiting unti"
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_gfac",
@@ -715,9 +729,14 @@
    "name": "연세대학교",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 2,
    "kept": 3,
-   "error": "ReadTimeout: HTTPSConnectionPool(host='music.yonsei.ac.kr', port=443): Read timed out. (read timeout=20)"
+   "carried": 2,
+   "drop": {
+    "만료": 1,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_i_kartsackr",
@@ -806,9 +825,13 @@
    "name": "순천시립합창단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 0,
    "kept": 0,
-   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.suncheon.go.kr', port=443): Max retries exceeded with url: /scart/community/0001;jsessioni"
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_i_andonggokr",
@@ -830,9 +853,13 @@
    "name": "경기문화재단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 0,
    "kept": 0,
-   "error": "HTTPError: 403 Forbidden"
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_i_hcforkr",
@@ -892,9 +919,13 @@
    "name": "동해문화관광재단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 0,
    "kept": 0,
-   "error": "HTTPError: 403 Forbidden"
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_i_cfscorkr",
@@ -1210,9 +1241,11 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
-   "kept": 7,
+   "raw": 11,
+   "kept": 9,
+   "declared": 11,
    "drop": {
+    "비음악": 2,
     "만료": 0,
     "오래됨": 0
    }
@@ -1341,16 +1374,16 @@
    ],
    "channel": "g_i_musicyonseiackr",
    "layer": "B",
+   "qualification": "대한민국 국적의 만18세~30세(공고일 기준) 기악 및 성악 전공자",
    "email": "ilshin.scholarship@gmail.com",
+   "deadline": "2026-11-27",
+   "deadlineFrom": "raw",
    "addr": "서울특별시 서대문구 연세로 50",
    "lat": 37.567836,
    "lng": 126.9393747,
    "addrFrom": "geo",
    "firstSeen": "2026-10-30",
    "isNew": false,
-   "qualification": "대한민국 국적의 만18세~30세(공고일 기준) 기악 및 성악 전공자",
-   "deadline": "2026-11-27",
-   "deadlineFrom": "raw",
    "extVer": 122
   },
   {
@@ -1589,18 +1622,18 @@
    ],
    "channel": "edu_seoul",
    "layer": "C",
-   "contact": "02-941-1673",
    "email": "hebronok@sen.go.kr",
+   "addr": "서울특별시 성북구 장위로4길 701층",
+   "orgAffil": "서울시교육청",
+   "firstSeen": "2026-10-29",
+   "isNew": false,
+   "contact": "02-941-1673",
    "pay": "시간당 25,000원",
    "workPeriod": "2026.11.23 ~ 2026.11.25",
    "workHours": "8:30 ~ 16:30",
    "personnel": "1명",
-   "addr": "서울특별시 성북구 장위로4길 701층",
    "deadline": "2026-11-01",
    "deadlineFrom": "raw",
-   "orgAffil": "서울시교육청",
-   "firstSeen": "2026-10-29",
-   "isNew": false,
    "extVer": 122
   },
   {
@@ -1932,10 +1965,13 @@
    "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
+   "personnel": null,
+   "subject": null,
    "officialUrl": "https://prad.knu.ac.kr/hmpg/main/main.knu",
    "channel": "hibrain",
    "layer": "B",
    "musicUnverified": true,
+   "contact": "053-950-2043",
    "email": "mina812@knu.ac.kr",
    "addr": "대구광역시 북구 대학로 80",
    "lat": 35.8905697,
@@ -1943,7 +1979,6 @@
    "addrFrom": "geo",
    "firstSeen": "2026-10-25",
    "isNew": false,
-   "contact": "053-950-2043",
    "extVer": 122
   },
   {
@@ -1973,9 +2008,9 @@
    "musicUnverified": true,
    "addr": "서울특별시 성동구 왕십리로 222",
    "addrFrom": "postal",
+   "deadlineNote": "상시",
    "firstSeen": "2026-10-25",
    "isNew": false,
-   "deadlineNote": "상시",
    "extVer": 122
   },
   {
@@ -2210,14 +2245,14 @@
    "deadlineFrom": "cjob-남은기간",
    "denomination": "합동총회",
    "documents": "이력서,자기소개서",
+   "personnel": "반주자",
+   "pay": "협의",
    "addr": "경기도 부천시 고강로",
    "lat": 37.5303937,
    "lng": 126.8165665,
    "addrFrom": "geo",
    "firstSeen": "2026-10-14",
    "isNew": false,
-   "personnel": "반주자",
-   "pay": "협의",
    "extVer": 122
   },
   {
@@ -2499,13 +2534,13 @@
    "deadlineFrom": "cjob-남은기간",
    "denomination": "예장 합동",
    "documents": "이력서",
-   "addr": "전북 김제시 황산면 남산로 334",
-   "regionBoard": "기타",
-   "firstSeen": "2026-08-08",
-   "isNew": false,
    "personnel": "반주자",
    "pay": "20만원",
+   "addr": "전북 김제시 황산면 남산로 334",
+   "regionBoard": "기타",
    "deadlineNote": "상시",
+   "firstSeen": "2026-08-08",
+   "isNew": false,
    "extVer": 122
   },
   {
@@ -2535,11 +2570,11 @@
    "addr": "경기 의왕시 경수대로 262 (오전동, 의왕서해그랑블(블루스퀘어))",
    "denomination": "순복음",
    "documents": "간단한 이력서",
-   "firstSeen": "2026-08-08",
-   "isNew": false,
    "personnel": "반주자",
    "pay": "협의",
    "deadlineNote": "상시",
+   "firstSeen": "2026-08-08",
+   "isNew": false,
    "extVer": 122
   }
  ]
