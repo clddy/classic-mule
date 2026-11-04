@@ -1,12 +1,4 @@
 {
- "https://prad.knu.ac.kr/hmpg/main/main.knu": {
-  "firstSeen": "2026-10-25",
-  "tries": 11,
-  "reported": true,
-  "lastTry": "2026-11-04",
-  "title": "[경북대학교] 제1차 전임교원(Slow Track) 초빙",
-  "org": "경북대학교"
- },
  "https://www.jcf.or.kr/": {
   "firstSeen": "2026-09-23",
   "tries": 43,

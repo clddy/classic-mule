@@ -1,8 +1,8 @@
 {
  "date": "2026-11-04",
  "total": 75,
- "covered": 4,
- "gapCount": 71,
+ "covered": 5,
+ "gapCount": 70,
  "gaps": [
   {
    "name": "서울시립교향악단",
@@ -21,11 +21,6 @@
   },
   {
    "name": "경기필하모닉",
-   "type": "교향악단",
-   "region": "경기"
-  },
-  {
-   "name": "부천필하모닉",
    "type": "교향악단",
    "region": "경기"
   },
