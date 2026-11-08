@@ -1,5 +1,5 @@
 window.YEYAK_ROOMS = {
- "fetched": "2026-11-08",
+ "fetched": "2026-11-09",
  "items": [
   {
    "name": "도봉구 창4동 주민센터 공연연습실(지하)",

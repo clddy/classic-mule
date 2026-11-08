@@ -1,5 +1,5 @@
 {
- "collectedAt": "2026-11-09 08:26",
+ "collectedAt": "2026-11-09 08:35",
  "heldNoOrigin": 0,
  "sourceCount": 91,
  "okCount": 91,
@@ -380,9 +380,9 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 7,
+   "raw": 6,
    "kept": 7,
-   "carried": 1,
+   "carried": 2,
    "drop": {
     "비음악": 1,
     "만료": 0,
@@ -1338,18 +1338,18 @@
    ],
    "channel": "edu_seoul",
    "layer": "C",
-   "contact": "010-5646-9570",
    "email": "webmaster@sen.go.kr",
-   "pay": "시급",
-   "workPeriod": "2026.11.10 ~ 2026.11.10",
-   "personnel": "1명",
    "addr": "서울특별시 양천구 안양천로 1009(목동)",
-   "duty": "3학년 음악교과전담 시간강사",
-   "deadline": "2026-11-09",
-   "deadlineFrom": "raw",
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-11-09",
    "isNew": true,
+   "contact": "010-5646-9570",
+   "pay": "시급",
+   "workPeriod": "2026.11.10 ~ 2026.11.10",
+   "personnel": "1명",
+   "duty": "3학년 음악교과전담 시간강사",
+   "deadline": "2026-11-09",
+   "deadlineFrom": "raw",
    "extVer": 123
   },
   {
@@ -1375,8 +1375,8 @@
    ],
    "channel": "cjob",
    "layer": "C",
-   "addr": "전남광주통합특별시 목포시 호남동 544 늘소망교회",
    "deadlineFrom": "cjob-남은기간",
+   "addr": "전남광주통합특별시 목포시 호남동 544 늘소망교회",
    "denomination": "대한예수교장로회",
    "personnel": "반주자",
    "pay": "월 50만원",
@@ -1400,7 +1400,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
@@ -1439,7 +1439,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
@@ -1477,7 +1477,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
@@ -1810,7 +1810,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "성악",
+   "inst": "전체",
    "instDetails": [
     "성악"
    ],
@@ -1847,8 +1847,6 @@
    "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
-   "personnel": null,
-   "subject": null,
    "deadlineFrom": "hibrain",
    "officialUrl": "https://www.jinhakpro.com/recruit/48926",
    "channel": "hibrain",
@@ -1919,8 +1917,8 @@
    ],
    "channel": "cjob",
    "layer": "C",
-   "addr": "대구 중구 달구벌대로405길 58 (동산동, 대구제이교회)",
    "deadlineFrom": "cjob-남은기간",
+   "addr": "대구 중구 달구벌대로405길 58 (동산동, 대구제이교회)",
    "personnel": "반주자",
    "bodyExcerpt": "이력서 1부 ● 제출방법(이메일 접수)",
    "pay": "면접시 협의",
@@ -2165,7 +2163,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악",
     "피아노",
@@ -2271,7 +2269,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "지휘",
+   "inst": "전체",
    "instDetails": [
     "지휘"
    ],
@@ -2849,8 +2847,8 @@
    ],
    "channel": "cjob",
    "layer": "C",
-   "addr": "경기 의왕시 경수대로 262 (오전동, 의왕서해그랑블(블루스퀘어))",
    "deadlineFrom": "cjob-남은기간",
+   "addr": "경기 의왕시 경수대로 262 (오전동, 의왕서해그랑블(블루스퀘어))",
    "denomination": "순복음",
    "documents": "간단한 이력서",
    "personnel": "반주자",

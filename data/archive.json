@@ -42004,7 +42004,7 @@
    "deadlineFrom": "raw",
    "kind": "기타",
    "tier": "미분류",
-   "inst": "지휘",
+   "inst": "전체",
    "instDetails": [
     "지휘"
    ],
@@ -42971,7 +42971,7 @@
    "deadlineFrom": "hibrain",
    "kind": "교수",
    "tier": "교육 — 대학",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악",
     "피아노",
@@ -43540,7 +43540,7 @@
    "deadlineFrom": "hibrain",
    "kind": "교수",
    "tier": "교육 — 대학",
-   "inst": "성악",
+   "inst": "전체",
    "instDetails": [
     "성악"
    ],
@@ -43830,7 +43830,7 @@
    "deadlineFrom": "raw",
    "kind": "객원·대체",
    "tier": "교육 — 학교",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
@@ -43868,7 +43868,7 @@
    "deadlineFrom": "raw",
    "kind": "교원",
    "tier": "교육 — 학교",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
@@ -43905,7 +43905,7 @@
    "deadlineFrom": "raw",
    "kind": "교원",
    "tier": "교육 — 학교",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
