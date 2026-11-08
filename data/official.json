@@ -1,8 +1,8 @@
 {
- "collectedAt": "2026-11-08 02:46",
+ "collectedAt": "2026-11-08 18:25",
  "heldNoOrigin": 0,
  "sourceCount": 91,
- "okCount": 86,
+ "okCount": 91,
  "instTotal": 75,
  "sources": [
   {
@@ -66,9 +66,15 @@
    "name": "기독정보넷(교회 반주)",
    "layer": "C",
    "poll": "daily",
-   "ok": false,
-   "kept": 5,
-   "error": "HTTPError: 403 Forbidden"
+   "ok": true,
+   "raw": 25,
+   "kept": 7,
+   "carried": 1,
+   "drop": {
+    "무관": 3,
+    "만료": 16,
+    "오래됨": 0
+   }
   },
   {
    "id": "gne",
@@ -162,9 +168,11 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
+   "raw": 10,
    "kept": 0,
    "drop": {
+    "비음악": 3,
+    "무관": 7,
     "만료": 0,
     "오래됨": 0
    }
@@ -189,10 +197,12 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
+   "raw": 24,
    "kept": 0,
    "drop": {
-    "만료": 0,
+    "무관": 21,
+    "비음악": 2,
+    "만료": 1,
     "오래됨": 0
    }
   },
@@ -372,8 +382,9 @@
    "ok": true,
    "raw": 7,
    "kept": 7,
-   "carried": 1,
+   "carried": 2,
    "drop": {
+    "무관": 1,
     "비음악": 1,
     "만료": 0,
     "오래됨": 0
@@ -451,10 +462,10 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
+   "raw": 4,
    "kept": 0,
    "drop": {
-    "만료": 0,
+    "만료": 4,
     "오래됨": 0
    }
   },
@@ -581,9 +592,13 @@
    "name": "고양문화재단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 0,
    "kept": 0,
-   "error": "TimeoutError: Page.goto: Timeout 30000ms exceeded.\nCall log:\n  - navigating to \"https://www.artgy.or.kr/CU/CU0101M.aspx\", waiting unti"
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_gfac",
@@ -807,9 +822,13 @@
    "name": "순천시립합창단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 0,
    "kept": 0,
-   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.suncheon.go.kr', port=443): Max retries exceeded with url: /scart/community/0001;jsessioni"
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_i_andonggokr",
@@ -831,9 +850,13 @@
    "name": "경기문화재단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 0,
    "kept": 0,
-   "error": "HTTPError: 403 Forbidden"
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_i_hcforkr",
@@ -893,9 +916,13 @@
    "name": "동해문화관광재단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 0,
    "kept": 0,
-   "error": "HTTPError: 403 Forbidden"
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_i_cfscorkr",
@@ -1210,9 +1237,12 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
-   "kept": 10,
+   "raw": 13,
+   "kept": 12,
+   "carried": 1,
+   "declared": 13,
    "drop": {
+    "비음악": 2,
     "만료": 0,
     "오래됨": 0
    }
@@ -1283,6 +1313,38 @@
    "addrFrom": "postal",
    "firstSeen": "2026-10-30",
    "isNew": false,
+   "extVer": 122
+  },
+  {
+   "id": "b2b89edfc3d79232",
+   "org": "늘소망교회",
+   "region": "광주·전남",
+   "source": "cjob.co.kr",
+   "title": "[늘소망교회] 교회 피아노 반주자 구합니다",
+   "nonMusic": null,
+   "url": "https://www.cjob.co.kr/bbs/board.php?bo_table=offerIG&wr_id=7821&c_jikjong=2&page=1",
+   "date": "2026-11-08",
+   "deadline": "2027-01-31",
+   "kind": "반주",
+   "tier": "연주",
+   "obri": true,
+   "certReq": "무관",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "ageGroup": "성인",
+   "inst": "건반",
+   "instDetails": [
+    "피아노"
+   ],
+   "channel": "cjob",
+   "layer": "C",
+   "addr": "전남광주통합특별시 목포시 호남동 544 늘소망교회",
+   "deadlineFrom": "cjob-남은기간",
+   "denomination": "대한예수교장로회",
+   "personnel": "반주자",
+   "pay": "월 50만원",
+   "firstSeen": "2026-11-08",
+   "isNew": true,
    "extVer": 122
   },
   {
@@ -1641,19 +1703,19 @@
    ],
    "channel": "edu_seoul",
    "layer": "C",
-   "contact": "02-941-1673",
    "email": "hebronok@sen.go.kr",
+   "addr": "서울특별시 성북구 장위로4길 70(장위동)",
+   "orgAffil": "서울시교육청",
+   "firstSeen": "2026-11-04",
+   "isNew": false,
+   "contact": "02-941-1673",
    "pay": "시간당 25,000원",
    "workPeriod": "2026.11.23 ~ 2026.11.25",
    "workHours": "8:30 ~ 16:30",
    "personnel": "1명",
-   "addr": "서울특별시 성북구 장위로4길 70(장위동)",
    "duty": "음악",
    "deadline": "2026-11-08",
    "deadlineFrom": "raw",
-   "orgAffil": "서울시교육청",
-   "firstSeen": "2026-11-04",
-   "isNew": false,
    "extVer": 122
   },
   {
@@ -1756,13 +1818,13 @@
    "channel": "hibrain",
    "layer": "B",
    "subjectFrom": "attach",
+   "contact": "02-944-5503",
    "addr": "서울특별시 강북구 솔매로49길 60",
    "addrFrom": "postal",
-   "firstSeen": "2026-11-04",
-   "isNew": false,
-   "contact": "02-944-5503",
    "workPeriod": "27년 3월 1일~28년 2월 28일(1년)",
    "bodyExcerpt": "임용기간: 1년 · 우리 대학은 \"채용절차의 공정화에 관한 법률\" 제11조에 따라 채용서류 반환 절차를 준수합니다",
+   "firstSeen": "2026-11-04",
+   "isNew": false,
    "extVer": 122
   },
   {
@@ -1789,14 +1851,14 @@
    "channel": "hibrain",
    "layer": "B",
    "musicUnverified": true,
+   "contact": "02-2123-2085",
+   "bodyExcerpt": "연세대학교 2027-1학기 서울/국제캠퍼스 강사 공개채용 공고 - 연세대학교 | 진학프로 진학프로 석 · 접수기간 내 지원서 작성 및 제출서류 첨부하여 접수 완료된 지원자에 한해 평가가 진행되며, 접수기간 종료 후 지원 불가함. · 지원자격 및 임용기간: 붙임 [강사 공개채용 요강] 참고 · 특히, 선발직위가 학문후속세대강사인 경우, 자격 요건에 해당되는지 확인 후 지원하시기 바랍니다",
    "addr": "서울특별시 서대문구 연세로 50",
    "lat": 37.567836,
    "lng": 126.9393747,
    "addrFrom": "geo",
    "firstSeen": "2026-11-04",
    "isNew": false,
-   "contact": "02-2123-2085",
-   "bodyExcerpt": "연세대학교 2027-1학기 서울/국제캠퍼스 강사 공개채용 공고 - 연세대학교 | 진학프로 진학프로 석 · 접수기간 내 지원서 작성 및 제출서류 첨부하여 접수 완료된 지원자에 한해 평가가 진행되며, 접수기간 종료 후 지원 불가함. · 지원자격 및 임용기간: 붙임 [강사 공개채용 요강] 참고 · 특히, 선발직위가 학문후속세대강사인 경우, 자격 요건에 해당되는지 확인 후 지원하시기 바랍니다",
    "extVer": 122
   },
   {
@@ -1856,11 +1918,11 @@
    "layer": "C",
    "deadlineFrom": "cjob-남은기간",
    "addr": "대구 중구 달구벌대로405길 58 (동산동, 대구제이교회)",
-   "firstSeen": "2026-11-03",
-   "isNew": false,
    "personnel": "반주자",
    "bodyExcerpt": "이력서 1부 ● 제출방법(이메일 접수)",
    "pay": "면접시 협의",
+   "firstSeen": "2026-11-03",
+   "isNew": false,
    "extVer": 122
   },
   {
@@ -2111,13 +2173,13 @@
    "channel": "hibrain",
    "layer": "B",
    "subjectFrom": "attach",
+   "duty": "강의, 연구 및 기타 대학에서 요구하는 업무수행",
    "addr": "서울특별시 노원구 화랑로 815",
    "lat": 37.642012,
    "lng": 127.1056211,
    "addrFrom": "geo",
    "firstSeen": "2026-11-02",
    "isNew": false,
-   "duty": "강의, 연구 및 기타 대학에서 요구하는 업무수행",
    "extVer": 122
   },
   {
@@ -2342,11 +2404,14 @@
    "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
+   "personnel": null,
+   "subject": null,
    "deadlineFrom": "hibrain",
    "officialUrl": "https://prad.knu.ac.kr/hmpg/main/main.knu",
    "channel": "hibrain",
    "layer": "B",
    "musicUnverified": true,
+   "contact": "053-950-2043",
    "email": "mina812@knu.ac.kr",
    "addr": "대구광역시 북구 대학로 80",
    "lat": 35.8905697,
@@ -2354,7 +2419,6 @@
    "addrFrom": "geo",
    "firstSeen": "2026-10-25",
    "isNew": false,
-   "contact": "053-950-2043",
    "extVer": 122
   },
   {
@@ -2523,14 +2587,14 @@
    "deadlineFrom": "cjob-남은기간",
    "denomination": "합동총회",
    "documents": "이력서,자기소개서",
+   "personnel": "반주자",
+   "pay": "협의",
    "addr": "경기도 부천시 고강로",
    "lat": 37.5303937,
    "lng": 126.8165665,
    "addrFrom": "geo",
    "firstSeen": "2026-10-14",
    "isNew": false,
-   "personnel": "반주자",
-   "pay": "협의",
    "extVer": 122
   },
   {
@@ -2749,13 +2813,13 @@
    "deadlineFrom": "cjob-남은기간",
    "denomination": "예장 합동",
    "documents": "이력서",
-   "addr": "전북 김제시 황산면 남산로 334",
-   "regionBoard": "기타",
-   "firstSeen": "2026-08-08",
-   "isNew": false,
    "personnel": "반주자",
    "pay": "20만원",
+   "addr": "전북 김제시 황산면 남산로 334",
+   "regionBoard": "기타",
    "deadlineNote": "상시",
+   "firstSeen": "2026-08-08",
+   "isNew": false,
    "extVer": 122
   },
   {
@@ -2785,11 +2849,11 @@
    "addr": "경기 의왕시 경수대로 262 (오전동, 의왕서해그랑블(블루스퀘어))",
    "denomination": "순복음",
    "documents": "간단한 이력서",
-   "firstSeen": "2026-08-08",
-   "isNew": false,
    "personnel": "반주자",
    "pay": "협의",
    "deadlineNote": "상시",
+   "firstSeen": "2026-08-08",
+   "isNew": false,
    "extVer": 122
   }
  ]

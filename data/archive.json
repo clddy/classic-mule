@@ -1,6 +1,6 @@
 {
  "updatedAt": "2026-11-08",
- "count": 1603,
+ "count": 1604,
  "items": {
   "f7b1c263744b9ece": {
    "id": "f7b1c263744b9ece",
@@ -43924,6 +43924,36 @@
    "firstSeen": "2026-11-06",
    "lastSeen": "2026-11-08",
    "days": 3
+  },
+  "b2b89edfc3d79232": {
+   "id": "b2b89edfc3d79232",
+   "org": "늘소망교회",
+   "region": "광주·전남",
+   "source": "cjob.co.kr",
+   "channel": "cjob",
+   "layer": "C",
+   "title": "[늘소망교회] 교회 피아노 반주자 구합니다",
+   "url": "https://www.cjob.co.kr/bbs/board.php?bo_table=offerIG&wr_id=7821&c_jikjong=2&page=1",
+   "date": "2026-11-08",
+   "deadline": "2027-01-31",
+   "deadlineFrom": "cjob-남은기간",
+   "kind": "반주",
+   "tier": "연주",
+   "inst": "건반",
+   "instDetails": [
+    "피아노"
+   ],
+   "ageGroup": "성인",
+   "obri": true,
+   "certReq": "무관",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "personnel": "반주자",
+   "pay": "월 50만원",
+   "addr": "전남광주통합특별시 목포시 호남동 544 늘소망교회",
+   "firstSeen": "2026-11-08",
+   "lastSeen": "2026-11-08",
+   "days": 1
   }
  }
 }
