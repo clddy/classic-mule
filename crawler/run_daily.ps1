@@ -108,8 +108,12 @@ if ((Get-Item C:\ohai\podium\data\official.json).LastWriteTime -lt (Get-Date).Ad
 # crawler/ 도 함께 커밋한다 (2026-08-02): 크롤러 코드 수정이 자동 커밋 경로에 없어서
 # attach.py OCR 수정이 7일간 로컬에만 있었고, 그동안 Actions 백업 크롤(PC 꺼진 날)은
 # 커밋된 낡은 추출기로 돌았다. 비밀은 .gitignore(crawler/.env·쿠키·캐시)가 걸러준다.
-git add data/ p/ crawler/ jobs.html index.html sitemap.xml robots.txt
-$changed = git status --porcelain data/ p/ crawler/ jobs.html index.html sitemap.xml robots.txt
+#
+# 사이트맵은 'sitemap*.xml' 로 넣는다 (2026-11-09): URL 이 조각 크기를 넘자 staticgen 이
+# sitemap.xml 을 색인으로 바꾸고 sitemap-1/2.xml 을 따로 썼는데, 여기는 sitemap.xml 만 넣어서
+# 배포된 색인이 404 조각 둘을 가리켰다(11-06~09). -A 라야 줄어든 조각의 삭제도 커밋된다.
+git add -A -- data/ p/ crawler/ jobs.html index.html "sitemap*.xml" robots.txt
+$changed = git status --porcelain -- data/ p/ crawler/ jobs.html index.html "sitemap*.xml" robots.txt
 if ($changed) {
     $today = Get-Date -Format 'yyyy-MM-dd'
     git -c user.name="ohmjin" -c user.email="ohmjin3141@naver.com" commit -m "auto: crawl $today"

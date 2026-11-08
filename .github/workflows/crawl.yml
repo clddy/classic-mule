@@ -84,7 +84,8 @@ jobs:
         run: |
           git config user.name  "podium-bot"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add data p jobs.html index.html sitemap.xml robots.txt
+          # sitemap*.xml — URL 이 많아지면 색인 + 조각(sitemap-N.xml)으로 나뉜다 (2026-11-09)
+          git add -A -- data p jobs.html index.html 'sitemap*.xml' robots.txt
           if git diff --cached --quiet; then
             echo "변경 없음 — 커밋 생략"
           else

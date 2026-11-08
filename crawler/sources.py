@@ -653,18 +653,25 @@ GOE_VIEW = "https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancInfoView.do?mi=105
 
 def parse_goe(s):
     items, seen = [], set()
-    for ocpt in ("", "A", "B"):        # 전체·기간제/사립교원·교육공무직(방과후 포함)
-        for page in (1, 2):
+    # 직종 코드를 하나씩 끝 페이지까지 돈다. 2026-11-06 무렵 사이트가 빈 코드('전체')를
+    # 기본값 A(기간제/사립교원)로 바꿔, '' 로 받던 전체 목록이 A 264건으로 줄었다 — 방과후
+    # 관현악 강사(B)·중등 시간강사(C)가 통째로 빠져 원본 0건이 사흘 갔다. A~F 합계가 마감
+    # 제외 전체(672건)와 맞는다(2026-11-09 실측). 마감 제외 목록이라 끝까지 돌아도 20회 안쪽.
+    for ocpt in ("A", "B", "C", "D", "E", "F"):
+        for page in range(1, 11):
             try:
                 r = s.post("https://www.goe.go.kr/recruit/ad/func/pb/hnfpPbancList.do?mi=10502",
                            timeout=20, verify=False,
                            data={"currPage": page, "pageIndex": 50, "mi": "10502",
                                  "srchEcptDl": "Y", "srchOcptCd": ocpt})
                 if r.status_code != 200:
-                    continue
+                    break
             except Exception:
-                continue
-            for a in _soup(r).select('a[href*="goView"]'):
+                break
+            rows = _soup(r).select('a[href*="goView"]')
+            if not rows:
+                break
+            for a in rows:
                 m = re.search(r"goView\('(\d+)'\)", a.get("href", ""))
                 tit_el = a.select_one("p.cont_tit")
                 if not m or not tit_el:

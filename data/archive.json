@@ -1,6 +1,6 @@
 {
  "updatedAt": "2026-11-09",
- "count": 1604,
+ "count": 1605,
  "items": {
   "f7b1c263744b9ece": {
    "id": "f7b1c263744b9ece",
@@ -39501,13 +39501,13 @@
    "instDetails": [
     "타악",
     "피아노",
-    "현악",
-    "성악",
     "소프라노",
     "메조소프라노",
     "알토",
     "테너",
-    "바리톤"
+    "바리톤",
+    "현악",
+    "성악"
    ],
    "ageGroup": "성인",
    "obri": false,
@@ -42004,7 +42004,7 @@
    "deadlineFrom": "raw",
    "kind": "기타",
    "tier": "미분류",
-   "inst": "전체",
+   "inst": "지휘",
    "instDetails": [
     "지휘"
    ],
@@ -42971,7 +42971,7 @@
    "deadlineFrom": "hibrain",
    "kind": "교수",
    "tier": "교육 — 대학",
-   "inst": "전체",
+   "inst": "목관",
    "instDetails": [
     "관악",
     "피아노",
@@ -43117,7 +43117,8 @@
    "email": "daminb@korea.kr",
    "firstSeen": "2026-11-03",
    "lastSeen": "2026-11-09",
-   "days": 7
+   "days": 7,
+   "duty": "베이스 (상임단원)"
   },
   "7d8f623d91d648c1": {
    "id": "7d8f623d91d648c1",
@@ -43522,7 +43523,8 @@
    "addrFrom": "geo",
    "firstSeen": "2026-11-04",
    "lastSeen": "2026-11-09",
-   "days": 6
+   "days": 6,
+   "duty": "베이스 (상임단원)"
   },
   "5a74b1891d88bad1": {
    "id": "5a74b1891d88bad1",
@@ -43538,7 +43540,7 @@
    "deadlineFrom": "hibrain",
    "kind": "교수",
    "tier": "교육 — 대학",
-   "inst": "전체",
+   "inst": "성악",
    "instDetails": [
     "성악"
    ],
@@ -43828,7 +43830,7 @@
    "deadlineFrom": "raw",
    "kind": "객원·대체",
    "tier": "교육 — 학교",
-   "inst": "전체",
+   "inst": "목관",
    "instDetails": [
     "관악"
    ],
@@ -43866,7 +43868,7 @@
    "deadlineFrom": "raw",
    "kind": "교원",
    "tier": "교육 — 학교",
-   "inst": "전체",
+   "inst": "목관",
    "instDetails": [
     "관악"
    ],
@@ -43903,7 +43905,7 @@
    "deadlineFrom": "raw",
    "kind": "교원",
    "tier": "교육 — 학교",
-   "inst": "전체",
+   "inst": "목관",
    "instDetails": [
     "관악"
    ],
@@ -43932,7 +43934,7 @@
    "source": "cjob.co.kr",
    "channel": "cjob",
    "layer": "C",
-   "title": "[늘소망교회] 피아노 반주자 구합니다",
+   "title": "[늘소망교회] 교회 피아노 반주자 구합니다",
    "url": "https://www.cjob.co.kr/bbs/board.php?bo_table=offerIG&wr_id=7821&c_jikjong=2&page=1",
    "date": "2026-11-08",
    "deadline": "2027-01-31",
@@ -43954,6 +43956,41 @@
    "firstSeen": "2026-11-08",
    "lastSeen": "2026-11-09",
    "days": 2
+  },
+  "89471f0415ad089e": {
+   "id": "89471f0415ad089e",
+   "org": "서울경인초등학교",
+   "region": "서울",
+   "source": "work.sen.go.kr",
+   "channel": "edu_seoul",
+   "layer": "C",
+   "title": "[서울경인초] 11/10(화) 3학년 음악교과전담 시간강사님을 모십니다.",
+   "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=113889",
+   "date": "2026-11-09",
+   "deadline": "2026-11-09",
+   "deadlineFrom": "raw",
+   "kind": "교원",
+   "tier": "교육 — 학교",
+   "inst": "목관",
+   "instDetails": [
+    "관악"
+   ],
+   "ageGroup": "성인",
+   "obri": false,
+   "certReq": "무관",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "personnel": "1명",
+   "pay": "시급",
+   "workPeriod": "2026.11.10 ~ 2026.11.10",
+   "duty": "3학년 음악교과전담 시간강사",
+   "contact": "010-5646-9570",
+   "email": "webmaster@sen.go.kr",
+   "addr": "서울특별시 양천구 안양천로 1009(목동)",
+   "orgAffil": "서울시교육청",
+   "firstSeen": "2026-11-09",
+   "lastSeen": "2026-11-09",
+   "days": 1
   }
  }
 }

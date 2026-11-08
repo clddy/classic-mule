@@ -307,7 +307,7 @@ def find_attachments(soup, base_url):
                     cands.append((full, el.get_text(" ", strip=True)))
     return cands[:4]
 
-EXT_VER = 122         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
+EXT_VER = 123         # 마감일 추출기 버전 — 올리면 이전 수집의 마감일·전공 승계가 무효화됨
                      # v32(2026-08-02): 모집분야 구획 악기 추출(insts_from_recruit_text) + 원문 보관층
                      # 24: work.sen 등록일(게시일) 추출 추가 — date=None이던 승계분을 다시 뽑게
                      # 25: body_text 도입 — 본문을 <header>에 넣는 사이트(대전교육청)의 마감일을
@@ -586,6 +586,11 @@ def _duty_from_seg(seg):
     return " · ".join(parts[:2]) if parts else None
 
 
+_SUB_DUTY = re.compile(
+    r"^\s*[○◦●•▪■□❍\-]\s*(?:모집\s*)?(?:파트|분야|부문|악기|성부)\s*[:：]\s*"
+    r"([^○◦●•▪■□❍※:：]{2,40}?)\s*(?=[○◦●•▪■□❍※]|$)")
+
+
 def _find_duty(text):
     """담당업무 — 열거형('담당업무 ○ 활동 ○ 업무 …') 전용. 콜론 표기는 extract_fields 가 본다.
 
@@ -607,7 +612,16 @@ def _find_duty(text):
         #  산문을 물어 와 양주 카드를 망쳤다. 라벨 종류마다 첫 매치만 본다.)
         if text[m.end():m.end() + 1] in (")", "）"):
             continue
-        v = _duty_from_seg(text[m.end():m.end() + 260])
+        seg = text[m.end():m.end() + 260]
+        # 라벨 바로 밑이 하위 라벨 목록인 꼴 — '1. 모집분야 ○ 모집파트 : 베이스 ○ 모집인원 : 1명
+        # ○ 단원구분 : 상임단원'. _duty_from_seg 는 '라벨: 값' 조각을 표 부스러기로 보고 버려서
+        # 아무것도 안 남았다 (인천시립합창단, 2026-11-09). 하위 라벨 값을 직접 읽는다.
+        sm = _SUB_DUTY.match(seg)
+        if sm:
+            v = sm.group(1).strip(" ,·")
+            cls = re.search(r"단원\s*구분\s*[:：]\s*([가-힣]{2,6}단원)", seg[:200])
+            return f"{v} ({cls.group(1)})" if cls else v
+        v = _duty_from_seg(seg)
         # 표 칸이 '공고문참조'만 말하면 값이 아니다 — 여기서 멈추면 다음 라벨('모집 분야')을
         # 아예 안 본다 (신탄진중, 2026-10-17). 그런 값은 건너뛰고 다음 라벨로 넘어간다.
         if v and re.match(r"^\s*(?:공고문|붙임|첨부|상세\s*요강|하기|아래)\s*(?:파일)?\s*(?:참조|참고)?\s*$", v):

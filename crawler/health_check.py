@@ -637,6 +637,10 @@ _FILL_FIELDS = ("deadline", "pay", "workPeriod", "workHours", "personnel", "cont
 # 조사 뒤에 공백을 요구하는 것이 핵심이다. 안 그러면 '급여: 이백만원'의 '이'를 조사로 읽어
 # 멀쩡한 값을 산문으로 몰아낸다.
 _PROSE_TAIL = re.compile(r"^(?:(?:과|와|이|가|은|는|을|를|에|의|도|만)\s|별[가-힣])")
+# 제출서류 안내 문장 — '근무기간 및 학기별 시수가 표시된 증명서'(삼육대, 2026-11-09).
+# 맨 '및'은 못 거른다: '모집분야 및 인원 : 첼로 1명'·'접수기간 및 방법' 은 진짜 라벨이다
+# (그렇게 걸었더니 A/B 에서 43건의 진짜 미추출 신호가 꺼졌다). '…가 표시된/기재된' 까지 본다.
+_DOC_PROSE = re.compile(r"^\s*및\s*[가-힣\s]{1,20}?(?:이|가)\s*(?:표시|기재|명시|포함)된")
 # 칸 이름만 적힌 자리 — 경남교육청은 접수기간이 비어 있어도 '접수기간 시작일 - 종료일'
 # 처럼 칸 이름을 그대로 그린다 (2026-08-22). 칸 이름은 값이 아니다.
 _PH_W = (r"시작일?|종료일?|구\s?분|비\s?고|기간|일자|날짜|미정|활동영역|프로그램명|활동방법"
@@ -684,7 +688,7 @@ def _value_after(t, end):
 def _really_missing(t, pat, field):
     """이 원문에 '뽑을 수 있었는데 안 뽑힌 값'이 정말 있는가."""
     for m in pat.finditer(t):
-        if _PROSE_TAIL.match(t[m.end():m.end() + 8]):
+        if _PROSE_TAIL.match(t[m.end():m.end() + 8]) or _DOC_PROSE.match(t[m.end():m.end() + 40]):
             continue                      # 산문·사이트 메뉴
         win = t[m.end():m.end() + 140]
         if field == "pay" and _PAY_NO_AMOUNT.search(win[:60]) and not _PAY_AMOUNT.search(win[:60]):
