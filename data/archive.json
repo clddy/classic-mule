@@ -42004,7 +42004,7 @@
    "deadlineFrom": "raw",
    "kind": "기타",
    "tier": "미분류",
-   "inst": "전체",
+   "inst": "지휘",
    "instDetails": [
     "지휘"
    ],
@@ -42971,7 +42971,7 @@
    "deadlineFrom": "hibrain",
    "kind": "교수",
    "tier": "교육 — 대학",
-   "inst": "전체",
+   "inst": "목관",
    "instDetails": [
     "관악",
     "피아노",
@@ -43540,7 +43540,7 @@
    "deadlineFrom": "hibrain",
    "kind": "교수",
    "tier": "교육 — 대학",
-   "inst": "전체",
+   "inst": "성악",
    "instDetails": [
     "성악"
    ],
@@ -44219,7 +44219,8 @@
    "addr": "대전 유성구 북유성대로 93",
    "firstSeen": "2026-11-10",
    "lastSeen": "2026-11-11",
-   "days": 2
+   "days": 2,
+   "workPeriod": "2026.11.27 ~ 2026.11.29"
   },
   "04fcc62c6b60d6c8": {
    "id": "04fcc62c6b60d6c8",
@@ -44276,7 +44277,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "personnel": "1명",
-   "workHours": "시간강사(주당 38시간). 지원",
+   "workHours": "시간강사(주당 38시간)",
    "hiringOrg": "인천광역시교육청대상명 : 인천광역시교육청(https://www.ice.go.kr)",
    "contact": "032-460-6541",
    "addr": "인천광역시 남동구 남동대로",
@@ -44399,7 +44400,7 @@
    "deadlineFrom": "raw",
    "kind": "단원",
    "tier": "연주",
-   "inst": "전체",
+   "inst": "성악",
    "instDetails": [
     "소프라노",
     "알토",
@@ -44421,7 +44422,8 @@
    "addrFrom": "geo",
    "firstSeen": "2026-11-10",
    "lastSeen": "2026-11-11",
-   "days": 2
+   "days": 2,
+   "duty": "소프라노 2명 · 알토 3명 · 테너 1명 · 베이스 2명"
   },
   "fd93f2c148264b73": {
    "id": "fd93f2c148264b73",
@@ -44476,7 +44478,7 @@
    "deadlineFrom": "raw",
    "kind": "강사",
    "tier": "교육 — 입시·전공",
-   "inst": "전체",
+   "inst": "목관",
    "instDetails": [
     "관악"
    ],
@@ -44671,7 +44673,7 @@
    "certReq": "무관",
    "degreeReq": "무관",
    "careerReq": "미기재",
-   "personnel": "1명 1명 단원구분 상임단원* 근무형태 상근(주 5일)",
+   "personnel": "1명",
    "workHours": "상근(주 5일)",
    "duty": "현재 군복무/사회복무요원인 경우 채용 예정일 전일까지 전역/소집해제 상태여야 하며",
    "contact": "032-420-2742",
@@ -44707,7 +44709,14 @@
    "careerReq": "미기재",
    "firstSeen": "2026-11-11",
    "lastSeen": "2026-11-11",
-   "days": 1
+   "days": 1,
+   "deadline": "2026-11-16",
+   "deadlineFrom": "raw",
+   "bodyExcerpt": "채용 채용/시험정보 학교인력채용 등록중",
+   "workPeriod": "2026.12.07 ~ 2027.02.05",
+   "duty": "바이올린 강사 1명",
+   "contact": "051-860-0643",
+   "email": "kuiwar@korea.com"
   },
   "a23aae38ea75249c": {
    "id": "a23aae38ea75249c",
@@ -44735,7 +44744,7 @@
    "personnel": "1명",
    "qualification": "내국인(대한민국 국적자) 으로서 각 분야의 전문적인 자격증을 발급 받은 사람으로 유아 지도 경험이 풍부한 사람 · 응시연령 : 제한 없음",
    "pay": "개별협의",
-   "workPeriod": "2027.03.02 ~ 2028.02.29",
+   "workPeriod": "2027.03 ~ 2028.02(12개월)",
    "duty": "영어동화, 영어 체육, 영어 음악, 영어 파닉스 및 스피치",
    "ageLimit": "제한 없음",
    "contact": "02-6009-5483",
