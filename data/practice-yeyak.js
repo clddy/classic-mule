@@ -1,5 +1,5 @@
 window.YEYAK_ROOMS = {
- "fetched": "2026-11-10",
+ "fetched": "2026-11-11",
  "items": [
   {
    "name": "중랑생활문화센터 다목적연습실",
@@ -299,6 +299,21 @@ window.YEYAK_ROOMS = {
    "hours": "2026.01.01 ~ 2026.12.31",
    "phone": "도봉구 / 02-2091-5753",
    "booking_url": "https://yeyak.seoul.go.kr/web/reservation/selectReservView.do?rsv_svc_id=S260121140540554141",
+   "src": "yeyak.seoul.go.kr"
+  },
+  {
+   "name": "&lt;2026 더 임팩트&gt; 지정배 피아노 리사이틀 | 빛을 향하여",
+   "category": "public",
+   "region": "서울",
+   "addr": "석촌호수 아뜰리에",
+   "price": "유료",
+   "selection": "선착순",
+   "apply_method": "인터넷",
+   "apply_timing": "2026.11.12 13:00 ~ 2026.12.03 19:00",
+   "eligibility": "",
+   "hours": "2026.12.03 ~ 2026.12.03",
+   "phone": "송파구 / 02-2147-3246",
+   "booking_url": "https://yeyak.seoul.go.kr/web/reservation/selectReservView.do?rsv_svc_id=S261111132913039315",
    "src": "yeyak.seoul.go.kr"
   },
   {
