@@ -1,5 +1,5 @@
 {
- "collectedAt": "2026-11-11 18:58",
+ "collectedAt": "2026-11-11 19:07",
  "heldNoOrigin": 0,
  "sourceCount": 91,
  "okCount": 91,
@@ -1373,6 +1373,7 @@
    "channel": "g_i_musicyonseiackr",
    "layer": "B",
    "contact": "032-420-2742",
+   "duty": "유틸리티 트롬본",
    "email": "yaeyae99@korea.kr",
    "workHours": "상근(주 5일)",
    "personnel": "1명",
@@ -1465,7 +1466,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "성악",
+   "inst": "전체",
    "instDetails": [
     "소프라노",
     "알토",
@@ -1546,7 +1547,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
@@ -1586,8 +1587,6 @@
    "instDetails": [
     "바이올린"
    ],
-   "personnel": null,
-   "subject": null,
    "channel": "edu_pen",
    "layer": "C",
    "contact": "051-860-0643",
@@ -1694,8 +1693,8 @@
    ],
    "channel": "cjob",
    "layer": "C",
-   "addr": "서울 송파구 오금로 487. 3층 (거여동)",
    "deadlineFrom": "cjob-남은기간",
+   "addr": "서울 송파구 오금로 487. 3층 (거여동)",
    "personnel": "반주자",
    "bodyExcerpt": "피아노 반주자를 구합니다. 사례비",
    "pay": "월 30만원",
@@ -1828,8 +1827,6 @@
    "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
-   "personnel": null,
-   "subject": null,
    "deadlineFrom": "hibrain",
    "officialUrl": "https://total.yongin.ac.kr/profinvite/main.do",
    "channel": "hibrain",
@@ -1867,8 +1864,8 @@
    ],
    "channel": "cjob",
    "layer": "C",
-   "addr": "전남광주통합특별시 목포시 호남동 544 늘소망교회",
    "deadlineFrom": "cjob-남은기간",
+   "addr": "전남광주통합특별시 목포시 호남동 544 늘소망교회",
    "denomination": "대한예수교장로회",
    "personnel": "반주자",
    "pay": "월 50만원",
@@ -2264,7 +2261,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "성악",
+   "inst": "전체",
    "instDetails": [
     "성악"
    ],
@@ -2337,8 +2334,8 @@
    ],
    "channel": "cjob",
    "layer": "C",
-   "addr": "대구 중구 달구벌대로405길 58 (동산동, 대구제이교회)",
    "deadlineFrom": "cjob-남은기간",
+   "addr": "대구 중구 달구벌대로405길 58 (동산동, 대구제이교회)",
    "personnel": "반주자",
    "bodyExcerpt": "이력서 1부 ● 제출방법(이메일 접수)",
    "pay": "면접시 협의",
@@ -2476,7 +2473,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악",
     "피아노",
@@ -2582,7 +2579,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "지휘",
+   "inst": "전체",
    "instDetails": [
     "지휘"
    ],
@@ -3010,7 +3007,7 @@
    "title": "[서울포이초] 유치원 방과후과정 특성화 프로그램 강사 채용 공고 (영어그림책,영어음악,파닉스&)",
    "nonMusic": null,
    "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=110702",
-   "date": "2026-09-18",
+   "date": "2026-09-11",
    "kind": "강사",
    "tier": "교육 — 취미·입문",
    "obri": false,
@@ -3098,8 +3095,8 @@
    ],
    "channel": "cjob",
    "layer": "C",
-   "addr": "경기 의왕시 경수대로 262 (오전동, 의왕서해그랑블(블루스퀘어))",
    "deadlineFrom": "cjob-남은기간",
+   "addr": "경기 의왕시 경수대로 262 (오전동, 의왕서해그랑블(블루스퀘어))",
    "denomination": "순복음",
    "documents": "간단한 이력서",
    "personnel": "반주자",
