@@ -3022,6 +3022,31 @@ def run(force_all=False):
         final = [i for i in final if i not in _relay]
         log(f"연계 중복 접기 {len(_relay)}건 — "
             + "; ".join(f"{i.get('source')}/{i['title'][:20]}" for i in _relay[:4]))
+    # 집계 포털이 원문 대신 기관 **첫 화면**만 준 카드 — 같은 기관 사이트에서 직접 수집한
+    # 같은 제목 카드가 있으면 같은 공고다. 클린아이 '서울시예술단 일반단원 공개채용'이
+    # sejongpac.or.kr/ 만 가리킨 채 마감·내용 없이 세종문화회관 카드 옆에 한 장 더 떴다
+    # (2026-11-11). 위 두 접기는 주소가 같아야 걸려서 이 꼴을 못 봤다.
+    from urllib.parse import urlparse
+
+    def _host(u):
+        return re.sub(r"^www\.", "", urlparse(u or "").netloc.lower())
+
+    def _tkey(s):
+        return re.sub(r"[\s\[\]()「」『』<>·,.\-_'\"‘’“”]", "", s or "")
+    _direct = [(_host(i.get("url")), _tkey(i.get("title"))) for i in final
+               if i.get("source") not in AGGREGATORS]
+    _home_dup = []
+    for i in final:
+        u = i.get("officialUrl") or ""
+        if i.get("source") not in AGGREGATORS or not u or urlparse(u).path.strip("/"):
+            continue
+        h, tk = _host(u), _tkey(i.get("title"))
+        if len(tk) >= 6 and any(dh == h and (tk in dt or dt in tk) and len(dt) >= 6 for dh, dt in _direct):
+            _home_dup.append(i)
+    if _home_dup:
+        final = [i for i in final if i not in _home_dup]
+        log(f"첫 화면 원문 중복 접기 {len(_home_dup)}건 — "
+            + "; ".join(f"{i.get('source')}/{i['title'][:20]}" for i in _home_dup[:4]))
     import staticgen as _sg
     _dead_end = [i for i in final if _sg._apply(i) == (None, None)]
     if _dead_end:
