@@ -1,8 +1,8 @@
 {
- "collectedAt": "2026-11-12 04:40",
+ "collectedAt": "2026-11-12 18:09",
  "heldNoOrigin": 0,
  "sourceCount": 91,
- "okCount": 84,
+ "okCount": 91,
  "instTotal": 75,
  "sources": [
   {
@@ -55,11 +55,11 @@
    "poll": "daily",
    "ok": true,
    "raw": 28,
-   "kept": 0,
+   "kept": 1,
    "drop": {
     "만료": 8,
     "오래됨": 11,
-    "무관": 4,
+    "무관": 3,
     "비음악": 5
    }
   },
@@ -68,9 +68,15 @@
    "name": "기독정보넷(교회 반주)",
    "layer": "C",
    "poll": "daily",
-   "ok": false,
-   "kept": 7,
-   "error": "HTTPError: 403 Forbidden"
+   "ok": true,
+   "raw": 25,
+   "kept": 8,
+   "carried": 1,
+   "drop": {
+    "무관": 2,
+    "만료": 16,
+    "오래됨": 0
+   }
   },
   {
    "id": "gne",
@@ -79,9 +85,9 @@
    "poll": "daily",
    "ok": true,
    "raw": 15,
-   "kept": 0,
+   "kept": 1,
    "drop": {
-    "만료": 14,
+    "만료": 13,
     "무관": 1,
     "오래됨": 0
    }
@@ -119,9 +125,15 @@
    "name": "대구문화예술회관(시향)",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 12,
    "kept": 0,
-   "error": "ConnectTimeout: HTTPSConnectionPool(host='daeguartscenter.or.kr', port=443): Max retries exceeded with url: /index.do?menu_id=00001528 ("
+   "drop": {
+    "무관": 8,
+    "비음악": 4,
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "bscc",
@@ -132,8 +144,8 @@
    "raw": 15,
    "kept": 0,
    "drop": {
-    "비음악": 1,
     "무관": 13,
+    "비음악": 1,
     "만료": 1,
     "오래됨": 0
    }
@@ -159,9 +171,11 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
+   "raw": 10,
    "kept": 0,
    "drop": {
+    "비음악": 3,
+    "무관": 7,
     "만료": 0,
     "오래됨": 0
    }
@@ -186,10 +200,12 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
+   "raw": 25,
    "kept": 0,
    "drop": {
-    "만료": 0,
+    "무관": 22,
+    "비음악": 2,
+    "만료": 1,
     "오래됨": 0
    }
   },
@@ -436,8 +452,9 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
-   "kept": 1,
+   "raw": 3,
+   "kept": 4,
+   "carried": 1,
    "drop": {
     "만료": 0,
     "오래됨": 0
@@ -449,10 +466,10 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
+   "raw": 4,
    "kept": 0,
    "drop": {
-    "만료": 0,
+    "만료": 4,
     "오래됨": 0
    }
   },
@@ -592,9 +609,13 @@
    "name": "강남문화재단(강남심포니)",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 0,
    "kept": 0,
-   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.gfac.or.kr', port=443): Max retries exceeded with url: /site/main/recruit/accordionList (C"
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_sjcf",
@@ -696,11 +717,11 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 4,
+   "raw": 3,
    "kept": 0,
    "drop": {
     "무관": 3,
-    "만료": 1,
+    "만료": 0,
     "오래됨": 0
    }
   },
@@ -805,9 +826,13 @@
    "name": "순천시립합창단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 0,
    "kept": 0,
-   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.suncheon.go.kr', port=443): Max retries exceeded with url: /scart/community/0001;jsessioni"
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_i_andonggokr",
@@ -895,9 +920,13 @@
    "name": "동해문화관광재단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 0,
    "kept": 0,
-   "error": "HTTPError: 403 Forbidden"
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_i_cfscorkr",
@@ -1062,9 +1091,15 @@
    "name": "대구문화예술회관 공지(시립합창단)",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 5,
    "kept": 0,
-   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.daeguartscenter.or.kr', port=443): Max retries exceeded with url: /index.do?menu_id=000015"
+   "drop": {
+    "무관": 3,
+    "비음악": 2,
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_ansanarts",
@@ -1085,9 +1120,13 @@
    "name": "파주문화재단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 0,
    "kept": 0,
-   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.pajucf.or.kr', port=443): Max retries exceeded with url: /community/notice.php (Caused by "
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_timfensemble",
@@ -1202,8 +1241,10 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
+   "raw": 8,
    "kept": 9,
+   "carried": 1,
+   "declared": 8,
    "drop": {
     "만료": 0,
     "오래됨": 0
@@ -1277,6 +1318,115 @@
    "addrFrom": "geo",
    "firstSeen": "2026-11-09",
    "isNew": false,
+   "extVer": 124
+  },
+  {
+   "id": "eb90a759938a9051",
+   "org": "제주특별자치도교육청(나라일터)",
+   "region": "제주",
+   "source": "gojobs.go.kr",
+   "title": "제주특별자치도교육청 시간선택제임기제공무원 경력경쟁임용시험 채용 계획 공고 (핫빛 장애인오케스트라 단원)",
+   "nonMusic": null,
+   "url": "https://www.gojobs.go.kr/apmView.do?empmnsn=308271&empmnsecode=020&menuNo=401",
+   "date": "2026-11-12",
+   "kind": "단원",
+   "tier": "교육 — 학교",
+   "obri": false,
+   "certReq": "예",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "ageGroup": "성인",
+   "inst": "전체",
+   "instDetails": [],
+   "channel": "gojobs",
+   "layer": "A",
+   "officialUrl": "http://www.jje.go.kr/board/view.jje?boardId=BBS_0000002&menuCd=DOM_000000103003002003&paging=ok&startPage=1&dataSid=1486065",
+   "originTraced": true,
+   "originTraceVer": 124,
+   "contact": "064-710-0637",
+   "duty": "장애인오케스트라 단원",
+   "deadline": "2026-11-23",
+   "deadlineFrom": "meta",
+   "bodyExcerpt": "응시방법 : 방문접수 또는 우편접수",
+   "firstSeen": "2026-11-12",
+   "isNew": true,
+   "extVer": 124
+  },
+  {
+   "id": "e0a10dd9f9e78ea9",
+   "org": "신진초등학교",
+   "region": "경남",
+   "source": "gne.go.kr",
+   "title": "신진오케스트라(정규수업 이전) 바이올린 대체강사 모집 공",
+   "nonMusic": null,
+   "url": "https://www.gne.go.kr/works/user/recruitment/BD_recruitmentDetail.do?regSn=1815546",
+   "date": "2026-11-12",
+   "kind": "객원·대체",
+   "tier": "교육 — 취미·입문",
+   "obri": false,
+   "certReq": "무관",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "ageGroup": "성인",
+   "inst": "현악",
+   "instDetails": [
+    "바이올린"
+   ],
+   "channel": "gne",
+   "layer": "C",
+   "orgBoard": "신진초등학교",
+   "orgAffil": "경남교육청",
+   "contact": "055-748-9306",
+   "workPeriod": "2026.12 ~ 2027.02",
+   "bodyExcerpt": "현재 계신 강사님이 12월부터 출산휴가에 들어가며 3개월의 공백이 생겨 대체 강사 모집합니다. · 2월까지(3개월, 기존 강사 출산휴가로 인한 대체강사모집)* 계약기간은 3개월이지만 강시비 예산 소진시 중간에 강좌 운영 종료될 수 있음",
+   "deadline": "2026-11-18",
+   "deadlineFrom": "raw",
+   "addr": "경상남도 진주시 평거로",
+   "lat": 35.1746113,
+   "lng": 128.066269,
+   "addrFrom": "geo",
+   "firstSeen": "2026-11-12",
+   "isNew": true,
+   "extVer": 124
+  },
+  {
+   "id": "bb080c376190227a",
+   "org": "인천해원초등학교",
+   "region": "인천",
+   "source": "ice.go.kr",
+   "title": "[인천해원초] 오케스트라 현악 지도 강사 채용",
+   "nonMusic": null,
+   "url": "https://www.ice.go.kr/ice/na/ntt/selectNttInfo.do?nttSn=3388678&mi=10997&bbsId=1981",
+   "date": "2026-11-12",
+   "kind": "강사",
+   "tier": "교육 — 취미·입문",
+   "obri": false,
+   "certReq": "무관",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "ageGroup": "성인",
+   "inst": "현악",
+   "instDetails": [
+    "바이올린",
+    "현악"
+   ],
+   "channel": "edu_ice",
+   "layer": "C",
+   "orgBoard": "인천교육청(학교 채용)",
+   "qualification": "관련 분야 전공자 및 관련",
+   "contact": "032-560-2255",
+   "duty": "오케스트라 악기 지도 및 운영, 학생 관리, 안전 지도 · 강사가 지도하는 악기군 및 수업 일정은 학교 사정에 의해 변경될 수 있음 . 모집기간",
+   "email": "happysom@ice.go.kr",
+   "pay": "시간당(50분) 40,000원",
+   "workPeriod": "2026.11.18 ~ 2026.12.23",
+   "workHours": "주 1회 매주 수요일 13:50-15:30(50분 ×2시간)",
+   "personnel": "1명",
+   "bodyExcerpt": "응시자격 1) 관련 분야 전공자 및 관련 자격증 소지자 2) 관련학과 졸업자로서 초",
+   "deadline": "2026-11-16",
+   "deadlineFrom": "raw",
+   "hiringOrg": "인천광역시교육청대상명 : 인천광역시교육청(https://www.ice.go.kr)",
+   "firstSeen": "2026-11-12",
+   "isNew": true,
    "extVer": 124
   },
   {
@@ -1624,11 +1774,11 @@
    "layer": "C",
    "deadlineFrom": "cjob-남은기간",
    "addr": "서울 송파구 오금로 487. 3층 (거여동)",
-   "firstSeen": "2026-11-10",
-   "isNew": false,
    "personnel": "반주자",
    "bodyExcerpt": "피아노 반주자를 구합니다. 사례비",
    "pay": "월 30만원",
+   "firstSeen": "2026-11-10",
+   "isNew": false,
    "extVer": 124
   },
   {
@@ -1761,13 +1911,13 @@
    "channel": "hibrain",
    "layer": "B",
    "musicUnverified": true,
+   "qualification": "/면허사항 학위논문 및 연구실적물 자기소개 입력사항출력 지원 지원서출력 무기명출력 교수초빙진행현황 Q&A Q",
    "addr": "경기도 용인시 처인구 부아산 등산로",
    "lat": 37.2263944,
    "lng": 127.1677464,
    "addrFrom": "geo",
    "firstSeen": "2026-11-09",
    "isNew": false,
-   "qualification": "/면허사항 학위논문 및 연구실적물 자기소개 입력사항출력 지원 지원서출력 무기명출력 교수초빙진행현황 Q&A Q",
    "extVer": 124
   },
   {
@@ -1775,7 +1925,7 @@
    "org": "늘소망교회",
    "region": "광주·전남",
    "source": "cjob.co.kr",
-   "title": "[늘소망교회] 피아노 반주자 구합니다",
+   "title": "[늘소망교회] 교회 피아노 반주자 구합니다",
    "nonMusic": null,
    "url": "https://www.cjob.co.kr/bbs/board.php?bo_table=offerIG&wr_id=7821&c_jikjong=2&page=1",
    "date": "2026-11-08",
@@ -1796,10 +1946,10 @@
    "deadlineFrom": "cjob-남은기간",
    "addr": "전남광주통합특별시 목포시 호남동 544 늘소망교회",
    "denomination": "대한예수교장로회",
-   "firstSeen": "2026-11-08",
-   "isNew": false,
    "personnel": "반주자",
    "pay": "월 50만원",
+   "firstSeen": "2026-11-08",
+   "isNew": false,
    "extVer": 124
   },
   {
@@ -2090,13 +2240,13 @@
    "channel": "hibrain",
    "layer": "B",
    "subjectFrom": "attach",
+   "contact": "02-944-5503",
    "addr": "서울특별시 강북구 솔매로49길 60",
    "addrFrom": "postal",
-   "firstSeen": "2026-11-04",
-   "isNew": false,
-   "contact": "02-944-5503",
    "workPeriod": "27년 3월 1일~28년 2월 28일(1년)",
    "bodyExcerpt": "임용기간: 1년 · 우리 대학은 \"채용절차의 공정화에 관한 법률\" 제11조에 따라 채용서류 반환 절차를 준수합니다",
+   "firstSeen": "2026-11-04",
+   "isNew": false,
    "extVer": 124
   },
   {
@@ -2156,11 +2306,11 @@
    "layer": "C",
    "deadlineFrom": "cjob-남은기간",
    "addr": "대구 중구 달구벌대로405길 58 (동산동, 대구제이교회)",
-   "firstSeen": "2026-11-03",
-   "isNew": false,
    "personnel": "반주자",
    "bodyExcerpt": "이력서 1부 ● 제출방법(이메일 접수)",
    "pay": "면접시 협의",
+   "firstSeen": "2026-11-03",
+   "isNew": false,
    "extVer": 124
   },
   {
@@ -2305,13 +2455,13 @@
    "channel": "hibrain",
    "layer": "B",
    "subjectFrom": "attach",
+   "duty": "강의, 연구 및 기타 대학에서 요구하는 업무수행",
    "addr": "서울특별시 노원구 화랑로 815",
    "lat": 37.642012,
    "lng": 127.1056211,
    "addrFrom": "geo",
    "firstSeen": "2026-11-02",
    "isNew": false,
-   "duty": "강의, 연구 및 기타 대학에서 요구하는 업무수행",
    "extVer": 124
   },
   {
@@ -2402,11 +2552,14 @@
    "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
+   "personnel": null,
+   "subject": null,
    "deadlineFrom": "hibrain",
    "officialUrl": "https://prad.knu.ac.kr/hmpg/main/main.knu",
    "channel": "hibrain",
    "layer": "B",
    "musicUnverified": true,
+   "contact": "053-950-2043",
    "email": "mina812@knu.ac.kr",
    "addr": "대구광역시 북구 대학로 80",
    "lat": 35.8905697,
@@ -2414,7 +2567,6 @@
    "addrFrom": "geo",
    "firstSeen": "2026-10-25",
    "isNew": false,
-   "contact": "053-950-2043",
    "extVer": 124
   },
   {
@@ -2507,14 +2659,14 @@
    "deadlineFrom": "cjob-남은기간",
    "denomination": "합동총회",
    "documents": "이력서,자기소개서",
+   "personnel": "반주자",
+   "pay": "협의",
    "addr": "경기도 부천시 고강로",
    "lat": 37.5303937,
    "lng": 126.8165665,
    "addrFrom": "geo",
    "firstSeen": "2026-10-14",
    "isNew": false,
-   "personnel": "반주자",
-   "pay": "협의",
    "extVer": 124
   },
   {
@@ -2815,13 +2967,13 @@
    "deadlineFrom": "cjob-남은기간",
    "denomination": "예장 합동",
    "documents": "이력서",
-   "addr": "전북 김제시 황산면 남산로 334",
-   "regionBoard": "기타",
-   "firstSeen": "2026-08-08",
-   "isNew": false,
    "personnel": "반주자",
    "pay": "20만원",
+   "addr": "전북 김제시 황산면 남산로 334",
+   "regionBoard": "기타",
    "deadlineNote": "상시",
+   "firstSeen": "2026-08-08",
+   "isNew": false,
    "extVer": 124
   },
   {
@@ -2851,11 +3003,11 @@
    "addr": "경기 의왕시 경수대로 262 (오전동, 의왕서해그랑블(블루스퀘어))",
    "denomination": "순복음",
    "documents": "간단한 이력서",
-   "firstSeen": "2026-08-08",
-   "isNew": false,
    "personnel": "반주자",
    "pay": "협의",
    "deadlineNote": "상시",
+   "firstSeen": "2026-08-08",
+   "isNew": false,
    "extVer": 124
   }
  ]
