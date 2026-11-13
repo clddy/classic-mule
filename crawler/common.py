@@ -711,7 +711,10 @@ STAFF_EXCLUDE = re.compile(
     # 사업 운영을 맡는 자리 — 포항문화재단 '꿈의 스튜디오 운영인력(코디네이터)'
     # (2026-08-23). 문화재단 사업이라 음악 어휘가 기관명에 묻어 오지만, 그 자리에서
     # 쓰이는 것은 운영·행정 기술이지 연주나 지도가 아니다.
-    r"|코디네이터|코디네이션|운영\s*인력|운영\s*요원|운영\s*스태프|진행\s*요원|보조\s*인력")
+    r"|코디네이터|코디네이션|운영\s*인력|운영\s*요원|운영\s*스태프|진행\s*요원|보조\s*인력"
+    # 공연 현장 스태프 — 무대 세팅·전환 보조, 대기실 안내 (CNCITY에너지 '클래식 공연스태프',
+    # L4#86 2026-11-14). '클래식'이 붙어도 연주·지도 기술이 쓰이는 자리가 아니다.
+    r"|공연\s*스태프|행사\s*스태프|무대\s*스태프")
 _MUSIC_KEEP = re.compile(r"악기|악보|조율|지휘|반주|연주|성악|합창|오케스트라|(?<![사무])단원|수석|악장|강사")
 # 타 장르(무용·미술·연극 등) 공고 — '단원'만으로는 음악 공고로 인정하지 않음
 # 공예·도예 추가(2026-08-03): 창원 '공예공간 기록 프로젝트 <산단사이 2기> 모집'이 통과했다
@@ -794,6 +797,14 @@ def musician_relevant(title, kind, org=""):
     if _OTHER_SUBJECT_ROLE.search(title) and not _MUSIC_STRONG.search(_drop_org_tokens(title, org)):
         return False
     if POP_EXCLUDE.search(f"{title} {org}"):   # 실용음악(대중·재즈 전공) 전면 제외
+        return False
+    # 음악 신호가 '영어음악'(영어 노래로 하는 영어 수업)뿐이면 영어 교육 공고다 — 서울포이초
+    # 유치원 '영어그림책, 영어음악, 파닉스' 강사 (L4#92, 2026-11-14).
+    # 영어 교육 어휘(파닉스·영어그림책·영어동화)가 함께 있을 때만 — '[용인신봉초] 영어음악 전담'은
+    # 영어·음악 교과전담 교사라 음악 수업 자리다 (A/B 에서 걸러질 뻔했다).
+    _ENG = r"영어\s*(?:음악|동요|노래|챈트)"
+    if (re.search(_ENG, title) and re.search(r"파닉스|영어\s*그림책|영어\s*동화", title)
+            and not _MUSIC_STRONG.search(re.sub(_ENG, "", title))):
         return False
     # 사람이 아니라 학교·기관을 받는 공모 — 직무 어휘가 섞여도 채용이 아니다
     if _PARTICIPANT_UNIT.search(title):
@@ -1002,7 +1013,10 @@ def classify_tier(title, org=""):
     if _FACILITY_KEEPER.search(t):
         return "그 외"
     # 예중·예고가 함께 보이면(대학 부설 예고 등) 입시·전공이 우선 — 대학 규칙에서 먼저 배제
-    if _EDU_UNIV.search(t) and _EDU_UNIV_PLACE.search(t) and not _EDU_IPSI.search(t):
+    # 대학 부설·병설 초중고는 학교다 — '이화여대병설미디어고 기간제 교원'이 대학으로 갔다
+    # (2026-11-14 A/B 에서 발견: 교원자격증 판정이 대학 우선으로 바뀌자 '아니오'가 됐다).
+    _attached = re.search(r"(?:부설|병설)\s*[가-힣]{0,8}(?:초|중|고|초등학교|중학교|고등학교|유치원)(?![가-힣])", t)
+    if _EDU_UNIV.search(t) and _EDU_UNIV_PLACE.search(t) and not _EDU_IPSI.search(t) and not _attached:
         return "교육 — 대학"
     if _EDU_IPSI.search(t):
         return "교육 — 입시·전공"
@@ -1020,6 +1034,8 @@ def classify_tier(title, org=""):
 
 # ---------- 자격요건 필드 (태그가 아니라 필터 가능한 필드) ----------
 # 사실: 대학교수·시간강사=교원자격증 불필요 / 초중고 정교사·임용=필요 / 방과후·예술강사=대체로 불필요.
+# '임용'은 학교 시간강사 공고의 '임용 상한 연령(교육공무원 정년…)' 같은 진짜 신호라 남긴다.
+# 대신 대학·연주 판정을 이 어휘보다 먼저 본다 (아래 cert_required, L4#81·91 2026-11-14).
 _CERT_YES = re.compile(r"정교사|교원 ?자격|교사 ?자격|교직 ?이수|임용|기간제 ?교[사원]|계약[제직] ?교[사원]|중등 ?교사|초등 ?교사|담임")
 _CERT_NO_ROLE = re.compile(r"방과 ?후|예술 ?강사|협력강사|늘봄|1 ?인 ?1 ?악기|꿈의 ?오케|학원|문화 ?센터|레슨|아카데미")
 
@@ -1033,12 +1049,16 @@ _SCHOOL_REGULAR = re.compile(
 def cert_required(tier, title, text=""):
     """교원자격증(정교사) 필요 여부: 예 / 아니오 / 무관. 확실치 않으면 무관."""
     blob = _strip_foundation(f"{title} {text}")
+    # 대학 교원·연주직은 교원자격증과 무관하다(사실) — 본문 어휘보다 먼저 본다. 뒤에 두었더니
+    # '임용기간: 1년'(서울사이버대 비전임교원)·'경력경쟁임용시험'(제주교육청 장애인오케스트라 단원)이
+    # '임용'에 걸려 '예'로 나갔고, 교육청 단원은 그 '예' 때문에 '교육 — 학교'로까지 옮겨졌다
+    # (L4#81·91, 2026-11-14).
+    if tier == "교육 — 대학":
+        return "아니오"
+    if tier == "연주":
+        return "무관"
     if (_CERT_YES.search(blob) or _SCHOOL_REGULAR.search(blob)) and not _CERT_NO_ROLE.search(blob):
         return "예"
-    if tier == "교육 — 대학":
-        return "아니오"          # 대학 교원 = 교원자격증 불필요(사실)
-    if tier == "연주":
-        return "무관"            # 연주직은 교직과 무관
     if _CERT_NO_ROLE.search(blob):
         return "아니오"          # 방과후·예술강사·학원·레슨 = 대체로 불필요
     return "무관"
@@ -1485,6 +1505,20 @@ def tidy_personnel(v):
     t = re.sub(r"[,·]\s*(?:시간제|전일제|기간제|계약직|정규직)\s*$", "", t).strip(" ,·")
     if re.fullmatch(r"\d{1,3}", t):     # 표에서 단위가 다음 칸으로 밀린 경우
         return t + "명"
+    # 여러 교과를 한 공고로 뽑을 때 음악 몫만 남긴다 — '영어과 시간강사 1명, 미술과 시간강사 1명,
+    # 음악과 시간강사 1명' (과천문원중, L4#84 2026-11-14). 제목의 다른 과목을 지우는
+    # music_only_title 과 같은 판단이다. 음악 항목이 있고 다른 항목이 전부 타 교과일 때만.
+    parts = [p.strip() for p in re.split(r"\s*[,·]\s*", t) if p.strip()]
+    if len(parts) >= 2:
+        mus = [p for p in parts if re.search(r"음악", p)]
+        # '영어과'처럼 과(科)가 붙은 꼴도 타 교과다 — _OTHER_SUBJECT 는 뒤에 한글이 붙으면 안 문다
+        # 항목마다 '과목 [직무] N명' 꼴일 때만 — '4명 과목 생명과학, 미술, 음악' 처럼 인원이 머리에
+        # 하나만 있는 꼴을 거르면 인원이 통째로 날아간다 (2026-11-14 A/B).
+        _each = re.compile(r"^[가-힣]{1,10}(?:\s+[가-힣]{1,8})?\s*\(?\s*\d{1,3}\s*명\s*\)?$")
+        if mus and all(_each.match(p) for p in parts) and all(
+                re.search(r"음악", p) or _OTHER_SUBJECT.search(re.sub(r"(?<=[가-힣])과(?=\s|$)", "", p))
+                for p in parts):
+            t = ", ".join(mus)
     nums = _HEADCOUNT.findall(t)
     # 짧으면 어느 파트를 몇 명 뽑는지가 그대로 쓸모 있는 정보다('보컬 강사 1명, 기악 1명').
     # 표를 통째로 편 것만 접는다 — 기준은 사람이 한눈에 읽히는가, 즉 길이다 (2026-08-21).
