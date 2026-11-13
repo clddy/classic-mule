@@ -108,6 +108,13 @@
   .card h2{margin:0 0 12px;padding:0;border:0;display:flex;align-items:baseline;
     flex-wrap:wrap;gap:2px 8px}
   .card h2 .sub{margin-left:0}
+  /* 일·주·월 전환 */
+  .seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;overflow:hidden;
+    font-family:var(--sans);vertical-align:middle}
+  .seg button{font:inherit;font-size:.74rem;padding:2px 11px;border:0;background:var(--paper);
+    color:var(--ink-soft);cursor:pointer}
+  .seg button + button{border-left:1px solid var(--line)}
+  .seg button.on{background:var(--claret);color:#fff}
   .card h3{font-size:.78rem;font-weight:600;color:var(--ink-soft);margin:0 0 6px}
   .card .kpis{margin-bottom:14px}
   .card .kpi{background:var(--ivory)}
@@ -167,7 +174,7 @@
 // ── 데이터 확보 ────────────────────────────────────────────────────────────
 var API = "https://podium-feedback.ohmjin314.workers.dev/api/dash";
 var KEYNAME = "podium_dash_key";
-var DAYS = null, SEARCH = null, JOBS = {}, RANGE = 14, RANGES = null;
+var DAYS = null, SEARCH = null, JOBS = {}, RANGE = 14, RANGES = null, TREND = "day";
 
 function getKey() { try { return localStorage.getItem(KEYNAME) || ""; } catch (e) { return ""; } }
 function setKey(k) { try { localStorage.setItem(KEYNAME, k); } catch (e) {} }
@@ -276,6 +283,13 @@ document.querySelectorAll(".bar button").forEach(function (b) {
   };
 });
 document.getElementById("showbots").onchange = render;
+// 일·주·월 전환 — 카드가 render 때마다 새로 그려지므로 위임으로 받는다
+document.getElementById("app").addEventListener("click", function (e) {
+  var b = e.target.closest("[data-trend]");
+  if (!b || b.dataset.trend === TREND) return;
+  TREND = b.dataset.trend;
+  render();
+});
 boot();
 
 // ── 유틸 ──────────────────────────────────────────────────────────────────
@@ -391,16 +405,23 @@ function bars(items, opt) {
   var W = 1000, H = opt.h || 120, pad = 18, max = 1;
   items.forEach(function (it) { max = Math.max(max, it.bg || 0, it.fg || 0); });
   var bw = (W - pad * 2) / items.length;
+  // 막대가 많으면(전체 기간 일별) 날짜 글자가 겹친다 — 30개 남짓만 남기고 솎는다
+  var every = Math.max(1, Math.ceil(items.length / 31));
   var s = '<svg viewBox="0 0 ' + W + " " + (H + 26) + '" style="width:100%;height:auto" ' +
           'preserveAspectRatio="none" role="img">';
   items.forEach(function (it, i) {
     var x = pad + i * bw, w = Math.max(2, bw * 0.66), ox = x + (bw - w) / 2;
     var hb = (it.bg || 0) / max * H, hf = (it.fg || 0) / max * H;
+    // 막대 칸 전체에 걸리는 투명 영역 — 마우스를 올리면 그 칸의 숫자가 뜬다
+    // 날수가 모자란 묶음(진행 중인 주·달)은 흐리게 — 줄어든 게 아니라 덜 찬 것이다
+    s += "<g" + (it.partial ? ' opacity=".45"' : "") + "><title>" + esc((it.tip || it.label || "") + " · 참여 " + n(it.fg) +
+         " / 전체 " + n(it.bg)) + "</title>";
+    s += '<rect x="' + x + '" y="0" width="' + bw + '" height="' + H + '" fill="transparent"/>';
     s += '<rect x="' + ox + '" y="' + (H - hb) + '" width="' + w + '" height="' + hb +
          '" fill="#e4ded1"/>';
     s += '<rect x="' + ox + '" y="' + (H - hf) + '" width="' + w + '" height="' + hf +
-         '" fill="#7a2a38"/>';
-    if (it.label) s += '<text x="' + (ox + w / 2) + '" y="' + (H + 17) +
+         '" fill="#7a2a38"/></g>';
+    if (it.label && i % every === 0) s += '<text x="' + (ox + w / 2) + '" y="' + (H + 17) +
       '" text-anchor="middle" font-size="' + (opt.fs || 15) + '" fill="#9a958a" ' +
       'font-family="sans-serif">' + esc(it.label) + "</text>";
   });
@@ -467,6 +488,39 @@ function hourGrid(a) {
   return paged("hours", 7, "hourgrid", head, body);
 }
 
+// 주별·월별 추이 — 7일·14일 구간으로는 주 단위 막대가 한두 개뿐이라 의미가 없으므로
+// 기간 버튼과 무관하게 전체 기간을 묶는다. 세션·참여세션은 더해도 되는 지표다
+// (사용자 수는 더하면 '연인원'이 되므로 여기 싣지 않는다).
+// 주는 월요일 시작. 첫·마지막 묶음은 날수가 모자랄 수 있어 툴팁에 날수를 적는다.
+function trend(mode) {
+  var out = [], cur = null;
+  Object.keys(DAYS).sort().forEach(function (d) {
+    var t = (DAYS[d] || {}).totals || {}, key, label, tip;
+    if (mode === "month") {
+      key = d.slice(0, 7);
+      label = +d.slice(5, 7) + "월";
+      tip = d.slice(0, 4) + "년 " + label;
+    } else {
+      var dt = new Date(d + "T00:00:00");
+      dt.setDate(dt.getDate() - (dt.getDay() + 6) % 7);           // 그 주 월요일
+      key = dt.getFullYear() + "-" + ("0" + (dt.getMonth() + 1)).slice(-2) + "-" +
+            ("0" + dt.getDate()).slice(-2);
+      label = (dt.getMonth() + 1) + "/" + dt.getDate();
+      tip = key + " 주";
+    }
+    if (!cur || cur.key !== key) {
+      cur = { key: key, label: label, tip: tip, bg: 0, fg: 0, days: 0 };
+      out.push(cur);
+    }
+    cur.bg += t.sessions || 0; cur.fg += t.engaged || 0; cur.days++;
+  });
+  out.forEach(function (c) {
+    var full = c.key.length === 7 ? new Date(+c.key.slice(0, 4), +c.key.slice(5, 7), 0).getDate() : 7;
+    if (c.days < full) { c.tip += " (" + c.days + "일치)"; c.partial = true; }
+  });
+  return out;
+}
+
 // ── 집계 ──────────────────────────────────────────────────────────────────
 // '지휘|교수'와 '교수|지휘'는 같은 필터다 — 고른 순서까지 다른 조합으로 세면 표가 쪼개진다.
 function comboKey(row) {
@@ -506,7 +560,8 @@ function aggregate() {
     var r = DAYS[d] || {}, t = r.totals || {};
     a.sessions += t.sessions || 0; a.users += t.users || 0; a.newUsers += t.newUsers || 0;
     a.engaged += t.engaged || 0; a.sec += t.engagementSec || 0; a.pv += t.pv || 0;
-    a.daily.push({ date: d, bg: t.sessions || 0, fg: t.engaged || 0, label: d.slice(8) + "일" });
+    a.daily.push({ date: d, bg: t.sessions || 0, fg: t.engaged || 0, label: d.slice(8) + "일",
+                   tip: d });
     addInto(a.events, r.events);
     // hours 는 v3부터 [세션, 참여세션]. 옛 형식(숫자)도 견딘다.
     Object.keys(r.hours || {}).forEach(function (h) {
@@ -591,7 +646,15 @@ function render() {
     ["평균 참여시간", dur(a.engaged ? a.sec / a.engaged : 0), "참여 세션당", 0]
   ]));
 
-  H.push(card("일별", "진한 막대 = 참여 세션 · 연한 막대 = 전체(봇 포함)", bars(a.daily, { h: 110 })));
+  var TL = { day: "일별", week: "주별", month: "월별" };
+  H.push(card(TL[TREND] + ' <span class="seg">' + ["day", "week", "month"].map(function (m) {
+      return '<button type="button" data-trend="' + m + '"' + (m === TREND ? ' class="on"' : "") +
+        ">" + TL[m].charAt(0) + "</button>";
+    }).join("") + "</span>",
+    "진한 막대 = 참여 세션 · 연한 막대 = 전체(봇 포함)" +
+      (TREND === "day" ? "" : " · 위 기간 선택과 무관하게 전체 기간 · 흐린 막대는 아직 덜 찬 " +
+                              (TREND === "week" ? "주" : "달")),
+    bars(TREND === "day" ? a.daily : trend(TREND), { h: 110 })));
 
   // ── 검색 노출 (Search Console) ───────────────────────────────────────────
   // GA4 와 보는 시점이 다르다: 여기는 '들어오기 전'(검색결과에 뜬 순간)이다.
