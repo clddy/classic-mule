@@ -961,12 +961,17 @@ def _icms_view_url(soup, a, board_url):
 def _make_generic_parser(entry):
     music_pat = (re.compile(entry["title_pat"]) if entry.get("title_pat")
                  else STRICT_ENSEMBLE_PAT if entry.get("strict") else MUSIC_PAT)
+    # discovery 가 등록할 때 묻어 온 세션 표식(';jsessionid=…')은 떼고 쓴다 — 만료된 세션을 들고
+    # 가는 주소라 서버에 따라 거절·리다이렉트될 수 있고, 공고 주소에도 그대로 전염된다
+    # (순천시립합창단, 2026-11-14). 같은 이유로 공고 링크에서도 뗀다.
+    board_url = re.sub(r";jsessionid=[^?#/]*", "", entry["board_url"], flags=re.I)
+
     def parse(s):
         if entry.get("needs_js"):
             from jsfetch import render
-            html = render(entry["board_url"], wait_ms=2500)
+            html = render(board_url, wait_ms=2500)
         else:
-            html = get(s, entry["board_url"]).text
+            html = get(s, board_url).text
         soup = BeautifulSoup(html, "lxml")
         items, seen = [], set()
         for a in soup.find_all("a", href=True):
@@ -981,13 +986,14 @@ def _make_generic_parser(entry):
                 href = a.get("data-action") or ""
                 if not href or href.startswith(("javascript", "#", "mailto")):
                     # icms 게시판: 링크가 onclick 의 글번호뿐이다 — 조립해서 쓴다
-                    href = _icms_view_url(soup, a, entry["board_url"]) or ""
+                    href = _icms_view_url(soup, a, board_url) or ""
                     if not href:
                         continue
             seen.add(t)
             items.append(make_item(entry["name"], entry["region"],
-                                   urlparse(entry["board_url"]).netloc.removeprefix("www."),
-                                   t, urljoin(entry["board_url"], href), date=_row_date(a)))
+                                   urlparse(board_url).netloc.removeprefix("www."),
+                                   t, re.sub(r";jsessionid=[^?#/]*", "", urljoin(board_url, href), flags=re.I),
+                                   date=_row_date(a)))
         return items
     return parse
 
