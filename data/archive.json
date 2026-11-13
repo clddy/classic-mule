@@ -1,6 +1,6 @@
 {
  "updatedAt": "2026-11-13",
- "count": 1634,
+ "count": 1635,
  "items": {
   "f7b1c263744b9ece": {
    "id": "f7b1c263744b9ece",
@@ -44950,6 +44950,43 @@
    "email": "agathamh@korea.kr",
    "addr": "경기 수원시 영통구 매영로 334(영통동)",
    "orgAffil": "경기교육청",
+   "firstSeen": "2026-11-13",
+   "lastSeen": "2026-11-13",
+   "days": 1
+  },
+  "6b82009ec9858ebd": {
+   "id": "6b82009ec9858ebd",
+   "org": "서울사근초등학교",
+   "region": "서울",
+   "source": "work.sen.go.kr",
+   "channel": "edu_seoul",
+   "layer": "C",
+   "title": "[서울사근초] 초등예술하나(1인 1악기 바이올린) 협력 대체 강사 채용",
+   "url": "https://work.sen.go.kr/work/search/recInfo/BD_selectRecDetail.do?q_rcrtSn=114380",
+   "date": "2026-11-12",
+   "deadline": "2026-11-16",
+   "deadlineFrom": "raw",
+   "kind": "객원·대체",
+   "tier": "교육 — 취미·입문",
+   "inst": "현악",
+   "instDetails": [
+    "바이올린",
+    "관악"
+   ],
+   "ageGroup": "성인",
+   "obri": false,
+   "certReq": "아니오",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "personnel": "1명",
+   "pay": "시간당 40,000원",
+   "workPeriod": "2026.11.26 ~ 2026.12.17",
+   "workHours": "09:50~12:10(주 1일, 목요일, 3시수 * 4주 = 12시수)",
+   "duty": "1인 1악기 바이올린",
+   "contact": "02-6384-7615",
+   "email": "sab9victory82@gmail.com",
+   "addr": "서울특별시 성동구 사근동11길 16(사근동)",
+   "orgAffil": "서울시교육청",
    "firstSeen": "2026-11-13",
    "lastSeen": "2026-11-13",
    "days": 1
