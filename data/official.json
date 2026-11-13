@@ -1,5 +1,5 @@
 {
- "collectedAt": "2026-11-13 14:52",
+ "collectedAt": "2026-11-13 15:06",
  "heldNoOrigin": 0,
  "sourceCount": 91,
  "okCount": 91,
@@ -1253,7 +1253,7 @@
    "org": "완주고등학교",
    "region": "전북",
    "source": "jbe.go.kr",
-   "title": "[완주고] 학교법인 부림학원 정규교사(명, 음악 1명) 채용",
+   "title": "[완주고] 학교법인 부림학원 정규교사(음악 1명) 채용",
    "nonMusic": null,
    "url": "https://www.jbe.go.kr/board/view.jbe?boardId=BBS_0000130&menuCd=DOM_000000103004006000&paging=ok&startPage=3&searchOperation=AND&dataSid=1178664",
    "date": "2026-12-29",
@@ -1362,7 +1362,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
@@ -1398,7 +1398,7 @@
    "degreeReq": "무관",
    "careerReq": "미기재",
    "ageGroup": "성인",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
@@ -2199,7 +2199,7 @@
    "org": "부천필하모닉(부천시립예술단)",
    "region": "경기",
    "source": "bucheonphil.or.kr",
-   "title": "부천시립합창단 상임단원 채용",
+   "title": "[부천시립합창단] 상임단원 채용",
    "nonMusic": null,
    "url": "https://www.bucheonphil.or.kr/front/M0000025/article/view.do?atcId=AT026086",
    "date": "2026-11-04",
