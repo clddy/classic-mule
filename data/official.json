@@ -1,8 +1,8 @@
 {
- "collectedAt": "2026-11-14 00:33",
+ "collectedAt": "2026-11-14 18:08",
  "heldNoOrigin": 0,
  "sourceCount": 91,
- "okCount": 90,
+ "okCount": 91,
  "instTotal": 75,
  "sources": [
   {
@@ -11,9 +11,11 @@
    "layer": "A",
    "poll": "daily",
    "ok": true,
-   "raw": 0,
-   "kept": 2,
+   "raw": 1,
+   "kept": 1,
+   "carried": 1,
    "drop": {
+    "비음악": 1,
     "만료": 0,
     "오래됨": 0
    }
@@ -66,12 +68,12 @@
    "layer": "C",
    "poll": "daily",
    "ok": true,
-   "raw": 25,
+   "raw": 24,
    "kept": 8,
    "carried": 1,
    "drop": {
-    "무관": 2,
-    "만료": 16,
+    "무관": 3,
+    "만료": 14,
     "오래됨": 0
    }
   },
@@ -688,8 +690,8 @@
    "raw": 9,
    "kept": 0,
    "drop": {
-    "비음악": 2,
     "무관": 4,
+    "비음악": 2,
     "만료": 3,
     "오래됨": 0
    }
@@ -822,9 +824,13 @@
    "name": "순천시립합창단",
    "layer": "B",
    "poll": "daily",
-   "ok": false,
+   "ok": true,
+   "raw": 0,
    "kept": 0,
-   "error": "ConnectTimeout: HTTPSConnectionPool(host='www.suncheon.go.kr', port=443): Max retries exceeded with url: /scart/community/0001;jsessioni"
+   "drop": {
+    "만료": 0,
+    "오래됨": 0
+   }
   },
   {
    "id": "g_i_andonggokr",
@@ -1126,10 +1132,10 @@
    "layer": "B",
    "poll": "daily",
    "ok": true,
-   "raw": 1,
+   "raw": 2,
    "kept": 0,
    "drop": {
-    "무관": 1,
+    "무관": 2,
     "만료": 0,
     "오래됨": 0
    }
@@ -1829,8 +1835,6 @@
    "ageGroup": "성인",
    "inst": "전체",
    "instDetails": [],
-   "personnel": null,
-   "subject": null,
    "deadlineFrom": "hibrain",
    "officialUrl": "https://cje.korus.kr/poe/mi/IndxCtr/indx.do",
    "channel": "hibrain",
