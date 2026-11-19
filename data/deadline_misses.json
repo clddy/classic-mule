@@ -1,10 +1,11 @@
 {
  "https://portal.hanyang.ac.kr/huas/iycy/hycy.do?pageGb=gscy": {
   "firstSeen": "2026-11-18",
-  "tries": 2,
-  "reported": false,
-  "lastTry": "2026-11-19",
+  "tries": 3,
+  "reported": true,
+  "lastTry": "2026-11-20",
   "title": "[한양대학교] 강사 모집",
-  "org": "한양대학교"
+  "org": "한양대학교",
+  "lastReported": "2026-11-20"
  }
 }
