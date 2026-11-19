@@ -2468,6 +2468,118 @@ def enrich_deadline(s, item, allow_render=True, details_only=False):
 # '기한 확인필요'를 화면에 오래 두지 않기로 함 (2026-07-23): 크롤러가 매 회차 전 단계
 # (본문→첨부→OCR→렌더)를 재시도하고, 3회차까지 못 찾으면 텔레그램으로 사용자에게 보고한다
 # (사용자가 직접 확인하거나 기관에 문의). dlHint 발췌는 추출 규칙 보강 재료.
+
+# ---------- 기한 미정 깊은 재확인 (2026-11-19 사용자 제안) ----------
+# 매 회차 재시도는 '같은 방법의 반복'이라 못 찾는 건 계속 못 찾는다 — 세종문화회관 직책단원
+# 공고는 51번 재시도하는 동안 공고문 이미지를 한 번도 안 읽었다. 기한 미정이 7일을 넘기면
+# 7일마다 한 번, 평소 한도에 묶여 건너뛰던 것까지 전부 해 본다. 전부 로컬 작업이다
+# (브라우저 렌더·첨부 해독·Tesseract OCR) — LLM 토큰은 쓰지 않는다.
+DEEP_EVERY = 7          # 기한 미정 며칠째부터, 며칠마다
+DEEP_MAX_PER_RUN = 5    # 회차당 상한 — 한 건에 수십 초라 크롤 시간을 지킨다
+_DEEP_DONE = {}         # 이번 회차에 깊게 본 공고 키 → 날짜 (track_deadline_misses 가 저장)
+_DEEP_LINK = re.compile(r"공고문|원문|채용\s*공고|자세히|상세\s*보기|바로\s*가기")
+
+
+def _deep_recheck(final, today):
+    try:
+        with open(os.path.join(BASE, "data", "deadline_misses.json"), encoding="utf-8") as f:
+            misses = json.load(f)
+    except Exception:
+        misses = {}
+    s = new_session()
+    n_try = n_hit = 0
+    for it in final:
+        if it.get("deadline") or it.get("deadlineNote") == "상시" or it.get("obri"):
+            continue
+        key = it.get("officialUrl") or it.get("url")
+        e = misses.get(key)
+        if not e or not e.get("firstSeen"):
+            continue
+        try:
+            age = (today - date.fromisoformat(e["firstSeen"])).days
+            last = e.get("lastDeep")
+            if age < DEEP_EVERY or (last and (today - date.fromisoformat(last)).days < DEEP_EVERY):
+                continue
+        except ValueError:
+            continue
+        if n_try >= DEEP_MAX_PER_RUN:
+            break
+        n_try += 1
+        _DEEP_DONE[key] = today.isoformat()
+        url = _raw_url(it)
+        html = None
+        try:
+            from jsfetch import render
+            html = render(url, wait_ms=3000)
+        except Exception:
+            html = None
+        if not html:
+            try:
+                html = get(s, url).text
+            except Exception:
+                continue
+        soup = BeautifulSoup(html, "lxml")
+        strip_navi(soup)
+        texts = [body_text(html)]
+        # 첨부 — 평소 실패했던 것까지 전부 다시
+        for furl, fname in find_attachments(soup, url)[:8]:
+            try:
+                fr = s.get(furl, timeout=40, verify=False, headers={"Referer": url})
+                if fr.status_code == 200 and 200 < len(fr.content) < 40_000_000:
+                    atext = attach.extract_any(fname or furl, fr.content)
+                    if atext:
+                        texts.append(atext)
+                        rawstore.stash(it.get("id"), "attach", atext, name=fname or furl)
+            except Exception:
+                continue
+        # 본문 이미지 — 표식 규칙을 풀고, 받아 본 뒤 큰 것부터 OCR (공고문 이미지는 수백 KB)
+        from urllib.parse import urljoin
+        imgs, seen = [], set()
+        for im in soup.find_all("img"):
+            src = im.get("src") or im.get("data-src") or ""
+            if not src or src.startswith("data:") or _IMG_CHROME.search(src):
+                continue
+            full = urljoin(url, src)
+            if full in seen:
+                continue
+            seen.add(full)
+            try:
+                ir = s.get(full, timeout=30, verify=False, headers={"Referer": url})
+                if ir.status_code == 200 and len(ir.content) > 60_000:
+                    imgs.append((len(ir.content), full, ir.content))
+            except Exception:
+                continue
+            if len(seen) >= 12:
+                break
+        for _, full, data in sorted(imgs, reverse=True)[:3]:
+            otext = attach.ocr_image(data)
+            if otext:
+                texts.append(otext)
+                rawstore.stash(it.get("id"), "attach", otext,
+                               name=f"ocr:{full.rsplit('/', 1)[-1][:40]}")
+        # 공고 전용 링크 한 단계 — 공고문을 별도 채용 시스템에 올려 둔 경우
+        hops = 0
+        for a in soup.find_all("a", href=True):
+            if hops >= 2:
+                break
+            h = urljoin(url, a["href"])
+            if not h.startswith("http") or h == url or not _DEEP_LINK.search(a.get_text(" ", strip=True)):
+                continue
+            try:
+                texts.append(body_text(get(s, h).text))
+                hops += 1
+            except Exception:
+                continue
+        blob = "\n".join(t_ for t_ in texts if t_)
+        dl = extract_deadline(blob, ref_year=_ref_year(it))
+        posted = it.get("date") or it.get("firstSeen") or ""
+        if dl and dl > posted:          # 게시일 자체를 마감으로 오독한 경우 배제
+            it["deadline"], it["deadlineFrom"] = dl, "deep"
+            n_hit += 1
+            log(f"  깊은 재확인: {it['title'][:30]} → 마감 {dl}")
+    if n_try:
+        log(f"기한 미정 깊은 재확인 {n_try}건 — 마감 확보 {n_hit}건")
+
 def track_deadline_misses(final):
     miss_path = os.path.join(BASE, "data", "deadline_misses.json")
     prev = {}
@@ -2494,21 +2606,43 @@ def track_deadline_misses(final):
         # (광신대는 상세를 javascript 로 열어 우리가 주소를 만들 수 없다, 2026-08-21)
         if it.get("originIsList"):
             e["listOnly"] = True
+        if _DEEP_DONE.get(url):
+            e["lastDeep"] = _DEEP_DONE[url]
         cur[url] = e
     # 마감이 확보됐거나 내려간 공고는 큐에서 빠진다 — 이 파일은 캐시가 아니라 '미해결 큐'
-    due = [(u, e) for u, e in cur.items() if e["tries"] >= 3 and not e.get("reported")]
+    # 보고는 3회차에 한 번, 그 뒤로는 DEEP_EVERY 일마다 다시 묻는다 (2026-11-19).
+    # 종전엔 한 번 묻고 끝이라, 세종문화회관 공고가 마감 뒤 38일을 아무 알림 없이 버텼다.
+    # 옛 항목('reported': True 만 있고 날짜가 없는 것)은 이번에 한 번 다시 묻는다.
+    def _report_due(e):
+        if e["tries"] < 3:
+            return False
+        lr = e.get("lastReported")
+        if not lr:
+            return True
+        try:
+            return (date.fromisoformat(today) - date.fromisoformat(lr)).days >= DEEP_EVERY
+        except ValueError:
+            return True
+    due = [(u, e) for u, e in cur.items() if _report_due(e)]
     if due:
         try:
             sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))  # 번들 crawler/notify.py
             from notify import send
-            lines = [f"· {e['org']} — {e['title'][:40]}"
+            def _days(e):
+                try:
+                    return (date.fromisoformat(today) - date.fromisoformat(e["firstSeen"])).days
+                except (KeyError, ValueError):
+                    return 0
+            lines = [f"· {e['org']} — {e['title'][:40]} ({_days(e)}일째"
+                     + (", 깊은 재확인도 실패" if e.get("lastDeep") else "") + ")"
                      + ("\n  ⚠ 원문 링크가 게시판 목록이라 그 공고가 바로 열리지 않아요 — 목록에서 찾아야 해요"
                         if e.get("listOnly") else "")
                      + f"\n  {u}" for u, e in due[:6]]
-            send(f"[포디엄] 마감일을 3회차까지 못 찾은 공고 {len(due)}건 — "
-                 f"직접 확인이나 기관 문의가 필요해요\n" + "\n".join(lines), silent=True)
+            send(f"[포디엄] 마감일을 못 찾은 공고 {len(due)}건 — 마감됐는지 확인되면 알려 주세요"
+                 f" (마감일을 넣으면 다음 크롤에서 내려가요)\n" + "\n".join(lines), silent=True)
             for _, e in due:
                 e["reported"] = True
+                e["lastReported"] = today
         except Exception:
             pass
     with open(miss_path, "w", encoding="utf-8") as f:
@@ -2520,7 +2654,10 @@ def track_deadline_misses(final):
 # 본문에 <img> 로 박힌 공고 이미지. 첨부 링크(find_attachments)만 찾던 탓에 이런 공고는
 # 텍스트가 한 줄도 안 남았다 — 경북 도립예술단·통영 꿈의오케스트라가 그랬다 (2026-08-11).
 # '이미지의 모든 텍스트를 데이터화한다'(사용자 지시)의 마지막 공백.
-_IMG_CONTENT = re.compile(r"upload|editor|files|attach|data|bbs|smartupload", re.I)
+# 'files?' — 단수 'file' 을 몰라 'c.incru.it/biz_file/…png' 에 통째로 담긴 세종문화회관
+# 공고문을 공고 이미지로 안 쳤고, 마감(10/12)이 지난 채 51일을 '기한 미정'으로 버텼다
+# (2026-11-19).
+_IMG_CONTENT = re.compile(r"upload|editor|files?|attach|data|bbs|smartupload", re.I)
 _IMG_CHROME = re.compile(r"icon|logo|btn|banner|bullet|emoticon|blank|spacer|/_next/image", re.I)
 
 
@@ -2958,6 +3095,7 @@ def run(force_all=False):
     # 순서가 반대면, 원문 링크를 손수 찾아 넣어도 그 공고가 이미 제외된 뒤라 되살아나지
     # 못한다 — 천안시립교향악단이 실제로 그랬다 (2026-08-02). 아래 최종 단계에서 한 번 더
     # 병합하는 것은 그대로 둔다(그때는 분류 재적용 뒤 값을 덮어쓰는 게 목적).
+    _deep_recheck(final, today)
     _apply_overrides(final)
     # 마감이 지난 게 원문에 확정 표기된 공고를 내린다. overrides 뒤에 두는 이유는,
     # 사람이 손수 넣은 마감일이 있으면 그쪽이 우선이고 여기 판정은 아예 건너뛰기 때문이다.
