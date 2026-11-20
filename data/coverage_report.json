@@ -357,12 +357,12 @@
  ],
  "master": {
   "total": 604,
-  "covered": 4,
-  "gapCount": 600,
+  "covered": 5,
+  "gapCount": 599,
   "byCategory": {
    "대학": {
     "total": 77,
-    "covered": 0
+    "covered": 1
    },
    "교육대": {
     "total": 10,
@@ -470,11 +470,6 @@
    },
    {
     "name": "명지대학교",
-    "cat": "대학",
-    "region": "서울"
-   },
-   {
-    "name": "추계예술대학교",
     "cat": "대학",
     "region": "서울"
    },
