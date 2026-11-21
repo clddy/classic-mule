@@ -1,6 +1,6 @@
 {
  "updatedAt": "2026-11-21",
- "count": 1662,
+ "count": 1663,
  "items": {
   "f7b1c263744b9ece": {
    "id": "f7b1c263744b9ece",
@@ -43934,7 +43934,7 @@
    "source": "cjob.co.kr",
    "channel": "cjob",
    "layer": "C",
-   "title": "[늘소망교회] 피아노 반주자 구합니다",
+   "title": "[늘소망교회] 교회 피아노 반주자 구합니다",
    "url": "https://www.cjob.co.kr/bbs/board.php?bo_table=offerIG&wr_id=7821&c_jikjong=2&page=1",
    "date": "2026-11-08",
    "deadline": "2027-01-31",
@@ -45620,7 +45620,7 @@
    "source": "cjob.co.kr",
    "channel": "cjob",
    "layer": "C",
-   "title": "[강북임마누엘교회] 대구 북구 칠곡 임시 반주자 모집",
+   "title": "[강북임마누엘교회] 대구 북구 칠곡 교회 임시 반주자 모집",
    "url": "https://www.cjob.co.kr/bbs/board.php?bo_table=offerIG&wr_id=7829&c_jikjong=2&page=1",
    "date": "2026-11-20",
    "deadline": "2026-11-28",
@@ -45828,7 +45828,7 @@
    "deadlineFrom": "origin",
    "kind": "교수",
    "tier": "교육 — 대학",
-   "inst": "건반",
+   "inst": "전체",
    "instDetails": [
     "피아노",
     "지휘"
@@ -45880,6 +45880,37 @@
    "firstSeen": "2026-11-20",
    "lastSeen": "2026-11-21",
    "days": 2
+  },
+  "c8616a692f3b356c": {
+   "id": "c8616a692f3b356c",
+   "org": "인천은송중학교",
+   "region": "인천",
+   "source": "ice.go.kr",
+   "channel": "edu_ice",
+   "layer": "C",
+   "title": "[인천은송중] 기간제교원 채용 계획(음악)",
+   "url": "https://www.ice.go.kr/ice/na/ntt/selectNttInfo.do?nttSn=3389249&mi=10997&bbsId=1981",
+   "date": "2026-11-20",
+   "deadline": "2026-11-25",
+   "deadlineFrom": "raw",
+   "kind": "교원",
+   "tier": "교육 — 학교",
+   "inst": "전체",
+   "instDetails": [],
+   "ageGroup": "성인",
+   "obri": false,
+   "certReq": "예",
+   "degreeReq": "무관",
+   "careerReq": "미기재",
+   "personnel": "1명",
+   "bodyExcerpt": "교육공무원 임용 자격에 결격사유가 없는 자 · 해당 교과 교원자격증 소지자 · 본 채용계획은 학교 사정에 따라 달라질 수 있음",
+   "qualification": "교육공무원 임용 자격에 결격사유가 없는 자 · 해당 교과 교원자격증 소지자",
+   "contact": "032-626-2620",
+   "email": "junha6309@ice.go.kr",
+   "addr": "인천광역시 연수구 센트럴로 464",
+   "firstSeen": "2026-11-21",
+   "lastSeen": "2026-11-21",
+   "days": 1
   }
  }
 }
