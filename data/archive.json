@@ -1,5 +1,5 @@
 {
- "updatedAt": "2026-11-24",
+ "updatedAt": "2026-11-25",
  "count": 1673,
  "items": {
   "f7b1c263744b9ece": {
@@ -1805,8 +1805,8 @@
     "피아노"
    ],
    "firstSeen": "2026-07-08",
-   "lastSeen": "2026-11-24",
-   "days": 119,
+   "lastSeen": "2026-11-25",
+   "days": 120,
    "deadline": "2026-12-31",
    "deadlineFrom": "cjob-남은기간",
    "date": "2026-07-03",
@@ -1872,8 +1872,8 @@
     "피아노"
    ],
    "firstSeen": "2026-07-08",
-   "lastSeen": "2026-11-24",
-   "days": 119,
+   "lastSeen": "2026-11-25",
+   "days": 120,
    "deadline": "2026-12-31",
    "deadlineFrom": "cjob-남은기간",
    "date": "2026-05-20",
@@ -36207,8 +36207,8 @@
    "email": "wanju2619@naver.com",
    "addr": "전북특별자치도 완주군 봉동읍 봉동로 172 완주고등학교",
    "firstSeen": "2026-09-17",
-   "lastSeen": "2026-11-24",
-   "days": 69
+   "lastSeen": "2026-11-25",
+   "days": 70
   },
   "f170ea9f5c6463e2": {
    "id": "f170ea9f5c6463e2",
@@ -39083,8 +39083,8 @@
    "contact": "032-420-2742",
    "email": "iypo2026@gmail.com",
    "firstSeen": "2026-10-07",
-   "lastSeen": "2026-11-24",
-   "days": 49
+   "lastSeen": "2026-11-25",
+   "days": 50
   },
   "264e180b253c535e": {
    "id": "264e180b253c535e",
@@ -39518,8 +39518,8 @@
    "qualification": "음악 관련 전공 재학·졸업자 또는 이에 준하는 전문 활동 경력 보유자 기악 | 서양 오케스트라 및 국악관현악",
    "email": "nmk.arts.co@gmail.com",
    "firstSeen": "2026-10-11",
-   "lastSeen": "2026-11-24",
-   "days": 45
+   "lastSeen": "2026-11-25",
+   "days": 46
   },
   "d9938393212b6cea": {
    "id": "d9938393212b6cea",
@@ -39879,8 +39879,8 @@
    "workHours": "목요일 오후 8시~9시 50분",
    "email": "bora@casuwon.or.kr",
    "firstSeen": "2026-10-13",
-   "lastSeen": "2026-11-24",
-   "days": 43
+   "lastSeen": "2026-11-25",
+   "days": 44
   },
   "34877051f5bfd582": {
    "id": "34877051f5bfd582",
@@ -39947,8 +39947,8 @@
    "lng": 126.8165665,
    "addrFrom": "geo",
    "firstSeen": "2026-10-14",
-   "lastSeen": "2026-11-24",
-   "days": 42
+   "lastSeen": "2026-11-25",
+   "days": 43
   },
   "9c21c3f956d7c117": {
    "id": "9c21c3f956d7c117",
@@ -40159,8 +40159,8 @@
    "lng": 126.9393747,
    "addrFrom": "geo",
    "firstSeen": "2026-10-14",
-   "lastSeen": "2026-11-24",
-   "days": 42
+   "lastSeen": "2026-11-25",
+   "days": 43
   },
   "14e2108daa371bd2": {
    "id": "14e2108daa371bd2",
@@ -41532,8 +41532,8 @@
    "lng": 128.6108553,
    "addrFrom": "geo",
    "firstSeen": "2026-10-25",
-   "lastSeen": "2026-11-24",
-   "days": 31,
+   "lastSeen": "2026-11-25",
+   "days": 32,
    "deadline": "2027-01-29",
    "deadlineFrom": "hibrain"
   },
@@ -41589,8 +41589,8 @@
    "addr": "서울특별시 성동구 왕십리로 222",
    "addrFrom": "postal",
    "firstSeen": "2026-10-25",
-   "lastSeen": "2026-11-24",
-   "days": 31
+   "lastSeen": "2026-11-25",
+   "days": 32
   },
   "fbe2e35389f17673": {
    "id": "fbe2e35389f17673",
@@ -42507,8 +42507,8 @@
    "lng": 126.9393747,
    "addrFrom": "geo",
    "firstSeen": "2026-10-29",
-   "lastSeen": "2026-11-24",
-   "days": 27
+   "lastSeen": "2026-11-25",
+   "days": 28
   },
   "c7cf163466460979": {
    "id": "c7cf163466460979",
@@ -42667,8 +42667,8 @@
    "lng": 126.9393747,
    "addrFrom": "geo",
    "firstSeen": "2026-10-30",
-   "lastSeen": "2026-11-24",
-   "days": 26
+   "lastSeen": "2026-11-25",
+   "days": 27
   },
   "1c5a659225b1a3f4": {
    "id": "1c5a659225b1a3f4",
@@ -42814,8 +42814,8 @@
    "addr": "서울특별시 광진구 천호대로 664(능동)",
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-11-02",
-   "lastSeen": "2026-11-24",
-   "days": 23
+   "lastSeen": "2026-11-25",
+   "days": 24
   },
   "c7472b3399ffae24": {
    "id": "c7472b3399ffae24",
@@ -42850,8 +42850,8 @@
    "addr": "서울특별시 종로구 계동길 84-10(계동)",
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-11-02",
-   "lastSeen": "2026-11-24",
-   "days": 23
+   "lastSeen": "2026-11-25",
+   "days": 24
   },
   "f5e70b3a15a37b99": {
    "id": "f5e70b3a15a37b99",
@@ -43081,8 +43081,8 @@
    "pay": "면접시 협의",
    "addr": "대구 중구 달구벌대로405길 58 (동산동, 대구제이교회)",
    "firstSeen": "2026-11-03",
-   "lastSeen": "2026-11-24",
-   "days": 22
+   "lastSeen": "2026-11-25",
+   "days": 23
   },
   "b4c9aefd2c5b0789": {
    "id": "b4c9aefd2c5b0789",
@@ -43719,8 +43719,8 @@
    "bodyExcerpt": "신청기한 : 채용시까지 7. · 제출방법 : 이메일(yongin@casuwon.or.kr) 또는 방문접수 8",
    "email": "yongin@casuwon.or.kr",
    "firstSeen": "2026-11-05",
-   "lastSeen": "2026-11-24",
-   "days": 20
+   "lastSeen": "2026-11-25",
+   "days": 21
   },
   "4535c785c23413c0": {
    "id": "4535c785c23413c0",
@@ -43748,8 +43748,8 @@
    "contact": "031-476-8800",
    "email": "maegok@casuwon.or.kr",
    "firstSeen": "2026-11-05",
-   "lastSeen": "2026-11-24",
-   "days": 20
+   "lastSeen": "2026-11-25",
+   "days": 21
   },
   "cbffbc59cf132b1a": {
    "id": "cbffbc59cf132b1a",
@@ -43934,7 +43934,7 @@
    "source": "cjob.co.kr",
    "channel": "cjob",
    "layer": "C",
-   "title": "[늘소망교회] 교회 피아노 반주자 구합니다",
+   "title": "[늘소망교회] 피아노 반주자 구합니다",
    "url": "https://www.cjob.co.kr/bbs/board.php?bo_table=offerIG&wr_id=7821&c_jikjong=2&page=1",
    "date": "2026-11-08",
    "deadline": "2027-01-31",
@@ -43954,8 +43954,8 @@
    "pay": "월 50만원",
    "addr": "전남광주통합특별시 목포시 호남동 544 늘소망교회",
    "firstSeen": "2026-11-08",
-   "lastSeen": "2026-11-24",
-   "days": 17
+   "lastSeen": "2026-11-25",
+   "days": 18
   },
   "89471f0415ad089e": {
    "id": "89471f0415ad089e",
@@ -44421,8 +44421,8 @@
    "lng": 126.9756026,
    "addrFrom": "geo",
    "firstSeen": "2026-11-10",
-   "lastSeen": "2026-11-24",
-   "days": 15,
+   "lastSeen": "2026-11-25",
+   "days": 16,
    "duty": "소프라노 2명 · 알토 3명 · 테너 1명 · 베이스 2명"
   },
   "fd93f2c148264b73": {
@@ -44556,8 +44556,8 @@
    "lng": 127.4843619,
    "addrFrom": "geo",
    "firstSeen": "2026-11-10",
-   "lastSeen": "2026-11-24",
-   "days": 15,
+   "lastSeen": "2026-11-25",
+   "days": 16,
    "bodyExcerpt": "서비스 사용불가 기간 : `26.11.13.(금) 22:00 ~ `26.11.16.(월) 06:00 * 상기 일정은 작업 상황에 따라 변경 될 수 있습니다. · 채용관련 접수는 작업기간 이후(11월 16일 06시) 접수 부탁드립니다"
   },
   "5b1ac073c17a606e": {
@@ -44684,8 +44684,8 @@
    "lng": 126.9393747,
    "addrFrom": "geo",
    "firstSeen": "2026-11-11",
-   "lastSeen": "2026-11-24",
-   "days": 14
+   "lastSeen": "2026-11-25",
+   "days": 15
   },
   "b099ebb4e879c864": {
    "id": "b099ebb4e879c864",
@@ -44883,8 +44883,8 @@
    "careerReq": "미기재",
    "contact": "054-420-7827",
    "firstSeen": "2026-11-13",
-   "lastSeen": "2026-11-24",
-   "days": 12
+   "lastSeen": "2026-11-25",
+   "days": 13
   },
   "2c02094ed576e9e0": {
    "id": "2c02094ed576e9e0",
@@ -45090,8 +45090,8 @@
    "duty": "소프라노 2명 · 알토 3명 · 테너 1명 · 베이스 2명",
    "email": "sjart_recruit@sejongpac.or.kr",
    "firstSeen": "2026-11-16",
-   "lastSeen": "2026-11-24",
-   "days": 9
+   "lastSeen": "2026-11-25",
+   "days": 10
   },
   "04147d97b18ecbdc": {
    "id": "04147d97b18ecbdc",
@@ -45386,8 +45386,8 @@
    "addr": "전남광주통합특별시 무안군 청계면 영산로 1666",
    "addrFrom": "postal",
    "firstSeen": "2026-11-18",
-   "lastSeen": "2026-11-24",
-   "days": 7
+   "lastSeen": "2026-11-25",
+   "days": 8
   },
   "4af8801a606b997c": {
    "id": "4af8801a606b997c",
@@ -45413,8 +45413,8 @@
    "lng": 127.0470893,
    "addrFrom": "geo",
    "firstSeen": "2026-11-18",
-   "lastSeen": "2026-11-24",
-   "days": 7
+   "lastSeen": "2026-11-25",
+   "days": 8
   },
   "587d4c432b108e5d": {
    "id": "587d4c432b108e5d",
@@ -45476,8 +45476,8 @@
    "pay": "월 50만원",
    "addr": "서울특별시 송파구 성내천로 261 구본빌딩 3층",
    "firstSeen": "2026-11-19",
-   "lastSeen": "2026-11-24",
-   "days": 6
+   "lastSeen": "2026-11-25",
+   "days": 7
   },
   "f05e9d58549b75cb": {
    "id": "f05e9d58549b75cb",
@@ -45620,7 +45620,7 @@
    "source": "cjob.co.kr",
    "channel": "cjob",
    "layer": "C",
-   "title": "[강북임마누엘교회] 대구 북구 칠곡 교회 임시 반주자 모집",
+   "title": "[강북임마누엘교회] 대구 북구 칠곡 임시 반주자 모집",
    "url": "https://www.cjob.co.kr/bbs/board.php?bo_table=offerIG&wr_id=7829&c_jikjong=2&page=1",
    "date": "2026-11-20",
    "deadline": "2026-11-28",
@@ -45641,8 +45641,8 @@
    "pay": "2주간의 임시반주이기 때문에, 협의후 결정",
    "addr": "대구 북구 칠곡중앙대로105길 18 (읍내동)",
    "firstSeen": "2026-11-20",
-   "lastSeen": "2026-11-24",
-   "days": 5
+   "lastSeen": "2026-11-25",
+   "days": 6
   },
   "45d5c34f7384b40e": {
    "id": "45d5c34f7384b40e",
@@ -45677,8 +45677,8 @@
    "addr": "서울특별시 종로구 평창문화로 70(평창동)",
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-11-20",
-   "lastSeen": "2026-11-24",
-   "days": 5
+   "lastSeen": "2026-11-25",
+   "days": 6
   },
   "2b9f9f0294bb8eaf": {
    "id": "2b9f9f0294bb8eaf",
@@ -45711,8 +45711,8 @@
    "addrFrom": "geo",
    "orgAffil": "경기교육청",
    "firstSeen": "2026-11-20",
-   "lastSeen": "2026-11-24",
-   "days": 5
+   "lastSeen": "2026-11-25",
+   "days": 6
   },
   "7a23b3f3802b7fd8": {
    "id": "7a23b3f3802b7fd8",
@@ -45748,8 +45748,8 @@
    "addrFrom": "geo",
    "orgAffil": "경기교육청",
    "firstSeen": "2026-11-20",
-   "lastSeen": "2026-11-24",
-   "days": 5
+   "lastSeen": "2026-11-25",
+   "days": 6
   },
   "fa499aad0511cb7d": {
    "id": "fa499aad0511cb7d",
@@ -45844,8 +45844,8 @@
    "contact": "054-420-4201",
    "email": "bucksup@gimcheon.ac.kr",
    "firstSeen": "2026-11-20",
-   "lastSeen": "2026-11-24",
-   "days": 5,
+   "lastSeen": "2026-11-25",
+   "days": 6,
    "addr": "경상북도 김천시 대학로 214",
    "lat": 36.1398256,
    "lng": 128.0812634,
@@ -45878,8 +45878,8 @@
    "lng": 126.9541023,
    "addrFrom": "geo",
    "firstSeen": "2026-11-20",
-   "lastSeen": "2026-11-24",
-   "days": 5
+   "lastSeen": "2026-11-25",
+   "days": 6
   },
   "c8616a692f3b356c": {
    "id": "c8616a692f3b356c",
@@ -45909,8 +45909,8 @@
    "email": "junha6309@ice.go.kr",
    "addr": "인천광역시 연수구 센트럴로 464",
    "firstSeen": "2026-11-21",
-   "lastSeen": "2026-11-24",
-   "days": 4
+   "lastSeen": "2026-11-25",
+   "days": 5
   },
   "d274c8fa9960d50b": {
    "id": "d274c8fa9960d50b",
@@ -46016,8 +46016,8 @@
    "addr": "서울특별시 강서구 수명로2길 15(내발산동)",
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-11-23",
-   "lastSeen": "2026-11-24",
-   "days": 2
+   "lastSeen": "2026-11-25",
+   "days": 3
   },
   "637e949e2cead8d3": {
    "id": "637e949e2cead8d3",
@@ -46051,8 +46051,8 @@
    "email": "irbj42@gmail.com",
    "addr": "전북특별자치도 군산시 개정면 바르메길 43 교무실",
    "firstSeen": "2026-11-23",
-   "lastSeen": "2026-11-24",
-   "days": 2
+   "lastSeen": "2026-11-25",
+   "days": 3
   },
   "a4318b36ee246b41": {
    "id": "a4318b36ee246b41",
@@ -46081,8 +46081,8 @@
    "lng": 127.1337209,
    "addrFrom": "geo",
    "firstSeen": "2026-11-23",
-   "lastSeen": "2026-11-24",
-   "days": 2
+   "lastSeen": "2026-11-25",
+   "days": 3
   },
   "eed133de84d4adae": {
    "id": "eed133de84d4adae",
@@ -46154,8 +46154,8 @@
    "addr": "서울특별시 동대문구 회기로10길 63(회기동)",
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-11-24",
-   "lastSeen": "2026-11-24",
-   "days": 1
+   "lastSeen": "2026-11-25",
+   "days": 2
   },
   "5e5cb642b0effd56": {
    "id": "5e5cb642b0effd56",
@@ -46171,7 +46171,7 @@
    "deadlineFrom": "raw",
    "kind": "강사",
    "tier": "교육 — 학교",
-   "inst": "목관",
+   "inst": "전체",
    "instDetails": [
     "관악"
    ],
@@ -46191,8 +46191,8 @@
    "addr": "서울특별시 금천구 금하로30길 53",
    "orgAffil": "서울시교육청",
    "firstSeen": "2026-11-24",
-   "lastSeen": "2026-11-24",
-   "days": 1
+   "lastSeen": "2026-11-25",
+   "days": 2
   },
   "aa36f88ff9970a98": {
    "id": "aa36f88ff9970a98",
@@ -46225,8 +46225,8 @@
    "addrFrom": "postal",
    "orgAffil": "세종교육청",
    "firstSeen": "2026-11-24",
-   "lastSeen": "2026-11-24",
-   "days": 1
+   "lastSeen": "2026-11-25",
+   "days": 2
   },
   "b144378840aebecb": {
    "id": "b144378840aebecb",
@@ -46259,8 +46259,8 @@
    "lng": 128.9966121,
    "addrFrom": "geo",
    "firstSeen": "2026-11-24",
-   "lastSeen": "2026-11-24",
-   "days": 1
+   "lastSeen": "2026-11-25",
+   "days": 2
   }
  }
 }
