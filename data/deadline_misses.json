@@ -1,4 +1,12 @@
 {
+ "http://www.klid.or.kr": {
+  "firstSeen": "2026-11-25",
+  "tries": 1,
+  "reported": false,
+  "lastTry": "2026-11-25",
+  "title": "재단법인 서울시립교향악단 부지휘자 모집",
+  "org": "서울시립교향악단"
+ },
  "https://portal.hanyang.ac.kr/huas/iycy/hycy.do?pageGb=gscy": {
   "firstSeen": "2026-11-18",
   "tries": 8,
