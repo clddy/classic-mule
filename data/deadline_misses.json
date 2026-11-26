@@ -1,20 +1,21 @@
 {
  "https://portal.hanyang.ac.kr/huas/iycy/hycy.do?pageGb=gscy": {
   "firstSeen": "2026-11-18",
-  "tries": 9,
+  "tries": 10,
   "reported": true,
-  "lastTry": "2026-11-26",
+  "lastTry": "2026-11-27",
   "title": "[한양대학교] 겸임교수 모집",
   "org": "한양대학교",
-  "lastReported": "2026-11-20",
+  "lastReported": "2026-11-27",
   "lastDeep": "2026-11-25"
  },
  "http://www.klid.or.kr": {
   "firstSeen": "2026-11-25",
-  "tries": 2,
-  "reported": false,
-  "lastTry": "2026-11-26",
+  "tries": 3,
+  "reported": true,
+  "lastTry": "2026-11-27",
   "title": "재단법인 서울시립교향악단 부지휘자 모집",
-  "org": "서울시립교향악단"
+  "org": "서울시립교향악단",
+  "lastReported": "2026-11-27"
  }
 }

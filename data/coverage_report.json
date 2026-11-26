@@ -1,8 +1,8 @@
 {
- "date": "2026-11-26",
+ "date": "2026-11-27",
  "total": 75,
- "covered": 4,
- "gapCount": 71,
+ "covered": 3,
+ "gapCount": 72,
  "gaps": [
   {
    "name": "KBS교향악단",
@@ -250,6 +250,11 @@
    "region": "전북"
   },
   {
+   "name": "김천시립교향악단",
+   "type": "교향악단",
+   "region": "경북"
+  },
+  {
    "name": "과천시립교향악단",
    "type": "교향악단",
    "region": "경기"
@@ -362,8 +367,8 @@
  ],
  "master": {
   "total": 604,
-  "covered": 5,
-  "gapCount": 599,
+  "covered": 4,
+  "gapCount": 600,
   "byCategory": {
    "대학": {
     "total": 77,
@@ -375,7 +380,7 @@
    },
    "예술단": {
     "total": 54,
-    "covered": 4
+    "covered": 3
    },
    "지자체": {
     "total": 323,
@@ -942,6 +947,11 @@
     "name": "군산시립교향악단",
     "cat": "예술단",
     "region": "전북"
+   },
+   {
+    "name": "김천시립교향악단",
+    "cat": "예술단",
+    "region": "경북"
    },
    {
     "name": "경산시립교향악단",
