@@ -1,17 +1,17 @@
 {
  "https://symphonysong.com/symphonysong/2838/subview.do": {
   "firstSeen": "2026-11-28",
-  "tries": 1,
+  "tries": 2,
   "reported": false,
-  "lastTry": "2026-11-28",
+  "lastTry": "2026-11-29",
   "title": "함신익과 심포니 송 부지휘자 모집",
   "org": "직접 게시"
  },
  "https://portal.hanyang.ac.kr/huas/iycy/hycy.do?pageGb=gscy": {
   "firstSeen": "2026-11-18",
-  "tries": 11,
+  "tries": 12,
   "reported": true,
-  "lastTry": "2026-11-28",
+  "lastTry": "2026-11-29",
   "title": "[한양대학교] 강사 모집",
   "org": "한양대학교",
   "lastReported": "2026-11-27",
